@@ -1,24 +1,15 @@
 import * as React from 'react';
 import Heart from 'SvgComponents/HeartSVG/Heart';
-import { MerchandiseContainer } from './Merchandise.styled.d';
-// import {
-//   Action,
-//   Buy,
-//   Like,
-//   MerchandiseContainer,
-//   NameItem,
-//   PriceItem,
-// } from './Merchandise.styled';
-interface Merchandises {
-  imgItem: string;
-  nameItem: string;
-  priceItem: string | number;
-}
-export default function Merchandise({
-  imgItem,
-  nameItem,
-  priceItem,
-}: Merchandises) {
+import {
+  Action,
+  Buy,
+  Like,
+  MerchandiseContainer,
+  NameItem,
+  PriceItem,
+} from './Merchandise.styled';
+
+export default function Merchandise({ imgItem, nameItem, priceItem }) {
   return (
     <MerchandiseContainer>
       <img src={imgItem} alt={nameItem} />
