@@ -1,15 +1,19 @@
-import { Formik } from 'formik';
+import React, { useState } from 'react';
 import {
   Container,
   ErrorMessage,
   Field,
   Form,
-  LinkForget,
-} from './FormEnter.styled';
-// import { useNavigate } from 'react-router-dom';
+  Send,
+} from './FormRegister.styled';
+import { Formik } from 'formik';
+import Eye from 'SvgComponents/EyeSVG/Eye';
 
-export default function FormEnter({ getAuth, onClose }) {
-  //   const navigate = useNavigate();
+export default function FormRegister({ onClose }) {
+  const [view, setView] = useState(false);
+  function onToggleView() {
+    setView(prev => !prev);
+  }
   return (
     <Container>
       <Formik
@@ -41,19 +45,38 @@ export default function FormEnter({ getAuth, onClose }) {
         {({ isSubmitting }) => (
           <Form>
             <label>
+              Iм`я
+              <Field type="text" name="first-name" />
+              <ErrorMessage name="first-name" component="p" />
+            </label>
+            <label>
+              Прiзвище
+              <Field type="text" name="last-name" />
+              <ErrorMessage name="last-name" component="p" />
+            </label>
+            <label>
+              Номер телефону
+              <Field type="tel" name="tel" placeholder="+380 (__) ___-__-__" />
+              <ErrorMessage name="tel" component="p" />
+            </label>
+            <label>
               Електронна пошта
-              <Field type="email" name="email" />
+              <Field
+                type="email"
+                name="email"
+                placeholder="tanya@example.com"
+              />
               <ErrorMessage name="email" component="p" />
             </label>
             <label>
               Пароль
               <Field type="password" name="password" />
               <ErrorMessage name="password" component="p" />
-              <LinkForget to="#">Забули пароль?</LinkForget>
+              <Eye view={view} onToggleView={onToggleView} />
             </label>
-            <button type="submit" disabled={isSubmitting}>
-              Увійти
-            </button>
+            <Send type="submit" disabled={isSubmitting}>
+              Зареєструватись
+            </Send>
           </Form>
         )}
       </Formik>

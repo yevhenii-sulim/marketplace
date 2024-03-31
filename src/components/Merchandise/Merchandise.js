@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import Heart from 'SvgComponents/HeartSVG/Heart';
 import {
   Action,
@@ -24,3 +25,8 @@ export default function Merchandise({ imgItem, nameItem, priceItem }) {
     </MerchandiseContainer>
   );
 }
+Merchandise.propTypes = {
+  imgItem: PropTypes.string.isRequired,
+  nameItem: PropTypes.string.isRequired,
+  priceItem: PropTypes.number.isRequired,
+};
