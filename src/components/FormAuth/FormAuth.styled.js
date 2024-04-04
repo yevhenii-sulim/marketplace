@@ -5,13 +5,22 @@ import {
   Field as FieldForm,
   Form as FormContainer,
 } from 'formik';
-export const Container = styled.div`
+
+export const BoxEye = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translatey(-50%);
+`;
+
+export const ContainerForm = styled.div`
   width: 100%;
 `;
+
 export const LinkForget = styled(Link)`
-  font-weight: 600;
   text-decoration: none;
-  color: ${({ theme }) => theme.color.colorTextRegistr};
+  font-weight: 600;
+  color: ${({ theme }) => theme.color.colorButton};
 `;
 
 export const ErrorMessage = styled(ErrorForm)`

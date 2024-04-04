@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const WrapperModal = styled.div`
   background-color: ${({ theme }) => theme.color.bgCommon};
   position: absolute;
   top: 50%;
@@ -9,11 +9,6 @@ export const Container = styled.div`
   border: 3px solid ${({ theme }) => theme.color.borderRegistr};
   border-radius: 12px;
   padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: flex-start;
-  color: inherit;
 `;
 
 export const Backdrop = styled.div`
@@ -23,4 +18,12 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.color.bgBackdrop};
+`;
+export const Box = styled.div`
+  max-width: 384px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  color: inherit;
 `;

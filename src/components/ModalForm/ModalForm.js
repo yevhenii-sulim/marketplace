@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Backdrop, Container } from './ModalForm.styled';
-import EnterArea from 'components/AuthArea/AuthArea';
-import AutoMoto from 'pages/AutoMoto';
+import { Backdrop, Box, Container, WrapperModal } from './ModalForm.styled';
+import RegisterArea from 'components/RegisterArea/RegisterArea';
+import AuthArea from 'components/AuthArea/AuthArea';
 
 export default function ModalForm({ onClose }) {
   const [wind, setWind] = useState(true);
-  function toggleWind() {
+  function toggleWindInReg() {
     setWind(false);
+  }
+
+  function toggleWindInAuth() {
+    setWind(true);
   }
 
   useEffect(() => {
@@ -27,14 +31,16 @@ export default function ModalForm({ onClose }) {
     onClose(false);
   }
   return (
-    <Backdrop onClick={oncloseByClickOutside}>
-      <Container>
-        {wind ? (
-          <EnterArea onClose={onClose} toggleWind={toggleWind} />
-        ) : (
-          <AutoMoto />
-        )}
-      </Container>
+    <Backdrop onMouseDown={oncloseByClickOutside}>
+      <WrapperModal>
+        <Box>
+          {wind ? (
+            <AuthArea onClose={onClose} toggleWind={toggleWindInReg} />
+          ) : (
+            <RegisterArea onClose={onClose} toggleWind={toggleWindInAuth} />
+          )}
+        </Box>
+      </WrapperModal>
     </Backdrop>
   );
 }

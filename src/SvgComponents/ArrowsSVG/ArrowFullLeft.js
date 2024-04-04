@@ -1,9 +1,9 @@
-import { Svg } from 'SvgComponents/Svg.styled';
+import { SvgArrow } from './Arrow.styled';
 
 export default function ArrowFullLeft() {
   return (
     <>
-      <Svg
+      <SvgArrow
         width="32"
         height="32"
         viewBox="0 0 32 32"
@@ -17,7 +17,7 @@ export default function ArrowFullLeft() {
           stroke-linecap="round"
           stroke-linejoin="round"
         />
-      </Svg>
+      </SvgArrow>
     </>
   );
 }

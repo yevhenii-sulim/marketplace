@@ -1,7 +1,8 @@
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import {
-  Container,
+  BoxEye,
+  ContainerForm,
   Enter,
   ErrorMessage,
   Field,
@@ -12,7 +13,7 @@ import Eye from 'SvgComponents/EyeSVG/Eye';
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 
-export default function FormEnter({ onClose }) {
+export default function FormAuth({ onClose }) {
   //   const navigate = useNavigate();
   const [view, setView] = useState(false);
   function onToggleView() {
@@ -20,15 +21,18 @@ export default function FormEnter({ onClose }) {
   }
 
   return (
-    <Container>
+    <ContainerForm>
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={values => {
           const errors = {};
           if (!values.password) {
             errors.password = 'Required';
-          } else if (values.password.length < 8) {
-            errors.password = 'Need 8 characters or more';
+          } else if (
+            values.password.length < 6 &&
+            values.password.length > 20
+          ) {
+            errors.password = 'Need reng 6 - 20 elements';
           }
           if (!values.email) {
             errors.email = 'Required';
@@ -62,7 +66,9 @@ export default function FormEnter({ onClose }) {
                 <Field type="password" name="password" />
               )}
               <ErrorMessage name="password" component="p" />
-              <Eye view={view} onToggleView={onToggleView} />
+              <BoxEye>
+                <Eye view={view} onToggleView={onToggleView} />
+              </BoxEye>
               <LinkForget to="#">Забули пароль?</LinkForget>
             </label>
             <Enter type="submit" disabled={isSubmitting}>
@@ -71,9 +77,9 @@ export default function FormEnter({ onClose }) {
           </Form>
         )}
       </Formik>
-    </Container>
+    </ContainerForm>
   );
 }
-FormEnter.propTypes = {
+FormAuth.propTypes = {
   onClose: PropTypes.func.isRequired,
 };

@@ -1,14 +1,12 @@
 import styled from 'styled-components';
+import { Link as LinkLogo } from 'react-router-dom';
 
 export const Svg = styled.svg``;
 export const Button = styled.button`
   border: none;
   background-color: transparent;
   outline: none;
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translatey(-50%);
+  position: relative;
 `;
 export const View = styled.span`
   position: absolute;
@@ -19,3 +17,4 @@ export const View = styled.span`
   height: 2px;
   background-color: ${({ theme }) => theme.color.colorMainText};
 `;
+export const Link = styled(LinkLogo)``;

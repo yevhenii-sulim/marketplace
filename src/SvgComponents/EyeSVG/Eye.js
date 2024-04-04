@@ -3,7 +3,6 @@ import { Button, Svg, View } from 'SvgComponents/Svg.styled';
 import React, { memo } from 'react';
 
 function Eye({ view, onToggleView }) {
-  console.log(view);
   return (
     <Button type="button" onClick={onToggleView}>
       {view && <View></View>}

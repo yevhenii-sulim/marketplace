@@ -1,11 +1,22 @@
 import styled from 'styled-components';
+import { Link as LinkAgree } from 'react-router-dom';
 import {
   ErrorMessage as ErrorForm,
   Field as FieldForm,
   Form as FormContainer,
 } from 'formik';
-export const Container = styled.div`
+export const ContainerForm = styled.div`
   width: 100%;
+`;
+export const BoxEye = styled.div`
+  position: absolute;
+  top: 72%;
+  right: 12px;
+  transform: translatey(-50%);
+`;
+export const Link = styled(LinkAgree)`
+  color: ${({ theme }) => theme.color.colorTextRegistr};
+  text-decoration: none;
 `;
 
 export const ErrorMessage = styled(ErrorForm)`

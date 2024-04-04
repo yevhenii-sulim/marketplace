@@ -1,9 +1,9 @@
-import { Svg } from 'SvgComponents/Svg.styled';
+import { SvgArrow } from './Arrow.styled';
 
 export default function ArrowPrev() {
   return (
     <>
-      <Svg
+      <SvgArrow
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -17,7 +17,7 @@ export default function ArrowPrev() {
           stroke-linecap="round"
           stroke-linejoin="round"
         />
-      </Svg>
+      </SvgArrow>
     </>
   );
 }
