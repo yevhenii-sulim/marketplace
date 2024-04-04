@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, List, NavList } from './NavComponent.styled';
 
-export default function NavComponent() {
+export default function NavComponent({ onCloseModal }) {
   return (
-    <Container>
+    <Container onClick={onCloseModal}>
       <NavList>
-        <List></List>
+        <List>dfsgdghdfhgfhdhdfg</List>
       </NavList>
     </Container>
   );
 }
+
+NavComponent.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
+};

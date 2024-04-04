@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import DandruffSmal from 'SvgComponents/DandruffSVG/DandruffSmal';
 import React from 'react';
 import { FormSearch } from './Search.styled';
@@ -17,3 +18,7 @@ export default function Search({ searchProduct }) {
     </FormSearch>
   );
 }
+
+Search.propTypes = {
+  searchProduct: PropTypes.func.isRequired,
+};
