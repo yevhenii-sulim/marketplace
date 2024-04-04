@@ -1,11 +1,6 @@
+import NavComponent from 'components/NavComponent/NavComponent';
 import React from 'react';
 
 export default function Nav() {
-  return (
-    <Container>
-      <NavList>
-        <List></List>
-      </NavList>
-    </Container>
-  );
+  return <NavComponent />;
 }
