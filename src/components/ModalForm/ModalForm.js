@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Backdrop, Box, Container, WrapperModal } from './ModalForm.styled';
+import { Backdrop, Box, WrapperModal } from './ModalForm.styled';
 import RegisterArea from 'components/RegisterArea/RegisterArea';
 import AuthArea from 'components/AuthArea/AuthArea';
 
