@@ -17,16 +17,18 @@ const productPhoto = [
 ];
 
 function Slider() {
-  const Slide = useRef();
+  const slide = useRef();
   const wrapperSliderBlock = useRef();
   const scrollPhoto = nameArrow => {
     const wrapperSliderBlockScroll = wrapperSliderBlock.current;
-    const widthBlock = Slide.current.offsetWidth;
+    const widthBlock = slide.current.offsetWidth;
     const scrollAmount = widthBlock * (nameArrow === 'left' ? -1 : 1);
 
     smoothScroll(
       wrapperSliderBlockScroll.scrollLeft,
-      wrapperSliderBlockScroll.scrollLeft + scrollAmount,
+      wrapperSliderBlockScroll.scrollLeft +
+        scrollAmount +
+        (nameArrow === 'left' ? 0 : 1),
       300
     );
   };
@@ -55,7 +57,7 @@ function Slider() {
       </ArrowLeftWrapper>
       <SlidersWrapper ref={wrapperSliderBlock}>
         {productPhoto.map((el, index) => (
-          <WrapperSlide key={index} ref={Slide}>
+          <WrapperSlide key={index} ref={slide}>
             <img src={el.src} alt={el.alt} width="50%" />
           </WrapperSlide>
         ))}

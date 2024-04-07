@@ -1,5 +1,5 @@
 export const TabListStyles = {
-  '& .Mui-selected': {
+  '& .MuiButtonBase-root.Mui-selected': {
     color: '#7FD888',
   },
   '& .MuiTabs-indicator': {
