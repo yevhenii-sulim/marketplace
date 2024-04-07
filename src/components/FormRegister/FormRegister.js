@@ -10,6 +10,7 @@ import {
 } from './FormRegister.styled';
 import { Formik } from 'formik';
 import Eye from 'SvgComponents/EyeSVG/Eye';
+import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 
 export default function FormRegister({ onClose }) {
   const [view, setView] = useState(false);
@@ -102,21 +103,25 @@ export default function FormRegister({ onClose }) {
           <Form>
             <label>
               Iм`я
+              <MarkSvg />
               <Field type="text" name="firstName" />
               <ErrorMessage name="firstName" component="p" />
             </label>
             <label>
               Прiзвище
+              <MarkSvg />
               <Field type="text" name="lastName" />
               <ErrorMessage name="lastName" component="p" />
             </label>
             <label>
               Номер телефону
+              <MarkSvg />
               <Field type="tel" name="tel" placeholder="+380 (__) ___-__-__" />
               <ErrorMessage name="tel" component="p" />
             </label>
             <label>
               Електронна пошта
+              <MarkSvg />
               <Field
                 type="email"
                 name="email"
@@ -125,6 +130,7 @@ export default function FormRegister({ onClose }) {
               <ErrorMessage name="email" component="p" />
             </label>
             <label>
+              <MarkSvg />
               Пароль
               {view ? (
                 <Field type="text" name="password" />

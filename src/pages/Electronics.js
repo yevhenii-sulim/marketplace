@@ -1,3 +1,3 @@
 export default function Electronics() {
-  return <div>Electronics</div>;
+  return <main>Electronics</main>;
 }

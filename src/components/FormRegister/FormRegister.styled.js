@@ -28,7 +28,10 @@ export const ErrorMessage = styled(ErrorForm)`
 export const Field = styled(FieldForm)`
   width: 100%;
   border-radius: 6px;
-  padding: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 12px;
+  padding-left: 28px;
 `;
 export const Form = styled(FormContainer)`
   display: flex;
@@ -40,6 +43,13 @@ export const Form = styled(FormContainer)`
     flex-direction: column;
     gap: 8px;
     font-weight: 700;
+  }
+  .mark {
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    bottom: 25%;
+    left: 15px;
   }
 `;
 export const Send = styled.button`

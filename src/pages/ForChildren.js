@@ -1,3 +1,3 @@
 export default function ForChildren() {
-  return <div>ForChildren</div>;
+  return <main>ForChildren</main>;
 }

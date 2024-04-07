@@ -1,3 +1,3 @@
 export default function Clothes() {
-  return <div>fdsfgasergb</div>;
+  return <main>fdsfgasergb</main>;
 }

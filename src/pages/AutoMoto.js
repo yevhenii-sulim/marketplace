@@ -1,3 +1,3 @@
 export default function AutoMoto() {
-  return <div>AutoMoto</div>;
+  return <main>AutoMoto</main>;
 }
