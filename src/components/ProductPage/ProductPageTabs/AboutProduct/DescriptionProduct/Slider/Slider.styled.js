@@ -32,6 +32,7 @@ export const ArrowLeftWrapper = styled.div`
   background-color: #f5f5f5;
   padding: 8px 12px;
   border-radius: 4px;
+  cursor: pointer;
 `;
 export const ArrowRightWrapper = styled.div`
   position: absolute;
@@ -44,6 +45,7 @@ export const ArrowRightWrapper = styled.div`
   background-color: #f5f5f5;
   padding: 8px 12px;
   border-radius: 4px;
+  cursor: pointer;
 `;
 export const WrapperSlide = styled.div`
   min-width: 100%;

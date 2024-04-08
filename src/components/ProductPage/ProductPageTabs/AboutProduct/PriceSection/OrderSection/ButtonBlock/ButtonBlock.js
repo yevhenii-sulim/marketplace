@@ -14,6 +14,9 @@ function ButtonBlock() {
           '&:focus': {
             backgroundColor: '#43C550',
           },
+          '&:hover': {
+            backgroundColor: '#43C550',
+          },
         }}
       >
         Купити
@@ -26,7 +29,10 @@ function ButtonBlock() {
           color: '#43C550',
           height: '40px',
           '&:focus': {
-            borderColorColor: '#43C550',
+            borderColor: '#43C550',
+          },
+          '&:hover': {
+            borderColor: '#43C550',
           },
         }}
       >
@@ -40,7 +46,10 @@ function ButtonBlock() {
           color: '#43C550',
           height: '40px',
           '&:focus': {
-            borderColorColor: '#43C550',
+            borderColor: '#43C550',
+          },
+          '&:hover': {
+            borderColor: '#43C550',
           },
         }}
       >
