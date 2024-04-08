@@ -13,7 +13,6 @@ function ButtonAddSimilarProducts() {
           borderColor: '#43C550',
           textTransform: 'none',
           color: '#43C550',
-          height: '40px',
           fontSize: '18px',
           fontWeight: '500',
           '&:focus': {
