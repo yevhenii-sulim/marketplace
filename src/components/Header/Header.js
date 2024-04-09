@@ -1,15 +1,9 @@
 import AddAnnouncement from 'components/AddAnnouncement/AddAnnouncement';
-import CategorySvg from 'SvgComponents/CategorySVG/CategorySvg';
 import Logo from 'SvgComponents/LogoSVG/Logo';
-import {
-  Container,
-  HeaderContainer,
-  NavContainer,
-  NavLink,
-  TitleNav,
-} from './Header.styled';
+import { Container, HeaderContainer, NavContainer } from './Header.styled';
 import Search from 'components/Search/Search';
 import Auxiliarys from 'components/Auxiliarys/Auxiliarys';
+import OpenCategory from 'components/OpenCategory/OpenCategory';
 
 function searchProduct(nameProduct) {
   console.log(nameProduct);
@@ -21,10 +15,7 @@ export default function Header() {
       <Container>
         <NavContainer>
           <Logo fill="#ffffff" />
-          <NavLink to="nav">
-            <CategorySvg />
-            <TitleNav>Категорії товарів</TitleNav>
-          </NavLink>
+          <OpenCategory />
         </NavContainer>
         <Search searchProduct={searchProduct} />
         <Auxiliarys />

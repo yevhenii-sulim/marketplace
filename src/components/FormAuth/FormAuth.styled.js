@@ -32,7 +32,7 @@ export const ErrorMessage = styled(ErrorForm)`
 export const Field = styled(FieldForm)`
   width: 100%;
   border-radius: 6px;
-  padding: 12px;
+  padding: 12px 12px 12px 28px;
 `;
 export const Form = styled(FormContainer)`
   display: flex;
@@ -44,6 +44,16 @@ export const Form = styled(FormContainer)`
     flex-direction: column;
     gap: 8px;
     font-weight: 700;
+  }
+  .mark {
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    bottom: 25%;
+    left: 15px;
+  }
+  label + label .mark {
+    bottom: 46%;
   }
 `;
 export const Enter = styled.button`

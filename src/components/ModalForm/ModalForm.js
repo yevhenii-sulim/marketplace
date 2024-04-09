@@ -6,6 +6,7 @@ import AuthArea from 'components/AuthArea/AuthArea';
 
 export default function ModalForm({ onClose }) {
   const [wind, setWind] = useState(true);
+
   function toggleWindInReg() {
     setWind(false);
   }

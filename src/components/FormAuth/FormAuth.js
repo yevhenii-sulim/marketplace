@@ -11,6 +11,7 @@ import {
 } from './FormAuth.styled';
 import Eye from 'SvgComponents/EyeSVG/Eye';
 import { useState } from 'react';
+import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 // import { useNavigate } from 'react-router-dom';
 
 export default function FormAuth({ onClose }) {
@@ -55,11 +56,13 @@ export default function FormAuth({ onClose }) {
           <Form>
             <label>
               Електронна пошта
+              <MarkSvg />
               <Field type="email" name="email" />
               <ErrorMessage name="email" component="p" />
             </label>
             <label>
               Пароль
+              <MarkSvg />
               {view ? (
                 <Field type="text" name="password" />
               ) : (

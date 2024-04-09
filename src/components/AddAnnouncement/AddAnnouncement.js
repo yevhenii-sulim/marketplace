@@ -3,9 +3,11 @@ import React, { memo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AddButton } from './AddAnnouncement.styled';
 
+const modalEnter = document.querySelector('#modal-form');
+
 export default memo(function AddAnnouncement() {
   const [hide, setHide] = useState(false);
-  const modalEnter = document.querySelector('#modal-form');
+
   function onClose(bool) {
     setHide(bool);
   }
