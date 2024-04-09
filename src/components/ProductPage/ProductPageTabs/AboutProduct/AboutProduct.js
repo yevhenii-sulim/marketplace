@@ -1,8 +1,15 @@
 import React from 'react';
-import Slider from './Slider/Slider';
+import { AboutProductWrapper } from './AboutProduct.styled';
+import DescriptionProduct from './DescriptionProduct/DescriptionProduct';
+import PriceSection from './PriceSection/PriceSection';
 
 function AboutProduct() {
-  return <Slider />;
+  return (
+    <AboutProductWrapper>
+      <DescriptionProduct />
+      <PriceSection />
+    </AboutProductWrapper>
+  );
 }
 
 export default AboutProduct;
