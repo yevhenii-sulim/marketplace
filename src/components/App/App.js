@@ -4,7 +4,7 @@ import Loyaut from 'components/Loyaut/Loyaut';
 import Clothes from 'pages/Clothes';
 import AutoMoto from 'pages/AutoMoto';
 import Electronics from 'pages/Electronics';
-import ProductPage from 'components/ProductPage/ProductPage';
+import ProductPage from 'pages/ProductPage';
 
 export default function App() {
   return (

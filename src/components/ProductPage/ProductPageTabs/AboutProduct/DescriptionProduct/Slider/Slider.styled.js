@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const SliderContainer = styled.article`
+export const SliderContainer = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
-  width: 57.5%;
+  width: 100%;
+  height: 480px;
   background-color: white;
   border-radius: 12px;
 `;
@@ -31,6 +32,7 @@ export const ArrowLeftWrapper = styled.div`
   background-color: #f5f5f5;
   padding: 8px 12px;
   border-radius: 4px;
+  cursor: pointer;
 `;
 export const ArrowRightWrapper = styled.div`
   position: absolute;
@@ -43,6 +45,7 @@ export const ArrowRightWrapper = styled.div`
   background-color: #f5f5f5;
   padding: 8px 12px;
   border-radius: 4px;
+  cursor: pointer;
 `;
 export const WrapperSlide = styled.div`
   min-width: 100%;

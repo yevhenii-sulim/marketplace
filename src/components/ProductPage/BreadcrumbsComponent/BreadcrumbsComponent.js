@@ -1,15 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Breadcrumbs, Typography } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import WrapperContentPages from 'components/WrapperContentPages/WrapperContentPages';
-import { Link } from 'react-router-dom';
-import {
-  ContainerForBreadcrumbs,
-  ContainerProductPage,
-} from './ProductPage.styled';
-import ProductPageTabs from './ProductPageTabs/ProductPageTabs';
+import { ContainerForBreadcrumbs } from './BreadcrumbsComponent.styled';
 
-function ProductPage() {
+function BreadcrumbsComponent() {
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
       Головна сторінка
@@ -34,19 +29,13 @@ function ProductPage() {
       Модель
     </Typography>,
   ];
-
   return (
-    <WrapperContentPages>
-      <ContainerProductPage>
-        <ContainerForBreadcrumbs>
-          <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>
-            {breadcrumbs}
-          </Breadcrumbs>
-        </ContainerForBreadcrumbs>
-        <ProductPageTabs />
-      </ContainerProductPage>
-    </WrapperContentPages>
+    <ContainerForBreadcrumbs>
+      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>
+        {breadcrumbs}
+      </Breadcrumbs>
+    </ContainerForBreadcrumbs>
   );
 }
 
-export default ProductPage;
+export default BreadcrumbsComponent;
