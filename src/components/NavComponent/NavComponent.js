@@ -8,7 +8,7 @@ export default function NavComponent({ onCloseModal }) {
     <Container onClick={onCloseModal}>
       <NavList>
         <List>
-          <Link to="product_page">Product</Link>
+          <Link to="/product_page">Product</Link>
         </List>
       </NavList>
     </Container>
