@@ -34,10 +34,10 @@ export default function FormRegister({ onClose }) {
           if (!values.firstName) {
             errors.firstName = 'Required';
           } else if (
-            values.firstName.length < 3 ||
+            values.firstName.length < 2 ||
             values.firstName.length > 20
           ) {
-            errors.firstName = 'Need reng 3 - 20 elements';
+            errors.firstName = 'Need reng 2 - 20 elements';
           } else if (
             values.firstName.slice(0, 1) ===
             values.firstName.slice(0, 1).toLowerCase()
@@ -50,10 +50,10 @@ export default function FormRegister({ onClose }) {
           if (!values.lastName) {
             errors.lastName = 'Required';
           } else if (
-            values.lastName.length < 3 ||
+            values.lastName.length < 2 ||
             values.lastName.length > 20
           ) {
-            errors.lastName = 'Need reng 3 - 20 elements';
+            errors.lastName = 'Need reng 2 - 20 elements';
           } else if (
             values.lastName.slice(0, 1) ===
             values.lastName.slice(0, 1).toLowerCase()
