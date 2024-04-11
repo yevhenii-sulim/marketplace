@@ -5,3 +5,9 @@ export const ContainerLoyaut = styled.div`
   justify-content: space-between;
   min-height: 100vh;
 `;
+export const Container = styled.div`
+  width: 1440px;
+  padding-left: 58px;
+  padding-right: 58px;
+  margin: auto;
+`;

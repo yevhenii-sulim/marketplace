@@ -9,7 +9,9 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 428px auto;
   gap: 109px;
-  width: 1324px;
+  width: 1440px;
+  padding-left: 58px;
+  padding-right: 58px;
   margin: auto;
   h3 {
     font-size: 32px;

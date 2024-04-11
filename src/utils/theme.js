@@ -6,6 +6,8 @@ export const theme = {
     bgBorderInput: '#2D3648',
     bgBackdrop: '#00000090',
     bgCommon: '#ffffff',
+    bgArrowList: '#A8A8A8',
+    bgNavCommon: '#E1E1E1',
     colorSecondText: '#ffffff',
     colorTextErrorForm: '#ff0000',
     colorMainText: '#000000',

@@ -3,9 +3,9 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CategorySvg from 'SvgComponents/CategorySVG/CategorySvg';
 import { OpenCategoryButton, TitleNav } from './OpenCategory.styled';
-import NavComponent from 'components/NavComponent/NavComponent';
 import { toggleModal } from '../../redux/slice';
 import { selectorOpenModal } from '../../redux/selectors';
+import NavsSectionList from 'components/NavsSectionComponent/NavsSectionList';
 
 const categoryModal = document.querySelector('#category');
 
@@ -43,7 +43,7 @@ export default memo(function OpenCategory() {
       </OpenCategoryButton>
       {isOpen &&
         createPortal(
-          <NavComponent onCloseModal={oncloseByClickOutside} />,
+          <NavsSectionList onCloseModal={oncloseByClickOutside} />,
           categoryModal
         )}
     </>

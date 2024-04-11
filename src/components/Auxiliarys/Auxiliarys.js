@@ -9,10 +9,10 @@ export default function Auxiliarys() {
       <NavLink to="/">
         <Message />
       </NavLink>
-      <NavLink to="/auto-moto">
+      <NavLink to="/">
         <Heart />
       </NavLink>
-      <NavLink to="/electronics">
+      <NavLink to="/">
         <User />
       </NavLink>
     </AuxiliarysContainer>
