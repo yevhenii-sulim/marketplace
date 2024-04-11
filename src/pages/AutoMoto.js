@@ -1,3 +1,3 @@
 export default function AutoMoto() {
-  return <main>AutoMoto</main>;
+  return <main>AutoMotoer7u56</main>;
 }
