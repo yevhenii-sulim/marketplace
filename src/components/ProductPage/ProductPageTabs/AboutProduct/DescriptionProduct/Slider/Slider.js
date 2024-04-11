@@ -19,18 +19,18 @@ const productPhoto = [
 function Slider() {
   const slide = useRef();
   const wrapperSliderBlock = useRef();
+
   const scrollPhoto = nameArrow => {
     const wrapperSliderBlockScroll = wrapperSliderBlock.current;
     const widthBlock = slide.current.offsetWidth;
-    const scrollAmount = widthBlock * (nameArrow === 'left' ? -1 : 1);
-
-    smoothScroll(
-      wrapperSliderBlockScroll.scrollLeft,
-      wrapperSliderBlockScroll.scrollLeft +
-        scrollAmount +
-        (nameArrow === 'left' ? 0 : 1),
-      300
+    const currentIndex = Math.round(
+      wrapperSliderBlockScroll.scrollLeft / widthBlock
     );
+    const targetIndex =
+      nameArrow === 'left' ? currentIndex - 1 : currentIndex + 1;
+    const targetScrollLeft = targetIndex * widthBlock;
+
+    smoothScroll(wrapperSliderBlockScroll.scrollLeft, targetScrollLeft, 300);
   };
 
   function smoothScroll(start, end, duration) {
