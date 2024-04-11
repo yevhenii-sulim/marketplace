@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 import {
+  BoxListStyles,
   Container,
-  NavUlist,
-  NavigationMenu,
-  SubNavList,
+  OpenList,
+  TabListStyles,
 } from './NavsSectionComponent.styled';
 import { navigationList } from './navListData';
-import NavsSectionComponent from './NavsSectionComponent';
-import NavListElectronics from 'components/NavListProducts/NavListElectronics';
+import { useState } from 'react';
+import TabPanelList from './TabPanelList';
+
+function a11yProps(index) {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
+  };
+}
 
 export default function NavsSectionList({ onCloseModal }) {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   const [listComponent, setlistComponent] = useState('');
 
   function openList(nameList) {
@@ -19,34 +33,36 @@ export default function NavsSectionList({ onCloseModal }) {
 
   return (
     <Container onClick={onCloseModal}>
-      <NavigationMenu>
-        <NavUlist>
+      <Box sx={BoxListStyles}>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs example"
+          sx={TabListStyles}
+        >
           {navigationList.map(({ id, linkList, nameList }) => {
             return (
-              <NavsSectionComponent
-                openList={openList}
-                linkList={linkList}
-                nameList={nameList}
+              <Tab
                 key={id}
+                label={nameList}
+                onClick={evt => {
+                  openList(linkList);
+                }}
+                icon={<OpenList />}
+                iconPosition="end"
+                {...a11yProps({ id })}
               />
             );
           })}
-        </NavUlist>
-        <SubNavList>
-          {listComponent === 'clothes' ? (
-            <button>clothes</button>
-          ) : listComponent === 'electronics' ? (
-            <NavListElectronics />
-          ) : listComponent === 'furnitures' ? (
-            <h3>furnitures</h3>
-          ) : (
-            <h4>nothing</h4>
-          )}
-        </SubNavList>
-      </NavigationMenu>
+        </Tabs>
+        <TabPanelList listComponent={listComponent} value={value} />
+      </Box>
     </Container>
   );
 }
+
 NavsSectionList.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
 };

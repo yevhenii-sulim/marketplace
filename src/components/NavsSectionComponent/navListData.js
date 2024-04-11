@@ -1,7 +1,7 @@
 export const navigationList = [
   {
     id: 1,
-    linkList: '',
+    linkList: 'all',
     nameList: 'Всі оголошення',
   },
   { id: 2, linkList: 'electronics', nameList: 'Електроніка' },
