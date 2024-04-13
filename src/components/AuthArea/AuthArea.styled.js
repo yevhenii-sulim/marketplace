@@ -6,6 +6,7 @@ export const Tytle = styled.h2`
   font-weight: 700;
   line-height: 1.5;
 `;
+
 export const LinkReg = styled.button`
   border: none;
   outline: none;
