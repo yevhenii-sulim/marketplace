@@ -1,5 +1,5 @@
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import Message from 'SvgComponents/MessageSVG/Message';
+// import Message from 'SvgComponents/MessageSVG/Message';
 import { AuxiliarysContainer, NavLink } from './Auxiliarys.styled';
 import Heart from 'SvgComponents/HeartSVG/Heart';
 import User from 'SvgComponents/UserSVG/User';
