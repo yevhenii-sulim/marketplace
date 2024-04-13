@@ -11,11 +11,11 @@ import { store } from './redux/store';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/marketplace">
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter basename="/marketplace">
           <App />
-        </ThemeProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );
