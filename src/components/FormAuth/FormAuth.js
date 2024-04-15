@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { Formik } from 'formik';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import PropTypes from 'prop-types';
+import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 import {
   BoxEye,
   ContainerForm,
@@ -8,17 +11,15 @@ import {
   Field,
   Form,
   LinkForget,
+  UnView,
 } from './FormAuth.styled';
-import Eye from 'SvgComponents/EyeSVG/Eye';
-import { useState } from 'react';
-import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 // import { useNavigate } from 'react-router-dom';
 
 export default function FormAuth({ onClose }) {
   //   const navigate = useNavigate();
-  const [view, setView] = useState(false);
+  const [visible, setVisible] = useState(false);
   function onToggleView() {
-    setView(prev => !prev);
+    setVisible(prev => !prev);
   }
 
   return (
@@ -63,14 +64,15 @@ export default function FormAuth({ onClose }) {
             <label>
               Пароль
               <MarkSvg />
-              {view ? (
+              {visible ? (
                 <Field type="text" name="password" />
               ) : (
                 <Field type="password" name="password" />
               )}
               <ErrorMessage name="password" component="p" />
-              <BoxEye>
-                <Eye view={view} onToggleView={onToggleView} />
+              <BoxEye onClick={onToggleView} type="button">
+                {visible && <UnView></UnView>}
+                <RemoveRedEyeOutlinedIcon />
               </BoxEye>
               <LinkForget to="#">Забули пароль?</LinkForget>
             </label>

@@ -18,4 +18,8 @@ export const Link = styled(linkContact)`
   display: block;
   width: 32px;
   height: 32px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;

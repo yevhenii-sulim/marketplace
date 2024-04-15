@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Contact, Link } from './ContactComponent.styled';
-import LinkedinSvg from 'SvgComponents/LinkedinSVG/LinkedinSvg';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export default function ContactComponent({ nameDev, spec, link }) {
   return (
@@ -8,7 +8,7 @@ export default function ContactComponent({ nameDev, spec, link }) {
       <h4>{nameDev}</h4>
       <p>{spec}</p>
       <Link to={link}>
-        <LinkedinSvg />
+        <LinkedInIcon sx={{ color: '#0076B2' }} />
       </Link>
     </Contact>
   );

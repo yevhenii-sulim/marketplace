@@ -1,4 +1,4 @@
-import { Link } from 'SvgComponents/Svg.styled';
+import { Link } from 'react-router-dom';
 
 export default function Logo({ fill }) {
   return (

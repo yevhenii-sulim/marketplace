@@ -11,6 +11,10 @@ export const BoxEye = styled.div`
   top: 50%;
   right: 12px;
   transform: translatey(-50%);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 export const ContainerForm = styled.div`
@@ -80,4 +84,13 @@ export const Enter = styled.button`
     height: 2px;
     background-color: ${({ theme }) => theme.color.colorTextRegistr};
   }
+`;
+export const UnView = styled.span`
+  position: absolute;
+  transform: translate(-19%, -150%) rotate(-45deg);
+  top: 50%;
+  left: 0;
+  width: 150%;
+  height: 2px;
+  background-color: ${({ theme }) => theme.color.colorMainText};
 `;
