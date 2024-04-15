@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import DandruffSmal from 'SvgComponents/DandruffSVG/DandruffSmal';
+import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import React from 'react';
 import { FormSearch } from './Search.styled';
 
@@ -12,7 +12,7 @@ export default function Search({ searchProduct }) {
     <FormSearch onSubmit={onSubmit}>
       <input type="text" name="search" placeholder="Я шукаю..." />
       <button type="submit">
-        <DandruffSmal />
+        <SearchTwoToneIcon />
         Пошук
       </button>
     </FormSearch>

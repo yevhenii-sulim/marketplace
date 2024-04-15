@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import {
   BoxEye,
   ContainerForm,
@@ -7,14 +8,16 @@ import {
   Form,
   Link,
   Send,
+  View,
 } from './FormRegister.styled';
+
 import { Formik } from 'formik';
-import Eye from 'SvgComponents/EyeSVG/Eye';
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 
 export default function FormRegister({ onClose }) {
   const [view, setView] = useState(false);
   function onToggleView() {
+    console.log(view);
     setView(prev => !prev);
   }
 
@@ -138,8 +141,9 @@ export default function FormRegister({ onClose }) {
                 <Field type="password" name="password" />
               )}
               <ErrorMessage name="password" component="p" />
-              <BoxEye>
-                <Eye view={view} onToggleView={onToggleView} />
+              <BoxEye view={view} onClick={onToggleView} type="button">
+                {view && <View></View>}
+                <RemoveRedEyeOutlinedIcon />
               </BoxEye>
             </label>
             <p>

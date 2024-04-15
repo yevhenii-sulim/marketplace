@@ -1,8 +1,7 @@
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-// import Message from 'SvgComponents/MessageSVG/Message';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PersonIcon from '@mui/icons-material/Person';
 import { AuxiliarysContainer, NavLink } from './Auxiliarys.styled';
-import Heart from 'SvgComponents/HeartSVG/Heart';
-import User from 'SvgComponents/UserSVG/User';
 
 export default function Auxiliarys() {
   return (
@@ -11,10 +10,10 @@ export default function Auxiliarys() {
         <ChatBubbleOutlineIcon />
       </NavLink>
       <NavLink to="/">
-        <Heart />
+        <FavoriteBorderIcon />
       </NavLink>
       <NavLink to="/">
-        <User />
+        <PersonIcon />
       </NavLink>
     </AuxiliarysContainer>
   );

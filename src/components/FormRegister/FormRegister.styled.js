@@ -8,11 +8,14 @@ import {
 export const ContainerForm = styled.div`
   width: 100%;
 `;
-export const BoxEye = styled.div`
+export const BoxEye = styled.button`
   position: absolute;
   top: 72%;
   right: 12px;
   transform: translatey(-50%);
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
 `;
 export const Link = styled(LinkAgree)`
   color: ${({ theme }) => theme.color.colorTextRegistr};
@@ -76,4 +79,13 @@ export const Send = styled.button`
     height: 2px;
     background-color: ${({ theme }) => theme.color.colorTextRegistr};
   }
+`;
+export const View = styled.span`
+  position: absolute;
+  transform: translate(-19%, -150%) rotate(-45deg);
+  top: 50%;
+  left: 0;
+  width: 150%;
+  height: 2px;
+  background-color: ${({ theme }) => theme.color.colorMainText};
 `;
