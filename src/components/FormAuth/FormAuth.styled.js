@@ -85,7 +85,7 @@ export const Enter = styled.button`
     background-color: ${({ theme }) => theme.color.colorTextRegistr};
   }
 `;
-export const View = styled.span`
+export const UnView = styled.span`
   position: absolute;
   transform: translate(-19%, -150%) rotate(-45deg);
   top: 50%;

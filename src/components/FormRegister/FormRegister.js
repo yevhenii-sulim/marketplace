@@ -15,10 +15,10 @@ import { Formik } from 'formik';
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 
 export default function FormRegister({ onClose }) {
-  const [view, setView] = useState(false);
+  const [visible, setVisible] = useState(false);
   function onToggleView() {
-    console.log(view);
-    setView(prev => !prev);
+    console.log(visible);
+    setVisible(prev => !prev);
   }
 
   return (
@@ -135,14 +135,14 @@ export default function FormRegister({ onClose }) {
             <label>
               <MarkSvg />
               Пароль
-              {view ? (
+              {visible ? (
                 <Field type="text" name="password" />
               ) : (
                 <Field type="password" name="password" />
               )}
               <ErrorMessage name="password" component="p" />
-              <BoxEye view={view} onClick={onToggleView} type="button">
-                {view && <View></View>}
+              <BoxEye onClick={onToggleView} type="button">
+                {visible && <View></View>}
                 <RemoveRedEyeOutlinedIcon />
               </BoxEye>
             </label>

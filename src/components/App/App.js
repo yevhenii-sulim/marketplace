@@ -5,6 +5,8 @@ import ProductPage from 'pages/ProductPage';
 import PhonesList from 'pages/PhonesList';
 import LaptopList from 'pages/LaptopList';
 import HeadphoneList from 'pages/HeadphoneList';
+import AddProduct from 'pages/AddProduct';
+import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 
 export default function App() {
   return (
@@ -15,6 +17,14 @@ export default function App() {
           <Route path="laptop" element={<LaptopList />} />
           <Route path="headphone" element={<HeadphoneList />} />
           <Route path="product_page" element={<ProductPage />} />
+          <Route
+            path="/add_product"
+            element={
+              <PrivateRoute redirectTo="/laptop">
+                <AddProduct />
+              </PrivateRoute>
+            }
+          ></Route>
         </Route>
       </Routes>
     </Wrapper>
