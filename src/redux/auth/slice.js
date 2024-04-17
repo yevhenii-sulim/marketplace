@@ -2,7 +2,8 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 import { logIn, logOut, signUp, update } from './thunk';
 
-const hendlePending = state => {
+const hendlePending = (state, { payload }) => {
+  console.log(payload, 'state', state);
   state.isLoading = true;
 };
 
@@ -10,17 +11,22 @@ const hendleUpdatePending = state => {
   state.isRerendung = true;
 };
 
-const hendleSignUpFulfilled = state => {
+const hendleSignUpFulfilled = (state, { payload }) => {
   state.isLoading = false;
+  console.log(payload);
 };
 
 const hendleLogInFulfilled = (state, { payload }) => {
+  console.log(payload);
+
   state.user = payload.user;
   state.isLoading = false;
   state.token = payload.token;
 };
 
 const hendleUpdateFulfilled = (state, { payload }) => {
+  console.log(payload);
+
   state.isRerendung = false;
   state.user = payload;
 };
@@ -34,7 +40,9 @@ const hendleLogOutFulfilled = state => {
   };
   state.token = null;
 };
-const hendleRejected = (state, action) => {
+const hendleRejected = (state, { payload }) => {
+  console.log(payload);
+
   state.isLoading = false;
 };
 

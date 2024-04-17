@@ -1,11 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 const privatInstans = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com',
+  baseURL: 'https://internet-shop-api.onrender.com',
 });
 const publicInstans = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com',
+  baseURL: 'https://internet-shop-api.onrender.com',
 });
 
 const token = {
@@ -18,8 +20,12 @@ const token = {
 };
 
 export const signUp = createAsyncThunk('user/addUser', async user => {
+  console.log(user);
+
   try {
-    const { data } = await publicInstans.post('/auth/registration', user);
+    const data = await publicInstans.post('/auth/registration', user);
+    console.log(data);
+
     token.set(data.token);
     return data;
   } catch (error) {

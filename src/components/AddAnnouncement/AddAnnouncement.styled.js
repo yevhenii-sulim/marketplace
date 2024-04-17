@@ -13,7 +13,12 @@ export const AddProduct = styled(Link)`
   line-height: 1.45;
   outline: none;
   color: ${({ theme }) => theme.color.bgHeader};
+  &:hover {
+    color: ${({ theme }) => theme.color.bgCommon};
+    background-color: ${({ theme }) => theme.color.bgButonHover};
+    box-shadow: inset 0 0 0px 4px ${({ theme }) => theme.color.bgCommon};
+  }
   &:active {
-    box-shadow: inset 0 0 3px ${({ theme }) => theme.color.bgHeader};
+    box-shadow: inset 0 0 5px 0px ${({ theme }) => theme.color.bgHeader};
   }
 `;
