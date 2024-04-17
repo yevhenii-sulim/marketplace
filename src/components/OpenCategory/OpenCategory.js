@@ -7,7 +7,7 @@ import { toggleModal } from '../../redux/slice';
 import { selectorOpenModal } from '../../redux/selectors';
 import NavsSectionList from 'components/NavsSectionComponent/NavsSectionList';
 
-const categoryModal = document.querySelector('#category');
+const categoryModal = document.querySelector('#modal');
 
 export default memo(function OpenCategory() {
   const isOpen = useSelector(selectorOpenModal);

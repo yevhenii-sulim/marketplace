@@ -1,5 +1,5 @@
 import Logo from 'SvgComponents/LogoSVG/Logo';
-import { team } from 'utils/team';
+import { team } from 'data/team';
 import {
   About,
   AboutContent,
@@ -19,8 +19,9 @@ export default function Footer() {
           <AboutContent>
             <h3>Про нас</h3>
             <p>
-              Це командний pet проект, який ставить за ціль показати технічні
-              навички, навички роботи в комаді
+              Це командний Pet-проєкт, що ставить за ціль продемонструвати
+              технічні навички, командність та софт скіли розподіленої команди
+              молодих спеціалістів сфери розробки ІТ продуктів.
             </p>
           </AboutContent>
         </About>

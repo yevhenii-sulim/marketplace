@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-export const AddButton = styled.button`
+export const AddProduct = styled(Link)`
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.color.bgCommon};

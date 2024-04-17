@@ -13,9 +13,12 @@ import {
 
 import { Formik } from 'formik';
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/auth/thunk';
 
 export default function FormRegister({ onClose }) {
   const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
   function onToggleView() {
     console.log(visible);
     setVisible(prev => !prev);
@@ -27,7 +30,7 @@ export default function FormRegister({ onClose }) {
         initialValues={{
           firstName: '',
           lastName: '',
-          tel: '',
+          numberPhone: '',
           email: '',
           password: '',
         }}
@@ -66,14 +69,14 @@ export default function FormRegister({ onClose }) {
             errors.firstName = 'Write the last name in Latin';
           }
 
-          if (!values.tel) {
-            errors.tel = 'Required';
+          if (!values.numberPhone) {
+            errors.numberPhone = 'Required';
           } else if (
             !/^((\+)?(3)?(8)?[- ]?)?(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}$/i.test(
-              values.tel
+              values.numberPhone
             )
           ) {
-            errors.tel = 'Invalid number';
+            errors.numberPhone = 'Invalid number';
           }
 
           if (!values.email) {
@@ -95,9 +98,9 @@ export default function FormRegister({ onClose }) {
           return errors;
         }}
         onSubmit={(values, actions) => {
-          //dispatch -> setSubmitting {type: 'SET_ISSUBMITTING', payload: isSubmitting}
-          //   getAuth(values);
-          // dispatch(signUp(values));
+          dispatch(signUp(values));
+          console.log(values);
+
           setTimeout(() => onClose(false), 500);
           actions.resetForm();
         }}
@@ -119,8 +122,12 @@ export default function FormRegister({ onClose }) {
             <label>
               Номер телефону
               <MarkSvg />
-              <Field type="tel" name="tel" placeholder="+380 (__) ___-__-__" />
-              <ErrorMessage name="tel" component="p" />
+              <Field
+                type="tel"
+                name="numberPhone"
+                placeholder="+380 (__) ___-__-__"
+              />
+              <ErrorMessage name="numberPhone" component="p" />
             </label>
             <label>
               Електронна пошта
