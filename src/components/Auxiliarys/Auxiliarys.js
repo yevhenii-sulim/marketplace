@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';

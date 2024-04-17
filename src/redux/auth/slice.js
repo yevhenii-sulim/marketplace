@@ -45,19 +45,19 @@ const userSlice = createSlice({
     builder
       .addCase(signUp.fulfilled, hendleSignUpFulfilled)
       .addCase(logIn.fulfilled, hendleLogInFulfilled)
-      .addCase(logOut.fulfilled, hendleLogOutFulfilled);
-    // .addCase(update.pending, hendleUpdatePending)
-    // .addCase(update.fulfilled, hendleUpdateFulfilled)
-    // .addMatcher(isAnyOf(signUp.pending, logIn.pending), hendlePending)
-    // .addMatcher(
-    //   isAnyOf(
-    //     signUp.rejected,
-    //     logIn.rejected,
-    //     update.rejected,
-    //     logOut.rejected
-    //   ),
-    //   hendleRejected
-    // );
+      .addCase(logOut.fulfilled, hendleLogOutFulfilled)
+      .addCase(update.pending, hendleUpdatePending)
+      .addCase(update.fulfilled, hendleUpdateFulfilled)
+      .addMatcher(isAnyOf(signUp.pending, logIn.pending), hendlePending)
+      .addMatcher(
+        isAnyOf(
+          signUp.rejected,
+          logIn.rejected,
+          update.rejected,
+          logOut.rejected
+        ),
+        hendleRejected
+      );
   },
 });
 
