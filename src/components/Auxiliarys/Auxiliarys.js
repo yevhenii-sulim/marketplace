@@ -13,7 +13,6 @@ const modalEnter = document.querySelector('#modal');
 export default function Auxiliarys() {
   const [hide, setHide] = useState(false);
   const isLoaded = useSelector(selectAuth);
-  console.log(isLoaded);
 
   function onClose(bool) {
     setHide(bool);
