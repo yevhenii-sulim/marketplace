@@ -1,1 +1,1 @@
-export const selectAuth = state => state.isUserAuth;
+export const selectAuth = state => state.users.isLoaded;
