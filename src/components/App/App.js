@@ -11,11 +11,12 @@ import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
 import { update } from '../../redux/auth/thunk';
-import { selectAccessToken, selectisRerendung } from '../../redux/selectors';
+import { selectAccessToken } from '../../redux/selectors';
+// import { selectAccessToken, selectisRerendung } from '../../redux/selectors';
 
 export default function App() {
   const dispatch = useDispatch();
-  const isRerendung = useSelector(selectisRerendung);
+  // const isRerendung = useSelector(selectisRerendung);
 
   const accessToken = useSelector(selectAccessToken);
   useEffect(() => {
