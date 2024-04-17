@@ -30,6 +30,7 @@ export default function NavsSectionList({ onCloseModal }) {
   function openList(nameList) {
     setlistComponent(nameList);
   }
+  console.log(listComponent);
 
   return (
     <Container onClick={onCloseModal}>

@@ -5,8 +5,8 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabListStyles } from '../material-styles/productPage-material-styles';
 import AboutProduct from './AboutProduct/AboutProduct';
-import SimilarProducts from './SimilarProducts/SimilarProducts';
-import { SimilarProductsHeader } from './SimilarProducts/SimilarProducts.styled';
+import SimilarProductList from './SimilarProducts/SimilarProductList';
+import { SimilarProductsHeader } from './SimilarProducts/SimilarProductList.styled';
 
 function ProductPageTabs() {
   const [value, setValue] = useState('1');
@@ -30,7 +30,7 @@ function ProductPageTabs() {
       <TabPanel value="1" sx={{ padding: '24px 0' }}>
         <AboutProduct />
         <SimilarProductsHeader>Схожі оголошення</SimilarProductsHeader>
-        <SimilarProducts />
+        <SimilarProductList />
       </TabPanel>
       <TabPanel value="2">Item Two</TabPanel>
       <TabPanel value="3">Item Three</TabPanel>

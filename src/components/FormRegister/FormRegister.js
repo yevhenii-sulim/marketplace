@@ -13,12 +13,14 @@ import {
 
 import { Formik } from 'formik';
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from '../../redux/auth/thunk';
+import { selectToken } from '../../redux/auth/selector';
 
 export default function FormRegister({ onClose }) {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
   function onToggleView() {
     console.log(visible);
     setVisible(prev => !prev);
@@ -99,8 +101,9 @@ export default function FormRegister({ onClose }) {
         }}
         onSubmit={(values, actions) => {
           dispatch(signUp(values));
-          console.log(values);
-
+          if (!token) {
+            return;
+          }
           setTimeout(() => onClose(false), 500);
           actions.resetForm();
         }}

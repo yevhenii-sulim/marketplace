@@ -18,7 +18,7 @@ export default function NavListElectronics() {
       {product.map(({ id, link, name }) => {
         return (
           <List key={id}>
-            <Link to={`${link}`} onClick={onClose}>
+            <Link to={`catalog/${link}`} onClick={onClose}>
               <img src="#" alt={name} />
               <p>{name}</p>
             </Link>

@@ -34,7 +34,10 @@ export default function App() {
           <Route path="home_page" element={<HomePage />} />
           <Route path="phone" element={<PhonesList />} />
           <Route path="catalog/:catalog_products" element={<CatalogPage />} />
-          <Route path="product_page" element={<ProductPage />} />
+          <Route
+            path="catalog/:catalog_products/:product_page"
+            element={<ProductPage />}
+          />
           <Route
             path="user_page"
             element={
