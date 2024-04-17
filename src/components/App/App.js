@@ -32,10 +32,9 @@ export default function App() {
         <Route path="/" element={<Loyaut />}>
           <Route index element={<HomePage />} />
           <Route path="home_page" element={<HomePage />} />
-          <Route path="phone" element={<PhonesList />} />
-          <Route path="catalog/:catalog_products" element={<CatalogPage />} />
+          <Route path="home_page/:catalog_products" element={<CatalogPage />} />
           <Route
-            path="catalog/:catalog_products/:product_page"
+            path="home_page/:catalog_products/:product_page"
             element={<ProductPage />}
           />
           <Route
@@ -55,7 +54,8 @@ export default function App() {
             }
           />
         </Route>
-        <Route path="*" element={<HomePage />} />
+        <Route path="phone" element={<PhonesList />} />
+        <Route path="*" element={<Loyaut />} />
       </Routes>
     </Wrapper>
   );
