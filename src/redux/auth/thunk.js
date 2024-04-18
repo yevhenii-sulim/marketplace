@@ -30,10 +30,13 @@ export const signUp = createAsyncThunk('user/addUser', async user => {
     return data;
   } catch (error) {
     console.log(error);
-
-    Notiflix.Notify.failure(error.response.data.message, {
-      timeout: 6000,
-    });
+    error.response.data.message
+      ? Notiflix.Notify.failure(error.response.data.message, {
+          timeout: 6000,
+        })
+      : Notiflix.Notify.failure(error.message, {
+          timeout: 6000,
+        });
   }
 });
 
