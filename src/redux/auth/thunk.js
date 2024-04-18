@@ -29,6 +29,8 @@ export const signUp = createAsyncThunk('user/addUser', async user => {
     }
     return data;
   } catch (error) {
+    console.log(error);
+
     Notiflix.Notify.failure(error.response.data.message, {
       timeout: 6000,
     });
@@ -72,7 +74,7 @@ export const update = createAsyncThunk('user/update', async (_, thuncApi) => {
       const { data } = await privatInstans.get('/auth/refresh');
       return data;
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   }
   return;
