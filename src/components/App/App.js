@@ -11,14 +11,13 @@ import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
 import { update } from '../../redux/auth/thunk';
-import { selectAccessToken } from '../../redux/selectors';
-// import { selectAccessToken, selectisRerendung } from '../../redux/selectors';
+import { selectIsRerendung, selectToken } from '../../redux/auth/selector';
 
 export default function App() {
   const dispatch = useDispatch();
-  // const isRerendung = useSelector(selectisRerendung);
+  const isRerendung = useSelector(selectIsRerendung);
 
-  const accessToken = useSelector(selectAccessToken);
+  const accessToken = useSelector(selectToken);
   useEffect(() => {
     if (!accessToken) {
       return;
@@ -37,22 +36,26 @@ export default function App() {
             path="home_page/:catalog_products/:product_page"
             element={<ProductPage />}
           />
-          <Route
-            path="user_page"
-            element={
-              <PrivateRoute>
-                <UserPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="add_product"
-            element={
-              <PrivateRoute>
-                <AddProduct />
-              </PrivateRoute>
-            }
-          />
+          {!isRerendung && (
+            <>
+              <Route
+                path="user_page"
+                element={
+                  <PrivateRoute>
+                    <UserPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="add_product"
+                element={
+                  <PrivateRoute>
+                    <AddProduct />
+                  </PrivateRoute>
+                }
+              />
+            </>
+          )}
         </Route>
         <Route path="phone" element={<PhonesList />} />
         <Route path="*" element={<Loyaut />} />
