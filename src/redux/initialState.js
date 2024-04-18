@@ -6,6 +6,7 @@ export const initialState = {
     token: null,
     isLoading: true,
     isRerendung: true,
+    responseSucces: false,
     user: {
       firstName: '',
       lastName: '',

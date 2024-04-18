@@ -12,6 +12,7 @@ const hendleUpdatePending = state => {
 
 const hendleSignUpFulfilled = state => {
   state.isLoading = false;
+  state.responseSucces = true;
 };
 
 const hendleLogInFulfilled = (state, { payload }) => {

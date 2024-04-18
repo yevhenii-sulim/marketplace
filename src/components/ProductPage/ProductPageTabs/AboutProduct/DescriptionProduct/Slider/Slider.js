@@ -10,10 +10,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const productPhoto = [
-  { src: './images/headphones.jpg', alt: 'headphones' },
-  { src: './images/headphones.jpg', alt: 'headphones' },
-  { src: './images/headphones.jpg', alt: 'headphones' },
-  { src: './images/headphones.jpg', alt: 'headphones' },
+  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
+  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
+  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
+  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
 ];
 
 function Slider() {
