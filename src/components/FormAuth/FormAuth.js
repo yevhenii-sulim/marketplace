@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import PropTypes from 'prop-types';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
+import { logIn } from '../../redux/auth/thunk';
 import {
   BoxEye,
   ContainerForm,
@@ -18,6 +20,7 @@ import {
 export default function FormAuth({ onClose }) {
   //   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
   function onToggleView() {
     setVisible(prev => !prev);
   }
@@ -46,9 +49,7 @@ export default function FormAuth({ onClose }) {
           return errors;
         }}
         onSubmit={(values, actions) => {
-          //dispatch -> setSubmitting {type: 'SET_ISSUBMITTING', payload: isSubmitting}
-          //   getAuth(values);
-          // dispatch(signUp(values));
+          dispatch(logIn(values));
           setTimeout(() => onClose(false), 500);
           actions.resetForm();
         }}

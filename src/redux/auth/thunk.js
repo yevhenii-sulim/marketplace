@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Notiflix from 'notiflix';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -20,31 +21,38 @@ const token = {
 };
 
 export const signUp = createAsyncThunk('user/addUser', async user => {
-  console.log(user);
-
   try {
-    const data = await publicInstans.post('/auth/registration', user);
-    console.log(data);
-
-    token.set(data.token);
+    const { data } = await publicInstans.post('/auth/registration', user);
+    token.set(data.accessJwt);
+    if (!!data.accessJwt) {
+      Notiflix.Notify.success('You have successfully registered');
+    }
     return data;
   } catch (error) {
-    console.log(error);
+    Notiflix.Notify.failure(error.response.data.message, {
+      timeout: 6000,
+    });
   }
 });
 
-export const logIn = createAsyncThunk(
-  'user/enterUser',
-  async (user, { dispatch }) => {
-    try {
-      const { data } = await publicInstans.post('/auth/login', user);
-      token.set(data.token);
-      return data;
-    } catch (error) {
-      console.log(error.message);
+export const logIn = createAsyncThunk('user/enterUser', async user => {
+  try {
+    const { data } = await publicInstans.post('/auth/login', user);
+    if (!data.user.isActivated) {
+      Notiflix.Notify.failure(
+        'Your mail is not activated. Please activate your registration using the link you received in your mail'
+      );
+      return;
     }
+    token.set(data.backend_tokens.token);
+    return data;
+  } catch (error) {
+    Notiflix.Notify.failure(error.response.data.message, {
+      timeout: 6000,
+    });
+    console.log(error.message);
   }
-);
+});
 
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
