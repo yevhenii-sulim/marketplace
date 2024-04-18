@@ -27,15 +27,35 @@ export const BoxListStyles = {
   display: 'grid',
   gridTemplateColumns: '1fr 2fr',
   gridTemplateRows: 'auto',
-  width: '70%',
+  width: '768px',
   position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  top: '84px',
+  left: '40%',
+  transform: 'translate(-50%)',
   borderRadius: '12px',
   overflow: 'hidden',
   bgcolor: '#ffffff',
+  '& .MuiTabs-vertical.MuiTabs-root': {
+    '&::before': {
+      width: '50px',
+      height: '50px',
+      bgcolor: 'red',
+    },
+  },
 };
+
+// '&::before': {
+//   position: 'absolute',
+//   top: '-10px',
+//   left: '50%',
+//   transform: 'translateX(-50%)',
+//   width: '10px',
+//   height: '10px',
+//   borderBottom: '10px black solid',
+//   borderRight: '8px transparent solid',
+//   borderLeft: '8px transparent solid',
+//   borderTop: 'none',
+// },
 
 export const TabListStyles = {
   position: 'relative',
@@ -58,23 +78,16 @@ export const TabListStyles = {
     fontStyle: 'normal',
     fontWeight: 400,
     lineHeight: '26px',
+    '&:hover': {
+      backgroundColor: '#f5f5f5',
+      fontWeight: 600,
+    },
   },
   '& .MuiTabs-indicator': {
     backgroundColor: '#7FD888',
   },
   '& .MuiTab-root': {
     textTransform: 'none',
+    borderRadius: '10px',
   },
-  // '&::before': {
-  //   position: 'absolute',
-  //   top: '-10px',
-  //   left: '50%',
-  //   transform: 'translateX(-50%)',
-  //   width: '10px',
-  //   height: '10px',
-  //   borderBottom: '10px black solid',
-  //   borderRight: '8px transparent solid',
-  //   borderLeft: '8px transparent solid',
-  //   borderTop: 'none',
-  // },
 };

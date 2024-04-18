@@ -24,7 +24,7 @@ export default function ProductListPage() {
               price={price}
               img={img}
               discountItem={discountItem}
-              discont={discount}
+              discount={discount}
               date={date}
               eco={eco}
               category={category}

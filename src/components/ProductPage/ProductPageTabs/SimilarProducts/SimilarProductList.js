@@ -9,55 +9,60 @@ const arrayProducts = [
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '2',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '3',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '4',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '5',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
-    discountItem: '500$',
-    date: Date.now(),
-    discount: true,
     eco: true,
+    discount: true,
+    discountItem: '500$',
+    date: Date.now(), //new Intl.DateTimeFormat('uk-UA', {year: 'numeric',month: 'long',day: 'numeric',}).format(Date.now())
     visit: 20,
+    category: 'headphone',
   },
 ];
 
@@ -71,10 +76,10 @@ function SimilarProductList() {
             id,
             img,
             price,
+            eco,
+            discount,
             discountItem,
             date,
-            discount,
-            eco,
             category,
           }) => {
             return (
@@ -83,11 +88,11 @@ function SimilarProductList() {
                 id={id}
                 tytle={tytle}
                 price={price}
+                discount={discount}
+                eco={eco}
                 img={img}
                 discountItem={discountItem}
-                discont={discount}
                 date={date}
-                eco={eco}
                 category={category}
               />
             );
