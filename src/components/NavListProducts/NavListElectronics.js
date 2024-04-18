@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { Link, List } from './NavListProducts.styled';
+import { List } from './NavListProducts.styled';
 import { toggleModal } from '../../redux/slice';
+import { Link } from 'react-router-dom';
 
 const product = [
   { id: '1', link: '/phone', name: 'Телефони' },
@@ -18,7 +19,7 @@ export default function NavListElectronics() {
       {product.map(({ id, link, name }) => {
         return (
           <List key={id}>
-            <Link to={`catalog/${link}`} onClick={onClose}>
+            <Link to={`home_page/${link}`} onClick={onClose}>
               <img src="#" alt={name} />
               <p>{name}</p>
             </Link>

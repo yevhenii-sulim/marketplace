@@ -40,17 +40,19 @@ export default function NavsSectionList({ onCloseModal }) {
           variant="scrollable"
           value={value}
           onChange={handleChange}
-          aria-label="Vertical tabs example"
+          aria-label="Vertical tabs"
           sx={TabListStyles}
         >
           {navigationList.map(({ id, linkList, nameList }) => {
             return (
               <Tab
+                className="hover-tab"
                 key={id}
                 label={nameList}
-                onClick={evt => {
+                onClick={() => {
                   openList(linkList);
                 }}
+                variant={'solid'}
                 icon={<OpenList />}
                 iconPosition="end"
                 {...a11yProps({ id })}

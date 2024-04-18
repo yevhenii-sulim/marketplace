@@ -449,7 +449,7 @@ export const headphoneProduct = [
     tytle: 'назва прдукту',
     price: '700$',
     discountItem: '500$',
-    date: Date.now(),
+    date: Date.now(), //new Intl.DateTimeFormat('uk-UA', {year: 'numeric',month: 'long',day: 'numeric',}).format(Date.now())
     discount: true,
     eco: true,
     visit: 20,

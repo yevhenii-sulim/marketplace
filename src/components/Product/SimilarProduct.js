@@ -1,4 +1,8 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Button } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {
   SimilarProductItem,
   SimilarProductItemButtonBlock,
@@ -9,32 +13,30 @@ import {
   SimilarProductItemDiscount,
   SimilarProductDatePublic,
 } from './SimilarProduct.styled';
-import { Button } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
-import { Link, useLocation } from 'react-router-dom';
+
 function SimilarProduct({
   id,
   tytle,
   price,
   img,
   discountItem,
-  discount = true,
+  discount,
   date,
   eco,
   category,
 }) {
   const location = useLocation();
-  console.log(location);
+  // const param = useParams();
 
   return (
     <>
       <SimilarProductItem>
         <Link
-          state={`/home_page/${category}`}
+          state={`/home_page/`}
           to={
             location.state
-              ? location.state + `/${id}`
+              ? location.state + `${category}/${id}`
               : location.pathname + `/${id}`
           }
         >
@@ -51,35 +53,46 @@ function SimilarProduct({
             )}
             <p>{price}</p>
           </SimilarProductItemPrice>
-          <SimilarProductItemButtonBlock>
-            <Button
-              variant="contained"
-              sx={{
-                width: 148 + 'px',
-                backgroundColor: '#43C550',
-                textTransform: 'none',
-                fontSize: '18px',
-                fontWeight: '800',
-                height: '40px',
-                '&:focus': {
-                  backgroundColor: '#43C550',
-                },
-                '&:hover': {
-                  backgroundColor: '#43C550',
-                },
-              }}
-            >
-              Купити
-            </Button>
-            <SimilarProductItemIconWrapper onClick={() => console.log('hello')}>
-              <FavoriteBorderIcon />
-            </SimilarProductItemIconWrapper>
-          </SimilarProductItemButtonBlock>
-          <SimilarProductDatePublic>{date}</SimilarProductDatePublic>
         </Link>
+        <SimilarProductItemButtonBlock>
+          <Button
+            variant="contained"
+            sx={{
+              width: 148 + 'px',
+              backgroundColor: '#43C550',
+              textTransform: 'none',
+              fontSize: '18px',
+              fontWeight: '800',
+              height: '40px',
+              '&:focus': {
+                backgroundColor: '#43C550',
+              },
+              '&:hover': {
+                backgroundColor: '#43C550',
+              },
+            }}
+          >
+            Купити
+          </Button>
+          <SimilarProductItemIconWrapper onClick={() => console.log('hello')}>
+            <FavoriteBorderIcon />
+          </SimilarProductItemIconWrapper>
+        </SimilarProductItemButtonBlock>
+        <SimilarProductDatePublic>{date}</SimilarProductDatePublic>
       </SimilarProductItem>
     </>
   );
 }
 
 export default SimilarProduct;
+SimilarProduct.propTypes = {
+  id: PropTypes.string.isRequired,
+  tytle: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  discountItem: PropTypes.string.isRequired,
+  discount: PropTypes.bool.isRequired,
+  date: PropTypes.number.isRequired,
+  eco: PropTypes.bool.isRequired,
+  category: PropTypes.string.isRequired,
+};
