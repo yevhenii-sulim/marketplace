@@ -12,7 +12,7 @@ import {
 import { Button } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 function SimilarProduct({
   id,
   tytle,
@@ -22,11 +22,22 @@ function SimilarProduct({
   discount = true,
   date,
   eco,
+  category,
 }) {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <>
       <SimilarProductItem>
-        <Link to={id}>
+        <Link
+          state={`/home_page/${category}`}
+          to={
+            location.state
+              ? location.state + `/${id}`
+              : location.pathname + `/${id}`
+          }
+        >
           <SimilarProductItemIcon>
             {eco && <EcoSvg />}
             <img src={img} alt={tytle} />

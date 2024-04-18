@@ -5,7 +5,7 @@ import SimilarProduct from 'components/Product/SimilarProduct';
 
 const arrayProducts = [
   {
-    id: '2',
+    id: '1',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
@@ -27,7 +27,7 @@ const arrayProducts = [
     visit: 20,
   },
   {
-    id: '2',
+    id: '3',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
@@ -38,7 +38,7 @@ const arrayProducts = [
     visit: 20,
   },
   {
-    id: '2',
+    id: '4',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
@@ -49,7 +49,7 @@ const arrayProducts = [
     visit: 20,
   },
   {
-    id: '2',
+    id: '5',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
@@ -66,7 +66,17 @@ function SimilarProductList() {
     <>
       <SimilarProductsWrapper>
         {arrayProducts.map(
-          ({ tytle, id, img, price, discountItem, date, discount, eco }) => {
+          ({
+            tytle,
+            id,
+            img,
+            price,
+            discountItem,
+            date,
+            discount,
+            eco,
+            category,
+          }) => {
             return (
               <SimilarProduct
                 key={id}
@@ -78,6 +88,7 @@ function SimilarProductList() {
                 discont={discount}
                 date={date}
                 eco={eco}
+                category={category}
               />
             );
           }
