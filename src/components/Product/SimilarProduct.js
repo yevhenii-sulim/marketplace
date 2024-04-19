@@ -39,14 +39,7 @@ function SimilarProduct({
   return (
     <>
       <SimilarProductItem onClick={sctollToByClick}>
-        <Link
-          state={location}
-          to={
-            location.pathname === '/'
-              ? `home_page/${category}/${id}`
-              : `/home_page/${category}/${id}`
-          }
-        >
+        <Link state={location} to={`${id}`}>
           <SimilarProductItemIcon>
             {eco && <EcoSvg />}
             <img src={img} alt={tytle} />
