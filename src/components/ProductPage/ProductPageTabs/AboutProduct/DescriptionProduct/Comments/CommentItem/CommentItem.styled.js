@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const CommentsWrapper = styled.section`
   width: 100%;
-  background-color: white;
   border-radius: 12px;
   margin-top: 24px;
 `;
