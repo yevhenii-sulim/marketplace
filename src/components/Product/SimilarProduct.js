@@ -15,6 +15,14 @@ import {
 } from './SimilarProduct.styled';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
 
+function sctollToByClick() {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+}
+
 function SimilarProduct({
   id,
   tytle,
@@ -27,17 +35,16 @@ function SimilarProduct({
   category,
 }) {
   const location = useLocation();
-  // const param = useParams();
 
   return (
     <>
-      <SimilarProductItem>
+      <SimilarProductItem onClick={sctollToByClick}>
         <Link
-          state={`/home_page/`}
+          state={location}
           to={
-            location.state
-              ? location.state + `${category}/${id}`
-              : location.pathname + `/${id}`
+            location.pathname === '/'
+              ? `home_page/${category}/${id}`
+              : `/home_page/${category}/${id}`
           }
         >
           <SimilarProductItemIcon>

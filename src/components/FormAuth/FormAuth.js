@@ -19,6 +19,7 @@ import {
 
 export default function FormAuth({ onClose }) {
   //   const navigate = useNavigate();
+
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   function onToggleView() {

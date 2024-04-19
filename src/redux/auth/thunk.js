@@ -45,17 +45,23 @@ export const logIn = createAsyncThunk('user/enterUser', async user => {
     const { data } = await publicInstans.post('/auth/login', user);
     if (!data.user.isActivated) {
       Notiflix.Notify.failure(
-        'Your mail is not activated. Please activate your registration using the link you received in your mail'
+        'Your mail is not activated. Please activate your registration using the link you received in your mail',
+        {
+          timeout: 6000,
+        }
       );
-      return;
     }
     token.set(data.backend_tokens.token);
     return data;
   } catch (error) {
-    Notiflix.Notify.failure(error.response.data.message, {
-      timeout: 6000,
-    });
-    console.log(error.message);
+    error.response.data.message
+      ? Notiflix.Notify.failure(error.response.data.message, {
+          timeout: 6000,
+        })
+      : Notiflix.Notify.failure(error.message, {
+          timeout: 6000,
+        });
+    console.log(error);
   }
 });
 
