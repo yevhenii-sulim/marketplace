@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import { Wrapper } from './App.styled';
 import Loyaut from 'components/Loyaut/Loyaut';
 import ProductPage from 'pages/ProductPage';
-import PhonesList from 'pages/PhonesList';
 import CatalogPage from 'pages/CatalogPage';
 import AddProduct from 'pages/AddProduct';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
@@ -31,10 +30,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Loyaut />}>
           <Route index element={<HomePage />} />
-          <Route path="home_page" element={<HomePage />} />
-          <Route path="home_page/:catalog_products" element={<CatalogPage />} />
+          <Route path=":catalog_products" element={<CatalogPage />} />
           <Route
-            path="home_page/:catalog_products/:product_page"
+            path=":catalog_products/:product_page"
             element={<ProductPage />}
           />
           <Route
@@ -54,7 +52,6 @@ export default function App() {
             }
           />
         </Route>
-        <Route path="phone" element={<PhonesList />} />
         <Route path="*" element={<Loyaut />} />
       </Routes>
     </Wrapper>
