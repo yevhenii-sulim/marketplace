@@ -14,7 +14,6 @@ export default memo(function AddAnnouncement() {
   function onClose(bool) {
     setHide(bool);
   }
-
   return (
     <div>
       <AddProduct to="add_product" onClick={() => setHide(true)}>

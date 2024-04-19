@@ -21,7 +21,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
-    category: 'headphone',
+    category: 'laptop',
   },
   {
     id: '3',

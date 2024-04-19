@@ -11,7 +11,7 @@ export default function AuthArea({ onClose, toggleWind }) {
       <LinkReg type="button" onClick={toggleWind}>
         Зареєструватись
       </LinkReg>
-      <ContinueVia/>
+      <ContinueVia />
     </>
   );
 }

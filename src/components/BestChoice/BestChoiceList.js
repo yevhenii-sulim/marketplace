@@ -10,13 +10,14 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import { headphoneProduct } from 'data/headphone';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import { ContainerSlide } from './BestChoice.styled';
-export default function BestChoiceList() {
-  const products = () =>
-    headphoneProduct.filter(({ discount }) => discount === true);
+import { memo } from 'react';
 
-  const filteredProducts = products();
-  console.log(filteredProducts.length);
+const products = () =>
+  headphoneProduct.filter(({ discount }) => discount === true);
 
+const filteredProducts = products();
+
+export default memo(function BestChoiceList() {
   return (
     <ContainerSlide>
       <CarouselProvider
@@ -66,4 +67,4 @@ export default function BestChoiceList() {
       </CarouselProvider>
     </ContainerSlide>
   );
-}
+});

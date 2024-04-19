@@ -16,8 +16,7 @@ const hendleSignUpFulfilled = state => {
 };
 
 const hendleLogInFulfilled = (state, { payload }) => {
-  console.log(payload);
-  state.isLoaded = payload.user.isActivated;
+  state.isLoaded = !!payload.backend_tokens.token;
   state.user = payload.user;
   state.isLoading = false;
   state.token = payload.backend_tokens.token;
