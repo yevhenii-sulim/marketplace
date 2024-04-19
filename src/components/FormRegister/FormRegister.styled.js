@@ -54,6 +54,9 @@ export const Form = styled(FormContainer)`
     bottom: 25%;
     left: 15px;
   }
+  .rules {
+    font-weight: 400;
+  }
 `;
 export const Send = styled.button`
   width: 100%;

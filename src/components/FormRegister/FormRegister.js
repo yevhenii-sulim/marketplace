@@ -155,6 +155,10 @@ export default function FormRegister({ onClose }) {
                 <RemoveRedEyeOutlinedIcon />
               </BoxEye>
             </label>
+            <p className="rules">
+              Пароль повинен мати довжину 6-20 символів, одну велику літеру,
+              одну цифру, один спеціальний символ
+            </p>
             <p>
               Реєструючись, ви погоджуєтеся з{' '}
               <Link to="#">угодою користувача</Link> і{' '}
