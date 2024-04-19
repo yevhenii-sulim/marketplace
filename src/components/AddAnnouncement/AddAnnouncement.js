@@ -1,8 +1,8 @@
-import ModalForm from 'components/ModalForm/ModalForm';
 import React, { memo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { AddProduct } from './AddAnnouncement.styled';
 import { useSelector } from 'react-redux';
+import ModalForm from 'components/ModalForm/ModalForm';
+import { AddProduct } from './AddAnnouncement.styled';
 import { selectAuth } from '../../redux/auth/selector';
 
 const modalEnter = document.querySelector('#modal');
