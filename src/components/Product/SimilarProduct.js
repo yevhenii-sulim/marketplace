@@ -43,8 +43,8 @@ function SimilarProduct({
           state={location}
           to={
             location.pathname === '/'
-              ? `home_page/${category}/${id}`
-              : `/home_page/${category}/${id}`
+              ? `${category}/${id}`
+              : `/${category}/${id}`
           }
         >
           <SimilarProductItemIcon>
