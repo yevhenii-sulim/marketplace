@@ -27,10 +27,10 @@ export default memo(function Auxiliarys() {
       </NavLink>
       <NavLink to="user_page" onClick={() => setHide(true)}>
         <PersonIcon />
-        {!isLoaded &&
-          hide &&
-          createPortal(<ModalForm onClose={onClose} />, modalEnter)}
       </NavLink>
+      {!isLoaded &&
+        hide &&
+        createPortal(<ModalForm onClose={onClose} />, modalEnter)}
     </AuxiliarysContainer>
   );
 });
