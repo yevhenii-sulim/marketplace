@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -10,7 +10,7 @@ import ModalForm from 'components/ModalForm/ModalForm';
 
 const modalEnter = document.querySelector('#modal');
 
-export default function Auxiliarys() {
+export default memo(function Auxiliarys() {
   const [hide, setHide] = useState(false);
   const isLoaded = useSelector(selectAuth);
 
@@ -33,4 +33,4 @@ export default function Auxiliarys() {
       </NavLink>
     </AuxiliarysContainer>
   );
-}
+});
