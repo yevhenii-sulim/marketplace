@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
 export const SimilarProductItem = styled.li`
-  width: 216px;
-  padding: 8px;
-  justify-content: space-between;
+  width: 232px;
   display: flex;
   gap: 12px;
   flex-direction: column;
+  padding: 8px;
+  a {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+  }
 `;
 
 export const SimilarProductDatePublic = styled.p`

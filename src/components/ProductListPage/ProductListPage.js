@@ -5,7 +5,17 @@ export default function ProductListPage() {
   return (
     <ProductList>
       {headphoneProduct.map(
-        ({ tytle, id, img, price, discountItem, date, discount, eco }) => {
+        ({
+          tytle,
+          id,
+          img,
+          price,
+          discountItem,
+          date,
+          discount,
+          eco,
+          category,
+        }) => {
           return (
             <SimilarProduct
               key={id}
@@ -14,9 +24,10 @@ export default function ProductListPage() {
               price={price}
               img={img}
               discountItem={discountItem}
-              discont={discount}
+              discount={discount}
               date={date}
               eco={eco}
+              category={category}
             />
           );
         }

@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Wrapper } from './App.styled';
 import Loyaut from 'components/Loyaut/Loyaut';
 import ProductPage from 'pages/ProductPage';
@@ -10,21 +10,21 @@ import AddProduct from 'pages/AddProduct';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
-import { update } from '../../redux/auth/thunk';
-import { selectAccessToken } from '../../redux/selectors';
-// import { selectAccessToken, selectisRerendung } from '../../redux/selectors';
+// import { update } from '../../redux/auth/thunk';
+// import { selectToken } from '../../redux/auth/selector';
+// import { selectIsRerendung, selectToken } from '../../redux/auth/selector';
 
 export default function App() {
-  const dispatch = useDispatch();
-  // const isRerendung = useSelector(selectisRerendung);
+  // const dispatch = useDispatch();
+  // // const isRerendung = useSelector(selectIsRerendung);
 
-  const accessToken = useSelector(selectAccessToken);
-  useEffect(() => {
-    if (!accessToken) {
-      return;
-    }
-    dispatch(update());
-  }, [accessToken, dispatch]);
+  // const accessToken = useSelector(selectToken);
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     return;
+  //   }
+  //   dispatch(update());
+  // }, [accessToken, dispatch]);
 
   return (
     <Wrapper>

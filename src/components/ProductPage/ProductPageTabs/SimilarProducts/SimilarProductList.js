@@ -5,59 +5,64 @@ import SimilarProduct from 'components/Product/SimilarProduct';
 
 const arrayProducts = [
   {
-    id: '2',
+    id: '1',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '2',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
-    id: '2',
+    id: '3',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
-    id: '2',
+    id: '4',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
+    eco: true,
+    discount: true,
     discountItem: '500$',
     date: Date.now(),
-    discount: true,
-    eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
-    id: '2',
+    id: '5',
     img: '#',
     tytle: 'назва прдукту',
     price: '700$',
-    discountItem: '500$',
-    date: Date.now(),
-    discount: true,
     eco: true,
+    discount: true,
+    discountItem: '500$',
+    date: Date.now(), //new Intl.DateTimeFormat('uk-UA', {year: 'numeric',month: 'long',day: 'numeric',}).format(Date.now())
     visit: 20,
+    category: 'headphone',
   },
 ];
 
@@ -66,18 +71,29 @@ function SimilarProductList() {
     <>
       <SimilarProductsWrapper>
         {arrayProducts.map(
-          ({ tytle, id, img, price, discountItem, date, discount, eco }) => {
+          ({
+            tytle,
+            id,
+            img,
+            price,
+            eco,
+            discount,
+            discountItem,
+            date,
+            category,
+          }) => {
             return (
               <SimilarProduct
                 key={id}
                 id={id}
                 tytle={tytle}
                 price={price}
+                discount={discount}
+                eco={eco}
                 img={img}
                 discountItem={discountItem}
-                discont={discount}
                 date={date}
-                eco={eco}
+                category={category}
               />
             );
           }

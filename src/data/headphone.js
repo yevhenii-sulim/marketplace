@@ -9,6 +9,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '2',
@@ -20,6 +21,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '3',
@@ -31,6 +33,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '4',
@@ -42,6 +45,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '5',
@@ -53,6 +57,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '6',
@@ -64,6 +69,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '7',
@@ -75,6 +81,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '8',
@@ -86,6 +93,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '9',
@@ -97,6 +105,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '10',
@@ -108,6 +117,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '11',
@@ -119,6 +129,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '12',
@@ -130,6 +141,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '13',
@@ -141,6 +153,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '14',
@@ -152,6 +165,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '15',
@@ -163,6 +177,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '16',
@@ -174,6 +189,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '17',
@@ -185,6 +201,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '18',
@@ -196,6 +213,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '19',
@@ -207,6 +225,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '20',
@@ -218,6 +237,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '21',
@@ -229,6 +249,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '22',
@@ -240,6 +261,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '23',
@@ -251,6 +273,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '24',
@@ -262,6 +285,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '25',
@@ -273,6 +297,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '26',
@@ -284,6 +309,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '27',
@@ -295,6 +321,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '28',
@@ -306,6 +333,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '29',
@@ -317,6 +345,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '30',
@@ -328,6 +357,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '31',
@@ -339,6 +369,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '32',
@@ -350,6 +381,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '33',
@@ -361,6 +393,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '34',
@@ -372,6 +405,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '35',
@@ -383,6 +417,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '36',
@@ -394,6 +429,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '37',
@@ -405,6 +441,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '38',
@@ -412,10 +449,11 @@ export const headphoneProduct = [
     tytle: 'назва прдукту',
     price: '700$',
     discountItem: '500$',
-    date: Date.now(),
+    date: Date.now(), //new Intl.DateTimeFormat('uk-UA', {year: 'numeric',month: 'long',day: 'numeric',}).format(Date.now())
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '39',
@@ -427,6 +465,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '40',
@@ -438,6 +477,7 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
+    category: 'headphone',
   },
   {
     id: '41',
@@ -449,16 +489,6 @@ export const headphoneProduct = [
     discount: true,
     eco: true,
     visit: 20,
-  },
-  {
-    id: '12',
-    img: '#',
-    tytle: 'назва прдукту',
-    price: '700$',
-    discountItem: '500$',
-    date: Date.now(),
-    discount: true,
-    eco: true,
-    visit: 20,
+    category: 'headphone',
   },
 ];
