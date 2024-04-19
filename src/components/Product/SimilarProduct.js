@@ -38,8 +38,9 @@ function SimilarProduct({
 
   return (
     <>
-      <SimilarProductItem onClick={sctollToByClick}>
+      <SimilarProductItem>
         <Link
+          onClick={sctollToByClick}
           state={location}
           to={
             location.pathname === '/'
