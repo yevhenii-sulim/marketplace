@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContainerSlide = styled.ul`
-  display: flex;
+  margin-bottom: 32px;
   .slide {
     width: 100%;
     min-height: 417px;
@@ -13,4 +13,11 @@ export const ContainerSlide = styled.ul`
   .carousel__back-button {
     display: none;
   }
+`;
+export const TytleCategory = styled.h3`
+  font-family: Jost;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 32px;
 `;

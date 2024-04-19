@@ -7,19 +7,14 @@ import {
 } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import { headphoneProduct } from 'data/headphone';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import { ContainerSlide } from './BestChoice.styled';
+import { ContainerSlide, TytleCategory } from './BestChoice.styled';
 import { memo } from 'react';
 
-const products = () =>
-  headphoneProduct.filter(({ discount }) => discount === true);
-
-const filteredProducts = products();
-
-export default memo(function BestChoiceList() {
+export default memo(function BestChoiceList({ filteredProducts, tytle }) {
   return (
     <ContainerSlide>
+      <TytleCategory>{tytle}</TytleCategory>
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
