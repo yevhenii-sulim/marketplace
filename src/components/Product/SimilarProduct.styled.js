@@ -36,6 +36,7 @@ export const SimilarProductItemIcon = styled.div`
 export const SimilarProductItemName = styled.h4`
   font-size: 18px;
   line-height: 1.4;
+  color: ${({ theme }) => theme.color.colorMainText};
 `;
 export const SimilarProductItemDiscount = styled.p`
   color: ${({ theme }) => theme.color.colorPriceDiscont};
