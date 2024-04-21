@@ -9,6 +9,8 @@ import AddProduct from 'pages/AddProduct';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
+import LaptopList from 'pages/LaptopList';
+import PhonesList from 'pages/PhonesList';
 // import { update } from '../../redux/auth/thunk';
 // import { selectToken } from '../../redux/auth/selector';
 // import { selectIsRerendung, selectToken } from '../../redux/auth/selector';
@@ -30,11 +32,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Loyaut />}>
           <Route index element={<HomePage />} />
-          <Route path=":catalog_products" element={<CatalogPage />} />
-          <Route
-            path=":catalog_products/:product_page"
-            element={<ProductPage />}
-          />
+          <Route path="contact_us" element={<LaptopList />} />
+          <Route path="contact_us" element={<LaptopList />} />
+          <Route path="contact_us" element={<LaptopList />} />
+          <Route path="contact_us" element={<LaptopList />} />
+          <Route path=":category/:product_page" element={<ProductPage />} />
+          <Route path=":category" element={<CatalogPage />} />
           <Route
             path="user_page"
             element={
@@ -52,7 +55,7 @@ export default function App() {
             }
           />
         </Route>
-        <Route path="*" element={<Loyaut />} />
+        <Route path="*" element={<PhonesList />} />
       </Routes>
     </Wrapper>
   );

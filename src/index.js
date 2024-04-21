@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <PersistGate loading={null} persistor={persistor}>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <BrowserRouter basename="/marketplace">
+          <BrowserRouter basename="/">
             <App />
           </BrowserRouter>
         </ThemeProvider>
