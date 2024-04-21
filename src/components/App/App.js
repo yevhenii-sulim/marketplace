@@ -33,9 +33,6 @@ export default function App() {
         <Route path="/" element={<Loyaut />}>
           <Route index element={<HomePage />} />
           <Route path="contact_us" element={<LaptopList />} />
-          <Route path="contact_us" element={<LaptopList />} />
-          <Route path="contact_us" element={<LaptopList />} />
-          <Route path="contact_us" element={<LaptopList />} />
           <Route path=":category/:product_page" element={<ProductPage />} />
           <Route path=":category" element={<CatalogPage />} />
           <Route

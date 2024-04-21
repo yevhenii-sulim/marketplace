@@ -2,7 +2,7 @@ import { SubNavList } from './NavsSectionComponent.styled';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
-import NavListElectronics from 'components/NavListProducts/NavListElectronics';
+import NavSubCategoriList from 'components/NavSubCategoriList/NavSubCategoriList';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -26,18 +26,10 @@ function TabPanel(props) {
   );
 }
 
-export default function TabPanelList({ listComponent, value }) {
+export default function TabPanelList({ subcategory, value, category }) {
   return (
     <TabPanel value={value} index={value}>
-      {listComponent === 'clothes' ? (
-        <button>clothes</button>
-      ) : listComponent === 'electronics' ? (
-        <NavListElectronics />
-      ) : listComponent === 'furnitures' ? (
-        <h3>furnitures</h3>
-      ) : (
-        <button>all</button>
-      )}
+      <NavSubCategoriList category={category} subcategory={subcategory} />
     </TabPanel>
   );
 }
@@ -46,4 +38,16 @@ TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
+};
+
+TabPanelList.propTypes = {
+  subcategory: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      linkList: PropTypes.string,
+      nameList: PropTypes.string,
+    })
+  ),
+  value: PropTypes.number.isRequired,
+  category: PropTypes.string,
 };

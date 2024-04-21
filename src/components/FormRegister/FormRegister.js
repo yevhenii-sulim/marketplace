@@ -4,7 +4,7 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import { Formik } from 'formik';
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 import { signUp } from '../../redux/auth/thunk';
-import { selectResponseSucces } from '../../redux/auth/selector';
+import { selectFulfilled } from '../../redux/auth/selector';
 import {
   BoxEye,
   ContainerForm,
@@ -18,7 +18,7 @@ import {
 
 export default function FormRegister({ onClose }) {
   const [visible, setVisible] = useState(false);
-  const success = useSelector(selectResponseSucces);
+  const success = useSelector(selectFulfilled);
   useEffect(() => {
     if (!!success) {
       onClose(false);

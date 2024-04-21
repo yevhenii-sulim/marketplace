@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -15,12 +15,21 @@ import {
   LinkForget,
   UnView,
 } from './FormAuth.styled';
+import { selectFulfilled } from '../../redux/auth/selector';
 // import { useNavigate } from 'react-router-dom';
 
 export default function FormAuth({ onClose }) {
   //   const navigate = useNavigate();
 
   const [visible, setVisible] = useState(false);
+
+  const success = useSelector(selectFulfilled);
+  useEffect(() => {
+    if (!!success) {
+      onClose(false);
+    }
+  }, [success, onClose]);
+
   const dispatch = useDispatch();
   function onToggleView() {
     setVisible(prev => !prev);
