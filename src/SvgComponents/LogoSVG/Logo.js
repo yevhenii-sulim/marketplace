@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Logo({ fill }) {
   return (
-    <Link to="#">
+    <Link to="/">
       <svg
         width="81"
         height="33"
