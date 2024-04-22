@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { selectAuth } from '../../redux/auth/selector';
 
 export default memo(function PrivateRoute({ children }) {
-  const isLoad = useSelector(selectAuth);
+  const isAuth = useSelector(selectAuth);
+  console.log(isAuth);
 
-  return isLoad ? children : <Navigate to="/" />;
+  return isAuth ? children : <Navigate to="/" />;
 });

@@ -18,7 +18,7 @@ const hendleLogInFulfilled = (state, { payload }) => {
   state.user = payload.user;
   state.isLoading = false;
   state.token = payload.backend_tokens.token;
-  state.isActivated = payload.isActivated;
+  state.isActivated = payload.user.isActivated;
 };
 
 const hendleUpdateFulfilled = (state, { payload }) => {

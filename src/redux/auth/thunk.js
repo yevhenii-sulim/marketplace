@@ -49,6 +49,8 @@ export const logIn = createAsyncThunk(
   async (user, { dispatch }) => {
     try {
       const { data } = await publicInstans.post('/auth/login', user);
+      console.log(data);
+
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(
           'Your mail is not activated. Please activate your registration using the link you received in your mail',
@@ -56,14 +58,13 @@ export const logIn = createAsyncThunk(
             timeout: 6000,
           }
         );
-        return;
       }
       token.set(data.backend_tokens.token);
       dispatch(toggleModalForm(false));
       return data;
     } catch (error) {
       error.response.data.message
-        ? Notiflix.Notify.failure(error.response.data.message, {
+        ? Notiflix.Notify.failure('Неправильний логін або пароль', {
             timeout: 6000,
           })
         : Notiflix.Notify.failure(error.message, {
