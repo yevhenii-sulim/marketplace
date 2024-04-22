@@ -1,6 +1,6 @@
 export default function FacebookSVG() {
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <svg
         width="25"
         height="24"

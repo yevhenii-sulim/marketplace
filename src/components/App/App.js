@@ -9,11 +9,25 @@ import AddProduct from 'pages/AddProduct';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
+import { useEffect } from 'react';
 // import { update } from '../../redux/auth/thunk';
 // import { selectToken } from '../../redux/auth/selector';
 // import { selectIsRerendung, selectToken } from '../../redux/auth/selector';
 
 export default function App() {
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const userDataParam = searchParams.get('userData');
+    if (userDataParam) {
+      const userDataObj = JSON.parse(decodeURIComponent(userDataParam));
+      console.log(userDataObj);
+      localStorage.setItem('token', userDataObj.accessToken);
+      localStorage.setItem('email', userDataObj?.user.email);
+      localStorage.setItem('name', userDataObj?.user.name);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   // const dispatch = useDispatch();
   // // const isRerendung = useSelector(selectIsRerendung);
 

@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const LinkGoIn = styled(Link)`
+export const LinkGoIn = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
