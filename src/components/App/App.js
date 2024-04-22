@@ -20,7 +20,6 @@ export default function App() {
     const userDataParam = searchParams.get('userData');
     if (userDataParam) {
       const userDataObj = JSON.parse(decodeURIComponent(userDataParam));
-      console.log(userDataObj);
       localStorage.setItem('token', userDataObj.accessToken);
       localStorage.setItem('email', userDataObj?.user.email);
       localStorage.setItem('name', userDataObj?.user.name);
