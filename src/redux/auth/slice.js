@@ -10,9 +10,10 @@ const hendleUpdatePending = state => {
   state.isRerendung = true;
 };
 
-const hendleSignUpFulfilled = state => {
+const hendleSignUpFulfilled = (state, { payload }) => {
   state.isLoading = false;
   state.responseSucces = true;
+  console.log(payload);
 };
 
 const hendleLogInFulfilled = (state, { payload }) => {

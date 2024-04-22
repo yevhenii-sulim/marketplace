@@ -35,13 +35,11 @@ function SimilarProduct({
   category,
 }) {
   const location = useLocation();
-
   return (
     <>
       <SimilarProductItem>
         <Link
           onClick={sctollToByClick}
-          state={location}
           to={
             location.pathname === '/'
               ? `${category}/${id}`
@@ -100,7 +98,7 @@ SimilarProduct.propTypes = {
   img: PropTypes.string.isRequired,
   discountItem: PropTypes.string.isRequired,
   discount: PropTypes.bool.isRequired,
-  date: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
   eco: PropTypes.bool.isRequired,
   category: PropTypes.string.isRequired,
 };

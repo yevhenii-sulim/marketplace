@@ -89,5 +89,6 @@ export const TabListStyles = {
   '& .MuiTab-root': {
     textTransform: 'none',
     borderRadius: '10px',
+    textAlign: 'left',
   },
 };
