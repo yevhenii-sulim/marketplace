@@ -1,25 +1,34 @@
 import React, { memo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ModalForm from 'components/ModalForm/ModalForm';
 import { AddProduct } from './AddAnnouncement.styled';
-import { selectFulfilled } from '../../redux/auth/selector';
+import { selectOpenFormModal } from '../../redux/modalForm/selectors';
+import { toggleModalForm } from '../../redux/modalForm/slice';
 
 const modalEnter = document.querySelector('#modal');
 
 export default memo(function AddAnnouncement() {
   const [hide, setHide] = useState(false);
-  const isLoaded = useSelector(selectFulfilled);
 
-  function onClose(bool) {
-    setHide(bool);
+  const isOpen = useSelector(selectOpenFormModal);
+  const dispatch = useDispatch();
+
+  function onOpen() {
+    dispatch(toggleModalForm(true));
+    setHide(true);
   }
+
+  function onClose() {
+    dispatch(toggleModalForm(false));
+  }
+
   return (
     <div>
-      <AddProduct to="add_product" onClick={() => setHide(true)}>
+      <AddProduct to="add_product" onClick={onOpen}>
         Створити оголошення
       </AddProduct>
-      {!isLoaded &&
+      {isOpen &&
         hide &&
         createPortal(<ModalForm onClose={onClose} />, modalEnter)}
     </div>

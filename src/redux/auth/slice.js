@@ -12,15 +12,13 @@ const hendleUpdatePending = state => {
 
 const hendleSignUpFulfilled = (state, { payload }) => {
   state.isLoading = false;
-  state.responseSucces = true;
-  console.log(payload);
 };
 
 const hendleLogInFulfilled = (state, { payload }) => {
-  state.isLoaded = !!payload.backend_tokens.token;
   state.user = payload.user;
   state.isLoading = false;
   state.token = payload.backend_tokens.token;
+  state.isActivated = payload.isActivated;
 };
 
 const hendleUpdateFulfilled = (state, { payload }) => {

@@ -1,22 +1,30 @@
 import { memo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonIcon from '@mui/icons-material/Person';
 import { AuxiliarysContainer, NavLink } from './Auxiliarys.styled';
-import { selectFulfilled } from '../../redux/auth/selector';
 import ModalForm from 'components/ModalForm/ModalForm';
+import { toggleModalForm } from '../../redux/modalForm/slice';
+import { selectOpenFormModal } from '../../redux/modalForm/selectors';
 
 const modalEnter = document.querySelector('#modal');
 
 export default memo(function Auxiliarys() {
   const [hide, setHide] = useState(false);
-  const isLoaded = useSelector(selectFulfilled);
+  const isOpen = useSelector(selectOpenFormModal);
+  const dispatch = useDispatch();
 
-  function onClose(bool) {
-    setHide(bool);
+  function onClose() {
+    dispatch(toggleModalForm(false));
+    setHide(false);
   }
+  function onOpen() {
+    dispatch(toggleModalForm(true));
+    setHide(true);
+  }
+
   return (
     <AuxiliarysContainer>
       <NavLink to="/">
@@ -25,10 +33,10 @@ export default memo(function Auxiliarys() {
       <NavLink to="/">
         <FavoriteBorderIcon />
       </NavLink>
-      <NavLink to="user_page" onClick={() => setHide(true)}>
+      <NavLink to="user_page" onClick={onOpen}>
         <PersonIcon />
       </NavLink>
-      {!isLoaded &&
+      {isOpen &&
         hide &&
         createPortal(<ModalForm onClose={onClose} />, modalEnter)}
     </AuxiliarysContainer>

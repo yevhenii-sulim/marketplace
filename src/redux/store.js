@@ -13,6 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { modalCotalogReducer } from './slice';
 import { userAuthReduser } from './auth/slice';
+import { modalFormReducer } from './modalForm/slice';
 
 const persistConfig = {
   key: 'token',
@@ -22,6 +23,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   modalCotalog: modalCotalogReducer,
+  modalForm: modalFormReducer,
   users: persistReducer(persistConfig, userAuthReduser),
 });
 

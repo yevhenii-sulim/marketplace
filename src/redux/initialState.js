@@ -1,12 +1,11 @@
 export const initialState = {
   openCatalog: false,
-  openEnterModal: false,
+  openFormModal: false,
   users: {
-    isLoaded: false,
     token: null,
     isLoading: true,
     isRerendung: true,
-    isAuth: false,
+    isActivated: false,
     user: {
       firstName: '',
       lastName: '',

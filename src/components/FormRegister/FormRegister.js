@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import { Formik } from 'formik';
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 import { signUp } from '../../redux/auth/thunk';
-import { selectFulfilled } from '../../redux/auth/selector';
 import {
   BoxEye,
   ContainerForm,
@@ -16,14 +15,9 @@ import {
   View,
 } from './FormRegister.styled';
 
-export default function FormRegister({ onClose }) {
+export default function FormRegister() {
   const [visible, setVisible] = useState(false);
-  const success = useSelector(selectFulfilled);
-  useEffect(() => {
-    if (!!success) {
-      onClose(false);
-    }
-  }, [success, onClose]);
+
   const dispatch = useDispatch();
   function onToggleView() {
     setVisible(prev => !prev);
