@@ -14,8 +14,22 @@ import PhonesList from 'pages/PhonesList';
 // import { update } from '../../redux/auth/thunk';
 // import { selectToken } from '../../redux/auth/selector';
 // import { selectIsRerendung, selectToken } from '../../redux/auth/selector';
+import { useEffect } from 'react';
 
 export default function App() {
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const userDataParam = searchParams.get('userData');
+    if (userDataParam) {
+      const userDataObj = JSON.parse(decodeURIComponent(userDataParam));
+      console.log(userDataObj);
+      localStorage.setItem('token', userDataObj.accessToken);
+      localStorage.setItem('email', userDataObj?.user.email);
+      localStorage.setItem('name', userDataObj?.user.name);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   // const dispatch = useDispatch();
   // // const isRerendung = useSelector(selectIsRerendung);
 
