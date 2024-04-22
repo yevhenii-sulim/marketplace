@@ -5,12 +5,13 @@ import ModalForm from 'components/ModalForm/ModalForm';
 import { AddProduct } from './AddAnnouncement.styled';
 import { selectOpenFormModal } from '../../redux/modalForm/selectors';
 import { toggleModalForm } from '../../redux/modalForm/slice';
+import { selectAuth } from '../../redux/auth/selector';
 
 const modalEnter = document.querySelector('#modal');
 
 export default memo(function AddAnnouncement() {
   const [hide, setHide] = useState(false);
-
+  const isAuth = useSelector(selectAuth);
   const isOpen = useSelector(selectOpenFormModal);
   const dispatch = useDispatch();
 
@@ -28,7 +29,8 @@ export default memo(function AddAnnouncement() {
       <AddProduct to="add_product" onClick={onOpen}>
         Створити оголошення
       </AddProduct>
-      {isOpen &&
+      {!isAuth &&
+        isOpen &&
         hide &&
         createPortal(<ModalForm onClose={onClose} />, modalEnter)}
     </div>

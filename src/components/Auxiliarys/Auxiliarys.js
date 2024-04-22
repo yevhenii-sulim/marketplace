@@ -8,11 +8,13 @@ import { AuxiliarysContainer, NavLink } from './Auxiliarys.styled';
 import ModalForm from 'components/ModalForm/ModalForm';
 import { toggleModalForm } from '../../redux/modalForm/slice';
 import { selectOpenFormModal } from '../../redux/modalForm/selectors';
+import { selectAuth } from '../../redux/auth/selector';
 
 const modalEnter = document.querySelector('#modal');
 
 export default memo(function Auxiliarys() {
   const [hide, setHide] = useState(false);
+  const isAuth = useSelector(selectAuth);
   const isOpen = useSelector(selectOpenFormModal);
   const dispatch = useDispatch();
 
@@ -36,7 +38,8 @@ export default memo(function Auxiliarys() {
       <NavLink to="user_page" onClick={onOpen}>
         <PersonIcon />
       </NavLink>
-      {isOpen &&
+      {!isAuth &&
+        isOpen &&
         hide &&
         createPortal(<ModalForm onClose={onClose} />, modalEnter)}
     </AuxiliarysContainer>
