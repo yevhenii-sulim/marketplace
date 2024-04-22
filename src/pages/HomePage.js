@@ -1,5 +1,5 @@
 import BestChoiceList from 'components/BestChoice/BestChoiceList';
-import { headphoneProduct } from 'data/headphone';
+import { headphoneProduct } from 'data/headphoneProduct';
 
 const productsDiscount = () =>
   headphoneProduct.filter(({ discount }) => discount === true);
@@ -9,11 +9,11 @@ const productsEco = () => headphoneProduct.filter(({ eco }) => eco === true);
 const filteredProductsEco = productsEco();
 
 const productsVisit = () =>
-  headphoneProduct.filter(({ visit }) => visit).splice(0, 40);
+  headphoneProduct.filter(({ visit }) => visit).slice(0, 40);
 const filteredProductsVisit = productsVisit();
 
 const productsNewer = () =>
-  headphoneProduct.sort((a, b) => b.date - a.date).splice(0, 40);
+  headphoneProduct.sort((a, b) => b.date - a.date).slice(0, 40);
 const filteredProductsNewer = productsNewer();
 
 export default function HomePage() {

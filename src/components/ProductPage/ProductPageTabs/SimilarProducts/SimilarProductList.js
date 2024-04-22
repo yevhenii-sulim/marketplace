@@ -2,7 +2,11 @@ import React from 'react';
 import { SimilarProductsWrapper } from './SimilarProductList.styled';
 import ButtonAddSimilarProducts from './ButtonAddSimilarProducts/ButtonAddSimilarProducts';
 import SimilarProduct from 'components/Product/SimilarProduct';
-
+const data = new Intl.DateTimeFormat('uk-UA', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(Date.now());
 const arrayProducts = [
   {
     id: '1',
@@ -12,7 +16,7 @@ const arrayProducts = [
     eco: true,
     discount: true,
     discountItem: '500$',
-    date: Date.now(),
+    date: data,
     visit: 20,
     category: 'headphone',
   },
@@ -24,7 +28,7 @@ const arrayProducts = [
     eco: true,
     discount: true,
     discountItem: '500$',
-    date: Date.now(),
+    date: data,
     visit: 20,
     category: 'headphone',
   },
@@ -36,7 +40,7 @@ const arrayProducts = [
     eco: true,
     discount: true,
     discountItem: '500$',
-    date: Date.now(),
+    date: data,
     visit: 20,
     category: 'headphone',
   },
@@ -48,7 +52,7 @@ const arrayProducts = [
     eco: true,
     discount: true,
     discountItem: '500$',
-    date: Date.now(),
+    date: data,
     visit: 20,
     category: 'headphone',
   },
@@ -60,7 +64,7 @@ const arrayProducts = [
     eco: true,
     discount: true,
     discountItem: '500$',
-    date: Date.now(), //new Intl.DateTimeFormat('uk-UA', {year: 'numeric',month: 'long',day: 'numeric',}).format(Date.now())
+    date: data,
     visit: 20,
     category: 'headphone',
   },

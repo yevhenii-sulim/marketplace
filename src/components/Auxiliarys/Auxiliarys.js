@@ -5,14 +5,14 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonIcon from '@mui/icons-material/Person';
 import { AuxiliarysContainer, NavLink } from './Auxiliarys.styled';
-import { selectAuth } from '../../redux/auth/selector';
+import { selectFulfilled } from '../../redux/auth/selector';
 import ModalForm from 'components/ModalForm/ModalForm';
 
 const modalEnter = document.querySelector('#modal');
 
 export default memo(function Auxiliarys() {
   const [hide, setHide] = useState(false);
-  const isLoaded = useSelector(selectAuth);
+  const isLoaded = useSelector(selectFulfilled);
 
   function onClose(bool) {
     setHide(bool);

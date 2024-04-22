@@ -1,16 +1,16 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { navigationList } from '../../data/navListData';
+import TabPanelList from './TabPanelList';
 import {
   BoxListStyles,
   Container,
   OpenList,
   TabListStyles,
 } from './NavsSectionComponent.styled';
-import { navigationList } from './navListData';
-import { useState } from 'react';
-import TabPanelList from './TabPanelList';
 
 function a11yProps(index) {
   return {
@@ -25,12 +25,13 @@ export default function NavsSectionList({ onCloseModal }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const [listComponent, setlistComponent] = useState('');
+  const [category, setCategory] = useState('');
+  const [subcategory, setSubcategory] = useState([]);
 
-  function openList(nameList) {
-    setlistComponent(nameList);
+  function openList(nameList, subCategoris) {
+    setCategory(nameList);
+    setSubcategory(subCategoris);
   }
-  console.log(listComponent);
 
   return (
     <Container onClick={onCloseModal}>
@@ -43,14 +44,14 @@ export default function NavsSectionList({ onCloseModal }) {
           aria-label="Vertical tabs"
           sx={TabListStyles}
         >
-          {navigationList.map(({ id, linkList, nameList }) => {
+          {navigationList.map(({ id, linkList, nameList, subCategoris }) => {
             return (
               <Tab
                 className="hover-tab"
                 key={id}
                 label={nameList}
                 onClick={() => {
-                  openList(linkList);
+                  openList(linkList, subCategoris);
                 }}
                 variant={'solid'}
                 icon={<OpenList />}
@@ -60,7 +61,11 @@ export default function NavsSectionList({ onCloseModal }) {
             );
           })}
         </Tabs>
-        <TabPanelList listComponent={listComponent} value={value} />
+        <TabPanelList
+          subcategory={subcategory}
+          value={value}
+          category={category}
+        />
       </Box>
     </Container>
   );
