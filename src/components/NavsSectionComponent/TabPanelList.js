@@ -16,7 +16,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box display="flex" alignItems="center" height="100%">
+        <Box display="flex" alignItems="flex-start" p="12px" height="100%">
           <Typography as="ul" sx={SubNavList}>
             {children}
           </Typography>

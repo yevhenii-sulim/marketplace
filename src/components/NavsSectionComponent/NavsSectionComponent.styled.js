@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: fixed;
@@ -12,13 +13,13 @@ export const Container = styled.div`
 export const OpenList = styled(ArrowForwardIosOutlinedIcon)`
   color: ${({ theme }) => theme.color.bgArrowList};
 `;
+export const LinkCategory = styled(Link)``;
 export const SubNavList = {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   justifyItems: 'center',
   justifyContent: 'space-between',
   width: '100%',
-  alignItems: 'center',
   paddingRight: '12px',
   paddingLeft: '12px',
 };
@@ -56,7 +57,7 @@ export const BoxListStyles = {
 //   borderLeft: '8px transparent solid',
 //   borderTop: 'none',
 // },
-
+// MuiButtonBase-root MuiTab-root
 export const TabListStyles = {
   position: 'relative',
   bgcolor: '#E1E1E1',
@@ -70,6 +71,7 @@ export const TabListStyles = {
   '& .MuiButtonBase-root-MuiTab-root': {},
   '& .MuiButtonBase-root': {
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
     color: '#000000',
     p: '12px 20px',
     minHeight: '0',
@@ -90,5 +92,17 @@ export const TabListStyles = {
     textTransform: 'none',
     borderRadius: '10px',
     textAlign: 'left',
+  },
+  '& .before': {
+    position: 'absolute',
+    top: '-10px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '10px',
+    height: '10px',
+    borderBottom: '10px black solid',
+    borderRight: '8px transparent solid',
+    borderLeft: '8px transparent solid',
+    borderTop: 'none',
   },
 };
