@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { toggleModal } from '../../redux/slice';
 import { navigationList } from '../../data/navListData';
 import TabPanelList from './TabPanelList';
 import {
@@ -21,12 +24,18 @@ function a11yProps(index) {
 
 export default function NavsSectionList({ onCloseModal }) {
   const [value, setValue] = useState(0);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   const [category, setCategory] = useState('');
   const [subcategory, setSubcategory] = useState([]);
+
+  function onOpen(bool) {
+    dispatch(toggleModal(bool));
+  }
 
   function openList(nameList, subCategoris) {
     setCategory(nameList);
@@ -44,6 +53,15 @@ export default function NavsSectionList({ onCloseModal }) {
           aria-label="Vertical tabs"
           sx={TabListStyles}
         >
+          <Tab
+            label={'Всі оголошення'}
+            onClick={() => {
+              navigate('all');
+              onOpen(false);
+            }}
+            variant={'solid'}
+            alignItems="center"
+          />
           {navigationList.map(({ id, linkList, nameList, subCategoris }) => {
             return (
               <Tab
@@ -60,6 +78,16 @@ export default function NavsSectionList({ onCloseModal }) {
               />
             );
           })}
+          <Tab
+            className="hover-tab"
+            label={'Подарую/віддам'}
+            onClick={() => {
+              navigate('for_free');
+              onOpen(false);
+            }}
+            variant={'solid'}
+            alignItems="flex-start"
+          />
         </Tabs>
         <TabPanelList
           subcategory={subcategory}

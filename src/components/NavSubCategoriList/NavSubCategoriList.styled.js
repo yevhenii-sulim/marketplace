@@ -13,12 +13,14 @@ export const List = styled.li`
     display: flex;
     flex-direction: column;
     gap: 16px;
-    justify-content: center;
+    justify-content: space-between;
     padding: 16px;
   }
   img {
-    width: 100%;
+    display: block;
+    width: 88px;
     height: 88px;
+    margin: auto;
     border-radius: 50%;
     border: 1px solid black;
   }
