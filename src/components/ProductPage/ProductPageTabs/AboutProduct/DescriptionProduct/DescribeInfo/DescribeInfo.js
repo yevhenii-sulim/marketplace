@@ -6,6 +6,7 @@ import {
   DescribeInfoHeader,
   DescribeInfoParagraph,
   DescribeInfoState,
+  DescribeInfoStateItem,
   DescribeInfoWrapper,
 } from './DescribeInfo.styled';
 
@@ -15,7 +16,15 @@ function DescribeInfo() {
       <DescribeInfoContainer>
         <DescribeInfoHeader>Опис</DescribeInfoHeader>
         <DescribeInfoState>
-          Стан: <span style={{ fontWeight: 400 }}>нове</span>
+          <DescribeInfoStateItem>
+            Стан: <span style={{ fontWeight: 400 }}>нове</span>
+          </DescribeInfoStateItem>
+          <DescribeInfoStateItem>
+            Розмір: <span style={{ fontWeight: 400 }}>L</span>
+          </DescribeInfoStateItem>
+          <DescribeInfoStateItem>
+            Стан: <span style={{ fontWeight: 400 }}>нове</span>
+          </DescribeInfoStateItem>
         </DescribeInfoState>
         <DescribeInfoParagraph>
           Насолоджуйтесь кришталево чистим звуком та бездоганним комфортом з

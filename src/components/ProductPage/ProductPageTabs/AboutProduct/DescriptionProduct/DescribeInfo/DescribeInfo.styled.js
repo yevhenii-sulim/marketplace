@@ -18,11 +18,15 @@ export const DescribeInfoHeader = styled.span`
   font-weight: 700;
 `;
 export const DescribeInfoState = styled.span`
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
   font-size: 22px;
   font-weight: 700;
   margin: 16px 0;
 `;
+
+export const DescribeInfoStateItem = styled.div``;
 export const DescribeInfoParagraph = styled.p``;
 export const DescribeInfoComplaintBlock = styled.div`
   display: flex;

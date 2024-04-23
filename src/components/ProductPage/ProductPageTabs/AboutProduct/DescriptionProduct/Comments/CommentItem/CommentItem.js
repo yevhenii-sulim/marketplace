@@ -16,7 +16,31 @@ import {
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
-function CommentItem({ name, body, like, dislike }) {
+function CommentItem({
+  name,
+  body,
+  like,
+  dislike,
+  id,
+  arrComments,
+  setArrComments,
+}) {
+  const handlerLike = id => {
+    const updatedComments = [...arrComments];
+    const commentObj = updatedComments[id];
+    const updatedLike = commentObj.like + 1;
+    updatedComments[id] = { ...commentObj, like: updatedLike };
+    setArrComments(updatedComments);
+  };
+
+  const handlerDislike = id => {
+    const updatedComments = [...arrComments];
+    const commentObj = updatedComments[id];
+    const updatedDislike = commentObj.dislike + 1;
+    updatedComments[id] = { ...commentObj, dislike: updatedDislike };
+    setArrComments(updatedComments);
+  };
+
   return (
     <CommentsWrapper>
       <CommentsContainer>
@@ -29,11 +53,11 @@ function CommentItem({ name, body, like, dislike }) {
           <CommentsTextBlock>{body}</CommentsTextBlock>
           <CommentsRating>
             <CommentsRatingThumbUp>
-              <ThumbUpOffAltIcon />
+              <ThumbUpOffAltIcon onClick={() => handlerLike(id)} />
               <CommentsRatingThumbQuantity>{like}</CommentsRatingThumbQuantity>
             </CommentsRatingThumbUp>
             <CommentsRatingThumbDown>
-              <ThumbDownOffAltIcon />
+              <ThumbDownOffAltIcon onClick={() => handlerDislike(id)} />
               <CommentsRatingThumbQuantity>
                 {dislike}
               </CommentsRatingThumbQuantity>

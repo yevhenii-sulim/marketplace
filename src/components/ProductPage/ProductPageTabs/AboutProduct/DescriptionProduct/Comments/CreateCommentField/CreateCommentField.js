@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   CommentsContainer,
   CommentsIconBlock,
@@ -8,16 +8,48 @@ import {
   CommentButtonBlock,
   CreateCommentInput,
   CreateFieldBlock,
+  ErrorValidationComment,
 } from './CreateCommentField.styled';
 import { Button } from '@mui/material';
 
-function CreateCommentField() {
+function CreateCommentField({ arrComments, setArrComments }) {
+  const [newComment, setNewComment] = useState('');
+  const [showValidationComment, setShowValidationComment] = useState(false);
+  const validationComment = comment => {
+    return comment && comment.length >= 4;
+  };
+  const addComment = comment => {
+    if (validationComment(comment)) {
+      setArrComments([
+        ...arrComments,
+        {
+          firstName: 'Іван',
+          body: comment,
+          like: 0,
+          dislike: 0,
+        },
+      ]);
+      setShowValidationComment(false);
+    } else {
+      setShowValidationComment(true);
+    }
+  };
+
   return (
     <CommentsWrapper>
       <CommentsContainer>
         <CommentsIconBlock></CommentsIconBlock>
         <CreateFieldBlock>
-          <CreateCommentInput placeholder="Placeholder" />
+          {showValidationComment && (
+            <ErrorValidationComment>
+              This comment is very short
+            </ErrorValidationComment>
+          )}
+          <CreateCommentInput
+            placeholder="Placeholder"
+            onChange={e => setNewComment(e.target.value)}
+            value={newComment}
+          />
           <CommentButtonBlock>
             <Button
               variant="outlined"
@@ -37,6 +69,7 @@ function CreateCommentField() {
                   borderColor: '#43C550',
                 },
               }}
+              onClick={() => setNewComment('')}
             >
               Скасувати
             </Button>
@@ -56,6 +89,7 @@ function CreateCommentField() {
                   backgroundColor: '#43C550',
                 },
               }}
+              onClick={() => addComment(newComment)}
             >
               Коментувати
             </Button>

@@ -7,3 +7,8 @@ export const ContainerForBreadcrumbs = styled.div`
 export const ContainerProductPage = styled.article`
   width: 100%;
 `;
+
+export const Link = styled.a`
+  color: grey;
+  text-decoration: none;
+`;
