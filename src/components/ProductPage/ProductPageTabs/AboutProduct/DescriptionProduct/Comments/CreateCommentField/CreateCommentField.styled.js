@@ -22,3 +22,7 @@ export const CommentButtonBlock = styled.div`
   justify-content: space-between;
   margin: 8px 0 0 auto;
 `;
+
+export const ErrorValidationComment = styled.span`
+  color: red;
+`;
