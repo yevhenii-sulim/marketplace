@@ -12,6 +12,7 @@ import {
   BoxListStyles,
   Container,
   OpenList,
+  Psevdo,
   TabListStyles,
 } from './NavsSectionComponent.styled';
 
@@ -45,50 +46,52 @@ export default function NavsSectionList({ onCloseModal }) {
   return (
     <Container onClick={onCloseModal}>
       <Box sx={BoxListStyles}>
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs"
-          sx={TabListStyles}
-        >
-          <Tab
-            label={'Всі оголошення'}
-            onClick={() => {
-              navigate('all');
-              onOpen(false);
-            }}
-            variant={'solid'}
-            alignItems="center"
-          />
-          {navigationList.map(({ id, linkList, nameList, subCategoris }) => {
-            return (
-              <Tab
-                className="hover-tab"
-                key={id}
-                label={nameList}
-                onClick={() => {
-                  openList(linkList, subCategoris);
-                }}
-                variant={'solid'}
-                icon={<OpenList />}
-                iconPosition="end"
-                {...a11yProps({ id })}
-              />
-            );
-          })}
-          <Tab
-            className="hover-tab"
-            label={'Подарую/віддам'}
-            onClick={() => {
-              navigate('for_free');
-              onOpen(false);
-            }}
-            variant={'solid'}
-            alignItems="flex-start"
-          />
-        </Tabs>
+        <Psevdo>
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs"
+            sx={TabListStyles}
+          >
+            <Tab
+              label={'Всі оголошення'}
+              onClick={() => {
+                navigate('all');
+                onOpen(false);
+              }}
+              variant={'solid'}
+              alignItems="center"
+            />
+            {navigationList.map(({ id, linkList, nameList, subCategoris }) => {
+              return (
+                <Tab
+                  className="hover-tab"
+                  key={id}
+                  label={nameList}
+                  onClick={() => {
+                    openList(linkList, subCategoris);
+                  }}
+                  variant={'solid'}
+                  icon={<OpenList />}
+                  iconPosition="end"
+                  {...a11yProps({ id })}
+                />
+              );
+            })}
+            <Tab
+              className="hover-tab"
+              label={'Подарую/віддам'}
+              onClick={() => {
+                navigate('for_free');
+                onOpen(false);
+              }}
+              variant={'solid'}
+              alignitems="flex-start"
+            />
+          </Tabs>
+        </Psevdo>
         <TabPanelList
           subcategory={subcategory}
           value={value}
