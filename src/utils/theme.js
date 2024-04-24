@@ -10,6 +10,7 @@ export const theme = {
     bgArrowList: '#A8A8A8',
     bgNavCommon: '#E1E1E1',
     bgNavCommonHover: '#E5E5E5',
+    bgActivePaginationList: '#7FD888',
     colorPriceDiscont: '#5E5F5F',
     colorSecondText: '#ffffff',
     colorTextErrorForm: '#ff0000',
