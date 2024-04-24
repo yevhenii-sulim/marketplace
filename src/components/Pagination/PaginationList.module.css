@@ -1,0 +1,89 @@
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    list-style: none;
+    gap: 10px;
+    padding: 20px 0;
+  }
+  .page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: 8px;
+    box-shadow: inset 0 0  0 1px #000000;
+    cursor: pointer;
+    &:hover {
+      background: #7FD888;
+      box-shadow: inset 0 0 0 1px #7FD888;
+    }
+    a{
+      color: #242424;
+      font-size: 24px;
+      font-weight: 400;
+      text-decoration: none;
+      
+}
+  }
+  .active {
+    background: #7FD888;
+    box-shadow: inset 0 0 0 1px #7FD888;
+  }
+  .MuiSvgIcon-root{
+    width: 24px;
+    height: 24px;
+  }
+  .changeStatePrev {
+    user-select: none;
+    padding: 6px 16px 6px 0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px transparent;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        box-shadow: inset 0 0 0 1px transparent;
+        background: transparent;
+      }
+   }
+  .changeStateNext {
+    user-select: none;
+    border: none;
+    padding: 6px 0 6px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px transparent;
+    border: none;
+    cursor: pointer;
+    &:hover{
+      box-shadow: inset 0 0 0 1px transparent;
+      background: transparent;
+    }
+   }
+
+  .hidden {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .pagination {
+      margin-left: 50px;
+    }
+    .hidden {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: inset 0 0 0 1px transparent;
+      padding: 6px;
+      a {
+          line-height: 0;
+        }
+    }
+  }
