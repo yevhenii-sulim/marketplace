@@ -24,43 +24,40 @@ export const SubNavList = {
   paddingLeft: '12px',
 };
 
+export const Psevdo = styled.div`
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-bottom: 16px #e1e1e1 solid;
+    border-right: 10px transparent solid;
+    border-left: 10px transparent solid;
+    border-top: none;
+  }
+`;
+
 export const BoxListStyles = {
   display: 'grid',
-  gridTemplateColumns: '1fr 2fr',
+  gridTemplateColumns: '1.5fr 2fr',
   gridTemplateRows: 'auto',
-  width: '768px',
+  width: '832px',
   position: 'absolute',
   top: '84px',
   left: '40%',
   transform: 'translate(-50%)',
   borderRadius: '12px',
-  overflow: 'hidden',
   bgcolor: '#ffffff',
-  '& .MuiTabs-vertical.MuiTabs-root': {
-    '&::before': {
-      width: '50px',
-      height: '50px',
-      bgcolor: 'red',
-    },
-  },
 };
 
-// '&::before': {
-//   position: 'absolute',
-//   top: '-10px',
-//   left: '50%',
-//   transform: 'translateX(-50%)',
-//   width: '10px',
-//   height: '10px',
-//   borderBottom: '10px black solid',
-//   borderRight: '8px transparent solid',
-//   borderLeft: '8px transparent solid',
-//   borderTop: 'none',
-// },
-// MuiButtonBase-root MuiTab-root
 export const TabListStyles = {
   position: 'relative',
   bgcolor: '#E1E1E1',
+  borderRadius: '10px 0 0 10px',
   paddingTop: '12px',
   paddingLeft: '12px',
   paddingBottom: '12px',
@@ -92,17 +89,5 @@ export const TabListStyles = {
     textTransform: 'none',
     borderRadius: '10px',
     textAlign: 'left',
-  },
-  '& .before': {
-    position: 'absolute',
-    top: '-10px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '10px',
-    height: '10px',
-    borderBottom: '10px black solid',
-    borderRight: '8px transparent solid',
-    borderLeft: '8px transparent solid',
-    borderTop: 'none',
   },
 };
