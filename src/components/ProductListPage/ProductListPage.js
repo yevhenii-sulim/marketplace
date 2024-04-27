@@ -3,6 +3,7 @@ import SimilarProduct from 'components/Product/SimilarProduct';
 import { ProductList } from './ProductListPage.styled';
 import PaginationList from 'components/Pagination/PaginationList';
 import { useState } from 'react';
+
 export default function ProductListPage({ headphoneProduct }) {
   const [page, setPage] = useState(1);
   const totalItemsCount = 10;
@@ -33,6 +34,7 @@ export default function ProductListPage({ headphoneProduct }) {
             discount,
             eco,
             category,
+            subCategory,
           }) => (
             <SimilarProduct
               key={id}
@@ -45,6 +47,7 @@ export default function ProductListPage({ headphoneProduct }) {
               date={date}
               eco={eco}
               category={category}
+              subCategory={subCategory}
             />
           )
         )}
