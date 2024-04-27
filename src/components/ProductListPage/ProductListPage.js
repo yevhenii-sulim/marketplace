@@ -7,12 +7,17 @@ export default function ProductListPage({ headphoneProduct }) {
   const [page, setPage] = useState(1);
   const totalItemsCount = 10;
   const handlePageClick = page => {
-    setPage(page);
-    // window.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: 'smooth',
-    // });
+    setPage(prev => {
+      if (prev === page) {
+        return prev;
+      }
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+      return page;
+    });
   };
   return (
     <>

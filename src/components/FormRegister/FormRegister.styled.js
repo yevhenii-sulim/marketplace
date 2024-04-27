@@ -5,6 +5,8 @@ import {
   Field as FieldForm,
   Form as FormContainer,
 } from 'formik';
+import { theme } from 'utils/theme';
+
 export const ContainerForm = styled.div`
   width: 100%;
 `;
@@ -34,7 +36,11 @@ export const Field = styled(FieldForm)`
   padding-top: 12px;
   padding-bottom: 12px;
   padding-right: 12px;
-  padding-left: 28px;
+  padding-left: 12px;
+  outline: none;
+  &:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
 `;
 export const Form = styled(FormContainer)`
   display: flex;
@@ -47,42 +53,41 @@ export const Form = styled(FormContainer)`
     gap: 8px;
     font-weight: 700;
   }
+  span {
+    position: relative;
+  }
   .mark {
     width: 7px;
     height: 7px;
     position: absolute;
-    bottom: 25%;
-    left: 15px;
+    top: 15%;
+    right: -10px;
   }
   .rules {
     font-weight: 400;
   }
 `;
-export const Send = styled.button`
-  width: 100%;
-  font-size: 18px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.color.colorButtonText};
-  background: ${({ theme }) => theme.color.bgButton};
-  border-radius: 6px;
-  padding: 8px 0;
-  text-align: center;
-  line-height: 1.4;
-  border: none;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  &:active:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: ${({ theme }) => theme.color.colorTextRegistr};
-  }
-`;
+export const socialSingInButton = {
+  width: '100%',
+  fontSize: '18px',
+  fontWeight: '700',
+  color: theme.color.colorButtonText,
+  bgcolor: theme.color.bgButton,
+  borderRadius: '6px',
+  textAlign: 'center',
+  padding: '8px 0px',
+  lineHeight: 1.4,
+  textTransform: 'none',
+  translate: 'all 100ms ease',
+  '&:hover': {
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    bgcolor: theme.color.bgButton,
+  },
+  '&:active': {
+    boxShadow: 'none',
+  },
+};
+
 export const View = styled.span`
   position: absolute;
   transform: translate(-19%, -150%) rotate(-45deg);

@@ -1,4 +1,5 @@
 import BestChoiceList from 'components/BestChoice/BestChoiceList';
+import CategoryList from 'components/CategoryList/CategoryList';
 import { headphoneProduct } from 'data/headphoneProduct';
 
 const productsDiscount = () =>
@@ -19,6 +20,7 @@ const filteredProductsNewer = productsNewer();
 export default function HomePage() {
   return (
     <>
+      <CategoryList />
       <BestChoiceList
         filteredProducts={filteredProductsDiscount}
         tytle="Кращий вибір"
