@@ -34,18 +34,19 @@ function SimilarProduct({
   date,
   eco,
   category,
+  subCategory,
 }) {
   const location = useLocation();
+
+  function countCharacter(count) {
+    return location.pathname.match(/[/]/g).length === count;
+  }
   return (
     <>
       <SimilarProductItem>
         <Link
           onClick={sctollToByClick}
-          to={
-            location.pathname === '/'
-              ? `${category}/${id}`
-              : `/${category}/${id}`
-          }
+          to={countCharacter(2) ? `${id}` : `/${category}/${subCategory}/${id}`}
         >
           <SimilarProductItemIcon>
             {eco && <EcoSvg />}

@@ -90,6 +90,7 @@ function SimilarProductList() {
             discountItem,
             date,
             category,
+            subCategory,
           }) => {
             return (
               <SimilarProduct
@@ -103,6 +104,7 @@ function SimilarProductList() {
                 discountItem={discountItem}
                 date={date}
                 category={category}
+                subCategory={subCategory}
               />
             );
           }
