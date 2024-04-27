@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const Tytle = styled.h2`
   font-family: Jost;
   font-size: 28px;
@@ -13,4 +12,7 @@ export const LinkReg = styled.button`
   background-color: transparent;
   font-size: 16px;
   color: ${({ theme }) => theme.color.colorTextRegistr};
+  &:hover {
+    box-shadow: '0 4px 8px rgba(0, 0, 0, 0.5)';
+  }
 `;

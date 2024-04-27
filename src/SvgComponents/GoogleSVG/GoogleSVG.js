@@ -1,6 +1,6 @@
 export default function GoogleSVG() {
   return (
-    <div>
+    <>
       <svg
         width="24"
         height="24"
@@ -25,6 +25,6 @@ export default function GoogleSVG() {
           fill="#1976D2"
         />
       </svg>
-    </div>
+    </>
   );
 }

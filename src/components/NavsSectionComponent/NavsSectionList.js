@@ -55,17 +55,8 @@ export default function NavsSectionList({ onCloseModal }) {
             aria-label="Vertical tabs"
             sx={TabListStyles}
           >
-            <Tab
-              label={'Всі оголошення'}
-              onClick={() => {
-                navigate('all');
-                onOpen(false);
-              }}
-              variant={'solid'}
-              alignItems="center"
-            />
             {navigationList.map(({ id, linkList, nameList, subCategoris }) => {
-              return (
+              return subCategoris ? (
                 <Tab
                   className="hover-tab"
                   key={id}
@@ -78,18 +69,19 @@ export default function NavsSectionList({ onCloseModal }) {
                   iconPosition="end"
                   {...a11yProps({ id })}
                 />
+              ) : (
+                <Tab
+                  className="hover-tab"
+                  label={nameList}
+                  onClick={() => {
+                    navigate(linkList);
+                    onOpen(false);
+                  }}
+                  variant={'solid'}
+                  alignitems="flex-start"
+                />
               );
             })}
-            <Tab
-              className="hover-tab"
-              label={'Подарую/віддам'}
-              onClick={() => {
-                navigate('for_free');
-                onOpen(false);
-              }}
-              variant={'solid'}
-              alignitems="flex-start"
-            />
           </Tabs>
         </Psevdo>
         <TabPanelList

@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import {
-  ErrorMessage as ErrorForm,
-  Field as FieldForm,
-  Form as FormContainer,
-} from 'formik';
+import { Field as FieldForm, Form as FormContainer } from 'formik';
+import { theme } from 'utils/theme';
 
 export const BoxEye = styled.div`
   position: absolute;
@@ -27,16 +24,14 @@ export const LinkForget = styled(Link)`
   color: ${({ theme }) => theme.color.colorButton};
 `;
 
-export const ErrorMessage = styled(ErrorForm)`
-  position: absolute;
-  right: 0;
-  top: 0;
-  color: ${({ theme }) => theme.color.colorTextErrorForm};
-`;
 export const Field = styled(FieldForm)`
   width: 100%;
+  outline: none;
   border-radius: 6px;
-  padding: 12px 12px 12px 28px;
+  padding: 12px 12px 12px 12px;
+  &:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
 `;
 export const Form = styled(FormContainer)`
   display: flex;
@@ -60,31 +55,27 @@ export const Form = styled(FormContainer)`
     bottom: 46%;
   }
 `;
-export const Enter = styled.button`
-  width: 100%;
-  font-size: 18px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.color.colorButtonText};
-  background: ${({ theme }) => theme.color.bgButton};
-  border-radius: 6px;
-  padding: 8px 0;
-  text-align: center;
-  line-height: 1.4;
-  border: none;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  &:active:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: ${({ theme }) => theme.color.colorTextRegistr};
-  }
-`;
+export const socialSingInButton = {
+  width: '100%',
+  fontSize: '18px',
+  fontWeight: '700',
+  color: theme.color.colorButtonText,
+  bgcolor: theme.color.bgButton,
+  borderRadius: '6px',
+  textAlign: 'center',
+  padding: '8px 0px',
+  lineHeight: 1.4,
+  textTransform: 'none',
+  translate: 'all 100ms ease',
+  '&:hover': {
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    bgcolor: theme.color.bgButton,
+  },
+  '&:active': {
+    boxShadow: 'none',
+  },
+};
+
 export const UnView = styled.span`
   position: absolute;
   transform: translate(-19%, -150%) rotate(-45deg);

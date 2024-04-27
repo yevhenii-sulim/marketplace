@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { theme } from 'utils/theme';
 import {
   SimilarProductItem,
   SimilarProductItemButtonBlock,
@@ -65,16 +66,16 @@ function SimilarProduct({
             variant="contained"
             sx={{
               width: 148 + 'px',
-              backgroundColor: '#43C550',
+              backgroundColor: theme.color.bgButton,
               textTransform: 'none',
               fontSize: '18px',
               fontWeight: '800',
               height: '40px',
               '&:focus': {
-                backgroundColor: '#43C550',
+                backgroundColor: theme.color.bgButton,
               },
               '&:hover': {
-                backgroundColor: '#43C550',
+                backgroundColor: theme.color.bgButton,
               },
             }}
           >

@@ -9,6 +9,9 @@ export const WrapperModal = styled.div`
   border: 3px solid ${({ theme }) => theme.color.borderRegistr};
   border-radius: 12px;
   padding: 32px;
+  .MuiSvgIcon-root.close {
+    color: ${({ theme }) => theme.color.bgButton};
+  }
 `;
 
 export const Backdrop = styled.div`
@@ -27,3 +30,8 @@ export const Box = styled.div`
   align-items: flex-start;
   color: inherit;
 `;
+export const cssButtonClose = {
+  position: 'absolute',
+  top: '10px',
+  right: '10px',
+};

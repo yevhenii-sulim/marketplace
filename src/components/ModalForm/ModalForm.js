@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Backdrop, Box, WrapperModal } from './ModalForm.styled';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  Backdrop,
+  Box,
+  WrapperModal,
+  cssButtonClose,
+} from './ModalForm.styled';
 import RegisterArea from 'components/RegisterArea/RegisterArea';
 import AuthArea from 'components/AuthArea/AuthArea';
 
@@ -34,6 +41,9 @@ export default function ModalForm({ onClose }) {
   return (
     <Backdrop onMouseDown={oncloseByClickOutside}>
       <WrapperModal>
+        <IconButton sx={cssButtonClose} onClick={() => onClose(false)}>
+          <CloseIcon className="close" />
+        </IconButton>
         <Box>
           {wind ? (
             <AuthArea onClose={onClose} toggleWind={toggleWindInReg} />

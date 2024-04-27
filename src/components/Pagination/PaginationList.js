@@ -19,7 +19,6 @@ function PaginationList({ handlePageChange, activePage, totalItemsCount }) {
         onChange={handlePageChange}
         prevPageText={'Попередня'}
         nextPageText={'Наступна'}
-        hideDisabled="true"
         innerClass={css.pagination}
         activeClass={css.active}
         itemClassPrev={css.changeStatePrev}

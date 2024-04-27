@@ -1,8 +1,15 @@
 export const navigationList = [
   {
+    id: 0,
+    linkList: 'all',
+    nameList: 'Всі оголошення',
+    img: '/marketplace/images/catalog/all.png',
+  },
+  {
     id: 1,
     linkList: 'gift',
     nameList: 'Подарункові товари',
+    img: '/marketplace/images/catalog/all.png',
     subCategoris: [
       { id: 1, link: 'souvenirs', nameList: 'Сувеніри', img: '#' },
       { id: 2, link: 'gift_sets', nameList: 'Подарункові набори', img: '#' },
@@ -13,6 +20,7 @@ export const navigationList = [
     id: 2,
     linkList: 'embroidery',
     nameList: 'Вишивка',
+    img: '/marketplace/images/catalog/all.png',
     subCategoris: [
       { id: 1, link: 'shirts', nameList: 'Сорочки', img: '#' },
       { id: 2, link: 'dress', nameList: 'Плаття', img: '#' },
@@ -23,6 +31,7 @@ export const navigationList = [
     id: 3,
     linkList: 'accessories',
     nameList: 'Аксесуари',
+    img: '/marketplace/images/catalog/all.png',
     subCategoris: [
       { id: 1, link: 'handbags', nameList: 'Сумки', img: '#' },
       { id: 2, link: 'belts', nameList: 'Пояси', img: '#' },
@@ -35,6 +44,7 @@ export const navigationList = [
     id: 4,
     linkList: 'eco',
     nameList: 'Еко хендмейд взуття',
+    img: '/marketplace/images/catalog/all.png',
     subCategoris: [
       { id: 1, link: 'winter', nameList: 'Зимове', img: '#' },
       { id: 2, link: 'summer', nameList: 'Літнє', img: '#' },
@@ -44,6 +54,7 @@ export const navigationList = [
     id: 5,
     linkList: 'makeup',
     nameList: 'Натуральна косметика',
+    img: '/marketplace/images/catalog/all.png',
     subCategoris: [
       { id: 1, link: 'soap', nameList: 'Мило', img: '#' },
       { id: 2, link: 'perfumery', nameList: 'Парфюмерія', img: '#' },
@@ -53,6 +64,7 @@ export const navigationList = [
     id: 6,
     linkList: 'recycled_materials',
     nameList: 'Товари з перероблених матеріалів',
+    img: '/marketplace/images/catalog/all.png',
     subCategoris: [
       {
         id: 1,
@@ -67,5 +79,11 @@ export const navigationList = [
         img: '#',
       },
     ],
+  },
+  {
+    id: 7,
+    linkList: 'for_free',
+    nameList: 'Подарую/віддам',
+    img: '/marketplace/images/catalog/all.png',
   },
 ];

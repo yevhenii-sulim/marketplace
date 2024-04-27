@@ -18,6 +18,7 @@ const arrayProducts = [
     discountItem: '500$',
     date: data,
     visit: 20,
+    subCategory: 'vacuum',
     category: 'headphone',
   },
   {
@@ -30,6 +31,7 @@ const arrayProducts = [
     discountItem: '500$',
     date: data,
     visit: 20,
+    subCategory: 'vacuum',
     category: 'headphone',
   },
   {
@@ -42,6 +44,7 @@ const arrayProducts = [
     discountItem: '500$',
     date: data,
     visit: 20,
+    subCategory: 'vacuum',
     category: 'headphone',
   },
   {
@@ -54,6 +57,7 @@ const arrayProducts = [
     discountItem: '500$',
     date: data,
     visit: 20,
+    subCategory: 'vacuum',
     category: 'headphone',
   },
   {
@@ -66,6 +70,7 @@ const arrayProducts = [
     discountItem: '500$',
     date: data,
     visit: 20,
+    subCategory: 'vacuum',
     category: 'headphone',
   },
 ];

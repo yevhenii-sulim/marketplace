@@ -1,9 +1,9 @@
 import GoogleSVG from 'SvgComponents/GoogleSVG/GoogleSVG';
-import { LinkGoIn } from './ContinueVia.styled';
 import FacebookSVG from 'SvgComponents/FacebookSVG/FacebookSVG';
 import { Button } from '@mui/material';
 import { socialSingInButton } from './material styles/material-styles';
 import { useState } from 'react';
+import { LinkGoIn } from './ContinueVia.styled';
 
 export default function ContinueVia() {
   const [facebookAuthUrl] = useState(
@@ -11,17 +11,13 @@ export default function ContinueVia() {
   );
   return (
     <>
-      <LinkGoIn>
+      <Button variant="outlined" sx={socialSingInButton}>
         <GoogleSVG />
-        <p>
-          Продовжити через<span> Google</span>
-        </p>
-      </LinkGoIn>
+        <LinkGoIn>Продовжити через Google</LinkGoIn>
+      </Button>
       <Button href={facebookAuthUrl} variant="outlined" sx={socialSingInButton}>
         <FacebookSVG />
-        <p>
-          Продовжити через<span> Facebook</span>
-        </p>
+        <LinkGoIn>Продовжити через Facebook</LinkGoIn>
       </Button>
     </>
   );
