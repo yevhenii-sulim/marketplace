@@ -71,6 +71,7 @@ export default function NavsSectionList({ onCloseModal }) {
                 />
               ) : (
                 <Tab
+                  key={id}
                   className="hover-tab"
                   label={nameList}
                   onClick={() => {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AddProduct = styled(Link)`
   display: flex;
   align-items: center;
-  background-color: ${({ theme }) => theme.color.bgCommon};
+  background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 8px;
   height: 48px;
   padding: 6px 16px;

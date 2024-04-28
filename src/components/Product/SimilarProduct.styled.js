@@ -6,6 +6,8 @@ export const SimilarProductItem = styled.li`
   gap: 12px;
   flex-direction: column;
   padding: 8px;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
   a {
     width: 100%;
     display: flex;
@@ -66,12 +68,9 @@ export const SimilarProductItemIconWrapper = styled.button`
   background-color: transparent;
   border-radius: 50%;
   &:hover {
-    background-color: ${({ theme }) => theme.color.bgButton};
-  }
-  &:hover svg {
-    color: ${({ theme }) => theme.color.colorSecondText};
+    background-color: ${({ theme }) => theme.color.bgLike};
   }
   &:active {
-    box-shadow: inset 0 0 10px 0px ${({ theme }) => theme.color.bgButonHover};
+    background-color: ${({ theme }) => theme.color.bgButonHover};
   }
 `;
