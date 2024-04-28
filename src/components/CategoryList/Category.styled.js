@@ -22,7 +22,6 @@ export const Categorys = styled.ul`
   margin-bottom: 32px;
   .slide {
     width: 100%;
-    min-height: 417px;
     position: relative;
   }
   .carousel__next-button {

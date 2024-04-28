@@ -15,7 +15,7 @@ import {
   socialSingInButton,
 } from './FormAuth.styled';
 
-export default function FormAuth({ onClose }) {
+export default function FormAuth({ onClose, openForgetWind }) {
   const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();
@@ -50,7 +50,9 @@ export default function FormAuth({ onClose }) {
                 {visible && <UnView></UnView>}
                 <RemoveRedEyeOutlinedIcon />
               </BoxEye>
-              <LinkForget to="#">Забули пароль?</LinkForget>
+              <LinkForget type="button" onClick={openForgetWind}>
+                Забули пароль?
+              </LinkForget>
             </label>
             <Button
               type="submit"
@@ -67,4 +69,5 @@ export default function FormAuth({ onClose }) {
 }
 FormAuth.propTypes = {
   onClose: PropTypes.func.isRequired,
+  openForgetWind: PropTypes.func.isRequired,
 };

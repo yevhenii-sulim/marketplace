@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 
 export const WrapperModal = styled.div`
+  width: 100%;
   background-color: ${({ theme }) => theme.color.bgCommon};
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border: 3px solid ${({ theme }) => theme.color.borderRegistr};
   border-radius: 12px;
   padding: 32px;
   .MuiSvgIcon-root.close {
     color: ${({ theme }) => theme.color.bgButton};
+  }
+  @media screen and (min-width: 480px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 384px;
   }
 `;
 
@@ -23,7 +27,6 @@ export const Backdrop = styled.div`
   background: ${({ theme }) => theme.color.bgBackdrop};
 `;
 export const Box = styled.div`
-  max-width: 384px;
   display: flex;
   flex-direction: column;
   gap: 16px;

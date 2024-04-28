@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Field as FieldForm, Form as FormContainer } from 'formik';
 import { theme } from 'utils/theme';
 
@@ -18,8 +17,12 @@ export const ContainerForm = styled.div`
   width: 100%;
 `;
 
-export const LinkForget = styled(Link)`
-  text-decoration: none;
+export const LinkForget = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
   font-weight: 600;
   color: ${({ theme }) => theme.color.colorButton};
 `;

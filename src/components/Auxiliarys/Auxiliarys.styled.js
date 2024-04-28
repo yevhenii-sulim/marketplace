@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink as LinkAux } from 'react-router-dom';
 
 export const NavLink = styled(LinkAux)`
+  font-size: 0;
   &.active svg {
     color: ${({ theme }) => theme.color.borderSearch};
   }

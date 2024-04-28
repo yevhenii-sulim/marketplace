@@ -6,7 +6,7 @@ export const socialSingInButton = {
   gap: '8px',
   borderRadius: '6px',
   textAlign: 'center',
-  padding: '10px 43px',
+  padding: '8px 0',
   textTransform: 'none',
   fontSize: '16px',
   color: 'black',

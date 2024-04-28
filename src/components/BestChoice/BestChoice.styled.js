@@ -8,10 +8,10 @@ export const ContainerSlide = styled.ul`
     position: relative;
   }
   .carousel__next-button {
-    display: none;
+    display: block;
   }
   .carousel__back-button {
-    display: none;
+    display: block;
   }
 `;
 export const TytleCategory = styled.h3`

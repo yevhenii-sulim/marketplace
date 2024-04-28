@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
 import { Wrapper } from './App.styled';
@@ -9,12 +9,11 @@ import AddProduct from 'pages/AddProduct';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
+import SubCategoris from 'pages/SubCategoris';
 import PhonesList from 'pages/PhonesList';
 // import { update } from '../../redux/auth/thunk';
 // import { selectToken } from '../../redux/auth/selector';
 // import { selectIsRerendung, selectToken } from '../../redux/auth/selector';
-import { useEffect } from 'react';
-import SubCategoris from 'pages/SubCategoris';
 
 export default function App() {
   useEffect(() => {

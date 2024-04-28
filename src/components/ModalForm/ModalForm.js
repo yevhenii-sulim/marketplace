@@ -10,16 +10,28 @@ import {
 } from './ModalForm.styled';
 import RegisterArea from 'components/RegisterArea/RegisterArea';
 import AuthArea from 'components/AuthArea/AuthArea';
+import AreaForgetPass from 'components/AreaForgetPass/AreaForgetPass';
 
 export default function ModalForm({ onClose }) {
-  const [wind, setWind] = useState(true);
+  const [auth, setAuth] = useState(true);
+  const [register, setRegister] = useState(false);
+  const [forgetPass, setForgetPass] = useState(false);
 
-  function toggleWindInReg() {
-    setWind(false);
+  function openWindInReg() {
+    setAuth(false);
+    setForgetPass(false);
+    setRegister(true);
   }
 
-  function toggleWindInAuth() {
-    setWind(true);
+  function openWindInAuth() {
+    setAuth(true);
+    setForgetPass(false);
+    setRegister(false);
+  }
+  function openWindInForgetPass() {
+    setAuth(false);
+    setForgetPass(true);
+    setRegister(false);
   }
 
   useEffect(() => {
@@ -45,10 +57,18 @@ export default function ModalForm({ onClose }) {
           <CloseIcon className="close" />
         </IconButton>
         <Box>
-          {wind ? (
-            <AuthArea onClose={onClose} toggleWind={toggleWindInReg} />
-          ) : (
-            <RegisterArea onClose={onClose} toggleWind={toggleWindInAuth} />
+          {auth && (
+            <AuthArea
+              onClose={onClose}
+              toggleWind={openWindInReg}
+              openForgetWind={openWindInForgetPass}
+            />
+          )}
+          {register && (
+            <RegisterArea onClose={onClose} toggleWind={openWindInAuth} />
+          )}
+          {forgetPass && (
+            <AreaForgetPass onClose={onClose} toggleWind={openWindInAuth} />
           )}
         </Box>
       </WrapperModal>
