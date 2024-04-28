@@ -18,7 +18,7 @@ export default memo(function BestChoiceList({ filteredProducts, tytle }) {
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        isPlaying={true}
+        // isPlaying={true}
         step={5}
         visibleSlides={5}
         isIntrinsicHeight={true}
