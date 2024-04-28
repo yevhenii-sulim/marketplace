@@ -9,12 +9,13 @@ export default function NavSubCategoriList({ subcategory, category }) {
   function onClose() {
     dispatch(toggleModal(false));
   }
+
   return (
     <>
       {subcategory.map(({ id, link, nameList, img }) => {
         return (
           <List key={id}>
-            <Link state={{ category, link }} to={`${link}`} onClick={onClose}>
+            <Link to={`${category}/${link}`} onClick={onClose}>
               <img src={img} alt={nameList} />
               <p>{nameList}</p>
             </Link>

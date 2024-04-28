@@ -1,8 +1,8 @@
-import React from 'react';
+import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { List, UnList } from './SubcategorisComponent.styled';
 
-export default function SubcategorisComponent() {
+export default memo(function SubcategorisComponent() {
   const location = useLocation();
 
   return (
@@ -19,4 +19,4 @@ export default function SubcategorisComponent() {
       })}
     </UnList>
   );
-}
+});

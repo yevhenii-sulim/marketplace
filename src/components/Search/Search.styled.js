@@ -8,7 +8,7 @@ export const FormSearch = styled.form`
     height: 100%;
     border-radius: 8px;
     padding: 8px 8px 8px 24px;
-    background-color: ${({ theme }) => theme.color.bgCommon};
+    background-color: ${({ theme }) => theme.color.bgProduct};
     border: 1px solid ${({ theme }) => theme.color.borderSearch};
     outline: none;
     &:placeholder {
