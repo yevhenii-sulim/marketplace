@@ -33,11 +33,11 @@ export default function FormAuth({ onClose, openForgetWind }) {
           actions.resetForm();
         }}
       >
-        {({ isSubmitting }) => (
+        {({ values, isSubmitting }) => (
           <Form>
             <label>
               Електронна пошта
-              <Field type="email" name="email" />
+              <Field type="email" name="email" value={values.email.trim()} />
             </label>
             <label>
               Пароль
