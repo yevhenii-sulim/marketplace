@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WrapperModal = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.color.bgCommon};
+  background-color: ${({ theme }) => theme.color.bgProduct};
   position: absolute;
   border: 3px solid ${({ theme }) => theme.color.borderRegistr};
   border-radius: 12px;
