@@ -10,9 +10,13 @@ import { theme } from 'utils/theme';
 export const ContainerForm = styled.div`
   width: 100%;
 `;
+export const FieldPassword = styled.div`
+  position: relative;
+`;
 export const BoxEye = styled.button`
   position: absolute;
-  top: 72%;
+  top: 50%;
+  font-size: 0;
   right: 12px;
   transform: translatey(-50%);
   background-color: transparent;
@@ -25,9 +29,6 @@ export const Link = styled(LinkAgree)`
 `;
 
 export const ErrorMessage = styled(ErrorForm)`
-  position: absolute;
-  right: 0;
-  top: 0;
   color: ${({ theme }) => theme.color.colorTextErrorForm};
 `;
 export const Field = styled(FieldForm)`
@@ -53,7 +54,7 @@ export const Form = styled(FormContainer)`
     gap: 8px;
     font-weight: 700;
   }
-  span {
+  .label-place {
     position: relative;
   }
   .mark {

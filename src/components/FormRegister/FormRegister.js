@@ -10,6 +10,7 @@ import {
   ContainerForm,
   ErrorMessage,
   Field,
+  FieldPassword,
   Form,
   Link,
   View,
@@ -43,7 +44,7 @@ export default function FormRegister() {
             values.firstName.length < 2 ||
             values.firstName.length > 20
           ) {
-            errors.firstName = 'Має бути від 2 до 20 елементів';
+            errors.firstName = 'Має бути від 2 до 20 символів';
           } else if (
             values.firstName.slice(0, 1) ===
             values.firstName.slice(0, 1).toLowerCase()
@@ -57,7 +58,7 @@ export default function FormRegister() {
             values.lastName.length < 2 ||
             values.lastName.length > 20
           ) {
-            errors.lastName = 'Має бути від 2 до 20 елементів';
+            errors.lastName = 'Має бути від 2 до 20 символів';
           } else if (
             values.lastName.slice(0, 1) ===
             values.lastName.slice(0, 1).toLowerCase()
@@ -72,7 +73,7 @@ export default function FormRegister() {
               values.numberPhone
             )
           ) {
-            errors.numberPhone = 'Не валідний номер';
+            errors.numberPhone = 'Некоректний номер';
           }
 
           if (!values.email) {
@@ -80,7 +81,7 @@ export default function FormRegister() {
           } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
-            errors.email = 'Не правильна email адреса';
+            errors.email = 'Неправильна email адреса';
           }
           if (!values.password) {
             errors.password = "Обов'язкове поле";
@@ -89,7 +90,7 @@ export default function FormRegister() {
               values.password
             )
           ) {
-            errors.password = 'Не достатньо надійний';
+            errors.password = 'Некоректний пароль';
           }
           return errors;
         }}
@@ -98,31 +99,39 @@ export default function FormRegister() {
           actions.resetForm();
         }}
       >
-        {({ isSubmitting }) => (
+        {({ values, isSubmitting }) => (
           <Form>
             <label>
               <p>
-                <span>
+                <span className="label-place">
                   Iм`я
                   <MarkSvg />
                 </span>
               </p>
-              <Field type="text" name="firstName" />
+              <Field
+                type="text"
+                name="firstName"
+                value={values.firstName.trim()}
+              />
               <ErrorMessage name="firstName" component="p" />
             </label>
             <label>
               <p>
-                <span>
+                <span className="label-place">
                   Прiзвище
                   <MarkSvg />
                 </span>
               </p>
-              <Field type="text" name="lastName" />
+              <Field
+                type="text"
+                name="lastName"
+                value={values.lastName.trim()}
+              />
               <ErrorMessage name="lastName" component="p" />
             </label>
             <label>
               <p>
-                <span>
+                <span className="label-place">
                   Номер телефону
                   <MarkSvg />
                 </span>
@@ -131,12 +140,13 @@ export default function FormRegister() {
                 type="tel"
                 name="numberPhone"
                 placeholder="+380 (__) ___-__-__"
+                value={values.numberPhone.trim()}
               />
               <ErrorMessage name="numberPhone" component="p" />
             </label>
             <label>
               <p>
-                <span>
+                <span className="label-place">
                   Електронна пошта
                   <MarkSvg />
                 </span>
@@ -145,26 +155,29 @@ export default function FormRegister() {
                 type="email"
                 name="email"
                 placeholder="tanya@example.com"
+                value={values.email.trim()}
               />
               <ErrorMessage name="email" component="p" />
             </label>
             <label>
               <p>
-                <span>
+                <span className="label-place">
                   Пароль
                   <MarkSvg />
                 </span>
               </p>
-              {visible ? (
-                <Field type="text" name="password" />
-              ) : (
-                <Field type="password" name="password" />
-              )}
+              <FieldPassword>
+                {visible ? (
+                  <Field type="text" name="password" />
+                ) : (
+                  <Field type="password" name="password" />
+                )}
+                <BoxEye onClick={onToggleView} type="button">
+                  {visible && <View></View>}
+                  <RemoveRedEyeOutlinedIcon />
+                </BoxEye>
+              </FieldPassword>
               <ErrorMessage name="password" component="p" />
-              <BoxEye onClick={onToggleView} type="button">
-                {visible && <View></View>}
-                <RemoveRedEyeOutlinedIcon />
-              </BoxEye>
             </label>
             <p className="rules">
               Пароль повинен мати довжину 6-20 символів, одну велику літеру,
