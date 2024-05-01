@@ -49,8 +49,6 @@ export default function FormRegister() {
             values.firstName.slice(0, 1).toLowerCase()
           ) {
             errors.firstName = 'Має починатися з великої літери';
-          } else if (/[А-Яа-я]/i.test(values.firstName)) {
-            errors.firstName = "Ім'я латиницею";
           }
 
           if (!values.lastName) {
@@ -65,8 +63,6 @@ export default function FormRegister() {
             values.lastName.slice(0, 1).toLowerCase()
           ) {
             errors.lastName = 'Має починатися з великої літери';
-          } else if (/[А-Яа-я]/i.test(values.lastName)) {
-            errors.lastName = 'Прізвище латиницею';
           }
 
           if (!values.numberPhone) {
