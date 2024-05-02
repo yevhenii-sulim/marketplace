@@ -9,9 +9,13 @@ export default function ContinueVia() {
   const [facebookAuthUrl] = useState(
     process.env.REACT_APP_API_URL + '/auth/facebook'
   );
+  const [googleAuthUrl] = useState(
+    process.env.REACT_APP_API_URL + '/auth/google'
+  );
+
   return (
     <>
-      <Button variant="outlined" sx={socialSingInButton}>
+      <Button variant="outlined" sx={socialSingInButton} href={googleAuthUrl}>
         <GoogleSVG />
         <LinkGoIn>Продовжити через Google</LinkGoIn>
       </Button>
