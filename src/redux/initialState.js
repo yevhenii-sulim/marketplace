@@ -1,6 +1,7 @@
 export const initialState = {
   openCatalog: false,
   openFormModal: false,
+  categoryProduct: '',
   users: {
     token: null,
     isLoading: true,

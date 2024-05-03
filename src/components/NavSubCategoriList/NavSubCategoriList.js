@@ -6,6 +6,7 @@ import { toggleModal } from '../../redux/slice';
 
 export default function NavSubCategoriList({ subcategory, category }) {
   const dispatch = useDispatch();
+
   function onClose() {
     dispatch(toggleModal(false));
   }
@@ -15,7 +16,7 @@ export default function NavSubCategoriList({ subcategory, category }) {
       {subcategory.map(({ id, link, nameList, img }) => {
         return (
           <List key={id}>
-            <Link to={`${category}/${link}`} onClick={onClose}>
+            <Link to={`${category}/${link}`} onClick={onClose} state={nameList}>
               <img src={img} alt={nameList} />
               <p>{nameList}</p>
             </Link>

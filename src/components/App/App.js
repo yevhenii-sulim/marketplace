@@ -44,6 +44,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Loyaut />}>
           <Route index element={<HomePage />} />
+          <Route path="all" element={<CatalogPage />} />
+          <Route path="for_free" element={<CatalogPage />} />
           <Route path=":category" element={<SubCategoris />} />
           <Route path=":category/:subcategoris" element={<CatalogPage />} />
           <Route

@@ -35,9 +35,7 @@ const hendleLogOutFulfilled = state => {
   };
   state.token = null;
 };
-const hendleRejected = (state, { payload }) => {
-  console.log(payload);
-
+const hendleRejected = state => {
   state.isLoading = false;
 };
 

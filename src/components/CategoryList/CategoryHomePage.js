@@ -1,15 +1,16 @@
 import { Link, List } from './Category.styled';
-
+import { changeCategory } from '../../redux/category/slice';
+import { useDispatch } from 'react-redux';
 export default function CategoryHomePage({
   nameCategory,
   tytleCategory,
   srcCategory,
   link,
-  subCategoris,
 }) {
+  const dispatch = useDispatch();
   return (
-    <List>
-      <Link to={link} state={subCategoris}>
+    <List onClick={() => dispatch(changeCategory(nameCategory))}>
+      <Link to={link}>
         <img src={srcCategory} alt={nameCategory} />
         <p>{tytleCategory}</p>
       </Link>

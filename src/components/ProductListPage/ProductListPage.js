@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import PropTypes from 'prop-types';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import {
@@ -8,13 +9,22 @@ import {
   ProductsPage,
   ProductList,
   Product,
+  Navigation,
+  Nav,
+  TytleProducts,
 } from './ProductListPage.styled';
 import PaginationList from 'components/Pagination/PaginationList';
 import Sort from './Sort';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCategory } from '../../redux/category/selectors';
 
 export default function ProductListPage({ headphoneProduct }) {
   const [page, setPage] = useState(1);
   const [valueSort, setValueSort] = useState('new');
+  const location = useLocation();
+  const category = useSelector(selectCategory);
+
   const totalItemsCount = 10;
 
   const hendleSort = sort => {
@@ -41,8 +51,6 @@ export default function ProductListPage({ headphoneProduct }) {
   };
   const sortedProduct = sortProduct(valueSort);
 
-  console.log(sortedProduct);
-
   const handlePageClick = page => {
     setPage(prev => {
       if (prev === page) {
@@ -56,8 +64,22 @@ export default function ProductListPage({ headphoneProduct }) {
       return page;
     });
   };
+
   return (
     <ContainerProductPageList>
+      <Navigation>
+        <Nav>
+          <li>
+            <NavLink to="/">Головна сторінка</NavLink>
+            <ChevronRightIcon />
+          </li>
+          <li>
+            {category.categoryProduct} <ChevronRightIcon />
+          </li>
+          <li>{location.state}</li>
+        </Nav>
+        <TytleProducts>{location.state}</TytleProducts>
+      </Navigation>
       <ProductsPage>
         <Filter>
           <h3>Підбір за параметрами</h3>
@@ -94,17 +116,17 @@ export default function ProductListPage({ headphoneProduct }) {
               )
             )}
           </Product>
+          <Paginations>
+            {sortedProduct && (
+              <PaginationList
+                handlePageChange={handlePageClick}
+                activePage={page}
+                totalItemsCount={totalItemsCount}
+              />
+            )}
+          </Paginations>
         </ProductList>
       </ProductsPage>
-      <Paginations>
-        {sortedProduct && (
-          <PaginationList
-            handlePageChange={handlePageClick}
-            activePage={page}
-            totalItemsCount={totalItemsCount}
-          />
-        )}
-      </Paginations>
     </ContainerProductPageList>
   );
 }
