@@ -15,6 +15,7 @@ import {
   Psevdo,
   TabListStyles,
 } from './NavsSectionComponent.styled';
+import { changeCategory } from '../../redux/category/slice';
 
 function a11yProps(index) {
   return {
@@ -63,6 +64,7 @@ export default function NavsSectionList({ onCloseModal }) {
                   label={nameList}
                   onClick={() => {
                     openList(linkList, subCategoris);
+                    dispatch(changeCategory(nameList));
                   }}
                   variant={'solid'}
                   icon={<OpenList />}
@@ -77,6 +79,7 @@ export default function NavsSectionList({ onCloseModal }) {
                   onClick={() => {
                     navigate(linkList);
                     onOpen(false);
+                    dispatch(changeCategory(nameList));
                   }}
                   variant={'solid'}
                   alignitems="flex-start"
