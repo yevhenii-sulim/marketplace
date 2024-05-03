@@ -1,12 +1,48 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import { ProductList } from './ProductListPage.styled';
+import {
+  ContainerProductPageList,
+  Filter,
+  Paginations,
+  ProductsPage,
+  ProductList,
+  Product,
+} from './ProductListPage.styled';
 import PaginationList from 'components/Pagination/PaginationList';
-import { useState } from 'react';
+import Sort from './Sort';
 
 export default function ProductListPage({ headphoneProduct }) {
   const [page, setPage] = useState(1);
+  const [valueSort, setValueSort] = useState('new');
   const totalItemsCount = 10;
+
+  const hendleSort = sort => {
+    setValueSort(sort);
+  };
+
+  const sortProduct = criterion => {
+    switch (criterion) {
+      case 'cheep':
+        return headphoneProduct.sort(
+          (max, min) => parseInt(max.price) - parseInt(min.price)
+        );
+
+      case 'expensive':
+        return headphoneProduct.sort(
+          (max, min) => parseInt(min.price) - parseInt(max.price)
+        );
+      default:
+        return headphoneProduct.sort(
+          (max, min) =>
+            new Date().getTime(min.date) - new Date().getTime(max.date)
+        );
+    }
+  };
+  const sortedProduct = sortProduct(valueSort);
+
+  console.log(sortedProduct);
+
   const handlePageClick = page => {
     setPage(prev => {
       if (prev === page) {
@@ -21,45 +57,55 @@ export default function ProductListPage({ headphoneProduct }) {
     });
   };
   return (
-    <>
-      <ProductList>
-        {headphoneProduct.map(
-          ({
-            tytle,
-            id,
-            img,
-            price,
-            discountItem,
-            date,
-            discount,
-            eco,
-            category,
-            subCategory,
-          }) => (
-            <SimilarProduct
-              key={id}
-              id={id}
-              tytle={tytle}
-              price={price}
-              img={img}
-              discountItem={discountItem}
-              discount={discount}
-              date={date}
-              eco={eco}
-              category={category}
-              subCategory={subCategory}
-            />
-          )
+    <ContainerProductPageList>
+      <ProductsPage>
+        <Filter>
+          <h3>Підбір за параметрами</h3>
+        </Filter>
+        <ProductList>
+          <Sort value={valueSort} hendleSort={hendleSort} />
+          <Product>
+            {sortedProduct.map(
+              ({
+                tytle,
+                id,
+                img,
+                price,
+                discountItem,
+                date,
+                discount,
+                eco,
+                category,
+                subCategory,
+              }) => (
+                <SimilarProduct
+                  key={id}
+                  id={id}
+                  tytle={tytle}
+                  price={price}
+                  img={img}
+                  discountItem={discountItem}
+                  discount={discount}
+                  date={date}
+                  eco={eco}
+                  category={category}
+                  subCategory={subCategory}
+                />
+              )
+            )}
+          </Product>
+        </ProductList>
+      </ProductsPage>
+      <Paginations>
+        {sortedProduct && (
+          <PaginationList
+            handlePageChange={handlePageClick}
+            activePage={page}
+            totalItemsCount={totalItemsCount}
+          />
         )}
-      </ProductList>
-      {headphoneProduct && (
-        <PaginationList
-          handlePageChange={handlePageClick}
-          activePage={page}
-          totalItemsCount={totalItemsCount}
-        />
-      )}
-    </>
+      </Paginations>
+    </ContainerProductPageList>
   );
 }
 
