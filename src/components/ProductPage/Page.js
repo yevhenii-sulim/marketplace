@@ -30,6 +30,7 @@ function Product() {
       } catch (error) {
         console.error(error);
       } finally {
+        setProduct(defaultProduct);
         setLoading(false);
       }
     }
