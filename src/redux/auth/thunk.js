@@ -50,6 +50,8 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await publicInstans.post('/auth/login', user);
       console.log(data);
+      localStorage.setItem('token', data.backend_tokens.token);
+      localStorage.setItem('userId', data.user._id);
 
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(

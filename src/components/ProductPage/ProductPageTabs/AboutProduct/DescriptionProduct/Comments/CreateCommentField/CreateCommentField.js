@@ -11,27 +11,41 @@ import {
   ErrorValidationComment,
 } from './CreateCommentField.styled';
 import { Button } from '@mui/material';
+import axios from 'axios';
+import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 
-function CreateCommentField({ arrComments, setArrComments }) {
+function CreateCommentField({ productId }) {
+  const context = useProductPageContext();
   const [newComment, setNewComment] = useState('');
   const [showValidationComment, setShowValidationComment] = useState(false);
   const validationComment = comment => {
     return comment && comment.length >= 4;
   };
-  const addComment = comment => {
-    if (validationComment(comment)) {
-      setArrComments([
-        ...arrComments,
-        {
-          firstName: 'Іван',
-          body: comment,
-          like: 0,
-          dislike: 0,
-        },
-      ]);
-      setShowValidationComment(false);
-    } else {
-      setShowValidationComment(true);
+  const addComment = async (comment, id) => {
+    try {
+      if (validationComment(comment)) {
+        const newComment = await axios.post(
+          'http://localhost:8080/comment',
+          {
+            body: comment,
+            product: id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+          }
+        );
+        console.log(newComment);
+        setShowValidationComment(false);
+      } else {
+        setShowValidationComment(true);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      context.setTriggerRerender(prev => !prev);
+      setNewComment('');
     }
   };
 
@@ -89,7 +103,7 @@ function CreateCommentField({ arrComments, setArrComments }) {
                   backgroundColor: '#43C550',
                 },
               }}
-              onClick={() => addComment(newComment)}
+              onClick={() => addComment(newComment, productId)}
             >
               Коментувати
             </Button>

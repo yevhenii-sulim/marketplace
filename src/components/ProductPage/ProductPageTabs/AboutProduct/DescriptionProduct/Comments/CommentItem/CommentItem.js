@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   CommentsAnswer,
   CommentsContainer,
@@ -12,33 +12,56 @@ import {
   CommentsRatingThumbUp,
   CommentsTextBlock,
   CommentsWrapper,
+  IconDislikeWrapper,
+  IconLikeWrapper,
 } from './CommentItem.styled';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import axios from 'axios';
+import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 
-function CommentItem({
-  name,
-  body,
-  like,
-  dislike,
-  id,
-  arrComments,
-  setArrComments,
-}) {
-  const handlerLike = id => {
-    const updatedComments = [...arrComments];
-    const commentObj = updatedComments[id];
-    const updatedLike = commentObj.like + 1;
-    updatedComments[id] = { ...commentObj, like: updatedLike };
-    setArrComments(updatedComments);
+function CommentItem({ name, body, like, dislike, id, daysPassed }) {
+  const [stateComment, setStateComment] = useState({ like, dislike });
+
+  const context = useProductPageContext();
+  const handlerLike = async id => {
+    try {
+      const comment = await axios.post(
+        'http://localhost:8080/comment/like',
+        {
+          commentId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      setStateComment({ ...stateComment, like: comment.data.like });
+      context.setTriggerRerender(prev => !prev);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handlerDislike = id => {
-    const updatedComments = [...arrComments];
-    const commentObj = updatedComments[id];
-    const updatedDislike = commentObj.dislike + 1;
-    updatedComments[id] = { ...commentObj, dislike: updatedDislike };
-    setArrComments(updatedComments);
+  const handlerDislike = async id => {
+    try {
+      const comment = await axios.post(
+        'http://localhost:8080/comment/dislike',
+        {
+          commentId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      setStateComment({ ...stateComment, dislike: comment.data.like });
+      context.setTriggerRerender(prev => !prev);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -48,18 +71,28 @@ function CommentItem({
         <CommentsContentBlock>
           <CommentsNameAndDataBlock>
             {name}
-            <CommentsDataBlock>день тому</CommentsDataBlock>
+            <CommentsDataBlock>{daysPassed} тому</CommentsDataBlock>
           </CommentsNameAndDataBlock>
           <CommentsTextBlock>{body}</CommentsTextBlock>
           <CommentsRating>
             <CommentsRatingThumbUp>
-              <ThumbUpOffAltIcon onClick={() => handlerLike(id)} />
-              <CommentsRatingThumbQuantity>{like}</CommentsRatingThumbQuantity>
+              <IconLikeWrapper
+                checked={like.indexOf(localStorage.getItem('userId')) !== -1}
+              >
+                <ThumbUpOffAltIcon onClick={() => handlerLike(id)} />
+              </IconLikeWrapper>
+              <CommentsRatingThumbQuantity>
+                {like.length}
+              </CommentsRatingThumbQuantity>
             </CommentsRatingThumbUp>
             <CommentsRatingThumbDown>
-              <ThumbDownOffAltIcon onClick={() => handlerDislike(id)} />
+              <IconDislikeWrapper
+                checked={dislike.indexOf(localStorage.getItem('userId')) !== -1}
+              >
+                <ThumbDownOffAltIcon onClick={() => handlerDislike(id)} />
+              </IconDislikeWrapper>
               <CommentsRatingThumbQuantity>
-                {dislike}
+                {dislike.length}
               </CommentsRatingThumbQuantity>
             </CommentsRatingThumbDown>
             <CommentsAnswer>Відповісти</CommentsAnswer>

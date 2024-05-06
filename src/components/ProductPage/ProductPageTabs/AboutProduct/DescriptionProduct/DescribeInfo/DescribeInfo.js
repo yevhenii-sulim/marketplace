@@ -9,34 +9,39 @@ import {
   DescribeInfoStateItem,
   DescribeInfoWrapper,
 } from './DescribeInfo.styled';
+import {
+  defaultProduct,
+  useProductPageContext,
+} from 'components/ProductPage/context/ProductPageProvider';
 
 function DescribeInfo() {
+  const context = useProductPageContext();
   return (
     <DescribeInfoWrapper>
       <DescribeInfoContainer>
         <DescribeInfoHeader>Опис</DescribeInfoHeader>
         <DescribeInfoState>
           <DescribeInfoStateItem>
-            Стан: <span style={{ fontWeight: 400 }}>нове</span>
+            Стан:{' '}
+            <span style={{ fontWeight: 400 }}>
+              {context.state || defaultProduct.state}
+            </span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Розмір: <span style={{ fontWeight: 400 }}>L</span>
+            Розмір:{' '}
+            <span style={{ fontWeight: 400 }}>
+              {context.size || defaultProduct.size}
+            </span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Стан: <span style={{ fontWeight: 400 }}>нове</span>
+            Стан:{' '}
+            <span style={{ fontWeight: 400 }}>
+              {context.state || defaultProduct.state}
+            </span>
           </DescribeInfoStateItem>
         </DescribeInfoState>
         <DescribeInfoParagraph>
-          Насолоджуйтесь кришталево чистим звуком та бездоганним комфортом з
-          нашими передовими бездротовими навушниками. Використовуючи передову
-          технологію звукового відтворення, ці навушники відтворюють кожну ноту
-          з неймовірною ясністю та глибиною, переносячи вас у світ музики з
-          новими емоціями. Зручна конструкція з м'якими амбушурами та
-          регульованим облямовуванням дозволяє насолоджуватися бездоганним
-          звуком протягом годин без будь-якого дискомфорту. Вбудований
-          акумулятор забезпечує довгу автономну роботу, що робить ці навушники
-          ідеальними для використання вдома, в дорозі або під час активного
-          спорту.
+          {context.describe || defaultProduct.describe}
         </DescribeInfoParagraph>
         <DescribeInfoComplaintBlock>
           <DescribeInfoComplaint>Поскаржитися</DescribeInfoComplaint>

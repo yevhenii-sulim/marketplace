@@ -46,20 +46,42 @@ export const CommentsRating = styled.div`
 `;
 export const CommentsRatingThumbUp = styled.div`
   display: flex;
+  align-items: center;
   cursor: pointer;
 `;
 export const CommentsRatingThumbDown = styled.div`
   display: flex;
   margin-left: 12px;
+  align-items: center;
   cursor: pointer;
 `;
 export const CommentsRatingThumbQuantity = styled.span`
   display: flex;
+
+  align-items: center;
   margin-left: 2px;
 `;
+export const IconLikeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  background-color: ${props =>
+    props.checked ? props.theme.color.bgButton : 'transparent'};
+  border-radius: 50%;
+`;
+export const IconDislikeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  background-color: ${props =>
+    props.checked ? props.theme.color.bgButton : 'transparent'};
+  border-radius: 50%;
+`;
+
 export const CommentsAnswer = styled.button`
   display: flex;
   margin-left: 2px;
+  align-items: center;
   background-color: transparent;
   margin-left: 12px;
 `;
