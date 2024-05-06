@@ -27,7 +27,7 @@ function CommentItem({ name, body, like, dislike, id, daysPassed }) {
   const handlerLike = async id => {
     try {
       const comment = await axios.post(
-        'http://localhost:8080/comment/like',
+        process.env.REACT_APP_API_URL + '/comment/like',
         {
           commentId: id,
         },
@@ -47,7 +47,7 @@ function CommentItem({ name, body, like, dislike, id, daysPassed }) {
   const handlerDislike = async id => {
     try {
       const comment = await axios.post(
-        'http://localhost:8080/comment/dislike',
+        process.env.REACT_APP_API_URL + '/comment/dislike',
         {
           commentId: id,
         },

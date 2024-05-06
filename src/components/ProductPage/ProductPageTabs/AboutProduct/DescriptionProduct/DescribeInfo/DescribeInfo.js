@@ -9,10 +9,7 @@ import {
   DescribeInfoStateItem,
   DescribeInfoWrapper,
 } from './DescribeInfo.styled';
-import {
-  defaultProduct,
-  useProductPageContext,
-} from 'components/ProductPage/context/ProductPageProvider';
+import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 
 function DescribeInfo() {
   const context = useProductPageContext();
@@ -22,27 +19,16 @@ function DescribeInfo() {
         <DescribeInfoHeader>Опис</DescribeInfoHeader>
         <DescribeInfoState>
           <DescribeInfoStateItem>
-            Стан:{' '}
-            <span style={{ fontWeight: 400 }}>
-              {context.state || defaultProduct.state}
-            </span>
+            Стан: <span style={{ fontWeight: 400 }}>{context.state}</span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Розмір:{' '}
-            <span style={{ fontWeight: 400 }}>
-              {context.size || defaultProduct.size}
-            </span>
+            Розмір: <span style={{ fontWeight: 400 }}>{context.size}</span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Стан:{' '}
-            <span style={{ fontWeight: 400 }}>
-              {context.state || defaultProduct.state}
-            </span>
+            Стан: <span style={{ fontWeight: 400 }}>{context.state}</span>
           </DescribeInfoStateItem>
         </DescribeInfoState>
-        <DescribeInfoParagraph>
-          {context.describe || defaultProduct.describe}
-        </DescribeInfoParagraph>
+        <DescribeInfoParagraph>{context.describe}</DescribeInfoParagraph>
         <DescribeInfoComplaintBlock>
           <DescribeInfoComplaint>Поскаржитися</DescribeInfoComplaint>
         </DescribeInfoComplaintBlock>
