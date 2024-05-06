@@ -11,7 +11,7 @@ function BreadcrumbsComponent() {
     <Link key="2" href="/marketplace">
       Електроніка
     </Link>,
-    <Link key="2" href="/marketplace/headphone">
+    <Link key="2" href="/marketplace/">
       Навушники
     </Link>,
     <Typography key="3" href="/marketplace/headphone/36">
