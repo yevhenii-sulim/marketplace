@@ -25,7 +25,7 @@ function CreateCommentField({ productId }) {
     try {
       if (validationComment(comment)) {
         const newComment = await axios.post(
-          'http://localhost:8080/comment',
+          process.env.REACT_APP_API_URL + '/comment',
           {
             body: comment,
             product: id,
