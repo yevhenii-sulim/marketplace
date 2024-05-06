@@ -19,16 +19,21 @@ function DescribeInfo() {
         <DescribeInfoHeader>Опис</DescribeInfoHeader>
         <DescribeInfoState>
           <DescribeInfoStateItem>
-            Стан: <span style={{ fontWeight: 400 }}>{context.state}</span>
+            Стан:{' '}
+            <span style={{ fontWeight: 400 }}>{context.product.state}</span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Розмір: <span style={{ fontWeight: 400 }}>{context.size}</span>
+            Розмір:{' '}
+            <span style={{ fontWeight: 400 }}>{context.product.size}</span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Стан: <span style={{ fontWeight: 400 }}>{context.state}</span>
+            Стан:{' '}
+            <span style={{ fontWeight: 400 }}>{context.product.state}</span>
           </DescribeInfoStateItem>
         </DescribeInfoState>
-        <DescribeInfoParagraph>{context.describe}</DescribeInfoParagraph>
+        <DescribeInfoParagraph>
+          {context.product.describe}
+        </DescribeInfoParagraph>
         <DescribeInfoComplaintBlock>
           <DescribeInfoComplaint>Поскаржитися</DescribeInfoComplaint>
         </DescribeInfoComplaintBlock>
