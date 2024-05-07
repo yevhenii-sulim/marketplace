@@ -11,20 +11,22 @@ import {
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ButtonBlock from './ButtonBlock/ButtonBlock';
 import DatePublication from './DatePublication/DatePublication';
+import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 
 function OrderSection() {
+  const context = useProductPageContext();
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
         <ProductName>
-          Імя продукту може бути довгим
+          {context.product.title}
           <IconWrapper>
             <FavoriteBorderIcon />
           </IconWrapper>
         </ProductName>
         <ProductCost>
-          <StrikePrice>968₴</StrikePrice>
-          <SalePrice>799₴</SalePrice>
+          <StrikePrice> {context.product.price}</StrikePrice>
+          <SalePrice>{context.product.discountItem}</SalePrice>
         </ProductCost>
         <ButtonBlock />
         <DatePublication />

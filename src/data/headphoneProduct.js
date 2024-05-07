@@ -1,9 +1,13 @@
-const data = new Intl.DateTimeFormat('uk-UA', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-}).format(Date.now());
+export const formatDate = dateString => {
+  const date = new Date(dateString);
+  const newFormatDate = new Intl.DateTimeFormat('uk-UA', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
 
+  return newFormatDate;
+};
 export const headphoneProduct = [
   {
     id: '1',
@@ -11,7 +15,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '700$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -25,7 +31,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '701$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -39,7 +47,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '702$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -53,7 +63,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '703$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -67,7 +79,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '704$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -81,7 +95,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '705$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -95,7 +111,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '706$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -109,7 +127,9 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '707$',
     discountItem: '500$',
-    createDate: data,
+
+    date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,

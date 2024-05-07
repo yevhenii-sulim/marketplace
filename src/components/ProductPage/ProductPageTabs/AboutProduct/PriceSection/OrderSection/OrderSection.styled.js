@@ -17,10 +17,10 @@ export const OrderSectionContainer = styled.section`
 `;
 export const ProductName = styled.p`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   font-weight: 700;
   font-size: 28px;
-  align-item: center;
+  align-items: center;
 `;
 export const IconWrapper = styled.span`
   display: flex;
@@ -28,7 +28,7 @@ export const IconWrapper = styled.span`
   align-item: center;
   margin: auto 0;
   background-color: #bbeac0;
-  padding: 2px;
+  padding: 8px;
   border-radius: 50%;
 `;
 export const ProductCost = styled.section`

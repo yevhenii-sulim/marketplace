@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   CommentsAnswer,
   CommentsContainer,
@@ -21,13 +21,11 @@ import axios from 'axios';
 import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 
 function CommentItem({ name, body, like, dislike, id, daysPassed }) {
-  const [stateComment, setStateComment] = useState({ like, dislike });
-
   const context = useProductPageContext();
   const handlerLike = async id => {
     try {
-      const comment = await axios.post(
-        'http://localhost:8080/comment/like',
+      await axios.post(
+        process.env.REACT_APP_API_URL + '/comment/like',
         {
           commentId: id,
         },
@@ -37,17 +35,17 @@ function CommentItem({ name, body, like, dislike, id, daysPassed }) {
           },
         }
       );
-      setStateComment({ ...stateComment, like: comment.data.like });
-      context.setTriggerRerender(prev => !prev);
     } catch (error) {
       console.error(error);
+    } finally {
+      context.setTriggerRerender(prev => !prev);
     }
   };
 
   const handlerDislike = async id => {
     try {
-      const comment = await axios.post(
-        'http://localhost:8080/comment/dislike',
+      await axios.post(
+        process.env.REACT_APP_API_URL + '/comment/dislike',
         {
           commentId: id,
         },
@@ -57,10 +55,10 @@ function CommentItem({ name, body, like, dislike, id, daysPassed }) {
           },
         }
       );
-      setStateComment({ ...stateComment, dislike: comment.data.like });
-      context.setTriggerRerender(prev => !prev);
     } catch (error) {
       console.error(error);
+    } finally {
+      context.setTriggerRerender(prev => !prev);
     }
   };
 

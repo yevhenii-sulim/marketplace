@@ -1,10 +1,13 @@
 import React from 'react';
 import { DatePublicationContainer } from './DatePublication.styled';
+import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
+import { formatDate } from 'data/headphoneProduct';
 
 function DatePublication() {
+  const context = useProductPageContext();
   return (
     <DatePublicationContainer>
-      Опубліковано з 1 березня 2024
+      Опубліковано з {formatDate(context.product.createDate)}
     </DatePublicationContainer>
   );
 }
