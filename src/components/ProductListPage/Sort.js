@@ -1,6 +1,11 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { ButtonExpand, SortProduct, SortText } from './ProductListPage.styled';
+import {
+  ButtonExpand,
+  SortProduct,
+  SortText,
+  SelectSort,
+} from './ProductListPage.styled';
 import { useState } from 'react';
 
 export default function Sort({ value, hendleSort }) {
@@ -15,7 +20,7 @@ export default function Sort({ value, hendleSort }) {
         <ButtonExpand>
           {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ButtonExpand>
-        <select
+        <SelectSort
           onClick={() => setOpen(prev => !prev)}
           name="sort"
           value={value}
@@ -24,7 +29,7 @@ export default function Sort({ value, hendleSort }) {
           <option value="new">Спочатку нові</option>
           <option value="cheep">Найдешевші</option>
           <option value="expensive">Найдорожчі</option>
-        </select>
+        </SelectSort>
       </div>
     </SortProduct>
   );

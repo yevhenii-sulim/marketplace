@@ -7,11 +7,11 @@ const hendlePending = state => {
 };
 
 const hendleUpdatePending = state => {
-  state.isRerendung = true;
+  // state.isRerendung = true;
 };
 
-const hendleSignUpFulfilled = (state, { payload }) => {
-  state.isLoading = false;
+const hendleSignUpFulfilled = state => {
+  state.isRerendung = true;
 };
 
 const hendleLogInFulfilled = (state, { payload }) => {
@@ -22,8 +22,11 @@ const hendleLogInFulfilled = (state, { payload }) => {
 };
 
 const hendleUpdateFulfilled = (state, { payload }) => {
-  state.isRerendung = false;
-  state.user = payload;
+  console.log(payload);
+  // state.isRerendung = false;
+
+  // state.isRerendung = false;
+  // state.user = payload.user;
 };
 const hendleLogOutFulfilled = state => {
   state.user = {

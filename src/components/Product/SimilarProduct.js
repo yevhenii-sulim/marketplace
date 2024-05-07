@@ -26,12 +26,12 @@ function sctollToByClick() {
 
 function SimilarProduct({
   id,
-  tytle,
+  title,
   price,
   img,
   discountItem,
   discount,
-  date,
+  createDate,
   eco,
   category,
   subCategory,
@@ -50,16 +50,20 @@ function SimilarProduct({
         >
           <SimilarProductItemIcon>
             {eco && <EcoSvg />}
-            <img src={img} alt={tytle} />
+            <img src={img} alt={title} />
           </SimilarProductItemIcon>
-          <SimilarProductItemName>{tytle}</SimilarProductItemName>
+          <SimilarProductItemName>{title}</SimilarProductItemName>
           <SimilarProductItemPrice>
-            {discount && (
-              <SimilarProductItemDiscount>
-                {discountItem}
-              </SimilarProductItemDiscount>
+            {discount ? (
+              <>
+                <SimilarProductItemDiscount>
+                  {price} грн
+                </SimilarProductItemDiscount>
+                <p>{discountItem} грн</p>
+              </>
+            ) : (
+              <p>{price} грн</p>
             )}
-            <p>{price}</p>
           </SimilarProductItemPrice>
         </Link>
         <SimilarProductItemButtonBlock>
@@ -86,7 +90,7 @@ function SimilarProduct({
             <FavoriteBorderIcon />
           </SimilarProductItemIconWrapper>
         </SimilarProductItemButtonBlock>
-        <SimilarProductDatePublic>{date}</SimilarProductDatePublic>
+        <SimilarProductDatePublic>{createDate}</SimilarProductDatePublic>
       </SimilarProductItem>
     </>
   );
@@ -94,13 +98,13 @@ function SimilarProduct({
 
 export default SimilarProduct;
 SimilarProduct.propTypes = {
-  id: PropTypes.string.isRequired,
-  tytle: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  discountItem: PropTypes.string.isRequired,
-  discount: PropTypes.bool.isRequired,
-  date: PropTypes.string.isRequired,
-  eco: PropTypes.bool.isRequired,
-  category: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  price: PropTypes.string,
+  img: PropTypes.string,
+  discountItem: PropTypes.string,
+  discount: PropTypes.bool,
+  createDate: PropTypes.string,
+  eco: PropTypes.bool,
+  category: PropTypes.string,
 };

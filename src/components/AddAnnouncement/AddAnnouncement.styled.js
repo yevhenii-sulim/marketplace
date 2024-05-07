@@ -7,7 +7,7 @@ export const AddProduct = styled(Link)`
   border-radius: 8px;
   height: 48px;
   padding: 6px 16px;
-  font-family: Jost;
+  font-family: 'Jost';
   font-size: 22px;
   font-weight: 700;
   line-height: 1.45;

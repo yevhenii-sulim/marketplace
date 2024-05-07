@@ -6,10 +6,10 @@ import { toggleModalForm } from '../modalForm/slice';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const privatInstans = axios.create({
-  baseURL: 'https://internet-shop-api.onrender.com',
+  baseURL: 'https://internet-shop-api-production.up.railway.app',
 });
 const publicInstans = axios.create({
-  baseURL: 'https://internet-shop-api.onrender.com',
+  baseURL: 'https://internet-shop-api-production.up.railway.app',
 });
 
 const token = {
@@ -88,11 +88,12 @@ export const logOut = createAsyncThunk('user/exitUser', async () => {
 
 export const update = createAsyncThunk('user/update', async (_, thuncApi) => {
   const storThunc = thuncApi.getState();
+
   const presentToken = storThunc.users.token;
   if (presentToken) {
     try {
       token.set(presentToken);
-      const { data } = await privatInstans.get('/auth/refresh');
+      const data = await privatInstans.get('/auth/refresh');
       return data;
     } catch (error) {
       console.log(error);

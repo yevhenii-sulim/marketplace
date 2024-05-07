@@ -10,6 +10,10 @@ import {
   ProductPageContext,
   defaultProduct,
 } from './context/ProductPageProvider';
+// import { useLocation } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getProduct } from '../../redux/product/thunk';
+// import { selectProduct } from '../../redux/product/selector';
 
 function Product() {
   const [loading, setLoading] = useState(true);
@@ -17,7 +21,23 @@ function Product() {
   const [product, setProduct] = useState({});
   const path = window.location.href;
 
+  //---------------------------
+  //через redux запит
+
+  // const location = useLocation();
+  // console.log('location', location);
+
+  // const id = location.pathname.split('/').slice(-1)[0];
+  // // console.log('id', id);
+  // const dispatch = useDispatch();
+  // const productThrouthSelector = useSelector(selectProduct);
+  // console.log('product', productThrouthSelector);
+
+  //----------------------------
+
   useEffect(() => {
+    // dispatch(getProduct(id));
+
     async function fetchProduct() {
       try {
         const product = await axios.get(
@@ -52,7 +72,7 @@ function Product() {
         </Box>
       ) : (
         <ProductPageContext.Provider
-          value={{ product: product || defaultProduct, setTriggerRerender }}
+          value={{ product: product || defaultProduct, setTriggerRerender }} // product -> productThrouthSelector
         >
           <WrapperContentPages>
             <ContainerProductPage>

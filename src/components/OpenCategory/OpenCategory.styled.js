@@ -8,7 +8,7 @@ export const OpenCategoryButton = styled.button`
   background-color: transparent;
 `;
 export const TitleNav = styled.p`
-  font-family: Jost;
+  font-family: 'Jost';
   font-size: 22px;
   font-weight: 700;
   line-height: 1.45;

@@ -12,13 +12,13 @@ export const Container = styled.div`
   padding-left: 58px;
   padding-right: 58px;
   margin: auto;
-  h3 {
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.5;
-    letter-spacing: -0.32px;
-    font-family: 'Jost';
-  }
+`;
+export const TytleAbout = styled.h3`
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.32px;
+  font-family: 'Jost';
 `;
 export const About = styled.div`
   display: flex;

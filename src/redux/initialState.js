@@ -1,4 +1,5 @@
 export const initialState = {
+  product: [],
   openCatalog: false,
   openFormModal: false,
   categoryProduct: '',

@@ -7,6 +7,7 @@ import {
   Contacts,
   Container,
   FooterContainer,
+  TytleAbout,
 } from './Footer.styled';
 import ContactComponent from 'components/ContactComponent/ContactComponent';
 
@@ -17,7 +18,7 @@ export default function Footer() {
         <About>
           <Logo fill="#000000" />
           <AboutContent>
-            <h3>Про нас</h3>
+            <TytleAbout>Про нас</TytleAbout>
             <p>
               Це командний Pet-проєкт, що ставить за ціль продемонструвати
               технічні навички, командність та софт скіли розподіленої команди

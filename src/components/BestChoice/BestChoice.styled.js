@@ -15,7 +15,7 @@ export const ContainerSlide = styled.ul`
   }
 `;
 export const TytleCategory = styled.h3`
-  font-family: Jost;
+  font-family: 'Jost';
   font-size: 28px;
   font-weight: 700;
   line-height: 1.5;
