@@ -9,7 +9,7 @@ export const navigationList = [
     id: 1,
     linkList: 'gift',
     nameList: 'Подарункові товари',
-    img: '/marketplace/images/catalog/gift.png',
+    img: '/marketplace/images/catalog/gift_set.png',
     subCategoris: [
       {
         id: 1,
