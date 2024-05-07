@@ -8,6 +8,7 @@ function ButtonBlock() {
       <Button
         variant="contained"
         sx={{
+          width: '85%',
           backgroundColor: '#43C550',
           textTransform: 'none',
           height: '40px',
@@ -24,6 +25,7 @@ function ButtonBlock() {
       <Button
         variant="outlined"
         sx={{
+          width: '85%',
           borderColor: '#43C550',
           textTransform: 'none',
           color: '#43C550',
@@ -41,6 +43,7 @@ function ButtonBlock() {
       <Button
         variant="outlined"
         sx={{
+          width: '85%',
           borderColor: '#43C550',
           textTransform: 'none',
           color: '#43C550',

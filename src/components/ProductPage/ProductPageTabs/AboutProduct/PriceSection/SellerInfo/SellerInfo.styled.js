@@ -35,17 +35,19 @@ export const SellerNameBlock = styled.div`
 `;
 export const SellerName = styled.span`
   font-family: Nunito Sans;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   display: flex;
 `;
 export const SellerRatingBlock = styled.span`
   display: flex;
+  align-items: center;
 `;
 export const SellerRating = styled.span`
   font-family: Nunito Sans;
   font-size: 18px;
   display: flex;
+  margin-left: 2px;
 `;
 export const LinkMoreProductsSeller = styled.a`
   font-family: Nunito Sans;
