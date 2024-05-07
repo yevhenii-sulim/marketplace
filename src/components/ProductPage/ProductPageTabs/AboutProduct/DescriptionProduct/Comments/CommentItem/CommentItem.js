@@ -12,6 +12,7 @@ import {
   CommentsRatingThumbUp,
   CommentsTextBlock,
   CommentsWrapper,
+  DotsWrapper,
   IconDislikeWrapper,
   IconLikeWrapper,
 } from './CommentItem.styled';
@@ -19,6 +20,7 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import axios from 'axios';
 import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 function CommentItem({ name, body, like, dislike, id, daysPassed }) {
   const context = useProductPageContext();
@@ -70,6 +72,9 @@ function CommentItem({ name, body, like, dislike, id, daysPassed }) {
           <CommentsNameAndDataBlock>
             {name}
             <CommentsDataBlock>{daysPassed} тому</CommentsDataBlock>
+            <DotsWrapper>
+              <MoreVertIcon />
+            </DotsWrapper>
           </CommentsNameAndDataBlock>
           <CommentsTextBlock>{body}</CommentsTextBlock>
           <CommentsRating>
