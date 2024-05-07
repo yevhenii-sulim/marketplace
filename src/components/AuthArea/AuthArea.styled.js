@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const Tytle = styled.h2`
-  font-family: Jost;
+  font-family: 'Jost';
   font-size: 28px;
   font-weight: 700;
   line-height: 1.5;

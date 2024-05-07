@@ -35,6 +35,7 @@ export const SimilarProductItemIcon = styled.div`
     right: 8px;
   }
 `;
+
 export const SimilarProductItemName = styled.h4`
   font-size: 18px;
   line-height: 1.4;

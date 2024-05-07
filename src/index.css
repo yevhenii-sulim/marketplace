@@ -103,6 +103,17 @@ section {
   display: block;
 }
 
+body {
+  line-height: 1;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #000000;
+  background-color: #f5f5f5;
+}
+
 ol,
 ul {
   list-style: none;
@@ -128,13 +139,9 @@ table {
 button {
   cursor: pointer;
 }
-body {
-  line-height: 1;
-  font-family: 'Nunito Sans';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25;
+
+a {
+  text-decoration: none;
   color: #000000;
-  background-color: #f5f5f5;
 }
+

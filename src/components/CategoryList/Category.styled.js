@@ -10,13 +10,13 @@ export const Link = styled(LinkCategory)`
     margin-right: auto;
     margin-bottom: 16px;
   }
-  p {
-    text-align: center;
-    font-family: Jost;
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 1.45;
-  }
+`;
+export const NameCategory = styled.p`
+  text-align: center;
+  font-family: 'Jost';
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.45;
 `;
 export const Categorys = styled.ul`
   margin-bottom: 32px;
@@ -32,7 +32,7 @@ export const Categorys = styled.ul`
   }
 `;
 export const TytleCategory = styled.h3`
-  font-family: Jost;
+  font-family: 'Jost';
   font-size: 28px;
   font-weight: 700;
   line-height: 1.5;

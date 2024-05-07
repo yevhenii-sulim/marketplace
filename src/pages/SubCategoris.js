@@ -6,7 +6,7 @@ import { navigationList } from 'data/navListData';
 export default function SubCategoris() {
   const category = useSelector(selectCategory);
   const categoryObject = navigationList.filter(
-    item => item.nameList === category.categoryProduct
+    item => item.nameList === category
   );
 
   return (

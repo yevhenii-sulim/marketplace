@@ -6,14 +6,37 @@ import BreadcrumbsComponent from './BreadcrumbsComponent/BreadcrumbsComponent';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import axios from 'axios';
+
+// import { useLocation } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getProduct } from '../../redux/product/thunk';
+// import { selectProduct } from '../../redux/product/selector';
+
 import { ProductPageContext } from './context/ProductPageProvider';
+
 
 function Product({ id }) {
   const [loading, setLoading] = useState(true);
   const [triggerRerender, setTriggerRerender] = useState(false);
   const [product, setProduct] = useState({});
 
+  //---------------------------
+  //через redux запит
+
+  // const location = useLocation();
+  // console.log('location', location);
+
+  // const id = location.pathname.split('/').slice(-1)[0];
+  // // console.log('id', id);
+  // const dispatch = useDispatch();
+  // const productThrouthSelector = useSelector(selectProduct);
+  // console.log('product', productThrouthSelector);
+
+  //----------------------------
+
   useEffect(() => {
+    // dispatch(getProduct(id));
+
     async function fetchProduct() {
       try {
         const product = await axios.get(
@@ -46,7 +69,9 @@ function Product({ id }) {
         </Box>
       ) : (
         <ProductPageContext.Provider
-          value={{ product: product, setTriggerRerender }}
+
+          value={{ product: product, setTriggerRerender }} // product -> productThrouthSelector
+
         >
           <WrapperContentPages>
             <ContainerProductPage>

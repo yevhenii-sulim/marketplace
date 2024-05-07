@@ -9,16 +9,14 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import { ContainerSlide, TytleCategory } from './BestChoice.styled';
-import { memo } from 'react';
 
-export default memo(function BestChoiceList({ filteredProducts, tytle }) {
+export default function BestChoiceList({ filteredProducts, tytle }) {
   return (
     <ContainerSlide>
       <TytleCategory>{tytle}</TytleCategory>
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        // isPlaying={true}
         step={5}
         visibleSlides={5}
         isIntrinsicHeight={true}
@@ -27,12 +25,13 @@ export default memo(function BestChoiceList({ filteredProducts, tytle }) {
           {filteredProducts.map(
             (
               {
-                tytle,
-                id,
+                title,
+                subCategory,
+                _id,
                 img,
                 price,
                 discountItem,
-                date,
+                createDate,
                 discount,
                 eco,
                 category,
@@ -40,15 +39,16 @@ export default memo(function BestChoiceList({ filteredProducts, tytle }) {
               index
             ) => {
               return (
-                <Slide index={index} key={id}>
+                <Slide index={index} key={_id}>
                   <SimilarProduct
-                    id={id}
-                    tytle={tytle}
+                    id={_id}
+                    subCategory={subCategory}
+                    title={title}
                     price={price}
                     img={img}
                     discountItem={discountItem}
                     discount={discount}
-                    date={date}
+                    createDate={createDate}
                     eco={eco}
                     category={category}
                   />
@@ -62,4 +62,4 @@ export default memo(function BestChoiceList({ filteredProducts, tytle }) {
       </CarouselProvider>
     </ContainerSlide>
   );
-});
+}

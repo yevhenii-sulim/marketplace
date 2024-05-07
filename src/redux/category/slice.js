@@ -3,10 +3,10 @@ import { initialState } from '../initialState';
 
 const sliceCategory = createSlice({
   name: 'category',
-  initialState,
+  initialState: initialState.categoryProduct,
   reducers: {
     changeCategory(state, { payload }) {
-      state.categoryProduct = payload;
+      return (state = payload);
     },
   },
 });
