@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const CreateFieldBlock = styled.div`
+  position: relative;
   width: 80%;
 `;
 
@@ -25,4 +26,9 @@ export const CommentButtonBlock = styled.div`
 
 export const ErrorValidationComment = styled.span`
   color: red;
+`;
+export const LoaderWrapper = styled.div`
+  position: absolute;
+  top: 5px;
+  left: 4px;
 `;

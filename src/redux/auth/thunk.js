@@ -52,7 +52,7 @@ export const logIn = createAsyncThunk(
       console.log(data);
       localStorage.setItem('token', data.backend_tokens.token);
       localStorage.setItem('userId', data.user._id);
-
+      window.location.reload();
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(
           'Your mail is not activated. Please activate your registration using the link you received in your mail',
@@ -80,6 +80,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
     await privatInstans.post('/auth/logout');
+    localStorage.clear();
     token.unSet();
   } catch (error) {
     console.log(error.message);

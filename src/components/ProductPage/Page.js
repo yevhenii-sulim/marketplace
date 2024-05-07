@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 import { ProductPageContext } from './context/ProductPageProvider';
 
-function Product() {
+function Product({ id }) {
   const [loading, setLoading] = useState(true);
   const [triggerRerender, setTriggerRerender] = useState(false);
   const [product, setProduct] = useState({});
@@ -17,7 +17,9 @@ function Product() {
     async function fetchProduct() {
       try {
         const product = await axios.get(
-          process.env.REACT_APP_API_URL + '/products/6634885c1bc9a74b28287f1d'
+          process.env.REACT_APP_API_URL +
+            '/products/' +
+            (id || '6634885c1bc9a74b28287f1d')
         );
         setProduct(product.data);
       } catch (error) {
@@ -27,7 +29,7 @@ function Product() {
       }
     }
     fetchProduct();
-  }, [loading, triggerRerender]);
+  }, [loading, triggerRerender, id]);
 
   return (
     <>
