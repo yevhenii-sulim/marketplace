@@ -1,5 +1,6 @@
 import { Link as LinkCategory } from 'react-router-dom';
 import styled from 'styled-components';
+import { theme } from 'utils/theme';
 
 export const Link = styled(LinkCategory)`
   text-decoration: none;
@@ -30,10 +31,30 @@ export const Categorys = styled.ul`
     gap: 40px;
   }
   .carousel__next-button {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgButton};
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
   }
   .carousel__back-button {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgButton};
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
   }
 `;
 export const TytleCategory = styled.h3`
@@ -47,3 +68,10 @@ export const List = styled.li`
   width: 172px;
   padding: 4px;
 `;
+
+export const ButtonSlider = {
+  color: theme.color.colorButtonText,
+  '&:hover': {
+    color: theme.color.colorButton,
+  },
+};
