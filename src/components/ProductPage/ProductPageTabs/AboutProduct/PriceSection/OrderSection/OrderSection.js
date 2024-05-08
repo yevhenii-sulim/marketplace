@@ -11,22 +11,22 @@ import {
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ButtonBlock from './ButtonBlock/ButtonBlock';
 import DatePublication from './DatePublication/DatePublication';
-import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
+import { useSelector } from 'react-redux';
 
 function OrderSection() {
-  const context = useProductPageContext();
+  const product = useSelector(state => state.productPage.product);
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
         <ProductName>
-          {context.product.title}
+          {product.title}
           <IconWrapper>
             <FavoriteBorderIcon />
           </IconWrapper>
         </ProductName>
         <ProductCost>
-          <StrikePrice> {context.product.price}</StrikePrice>
-          <SalePrice>{context.product.discountItem}</SalePrice>
+          <StrikePrice> {product.price}</StrikePrice>
+          <SalePrice>{product.discountItem}</SalePrice>
         </ProductCost>
         <ButtonBlock />
         <DatePublication />

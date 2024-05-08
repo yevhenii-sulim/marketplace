@@ -9,31 +9,26 @@ import {
   DescribeInfoStateItem,
   DescribeInfoWrapper,
 } from './DescribeInfo.styled';
-import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
+import { useSelector } from 'react-redux';
 
 function DescribeInfo() {
-  const context = useProductPageContext();
+  const product = useSelector(state => state.productPage.product);
   return (
     <DescribeInfoWrapper>
       <DescribeInfoContainer>
         <DescribeInfoHeader>Опис</DescribeInfoHeader>
         <DescribeInfoState>
           <DescribeInfoStateItem>
-            Стан:{' '}
-            <span style={{ fontWeight: 400 }}>{context.product.state}</span>
+            Стан: <span style={{ fontWeight: 400 }}>{product.state}</span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Розмір:{' '}
-            <span style={{ fontWeight: 400 }}>{context.product.size}</span>
+            Розмір: <span style={{ fontWeight: 400 }}>{product.size}</span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Стан:{' '}
-            <span style={{ fontWeight: 400 }}>{context.product.state}</span>
+            Стан: <span style={{ fontWeight: 400 }}>{product.state}</span>
           </DescribeInfoStateItem>
         </DescribeInfoState>
-        <DescribeInfoParagraph>
-          {context.product.describe}
-        </DescribeInfoParagraph>
+        <DescribeInfoParagraph>{product.describe}</DescribeInfoParagraph>
         <DescribeInfoComplaintBlock>
           <DescribeInfoComplaint>Поскаржитися</DescribeInfoComplaint>
         </DescribeInfoComplaintBlock>

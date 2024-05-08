@@ -13,10 +13,10 @@ import {
 } from './SellerInfo.styled';
 import StarIcon from '@mui/icons-material/Star';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
+import { useSelector } from 'react-redux';
 
 function SellerInfo() {
-  const context = useProductPageContext();
+  const product = useSelector(state => state.productPage.product);
   return (
     <SellerInfoWrapper>
       <SellerInfoContainer>
@@ -26,12 +26,10 @@ function SellerInfo() {
             {/* <img src="#" alt="alt" /> */}
           </SellerIconWrapper>
           <SellerNameBlock>
-            <SellerName>{context.product.producer.firstName}</SellerName>
+            <SellerName>{product.producer.firstName}</SellerName>
             <SellerRatingBlock>
               <StarIcon style={{ color: 'gold' }} />
-              <SellerRating>
-                Рейтинг: {context.product.producer.rating}
-              </SellerRating>
+              <SellerRating>Рейтинг: {product.producer.rating}</SellerRating>
             </SellerRatingBlock>
           </SellerNameBlock>
         </SellerDate>

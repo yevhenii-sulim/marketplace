@@ -1,10 +1,10 @@
 import React from 'react';
 import CommentItem from './CommentItem/CommentItem';
 import CreateCommentField from './CreateCommentField/CreateCommentField';
-import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
+import { useSelector } from 'react-redux';
 
 function Comments() {
-  const context = useProductPageContext();
+  const product = useSelector(state => state.productPage.product);
 
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
@@ -63,12 +63,12 @@ function Comments() {
       }
     }
   }
-
+  console.log(product);
   return (
     <>
-      <CreateCommentField productId={context.product._id} />
+      <CreateCommentField productId={product._id} />
 
-      {context.product.comments.map((el, index) => (
+      {product.comments.map((el, index) => (
         <CommentItem
           key={index}
           name={el.author.firstName}
@@ -77,6 +77,7 @@ function Comments() {
           dislike={el.dislike}
           id={el._id}
           daysPassed={calculateDate(el.createDate)}
+          index={index}
         />
       ))}
     </>
