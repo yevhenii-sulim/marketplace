@@ -2,9 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const urlProduct = axios.create({
-  baseURL:
-    'http://localhost:8080' ||
-    'https://internet-shop-api-production.up.railway.app',
+  baseURL: 'https://internet-shop-api-production.up.railway.app',
 });
 
 export const fetchProduct = createAsyncThunk(
