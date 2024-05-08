@@ -56,12 +56,16 @@ export default function CategoryList() {
             }
           )}
         </Slider>
-        <ButtonBack>
-          <ArrowBackIcon sx={ButtonSlider} />
-        </ButtonBack>
-        <ButtonNext>
-          <ArrowForwardIcon sx={ButtonSlider} />
-        </ButtonNext>
+        {navigationList.length > setvisibleSlides(width) && (
+          <>
+            <ButtonBack>
+              <ArrowBackIcon sx={ButtonSlider} />
+            </ButtonBack>
+            <ButtonNext>
+              <ArrowForwardIcon sx={ButtonSlider} />
+            </ButtonNext>
+          </>
+        )}
       </CarouselProvider>
     </Categorys>
   );

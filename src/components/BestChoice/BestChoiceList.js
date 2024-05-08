@@ -77,12 +77,16 @@ export default function BestChoiceList({ filteredProducts, tytle }) {
             }
           )}
         </Slider>
-        <ButtonBack>
-          <ArrowBackIcon sx={ButtonSlider} />
-        </ButtonBack>
-        <ButtonNext>
-          <ArrowForwardIcon sx={ButtonSlider} />
-        </ButtonNext>
+        {filteredProducts.length > setvisibleSlides(width) && (
+          <>
+            <ButtonBack>
+              <ArrowBackIcon sx={ButtonSlider} />
+            </ButtonBack>
+            <ButtonNext>
+              <ArrowForwardIcon sx={ButtonSlider} />
+            </ButtonNext>
+          </>
+        )}
       </CarouselProvider>
     </ContainerSlide>
   );
