@@ -19,6 +19,7 @@ export const NameCategory = styled.p`
   font-weight: 500;
   line-height: 1.45;
 `;
+
 export const Categorys = styled.ul`
   margin-bottom: 32px;
   .slide {
@@ -42,6 +43,14 @@ export const Categorys = styled.ul`
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 500ms ease;
+    &:disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
   .carousel__back-button {
     display: flex;
@@ -55,6 +64,13 @@ export const Categorys = styled.ul`
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    pointer-events: all;
+    transition: opacity 500ms ease;
+    &:disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 `;
 export const TytleCategory = styled.h3`

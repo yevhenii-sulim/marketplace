@@ -39,7 +39,6 @@ export default function BestChoiceList({ filteredProducts, tytle }) {
         visibleSlides={setvisibleSlides(width)}
         isIntrinsicHeight={true}
         dragStep={1}
-        innerClassName={'carusel-chidren'}
       >
         <Slider>
           {filteredProducts.map(
