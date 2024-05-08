@@ -24,6 +24,11 @@ export const Categorys = styled.ul`
     width: 100%;
     position: relative;
   }
+  .carousel__inner-slide {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
   .carousel__next-button {
     display: block;
   }

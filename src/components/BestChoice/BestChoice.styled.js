@@ -4,14 +4,22 @@ export const ContainerSlide = styled.ul`
   margin-bottom: 32px;
   .slide {
     width: 100%;
-    min-height: 417px;
     position: relative;
+  }
+  .carousel__inner-slide {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
   }
   .carousel__next-button {
     display: block;
   }
   .carousel__back-button {
     display: block;
+  }
+  .slideInner {
+    display: flex;
+    justify-content: center;
   }
 `;
 export const TytleCategory = styled.h3`

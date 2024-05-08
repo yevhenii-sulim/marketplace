@@ -9,9 +9,18 @@ export const ContainerLoyaut = styled.div`
   }
 `;
 export const Container = styled.div`
-  width: 1440px;
+  width: 100%;
   height: 100%;
-  padding-left: 58px;
-  padding-right: 58px;
+  padding-left: 12px;
+  padding-right: 12px;
   margin: auto;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
+    padding-left: 58px;
+    padding-right: 58px;
+  }
 `;
