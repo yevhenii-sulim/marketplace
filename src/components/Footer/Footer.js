@@ -4,10 +4,11 @@ import {
   About,
   AboutContent,
   ContactList,
-  Contacts,
   Container,
   FooterContainer,
   TytleAbout,
+  TitleContacts,
+  LogoContainer,
 } from './Footer.styled';
 import ContactComponent from 'components/ContactComponent/ContactComponent';
 
@@ -16,7 +17,9 @@ export default function Footer() {
     <FooterContainer>
       <Container>
         <About>
-          <Logo fill="#000000" />
+          <LogoContainer>
+            <Logo fill="#000000" />
+          </LogoContainer>
           <AboutContent>
             <TytleAbout>Про нас</TytleAbout>
             <p>
@@ -26,8 +29,8 @@ export default function Footer() {
             </p>
           </AboutContent>
         </About>
-        <Contacts>
-          <h3>Наші контакти</h3>
+        <div>
+          <TitleContacts>Наші контакти</TitleContacts>
           <ContactList>
             {team.map(({ id, name, spec, link }) => {
               return (
@@ -40,7 +43,7 @@ export default function Footer() {
               );
             })}
           </ContactList>
-        </Contacts>
+        </div>
       </Container>
     </FooterContainer>
   );

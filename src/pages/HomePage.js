@@ -19,7 +19,6 @@ export default function HomePage() {
   const productsNew = useSelector(selectProductNewer);
   const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
-  console.log(productsNew);
 
   useEffect(() => {
     if (productAll.length !== 0) {

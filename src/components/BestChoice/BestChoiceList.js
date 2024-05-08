@@ -9,17 +9,31 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import { ContainerSlide, TytleCategory } from './BestChoice.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function BestChoiceList({ filteredProducts, tytle }) {
+  const { width } = useWindowDimensions();
+  const setvisibleSlides = width => {
+    if (width >= 1440) {
+      return 5;
+    }
+    if (width < 1440 && width > 768) {
+      return 3;
+    }
+    return 1;
+  };
+
   return (
     <ContainerSlide>
       <TytleCategory>{tytle}</TytleCategory>
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        step={5}
-        visibleSlides={5}
+        step={1}
+        visibleSlides={setvisibleSlides(width)}
         isIntrinsicHeight={true}
+        dragStep={1}
+        innerClassName={'carusel-chidren'}
       >
         <Slider>
           {filteredProducts.map(

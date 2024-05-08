@@ -21,7 +21,7 @@ export const SimilarProductDatePublic = styled.p`
 `;
 export const SimilarProductItemIcon = styled.div`
   position: relative;
-  height: 216px;
+  height: auto;
   width: 100%;
   box-shadow: inset 0 0 1px black;
   img {
