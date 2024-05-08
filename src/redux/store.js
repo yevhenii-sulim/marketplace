@@ -16,6 +16,7 @@ import { userAuthReduser } from './auth/slice';
 import { modalFormReducer } from './modalForm/slice';
 import { categoryReducer } from './category/slice';
 import { productReducer } from './product/slice';
+import { productPageReducer } from './productPage/productPageSlice';
 
 const persistConfig = {
   key: 'token',
@@ -29,6 +30,7 @@ const persistCategory = {
 };
 
 const rootReducer = combineReducers({
+  productPage: productPageReducer,
   products: productReducer,
   modalCotalog: modalCotalogReducer,
   modalForm: modalFormReducer,
