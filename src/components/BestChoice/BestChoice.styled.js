@@ -10,6 +10,7 @@ export const ContainerSlide = styled.ul`
     display: flex;
     justify-content: center;
     gap: 40px;
+    height: auto;
   }
   .carousel__next-button {
     display: block;
