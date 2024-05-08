@@ -7,8 +7,14 @@ import {
 } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import { ContainerSlide, TytleCategory } from './BestChoice.styled';
+import {
+  ButtonSlider,
+  ContainerSlide,
+  TytleCategory,
+} from './BestChoice.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function BestChoiceList({ filteredProducts, tytle }) {
@@ -71,8 +77,12 @@ export default function BestChoiceList({ filteredProducts, tytle }) {
             }
           )}
         </Slider>
-        <ButtonBack>Back</ButtonBack>
-        <ButtonNext>Next</ButtonNext>
+        <ButtonBack>
+          <ArrowBackIcon sx={ButtonSlider} />
+        </ButtonBack>
+        <ButtonNext>
+          <ArrowForwardIcon sx={ButtonSlider} />
+        </ButtonNext>
       </CarouselProvider>
     </ContainerSlide>
   );

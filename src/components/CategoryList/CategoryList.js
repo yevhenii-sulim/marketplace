@@ -7,7 +7,9 @@ import {
 } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import { Categorys, TytleCategory } from './Category.styled';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { ButtonSlider, Categorys, TytleCategory } from './Category.styled';
 import { navigationList } from 'data/navListData';
 import CategoryHomePage from './CategoryHomePage';
 import useWindowDimensions from 'hooks/useWindowDimensions';
@@ -40,7 +42,7 @@ export default function CategoryList() {
           {navigationList.map(
             ({ id, linkList, nameList, subCategoris, img }, index) => {
               return (
-                <Slide index={index} key={id}>
+                <Slide index={index} key={id} arrow={'gjgjhg'}>
                   <CategoryHomePage
                     key={id}
                     nameCategory={nameList}
@@ -54,8 +56,12 @@ export default function CategoryList() {
             }
           )}
         </Slider>
-        <ButtonBack>Back</ButtonBack>
-        <ButtonNext>Next</ButtonNext>
+        <ButtonBack>
+          <ArrowBackIcon sx={ButtonSlider} />
+        </ButtonBack>
+        <ButtonNext>
+          <ArrowForwardIcon sx={ButtonSlider} />
+        </ButtonNext>
       </CarouselProvider>
     </Categorys>
   );

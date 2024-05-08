@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'utils/theme';
 
 export const ContainerSlide = styled.ul`
   margin-bottom: 32px;
@@ -13,10 +14,30 @@ export const ContainerSlide = styled.ul`
     height: auto;
   }
   .carousel__next-button {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgButton};
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
   }
   .carousel__back-button {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgButton};
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
   }
   .slideInner {
     display: flex;
@@ -30,3 +51,9 @@ export const TytleCategory = styled.h3`
   line-height: 1.5;
   margin-bottom: 32px;
 `;
+export const ButtonSlider = {
+  color: theme.color.colorButtonText,
+  '&:hover': {
+    color: theme.color.colorButton,
+  },
+};
