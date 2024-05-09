@@ -8,15 +8,17 @@ import {
 } from './Slider.styled';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-const productPhoto = [
-  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
-  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
-  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
-  { src: '/marketplace/images/headphones.jpg', alt: 'headphones' },
-];
+import { useSelector } from 'react-redux';
 
 function Slider() {
+  const product = useSelector(state => state.productPage.product);
+  console.log();
+  const productPhoto = [
+    { src: product.img, alt: 'headphones' },
+    { src: product.img, alt: 'headphones' },
+    { src: product.img, alt: 'headphones' },
+    { src: product.img, alt: 'headphones' },
+  ];
   const slide = useRef();
   const wrapperSliderBlock = useRef();
 
