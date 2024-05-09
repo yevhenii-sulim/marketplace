@@ -38,7 +38,7 @@ export const ProductCost = styled.section`
 export const StrikePrice = styled.div`
   display: flex;
   flex-direction: column;
-  text-decoration: line-through;
+  text-decoration: ${props => (props.eco === 'false' ? '' : 'line-through')};
   color: #5e5f5f;
   font-size: 22px;
 `;
