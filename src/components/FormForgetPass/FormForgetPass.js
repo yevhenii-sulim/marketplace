@@ -1,4 +1,4 @@
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
@@ -8,16 +8,17 @@ import {
   Form,
   socialSingInButton,
 } from './FormForgetPass.styled';
+import { restorePassword } from '../../redux/auth/thunk';
 
 export default function FormForgetPass({ onClose }) {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <ContainerForm>
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={(values, actions) => {
-          //   dispatch(logIn(values));
+          dispatch(restorePassword(values));
           setTimeout(() => onClose(false), 500);
           actions.resetForm();
         }}

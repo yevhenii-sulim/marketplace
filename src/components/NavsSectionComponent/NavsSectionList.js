@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { toggleModal } from '../../redux/slice';
+import { toggleModal } from '../../redux/modalCatalog/slice';
 import { navigationList } from '../../data/navListData';
 import TabPanelList from './TabPanelList';
 import {

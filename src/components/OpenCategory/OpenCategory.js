@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CategorySvg from 'SvgComponents/CategorySVG/CategorySvg';
 import { OpenCategoryButton, TitleNav } from './OpenCategory.styled';
-import { toggleModal } from '../../redux/slice';
-import { selectorOpenModal } from '../../redux/selectors';
+import { toggleModal } from '../../redux/modalCatalog/slice';
+import { selectorOpenModal } from '../../redux/modalCatalog/selectors';
 import NavsSectionList from 'components/NavsSectionComponent/NavsSectionList';
 
 const categoryModal = document.querySelector('#modal');
