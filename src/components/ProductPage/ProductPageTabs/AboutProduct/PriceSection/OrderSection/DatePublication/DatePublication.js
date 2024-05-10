@@ -1,13 +1,13 @@
 import React from 'react';
 import { DatePublicationContainer } from './DatePublication.styled';
-import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 import { formatDate } from 'data/headphoneProduct';
+import { useSelector } from 'react-redux';
 
 function DatePublication() {
-  const context = useProductPageContext();
+  const product = useSelector(state => state.productPage.product);
   return (
     <DatePublicationContainer>
-      Опубліковано з {formatDate(context.product.createDate)}
+      Опубліковано з {formatDate(product.createDate)}
     </DatePublicationContainer>
   );
 }

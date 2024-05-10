@@ -12,46 +12,27 @@ import {
   LoaderWrapper,
 } from './CreateCommentField.styled';
 import { Button } from '@mui/material';
-import axios from 'axios';
-import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 import { SyncLoader } from 'react-spinners';
+import { useDispatch, useSelector } from 'react-redux';
+import { addComment } from '../../../../../../../redux/productPage/productPageSlice';
 
 function CreateCommentField({ productId }) {
-  const context = useProductPageContext();
+  const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
-  const [loading, setLoading] = useState(false);
+  const createCommentLoading = useSelector(
+    state => state.productPage.createCommentLoading
+  );
   const [showValidationComment, setShowValidationComment] = useState(false);
   const validationComment = comment => {
     return comment && comment.length >= 4;
   };
-  const addComment = async (comment, id) => {
-    try {
-      if (validationComment(comment)) {
-        setLoading(true);
-        const newComment = await axios.post(
-          process.env.REACT_APP_API_URL + '/comment',
-          {
-            body: comment,
-            product: id,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          }
-        );
-        console.log(newComment);
-        setShowValidationComment(false);
-      } else {
-        setShowValidationComment(true);
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-      context.setTriggerRerender(prev => !prev);
-
+  const addNewComment = async (comment, id) => {
+    if (validationComment(comment)) {
+      setShowValidationComment(false);
+      dispatch(addComment({ comment, id }));
       setNewComment('');
+    } else {
+      setShowValidationComment(true);
     }
   };
 
@@ -66,7 +47,7 @@ function CreateCommentField({ productId }) {
             </ErrorValidationComment>
           )}
           <CreateCommentInput
-            placeholder="Placeholder"
+            placeholder={createCommentLoading ? '' : 'Placeholder'}
             onChange={e => setNewComment(e.target.value)}
             value={newComment}
           />
@@ -75,7 +56,7 @@ function CreateCommentField({ productId }) {
               color="grey"
               size={5}
               speedMultiplier={0.5}
-              loading={loading}
+              loading={createCommentLoading}
             />
           </LoaderWrapper>
           <CommentButtonBlock>
@@ -117,7 +98,7 @@ function CreateCommentField({ productId }) {
                   backgroundColor: '#43C550',
                 },
               }}
-              onClick={() => addComment(newComment, productId)}
+              onClick={() => addNewComment(newComment, productId)}
             >
               Коментувати
             </Button>

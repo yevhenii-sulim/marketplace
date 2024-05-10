@@ -4,12 +4,15 @@ import { Container, HeaderContainer, NavContainer } from './Header.styled';
 import Search from 'components/Search/Search';
 import Auxiliarys from 'components/Auxiliarys/Auxiliarys';
 import OpenCategory from 'components/OpenCategory/OpenCategory';
+// import useWindowDimensions from 'hooks/useWindowDimensions';
 
 function searchProduct(nameProduct) {
   console.log(nameProduct);
 }
 
 export default function Header() {
+  // const { width } = useWindowDimensions();
+
   return (
     <HeaderContainer>
       <Container>

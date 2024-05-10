@@ -12,10 +12,12 @@ export const headphoneProduct = [
   {
     id: '1',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '700$',
     discountItem: '500$',
+
     date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -26,7 +28,7 @@ export const headphoneProduct = [
   {
     id: '2',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '701$',
     discountItem: '500$',
     date: formatDate(new Date()),
@@ -40,10 +42,12 @@ export const headphoneProduct = [
   {
     id: '3',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '702$',
     discountItem: '500$',
+
     date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -54,10 +58,12 @@ export const headphoneProduct = [
   {
     id: '4',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '703$',
     discountItem: '500$',
+
     date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -68,10 +74,12 @@ export const headphoneProduct = [
   {
     id: '5',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '704$',
     discountItem: '500$',
+
     date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -82,10 +90,12 @@ export const headphoneProduct = [
   {
     id: '6',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '705$',
     discountItem: '500$',
+
     date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -96,10 +106,12 @@ export const headphoneProduct = [
   {
     id: '7',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '706$',
     discountItem: '500$',
+
     date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,
@@ -110,10 +122,12 @@ export const headphoneProduct = [
   {
     id: '8',
     img: '#',
-    tytle: 'назва прдукту',
+    title: 'назва прдукту',
     price: '707$',
     discountItem: '500$',
+
     date: formatDate(new Date()),
+
     discount: true,
     eco: true,
     visit: 20,

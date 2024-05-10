@@ -2,14 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import { toggleModalForm } from '../modalForm/slice';
+import { hideError, showError } from '../errorAuth/slice';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const privatInstans = axios.create({
-  baseURL: 'https://internet-shop-api.onrender.com',
+  baseURL: 'https://internet-shop-api-production.up.railway.app',
+  signal: new AbortController().signal,
 });
 const publicInstans = axios.create({
-  baseURL: 'https://internet-shop-api.onrender.com',
+  baseURL: 'https://internet-shop-api-production.up.railway.app',
+  signal: new AbortController().signal,
 });
 
 const token = {
@@ -32,14 +35,23 @@ export const signUp = createAsyncThunk(
       Notiflix.Notify.success('You have successfully registered');
       return data;
     } catch (error) {
+      dispatch(showError(error.response.data));
+      setTimeout(() => dispatch(hideError()), 3000);
+    }
+  }
+);
+
+export const restorePassword = createAsyncThunk(
+  'user/restorePassword',
+  async (user, { dispatch }) => {
+    try {
+      const data = await publicInstans.post('/auth/forgotPassword', user);
+      dispatch(toggleModalForm(false));
+
+      Notiflix.Notify.success('You have successfully registered');
+      return data;
+    } catch (error) {
       console.log(error);
-      error.response.data.message
-        ? Notiflix.Notify.failure(error.response.data.message, {
-            timeout: 6000,
-          })
-        : Notiflix.Notify.failure(error.message, {
-            timeout: 6000,
-          });
     }
   }
 );
@@ -49,9 +61,6 @@ export const logIn = createAsyncThunk(
   async (user, { dispatch }) => {
     try {
       const { data } = await publicInstans.post('/auth/login', user);
-      console.log(data);
-      localStorage.setItem('token', data.backend_tokens.token);
-      localStorage.setItem('userId', data.user._id);
       window.location.reload();
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(
@@ -89,11 +98,12 @@ export const logOut = createAsyncThunk('user/exitUser', async () => {
 
 export const update = createAsyncThunk('user/update', async (_, thuncApi) => {
   const storThunc = thuncApi.getState();
+
   const presentToken = storThunc.users.token;
   if (presentToken) {
     try {
       token.set(presentToken);
-      const { data } = await privatInstans.get('/auth/refresh');
+      const data = await privatInstans.get('/auth/refresh');
       return data;
     } catch (error) {
       console.log(error);

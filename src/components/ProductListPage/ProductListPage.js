@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import PropTypes from 'prop-types';
 import SimilarProduct from 'components/Product/SimilarProduct';
@@ -12,11 +14,11 @@ import {
   Navigation,
   Nav,
   TytleProducts,
+  TytleSort,
+  ListPath,
 } from './ProductListPage.styled';
 import PaginationList from 'components/Pagination/PaginationList';
 import Sort from './Sort';
-import { NavLink, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { selectCategory } from '../../redux/category/selectors';
 
 export default function ProductListPage({ headphoneProduct }) {
@@ -43,12 +45,13 @@ export default function ProductListPage({ headphoneProduct }) {
           (max, min) => parseInt(min.price) - parseInt(max.price)
         );
       default:
-        return headphoneProduct.sort(
-          (max, min) =>
-            new Date().getTime(min.date) - new Date().getTime(max.date)
+        return headphoneProduct.toSorted(
+          (a, b) => new Date(b.createDate) - new Date(a.createDate)
         );
+      // new Date().getTime(min.createDate) - new Date().getTime(max.createDate)
     }
   };
+
   const sortedProduct = sortProduct(valueSort);
 
   const handlePageClick = page => {
@@ -64,51 +67,50 @@ export default function ProductListPage({ headphoneProduct }) {
       return page;
     });
   };
-
   return (
     <ContainerProductPageList>
       <Navigation>
         <Nav>
-          <li>
+          <ListPath>
             <NavLink to="/">Головна сторінка</NavLink>
             <ChevronRightIcon />
-          </li>
-          <li>
-            {category.categoryProduct} <ChevronRightIcon />
-          </li>
-          <li>{location.state}</li>
+          </ListPath>
+          <ListPath>
+            {category} <ChevronRightIcon />
+          </ListPath>
+          <ListPath>{location.state}</ListPath>
         </Nav>
         <TytleProducts>{location.state}</TytleProducts>
       </Navigation>
       <ProductsPage>
         <Filter>
-          <h3>Підбір за параметрами</h3>
+          <TytleSort>Підбір за параметрами</TytleSort>
         </Filter>
         <ProductList>
           <Sort value={valueSort} hendleSort={hendleSort} />
           <Product>
             {sortedProduct.map(
               ({
-                tytle,
-                id,
+                title,
+                _id,
                 img,
                 price,
                 discountItem,
-                date,
+                createDate,
                 discount,
                 eco,
                 category,
                 subCategory,
               }) => (
                 <SimilarProduct
-                  key={id}
-                  id={id}
-                  tytle={tytle}
+                  key={_id}
+                  id={_id}
+                  title={title}
                   price={price}
                   img={img}
                   discountItem={discountItem}
                   discount={discount}
-                  date={date}
+                  createDate={createDate}
                   eco={eco}
                   category={category}
                   subCategory={subCategory}
@@ -134,16 +136,16 @@ export default function ProductListPage({ headphoneProduct }) {
 ProductListPage.propTypes = {
   headphoneProduct: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      img: PropTypes.string.isRequired,
-      tytle: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      discountItem: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      discount: PropTypes.bool.isRequired,
-      eco: PropTypes.bool.isRequired,
-      visit: PropTypes.number.isRequired,
-      category: PropTypes.string.isRequired,
+      _id: PropTypes.string,
+      img: PropTypes.string,
+      title: PropTypes.string,
+      price: PropTypes.string,
+      discountItem: PropTypes.string,
+      createDate: PropTypes.string,
+      discount: PropTypes.bool,
+      eco: PropTypes.bool,
+      visit: PropTypes.number,
+      category: PropTypes.string,
     })
   ),
 };

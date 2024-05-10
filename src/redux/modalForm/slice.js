@@ -5,7 +5,7 @@ const sliceModalForm = createSlice({
   name: 'modalForm',
   initialState: initialState.openFormModal,
   reducers: {
-    toggleModalForm(state = initialState.openFormModal, { payload }) {
+    toggleModalForm(state, { payload }) {
       return (state = payload);
     },
   },

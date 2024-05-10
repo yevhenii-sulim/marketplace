@@ -4,9 +4,11 @@ import {
   About,
   AboutContent,
   ContactList,
-  Contacts,
   Container,
   FooterContainer,
+  TytleAbout,
+  TitleContacts,
+  LogoContainer,
 } from './Footer.styled';
 import ContactComponent from 'components/ContactComponent/ContactComponent';
 
@@ -15,9 +17,11 @@ export default function Footer() {
     <FooterContainer>
       <Container>
         <About>
-          <Logo fill="#000000" />
+          <LogoContainer>
+            <Logo fill="#000000" />
+          </LogoContainer>
           <AboutContent>
-            <h3>Про нас</h3>
+            <TytleAbout>Про нас</TytleAbout>
             <p>
               Це командний Pet-проєкт, що ставить за ціль продемонструвати
               технічні навички, командність та софт скіли розподіленої команди
@@ -25,8 +29,8 @@ export default function Footer() {
             </p>
           </AboutContent>
         </About>
-        <Contacts>
-          <h3>Наші контакти</h3>
+        <div>
+          <TitleContacts>Наші контакти</TitleContacts>
           <ContactList>
             {team.map(({ id, name, spec, link }) => {
               return (
@@ -39,7 +43,7 @@ export default function Footer() {
               );
             })}
           </ContactList>
-        </Contacts>
+        </div>
       </Container>
     </FooterContainer>
   );

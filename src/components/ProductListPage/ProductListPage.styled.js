@@ -28,12 +28,13 @@ export const Filter = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 19px;
-  h3 {
-    font-family: Jost;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: 1.5;
-  }
+`;
+
+export const TytleSort = styled.h3`
+  font-family: 'Jost';
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.5;
 `;
 export const SortProduct = styled.div`
   display: flex;
@@ -43,18 +44,18 @@ export const SortProduct = styled.div`
   .select {
     position: relative;
   }
-  select {
-    padding: 6px 8px;
-    outline: none;
-    border-radius: 6px;
-    font-family: 'Nunito Sans';
-    font-size: 18px;
-    line-height: 1.44;
-    padding-right: 25px;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-  }
+`;
+export const SelectSort = styled.select`
+  padding: 6px 8px;
+  outline: none;
+  border-radius: 6px;
+  font-family: 'Nunito Sans';
+  font-size: 18px;
+  line-height: 1.44;
+  padding-right: 25px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 `;
 export const SortText = styled.p`
   font-size: 18px;
@@ -75,21 +76,17 @@ export const Navigation = styled.div`
 export const Nav = styled.ul`
   display: flex;
   margin-bottom: 16px;
-  li {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    &:last-child {
-      font-weight: 700;
-    }
-  }
-  a {
-    text-decoration: none;
-    color: #000000;
+`;
+export const ListPath = styled.li`
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  &:last-child {
+    font-weight: 700;
   }
 `;
 export const TytleProducts = styled.h2`
-  font-family: Jost;
+  font-family: 'Jost';
   font-size: 44px;
   font-weight: 700;
   line-height: 1.22;

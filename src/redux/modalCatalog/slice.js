@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialState } from './initialState';
+import { initialState } from '../initialState';
 
 const modalCotalogSlice = createSlice({
   name: 'modalCotalog',
   initialState: initialState.openCatalog,
   reducers: {
-    toggleModal(state = initialState.openCatalog, { payload }) {
+    toggleModal(state, { payload }) {
       return (state = payload);
     },
   },

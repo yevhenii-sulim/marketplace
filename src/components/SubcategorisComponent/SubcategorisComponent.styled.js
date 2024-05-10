@@ -22,7 +22,6 @@ export const List = styled.li`
     height: 88px;
     margin: auto;
     border-radius: 50%;
-    border: 1px solid black;
   }
   p {
     width: 100%;

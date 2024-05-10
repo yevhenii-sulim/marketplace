@@ -21,7 +21,7 @@ export const SimilarProductDatePublic = styled.p`
 `;
 export const SimilarProductItemIcon = styled.div`
   position: relative;
-  height: 216px;
+  height: auto;
   width: 100%;
   box-shadow: inset 0 0 1px black;
   img {
@@ -35,6 +35,7 @@ export const SimilarProductItemIcon = styled.div`
     right: 8px;
   }
 `;
+
 export const SimilarProductItemName = styled.h4`
   font-size: 18px;
   line-height: 1.4;

@@ -18,50 +18,23 @@ import {
 } from './CommentItem.styled';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import { useDispatch } from 'react-redux';
+import {
+  dislikeComment,
+  likeComment,
+} from '../../../../../../../redux/productPage/productPageSlice';
 import axios from 'axios';
 import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+function CommentItem({ name, body, like, dislike, id, daysPassed, index }) {
+  const dispatch = useDispatch();
 
-function CommentItem({ name, body, like, dislike, id, daysPassed }) {
-  const context = useProductPageContext();
-  const handlerLike = async id => {
-    try {
-      await axios.post(
-        process.env.REACT_APP_API_URL + '/comment/like',
-        {
-          commentId: id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.error(error);
-    } finally {
-      context.setTriggerRerender(prev => !prev);
-    }
+  const handlerLike = (commentId, index) => {
+    dispatch(likeComment({ commentId, index }));
   };
 
-  const handlerDislike = async id => {
-    try {
-      await axios.post(
-        process.env.REACT_APP_API_URL + '/comment/dislike',
-        {
-          commentId: id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.error(error);
-    } finally {
-      context.setTriggerRerender(prev => !prev);
-    }
+  const handlerDislike = (commentId, index) => {
+    dispatch(dislikeComment({ commentId, index }));
   };
 
   return (
@@ -82,7 +55,7 @@ function CommentItem({ name, body, like, dislike, id, daysPassed }) {
               <IconLikeWrapper
                 checked={like.indexOf(localStorage.getItem('userId')) !== -1}
               >
-                <ThumbUpOffAltIcon onClick={() => handlerLike(id)} />
+                <ThumbUpOffAltIcon onClick={() => handlerLike(id, index)} />
               </IconLikeWrapper>
               <CommentsRatingThumbQuantity>
                 {like.length}
@@ -92,7 +65,9 @@ function CommentItem({ name, body, like, dislike, id, daysPassed }) {
               <IconDislikeWrapper
                 checked={dislike.indexOf(localStorage.getItem('userId')) !== -1}
               >
-                <ThumbDownOffAltIcon onClick={() => handlerDislike(id)} />
+                <ThumbDownOffAltIcon
+                  onClick={() => handlerDislike(id, index)}
+                />
               </IconDislikeWrapper>
               <CommentsRatingThumbQuantity>
                 {dislike.length}

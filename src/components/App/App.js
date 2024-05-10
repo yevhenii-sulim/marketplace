@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
 import { Wrapper } from './App.styled';
 import Loyaut from 'components/Loyaut/Loyaut';
 import ProductPage from 'pages/ProductPage';
@@ -11,9 +10,6 @@ import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
 import SubCategoris from 'pages/SubCategoris';
 import PhonesList from 'pages/PhonesList';
-// import { update } from '../../redux/auth/thunk';
-// import { selectToken } from '../../redux/auth/selector';
-// import { selectIsRerendung, selectToken } from '../../redux/auth/selector';
 
 export default function App() {
   useEffect(() => {
@@ -27,17 +23,6 @@ export default function App() {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
-
-  // const dispatch = useDispatch();
-  // // const isRerendung = useSelector(selectIsRerendung);
-
-  // const accessToken = useSelector(selectToken);
-  // useEffect(() => {
-  //   if (!accessToken) {
-  //     return;
-  //   }
-  //   dispatch(update());
-  // }, [accessToken, dispatch]);
 
   return (
     <Wrapper>
