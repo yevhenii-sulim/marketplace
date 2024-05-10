@@ -31,9 +31,7 @@ export const headphoneProduct = [
     title: 'назва прдукту',
     price: '701$',
     discountItem: '500$',
-
     date: formatDate(new Date()),
-
     discount: true,
     eco: true,
     visit: 20,

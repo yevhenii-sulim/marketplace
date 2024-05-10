@@ -69,7 +69,7 @@ export default function FormRegister() {
           if (!values.numberPhone) {
             errors.numberPhone = "Обов'язкове поле";
           } else if (
-            !/^((\+)?(3)?(8)?[- ]?)?(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}$/i.test(
+            !/^((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}$/i.test(
               values.numberPhone
             )
           ) {
@@ -94,13 +94,13 @@ export default function FormRegister() {
           }
           return errors;
         }}
-        onSubmit={(values, actions) => {
+        onSubmit={values => {
           dispatch(signUp(values));
-          actions.resetForm();
         }}
       >
-        {({ values, isSubmitting }) => (
+        {({ values, isSubmitting, handleChange, setSubmitting }) => (
           <Form>
+            {console.log(values)}
             <label>
               <p>
                 <span className="label-place">
@@ -112,6 +112,10 @@ export default function FormRegister() {
                 type="text"
                 name="firstName"
                 value={values.firstName.trim()}
+                onChange={e => {
+                  handleChange(e);
+                  setSubmitting(false);
+                }}
               />
               <ErrorMessage name="firstName" component="p" />
             </label>
@@ -126,6 +130,10 @@ export default function FormRegister() {
                 type="text"
                 name="lastName"
                 value={values.lastName.trim()}
+                onChange={e => {
+                  handleChange(e);
+                  setSubmitting(false);
+                }}
               />
               <ErrorMessage name="lastName" component="p" />
             </label>
@@ -141,6 +149,10 @@ export default function FormRegister() {
                 name="numberPhone"
                 placeholder="+380 (__) ___-__-__"
                 value={values.numberPhone.trim()}
+                onChange={e => {
+                  handleChange(e);
+                  setSubmitting(false);
+                }}
               />
               <ErrorMessage name="numberPhone" component="p" />
             </label>
@@ -156,6 +168,10 @@ export default function FormRegister() {
                 name="email"
                 placeholder="tanya@example.com"
                 value={values.email.trim()}
+                onChange={e => {
+                  handleChange(e);
+                  setSubmitting(false);
+                }}
               />
               <ErrorMessage name="email" component="p" />
             </label>
@@ -168,9 +184,23 @@ export default function FormRegister() {
               </p>
               <FieldPassword>
                 {visible ? (
-                  <Field type="text" name="password" />
+                  <Field
+                    type="text"
+                    name="password"
+                    onChange={e => {
+                      handleChange(e);
+                      setSubmitting(false);
+                    }}
+                  />
                 ) : (
-                  <Field type="password" name="password" />
+                  <Field
+                    type="password"
+                    name="password"
+                    onChange={e => {
+                      handleChange(e);
+                      setSubmitting(false);
+                    }}
+                  />
                 )}
                 <BoxEye onClick={onToggleView} type="button">
                   {visible && <View></View>}

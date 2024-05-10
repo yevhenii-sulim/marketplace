@@ -51,6 +51,7 @@ export default function ProductListPage({ headphoneProduct }) {
       // new Date().getTime(min.createDate) - new Date().getTime(max.createDate)
     }
   };
+
   const sortedProduct = sortProduct(valueSort);
 
   const handlePageClick = page => {

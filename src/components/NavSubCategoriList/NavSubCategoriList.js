@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { List } from './NavSubCategoriList.styled';
-import { toggleModal } from '../../redux/slice';
+import { toggleModal } from '../../redux/modalCatalog/slice';
 
 export default function NavSubCategoriList({ subcategory, category }) {
   const dispatch = useDispatch();
