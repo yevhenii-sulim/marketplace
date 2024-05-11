@@ -26,6 +26,7 @@ export const CommentsContentBlock = styled.div`
 `;
 
 export const CommentsNameAndDataBlock = styled.div`
+  display: flex;
   font-weight: 800;
   font-size: 18px;
 `;
@@ -84,4 +85,8 @@ export const CommentsAnswer = styled.button`
   align-items: center;
   background-color: transparent;
   margin-left: 12px;
+`;
+
+export const DotsWrapper = styled.div`
+  margin-left: auto;
 `;
