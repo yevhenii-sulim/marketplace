@@ -10,6 +10,7 @@ import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
 import SubCategoris from 'pages/SubCategoris';
 import PhonesList from 'pages/PhonesList';
+import RestorePassword from 'pages/RestorePassword';
 
 export default function App() {
   useEffect(() => {
@@ -30,9 +31,10 @@ export default function App() {
         <Route path="/" element={<Loyaut />}>
           <Route index element={<HomePage />} />
           <Route path="all" element={<CatalogPage />} />
+          <Route path="auth/activate" element={<RestorePassword />} />
           <Route path="for_free" element={<CatalogPage />} />
           <Route path=":category" element={<SubCategoris />} />
-          <Route path=":category/:subcategoris" element={<CatalogPage />} />
+          <Route path=":category/:subcategoris" element={<SubCategoris />} />
           <Route
             path=":category/:subcategoris/:product_page"
             element={<ProductPage />}

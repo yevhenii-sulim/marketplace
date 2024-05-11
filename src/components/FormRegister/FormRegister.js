@@ -100,7 +100,6 @@ export default function FormRegister() {
       >
         {({ values, isSubmitting, handleChange, setSubmitting }) => (
           <Form>
-            {console.log(values)}
             <label>
               <p>
                 <span className="label-place">

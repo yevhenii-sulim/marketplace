@@ -35,7 +35,7 @@ export const signUp = createAsyncThunk(
       Notiflix.Notify.success('You have successfully registered');
       return data;
     } catch (error) {
-      dispatch(showError(error.response.data));
+      dispatch(showError(error.response.data.errors));
       setTimeout(() => dispatch(hideError()), 3000);
     }
   }
@@ -45,13 +45,13 @@ export const restorePassword = createAsyncThunk(
   'user/restorePassword',
   async (user, { dispatch }) => {
     try {
-      const data = await publicInstans.post('/auth/forgotPassword', user);
+      const { data } = await publicInstans.post('/auth/forgotPassword', user);
       dispatch(toggleModalForm(false));
 
       Notiflix.Notify.success('You have successfully registered');
       return data;
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
     }
   }
 );
