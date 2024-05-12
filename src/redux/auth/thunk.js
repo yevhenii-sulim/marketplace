@@ -89,7 +89,6 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
     await privatInstans.post('/auth/logout');
-    localStorage.clear();
     token.unSet();
   } catch (error) {
     console.log(error.message);
