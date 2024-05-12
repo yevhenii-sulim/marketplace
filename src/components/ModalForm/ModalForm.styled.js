@@ -5,7 +5,9 @@ export const ContainerError = styled.ul`
   gap: 10px;
   position: absolute;
   width: 100%;
-  height: auto;
+  max-height: 100%;
+  overflow-y: auto;
+  min-height: auto;
   bottom: 0;
   left: 0;
   z-index: 2;
