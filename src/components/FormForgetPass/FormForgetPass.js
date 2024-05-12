@@ -16,11 +16,9 @@ export default function FormForgetPass({ onClose }) {
   return (
     <ContainerForm>
       <Formik
-        initialValues={{ email: '', password: '' }}
-        onSubmit={(values, actions) => {
+        initialValues={{ email: '' }}
+        onSubmit={values => {
           dispatch(restorePassword(values));
-          setTimeout(() => onClose(false), 500);
-          actions.resetForm();
         }}
       >
         {({ isSubmitting }) => (

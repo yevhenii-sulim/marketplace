@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
-import { logIn, logOut, restorePassword, signUp, update } from './thunk';
+import { logIn, logOut, signUp, update } from './thunk';
 
 const hendlePending = state => {
   state.isLoading = true;
@@ -13,9 +13,6 @@ const hendleUpdatePending = state => {
 const hendleSignUpFulfilled = state => {
   state.isRerendung = true;
 };
-const hendleRestorePasswordFulfilled = (state, { payload }) => {
-  console.log(payload);
-};
 
 const hendleLogInFulfilled = (state, { payload }) => {
   state.error = null;
@@ -26,9 +23,7 @@ const hendleLogInFulfilled = (state, { payload }) => {
   state._id = payload.user._id;
 };
 
-const hendleUpdateFulfilled = (state, { payload }) => {
-  console.log(payload);
-};
+const hendleUpdateFulfilled = (state, { payload }) => {};
 
 const hendleLogOutFulfilled = state => {
   state.user = {
@@ -54,8 +49,6 @@ const userSlice = createSlice({
       .addCase(logOut.fulfilled, hendleLogOutFulfilled)
       .addCase(update.pending, hendleUpdatePending)
       .addCase(update.fulfilled, hendleUpdateFulfilled)
-      .addCase(restorePassword.fulfilled, hendleRestorePasswordFulfilled)
-
       .addMatcher(isAnyOf(signUp.pending, logIn.pending), hendlePending)
       .addMatcher(
         isAnyOf(
