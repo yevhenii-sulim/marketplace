@@ -47,6 +47,13 @@ const hendleRejected = state => {
 const userSlice = createSlice({
   name: 'user',
   initialState: initialState.users,
+  reducers: {
+    loginWithSocial(state, { payload }) {
+      state.token = payload.accessJwt;
+      state._id = payload.user._id;
+      state.user = payload.user;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(signUp.fulfilled, hendleSignUpFulfilled)
@@ -70,3 +77,4 @@ const userSlice = createSlice({
 });
 
 export const userAuthReduser = userSlice.reducer;
+export const { loginWithSocial } = userSlice.actions;

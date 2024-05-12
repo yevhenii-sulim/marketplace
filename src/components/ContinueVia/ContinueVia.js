@@ -7,7 +7,7 @@ import { LinkGoIn } from './ContinueVia.styled';
 
 export default function ContinueVia() {
   const [facebookAuthUrl] = useState(
-    process.env.REACT_APP_API_URL + '/auth/facebook'
+    'http://localhost:8080' + '/auth/facebook'
   );
   const [googleAuthUrl] = useState(
     process.env.REACT_APP_API_URL + '/auth/google'
