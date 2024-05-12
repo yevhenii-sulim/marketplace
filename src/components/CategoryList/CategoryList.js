@@ -42,7 +42,7 @@ export default function CategoryList() {
           {navigationList.map(
             ({ id, linkList, nameList, subCategoris, img }, index) => {
               return (
-                <Slide index={index} key={id} arrow={'gjgjhg'}>
+                <Slide index={index} key={id}>
                   <CategoryHomePage
                     key={id}
                     nameCategory={nameList}

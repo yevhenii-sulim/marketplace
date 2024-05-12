@@ -36,7 +36,7 @@ export default function App() {
           <Route path="auth/activate" element={<RestorePassword />} />
           <Route path="for_free" element={<CatalogPage />} />
           <Route path=":category" element={<SubCategoris />} />
-          <Route path=":category/:subcategoris" element={<SubCategoris />} />
+          <Route path=":category/:subcategoris" element={<CatalogPage />} />
           <Route
             path=":category/:subcategoris/:product_page"
             element={<ProductPage />}

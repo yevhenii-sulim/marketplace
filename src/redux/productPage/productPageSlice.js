@@ -12,7 +12,6 @@ export const fetchProduct = createAsyncThunk(
   async (id, { getState }) => {
     try {
       const response = await urlProduct.get(`/products/${id}`);
-
       return response.data;
     } catch (error) {
       console.log(error);
@@ -97,6 +96,7 @@ const productPageSlice = createSlice({
     });
     builder.addCase(fetchProduct.fulfilled, (state, { payload }) => {
       state.product = payload;
+
       state.isLoading = false;
     });
     builder.addCase(likeComment.pending, (state, payload) => {});

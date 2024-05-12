@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SimilarProduct from 'components/Product/SimilarProduct';
+import FilterSlide from 'components/ProductListPage/FilterSlide';
+import PaginationList from 'components/Pagination/PaginationList';
+import { selectCategory } from '../../redux/category/selectors';
+import { getAllProducts } from '../../redux/product/thunk';
+import { selectProduct } from '../../redux/product/selector';
+import Sort from './Sort';
 import {
   ContainerProductPageList,
   Filter,
@@ -17,17 +23,21 @@ import {
   TytleSort,
   ListPath,
 } from './ProductListPage.styled';
-import PaginationList from 'components/Pagination/PaginationList';
-import Sort from './Sort';
-import { selectCategory } from '../../redux/category/selectors';
 
-export default function ProductListPage({ headphoneProduct }) {
+export default function ProductListPage() {
   const [page, setPage] = useState(1);
   const [valueSort, setValueSort] = useState('new');
   const location = useLocation();
   const category = useSelector(selectCategory);
+  const limit = 2;
+  const productAll = useSelector(selectProduct);
+  const dispatch = useDispatch();
 
-  const totalItemsCount = 10;
+  useEffect(() => {
+    dispatch(getAllProducts({ page: page, limit: limit }));
+  }, [dispatch, page]);
+
+  const totalItemsCount = 2;
 
   const hendleSort = sort => {
     setValueSort(sort);
@@ -36,16 +46,16 @@ export default function ProductListPage({ headphoneProduct }) {
   const sortProduct = criterion => {
     switch (criterion) {
       case 'cheep':
-        return headphoneProduct.sort(
+        return productAll.toSorted(
           (max, min) => parseInt(max.price) - parseInt(min.price)
         );
 
       case 'expensive':
-        return headphoneProduct.sort(
+        return productAll.toSorted(
           (max, min) => parseInt(min.price) - parseInt(max.price)
         );
       default:
-        return headphoneProduct.toSorted(
+        return productAll.toSorted(
           (a, b) => new Date(b.createDate) - new Date(a.createDate)
         );
       // new Date().getTime(min.createDate) - new Date().getTime(max.createDate)
@@ -55,16 +65,11 @@ export default function ProductListPage({ headphoneProduct }) {
   const sortedProduct = sortProduct(valueSort);
 
   const handlePageClick = page => {
-    setPage(prev => {
-      if (prev === page) {
-        return prev;
-      }
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
-      return page;
+    setPage(page);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
     });
   };
   return (
@@ -85,6 +90,7 @@ export default function ProductListPage({ headphoneProduct }) {
       <ProductsPage>
         <Filter>
           <TytleSort>Підбір за параметрами</TytleSort>
+          <FilterSlide min={0} max={10000} />
         </Filter>
         <ProductList>
           <Sort value={valueSort} hendleSort={hendleSort} />
