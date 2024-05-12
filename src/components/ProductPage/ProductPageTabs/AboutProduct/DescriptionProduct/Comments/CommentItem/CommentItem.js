@@ -23,8 +23,6 @@ import {
   dislikeComment,
   likeComment,
 } from '../../../../../../../redux/productPage/productPageSlice';
-import axios from 'axios';
-import { useProductPageContext } from 'components/ProductPage/context/ProductPageProvider';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 function CommentItem({ name, body, like, dislike, id, daysPassed, index }) {
   const dispatch = useDispatch();
