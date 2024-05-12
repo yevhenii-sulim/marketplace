@@ -1,6 +1,8 @@
 export const theme = {
   color: {
     bgButton: '#43C550',
+    bgRange: '#61CE6C',
+    borderRange: '#969696',
     bgFooter: '#BBEAC0',
     bgLike: '#BBEAC0',
     bgProduct: '#ffffff',

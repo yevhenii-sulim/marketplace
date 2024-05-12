@@ -10,10 +10,12 @@ const publicInstans = axios.create({
 
 export const getAllProducts = createAsyncThunk(
   'products/getAllProduct',
-  async () => {
+  async ({ page, limit }) => {
     try {
-      const { data } = await publicInstans.get('/products');
-      return data;
+      const data = await publicInstans.get(
+        `/products?page=${page}&limit=${limit}`
+      );
+      return data.data;
     } catch (error) {
       console.log('error', error);
     }

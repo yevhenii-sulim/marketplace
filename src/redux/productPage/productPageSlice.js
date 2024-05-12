@@ -7,9 +7,11 @@ const urlProduct = axios.create({
 
 export const fetchProduct = createAsyncThunk(
   'productPage/fetchProduct',
-  async id => {
+  async (id, { getState }) => {
     try {
       const response = await urlProduct.get(`/products/${id}`);
+      console.log(getState());
+
       return response.data;
     } catch (error) {
       console.log(error);
@@ -94,6 +96,7 @@ const productPageSlice = createSlice({
     });
     builder.addCase(fetchProduct.fulfilled, (state, { payload }) => {
       state.product = payload;
+
       state.isLoading = false;
     });
     builder.addCase(likeComment.pending, (state, payload) => {});
