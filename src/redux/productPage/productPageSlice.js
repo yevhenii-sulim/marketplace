@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { initialState } from '../initialState';
 
 const urlProduct = axios.create({
+  withCredentials: true,
   baseURL: 'https://internet-shop-api-production.up.railway.app',
 });
 
@@ -10,8 +12,6 @@ export const fetchProduct = createAsyncThunk(
   async (id, { getState }) => {
     try {
       const response = await urlProduct.get(`/products/${id}`);
-      console.log(getState());
-
       return response.data;
     } catch (error) {
       console.log(error);
@@ -89,7 +89,7 @@ export const addComment = createAsyncThunk(
 
 const productPageSlice = createSlice({
   name: 'productPage',
-  initialState: { product: {}, isLoading: true, createCommentLoading: false },
+  initialState: initialState.productPage,
   extraReducers: builder => {
     builder.addCase(fetchProduct.pending, (state, payload) => {
       state.isLoading = true;

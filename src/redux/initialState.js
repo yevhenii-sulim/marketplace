@@ -4,6 +4,7 @@ export const initialState = {
   openFormModal: false,
   categoryProduct: '',
   error: null,
+  productPage: { product: {}, isLoading: true, createCommentLoading: false },
   users: {
     token: null,
     isLoading: true,

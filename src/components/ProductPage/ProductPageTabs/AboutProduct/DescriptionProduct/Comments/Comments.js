@@ -63,23 +63,24 @@ function Comments() {
       }
     }
   }
-  console.log(product);
+
   return (
     <>
       <CreateCommentField productId={product._id} />
 
-      {product.comments.map((el, index) => (
-        <CommentItem
-          key={index}
-          name={el.author.firstName}
-          body={el.body}
-          like={el.like}
-          dislike={el.dislike}
-          id={el._id}
-          daysPassed={calculateDate(el.createDate)}
-          index={index}
-        />
-      ))}
+      {product.comments.length > 0 &&
+        product.comments.map((el, index) => (
+          <CommentItem
+            key={index}
+            name={el.author.firstName}
+            body={el.body}
+            like={el.like}
+            dislike={el.dislike}
+            id={el._id}
+            daysPassed={calculateDate(el.createDate)}
+            index={index}
+          />
+        ))}
     </>
   );
 }

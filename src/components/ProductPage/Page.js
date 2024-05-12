@@ -14,7 +14,6 @@ function Product() {
   const location = useLocation();
   const id = location.pathname.split('/').slice(-1)[0];
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchProduct(id));
   }, [id, dispatch]);

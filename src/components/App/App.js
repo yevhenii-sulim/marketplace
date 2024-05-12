@@ -10,20 +10,22 @@ import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
 import SubCategoris from 'pages/SubCategoris';
 import PhonesList from 'pages/PhonesList';
+import { useDispatch } from 'react-redux';
+import { loginWithSocial } from '../../redux/auth/slice';
 import RestorePassword from 'pages/RestorePassword';
 
+
 export default function App() {
+  const dispatch = useDispatch();
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const userDataParam = searchParams.get('userData');
     if (userDataParam) {
       const userDataObj = JSON.parse(decodeURIComponent(userDataParam));
-      localStorage.setItem('token', userDataObj.accessToken);
-      localStorage.setItem('email', userDataObj?.user.email);
-      localStorage.setItem('name', userDataObj?.user.name);
+      dispatch(loginWithSocial(userDataObj));
       window.history.replaceState({}, document.title, window.location.pathname);
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Wrapper>

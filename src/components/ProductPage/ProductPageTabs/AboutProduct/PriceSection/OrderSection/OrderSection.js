@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 
 function OrderSection() {
   const product = useSelector(state => state.productPage.product);
-  console.log(product);
+
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
@@ -26,10 +26,18 @@ function OrderSection() {
           </IconWrapper>
         </ProductName>
         <ProductCost>
-          <StrikePrice eco={product.discount.toString()}>
-            {product.price}
+          <StrikePrice>
+            <span
+              style={{ textDecoration: product.discount ? 'line-through' : '' }}
+            >
+              {product.price}
+            </span>
           </StrikePrice>
-          <SalePrice>{product.discountItem}</SalePrice>
+          {product.discount ? (
+            <SalePrice>{product.discountItem}</SalePrice>
+          ) : (
+            ''
+          )}
         </ProductCost>
         <ButtonBlock />
         <DatePublication />

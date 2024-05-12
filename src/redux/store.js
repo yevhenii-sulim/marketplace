@@ -22,7 +22,7 @@ import { errorReduser } from './errorAuth/slice';
 const persistConfig = {
   key: 'token',
   storage,
-  whitelist: ['token', 'isActivated', '_id'],
+  whitelist: ['token', 'isActivated', '_id', 'user'],
 };
 const persistCategory = {
   key: 'category',

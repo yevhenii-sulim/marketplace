@@ -15,6 +15,7 @@ import {
   SimilarProductDatePublic,
 } from './SimilarProduct.styled';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
+import { formatDate } from 'data/headphoneProduct';
 
 function sctollToByClick() {
   window.scrollTo({
@@ -41,6 +42,7 @@ function SimilarProduct({
   function countCharacter(count) {
     return location.pathname.match(/[/]/g).length === count;
   }
+
   return (
     <>
       <SimilarProductItem>
@@ -90,7 +92,9 @@ function SimilarProduct({
             <FavoriteBorderIcon />
           </SimilarProductItemIconWrapper>
         </SimilarProductItemButtonBlock>
-        <SimilarProductDatePublic>{createDate}</SimilarProductDatePublic>
+        <SimilarProductDatePublic>
+          {formatDate(createDate)}
+        </SimilarProductDatePublic>
       </SimilarProductItem>
     </>
   );
