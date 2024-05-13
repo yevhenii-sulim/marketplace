@@ -26,18 +26,41 @@ import {
 
 export default function ProductListPage() {
   const [page, setPage] = useState(1);
+
+  const productAll = useSelector(selectProduct);
+  const category = useSelector(selectCategory);
+
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(15000);
+
+  useEffect(() => {
+    if (productAll.length === 0) {
+      return;
+    }
+    setPriceMax(
+      productAll.toSorted(
+        (max, min) => parseInt(min.price) - parseInt(max.price)
+      )[0].price
+    );
+
+    setPriceMin(
+      productAll.toSorted(
+        (max, min) => parseInt(max.price) - parseInt(min.price)
+      )[0].price
+    );
+  }, [productAll]);
+
   const [valueSort, setValueSort] = useState('new');
   const location = useLocation();
-  const category = useSelector(selectCategory);
-  const limit = 2;
-  const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
+
+  const limit = 12;
 
   useEffect(() => {
     dispatch(getAllProducts({ page: page, limit: limit }));
   }, [dispatch, page]);
 
-  const totalItemsCount = 2;
+  const totalItemsCount = 1;
 
   const hendleSort = sort => {
     setValueSort(sort);
@@ -60,6 +83,13 @@ export default function ProductListPage() {
         );
       // new Date().getTime(min.createDate) - new Date().getTime(max.createDate)
     }
+  };
+
+  const getMaxValue = num => {
+    console.log(num);
+  };
+  const getMinValue = num => {
+    console.log(num);
   };
 
   const sortedProduct = sortProduct(valueSort);
@@ -90,7 +120,12 @@ export default function ProductListPage() {
       <ProductsPage>
         <Filter>
           <TytleSort>Підбір за параметрами</TytleSort>
-          <FilterSlide min={0} max={10000} />
+          <FilterSlide
+            min={priceMin}
+            max={priceMax}
+            getMaxValue={getMaxValue}
+            getMinValue={getMinValue}
+          />
         </Filter>
         <ProductList>
           <Sort value={valueSort} hendleSort={hendleSort} />
