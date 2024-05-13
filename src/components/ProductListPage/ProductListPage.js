@@ -86,10 +86,10 @@ export default function ProductListPage() {
   };
 
   const getMaxValue = num => {
-    console.log(num);
+    console.log('num', num);
   };
   const getMinValue = num => {
-    console.log(num);
+    console.log('num', num);
   };
 
   const sortedProduct = sortProduct(valueSort);
