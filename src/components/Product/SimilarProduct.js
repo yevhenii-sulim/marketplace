@@ -104,7 +104,7 @@ export default SimilarProduct;
 SimilarProduct.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   img: PropTypes.string,
   discountItem: PropTypes.string,
   discount: PropTypes.bool,

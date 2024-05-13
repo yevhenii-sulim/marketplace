@@ -55,12 +55,29 @@ export const SliderRange = {
   },
 };
 
-export const CountPrice = styled.div`
-  display: flex;
+export const CountPrice = styled.form`
+  label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 18px;
+    line-height: 1.44;
+    @media screen and (max-width: 1439px) {
+      margin-bottom: 8px;
+      text-align: left;
+    }
+  }
   input {
     padding: 8px;
     border-radius: 8px;
-    border: 1px solid, ${({ theme }) => theme.color.borderRange};
+    box-shadow: inset 0 0 0 1px ${({ theme }) => theme.color.borderRange};
+    font-size: 18px;
+    width: 81px;
+    border: none;
+  }
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    gap: 8px;
   }
 `;
 

@@ -2,38 +2,58 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { CountPrice, PriceSlide, SliderRange } from './ProductListPage.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 function valuetext(value) {
   return `${value} грн`;
 }
 
-const minDistance = 10;
-
-export default function FilterSlide({ min, max }) {
-  const [value, setValue] = useState([min, max]);
-
+export default function FilterSlide({ min, max, getMaxValue, getMinValue }) {
+  const [valueMin, setValueMin] = useState(min);
+  const [valueMax, setValueMax] = useState(max);
+  const { width } = useWindowDimensions();
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
     }
 
     if (activeThumb === 0) {
-      setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
+      setValueMin(Math.min(newValue[0]));
+      getMinValue(Math.min(newValue[0]));
     } else {
-      setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
+      setValueMax(Math.min(newValue[1]));
+      getMaxValue(Math.min(newValue[1]));
     }
+  };
+
+  const handleInputChangeMin = event => {
+    setValueMin(event.target.value === '' ? 0 : parseInt(event.target.value));
+    getMinValue(parseInt(event.target.value));
+  };
+  const handleInputChangeMax = event => {
+    setValueMax(event.target.value === '' ? 0 : parseInt(event.target.value));
+    getMaxValue(parseInt(event.target.value));
   };
 
   return (
     <PriceSlide>
       <CountPrice>
-        <input type="text" value={min} onChange={handleChange} />
+        <label>
+          Від
+          <input type="text" value={valueMin} onChange={handleInputChangeMin} />
+          {width < 1440 && 'грн'}
+        </label>
+        <label>
+          Дo
+          <input type="text" value={valueMax} onChange={handleInputChangeMax} />
+          грн
+        </label>
       </CountPrice>
       <Box sx={{ width: '100%' }}>
         <Slider
           sx={SliderRange}
           getAriaLabel={() => 'Price range'}
-          value={value}
+          value={[valueMin, valueMax]}
           onChange={handleChange}
           valueLabelDisplay="auto"
           min={min}
