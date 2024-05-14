@@ -1,4 +1,13 @@
 import StarIcon from '@mui/icons-material/Star';
+import {
+  Balance,
+  Header,
+  Name,
+  Rating,
+  RatingText,
+  User,
+  UserName,
+} from './UserPageComponent.styled';
 export default function UserPageHeader() {
   return (
     <Header>

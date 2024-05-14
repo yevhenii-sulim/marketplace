@@ -5,7 +5,11 @@ export const Header = styled.div`
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.bgProduct};
 `;
-
+export const User = styled.div``;
+export const UserName = styled.div``;
+export const Name = styled.h3``;
+export const Rating = styled.div``;
+export const RatingText = styled.p``;
 export const Balance = styled.div`
   font-family: 'Jost';
   font-size: 22px;
