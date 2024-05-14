@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonIcon from '@mui/icons-material/Person';
-import { AuxiliarysContainer, NavLink } from './Auxiliarys.styled';
+import { AuxiliaryContainer, NavLink } from './Auxiliary.styled';
 import { selectAuth } from '../../redux/auth/selector';
 import { toggleModalForm } from '../../redux/modalForm/slice';
 
-export default memo(function Auxiliarys() {
+export default memo(function Auxiliary() {
   const isAuth = useSelector(selectAuth);
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ export default memo(function Auxiliarys() {
   }
 
   return (
-    <AuxiliarysContainer>
+    <AuxiliaryContainer>
       <NavLink to="/">
         <ChatBubbleOutlineIcon />
       </NavLink>
@@ -27,6 +27,6 @@ export default memo(function Auxiliarys() {
       <NavLink to="user_page" onClick={onOpen}>
         <PersonIcon />
       </NavLink>
-    </AuxiliarysContainer>
+    </AuxiliaryContainer>
   );
 });

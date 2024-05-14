@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { LinkReg, Tytle } from './AuthArea.styled';
+import { LinkReg, Title } from './AuthArea.styled';
 import ContinueVia from 'components/ContinueVia/ContinueVia';
 import FormAuth from 'components/FormAuth/FormAuth';
 
 export default function AuthArea({ onClose, toggleWind, openForgetWind }) {
   return (
     <>
-      <Tytle>Вхiд</Tytle>
+      <Title>Вхiд</Title>
       <FormAuth onClose={onClose} openForgetWind={openForgetWind} />
       <LinkReg type="button" onClick={toggleWind}>
         Зареєструватись

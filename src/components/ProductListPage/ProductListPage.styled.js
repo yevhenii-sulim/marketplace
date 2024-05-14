@@ -11,7 +11,7 @@ export const ContainerProductPageList = styled.div`
   flex-direction: column;
   height: 100%;
 `;
-export const Paginations = styled.div`
+export const Pagination = styled.div`
   margin-top: auto;
 `;
 export const ProductsPage = styled.div`
@@ -81,7 +81,7 @@ export const CountPrice = styled.form`
   }
 `;
 
-export const TytleSort = styled.h3`
+export const TitleSort = styled.h3`
   font-family: 'Jost';
   font-size: 28px;
   font-weight: 400;
@@ -137,7 +137,7 @@ export const ListPath = styled.li`
     font-weight: 700;
   }
 `;
-export const TytleProducts = styled.h2`
+export const TitleProducts = styled.h2`
   font-family: 'Jost';
   font-size: 44px;
   font-weight: 700;

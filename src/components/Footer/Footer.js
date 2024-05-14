@@ -6,9 +6,9 @@ import {
   ContactList,
   Container,
   FooterContainer,
-  TytleAbout,
   TitleContacts,
   LogoContainer,
+  TitleAbout,
 } from './Footer.styled';
 import ContactComponent from 'components/ContactComponent/ContactComponent';
 
@@ -21,7 +21,7 @@ export default function Footer() {
             <Logo fill="#000000" />
           </LogoContainer>
           <AboutContent>
-            <TytleAbout>Про нас</TytleAbout>
+            <TitleAbout>Про нас</TitleAbout>
             <p>
               Це командний Pet-проєкт, що ставить за ціль продемонструвати
               технічні навички, командність та софт скіли розподіленої команди

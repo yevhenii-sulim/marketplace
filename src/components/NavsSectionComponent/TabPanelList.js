@@ -2,7 +2,7 @@ import { SubNavList } from './NavsSectionComponent.styled';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
-import NavSubCategoriList from 'components/NavSubCategoriList/NavSubCategoriList';
+import NavSubCategoryList from 'components/NavSubCategoryList/NavSubCategoryList';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -29,7 +29,7 @@ function TabPanel(props) {
 export default function TabPanelList({ subcategory, value, category }) {
   return (
     <TabPanel value={value} index={value}>
-      <NavSubCategoriList category={category} subcategory={subcategory} />
+      <NavSubCategoryList category={category} subcategory={subcategory} />
     </TabPanel>
   );
 }

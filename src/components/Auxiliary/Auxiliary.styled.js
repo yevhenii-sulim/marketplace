@@ -13,7 +13,7 @@ export const NavLink = styled(LinkAux)`
   }
 `;
 
-export const AuxiliarysContainer = styled.div`
+export const AuxiliaryContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 36px;

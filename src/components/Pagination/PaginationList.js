@@ -1,4 +1,4 @@
-import Paginations from 'react-js-pagination';
+import Pagination from 'react-js-pagination';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import css from './PaginationList.module.css';
@@ -9,7 +9,7 @@ const amountPage = view >= 500 ? 5 : 2;
 function PaginationList({ handlePageChange, activePage, totalItemsCount }) {
   return (
     <div>
-      <Paginations
+      <Pagination
         activePage={activePage}
         itemsCountPerPage={1}
         totalItemsCount={totalItemsCount}

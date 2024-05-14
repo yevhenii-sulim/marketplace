@@ -3,7 +3,7 @@ import { changeCategory } from '../../redux/category/slice';
 import { useDispatch } from 'react-redux';
 export default function CategoryHomePage({
   nameCategory,
-  tytleCategory,
+  titleCategory,
   srcCategory,
   link,
 }) {
@@ -12,7 +12,7 @@ export default function CategoryHomePage({
     <List onClick={() => dispatch(changeCategory(nameCategory))}>
       <Link to={link}>
         <img src={srcCategory} alt={nameCategory} />
-        <NameCategory>{tytleCategory}</NameCategory>
+        <NameCategory>{titleCategory}</NameCategory>
       </Link>
     </List>
   );

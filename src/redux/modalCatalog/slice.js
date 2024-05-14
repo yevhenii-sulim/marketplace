@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 
-const modalCotalogSlice = createSlice({
-  name: 'modalCotalog',
+const modalCatalogSlice = createSlice({
+  name: 'modalCatalog',
   initialState: initialState.openCatalog,
   reducers: {
     toggleModal(state, { payload }) {
@@ -10,5 +10,5 @@ const modalCotalogSlice = createSlice({
     },
   },
 });
-export const modalCotalogReducer = modalCotalogSlice.reducer;
-export const { toggleModal } = modalCotalogSlice.actions;
+export const modalCatalogReducer = modalCatalogSlice.reducer;
+export const { toggleModal } = modalCatalogSlice.actions;

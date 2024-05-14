@@ -3,4 +3,4 @@ export const selectAuth = state =>
 
 export const selectIsLoaded = state => state.users.token;
 export const selectToken = state => state.users.token;
-export const selectIsRerendung = state => state.users.isRerendung;
+export const selectIsRending = state => state.users.isRending;

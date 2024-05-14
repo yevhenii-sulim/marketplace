@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const Tytle = styled.h2`
+export const Title = styled.h2`
   font-family: 'Jost';
   font-size: 28px;
   font-weight: 700;
@@ -11,7 +11,7 @@ export const LinkReg = styled.button`
   outline: none;
   background-color: transparent;
   font-size: 16px;
-  color: ${({ theme }) => theme.color.colorTextRegistr};
+  color: ${({ theme }) => theme.color.colorTextRegister};
   &:hover {
     box-shadow: '0 4px 8px rgba(0, 0, 0, 0.5)';
   }

@@ -35,7 +35,7 @@ export const WrapperModal = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.color.bgProduct};
   position: absolute;
-  border: 3px solid ${({ theme }) => theme.color.borderRegistr};
+  border: 3px solid ${({ theme }) => theme.color.borderRegister};
   border-radius: 12px;
   padding: 32px;
 

@@ -2,13 +2,13 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 import { getAllProducts, getProduct } from './thunk';
 
-const hendlePending = state => {};
+const handlePending = state => {};
 
-const hendleFulfilled = (state, { payload }) => {
+const handleFulfilled = (state, { payload }) => {
   return (state = payload);
 };
 
-const hendleRejected = state => {};
+const handleRejected = state => {};
 
 const productSlice = createSlice({
   name: 'products',
@@ -17,15 +17,15 @@ const productSlice = createSlice({
     builder
       .addMatcher(
         isAnyOf(getAllProducts.pending, getProduct.pending),
-        hendlePending
+        handlePending
       )
       .addMatcher(
         isAnyOf(getAllProducts.fulfilled, getProduct.fulfilled),
-        hendleFulfilled
+        handleFulfilled
       )
       .addMatcher(
         isAnyOf(getAllProducts.rejected, getProduct.rejected),
-        hendleRejected
+        handleRejected
       );
   },
 });

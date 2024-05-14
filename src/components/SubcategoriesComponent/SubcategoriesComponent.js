@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { List, UnList } from './SubcategorisComponent.styled';
+import { List, UnList } from './SubcategoriesComponent.styled';
 
-export default memo(function SubcategorisComponent({ subCategory, path }) {
+export default memo(function SubcategoriesComponent({ subCategory, path }) {
   return (
     <UnList>
       {subCategory ? (

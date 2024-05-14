@@ -15,7 +15,7 @@ export const AddProduct = styled(Link)`
   color: ${({ theme }) => theme.color.bgHeader};
   &:hover {
     color: ${({ theme }) => theme.color.bgCommon};
-    background-color: ${({ theme }) => theme.color.bgButonHover};
+    background-color: ${({ theme }) => theme.color.bgButtonHover};
     box-shadow: inset 0 0 0px 4px ${({ theme }) => theme.color.bgCommon};
   }
   &:active {

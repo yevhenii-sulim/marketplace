@@ -4,7 +4,7 @@ import Slider from '@mui/material/Slider';
 import { CountPrice, PriceSlide, SliderRange } from './ProductListPage.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
-function valuetext(value) {
+function valueText(value) {
   return `${value} грн`;
 }
 
@@ -58,7 +58,7 @@ export default function FilterSlide({ min, max, getMaxValue, getMinValue }) {
           valueLabelDisplay="auto"
           min={min}
           max={max}
-          getAriaValueText={valuetext}
+          getAriaValueText={valueText}
         />
       </Box>
     </PriceSlide>

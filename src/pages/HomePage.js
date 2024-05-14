@@ -14,8 +14,8 @@ import {
 
 export default function HomePage() {
   const productsEco = useSelector(selectProductEco);
-  const productsDiscont = useSelector(selectProductDiscount);
-  const productsVisitest = useSelector(selectProductVisit);
+  const productsDiscount = useSelector(selectProductDiscount);
+  const productsVisits = useSelector(selectProductVisit);
   const productsNew = useSelector(selectProductNewer);
   const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
@@ -30,28 +30,28 @@ export default function HomePage() {
   return (
     <>
       <CategoryList />
-      {productsDiscont.length !== 0 && (
+      {productsDiscount.length !== 0 && (
         <BestChoiceList
-          filteredProducts={productsDiscont}
-          tytle="Кращий вибір"
+          filteredProducts={productsDiscount}
+          title="Кращий вибір"
         />
       )}
 
       {productsNew.length !== 0 && (
         <BestChoiceList
           filteredProducts={productsNew}
-          tytle="Нові оголошення"
+          title="Нові оголошення"
         />
       )}
 
-      {productsVisitest.length !== 0 && (
+      {productsVisits.length !== 0 && (
         <BestChoiceList
-          filteredProducts={productsVisitest}
-          tytle="Рекомендоване вам"
+          filteredProducts={productsVisits}
+          title="Рекомендоване вам"
         />
       )}
       {productsEco.length !== 0 && (
-        <BestChoiceList filteredProducts={productsEco} tytle="Еко продукти" />
+        <BestChoiceList filteredProducts={productsEco} title="Еко продукти" />
       )}
     </>
   );

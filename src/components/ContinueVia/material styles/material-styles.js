@@ -14,12 +14,12 @@ export const socialSingInButton = {
   '& span': {
     fontWeight: '700',
   },
-  border: `2px solid ${theme.color.borderRegistr}`,
+  border: `2px solid ${theme.color.borderRegister}`,
   '&:focus': {
-    border: `2px solid ${theme.color.borderRegistr}`,
+    border: `2px solid ${theme.color.borderRegister}`,
   },
   '&:hover': {
-    border: `2px solid ${theme.color.borderRegistr}`,
+    border: `2px solid ${theme.color.borderRegister}`,
     background: 'none',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
   },

@@ -8,10 +8,10 @@ import {
 } from './ProductListPage.styled';
 import { useState } from 'react';
 
-export default function Sort({ value, hendleSort }) {
+export default function Sort({ value, handleSort }) {
   const [open, setOpen] = useState(false);
-  const hendleChangeSort = evt => {
-    hendleSort(evt.target.value);
+  const handleChangeSort = evt => {
+    handleSort(evt.target.value);
   };
   return (
     <SortProduct>
@@ -24,7 +24,7 @@ export default function Sort({ value, hendleSort }) {
           onClick={() => setOpen(prev => !prev)}
           name="sort"
           value={value}
-          onChange={hendleChangeSort}
+          onChange={handleChangeSort}
         >
           <option value="new">Спочатку нові</option>
           <option value="cheep">Найдешевші</option>

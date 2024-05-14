@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const ContainerLoyaut = styled.div`
+export const ContainerLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

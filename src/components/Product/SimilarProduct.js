@@ -17,7 +17,7 @@ import {
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
 import { formatDate } from 'data/headphoneProduct';
 
-function sctollToByClick() {
+function scrollToByClick() {
   window.scrollTo({
     top: 0,
     left: 0,
@@ -47,7 +47,7 @@ function SimilarProduct({
     <>
       <SimilarProductItem>
         <Link
-          onClick={sctollToByClick}
+          onClick={scrollToByClick}
           to={countCharacter(2) ? `${id}` : `/${category}/${subCategory}/${id}`}
         >
           <SimilarProductItemIcon>

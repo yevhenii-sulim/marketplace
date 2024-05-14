@@ -10,7 +10,7 @@ export const navigationList = [
     linkList: 'gift',
     nameList: 'Подарункові товари',
     img: '/marketplace/images/catalog/gift.png',
-    subCategoris: [
+    subCategories: [
       {
         id: 1,
         link: 'souvenirs',
@@ -36,7 +36,7 @@ export const navigationList = [
     linkList: 'embroidery',
     nameList: 'Вишивка',
     img: '/marketplace/images/catalog/embroidery.png',
-    subCategoris: [
+    subCategories: [
       {
         id: 1,
         link: 'shirts',
@@ -62,7 +62,7 @@ export const navigationList = [
     linkList: 'accessories',
     nameList: 'Аксесуари',
     img: '/marketplace/images/catalog/accessories.png',
-    subCategoris: [
+    subCategories: [
       {
         id: 1,
         link: 'handbags',
@@ -100,7 +100,7 @@ export const navigationList = [
     linkList: 'eco',
     nameList: 'Еко хендмейд взуття',
     img: '/marketplace/images/catalog/eco.png',
-    subCategoris: [
+    subCategories: [
       {
         id: 1,
         link: 'winter',
@@ -120,7 +120,7 @@ export const navigationList = [
     linkList: 'makeup',
     nameList: 'Натуральна косметика',
     img: '/marketplace/images/catalog/makeup.png',
-    subCategoris: [
+    subCategories: [
       {
         id: 1,
         link: 'soap',
@@ -140,7 +140,7 @@ export const navigationList = [
     linkList: 'recycled_materials',
     nameList: 'Товари з перероблених матеріалів',
     img: '/marketplace/images/catalog/recycled.png',
-    subCategoris: [
+    subCategories: [
       {
         id: 1,
         link: 'recycled_denim',

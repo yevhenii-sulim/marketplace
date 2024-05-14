@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { Container, ContainerLoyaut } from './Loyaut.styled';
+import { Container, ContainerLayout } from './Layout.styled';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 
-export default function Loyaut() {
+export default function Layout() {
   return (
-    <ContainerLoyaut>
+    <ContainerLayout>
       <Header />
       <main>
         <Container>
@@ -13,6 +13,6 @@ export default function Loyaut() {
         </Container>
       </main>
       <Footer />
-    </ContainerLoyaut>
+    </ContainerLayout>
   );
 }
