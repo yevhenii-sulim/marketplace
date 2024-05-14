@@ -12,10 +12,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ButtonBlock from './ButtonBlock/ButtonBlock';
 import DatePublication from './DatePublication/DatePublication';
 import { useSelector } from 'react-redux';
+import { productForProductPage } from '../../../../../../redux/productPage/selectors';
 
 function OrderSection() {
-  const product = useSelector(state => state.productPage.product);
-
+  const product = useSelector(productForProductPage);
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
@@ -34,7 +34,7 @@ function OrderSection() {
             </span>
           </StrikePrice>
           {product.discount ? (
-            <SalePrice>{product.discountItem}</SalePrice>
+            <SalePrice>{product.discountPrice}</SalePrice>
           ) : (
             ''
           )}
