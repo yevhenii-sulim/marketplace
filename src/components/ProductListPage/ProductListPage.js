@@ -13,14 +13,14 @@ import Sort from './Sort';
 import {
   ContainerProductPageList,
   Filter,
-  Paginations,
+  Pagination,
   ProductsPage,
   ProductList,
   Product,
   Navigation,
   Nav,
-  TytleProducts,
-  TytleSort,
+  TitleProducts,
+  TitleSort,
   ListPath,
 } from './ProductListPage.styled';
 
@@ -62,7 +62,7 @@ export default function ProductListPage() {
 
   const totalItemsCount = 1;
 
-  const hendleSort = sort => {
+  const handleSort = sort => {
     setValueSort(sort);
   };
 
@@ -115,11 +115,11 @@ export default function ProductListPage() {
           </ListPath>
           <ListPath>{location.state}</ListPath>
         </Nav>
-        <TytleProducts>{location.state}</TytleProducts>
+        <TitleProducts>{location.state}</TitleProducts>
       </Navigation>
       <ProductsPage>
         <Filter>
-          <TytleSort>Підбір за параметрами</TytleSort>
+          <TitleSort>Підбір за параметрами</TitleSort>
           <FilterSlide
             min={priceMin}
             max={priceMax}
@@ -128,7 +128,7 @@ export default function ProductListPage() {
           />
         </Filter>
         <ProductList>
-          <Sort value={valueSort} hendleSort={hendleSort} />
+          <Sort value={valueSort} handleSort={handleSort} />
           <Product>
             {sortedProduct.map(
               ({
@@ -159,7 +159,7 @@ export default function ProductListPage() {
               )
             )}
           </Product>
-          <Paginations>
+          <Pagination>
             {sortedProduct && (
               <PaginationList
                 handlePageChange={handlePageClick}
@@ -167,7 +167,7 @@ export default function ProductListPage() {
                 totalItemsCount={totalItemsCount}
               />
             )}
-          </Paginations>
+          </Pagination>
         </ProductList>
       </ProductsPage>
     </ContainerProductPageList>

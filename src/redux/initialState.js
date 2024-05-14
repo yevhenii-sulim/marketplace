@@ -12,7 +12,7 @@ export const initialState = {
   users: {
     token: null,
     isLoading: true,
-    isRerendung: true,
+    isRending: true,
     isActivated: false,
     _id: null,
     user: {

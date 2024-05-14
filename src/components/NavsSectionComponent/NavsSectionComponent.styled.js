@@ -24,7 +24,7 @@ export const SubNavList = {
   paddingLeft: '12px',
 };
 
-export const Psevdo = styled.div`
+export const Pseudo = styled.div`
   position: relative;
   &:before {
     content: '';

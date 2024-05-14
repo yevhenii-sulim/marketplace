@@ -21,7 +21,7 @@ export const Container = styled.div`
     padding-right: 58px;
   }
 `;
-export const TytleAbout = styled.h3`
+export const TitleAbout = styled.h3`
   font-size: 32px;
   font-weight: 700;
   line-height: 1.5;

@@ -2,19 +2,19 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 import { logIn, logOut, signUp, update } from './thunk';
 
-const hendlePending = state => {
+const handlePending = state => {
   state.isLoading = true;
 };
 
-const hendleUpdatePending = state => {
-  // state.isRerendung = true;
+const handleUpdatePending = state => {
+  // state.isRending = true;
 };
 
-const hendleSignUpFulfilled = state => {
-  state.isRerendung = true;
+const handleSignUpFulfilled = state => {
+  state.isRending = true;
 };
 
-const hendleLogInFulfilled = (state, { payload }) => {
+const handleLogInFulfilled = (state, { payload }) => {
   state.error = null;
   state.user = payload.user;
   state.isLoading = false;
@@ -23,9 +23,9 @@ const hendleLogInFulfilled = (state, { payload }) => {
   state._id = payload.user._id;
 };
 
-const hendleUpdateFulfilled = (state, { payload }) => {};
+const handleUpdateFulfilled = (state, { payload }) => {};
 
-const hendleLogOutFulfilled = state => {
+const handleLogOutFulfilled = state => {
   state.user = {
     firstName: '',
     lastName: '',
@@ -35,7 +35,7 @@ const hendleLogOutFulfilled = state => {
   };
   state.token = null;
 };
-const hendleRejected = state => {
+const handleRejected = state => {
   state.isLoading = false;
 };
 
@@ -51,12 +51,12 @@ const userSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(signUp.fulfilled, hendleSignUpFulfilled)
-      .addCase(logIn.fulfilled, hendleLogInFulfilled)
-      .addCase(logOut.fulfilled, hendleLogOutFulfilled)
-      .addCase(update.pending, hendleUpdatePending)
-      .addCase(update.fulfilled, hendleUpdateFulfilled)
-      .addMatcher(isAnyOf(signUp.pending, logIn.pending), hendlePending)
+      .addCase(signUp.fulfilled, handleSignUpFulfilled)
+      .addCase(logIn.fulfilled, handleLogInFulfilled)
+      .addCase(logOut.fulfilled, handleLogOutFulfilled)
+      .addCase(update.pending, handleUpdatePending)
+      .addCase(update.fulfilled, handleUpdateFulfilled)
+      .addMatcher(isAnyOf(signUp.pending, logIn.pending), handlePending)
       .addMatcher(
         isAnyOf(
           signUp.rejected,
@@ -64,10 +64,10 @@ const userSlice = createSlice({
           update.rejected,
           logOut.rejected
         ),
-        hendleRejected
+        handleRejected
       );
   },
 });
 
-export const userAuthReduser = userSlice.reducer;
+export const userAuthReducer = userSlice.reducer;
 export const { loginWithSocial } = userSlice.actions;

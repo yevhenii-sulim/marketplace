@@ -20,7 +20,7 @@ export const NameCategory = styled.p`
   line-height: 1.45;
 `;
 
-export const Categorys = styled.ul`
+export const Category = styled.ul`
   margin-bottom: 32px;
   .slide {
     width: 100%;
@@ -73,7 +73,7 @@ export const Categorys = styled.ul`
     }
   }
 `;
-export const TytleCategory = styled.h3`
+export const TitleCategory = styled.h3`
   font-family: 'Jost';
   font-size: 28px;
   font-weight: 700;

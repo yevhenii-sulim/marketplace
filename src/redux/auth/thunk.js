@@ -6,7 +6,7 @@ import { hideError, showError } from '../errorAuth/slice';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-const privatInstans = axios.create({
+const privateInstans = axios.create({
   baseURL: 'https://internet-shop-api-production.up.railway.app',
   signal: new AbortController().signal,
 });
@@ -17,10 +17,10 @@ const publicInstans = axios.create({
 
 const token = {
   set(token) {
-    privatInstans.defaults.headers.common.Authorization = `Bearer ${token}`;
+    privateInstans.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unSet() {
-    privatInstans.defaults.headers.common.Authorization = '';
+    privateInstans.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -88,21 +88,21 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
-    await privatInstans.post('/auth/logout');
+    await privateInstans.post('/auth/logout');
     token.unSet();
   } catch (error) {
     console.log(error.message);
   }
 });
 
-export const update = createAsyncThunk('user/update', async (_, thuncApi) => {
-  const storThunc = thuncApi.getState();
+export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
+  const storThunk = thunkApi.getState();
 
-  const presentToken = storThunc.users.token;
+  const presentToken = storThunk.users.token;
   if (presentToken) {
     try {
       token.set(presentToken);
-      const data = await privatInstans.get('/auth/refresh');
+      const data = await privateInstans.get('/auth/refresh');
       return data;
     } catch (error) {
       console.log(error);

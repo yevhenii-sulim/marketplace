@@ -11,4 +11,4 @@ const sliceError = createSlice({
 });
 
 export const { showError, hideError } = sliceError.actions;
-export const errorReduser = sliceError.reducer;
+export const errorReducer = sliceError.reducer;

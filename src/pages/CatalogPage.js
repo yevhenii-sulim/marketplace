@@ -9,7 +9,7 @@ export default function CatalogPage() {
   // const location = useLocation();
 
   // const category = location.state.category;
-  // const linkProdukt = location.state.link;
+  // const linkProduct = location.state.link;
   // const productAll = useSelector(selectProduct);
   // const dispatch = useDispatch();
 

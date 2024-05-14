@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { List } from './NavSubCategoriList.styled';
+import { List } from './NavSubCategoryList.styled';
 import { toggleModal } from '../../redux/modalCatalog/slice';
 
-export default function NavSubCategoriList({ subcategory, category }) {
+export default function NavSubCategoryList({ subcategory, category }) {
   const dispatch = useDispatch();
 
   function onClose() {
@@ -26,7 +26,7 @@ export default function NavSubCategoriList({ subcategory, category }) {
     </>
   );
 }
-NavSubCategoriList.propTypes = {
+NavSubCategoryList.propTypes = {
   subcategory: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

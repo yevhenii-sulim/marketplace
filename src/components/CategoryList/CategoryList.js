@@ -9,7 +9,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ButtonSlider, Categorys, TytleCategory } from './Category.styled';
+import { ButtonSlider, Category, TitleCategory } from './Category.styled';
 import { navigationList } from 'data/navListData';
 import CategoryHomePage from './CategoryHomePage';
 import useWindowDimensions from 'hooks/useWindowDimensions';
@@ -27,8 +27,8 @@ export default function CategoryList() {
   };
 
   return (
-    <Categorys>
-      <TytleCategory>Популярні категорії</TytleCategory>
+    <Category>
+      <TitleCategory>Популярні категорії</TitleCategory>
       <CarouselProvider
         className="slide"
         totalSlides={navigationList.length}
@@ -40,16 +40,16 @@ export default function CategoryList() {
       >
         <Slider>
           {navigationList.map(
-            ({ id, linkList, nameList, subCategoris, img }, index) => {
+            ({ id, linkList, nameList, subCategories, img }, index) => {
               return (
                 <Slide index={index} key={id}>
                   <CategoryHomePage
                     key={id}
                     nameCategory={nameList}
-                    tytleCategory={nameList}
+                    titleCategory={nameList}
                     srcCategory={img}
                     link={linkList}
-                    subCategoris={subCategoris}
+                    subCategories={subCategories}
                   />
                 </Slide>
               );
@@ -67,6 +67,6 @@ export default function CategoryList() {
           </>
         )}
       </CarouselProvider>
-    </Categorys>
+    </Category>
   );
 }

@@ -24,7 +24,7 @@ export const BoxEye = styled.button`
   cursor: pointer;
 `;
 export const Link = styled(LinkAgree)`
-  color: ${({ theme }) => theme.color.colorTextRegistr};
+  color: ${({ theme }) => theme.color.colorTextRegister};
   text-decoration: none;
 `;
 

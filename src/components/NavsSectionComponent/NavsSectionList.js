@@ -12,7 +12,7 @@ import {
   BoxListStyles,
   Container,
   OpenList,
-  Psevdo,
+  Pseudo,
   TabListStyles,
 } from './NavsSectionComponent.styled';
 import { changeCategory } from '../../redux/category/slice';
@@ -39,15 +39,15 @@ export default function NavsSectionList({ onCloseModal }) {
     dispatch(toggleModal(bool));
   }
 
-  function openList(nameList, subCategoris) {
+  function openList(nameList, subCategories) {
     setCategory(nameList);
-    setSubcategory(subCategoris);
+    setSubcategory(subCategories);
   }
 
   return (
     <Container onClick={onCloseModal}>
       <Box sx={BoxListStyles}>
-        <Psevdo>
+        <Pseudo>
           <Tabs
             orientation="vertical"
             variant="scrollable"
@@ -56,14 +56,14 @@ export default function NavsSectionList({ onCloseModal }) {
             aria-label="Vertical tabs"
             sx={TabListStyles}
           >
-            {navigationList.map(({ id, linkList, nameList, subCategoris }) => {
-              return subCategoris ? (
+            {navigationList.map(({ id, linkList, nameList, subCategories }) => {
+              return subCategories ? (
                 <Tab
                   className="hover-tab"
                   key={id}
                   label={nameList}
                   onClick={() => {
-                    openList(linkList, subCategoris);
+                    openList(linkList, subCategories);
                     dispatch(changeCategory(nameList));
                   }}
                   variant={'solid'}
@@ -87,7 +87,7 @@ export default function NavsSectionList({ onCloseModal }) {
               );
             })}
           </Tabs>
-        </Psevdo>
+        </Pseudo>
         <TabPanelList
           subcategory={subcategory}
           value={value}

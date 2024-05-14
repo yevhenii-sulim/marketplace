@@ -13,11 +13,11 @@ import SimilarProduct from 'components/Product/SimilarProduct';
 import {
   ButtonSlider,
   ContainerSlide,
-  TytleCategory,
+  TitleCategory,
 } from './BestChoice.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
-export default function BestChoiceList({ filteredProducts, tytle }) {
+export default function BestChoiceList({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
   const setvisibleSlides = width => {
     if (width >= 1440) {
@@ -31,7 +31,7 @@ export default function BestChoiceList({ filteredProducts, tytle }) {
 
   return (
     <ContainerSlide>
-      <TytleCategory>{tytle}</TytleCategory>
+      <TitleCategory>{title}</TitleCategory>
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}

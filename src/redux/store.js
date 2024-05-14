@@ -11,13 +11,13 @@ import {
   FLUSH,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { modalCotalogReducer } from './modalCatalog/slice';
-import { userAuthReduser } from './auth/slice';
+import { modalCatalogReducer } from './modalCatalog/slice';
+import { userAuthReducer } from './auth/slice';
 import { modalFormReducer } from './modalForm/slice';
 import { categoryReducer } from './category/slice';
 import { productReducer } from './product/slice';
 import { productPageReducer } from './productPage/productPageSlice';
-import { errorReduser } from './errorAuth/slice';
+import { errorReducer } from './errorAuth/slice';
 
 const persistConfig = {
   key: 'token',
@@ -33,11 +33,11 @@ const persistCategory = {
 const rootReducer = combineReducers({
   productPage: productPageReducer,
   products: productReducer,
-  modalCotalog: modalCotalogReducer,
+  modalCatalog: modalCatalogReducer,
   modalForm: modalFormReducer,
   category: categoryReducer,
-  users: persistReducer(persistConfig, userAuthReduser),
-  error: errorReduser,
+  users: persistReducer(persistConfig, userAuthReducer),
+  error: errorReducer,
 });
 
 const persistedReducer = persistReducer(persistCategory, rootReducer);

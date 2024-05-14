@@ -58,7 +58,7 @@ export const ContainerSlide = styled.ul`
     justify-content: center;
   }
 `;
-export const TytleCategory = styled.h3`
+export const TitleCategory = styled.h3`
   font-family: 'Jost';
   font-size: 28px;
   font-weight: 700;

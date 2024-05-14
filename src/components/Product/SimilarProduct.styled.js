@@ -42,7 +42,7 @@ export const SimilarProductItemName = styled.h4`
   color: ${({ theme }) => theme.color.colorMainText};
 `;
 export const SimilarProductItemDiscount = styled.p`
-  color: ${({ theme }) => theme.color.colorPriceDiscont};
+  color: ${({ theme }) => theme.color.colorPriceDiscount};
   text-decoration: line-through;
   font-weight: 400;
   font-size: 16px;
@@ -72,6 +72,6 @@ export const SimilarProductItemIconWrapper = styled.button`
     background-color: ${({ theme }) => theme.color.bgLike};
   }
   &:active {
-    background-color: ${({ theme }) => theme.color.bgButonHover};
+    background-color: ${({ theme }) => theme.color.bgButtonHover};
   }
 `;
