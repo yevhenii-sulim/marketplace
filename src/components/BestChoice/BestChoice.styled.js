@@ -60,6 +60,7 @@ export const ContainerSlide = styled.ul`
 `;
 export const TitleCategory = styled.h3`
   font-family: 'Jost';
+  user-select: none;
   font-size: 28px;
   font-weight: 700;
   line-height: 1.5;

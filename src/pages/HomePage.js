@@ -1,6 +1,5 @@
 import BestChoiceList from 'components/BestChoice/BestChoiceList';
 import CategoryList from 'components/CategoryList/CategoryList';
-// import { headphoneProduct } from 'data/headphoneProduct';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/product/thunk';
@@ -24,7 +23,7 @@ export default function HomePage() {
     if (productAll.length !== 0) {
       return;
     }
-    dispatch(getAllProducts());
+    dispatch(getAllProducts({ page: 1, limit: 100 }));
   }, [dispatch, productAll]);
 
   return (

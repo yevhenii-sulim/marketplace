@@ -12,6 +12,7 @@ export const fetchProduct = createAsyncThunk(
   async id => {
     try {
       const response = await urlProduct.get(`/products/${id}`);
+
       return response.data;
     } catch (error) {
       console.log(error);
@@ -95,31 +96,32 @@ const productPageSlice = createSlice({
   initialState: initialState.productPage,
 
   extraReducers: builder => {
-    builder.addCase(fetchProduct.pending, (state, payload) => {
-      state.isLoading = true;
-    });
-    builder.addCase(fetchProduct.fulfilled, (state, { payload }) => {
-      state.product = payload;
+    builder
+      .addCase(fetchProduct.pending, (state, payload) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchProduct.fulfilled, (state, { payload }) => {
+        state.product = payload;
 
-      state.isLoading = false;
-    });
-    builder.addCase(likeComment.pending, (state, payload) => {});
-    builder.addCase(likeComment.fulfilled, (state, action) => {
-      const index = action.meta.arg.index;
-      state.product.comments[index] = action.payload;
-    });
-    builder.addCase(dislikeComment.pending, (state, payload) => {});
-    builder.addCase(dislikeComment.fulfilled, (state, action) => {
-      const index = action.meta.arg.index;
-      state.product.comments[index] = action.payload;
-    });
-    builder.addCase(addComment.pending, (state, payload) => {
-      state.createCommentLoading = true;
-    });
-    builder.addCase(addComment.fulfilled, (state, action) => {
-      state.product.comments.push(action.payload);
-      state.createCommentLoading = false;
-    });
+        state.isLoading = false;
+      })
+      .addCase(likeComment.pending, (state, payload) => {})
+      .addCase(likeComment.fulfilled, (state, action) => {
+        const index = action.meta.arg.index;
+        state.product.comments[index] = action.payload;
+      })
+      .addCase(dislikeComment.pending, (state, payload) => {})
+      .addCase(dislikeComment.fulfilled, (state, action) => {
+        const index = action.meta.arg.index;
+        state.product.comments[index] = action.payload;
+      })
+      .addCase(addComment.pending, (state, payload) => {
+        state.createCommentLoading = true;
+      })
+      .addCase(addComment.fulfilled, (state, action) => {
+        state.product.comments.push(action.payload);
+        state.createCommentLoading = false;
+      });
   },
 });
 

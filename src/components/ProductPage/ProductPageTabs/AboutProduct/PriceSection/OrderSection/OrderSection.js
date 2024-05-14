@@ -16,6 +16,7 @@ import { productForProductPage } from '../../../../../../redux/productPage/selec
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
+
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
@@ -30,16 +31,16 @@ function OrderSection() {
             <span
               style={{ textDecoration: product.discount ? 'line-through' : '' }}
             >
-              {product.price}
+              {product.price} грн
             </span>
           </StrikePrice>
           {product.discount ? (
-            <SalePrice>{product.discountPrice}</SalePrice>
+            <SalePrice>{product.discountPrice} грн</SalePrice>
           ) : (
             ''
           )}
         </ProductCost>
-        <ButtonBlock />
+        <ButtonBlock id={product._id} />
         <DatePublication />
       </OrderSectionContainer>
     </OrderSectionWrapper>

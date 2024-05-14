@@ -15,6 +15,7 @@ export const theme = {
     bgNavCommon: '#E1E1E1',
     bgNavCommonHover: '#E5E5E5',
     bgActivePaginationList: '#7FD888',
+    colorTextSidebarActive: '#F04438',
     colorTextErrorLink: '#43C550',
     colorPriceDiscant: '#5E5F5F',
     colorSecondText: '#ffffff',

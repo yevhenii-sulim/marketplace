@@ -12,7 +12,12 @@ import { useDispatch } from 'react-redux';
 import { loginWithSocial } from '../../redux/auth/slice';
 import RestorePassword from 'pages/RestorePassword';
 import ErrorPage from 'pages/ErrorPage';
-import Layout from 'components/Layout/Layout';
+import MyOrdersPage from 'pages/UserPage/MyOrdersPage';
+import MyPosterPage from 'pages/UserPage/MyPosterPage';
+import NotificationPages from 'pages/UserPage/NotificationPages';
+import SelectedPage from 'pages/UserPage/SelectedPage';
+import ProfilePage from 'pages/UserPage/ProfilePage';
+import LayoutPage from 'pages/LayoutPage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -29,7 +34,7 @@ export default function App() {
   return (
     <Wrapper>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<LayoutPage />}>
           <Route index element={<HomePage />} />
           <Route path="all" element={<CatalogPage />} />
           <Route path="auth/activate" element={<RestorePassword />} />
@@ -48,7 +53,11 @@ export default function App() {
               </PrivateRoute>
             }
           >
-            <Route path="for_free" element={<CatalogPage />} />
+            <Route path="my_order" element={<MyOrdersPage />} />
+            <Route path="my_poster" element={<MyPosterPage />} />
+            <Route path="notification" element={<NotificationPages />} />
+            <Route path="selected" element={<SelectedPage />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
           <Route
             path="add_product"
