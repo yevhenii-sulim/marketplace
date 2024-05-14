@@ -1,5 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import UserPageComponents from 'components/UserPageComponent/UserPageComponents';
 
 export default function UserPage() {
-  return <Outlet />;
+  return (
+    <UserPageComponents rating={'rating'} nameUser={'nameUser'} imgUser={'#'} />
+  );
 }

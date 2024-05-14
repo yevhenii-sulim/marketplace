@@ -35,10 +35,9 @@ export default function BestChoiceList({ filteredProducts, title }) {
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        step={1}
+        step={setvisibleSlides(width)}
         visibleSlides={setvisibleSlides(width)}
         isIntrinsicHeight={true}
-        dragStep={1}
       >
         <Slider>
           {filteredProducts.map(

@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
-import { getAllProducts, getProduct } from './thunk';
+import { getAllProducts, getProduct } from '../product/thunk';
 
 const handlePending = state => {};
 

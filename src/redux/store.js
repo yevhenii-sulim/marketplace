@@ -18,6 +18,7 @@ import { categoryReducer } from './category/slice';
 import { productReducer } from './product/slice';
 import { productPageReducer } from './productPage/productPageSlice';
 import { errorReducer } from './errorAuth/slice';
+import { orderReducer } from './product/sliceOrder';
 
 const persistConfig = {
   key: 'token',
@@ -27,10 +28,11 @@ const persistConfig = {
 const persistCategory = {
   key: 'category',
   storage,
-  whitelist: ['category'],
+  whitelist: ['category', 'product'],
 };
 
 const rootReducer = combineReducers({
+  product: orderReducer,
   productPage: productPageReducer,
   products: productReducer,
   modalCatalog: modalCatalogReducer,

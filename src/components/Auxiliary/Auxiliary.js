@@ -18,13 +18,13 @@ export default memo(function Auxiliary() {
 
   return (
     <AuxiliaryContainer>
-      <NavLink to="/">
+      <NavLink to="user_page/notification" onClick={onOpen}>
         <ChatBubbleOutlineIcon />
       </NavLink>
-      <NavLink to="/">
+      <NavLink to="user_page/selected" onClick={onOpen}>
         <FavoriteBorderIcon />
       </NavLink>
-      <NavLink to="user_page" onClick={onOpen}>
+      <NavLink to="user_page/profile" onClick={onOpen}>
         <PersonIcon />
       </NavLink>
     </AuxiliaryContainer>

@@ -8,17 +8,19 @@ import {
   User,
   UserName,
 } from './UserPageComponent.styled';
-export default function UserPageHeader() {
+export default function UserPageHeader({ rating, nameUser, imgUser }) {
   return (
     <Header>
       <User>
-        <img src="#" alt="user" />
+        <img src={imgUser} alt="user" />
         <UserName>
-          <Name></Name>
-          <Rating>
-            <StarIcon sx={{ color: '#FFBC10' }} />
-            <RatingText>Рейтинг:{}</RatingText>
-          </Rating>
+          <Name>{nameUser}</Name>
+          {rating && (
+            <Rating>
+              <StarIcon sx={{ color: '#FFBC10' }} />
+              <RatingText>Рейтинг:{rating}</RatingText>
+            </Rating>
+          )}
         </UserName>
       </User>
       <Balance>Баланс:1000 грн</Balance>
