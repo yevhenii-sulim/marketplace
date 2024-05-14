@@ -2,9 +2,10 @@ import React from 'react';
 import CommentItem from './CommentItem/CommentItem';
 import CreateCommentField from './CreateCommentField/CreateCommentField';
 import { useSelector } from 'react-redux';
+import { productForProductPage } from '../../../../../../redux/productPage/selectors';
 
 function Comments() {
-  const product = useSelector(state => state.productPage.product);
+  const product = useSelector(productForProductPage);
 
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);

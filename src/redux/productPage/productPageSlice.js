@@ -9,7 +9,7 @@ const urlProduct = axios.create({
 
 export const fetchProduct = createAsyncThunk(
   'productPage/fetchProduct',
-  async (id, { getState }) => {
+  async id => {
     try {
       const response = await urlProduct.get(`/products/${id}`);
       return response.data;
@@ -21,8 +21,9 @@ export const fetchProduct = createAsyncThunk(
 
 export const likeComment = createAsyncThunk(
   'productPage/likeComment',
-  async ({ commentId, index }) => {
+  async ({ commentId, index }, { getState }) => {
     try {
+      const token = getState().users.token;
       const response = await urlProduct.post(
         '/comment/like',
         {
@@ -30,7 +31,7 @@ export const likeComment = createAsyncThunk(
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -44,8 +45,9 @@ export const likeComment = createAsyncThunk(
 );
 export const dislikeComment = createAsyncThunk(
   'productPage/dislikeComment',
-  async ({ commentId, index }) => {
+  async ({ commentId, index }, { getState }) => {
     try {
+      const token = getState().users.token;
       const response = await urlProduct.post(
         `/comment/dislike`,
         {
@@ -53,7 +55,7 @@ export const dislikeComment = createAsyncThunk(
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -66,8 +68,9 @@ export const dislikeComment = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   'productPage/addComment',
-  async ({ comment, id }) => {
+  async ({ comment, id }, { getState }) => {
     try {
+      const token = getState().users.token;
       const response = await urlProduct.post(
         `/comment`,
         {
@@ -76,7 +79,7 @@ export const addComment = createAsyncThunk(
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -90,6 +93,7 @@ export const addComment = createAsyncThunk(
 const productPageSlice = createSlice({
   name: 'productPage',
   initialState: initialState.productPage,
+
   extraReducers: builder => {
     builder.addCase(fetchProduct.pending, (state, payload) => {
       state.isLoading = true;

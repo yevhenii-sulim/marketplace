@@ -18,14 +18,16 @@ import {
 } from './CommentItem.styled';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   dislikeComment,
   likeComment,
 } from '../../../../../../../redux/productPage/productPageSlice';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { userIdForProductPage } from '../../../../../../../redux/productPage/selectors';
 function CommentItem({ name, body, like, dislike, id, daysPassed, index }) {
   const dispatch = useDispatch();
+  const userId = useSelector(userIdForProductPage);
 
   const handlerLike = (commentId, index) => {
     dispatch(likeComment({ commentId, index }));
@@ -50,9 +52,7 @@ function CommentItem({ name, body, like, dislike, id, daysPassed, index }) {
           <CommentsTextBlock>{body}</CommentsTextBlock>
           <CommentsRating>
             <CommentsRatingThumbUp>
-              <IconLikeWrapper
-                checked={like.indexOf(localStorage.getItem('userId')) !== -1}
-              >
+              <IconLikeWrapper checked={like.indexOf(userId) !== -1}>
                 <ThumbUpOffAltIcon onClick={() => handlerLike(id, index)} />
               </IconLikeWrapper>
               <CommentsRatingThumbQuantity>
@@ -60,9 +60,7 @@ function CommentItem({ name, body, like, dislike, id, daysPassed, index }) {
               </CommentsRatingThumbQuantity>
             </CommentsRatingThumbUp>
             <CommentsRatingThumbDown>
-              <IconDislikeWrapper
-                checked={dislike.indexOf(localStorage.getItem('userId')) !== -1}
-              >
+              <IconDislikeWrapper checked={dislike.indexOf(userId) !== -1}>
                 <ThumbDownOffAltIcon
                   onClick={() => handlerDislike(id, index)}
                 />
