@@ -3,8 +3,8 @@ import { SimilarProductsWrapper } from './SimilarProductList.styled';
 import ButtonAddSimilarProducts from './ButtonAddSimilarProducts/ButtonAddSimilarProducts';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectProduct } from '../../../../redux/product/selector';
-import { getAllProducts } from '../../../../redux/product/thunk';
+import { selectProduct } from './../../../redux/product/selector';
+import { getAllProducts } from './../../../redux/product/thunk';
 
 function SimilarProductList() {
   const productAll = useSelector(selectProduct);
@@ -16,6 +16,7 @@ function SimilarProductList() {
     }
     dispatch(getAllProducts());
   }, [dispatch, productAll]);
+
   return (
     <>
       <SimilarProductsWrapper>
@@ -25,22 +26,22 @@ function SimilarProductList() {
             (
               {
                 title,
-                id,
+                _id,
                 img,
                 price,
                 eco,
                 discount,
                 discountItem,
                 createDate,
-                category,
-                subCategory,
+                engCategory,
+                engSubcategory,
               },
               index
             ) => {
               return (
                 <SimilarProduct
                   key={index}
-                  id={id}
+                  id={_id}
                   title={title}
                   price={price}
                   img={img}
@@ -48,8 +49,8 @@ function SimilarProductList() {
                   discount={discount}
                   createDate={createDate}
                   eco={eco}
-                  category={category}
-                  subCategory={subCategory}
+                  category={engCategory}
+                  subCategory={engSubcategory}
                 />
               );
             }

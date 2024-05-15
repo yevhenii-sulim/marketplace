@@ -1,13 +1,13 @@
 import React from 'react';
-import Slider from './Slider/Slider';
-import DescribeInfo from './DescribeInfo/DescribeInfo';
+import Slider from '../Slider/Slider';
+import DescribeInfo from '../DescribeInfo/DescribeInfo';
 import {
   DescriptionProductHeaderComments,
   DescriptionProductWrapper,
-} from './DescriptionProduct.styled';
-import Comments from './Comments/Comments';
+} from './DescriptionContainerProduct.styled';
+import Comments from '../Comments/Comments';
 
-function DescriptionProduct() {
+function DescriptionContainerProduct() {
   return (
     <DescriptionProductWrapper>
       <Slider />
@@ -20,4 +20,4 @@ function DescriptionProduct() {
   );
 }
 
-export default DescriptionProduct;
+export default DescriptionContainerProduct;

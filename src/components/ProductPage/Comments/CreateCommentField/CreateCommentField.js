@@ -14,7 +14,7 @@ import {
 import { Button } from '@mui/material';
 import { SyncLoader } from 'react-spinners';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment } from '../../../../../../../redux/productPage/productPageSlice';
+import { addComment } from '../../../../redux/productPage/productPageSlice';
 
 function CreateCommentField({ productId }) {
   const dispatch = useDispatch();

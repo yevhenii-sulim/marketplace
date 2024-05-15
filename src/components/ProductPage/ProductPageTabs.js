@@ -3,7 +3,7 @@ import { Box, Tab } from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { TabListStyles } from '../material-styles/productPage-material-styles';
+import { TabListStyles } from './material-styles/productPage-material-styles';
 import AboutProduct from './AboutProduct/AboutProduct';
 import SimilarProductList from './SimilarProducts/SimilarProductList';
 import { SimilarProductsHeader } from './SimilarProducts/SimilarProductList.styled';
