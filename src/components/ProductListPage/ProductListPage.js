@@ -54,13 +54,13 @@ export default function ProductListPage() {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const limit = 12;
+  const limit = 5;
 
   useEffect(() => {
     dispatch(getAllProducts({ page: page, limit: limit }));
   }, [dispatch, page]);
 
-  const totalItemsCount = 1;
+  const totalItemsCount = 5;
 
   const handleSort = sort => {
     setValueSort(sort);
