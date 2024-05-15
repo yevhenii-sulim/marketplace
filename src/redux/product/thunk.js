@@ -15,6 +15,8 @@ export const getAllProducts = createAsyncThunk(
       const data = await publicInstans.get(
         `/products?page=${page}&limit=${limit}`
       );
+      console.log(page, data);
+
       return data.data;
     } catch (error) {
       console.log('error', error);
