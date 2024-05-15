@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import WrapperContentPages from '../WrapperContentPages/WrapperContentPages';
 import { ContainerProductPage } from './BreadcrumbsComponent/BreadcrumbsComponent.styled';
-import ProductPageTabs from './ProductPageTabs/ProductPageTabs';
+import ProductPageTabs from './ProductPageTabs';
 import BreadcrumbsComponent from './BreadcrumbsComponent/BreadcrumbsComponent';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';

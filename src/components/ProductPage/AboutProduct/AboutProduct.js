@@ -1,12 +1,12 @@
 import React from 'react';
 import { AboutProductWrapper } from './AboutProduct.styled';
-import DescriptionProduct from './DescriptionProduct/DescriptionProduct';
-import PriceSection from './PriceSection/PriceSection';
+import DescriptionContainerProduct from '../DescriptionContainerProduct/DescriptionContainerProduct';
+import PriceSection from '../PriceSection/PriceSection';
 
 function AboutProduct() {
   return (
     <AboutProductWrapper>
-      <DescriptionProduct />
+      <DescriptionContainerProduct />
       <PriceSection />
     </AboutProductWrapper>
   );

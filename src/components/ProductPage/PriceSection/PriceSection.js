@@ -1,7 +1,7 @@
 import React from 'react';
-import OrderSection from './OrderSection/OrderSection';
+import OrderSection from '../OrderSection/OrderSection';
 import { PriceSectionWrapper } from './PriceSection.styled';
-import SellerInfo from './SellerInfo/SellerInfo';
+import SellerInfo from '../SellerInfo/SellerInfo';
 
 function PriceSection() {
   return (
