@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 
 function DescribeInfo() {
   const product = useSelector(state => state.productPage.product);
+  console.log(product);
   return (
     <DescribeInfoWrapper>
       <DescribeInfoContainer>
@@ -21,19 +22,19 @@ function DescribeInfo() {
           <DescribeInfoStateItem>
             Стан:{' '}
             <span style={{ fontWeight: 400, marginLeft: '5px' }}>
-              {product.state}
+              {product.parameters.state}
             </span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
             Розмір:{' '}
             <span style={{ fontWeight: 400, marginLeft: '5px' }}>
-              {product.size}
+              {product.parameters.size}
             </span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
             Стан:{' '}
             <span style={{ fontWeight: 400, marginLeft: '5px' }}>
-              {product.state}
+              {product.parameters.state}
             </span>
           </DescribeInfoStateItem>
         </DescribeInfoState>
