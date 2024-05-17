@@ -102,7 +102,7 @@ export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
   if (presentToken) {
     try {
       token.set(presentToken);
-      const data = await privateInstans.get('/auth/refresh');
+      const { data } = await privateInstans.get('/auth/refresh');
       return data;
     } catch (error) {
       console.log(error);
@@ -110,3 +110,16 @@ export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
   }
   return;
 });
+
+export const getUser = createAsyncThunk(
+  'myUser/getUser',
+  async (user, { getState }) => {
+    try {
+      const { data } = await privateInstans.get(`/user/${user}`);
+      // token.set(getState().users.token);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);

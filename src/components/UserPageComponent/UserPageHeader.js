@@ -15,12 +15,10 @@ export default function UserPageHeader({ rating, nameUser, imgUser }) {
         <img src={imgUser} alt="user" />
         <UserName>
           <Name>{nameUser}</Name>
-          {rating && (
-            <Rating>
-              <StarIcon sx={{ color: '#FFBC10' }} />
-              <RatingText>Рейтинг:{rating}</RatingText>
-            </Rating>
-          )}
+          <Rating>
+            <StarIcon sx={{ color: '#FFBC10' }} />
+            <RatingText>Рейтинг: {rating}</RatingText>
+          </Rating>
         </UserName>
       </User>
       <Balance>Баланс:1000 грн</Balance>
