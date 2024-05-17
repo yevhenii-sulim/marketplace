@@ -15,6 +15,7 @@ export const initialState = {
     isLoading: true,
     isRending: true,
     isActivated: false,
+    myUser: null,
     _id: null,
     user: {
       firstName: '',

@@ -14,7 +14,7 @@ import SidebarListComponent from './SidebarListComponent';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/thunk';
 
-export default function UserPageMaine() {
+export default function UserPageMain() {
   const dispatch = useDispatch();
   function onExit() {
     dispatch(logOut());

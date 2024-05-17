@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import PersonIcon from '@mui/icons-material/Person';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { AuxiliaryContainer, NavLink } from './Auxiliary.styled';
 import { selectAuth } from '../../redux/auth/selector';
 import { toggleModalForm } from '../../redux/modalForm/slice';
@@ -18,14 +18,14 @@ export default memo(function Auxiliary() {
 
   return (
     <AuxiliaryContainer>
-      <NavLink to="user_page/notification" onClick={onOpen}>
-        <ChatBubbleOutlineIcon />
-      </NavLink>
       <NavLink to="user_page/selected" onClick={onOpen}>
         <FavoriteBorderIcon />
       </NavLink>
+      <NavLink to="user_page/my_order" onClick={onOpen}>
+        <AddShoppingCartIcon />
+      </NavLink>
       <NavLink to="user_page/profile" onClick={onOpen}>
-        <PersonIcon />
+        <PersonOutlineIcon />
       </NavLink>
     </AuxiliaryContainer>
   );

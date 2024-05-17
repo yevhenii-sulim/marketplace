@@ -55,7 +55,7 @@ function SimilarProduct({
             <img src={img} alt={title} />
           </SimilarProductItemIcon>
           <SimilarProductItemName>{title}</SimilarProductItemName>
-          <SimilarProductItemPrice>
+          <SimilarProductItemPrice $discount={discount}>
             {discount ? (
               <>
                 <SimilarProductItemDiscount>

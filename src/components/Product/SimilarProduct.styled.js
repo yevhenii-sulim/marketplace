@@ -41,18 +41,22 @@ export const SimilarProductItemName = styled.h4`
   line-height: 1.4;
   color: ${({ theme }) => theme.color.colorMainText};
 `;
+export const SimilarProductItemPrice = styled.div`
+  font-weight: 800;
+  font-size: 22px;
+  ${props => console.log(props)}
+  color: ${({ theme, $discount }) =>
+    $discount ? theme.color.colorTextPrice : theme.color.colorMainText};
+`;
+
 export const SimilarProductItemDiscount = styled.p`
-  color: ${({ theme }) => theme.color.colorPriceDiscount};
+  color: ${({ theme }) => theme.color.colorMainText};
   text-decoration: line-through;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
 `;
-export const SimilarProductItemPrice = styled.div`
-  font-weight: 800;
-  font-size: 22px;
-  color: ${({ theme }) => theme.color.colorTextPrice};
-`;
+
 export const SimilarProductItemButtonBlock = styled.div`
   display: flex;
   align-items: center;

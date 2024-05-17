@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
-import { logIn, logOut, signUp, update } from './thunk';
+import { getUser, logIn, logOut, signUp, update } from './thunk';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -24,7 +24,11 @@ const handleLogInFulfilled = (state, { payload }) => {
 };
 
 const handleUpdateFulfilled = (state, { payload }) => {};
+const handleGetUserFulfilled = (state, { payload }) => {
+  console.log(payload);
 
+  state.myUser = payload;
+};
 const handleLogOutFulfilled = state => {
   state.user = {
     firstName: '',
@@ -56,6 +60,7 @@ const userSlice = createSlice({
       .addCase(logOut.fulfilled, handleLogOutFulfilled)
       .addCase(update.pending, handleUpdatePending)
       .addCase(update.fulfilled, handleUpdateFulfilled)
+      .addCase(getUser.fulfilled, handleGetUserFulfilled)
       .addMatcher(isAnyOf(signUp.pending, logIn.pending), handlePending)
       .addMatcher(
         isAnyOf(
