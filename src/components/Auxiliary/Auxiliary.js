@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { AuxiliaryContainer, NavLink } from './Auxiliary.styled';
@@ -22,7 +22,7 @@ export default memo(function Auxiliary() {
         <FavoriteBorderIcon />
       </NavLink>
       <NavLink to="user_page/my_order" onClick={onOpen}>
-        <AddShoppingCartIcon />
+        <ShoppingCartOutlinedIcon />
       </NavLink>
       <NavLink to="user_page/profile" onClick={onOpen}>
         <PersonOutlineIcon />
