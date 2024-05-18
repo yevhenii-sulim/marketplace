@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 
 function DescribeInfo() {
   const product = useSelector(state => state.productPage.product);
-  console.log(product);
+
   return (
     <DescribeInfoWrapper>
       <DescribeInfoContainer>

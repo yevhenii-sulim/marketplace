@@ -12,13 +12,15 @@ import { useSelector } from 'react-redux';
 
 function Slider() {
   const product = useSelector(state => state.productPage.product);
-  console.log();
-  const productPhoto = [
-    { src: product.img, alt: 'headphones' },
-    { src: product.img, alt: 'headphones' },
-    { src: product.img, alt: 'headphones' },
-    { src: product.img, alt: 'headphones' },
-  ];
+  const productPhoto =
+    product.img.length >= 1
+      ? [
+          { src: product.img[0], alt: 'headphones' },
+          { src: product.img[0], alt: 'headphones' },
+          { src: product.img[0], alt: 'headphones' },
+          { src: product.img[0], alt: 'headphones' },
+        ]
+      : product.img;
   const slide = useRef();
   const wrapperSliderBlock = useRef();
 

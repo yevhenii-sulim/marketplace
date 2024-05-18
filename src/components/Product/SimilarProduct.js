@@ -38,7 +38,6 @@ function SimilarProduct({
   subCategory,
 }) {
   const location = useLocation();
-
   function countCharacter(count) {
     return location.pathname.match(/[/]/g).length === count;
   }
