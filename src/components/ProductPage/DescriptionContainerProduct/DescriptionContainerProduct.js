@@ -13,7 +13,7 @@ function DescriptionContainerProduct() {
       <Slider />
       <DescribeInfo />
       <DescriptionProductHeaderComments>
-        Коментарі до оголошення
+        Відгуки до оголошення
       </DescriptionProductHeaderComments>
       <Comments />
     </DescriptionProductWrapper>
