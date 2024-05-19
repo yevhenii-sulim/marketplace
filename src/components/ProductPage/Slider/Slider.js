@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 function Slider() {
   const product = useSelector(state => state.productPage.product);
   const productPhoto =
-    product.img.length >= 1
+    product.img.length <= 1
       ? [
           { src: product.img[0], alt: 'headphones' },
           { src: product.img[0], alt: 'headphones' },
