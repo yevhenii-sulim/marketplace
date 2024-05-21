@@ -1,12 +1,14 @@
-import { Button } from '@mui/material';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from '@mui/material';
 import { ButtonBlockWrapper } from './ButtonBlock.styled';
 
-function ButtonBlock() {
+function ButtonBlock({ sendIdProduct }) {
   return (
     <ButtonBlockWrapper>
       <Button
         variant="contained"
+        onClick={sendIdProduct}
         sx={{
           width: '85%',
           backgroundColor: '#43C550',
@@ -63,3 +65,6 @@ function ButtonBlock() {
 }
 
 export default ButtonBlock;
+ButtonBlock.propTypes = {
+  sendIdProduct: PropTypes.func,
+};

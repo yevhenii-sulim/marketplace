@@ -6,7 +6,7 @@ import FormForgetPass from 'components/FormForgetPass/FormForgetPass';
 export default function AreaForgetPass({ onClose, toggleWind }) {
   return (
     <>
-      <Title>Забув пароль?</Title>
+      <Title>Забули пароль?</Title>
       <FormForgetPass onClose={onClose} />
       <LinkReg type="button" onClick={toggleWind}>
         Я вже зареєстрований

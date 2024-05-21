@@ -1,10 +1,9 @@
+import AddProductComponent from 'components/AddProductComponent/AddProductComponent';
+
 export default function AddProduct() {
   return (
-    <div>
-      Якщо Ви залоговані та знаходитесь на цій сторінці то Ви можете добаваити
-      свій товар. Але ця сторінка ще не побудована, тому Ви не можете добавити
-      свій товар) Заждіть трохи. Ми приносимо свої вибачення за незручності,
-      майте терпіння!!!
-    </div>
+    <>
+      <AddProductComponent />
+    </>
   );
 }

@@ -44,7 +44,6 @@ export const SimilarProductItemName = styled.h4`
 export const SimilarProductItemPrice = styled.div`
   font-weight: 800;
   font-size: 22px;
-  ${props => console.log(props)}
   color: ${({ theme, $discount }) =>
     $discount ? theme.color.colorTextPrice : theme.color.colorMainText};
 `;

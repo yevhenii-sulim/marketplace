@@ -21,11 +21,18 @@ export default function FormForgetPass({ onClose }) {
           dispatch(restorePassword(values));
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, handleChange, setSubmitting }) => (
           <Form>
             <label>
-              Телефон або ел. пошта
-              <Field type="email" name="email" />
+              Введіть ел. пошта
+              <Field
+                type="email"
+                name="email"
+                onChange={e => {
+                  handleChange(e);
+                  setSubmitting(false);
+                }}
+              />
             </label>
             <Button
               type="submit"

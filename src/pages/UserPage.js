@@ -8,7 +8,7 @@ export default function UserPage() {
   const id = useSelector(selectId);
   const user = useSelector(selectMyUser);
   const dispatch = useDispatch();
-  console.log(user);
+
   useEffect(() => {
     if (user !== null) {
       return;
