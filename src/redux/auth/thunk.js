@@ -91,15 +91,6 @@ export const logOut = createAsyncThunk('user/exitUser', async () => {
   }
 });
 
-// export const getUsers = createAsyncThunk('user/getUsers', async addUser => {
-//   try {
-//     const { data } = await publicInstans.get('/user');
-//     console.log(data);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// });
-
 export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
   const storThunk = thunkApi.getState();
 
@@ -116,17 +107,13 @@ export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
   return;
 });
 
-export const getUser = createAsyncThunk(
-  'myUser/getUser',
-  async (user, { getState }) => {
-    try {
-      const { data } = await privateInstans.get(`/user/${user}`);
-      // console.log(data);
+export const getUser = createAsyncThunk('myUser/getUser', async user => {
+  try {
+    const { data } = await privateInstans.get(`/user/${user}`);
+    // console.log(data);
 
-      token.set(getState().users.token);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
+    return data;
+  } catch (error) {
+    console.log(error);
   }
-);
+});
