@@ -12,9 +12,6 @@ import { useSelector } from 'react-redux';
 
 function Slider() {
   const product = useSelector(state => state.productPage.product);
-  console.log(product);
-  console.log(product.img.length <= 1);
-  console.log(product.img);
   const productPhoto =
     product.img.length <= 1
       ? [

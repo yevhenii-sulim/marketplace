@@ -41,17 +41,20 @@ function SimilarProduct({
   function countCharacter(count) {
     return location.pathname.match(/[/]/g).length === count;
   }
-
   return (
     <>
       <SimilarProductItem>
         <Link
           onClick={scrollToByClick}
-          to={countCharacter(2) ? `${id}` : `/${category}/${subCategory}/${id}`}
+          to={
+            countCharacter(2)
+              ? `${id}`
+              : `/${category.en}/${subCategory.en}/${id}`
+          }
         >
           <SimilarProductItemIcon>
             {eco && <EcoSvg />}
-            <img src={img} alt={title} />
+            <img src={img[0]} alt={title} />
           </SimilarProductItemIcon>
           <SimilarProductItemName>{title}</SimilarProductItemName>
           <SimilarProductItemPrice $discount={discount}>
@@ -104,10 +107,11 @@ SimilarProduct.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   price: PropTypes.number,
-  img: PropTypes.string,
+  img: PropTypes.arrayOf(PropTypes.string),
   discountItem: PropTypes.string,
   discount: PropTypes.bool,
   createDate: PropTypes.string,
   eco: PropTypes.bool,
-  category: PropTypes.string,
+  category: PropTypes.objectOf(PropTypes.string),
+  subCategory: PropTypes.objectOf(PropTypes.string),
 };

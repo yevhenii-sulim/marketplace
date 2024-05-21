@@ -25,8 +25,6 @@ const handleLogInFulfilled = (state, { payload }) => {
 
 const handleUpdateFulfilled = (state, { payload }) => {};
 const handleGetUserFulfilled = (state, { payload }) => {
-  console.log(payload);
-
   state.myUser = payload;
 };
 const handleLogOutFulfilled = state => {

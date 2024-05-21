@@ -11,11 +11,18 @@ import {
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ButtonBlock from './ButtonBlock/ButtonBlock';
 import DatePublication from './DatePublication/DatePublication';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { productForProductPage } from '../../../redux/productPage/selectors';
+import { addProduct } from '../../../redux/product/thunk';
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
+  const dispatch = useDispatch();
+  function sendIdProduct() {
+    console.log(product._id);
+
+    dispatch(addProduct(product._id));
+  }
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
@@ -39,7 +46,7 @@ function OrderSection() {
             ''
           )}
         </ProductCost>
-        <ButtonBlock />
+        <ButtonBlock sendIdProduct={sendIdProduct} />
         <DatePublication />
       </OrderSectionContainer>
     </OrderSectionWrapper>

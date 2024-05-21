@@ -98,7 +98,7 @@ export const navigationList = [
   {
     id: 4,
     linkList: 'eco',
-    nameList: 'Еко хендмейд взуття',
+    nameList: 'Взуття з натуральних матеріалів',
     img: '/marketplace/images/catalog/eco.png',
     subCategories: [
       {
@@ -150,7 +150,7 @@ export const navigationList = [
       {
         id: 2,
         link: 'second_hand',
-        nameList: 'revived second hand',
+        nameList: 'Востановленний секонд хэнд',
         img: '#',
       },
     ],
