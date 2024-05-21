@@ -6,9 +6,13 @@ import {
   Discount,
   Field,
   Form,
+  Images,
   socialSingInButton,
 } from './AddProductComponent.styled';
 import FieldComponent from './FieldComponent';
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createProduct } from '../../redux/product/thunk';
 
 const size = [
   'Без розміру',
@@ -30,8 +34,46 @@ const size = [
   'EU 44',
   'EU 45',
 ];
-// const result = new FileReader();
+
 export default function AddProductComponent() {
+  const [component, setComponent] = useState([1]);
+  const inputRef = useRef(null);
+  const [imageBig, setImageBig] = useState([]);
+  const dispatch = useDispatch();
+  function onAddFileByClick(event) {
+    inputRef.current?.click();
+  }
+
+  const convertToBase64 = file => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = error => {
+        reject(error);
+      };
+    });
+  };
+
+  const handleFileUpload = async (event, setFieldValue, value) => {
+    const file = event.currentTarget.files[0];
+    if (file?.size / 1024 / 1024 < 2 && file.type.indexOf('image') === 0) {
+      const base64 = await convertToBase64(file);
+      const img = URL.createObjectURL(file);
+      if (value.length === 0) {
+        setImageBig([img]);
+        setFieldValue('file', [base64]);
+      } else {
+        setImageBig(prev => [...prev, img]);
+        setFieldValue('file', [...value, base64]);
+      }
+    } else {
+      console.error('Розмір зображення повинен бути менше 2 МБ');
+    }
+  };
+
   return (
     <ContainerAddProduct>
       <Formik
@@ -42,27 +84,28 @@ export default function AddProductComponent() {
           eco: false,
           discountPrice: 0,
           category: '',
-          subCategory: 'Сувеніри',
+          subCategory: '',
           state: 'Нове',
           size: 'Без розміру',
           color: '',
-          brand: '',
           describe: '',
           file: [],
         }}
         onSubmit={values => {
+          dispatch(createProduct(values));
           console.log(values);
         }}
       >
         {({
-          isSubmitting,
+          setFieldValue,
           values,
           handleChange,
           setSubmitting,
-          setFieldValue,
+          isSubmitting,
         }) => (
           <Form>
             <FieldComponent
+              required={true}
               name="title"
               type="text"
               label="Назва продукту"
@@ -70,6 +113,7 @@ export default function AddProductComponent() {
               setSubmitting={setSubmitting}
             />
             <FieldComponent
+              required={true}
               name="price"
               type="text"
               label="Ціна продукту"
@@ -100,6 +144,7 @@ export default function AddProductComponent() {
               setSubmitting={setSubmitting}
             />
             <Field
+              required={!values.category}
               as="select"
               name="category"
               onChange={e => {
@@ -123,6 +168,7 @@ export default function AddProductComponent() {
               })}
             </Field>
             <Field
+              required={!values.subCategory}
               as="select"
               name="subCategory"
               disabled={!values.category}
@@ -172,6 +218,7 @@ export default function AddProductComponent() {
               })}
             </Field>
             <FieldComponent
+              // required={}
               name="color"
               type="text"
               label="Колір"
@@ -179,32 +226,62 @@ export default function AddProductComponent() {
               setSubmitting={setSubmitting}
             />
             <FieldComponent
-              name="brand"
-              type="text"
-              label="Бренд"
-              handleChange={handleChange}
-              setSubmitting={setSubmitting}
-            />
-            <FieldComponent
+              as="textarea"
+              required={true}
               name="describe"
               type="text"
               label="Опис товару"
               handleChange={handleChange}
               setSubmitting={setSubmitting}
             />
-            <FieldComponent
-              name="file"
-              type="file"
-              label="Додайте картинку"
-              setFieldValue={setFieldValue}
-              setSubmitting={setSubmitting}
-            />
+
+            <Field name="file">
+              {({ field }) =>
+                component.map((_, index) => {
+                  return (
+                    <Button
+                      key={index}
+                      type="button"
+                      sx={socialSingInButton}
+                      onClick={onAddFileByClick}
+                    >
+                      Додати файл
+                      <input
+                        className="input-file"
+                        type="file"
+                        accept="image/*"
+                        required={true}
+                        ref={inputRef}
+                        onChange={event => {
+                          handleFileUpload(event, setFieldValue, values.file);
+                          event.target.disabled = true;
+                        }}
+                      />
+                    </Button>
+                  );
+                })
+              }
+            </Field>
+            <Images>
+              {imageBig.length !== 0 &&
+                imageBig.map(item => {
+                  return <img src={item} key={item} alt="img" width={100} />;
+                })}
+            </Images>
+
+            <Button
+              type="button"
+              sx={socialSingInButton}
+              onClick={evt => setComponent(prev => [...prev, 1])}
+            >
+              Додати поле для файлу
+            </Button>
             <Button
               type="submit"
-              disabled={isSubmitting}
               sx={socialSingInButton}
+              disabled={isSubmitting}
             >
-              Submit
+              Створити
             </Button>
           </Form>
         )}

@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { theme } from 'utils/theme';
 import { Field as FieldForm, Form as FormContainer } from 'formik';
 
+export const Images = styled.div`
+  display: flex;
+  gap: 24px;
+`;
+
 export const ContainerAddProduct = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,11 +21,20 @@ export const Field = styled(FieldForm)`
   &:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
+  &[type='checkbox'] {
+    height: 50px;
+  }
 `;
 export const Form = styled(FormContainer)`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  textarea {
+    resize: vertical;
+  }
+  .input-file {
+    display: none;
+  }
   label {
     position: relative;
     display: flex;
@@ -57,6 +71,9 @@ export const socialSingInButton = {
   },
   '&:active': {
     boxShadow: 'none',
+  },
+  '&:disabled': {
+    color: 'black',
   },
 };
 export const Discount = styled.div`
