@@ -60,28 +60,23 @@ export const restorePassword = createAsyncThunk(
   }
 );
 
-export const logIn = createAsyncThunk(
-  'user/enterUser',
-  async (user, { dispatch }) => {
-    try {
-      const { data } = await publicInstans.post('/auth/login', user);
-      window.location.reload();
-      if (!data.user.isActivated) {
-        Notiflix.Notify.failure(
-          'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
-        );
-      }
-      token.set(data.backend_tokens.token);
-      dispatch(toggleModalForm(false));
-      return data;
-    } catch (error) {
-      error.response.data.message
-        ? Notiflix.Notify.failure('Неправильний логін або пароль')
-        : Notiflix.Notify.failure(error.message);
-      console.log(error);
+export const logIn = createAsyncThunk('user/enterUser', async user => {
+  try {
+    const { data } = await publicInstans.post('/auth/login', user);
+    if (!data.user.isActivated) {
+      return Notiflix.Notify.failure(
+        'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
+      );
     }
+    token.set(data.backend_tokens.token);
+    window.location.reload();
+    return data;
+  } catch (error) {
+    Notiflix.Notify.failure('Неправильний логін або пароль');
+    // : Notiflix.Notify.failure(error.response.data.message);
+    console.log(error);
   }
-);
+});
 
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
