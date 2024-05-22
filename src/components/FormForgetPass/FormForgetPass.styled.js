@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Field as FieldForm, Form as FormContainer } from 'formik';
+import {
+  Field as FieldForm,
+  Form as FormContainer,
+  ErrorMessage as ErrorForm,
+} from 'formik';
 import { theme } from 'utils/theme';
+
+export const ErrorMessage = styled(ErrorForm)`
+  color: ${({ theme }) => theme.color.colorTextErrorForm};
+`;
 
 export const BoxEye = styled.div`
   position: absolute;

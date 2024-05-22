@@ -8,7 +8,9 @@ import { logIn } from '../../redux/auth/thunk';
 import {
   BoxEye,
   ContainerForm,
+  ErrorMessage,
   Field,
+  FieldPassword,
   Form,
   LinkForget,
   UnView,
@@ -27,6 +29,19 @@ export default function FormAuth({ onClose, openForgetWind }) {
     <ContainerForm>
       <Formik
         initialValues={{ email: '', password: '' }}
+        validateOnChange={false}
+        validateOnBlur={false}
+        validate={values => {
+          const errors = {};
+
+          if (!values.email.trim()) {
+            errors.email = "Обов'язкове поле";
+          }
+          if (!values.password.trim()) {
+            errors.password = "Обов'язкове поле";
+          }
+          return errors;
+        }}
         onSubmit={(values, actions) => {
           dispatch(logIn(values));
           setTimeout(() => onClose(false), 500);
@@ -37,24 +52,23 @@ export default function FormAuth({ onClose, openForgetWind }) {
           <Form>
             <label>
               Електронна пошта
-              <Field
-                type="email"
-                name="email"
-                value={values.email.trim()}
-                required
-              />
+              <Field type="email" name="email" value={values.email.trim()} />
+              <ErrorMessage name="email" component="p" />
             </label>
             <label>
               Пароль
-              {visible ? (
-                <Field type="text" name="password" required />
-              ) : (
-                <Field type="password" name="password" required />
-              )}
-              <BoxEye onClick={onToggleView} type="button">
-                {visible && <UnView></UnView>}
-                <RemoveRedEyeOutlinedIcon />
-              </BoxEye>
+              <FieldPassword>
+                {visible ? (
+                  <Field type="text" name="password" />
+                ) : (
+                  <Field type="password" name="password" />
+                )}
+                <BoxEye onClick={onToggleView} type="button">
+                  {visible && <UnView></UnView>}
+                  <RemoveRedEyeOutlinedIcon />
+                </BoxEye>
+              </FieldPassword>
+              <ErrorMessage name="password" component="p" />
               <LinkForget type="button" onClick={openForgetWind}>
                 Забули пароль?
               </LinkForget>

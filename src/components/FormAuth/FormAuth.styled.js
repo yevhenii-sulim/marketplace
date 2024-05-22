@@ -1,7 +1,16 @@
 import styled from 'styled-components';
-import { Field as FieldForm, Form as FormContainer } from 'formik';
+import {
+  Field as FieldForm,
+  Form as FormContainer,
+  ErrorMessage as ErrorForm,
+} from 'formik';
 import { theme } from 'utils/theme';
-
+export const ErrorMessage = styled(ErrorForm)`
+  color: ${({ theme }) => theme.color.colorTextErrorForm};
+`;
+export const FieldPassword = styled.div`
+  position: relative;
+`;
 export const BoxEye = styled.div`
   position: absolute;
   top: 50%;
