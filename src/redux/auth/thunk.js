@@ -28,6 +28,7 @@ export const signUp = createAsyncThunk(
   async (user, { dispatch }) => {
     try {
       const { data } = await publicInstans.post('/auth/registration', user);
+
       token.set(data.accessJwt);
       dispatch(toggleModalForm(false));
 

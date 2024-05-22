@@ -188,6 +188,7 @@ export default function FormRegister() {
                   <Field
                     type="text"
                     name="password"
+                    value={values.password.trim()}
                     onChange={e => {
                       handleChange(e);
                       setSubmitting(false);
@@ -197,6 +198,7 @@ export default function FormRegister() {
                   <Field
                     type="password"
                     name="password"
+                    value={values.password.trim()}
                     onChange={e => {
                       handleChange(e);
                       setSubmitting(false);
