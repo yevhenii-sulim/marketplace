@@ -7,6 +7,7 @@ import {
   Field,
   Form,
   socialSingInButton,
+  ErrorMessage,
 } from './FormForgetPass.styled';
 import { restorePassword } from '../../redux/auth/thunk';
 
@@ -17,6 +18,16 @@ export default function FormForgetPass({ onClose }) {
     <ContainerForm>
       <Formik
         initialValues={{ email: '' }}
+        validateOnChange={false}
+        validateOnBlur={false}
+        validate={values => {
+          const errors = {};
+
+          if (!values.email.trim()) {
+            errors.email = "Обов'язкове поле";
+          }
+          return errors;
+        }}
         onSubmit={values => {
           dispatch(restorePassword(values));
         }}
@@ -28,13 +39,14 @@ export default function FormForgetPass({ onClose }) {
               <Field
                 type="email"
                 name="email"
-                required
                 onChange={e => {
                   handleChange(e);
                   setSubmitting(false);
                 }}
               />
+              <ErrorMessage name="email" component="p" />
             </label>
+
             <Button
               type="submit"
               disabled={isSubmitting}
