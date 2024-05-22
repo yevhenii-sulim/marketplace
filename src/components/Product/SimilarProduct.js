@@ -41,6 +41,7 @@ function SimilarProduct({
   function countCharacter(count) {
     return location.pathname.match(/[/]/g).length === count;
   }
+
   return (
     <>
       <SimilarProductItem>

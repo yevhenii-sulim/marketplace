@@ -12,15 +12,7 @@ import { useSelector } from 'react-redux';
 
 function Slider() {
   const product = useSelector(state => state.productPage.product);
-  const productPhoto =
-    product.img.length <= 1
-      ? [
-          { src: product.img[0], alt: 'headphones' },
-          { src: product.img[0], alt: 'headphones' },
-          { src: product.img[0], alt: 'headphones' },
-          { src: product.img[0], alt: 'headphones' },
-        ]
-      : product.img;
+
   const slide = useRef();
   const wrapperSliderBlock = useRef();
 
@@ -56,19 +48,27 @@ function Slider() {
 
   return (
     <SliderContainer>
-      <ArrowLeftWrapper onClick={() => scrollPhoto('left')}>
-        <ArrowBackIosNewIcon />
-      </ArrowLeftWrapper>
+      {product.img.length === 1 ? (
+        ''
+      ) : (
+        <ArrowLeftWrapper onClick={() => scrollPhoto('left')}>
+          <ArrowBackIosNewIcon />
+        </ArrowLeftWrapper>
+      )}
       <SlidersWrapper ref={wrapperSliderBlock}>
-        {productPhoto.map((el, index) => (
+        {product.img.map((el, index) => (
           <WrapperSlide key={index} ref={slide}>
             <img src={el} alt={el} width="50%" />
           </WrapperSlide>
         ))}
       </SlidersWrapper>
-      <ArrowRightWrapper onClick={() => scrollPhoto('right')}>
-        <ArrowForwardIosIcon />
-      </ArrowRightWrapper>
+      {product.img.length === 1 ? (
+        ''
+      ) : (
+        <ArrowRightWrapper onClick={() => scrollPhoto('right')}>
+          <ArrowForwardIosIcon />
+        </ArrowRightWrapper>
+      )}
     </SliderContainer>
   );
 }
