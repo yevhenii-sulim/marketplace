@@ -32,7 +32,9 @@ export const signUp = createAsyncThunk(
       token.set(data.accessJwt);
       dispatch(toggleModalForm(false));
 
-      Notiflix.Notify.success('You have successfully registered');
+      Notiflix.Notify.success(
+        'Підтвердіть свою електронну адресу, щоб мати можливість продавати та купувати товари на нашому маркетплейсі'
+      );
       return data;
     } catch (error) {
       dispatch(showError(error.response.data.errors));
@@ -67,7 +69,7 @@ export const logIn = createAsyncThunk(
       window.location.reload();
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(
-          'Your mail is not activated. Please activate your registration using the link you received in your mail'
+          'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
         );
       }
       token.set(data.backend_tokens.token);
