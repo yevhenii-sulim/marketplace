@@ -11,9 +11,6 @@ import {
 import RegisterArea from 'components/RegisterArea/RegisterArea';
 import AuthArea from 'components/AuthArea/AuthArea';
 import AreaForgetPass from 'components/AreaForgetPass/AreaForgetPass';
-import { useSelector } from 'react-redux';
-import { selectError } from '../../redux/errorAuth/select';
-import AuthError from './AuthError';
 
 export default function ModalForm({ onClose }) {
   const [auth, setAuth] = useState(true);
@@ -36,7 +33,6 @@ export default function ModalForm({ onClose }) {
     setForgetPass(true);
     setRegister(false);
   }
-  const errorAuth = useSelector(selectError);
   useEffect(() => {
     function onCloseByEsc(evt) {
       if (evt.code === 'Escape') {
@@ -73,7 +69,6 @@ export default function ModalForm({ onClose }) {
           {forgetPass && (
             <AreaForgetPass onClose={onClose} toggleWind={openWindInAuth} />
           )}
-          {errorAuth && <AuthError errorAuth={errorAuth} />}
         </Box>
       </WrapperModal>
     </Backdrop>

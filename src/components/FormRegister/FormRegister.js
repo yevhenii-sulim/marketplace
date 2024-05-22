@@ -35,6 +35,8 @@ export default function FormRegister() {
           email: '',
           password: '',
         }}
+        validateOnChange={false}
+        validateOnBlur={false}
         validate={values => {
           const errors = {};
 

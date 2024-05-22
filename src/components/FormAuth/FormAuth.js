@@ -37,14 +37,19 @@ export default function FormAuth({ onClose, openForgetWind }) {
           <Form>
             <label>
               Електронна пошта
-              <Field type="email" name="email" value={values.email.trim()} />
+              <Field
+                type="email"
+                name="email"
+                value={values.email.trim()}
+                required
+              />
             </label>
             <label>
               Пароль
               {visible ? (
-                <Field type="text" name="password" />
+                <Field type="text" name="password" required />
               ) : (
-                <Field type="password" name="password" />
+                <Field type="password" name="password" required />
               )}
               <BoxEye onClick={onToggleView} type="button">
                 {visible && <UnView></UnView>}
