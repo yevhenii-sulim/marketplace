@@ -33,8 +33,8 @@ function SimilarProductList() {
                 discount,
                 discountItem,
                 createDate,
-                engCategory,
-                engSubcategory,
+                category,
+                subCategory,
               },
               index
             ) => {
@@ -49,8 +49,8 @@ function SimilarProductList() {
                   discount={discount}
                   createDate={createDate}
                   eco={eco}
-                  category={engCategory}
-                  subCategory={engSubcategory}
+                  category={category}
+                  subCategory={subCategory}
                 />
               );
             }
