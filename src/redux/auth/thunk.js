@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import { toggleModalForm } from '../modalForm/slice';
-import { hideError, showError } from '../errorAuth/slice';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -37,8 +36,7 @@ export const signUp = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      dispatch(showError(error.response.data.errors));
-      setTimeout(() => dispatch(hideError()), 3000);
+      Notiflix.Notify.failure(error.response.data.message);
     }
   }
 );

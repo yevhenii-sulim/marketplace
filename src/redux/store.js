@@ -17,7 +17,6 @@ import { modalFormReducer } from './modalForm/slice';
 import { categoryReducer } from './category/slice';
 import { productReducer } from './product/slice';
 import { productPageReducer } from './productPage/productPageSlice';
-import { errorReducer } from './errorAuth/slice';
 import { orderReducer } from './product/sliceOrder';
 
 const persistConfig = {
@@ -39,7 +38,6 @@ const rootReducer = combineReducers({
   modalForm: modalFormReducer,
   category: categoryReducer,
   users: persistReducer(persistConfig, userAuthReducer),
-  error: errorReducer,
 });
 
 const persistedReducer = persistReducer(persistCategory, rootReducer);

@@ -24,10 +24,11 @@ export default function FormForgetPass({ onClose }) {
         {({ isSubmitting, handleChange, setSubmitting }) => (
           <Form>
             <label>
-              Введіть ел. пошта
+              Введіть ел. пошту
               <Field
                 type="email"
                 name="email"
+                required
                 onChange={e => {
                   handleChange(e);
                   setSubmitting(false);
