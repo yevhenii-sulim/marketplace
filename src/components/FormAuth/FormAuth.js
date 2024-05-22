@@ -44,7 +44,6 @@ export default function FormAuth({ onClose, openForgetWind }) {
         }}
         onSubmit={(values, actions) => {
           dispatch(logIn(values));
-          setTimeout(() => onClose(false), 500);
           actions.resetForm();
         }}
       >
