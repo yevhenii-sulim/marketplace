@@ -109,10 +109,10 @@ SimilarProduct.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
   img: PropTypes.arrayOf(PropTypes.string),
-  discountItem: PropTypes.string,
+  discountItem: PropTypes.number,
   discount: PropTypes.bool,
   createDate: PropTypes.string,
   eco: PropTypes.bool,
-  category: PropTypes.objectOf(PropTypes.string),
-  subCategory: PropTypes.objectOf(PropTypes.string),
+  category: PropTypes.object.isRequired,
+  subCategory: PropTypes.object.isRequired,
 };

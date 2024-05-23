@@ -31,7 +31,7 @@ function SimilarProductList() {
                 price,
                 eco,
                 discount,
-                discountItem,
+                discountPrice,
                 createDate,
                 category,
                 subCategory,
@@ -45,7 +45,7 @@ function SimilarProductList() {
                   title={title}
                   price={price}
                   img={img}
-                  discountItem={discountItem}
+                  discountItem={discountPrice}
                   discount={discount}
                   createDate={createDate}
                   eco={eco}
