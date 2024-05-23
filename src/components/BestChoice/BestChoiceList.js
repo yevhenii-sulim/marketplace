@@ -28,7 +28,6 @@ export default function BestChoiceList({ filteredProducts, title }) {
     }
     return 1;
   };
-
   return (
     <ContainerSlide>
       <TitleCategory>{title}</TitleCategory>
@@ -48,7 +47,7 @@ export default function BestChoiceList({ filteredProducts, title }) {
                 _id,
                 img,
                 price,
-                discountItem,
+                discountPrice,
                 createDate,
                 discount,
                 eco,
@@ -60,15 +59,15 @@ export default function BestChoiceList({ filteredProducts, title }) {
                 <Slide index={index} key={_id}>
                   <SimilarProduct
                     id={_id}
-                    subCategory={subCategory}
+                    subCategory={{ ...subCategory }}
                     title={title}
                     price={price}
                     img={img}
-                    discountItem={discountItem}
+                    discountItem={discountPrice}
                     discount={discount}
                     createDate={createDate}
                     eco={eco}
-                    category={category}
+                    category={{ ...category }}
                   />
                 </Slide>
               );
