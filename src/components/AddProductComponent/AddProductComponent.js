@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, useFormikContext } from 'formik';
 import { Button } from '@mui/material';
 import { navigationList } from 'data/navListData';
 import {
@@ -36,43 +36,70 @@ const size = [
 ];
 
 export default function AddProductComponent() {
+  // const convertToBase64 = file => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+  //     fileReader.onerror = error => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
+
+  // const handleFileUpload = async (event, setFieldValue, value) => {
+  //   const file = event.currentTarget.files[0];
+  //   setFieldValue('image', file);
+  //   if (file.type.split('/')[0] === 'image') {
+  //     const img = URL.createObjectURL(file);
+  //     if (value.length === 0) {
+  //       setImageBig([img]);
+  //       setFieldValue('file', [base64]);
+  //     } else {
+  //       setImageBig(prev => [...prev, img]);
+  //       setFieldValue('file', [...value, base64]);
+  //     }
+  //   } else {
+  //     console.error('Розмір зображення повинен бути менше 2 МБ');
+  //   }
+  // };
+
   const [component, setComponent] = useState([1]);
-  const inputRef = useRef(null);
   const [imageBig, setImageBig] = useState([]);
+  const inputRef = useRef(null);
+  const { setFieldValue } = useFormikContext();
+
   const dispatch = useDispatch();
-  function onAddFileByClick(event) {
+
+  function onAddFileByClick() {
     inputRef.current?.click();
   }
 
-  const convertToBase64 = file => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = error => {
-        reject(error);
-      };
-    });
-  };
-
-  const handleFileUpload = async (event, setFieldValue, value) => {
+  const handleFileUpload = async (event, value) => {
     const file = event.currentTarget.files[0];
-    if (file?.size / 1024 / 1024 < 2 && file.type.indexOf('image') === 0) {
-      const base64 = await convertToBase64(file);
-      const img = URL.createObjectURL(file);
-      if (value.length === 0) {
-        setImageBig([img]);
-        setFieldValue('file', [base64]);
-      } else {
-        setImageBig(prev => [...prev, img]);
-        setFieldValue('file', [...value, base64]);
-      }
+    if (value.length === 0) {
+      setFieldValue('file', [file]);
     } else {
-      console.error('Розмір зображення повинен бути менше 2 МБ');
+      setFieldValue('file', [...value, file]);
+    }
+    setFieldValue('image', file);
+    if (file.type.split('/')[0] !== 'image') return;
+    const img = URL.createObjectURL(file);
+    if (value.length === 0) {
+      setImageBig([img]);
+    } else {
+      setImageBig(prev => [...prev, img]);
     }
   };
+
+  // const handleDeleteIconClick = () => {
+  //   setImageBig([]);
+  //   setFieldValue('image', null);
+  //   const input = inputRef.current;
+  //   if (input) input.value = '';
+  // };
 
   return (
     <ContainerAddProduct>
@@ -92,8 +119,53 @@ export default function AddProductComponent() {
           file: [],
         }}
         onSubmit={values => {
-          dispatch(createProduct(values));
-          console.log(values);
+          const formData = new FormData();
+          const {
+            title,
+            price,
+            discount,
+            eco,
+            discountPrice,
+            category,
+            subCategory,
+            state,
+            size,
+            color,
+            describe,
+            file,
+          } = values;
+          if (
+            title &&
+            price &&
+            discount &&
+            eco &&
+            discountPrice &&
+            category &&
+            subCategory &&
+            state &&
+            size &&
+            color &&
+            describe &&
+            file
+          ) {
+            formData.append('title', title);
+            formData.append('price', price);
+            formData.append('discount', discount);
+            formData.append('eco', eco);
+            formData.append('discountPrice', discountPrice);
+            formData.append('category', category);
+            formData.append('subCategory', subCategory);
+            formData.append('state', state);
+            formData.append('size', size);
+            formData.append('color', color);
+            formData.append('describe', describe);
+            file.forEach((image, index) => {
+              const blob = new Blob([image.buffer], { type: 'image/*' });
+
+              formData.append('file', blob);
+            });
+          }
+          dispatch(createProduct(formData));
         }}
       >
         {({
@@ -253,7 +325,7 @@ export default function AddProductComponent() {
                         required={true}
                         ref={inputRef}
                         onChange={event => {
-                          handleFileUpload(event, setFieldValue, values.file);
+                          handleFileUpload(event, values.file);
                           event.target.disabled = true;
                         }}
                       />

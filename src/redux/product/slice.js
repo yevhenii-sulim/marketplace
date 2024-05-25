@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
-import { addProduct, getAllProducts, getProduct } from '../product/thunk';
+import { getAllProducts, getProduct } from '../product/thunk';
 
 const handlePending = state => {};
 
@@ -16,23 +16,15 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder
       .addMatcher(
-        isAnyOf(getAllProducts.pending, getProduct.pending, addProduct.pending),
+        isAnyOf(getAllProducts.pending, getProduct.pending),
         handlePending
       )
       .addMatcher(
-        isAnyOf(
-          getAllProducts.fulfilled,
-          getProduct.fulfilled,
-          addProduct.fulfilled
-        ),
+        isAnyOf(getAllProducts.fulfilled, getProduct.fulfilled),
         handleFulfilled
       )
       .addMatcher(
-        isAnyOf(
-          getAllProducts.rejected,
-          getProduct.rejected,
-          addProduct.rejected
-        ),
+        isAnyOf(getAllProducts.rejected, getProduct.rejected),
         handleRejected
       );
   },

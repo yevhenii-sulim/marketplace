@@ -12,7 +12,6 @@ export const fetchProduct = createAsyncThunk(
   async id => {
     try {
       const response = await urlProduct.get(`/products/${id}`);
-
       return response.data;
     } catch (error) {
       console.log(error);

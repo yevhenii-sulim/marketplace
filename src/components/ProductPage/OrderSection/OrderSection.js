@@ -13,15 +13,21 @@ import ButtonBlock from './ButtonBlock/ButtonBlock';
 import DatePublication from './DatePublication/DatePublication';
 import { useDispatch, useSelector } from 'react-redux';
 import { productForProductPage } from '../../../redux/productPage/selectors';
-import { addProduct } from '../../../redux/product/thunk';
+import { addProduct } from '../../../redux/basket/slice';
+import { nanoid } from 'nanoid';
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
   const dispatch = useDispatch();
   function sendIdProduct() {
-    console.log(product._id);
-
-    dispatch(addProduct(product._id));
+    const productAdded = {
+      id: nanoid(),
+      title: product.title,
+      price: product.price,
+      img: product.img[0],
+      count: 1,
+    };
+    dispatch(addProduct(productAdded));
   }
   return (
     <OrderSectionWrapper>

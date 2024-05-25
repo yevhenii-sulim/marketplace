@@ -16,6 +16,7 @@ function SimilarProductList() {
     }
     dispatch(getAllProducts());
   }, [dispatch, productAll]);
+  console.log('productAll', productAll);
 
   return (
     <>
