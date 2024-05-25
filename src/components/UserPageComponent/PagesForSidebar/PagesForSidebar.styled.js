@@ -20,3 +20,14 @@ export const Link = styled(Location)`
   border-radius: 8px;
   padding: 4px 10px;
 `;
+
+export const List = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: space-between;
+`;
+export const Count = styled.div`
+  display: flex;
+  gap: 14px;
+`;

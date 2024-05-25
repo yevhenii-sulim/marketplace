@@ -40,7 +40,7 @@ export default function BestChoiceList({ filteredProducts, title }) {
         isIntrinsicHeight={true}
       >
         <Slider>
-          {filteredProducts.map(
+          {filteredProducts?.map(
             (
               {
                 title,

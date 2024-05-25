@@ -1,6 +1,6 @@
 export const initialState = {
   product: [],
-  order: [],
+  basket: [],
   openCatalog: false,
   openFormModal: false,
   categoryProduct: '',

@@ -27,25 +27,21 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
   }
 });
 
-export const addProduct = createAsyncThunk('products/addProduct', async id => {
-  try {
-    const data = await axios.patch(`/basket/${id}`);
-    console.log('data', data);
-    return data;
-  } catch (error) {
-    Notiflix.Notify.failure('Необхідно авторизуватися', {
-      timeout: 6000,
-    });
-    console.log('error', error);
-  }
-});
 export const createProduct = createAsyncThunk(
   'products/createProduct',
-  async product => {
-    console.log('first');
-
+  async (product, { getState }) => {
     try {
-      const data = await axios.post(`/products/create`, product);
+      const data = await axios.post(
+        `/products/create`,
+        product,
+
+        {
+          headers: {
+            Authorization: `Bearer ${getState().users.token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
       console.log('data', data);
       return data;
     } catch (error) {

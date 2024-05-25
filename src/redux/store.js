@@ -17,30 +17,30 @@ import { modalFormReducer } from './modalForm/slice';
 import { categoryReducer } from './category/slice';
 import { productReducer } from './product/slice';
 import { productPageReducer } from './productPage/productPageSlice';
-import { orderReducer } from './product/sliceOrder';
+import { reducerBasket } from './basket/slice';
 
-const persistConfig = {
+const persistUser = {
   key: 'token',
   storage,
   whitelist: ['token', 'isActivated', '_id', 'user'],
 };
-const persistCategory = {
+const persistAllStore = {
   key: 'category',
   storage,
-  whitelist: ['category', 'product'],
+  whitelist: ['category', 'product', 'basket'],
 };
 
 const rootReducer = combineReducers({
-  product: orderReducer,
   productPage: productPageReducer,
   products: productReducer,
   modalCatalog: modalCatalogReducer,
   modalForm: modalFormReducer,
   category: categoryReducer,
-  users: persistReducer(persistConfig, userAuthReducer),
+  users: persistReducer(persistUser, userAuthReducer),
+  basket: reducerBasket,
 });
 
-const persistedReducer = persistReducer(persistCategory, rootReducer);
+const persistedReducer = persistReducer(persistAllStore, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
