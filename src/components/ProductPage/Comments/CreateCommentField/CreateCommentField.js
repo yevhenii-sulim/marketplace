@@ -16,20 +16,21 @@ import { SyncLoader } from 'react-spinners';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from '../../../../redux/productPage/productPageSlice';
 
-function CreateCommentField({ productId }) {
-  const dispatch = useDispatch();
-  const [newComment, setNewComment] = useState('');
+function CreateCommentField({ productId, parent, parentIndex }) {
   const createCommentLoading = useSelector(
     state => state.productPage.createCommentLoading
   );
+  const dispatch = useDispatch();
+  const [newComment, setNewComment] = useState('');
   const [showValidationComment, setShowValidationComment] = useState(false);
   const validationComment = comment => {
     return comment && comment.length >= 4;
   };
-  const addNewComment = async (comment, id) => {
+  const addNewComment = async (parent, comment, id, parentIndex) => {
     if (validationComment(comment)) {
       setShowValidationComment(false);
-      dispatch(addComment({ comment, id }));
+
+      dispatch(addComment({ parent, comment, id, parentIndex }));
       setNewComment('');
     } else {
       setShowValidationComment(true);
@@ -98,7 +99,9 @@ function CreateCommentField({ productId }) {
                   backgroundColor: '#43C550',
                 },
               }}
-              onClick={() => addNewComment(newComment, productId)}
+              onClick={() =>
+                addNewComment(parent, newComment, productId, parentIndex)
+              }
             >
               Коментувати
             </Button>

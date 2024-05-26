@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const CommentsWrapper = styled.section`
-  width: 100%;
+  width: ${({ $isNested }) => ($isNested ? '82%' : '100%')};
   border-radius: 12px;
-  margin-top: 24px;
+  margin: ${({ $isNested }) =>
+    $isNested ? '24px auto 0 100px' : '24px 0 0 0'};
 `;
 export const CommentsContainer = styled.article`
   display: flex;
@@ -37,6 +38,7 @@ export const CommentsDataBlock = styled.span`
   margin-left: 8px;
 `;
 export const CommentsTextBlock = styled.p`
+  width: 98%;
   font-weight: 400;
   font-size: 18px;
   margin-top: 4px;

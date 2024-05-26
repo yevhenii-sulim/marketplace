@@ -25,7 +25,24 @@ import {
 } from '../../../../redux/productPage/productPageSlice';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { userIdForProductPage } from '../../../../redux/productPage/selectors';
-function CommentItem({ name, body, like, dislike, id, daysPassed, index }) {
+import CreateCommentField from '../CreateCommentField/CreateCommentField';
+
+function CommentItem({
+  name,
+  body,
+  like,
+  dislike,
+  id,
+  daysPassed,
+  index,
+  isNested,
+  product,
+  comments = [],
+  commentId,
+  parentIndex,
+  parent,
+  setCommentId,
+}) {
   const dispatch = useDispatch();
   const userId = useSelector(userIdForProductPage);
 
@@ -37,43 +54,81 @@ function CommentItem({ name, body, like, dislike, id, daysPassed, index }) {
     dispatch(dislikeComment({ commentId, index }));
   };
 
+  const toggleCommentForm = id => {
+    if (id === commentId) {
+      setCommentId('');
+    } else {
+      setCommentId(id);
+    }
+  };
+
   return (
-    <CommentsWrapper>
-      <CommentsContainer>
-        <CommentsIconBlock></CommentsIconBlock>
-        <CommentsContentBlock>
-          <CommentsNameAndDataBlock>
-            {name}
-            <CommentsDataBlock>{daysPassed} тому</CommentsDataBlock>
-            <DotsWrapper>
-              <MoreVertIcon />
-            </DotsWrapper>
-          </CommentsNameAndDataBlock>
-          <CommentsTextBlock>{body}</CommentsTextBlock>
-          <CommentsRating>
-            <CommentsRatingThumbUp>
-              <IconLikeWrapper checked={like.indexOf(userId) !== -1}>
-                <ThumbUpOffAltIcon onClick={() => handlerLike(id, index)} />
-              </IconLikeWrapper>
-              <CommentsRatingThumbQuantity>
-                {like.length}
-              </CommentsRatingThumbQuantity>
-            </CommentsRatingThumbUp>
-            <CommentsRatingThumbDown>
-              <IconDislikeWrapper checked={dislike.indexOf(userId) !== -1}>
-                <ThumbDownOffAltIcon
-                  onClick={() => handlerDislike(id, index)}
-                />
-              </IconDislikeWrapper>
-              <CommentsRatingThumbQuantity>
-                {dislike.length}
-              </CommentsRatingThumbQuantity>
-            </CommentsRatingThumbDown>
-            <CommentsAnswer>Відповісти</CommentsAnswer>
-          </CommentsRating>
-        </CommentsContentBlock>
-      </CommentsContainer>
-    </CommentsWrapper>
+    <>
+      <CommentsWrapper $isNested={isNested}>
+        <CommentsContainer>
+          <CommentsIconBlock></CommentsIconBlock>
+          <CommentsContentBlock>
+            <CommentsNameAndDataBlock>
+              {name}
+              <CommentsDataBlock>{daysPassed} тому</CommentsDataBlock>
+              <DotsWrapper>
+                <MoreVertIcon />
+              </DotsWrapper>
+            </CommentsNameAndDataBlock>
+            <CommentsTextBlock>{body}</CommentsTextBlock>
+            <CommentsRating>
+              <CommentsRatingThumbUp>
+                <IconLikeWrapper checked={like.indexOf(userId) !== -1}>
+                  <ThumbUpOffAltIcon onClick={() => handlerLike(id, index)} />
+                </IconLikeWrapper>
+                <CommentsRatingThumbQuantity>
+                  {like.length}
+                </CommentsRatingThumbQuantity>
+              </CommentsRatingThumbUp>
+              <CommentsRatingThumbDown>
+                <IconDislikeWrapper checked={dislike.indexOf(userId) !== -1}>
+                  <ThumbDownOffAltIcon
+                    onClick={() => handlerDislike(id, index)}
+                  />
+                </IconDislikeWrapper>
+                <CommentsRatingThumbQuantity>
+                  {dislike.length}
+                </CommentsRatingThumbQuantity>
+              </CommentsRatingThumbDown>
+              <CommentsAnswer onClick={() => toggleCommentForm(id)}>
+                Відповісти
+              </CommentsAnswer>
+            </CommentsRating>
+          </CommentsContentBlock>
+        </CommentsContainer>
+        {id === commentId ? (
+          <CreateCommentField
+            productId={product}
+            parent={parent}
+            parentIndex={parentIndex}
+          />
+        ) : null}
+      </CommentsWrapper>
+      {comments.length > 0 &&
+        comments.map((comment, idx) => (
+          <CommentItem
+            key={idx}
+            name={comment.author.firstName}
+            body={comment.body}
+            like={comment.like}
+            dislike={comment.dislike}
+            id={comment._id}
+            daysPassed={comment.daysPassed}
+            index={idx}
+            isNested={true}
+            comments={comment.comments}
+            product={comment.product}
+            commentId={commentId}
+            parent={comment.parent !== null ? comment.parent : null}
+            setCommentId={setCommentId}
+          />
+        ))}
+    </>
   );
 }
 
