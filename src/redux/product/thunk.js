@@ -10,6 +10,7 @@ export const getAllProducts = createAsyncThunk(
   async ({ page, limit }) => {
     try {
       const data = await axios.get(`/products?page=${page}&limit=${limit}`);
+      console.log(data);
 
       return data.data;
     } catch (error) {
@@ -31,17 +32,12 @@ export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (product, { getState }) => {
     try {
-      const data = await axios.post(
-        `/products/create`,
-        product,
-
-        {
-          headers: {
-            Authorization: `Bearer ${getState().users.token}`,
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
+      const data = await axios.post(`/products/create`, product, {
+        headers: {
+          Authorization: `Bearer ${getState().users.token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       console.log('data', data);
       return data;
     } catch (error) {

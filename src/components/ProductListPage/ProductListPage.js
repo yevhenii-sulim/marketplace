@@ -60,7 +60,7 @@ export default function ProductListPage() {
     dispatch(getAllProducts({ page: page, limit: limit }));
   }, [dispatch, page]);
 
-  const totalItemsCount = 5;
+  const totalItemsCount = 100;
 
   const handleSort = sort => {
     setValueSort(sort);

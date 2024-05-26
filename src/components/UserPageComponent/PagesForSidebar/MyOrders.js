@@ -8,7 +8,7 @@ import {
   List,
 } from './PagesForSidebar.styled';
 import { selectBasket } from '../../../redux/basket/select';
-import { changeCount } from '../../../redux/basket/slice';
+import { changeCount, deleteProduct } from '../../../redux/basket/slice';
 
 export default function MyOrders() {
   const basket = useSelector(selectBasket);
@@ -21,6 +21,9 @@ export default function MyOrders() {
   const removeCount = (payload, count) => {
     if (count <= 0) return;
     dispatch(changeCount(payload));
+  };
+  const deleteFromBasket = id => {
+    dispatch(deleteProduct(id));
   };
   return (
     <ContainerOrders>
@@ -36,6 +39,9 @@ export default function MyOrders() {
             total += price;
             return (
               <List key={id}>
+                <button type="button" onClick={() => deleteFromBasket(id)}>
+                  delete
+                </button>
                 <img src={img} alt={title} />
                 <span>{title}</span>
                 <Count>
