@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CommentItem from './CommentItem/CommentItem';
 import CreateCommentField from './CreateCommentField/CreateCommentField';
 import { useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { productForProductPage } from '../../../redux/productPage/selectors';
 
 function Comments() {
   const product = useSelector(productForProductPage);
+  const [commentId, setCommentId] = useState('');
 
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
@@ -64,13 +65,22 @@ function Comments() {
       }
     }
   }
+  const processComments = comments => {
+    return comments.map(comment => ({
+      ...comment,
+      daysPassed: calculateDate(comment.createDate),
+      comments: comment.comments ? processComments(comment.comments) : [],
+    }));
+  };
+
+  const processedComments = processComments(product.comments || []);
 
   return (
     <>
       <CreateCommentField productId={product._id} />
 
-      {product.comments.length > 0 &&
-        product.comments.map((el, index) => (
+      {processedComments.length > 0 &&
+        processedComments.map((el, index) => (
           <CommentItem
             key={index}
             name={el.author.firstName}
@@ -78,8 +88,14 @@ function Comments() {
             like={el.like}
             dislike={el.dislike}
             id={el._id}
-            daysPassed={calculateDate(el.createDate)}
-            index={index}
+            daysPassed={el.daysPassed}
+            comments={el.comments}
+            isNested={false}
+            product={el.product}
+            commentId={commentId}
+            parentIndex={index}
+            parent={el._id}
+            setCommentId={setCommentId}
           />
         ))}
     </>
