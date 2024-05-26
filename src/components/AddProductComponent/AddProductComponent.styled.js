@@ -80,3 +80,12 @@ export const Discount = styled.div`
   display: flex;
   gap: 12px;
 `;
+// function color(sign) {
+//   console.log(sign);
+
+//   if (typeof sign === 'string') {
+//     return `${sign}`;
+//   }
+
+//   return `linear-gradient(${sign[0]}, ${sign[1]})`;
+// }

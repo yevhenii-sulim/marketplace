@@ -8,7 +8,9 @@ const sliceBasket = createSlice({
     addProduct(state, { payload }) {
       state.push(payload);
     },
-    deleteProduct() {},
+    deleteProduct(state, { payload }) {
+      return state.filter(({ id }) => id !== payload);
+    },
     changeCount(state, { payload }) {
       return state.reduce((cum, item) => {
         item.id === payload.id
