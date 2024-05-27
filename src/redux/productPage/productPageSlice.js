@@ -69,12 +69,13 @@ export const dislikeComment = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   'productPage/addComment',
-  async ({ comment, id }, { getState }) => {
+  async ({ parent, comment, id, parentIndex }, { getState }) => {
     try {
       const token = getState().users.token;
-      const response = await urlProduct.post(
+      const response = await axios.post(
         `/comment`,
         {
+          parent,
           body: comment,
           product: id,
         },
@@ -84,7 +85,7 @@ export const addComment = createAsyncThunk(
           },
         }
       );
-      return response.data;
+      return { ...response.data, parentIndex };
     } catch (error) {
       console.log(error);
     }
@@ -119,7 +120,13 @@ const productPageSlice = createSlice({
         state.createCommentLoading = true;
       })
       .addCase(addComment.fulfilled, (state, action) => {
-        state.product.comments.push(action.payload);
+        const { parentIndex, ...newComment } = action.payload;
+        console.log(newComment);
+        if (!newComment.parent) {
+          state.product.comments.push(newComment);
+        } else {
+          state.product.comments[parentIndex].comments.push(newComment);
+        }
         state.createCommentLoading = false;
       });
   },
