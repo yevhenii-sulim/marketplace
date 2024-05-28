@@ -20,19 +20,25 @@ export default memo(function Auxiliary() {
 
   return (
     <AuxiliaryContainer>
-      <NavLink to="user_page/selected" onClick={onOpen}>
+      <NavLink to="user_page/selected" onClick={onOpen} state={'Обране'}>
         <FavoriteBorderIcon />
       </NavLink>
-      <NavLink to="user_page/my_order" onClick={onOpen}>
-        <TotalProduct>
-          {basket.reduce((cum, item) => {
-            cum += item.count;
-            return cum;
-          }, 0)}
-        </TotalProduct>
+      <NavLink
+        to="user_page/my_order"
+        onClick={onOpen}
+        state={'Мої замовлення'}
+      >
+        {basket.length !== 0 && (
+          <TotalProduct>
+            {basket.reduce((cum, item) => {
+              cum += item.count;
+              return cum;
+            }, 0)}
+          </TotalProduct>
+        )}
         <ShoppingCartOutlinedIcon />
       </NavLink>
-      <NavLink to="user_page/profile" onClick={onOpen}>
+      <NavLink to="user_page/profile" onClick={onOpen} state={'Профіль'}>
         <PersonOutlineIcon />
       </NavLink>
     </AuxiliaryContainer>

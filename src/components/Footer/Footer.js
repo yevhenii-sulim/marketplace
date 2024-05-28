@@ -1,49 +1,34 @@
 import Logo from 'SvgComponents/LogoSVG/Logo';
-import { team } from 'data/team';
 import {
   About,
   AboutContent,
-  ContactList,
   Container,
   FooterContainer,
-  TitleContacts,
   LogoContainer,
-  TitleAbout,
+  Confederacy,
+  Sign,
+  ContainerFooter,
 } from './Footer.styled';
-import ContactComponent from 'components/ContactComponent/ContactComponent';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
     <FooterContainer>
       <Container>
-        <About>
-          <LogoContainer>
-            <Logo fill="#000000" />
-          </LogoContainer>
-          <AboutContent>
-            <TitleAbout>Про нас</TitleAbout>
-            <p>
-              Це командний Pet-проєкт, що ставить за ціль продемонструвати
-              технічні навички, командність та софт скіли розподіленої команди
-              молодих спеціалістів сфери розробки ІТ продуктів.
-            </p>
-          </AboutContent>
-        </About>
-        <div>
-          <TitleContacts>Наші контакти</TitleContacts>
-          <ContactList>
-            {team.map(({ id, name, spec, link }) => {
-              return (
-                <ContactComponent
-                  key={id}
-                  nameDev={name}
-                  spec={spec}
-                  link={link}
-                />
-              );
-            })}
-          </ContactList>
-        </div>
+        <ContainerFooter>
+          <About>
+            <LogoContainer>
+              <Logo fill="#000000" />
+            </LogoContainer>
+            <AboutContent>Сервіс де продати і купити може кожен!</AboutContent>
+          </About>
+          <Confederacy>
+            <Link to="agreement">Угода користувача </Link>
+            <Link to="confederacy">Політика конфіденційності</Link>
+          </Confederacy>
+          <Link to="contacts">Наші контакти</Link>
+        </ContainerFooter>
+        <Sign>© Розробка "Team Challenge" 2024. Усі права захищені.</Sign>
       </Container>
     </FooterContainer>
   );

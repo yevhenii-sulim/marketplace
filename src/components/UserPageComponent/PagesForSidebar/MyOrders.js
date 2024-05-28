@@ -66,7 +66,7 @@ export default function MyOrders() {
           })}
         </ul>
       )}
-      <span>{total} грн</span>
+      {total !== 0 && <span>{total} грн</span>}
     </ContainerOrders>
   );
 }

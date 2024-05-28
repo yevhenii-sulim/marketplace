@@ -18,6 +18,9 @@ import NotificationPages from 'pages/UserPage/NotificationPages';
 import SelectedPage from 'pages/UserPage/SelectedPage';
 import ProfilePage from 'pages/UserPage/ProfilePage';
 import LayoutPage from 'pages/LayoutPage';
+import Agreement from 'pages/Agreement';
+import Confederacy from 'pages/Confederacy';
+import Contacts from 'pages/Contacts';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -38,7 +41,10 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="all" element={<CatalogPage />} />
           <Route path="auth/activate" element={<RestorePassword />} />
+          <Route path="agreement" element={<Agreement />} />
+          <Route path="confederacy" element={<Confederacy />} />
           <Route path="for_free" element={<CatalogPage />} />
+          <Route path="contacts" element={<Contacts />} />
           <Route path=":category" element={<SubCategories />} />
           <Route path=":category/:subcategories" element={<CatalogPage />} />
           <Route

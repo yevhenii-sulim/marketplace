@@ -1,21 +1,29 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import {
   ContainerUserMain,
+  Main,
   PagesForSidebar,
   Sidebar,
+  Title,
 } from './UserPageComponent.styled';
 import UserPageSidebar from './UserPageSidebar';
 
 export default function UserPageMain() {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <ContainerUserMain>
       <Sidebar>
         <UserPageSidebar />
       </Sidebar>
-      <PagesForSidebar>
-        <Outlet />
-      </PagesForSidebar>
+      <Main>
+        <Title>{location.state}</Title>
+        <PagesForSidebar>
+          <Outlet />
+        </PagesForSidebar>
+      </Main>
     </ContainerUserMain>
   );
 }

@@ -12,6 +12,12 @@ export const team = [
     link: 'http://www.linkedin.com/in/oleh-rybka-9789812a0',
   },
   {
+    id: 10,
+    name: 'Марія Сметаніна',
+    spec: 'UI/UX Designer',
+    link: 'https://www.linkedin.com/in/mariia-smetanina-7803b72aa/',
+  },
+  {
     id: 3,
     name: 'Євгеній Сулім',
     spec: 'FrontEnd Dev',
