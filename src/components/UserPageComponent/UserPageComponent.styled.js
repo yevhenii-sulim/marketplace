@@ -7,7 +7,13 @@ export const Container = styled.div`
   padding-top: 32px;
   padding-bottom: 32px;
 `;
-
+export const Title = styled.h1`
+  font-family: Jost;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.32px;
+`;
 export const Header = styled.div`
   text-align: left;
   display: flex;
@@ -15,6 +21,12 @@ export const Header = styled.div`
   padding: 16px 48px;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.bgProduct};
+`;
+export const Main = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 `;
 export const User = styled.div`
   display: flex;
@@ -79,4 +91,5 @@ export const List = styled.li`
 export const PagesForSidebar = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
+  flex-grow: 2;
 `;

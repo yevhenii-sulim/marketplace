@@ -10,7 +10,7 @@ export default function SidebarListComponent({
 }) {
   return (
     <List onClick={onClick}>
-      <NavLink to={path}>
+      <NavLink to={path} state={nameList}>
         {children}
         <span>{nameList}</span>
       </NavLink>

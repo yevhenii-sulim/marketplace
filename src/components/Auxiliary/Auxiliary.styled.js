@@ -21,9 +21,17 @@ export const AuxiliaryContainer = styled.div`
 `;
 export const TotalProduct = styled.span`
   position: absolute;
-  bottom: 100%;
-  right: 0;
-  font-size: 18px;
+  background-color: ${({ theme }) => theme.color.bgNumberBasket};
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  bottom: 65%;
+  right: -5px;
+  padding: 0;
+  font-size: 14px;
   color: ${({ theme }) => theme.color.colorSecondText};
   font-weight: 600;
   line-height: 0.4;
