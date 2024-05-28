@@ -4,9 +4,7 @@ import { getAllProducts, getProduct } from '../product/thunk';
 
 const handlePending = state => {};
 
-const handleFulfilled = (state, { payload }) => {
-  return (state = payload);
-};
+const handleFulfilled = (state, { payload }) => (state = payload.products);
 
 const handleRejected = state => {};
 

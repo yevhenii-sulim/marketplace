@@ -19,6 +19,10 @@ export default function HomePage() {
   const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
 
+  console.log('productsDiscount', productsDiscount);
+  console.log('productsVisits', productsVisits);
+  console.log('productsEco', productsEco);
+  console.log('productsNew', productsNew);
   useEffect(() => {
     if (productAll.length !== 0) {
       return;
@@ -49,7 +53,7 @@ export default function HomePage() {
           title="Рекомендоване вам"
         />
       )}
-      {productsEco.length !== 0 && (
+      {productsEco?.length !== 0 && (
         <BestChoiceList filteredProducts={productsEco} title="Еко продукти" />
       )}
     </>
