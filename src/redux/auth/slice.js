@@ -42,7 +42,7 @@ const handleRejected = state => {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'users',
   initialState: initialState.users,
   reducers: {
     loginWithSocial(state, { payload }) {

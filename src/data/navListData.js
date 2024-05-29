@@ -19,13 +19,13 @@ export const navigationList = [
       },
       {
         id: 2,
-        link: 'gift_sets',
+        link: 'giftSets',
         nameList: 'Подарункові набори',
         img: '/marketplace/images/subCatalog/gift_sets.png',
       },
       {
         id: 3,
-        link: 'festive_theme',
+        link: 'festiveTheme',
         nameList: 'Святкова тематика',
         img: '/marketplace/images/subCatalog/festive_theme.png',
       },
@@ -137,7 +137,7 @@ export const navigationList = [
   },
   {
     id: 6,
-    linkList: 'recycled_materials',
+    linkList: 'recycledMaterials',
     nameList: 'Товари з перероблених матеріалів',
     img: '/marketplace/images/catalog/recycled.png',
     subCategories: [
@@ -157,7 +157,7 @@ export const navigationList = [
   },
   {
     id: 7,
-    linkList: 'for_free',
+    linkList: 'forFree',
     nameList: 'Подарую/віддам',
     img: '/marketplace/images/catalog/for-free.png',
   },

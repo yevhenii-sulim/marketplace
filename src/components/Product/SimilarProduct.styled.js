@@ -24,10 +24,12 @@ export const SimilarProductItemIcon = styled.div`
   height: auto;
   width: 100%;
   box-shadow: inset 0 0 1px black;
+  padding: 2px;
   img {
     width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
   }
   .eco {
     position: absolute;
@@ -35,13 +37,17 @@ export const SimilarProductItemIcon = styled.div`
     right: 8px;
   }
 `;
-
+export const Price = styled.div``;
 export const SimilarProductItemName = styled.h4`
   font-size: 18px;
   line-height: 1.4;
   color: ${({ theme }) => theme.color.colorMainText};
 `;
 export const SimilarProductItemPrice = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 14px;
   font-weight: 800;
   font-size: 22px;
   color: ${({ theme, $discount }) =>

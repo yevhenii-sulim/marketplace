@@ -19,6 +19,63 @@ export const getAllProducts = createAsyncThunk(
   }
 );
 
+export const getProductsBySubCategory = createAsyncThunk(
+  'products/getProductsBySubCategory',
+  async subCategory => {
+    console.log(subCategory);
+
+    try {
+      const { data } = await axios.get(
+        `products/filterBySubcategory/${subCategory}`
+      );
+      console.log('dataSub', data);
+
+      return data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+);
+
+export const getProductsByCategory = createAsyncThunk(
+  'products/getProductsByCategory',
+  async category => {
+    try {
+      const { data } = await axios.get(
+        `/products/filterByCategory/${category}`
+      );
+      console.log('dataSub', data);
+
+      return data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+);
+
+export const addFavoriteProduct = createAsyncThunk(
+  'products/addFavoriteProduct',
+  async (productId, { getState }) => {
+    try {
+      const { data } = await axios.patch(
+        `/favorite/add/${productId}`,
+        productId,
+        {
+          headers: {
+            Authorization: `Bearer ${getState().users.token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log('dataSub', data);
+
+      return data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+);
+
 export const getProduct = createAsyncThunk('products/getProduct', async id => {
   try {
     const { data } = await axios.get(`/products/${id}`);

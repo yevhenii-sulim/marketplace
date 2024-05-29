@@ -8,7 +8,7 @@ function valueText(value) {
   return `${value} грн`;
 }
 
-export default function FilterSlide({ min, max, getMaxValue, getMinValue }) {
+export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {
   const [valueMin, setValueMin] = useState(min);
   const [valueMax, setValueMax] = useState(max);
   const { width } = useWindowDimensions();

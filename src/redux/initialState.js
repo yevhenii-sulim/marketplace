@@ -1,5 +1,8 @@
 export const initialState = {
-  product: [],
+  products: {
+    product: [],
+    totalPage: 0,
+  },
   basket: [],
   openCatalog: false,
   openFormModal: false,

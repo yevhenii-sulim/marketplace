@@ -37,7 +37,6 @@ export const User = styled.div`
     width: 71px;
     height: 71px;
     border-radius: 50%;
-    box-shadow: inset 0 0 0 1px red;
   }
 `;
 export const UserName = styled.div`

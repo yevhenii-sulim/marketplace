@@ -1,20 +1,20 @@
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { theme } from 'utils/theme';
 import {
   SimilarProductItem,
-  SimilarProductItemButtonBlock,
   SimilarProductItemPrice,
   SimilarProductItemIcon,
   SimilarProductItemName,
   SimilarProductItemIconWrapper,
   SimilarProductItemDiscount,
   SimilarProductDatePublic,
+  Price,
 } from './SimilarProduct.styled';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
 import { formatDate } from 'data/headphoneProduct';
+import { useDispatch } from 'react-redux';
+import { addFavoriteProduct } from '../../redux/product/thunk';
 
 function scrollToByClick() {
   window.scrollTo({
@@ -37,8 +37,13 @@ function SimilarProduct({
   subCategory,
 }) {
   const location = useLocation();
+  const dispatch = useDispatch();
   function countCharacter(count) {
     return location.pathname.match(/[/]/g).length === count;
+  }
+
+  function addFavorite(id) {
+    dispatch(addFavoriteProduct(id));
   }
 
   return (
@@ -57,7 +62,9 @@ function SimilarProduct({
             <img src={img[0]} alt={title} />
           </SimilarProductItemIcon>
           <SimilarProductItemName>{title}</SimilarProductItemName>
-          <SimilarProductItemPrice $discount={discount}>
+        </Link>
+        <SimilarProductItemPrice $discount={discount}>
+          <Price>
             {discount ? (
               <>
                 <SimilarProductItemDiscount>
@@ -68,32 +75,12 @@ function SimilarProduct({
             ) : (
               <p>{price} грн</p>
             )}
-          </SimilarProductItemPrice>
-        </Link>
-        <SimilarProductItemButtonBlock>
-          <Button
-            variant="contained"
-            sx={{
-              width: 148 + 'px',
-              backgroundColor: theme.color.bgButton,
-              textTransform: 'none',
-              fontSize: '18px',
-              fontWeight: '800',
-              height: '40px',
-              '&:focus': {
-                backgroundColor: theme.color.bgButton,
-              },
-              '&:hover': {
-                backgroundColor: theme.color.bgButton,
-              },
-            }}
-          >
-            Купити
-          </Button>
-          <SimilarProductItemIconWrapper onClick={() => console.log('hello')}>
+          </Price>
+
+          <SimilarProductItemIconWrapper onClick={() => addFavorite(id)}>
             <FavoriteBorderIcon />
           </SimilarProductItemIconWrapper>
-        </SimilarProductItemButtonBlock>
+        </SimilarProductItemPrice>
         <SimilarProductDatePublic>
           {formatDate(createDate)}
         </SimilarProductDatePublic>

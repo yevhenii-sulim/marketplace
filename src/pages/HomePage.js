@@ -19,10 +19,6 @@ export default function HomePage() {
   const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
 
-  console.log('productsDiscount', productsDiscount);
-  console.log('productsVisits', productsVisits);
-  console.log('productsEco', productsEco);
-  console.log('productsNew', productsNew);
   useEffect(() => {
     if (productAll.length !== 0) {
       return;
