@@ -17,21 +17,21 @@ export const Pagination = styled.div`
 export const ProductsPage = styled.div`
   display: grid;
   grid-template-columns: 2fr 7fr;
-  column-gap: 48px;
+  column-gap: 30px;
   height: 100%;
 `;
 export const Product = styled.div`
   display: grid;
   grid-template-columns: repeat(4, auto);
   justify-content: flex-start;
-  gap: 34px;
+  gap: 25px;
 `;
-export const Filter = styled.ul`
+export const FilterList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 19px;
 `;
-export const PriceSlide = styled.div`
+export const PriceSlide = styled.li`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -87,6 +87,7 @@ export const TitleSort = styled.h3`
   font-weight: 400;
   line-height: 1.5;
   margin: 0 auto;
+  white-space: nowrap;
 `;
 export const SortProduct = styled.div`
   display: flex;
@@ -143,3 +144,4 @@ export const TitleProducts = styled.h2`
   font-weight: 700;
   line-height: 1.22;
 `;
+export const ContainerSex = styled.li``;

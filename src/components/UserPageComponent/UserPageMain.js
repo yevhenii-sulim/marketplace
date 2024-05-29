@@ -11,7 +11,6 @@ import UserPageSidebar from './UserPageSidebar';
 
 export default function UserPageMain() {
   const location = useLocation();
-  console.log(location);
 
   return (
     <ContainerUserMain>

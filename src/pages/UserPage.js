@@ -19,7 +19,7 @@ export default function UserPage() {
     <UserPageComponents
       rating={0 || user?.rating}
       nameUser={'' || user?.firstName}
-      imgUser={'#'}
+      imgUser={user?.img || '/marketplace/images/catalog/for-free.png'}
     />
   );
 }

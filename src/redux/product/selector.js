@@ -1,14 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-export const selectProduct = state => state.products;
+export const selectProduct = state => state.products.product;
 
+export const selectTotalPages = state => state.products.totalPage;
 export const selectProductEco = createSelector([selectProduct], product => {
   return product?.filter(({ eco }) => eco === true);
 });
 export const selectProductDiscount = createSelector(
   [selectProduct],
   product => {
-    console.log('eco', product);
     return product.filter(({ discount }) => discount === true);
   }
 );
