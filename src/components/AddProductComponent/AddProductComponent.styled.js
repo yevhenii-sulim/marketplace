@@ -1,36 +1,21 @@
 import styled from 'styled-components';
 import { theme } from 'utils/theme';
 import { Field as FieldForm, Form as FormContainer } from 'formik';
-
-export const Images = styled.div`
-  display: flex;
-  gap: 24px;
-`;
-
 export const ContainerAddProduct = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 34px;
-`;
-export const Field = styled(FieldForm)`
-  width: 100%;
-  outline: none;
-  border-radius: 6px;
-  padding: 12px 12px 12px 12px;
-  &:focus {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  }
-  &[type='checkbox'] {
-    height: 50px;
-  }
+  margin-bottom: 40px;
 `;
 export const Form = styled(FormContainer)`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   textarea {
     resize: vertical;
+    min-height: 50px;
+    height: 144px;
   }
   .input-file {
     display: none;
@@ -40,23 +25,234 @@ export const Form = styled(FormContainer)`
     display: flex;
     flex-direction: column;
     gap: 8px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.44;
   }
   .mark {
     width: 7px;
     height: 7px;
     position: absolute;
-    bottom: 25%;
-    left: 15px;
-  }
-  label + label .mark {
-    bottom: 46%;
   }
 `;
-export const socialSingInButton = {
-  width: '100%',
-  fontSize: '18px',
+
+export const IsCheckbox = styled.div`
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 26px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: ${({ theme }) => theme.color.bgCheckbox};
+  border: 4px solid ${({ theme }) => theme.color.bgCheckbox};
+  border-radius: 20px;
+  transition: all 1000ms ease;
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    transition: all 500ms ease;
+    content: '';
+  }
+`;
+
+export const Field = styled(FieldForm)`
+  outline: none;
+  border-radius: 6px;
+  padding: 12px 12px 12px 12px;
+  border: 1px solid ${({ theme }) => theme.color.borderSearch};
+  &:focus {
+    box-shadow: inset 0 0 0 3px ${({ theme }) => theme.color.borderRegister};
+    border: 1px solid ${({ theme }) => theme.color.borderRegister};
+  }
+  &::placeholder {
+    font-family: 'Nunito Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    color: ${({ theme }) => theme.color.colorTextExplainment};
+  }
+  &.brand {
+    width: 320px;
+  }
+  &[type='checkbox'] {
+    display: none;
+  }
+  &[type='checkbox']:checked + .is_checked::before {
+    left: calc(100% - 20px);
+  }
+  &[type='checkbox']:checked + .is_checked {
+    background-color: ${({ theme }) => theme.color.bgButton};
+    border: 4px solid ${({ theme }) => theme.color.bgButton};
+  }
+`;
+
+export const WrapperField = styled.div`
+  &:not(:last-child) {
+    margin-bottom: 40px;
+  }
+`;
+
+export const Box = styled.div`
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  padding: 24px;
+  &.price_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .checkbox {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  label {
+    cursor: pointer;
+  }
+`;
+
+export const Price = styled.div`
+  position: relative;
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  &.price {
+    width: 320px;
+  }
+  .is_discount {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: -50px;
+    transform: translateY(-50%);
+    width: 21px;
+    height: 21px;
+    border-radius: 3px;
+    border: 2px solid ${({ theme }) => theme.color.bgButton};
+  }
+  .MuiSvgIcon-root {
+    width: 16px;
+    height: 16px;
+    color: transparent;
+  }
+  input[type='checkbox']:checked + .is_discount .MuiSvgIcon-root {
+    color: ${({ theme }) => theme.color.bgButton};
+  }
+`;
+
+export const LabelSign = styled.p`
+  position: relative;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.44;
+  margin-bottom: 8px;
+`;
+
+export const Sign = styled.h3`
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.44;
+  margin-bottom: 8px;
+  color: ${({ disabled, theme }) => {
+    if (disabled) {
+      return theme.color.colorTextDisable;
+    } else {
+      return theme.color.colorMainText;
+    }
+  }};
+`;
+
+export const Explainment = styled.p`
+  color: ${({ theme }) => theme.color.colorTextExplainment};
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  &.sign_checkbox {
+    width: 60%;
+  }
+`;
+export const ExplainmentInputSign = styled.p`
+  font-size: 12px;
+  line-height: 1.5;
+`;
+export const SelectorsList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 40px;
+`;
+
+export const FieldImagesList = styled.ul`
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+`;
+
+export const Images = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+export const addImageSignButton = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+};
+export const AddImageList = styled.li`
+  width: 126px;
+  height: 126px;
+  border: 1px solid ${({ theme }) => theme.color.colorTextStartUserPage};
+  border-radius: 4px;
+  overflow: hidden;
+`;
+export const AddImageButton = styled.button`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  background-color: ${({ theme }) => theme.color.bgAddImage};
+  &:hover {
+    box-shadow: 0 4px 8px ${({ theme }) => theme.color.bgButton};
+  }
+`;
+
+export const TextCheckbox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+`;
+export const addProductButton = {
+  width: '264px',
+  fontSize: '22px',
   fontWeight: '700',
+  fontFamily: 'Jost',
   color: theme.color.colorButtonText,
   bgcolor: theme.color.bgButton,
   borderRadius: '6px',
@@ -76,16 +272,28 @@ export const socialSingInButton = {
     color: 'black',
   },
 };
-export const Discount = styled.div`
-  display: flex;
-  gap: 12px;
-`;
-// function color(sign) {
-//   console.log(sign);
-
-//   if (typeof sign === 'string') {
-//     return `${sign}`;
-//   }
-
-//   return `linear-gradient(${sign[0]}, ${sign[1]})`;
-// }
+export const viewProductButton = {
+  display: 'flex',
+  textTransform: 'capitalize',
+  alignItems: 'center',
+  width: '264px',
+  fontSize: '22px',
+  fontWeight: '700',
+  bgcolor: `${theme.color.bgProduct}`,
+  borderRadius: '8px',
+  height: '48px',
+  padding: '0',
+  fontFamily: 'Jost',
+  lineHeight: '1.45',
+  outline: 'none',
+  color: `${theme.color.bgHeader}`,
+  border: `1px solid ${theme.color.bgButton}`,
+  '&:hover': {
+    color: `${theme.color.colorSecondText}`,
+    bgcolor: `${theme.color.bgButtonHover}`,
+    border: 'none',
+  },
+  '&:active': {
+    boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
+  },
+};

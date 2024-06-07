@@ -1,4 +1,4 @@
-import BestChoiceList from 'components/BestChoice/BestChoiceList';
+import HomePageComponent from 'components/HomePageComponent/HomePageComponent';
 import CategoryList from 'components/CategoryList/CategoryList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,13 +8,11 @@ import {
   selectProductDiscount,
   selectProductEco,
   selectProductNewer,
-  selectProductVisit,
 } from '../redux/product/selector';
 
 export default function HomePage() {
   const productsEco = useSelector(selectProductEco);
   const productsDiscount = useSelector(selectProductDiscount);
-  const productsVisits = useSelector(selectProductVisit);
   const productsNew = useSelector(selectProductNewer);
   const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
@@ -30,27 +28,23 @@ export default function HomePage() {
     <>
       <CategoryList />
       {productsDiscount.length !== 0 && (
-        <BestChoiceList
+        <HomePageComponent
           filteredProducts={productsDiscount}
           title="Кращий вибір"
         />
       )}
 
       {productsNew.length !== 0 && (
-        <BestChoiceList
+        <HomePageComponent
           filteredProducts={productsNew}
           title="Нові оголошення"
         />
       )}
-
-      {productsVisits.length !== 0 && (
-        <BestChoiceList
-          filteredProducts={productsVisits}
-          title="Рекомендоване вам"
-        />
-      )}
       {productsEco?.length !== 0 && (
-        <BestChoiceList filteredProducts={productsEco} title="Еко продукти" />
+        <HomePageComponent
+          filteredProducts={productsEco}
+          title="Еко продукти"
+        />
       )}
     </>
   );

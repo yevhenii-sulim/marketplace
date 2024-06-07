@@ -22,6 +22,7 @@ import Agreement from 'pages/Agreement';
 import Confederacy from 'pages/Confederacy';
 import Contacts from 'pages/Contacts';
 import AllCatalogPage from 'pages/AllCatalogPage';
+import MyStoryOrdersPage from 'pages/UserPage/MyStoryOrdersPage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ export default function App() {
             }
           >
             <Route path="my_order" element={<MyOrdersPage />} />
+            <Route path="my_story_order" element={<MyStoryOrdersPage />} />
             <Route path="my_poster" element={<MyPosterPage />} />
             <Route path="notification" element={<NotificationPages />} />
             <Route path="selected" element={<SelectedPage />} />
