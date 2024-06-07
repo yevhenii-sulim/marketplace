@@ -1,39 +1,43 @@
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
 import { navigationList } from 'data/navListData';
 import {
+  Box,
+  Buttons,
   ContainerAddProduct,
-  Discount,
+  Explainment,
   Field,
+  FieldImagesList,
   Form,
-  Images,
-  socialSingInButton,
+  IsCheckbox,
+  SelectorsList,
+  Sign,
+  TextCheckbox,
+  addProductButton,
+  viewProductButton,
 } from './AddProductComponent.styled';
 import FieldComponent from './FieldComponent';
-import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createProduct } from '../../redux/product/thunk';
-
-const size = [
-  'Без розміру',
-  'XS',
-  'S',
-  'M',
-  'L',
-  'XL',
-  'XXL',
-  'XXXL',
-  'EU 36',
-  'EU 37',
-  'EU 38',
-  'EU 39',
-  'EU 40',
-  'EU 41',
-  'EU 42',
-  'EU 43',
-  'EU 44',
-  'EU 45',
+import FieldAddImages from './FieldAddImages';
+import Label from './Label';
+import FieldCheckbox from './FieldCheckbox';
+import FieldPrice from './FieldPrice';
+const sizeFootwear = [
+  '36',
+  '37',
+  '38',
+  '39',
+  '40',
+  '41',
+  '42',
+  '43',
+  '44',
+  '45',
+  '46',
 ];
+const sizeClothes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 const colorProduct = [
   { name: 'Білий', sign: '#ffffff' },
   { name: 'Чорний', sign: '#000000' },
@@ -50,43 +54,9 @@ const colorProduct = [
   { name: 'Золотий', sign: ['#F9D993', '#D9AC35'] },
   { name: 'Сріблястий', sign: ['#D9D9D9', '#737373'] },
 ];
-// const handleDeleteIconClick = () => {
-//   setImageBig([]);
-//   setFieldValue('image', null);
-//   const input = inputRef.current;
-//   if (input) input.value = '';
-// };
 
 export default function AddProductComponent() {
-  const [component, setComponent] = useState([1]);
-  const [imageBig, setImageBig] = useState([]);
-  const inputRef = useRef(null);
-
   const dispatch = useDispatch();
-
-  function onAddFileByClick() {
-    inputRef.current?.click();
-  }
-
-  async function handleFileUpload(event, setFieldValue, value) {
-    const file = event.currentTarget.files[0];
-    if (file.type.split('/')[0] !== 'image') return;
-    const img = URL.createObjectURL(file);
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(file);
-    if (value.length === 0) {
-      reader.onloadend = () => {
-        setImageBig([img]);
-        setFieldValue('file', [file]);
-      };
-    } else {
-      reader.onloadend = () => {
-        setImageBig(prev => [...prev, img]);
-        setFieldValue('file', [...value, file]);
-      };
-    }
-  }
-
   function handleSubmit(values) {
     const formData = new FormData();
     for (const key in values) {
@@ -113,8 +83,11 @@ export default function AddProductComponent() {
           subCategory: '',
           state: 'Нове',
           size: 'Без розміру',
-          color: '',
+          color: [],
           describe: '',
+          sex: '',
+          brand: '',
+          isUkraine: false,
           file: [],
         }}
         onSubmit={values => {
@@ -129,226 +102,349 @@ export default function AddProductComponent() {
           isSubmitting,
         }) => (
           <Form>
-            <FieldComponent
-              required={true}
-              name="title"
-              type="text"
-              label="Назва продукту"
-              handleChange={handleChange}
-              setSubmitting={setSubmitting}
-            />
-            <FieldComponent
-              required={true}
-              name="price"
-              type="text"
-              label="Ціна продукту"
-              handleChange={handleChange}
-              setSubmitting={setSubmitting}
-            />
-            <Discount>
+            <Box>
               <FieldComponent
-                name="discount"
-                type="checkbox"
-                label="Знижка продукту"
-                handleChange={handleChange}
-                setSubmitting={setSubmitting}
-              />
-              <FieldComponent
-                name="discountPrice"
-                disabled={!values.discount}
+                required={true}
+                name="title"
                 type="text"
+                label="Назва продукту"
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}
+                className="title"
+                explainment="Назва повинна містити мінімум 3 та максимум 100 символів"
+                placeholder="Додайте назву товару, наприклад: Нічний крем для сухої шкіри, 50 мл"
+                max={100}
+                min={3}
               />
-            </Discount>
-            <FieldComponent
-              name="eco"
-              type="checkbox"
-              label="Товар з еко матеріалів"
-              handleChange={handleChange}
-              setSubmitting={setSubmitting}
-            />
-            <Field
-              required={!values.category}
-              as="select"
-              name="category"
-              onChange={e => {
-                handleChange(e);
-                setSubmitting(false);
-              }}
-            >
-              {navigationList.map(({ nameList }) => {
-                if (nameList === 'Всі оголошення') {
-                  return (
-                    <option value="" key={nameList}>
-                      Оберіть категорію
-                    </option>
-                  );
-                }
-                return (
-                  <option value={nameList} key={nameList}>
-                    {nameList}
-                  </option>
-                );
-              })}
-            </Field>
-            <Field
-              required={!values.subCategory}
-              as="select"
-              name="subCategory"
-              disabled={!values.category}
-              onChange={e => {
-                handleChange(e);
-                setSubmitting(false);
-              }}
-            >
-              <option value="">Оберіть підкатегорію</option>
-              {navigationList
-                .filter(({ nameList }) => nameList === values.category)
-                .map(({ subCategories }) =>
-                  subCategories.map(({ nameList }) => {
-                    return (
-                      <option value={nameList} key={nameList}>
-                        {nameList}
-                      </option>
-                    );
-                  })
-                )}
-            </Field>
-            <Field
-              as="select"
-              name="state"
-              onChange={e => {
-                handleChange(e);
-                setSubmitting(false);
-              }}
-            >
-              <option value="Нове">Нове</option>
-              <option value="Вживаний товар">Вживаний товар</option>
-            </Field>
-            <Field
-              as="select"
-              name="size"
-              onChange={e => {
-                handleChange(e);
-                setSubmitting(false);
-              }}
-            >
-              {size.map(size => {
-                return (
-                  <option value={size} key={size}>
-                    {size}
-                  </option>
-                );
-              })}
-            </Field>
-            <Field
-              as="select"
-              name="color"
-              onChange={e => {
-                handleChange(e);
-                setSubmitting(false);
-              }}
-            >
-              {colorProduct.map(({ name, sign }) => {
-                return (
-                  <option value={name} key={sign}>
-                    {name}
-                  </option>
-                );
-              })}
-            </Field>
-            <FieldComponent
-              as="textarea"
-              required={true}
-              name="describe"
-              type="text"
-              label="Опис товару"
-              handleChange={handleChange}
-              setSubmitting={setSubmitting}
-            />
-
-            <Field name="file">
-              {() =>
-                component.map((_, index) => {
-                  return (
-                    <Button
-                      key={index}
-                      type="button"
-                      sx={socialSingInButton}
-                      onClick={onAddFileByClick}
+              <FieldComponent
+                as="textarea"
+                required={true}
+                name="describe"
+                className="describe"
+                type="text"
+                label="Опис товару"
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
+                explainment="Опис повинен містити від 30 до 4000 символів"
+                placeholder="Додайте детальний опис товару, наприклад: користуючись нашою косметикою ви помітите ефект вже через пару місяців"
+                max={4000}
+                min={30}
+              />
+              <FieldComponent
+                name="brand"
+                className="brand"
+                type="text"
+                label="Бренд"
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
+                explainment="Додатковий текст"
+                placeholder="Введіть бренд товару"
+              />
+            </Box>
+            <Box>
+              <SelectorsList>
+                <li>
+                  <label>
+                    <Label label="Категорія" />
+                    <Field
+                      required={true}
+                      as="select"
+                      name="category"
+                      className="category"
+                      onChange={e => {
+                        handleChange(e);
+                        setSubmitting(false);
+                      }}
                     >
-                      Додати файл
-                      <input
-                        className="input-file"
-                        type="file"
-                        accept="image/*"
-                        required={true}
-                        ref={inputRef}
-                        onChange={event => {
-                          handleFileUpload(event, setFieldValue, values.file);
-                          event.target.disabled = true;
-                        }}
-                      />
-                    </Button>
-                  );
-                })
-              }
-            </Field>
-            <Images>
-              {imageBig.length !== 0 &&
-                imageBig.map(item => {
-                  return <img src={item} key={item} alt="img" width={100} />;
-                })}
-            </Images>
+                      {navigationList.map(({ nameList }) => {
+                        if (nameList === 'Всі оголошення') {
+                          return (
+                            <option value="" key={nameList} selected>
+                              Оберіть одну з категорій
+                            </option>
+                          );
+                        }
+                        return (
+                          <option value={nameList} key={nameList}>
+                            {nameList}
+                          </option>
+                        );
+                      })}
+                    </Field>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    {!values.category ||
+                    values.category === 'Подарую/віддам' ? (
+                      <Sign>Підкатегорія</Sign>
+                    ) : (
+                      <Label label="Підкатегорія" />
+                    )}
+                    <Field
+                      required={
+                        values.category || values.category !== 'Подарую/віддам'
+                      }
+                      as="select"
+                      name="subCategory"
+                      className="subCategory"
+                      label="Підкатегорія"
+                      disabled={
+                        !values.category || values.category === 'Подарую/віддам'
+                      }
+                      onChange={e => {
+                        handleChange(e);
+                        setSubmitting(false);
+                      }}
+                    >
+                      <option value="" selected>
+                        Оберіть підкатегорію товару
+                      </option>
+                      {navigationList
+                        .filter(({ nameList }) => {
+                          return nameList === values.category;
+                        })
+                        .map(({ subCategories }) =>
+                          subCategories?.map(({ nameList }) => {
+                            return (
+                              <option value={nameList} key={nameList}>
+                                {nameList}
+                              </option>
+                            );
+                          })
+                        )}
+                    </Field>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    Стан
+                    <Field
+                      as="select"
+                      name="state"
+                      className="state"
+                      onChange={e => {
+                        handleChange(e);
+                        setSubmitting(false);
+                      }}
+                    >
+                      <option value="Нове" selected>
+                        Оберіть стан товару
+                      </option>
+                      <option value="Нове">Нове</option>
+                      <option value="Вживаний товар">Вживаний товар</option>
+                    </Field>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <Label label="Колір" />
+                    <Field
+                      as="select"
+                      name="color"
+                      className="color"
+                      onChange={e => {
+                        handleChange(e);
+                        setSubmitting(false);
+                      }}
+                    >
+                      <option value="" selected>
+                        Оберіть не більше 3 кольорів
+                      </option>
 
-            <Button
-              type="button"
-              sx={socialSingInButton}
-              onClick={evt => setComponent(prev => [...prev, 1])}
-            >
-              Додати поле для файлу
-            </Button>
-            <Button
-              type="submit"
-              sx={socialSingInButton}
-              disabled={isSubmitting}
-            >
-              Створити
-            </Button>
+                      {colorProduct.map(({ name, sign }) => {
+                        return (
+                          <option value={name} key={sign}>
+                            {name}
+                          </option>
+                        );
+                      })}
+                    </Field>
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <Label label="Стать" />
+                    <Field
+                      as="select"
+                      name="sex"
+                      className="sex"
+                      onChange={e => {
+                        handleChange(e);
+                        setSubmitting(false);
+                      }}
+                    >
+                      <option value="" selected>
+                        Оберіть кому підходить товар
+                      </option>
+                      <option value="Для жінок" selected>
+                        Для жінок
+                      </option>
+                      <option value="Для чоловіків">Для чоловіків</option>
+                      <option value="Унісекс">Унісекс</option>
+                    </Field>
+                  </label>
+                </li>
+                {(values.category === 'Взуття з натуральних матеріалів' ||
+                  values.category === 'Вишивка') && (
+                  <li>
+                    <label>
+                      <Label label="Розмір" />
+                      <Field
+                        as="select"
+                        name="size"
+                        className="size"
+                        category={values.category}
+                        onChange={e => {
+                          handleChange(e);
+                          setSubmitting(false);
+                        }}
+                      >
+                        <option value="" selected>
+                          Оберіть розмір
+                        </option>
+                        {values.category === 'Взуття з натуральних матеріалів'
+                          ? sizeFootwear.map(size => {
+                              return (
+                                <option value={size} key={size}>
+                                  {size}
+                                </option>
+                              );
+                            })
+                          : sizeClothes.map(size => {
+                              return (
+                                <option value={size} key={size}>
+                                  {size}
+                                </option>
+                              );
+                            })}
+                      </Field>
+                    </label>
+                  </li>
+                )}
+              </SelectorsList>
+            </Box>
+            <Box>
+              <label>
+                <Label label="Фото" />
+                <Explainment>
+                  Додайте фотографії вашого товару гарної якості. Перше фото
+                  буде обкладинкою оголошення.
+                </Explainment>
+                <FieldImagesList>
+                  <FieldAddImages
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                  <FieldAddImages
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                  <FieldAddImages
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                  <FieldAddImages
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                  <FieldAddImages
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                  <FieldAddImages
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                  <FieldAddImages
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                </FieldImagesList>
+              </label>
+            </Box>
+            <Box>
+              <label className="checkbox">
+                <TextCheckbox>
+                  <Sign>Екологічність продукту</Sign>
+                  <FieldCheckbox
+                    name="eco"
+                    handleChange={handleChange}
+                    setSubmitting={setSubmitting}
+                  />
+                  <IsCheckbox className="is_checked"></IsCheckbox>
+                  <Explainment className="sign_checkbox">
+                    Відмітьте, якщо ваш продукт виготовлений з натуральних
+                    метеріалів, не тестувався на тваринах або процес його
+                    виробництва не має негативного впливу на оточуюче
+                    середовище.
+                  </Explainment>
+                </TextCheckbox>
+              </label>
+            </Box>
+            <Box>
+              <label className="checkbox">
+                <TextCheckbox>
+                  <Sign>Український продукт</Sign>
+                  <FieldCheckbox
+                    name="isUkraine"
+                    handleChange={handleChange}
+                    setSubmitting={setSubmitting}
+                  />
+                  <IsCheckbox className="is_checked"></IsCheckbox>
+                  <Explainment className="sign_checkbox">
+                    Відмітьте, якщо ваш товар від українського виробника.
+                  </Explainment>
+                </TextCheckbox>
+              </label>
+            </Box>
+            <Box className="price_box">
+              <FieldPrice
+                name="price"
+                label="Ціна"
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
+                required={true}
+                className="price"
+              />
+              <FieldPrice
+                name="discountPrice"
+                label="Ціна зі знижкою"
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
+                required={false}
+                disabled={!values.discount}
+                className="discountPrice"
+              >
+                <FieldCheckbox
+                  name="discount"
+                  handleChange={handleChange}
+                  setSubmitting={setSubmitting}
+                />
+                <div className="is_discount">
+                  <CheckIcon />
+                </div>
+              </FieldPrice>
+            </Box>
+            <Buttons>
+              <Button
+                type="button"
+                sx={viewProductButton}
+                disabled={isSubmitting}
+              >
+                Попередній перегляд
+              </Button>
+              <Button
+                type="submit"
+                sx={addProductButton}
+                disabled={isSubmitting}
+              >
+                Опублікувати
+              </Button>
+            </Buttons>
           </Form>
         )}
       </Formik>
     </ContainerAddProduct>
   );
 }
-
-// const convertToBase64 = file => {
-//   return new Promise((resolve, reject) => {
-//     const fileReader = new FileReader();
-//     fileReader.readAsDataURL(file);
-//     fileReader.onload = () => {
-//       resolve(fileReader.result);
-//     };
-//     fileReader.onerror = error => {
-//       reject(error);
-//     };
-//   });
-// };
-
-// const handleFileUpload = async (event, setFieldValue, value) => {
-//   const file = event.currentTarget.files[0];
-//   setFieldValue('image', file);
-//   if (file.type.split('/')[0] === 'image') {
-//     const img = URL.createObjectURL(file);
-//     if (value.length === 0) {
-//       setImageBig([img]);
-//       setFieldValue('file', [base64]);
-//     } else {
-//       setImageBig(prev => [...prev, img]);
-//       setFieldValue('file', [...value, base64]);
-//     }
-//   } else {
-//     console.error('Розмір зображення повинен бути менше 2 МБ');
-//   }
-// };

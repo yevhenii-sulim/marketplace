@@ -14,10 +14,10 @@ import {
   ButtonSlider,
   ContainerSlide,
   TitleCategory,
-} from './BestChoice.styled';
+} from './HomePageComponent.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
-export default function BestChoiceList({ filteredProducts, title }) {
+export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
   const setvisibleSlides = width => {
     if (width >= 1440) {

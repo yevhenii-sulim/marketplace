@@ -7,6 +7,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SidebarListComponent from './SidebarListComponent';
 import { logOut } from '../../redux/auth/thunk';
+import StoryOrderSvg from 'SvgComponents/StoryOrderSvg/StoryOrderSvg';
 
 export default function UserPageSidebar() {
   const dispatch = useDispatch();
@@ -15,8 +16,14 @@ export default function UserPageSidebar() {
   }
   return (
     <>
-      <SidebarListComponent nameList="Мої замовлення" path={'my_order'}>
+      <SidebarListComponent nameList="Мій кошик" path={'my_order'}>
         <ShoppingCartOutlinedIcon />
+      </SidebarListComponent>
+      <SidebarListComponent
+        nameList="Історія замовлень"
+        path={'my_story_order'}
+      >
+        <StoryOrderSvg />
       </SidebarListComponent>
       <SidebarListComponent nameList="Мої оголошення " path={'my_poster'}>
         <NotificationsNoneIcon />

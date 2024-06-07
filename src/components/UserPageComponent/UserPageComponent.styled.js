@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
+export const NavLink = styled(Link)``;
 
 export const Container = styled.div`
   display: flex;
@@ -76,17 +78,30 @@ export const Sidebar = styled.ul`
   gap: 16px;
   padding: 24px;
 `;
+
+const colorExit = ({ children, theme }) => {
+  if (children.props.state === 'Вийти')
+    return `${theme.color.colorTextSidebarActive}`;
+};
+
 export const List = styled.li`
   a {
+    color: ${colorExit};
     display: flex;
     padding: 10px;
     gap: 20px;
     align-items: center;
+    &.active svg {
+      stroke: ${({ theme }) => theme.color.bgButton};
+    }
     &.active {
-      color: ${({ theme }) => theme.color.colorTextSidebarActive};
+      color: ${({ theme }) => theme.color.bgButton};
+      border: ${({ theme }) => theme.color.bgButton} 2px solid;
+      border-radius: 4px;
     }
   }
 `;
+
 export const PagesForSidebar = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;

@@ -9,6 +9,9 @@ export const Empty = styled.div`
   align-items: center;
   gap: 34px;
   padding: 24px;
+  p {
+    color: ${({ theme }) => theme.color.colorTextStartUserPage};
+  }
 `;
 export const Link = styled(Location)`
   background-color: ${({ theme }) => theme.color.bgButton};
