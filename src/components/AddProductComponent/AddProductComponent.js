@@ -1,63 +1,42 @@
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
 import { navigationList } from 'data/navListData';
+import FieldComponent from './FieldComponent';
+import { useDispatch } from 'react-redux';
+import FieldAddImages from './FieldAddImages';
+import Label from './Label';
+import MultipleSelectColor from './MultipleSelectColor';
+import MultipleSelectCategory from './MultipleSelectCategory';
+import MultipleSelectSubCategory from './MultipleSelectSubCategory';
+import MultipleSelectSex from './MultipleSelectSex';
+import MultipleSelectState from './MultipleSelectState';
+import MultipleSelectSize from './MultipleSelectSize';
+import PriceComponent from './PriceComponent';
+import FieldsCheckboxes from './FieldsCheckboxes';
+import { createProduct } from '../../redux/product/thunk';
 import {
   Box,
   Buttons,
   ContainerAddProduct,
   Explainment,
-  Field,
   FieldImagesList,
   Form,
-  IsCheckbox,
   SelectorsList,
-  Sign,
-  TextCheckbox,
   addProductButton,
   viewProductButton,
 } from './AddProductComponent.styled';
-import FieldComponent from './FieldComponent';
-import { useDispatch } from 'react-redux';
-import { createProduct } from '../../redux/product/thunk';
-import FieldAddImages from './FieldAddImages';
-import Label from './Label';
-import FieldCheckbox from './FieldCheckbox';
-import FieldPrice from './FieldPrice';
-const sizeFootwear = [
-  '36',
-  '37',
-  '38',
-  '39',
-  '40',
-  '41',
-  '42',
-  '43',
-  '44',
-  '45',
-  '46',
-];
-const sizeClothes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-const colorProduct = [
-  { name: 'Білий', sign: '#ffffff' },
-  { name: 'Чорний', sign: '#000000' },
-  { name: 'Сірий', sign: '#D9D9D9' },
-  { name: 'Бежевий', sign: '#F8DFC4' },
-  { name: 'Червоний', sign: '#ff0000' },
-  { name: 'Жовтий', sign: '#FFF500' },
-  { name: 'Помаранчевий', sign: '#FFBF00' },
-  { name: 'Синій', sign: '#0068CE' },
-  { name: 'Блакитний', sign: '#BCD7FF' },
-  { name: 'Рожевий', sign: '#FFAEED' },
-  { name: 'Зелений', sign: '#43C550' },
-  { name: 'Фіолетовий', sign: '#DB01FF' },
-  { name: 'Золотий', sign: ['#F9D993', '#D9AC35'] },
-  { name: 'Сріблястий', sign: ['#D9D9D9', '#737373'] },
-];
+import {
+  pictures,
+  sizeFootwear,
+  sizeClothes,
+  colorProduct,
+} from 'data/forAddProductPage';
 
 export default function AddProductComponent() {
   const dispatch = useDispatch();
   function handleSubmit(values) {
+    console.log(values);
+
     const formData = new FormData();
     for (const key in values) {
       if (!values.hasOwnProperty(key)) return;
@@ -67,6 +46,7 @@ export default function AddProductComponent() {
         formData.append(key, values[key]);
       }
     }
+
     dispatch(createProduct(formData));
   }
 
@@ -82,7 +62,7 @@ export default function AddProductComponent() {
           category: '',
           subCategory: '',
           state: 'Нове',
-          size: 'Без розміру',
+          size: [],
           color: [],
           describe: '',
           sex: '',
@@ -91,6 +71,7 @@ export default function AddProductComponent() {
           file: [],
         }}
         onSubmit={values => {
+          console.log(values);
           handleSubmit(values);
         }}
       >
@@ -104,8 +85,8 @@ export default function AddProductComponent() {
           <Form>
             <Box>
               <FieldComponent
-                required={true}
                 name="title"
+                required={true}
                 type="text"
                 label="Назва продукту"
                 handleChange={handleChange}
@@ -113,12 +94,10 @@ export default function AddProductComponent() {
                 className="title"
                 explainment="Назва повинна містити мінімум 3 та максимум 100 символів"
                 placeholder="Додайте назву товару, наприклад: Нічний крем для сухої шкіри, 50 мл"
-                max={100}
-                min={3}
               />
               <FieldComponent
-                as="textarea"
                 required={true}
+                as="textarea"
                 name="describe"
                 className="describe"
                 type="text"
@@ -127,8 +106,6 @@ export default function AddProductComponent() {
                 setSubmitting={setSubmitting}
                 explainment="Опис повинен містити від 30 до 4000 символів"
                 placeholder="Додайте детальний опис товару, наприклад: користуючись нашою косметикою ви помітите ефект вже через пару місяців"
-                max={4000}
-                min={30}
               />
               <FieldComponent
                 name="brand"
@@ -146,143 +123,59 @@ export default function AddProductComponent() {
                 <li>
                   <label>
                     <Label label="Категорія" />
-                    <Field
-                      required={true}
-                      as="select"
+                    <MultipleSelectCategory
+                      handleChange={handleChange}
+                      setSubmitting={setSubmitting}
+                      names={navigationList}
                       name="category"
-                      className="category"
-                      onChange={e => {
-                        handleChange(e);
-                        setSubmitting(false);
-                      }}
-                    >
-                      {navigationList.map(({ nameList }) => {
-                        if (nameList === 'Всі оголошення') {
-                          return (
-                            <option value="" key={nameList} selected>
-                              Оберіть одну з категорій
-                            </option>
-                          );
-                        }
-                        return (
-                          <option value={nameList} key={nameList}>
-                            {nameList}
-                          </option>
-                        );
-                      })}
-                    </Field>
+                    />
                   </label>
                 </li>
-                <li>
-                  <label>
-                    {!values.category ||
-                    values.category === 'Подарую/віддам' ? (
-                      <Sign>Підкатегорія</Sign>
-                    ) : (
+                {values.category !== 'Подарую/віддам' && (
+                  <li>
+                    <label>
                       <Label label="Підкатегорія" />
-                    )}
-                    <Field
-                      required={
-                        values.category || values.category !== 'Подарую/віддам'
-                      }
-                      as="select"
-                      name="subCategory"
-                      className="subCategory"
-                      label="Підкатегорія"
-                      disabled={
-                        !values.category || values.category === 'Подарую/віддам'
-                      }
-                      onChange={e => {
-                        handleChange(e);
-                        setSubmitting(false);
-                      }}
-                    >
-                      <option value="" selected>
-                        Оберіть підкатегорію товару
-                      </option>
-                      {navigationList
-                        .filter(({ nameList }) => {
-                          return nameList === values.category;
-                        })
-                        .map(({ subCategories }) =>
-                          subCategories?.map(({ nameList }) => {
-                            return (
-                              <option value={nameList} key={nameList}>
-                                {nameList}
-                              </option>
-                            );
-                          })
-                        )}
-                    </Field>
-                  </label>
-                </li>
+                      <MultipleSelectSubCategory
+                        handleChange={handleChange}
+                        setSubmitting={setSubmitting}
+                        names={navigationList}
+                        name="subCategory"
+                        values={values}
+                      />
+                    </label>
+                  </li>
+                )}
                 <li>
                   <label>
                     Стан
-                    <Field
-                      as="select"
+                    <MultipleSelectState
+                      handleChange={handleChange}
+                      setSubmitting={setSubmitting}
                       name="state"
-                      className="state"
-                      onChange={e => {
-                        handleChange(e);
-                        setSubmitting(false);
-                      }}
-                    >
-                      <option value="Нове" selected>
-                        Оберіть стан товару
-                      </option>
-                      <option value="Нове">Нове</option>
-                      <option value="Вживаний товар">Вживаний товар</option>
-                    </Field>
+                      placeholder="Оберіть стан товару"
+                    />
                   </label>
                 </li>
                 <li>
                   <label>
                     <Label label="Колір" />
-                    <Field
-                      as="select"
-                      name="color"
-                      className="color"
-                      onChange={e => {
-                        handleChange(e);
-                        setSubmitting(false);
-                      }}
-                    >
-                      <option value="" selected>
-                        Оберіть не більше 3 кольорів
-                      </option>
-
-                      {colorProduct.map(({ name, sign }) => {
-                        return (
-                          <option value={name} key={sign}>
-                            {name}
-                          </option>
-                        );
-                      })}
-                    </Field>
+                    <MultipleSelectColor
+                      names={colorProduct}
+                      handleChange={handleChange}
+                      setSubmitting={setSubmitting}
+                    />
                   </label>
                 </li>
+
                 <li>
                   <label>
                     <Label label="Стать" />
-                    <Field
-                      as="select"
+                    <MultipleSelectSex
+                      handleChange={handleChange}
+                      setSubmitting={setSubmitting}
                       name="sex"
-                      className="sex"
-                      onChange={e => {
-                        handleChange(e);
-                        setSubmitting(false);
-                      }}
-                    >
-                      <option value="" selected>
-                        Оберіть кому підходить товар
-                      </option>
-                      <option value="Для жінок" selected>
-                        Для жінок
-                      </option>
-                      <option value="Для чоловіків">Для чоловіків</option>
-                      <option value="Унісекс">Унісекс</option>
-                    </Field>
+                      placeholder="Оберіть кому підходить товар"
+                    />
                   </label>
                 </li>
                 {(values.category === 'Взуття з натуральних матеріалів' ||
@@ -290,35 +183,14 @@ export default function AddProductComponent() {
                   <li>
                     <label>
                       <Label label="Розмір" />
-                      <Field
-                        as="select"
+                      <MultipleSelectSize
+                        handleChange={handleChange}
+                        setSubmitting={setSubmitting}
+                        sizeFootwear={sizeFootwear}
+                        sizeClothes={sizeClothes}
+                        values={values}
                         name="size"
-                        className="size"
-                        category={values.category}
-                        onChange={e => {
-                          handleChange(e);
-                          setSubmitting(false);
-                        }}
-                      >
-                        <option value="" selected>
-                          Оберіть розмір
-                        </option>
-                        {values.category === 'Взуття з натуральних матеріалів'
-                          ? sizeFootwear.map(size => {
-                              return (
-                                <option value={size} key={size}>
-                                  {size}
-                                </option>
-                              );
-                            })
-                          : sizeClothes.map(size => {
-                              return (
-                                <option value={size} key={size}>
-                                  {size}
-                                </option>
-                              );
-                            })}
-                      </Field>
+                      />
                     </label>
                   </li>
                 )}
@@ -332,100 +204,48 @@ export default function AddProductComponent() {
                   буде обкладинкою оголошення.
                 </Explainment>
                 <FieldImagesList>
-                  <FieldAddImages
-                    values={values}
-                    setFieldValue={setFieldValue}
-                  />
-                  <FieldAddImages
-                    values={values}
-                    setFieldValue={setFieldValue}
-                  />
-                  <FieldAddImages
-                    values={values}
-                    setFieldValue={setFieldValue}
-                  />
-                  <FieldAddImages
-                    values={values}
-                    setFieldValue={setFieldValue}
-                  />
-                  <FieldAddImages
-                    values={values}
-                    setFieldValue={setFieldValue}
-                  />
-                  <FieldAddImages
-                    values={values}
-                    setFieldValue={setFieldValue}
-                  />
-                  <FieldAddImages
-                    values={values}
-                    setFieldValue={setFieldValue}
-                  />
+                  {pictures.map((_, index) => (
+                    <FieldAddImages
+                      key={index}
+                      values={values}
+                      setFieldValue={setFieldValue}
+                    />
+                  ))}
                 </FieldImagesList>
               </label>
             </Box>
             <Box>
               <label className="checkbox">
-                <TextCheckbox>
-                  <Sign>Екологічність продукту</Sign>
-                  <FieldCheckbox
-                    name="eco"
-                    handleChange={handleChange}
-                    setSubmitting={setSubmitting}
-                  />
-                  <IsCheckbox className="is_checked"></IsCheckbox>
-                  <Explainment className="sign_checkbox">
-                    Відмітьте, якщо ваш продукт виготовлений з натуральних
+                <FieldsCheckboxes
+                  title="Екологічність продукту"
+                  handleChange={handleChange}
+                  setSubmitting={setSubmitting}
+                  name="eco"
+                  text="Відмітьте, якщо ваш продукт виготовлений з натуральних
                     метеріалів, не тестувався на тваринах або процес його
                     виробництва не має негативного впливу на оточуюче
-                    середовище.
-                  </Explainment>
-                </TextCheckbox>
+                    середовище."
+                />
               </label>
             </Box>
             <Box>
               <label className="checkbox">
-                <TextCheckbox>
-                  <Sign>Український продукт</Sign>
-                  <FieldCheckbox
-                    name="isUkraine"
-                    handleChange={handleChange}
-                    setSubmitting={setSubmitting}
-                  />
-                  <IsCheckbox className="is_checked"></IsCheckbox>
-                  <Explainment className="sign_checkbox">
-                    Відмітьте, якщо ваш товар від українського виробника.
-                  </Explainment>
-                </TextCheckbox>
-              </label>
-            </Box>
-            <Box className="price_box">
-              <FieldPrice
-                name="price"
-                label="Ціна"
-                handleChange={handleChange}
-                setSubmitting={setSubmitting}
-                required={true}
-                className="price"
-              />
-              <FieldPrice
-                name="discountPrice"
-                label="Ціна зі знижкою"
-                handleChange={handleChange}
-                setSubmitting={setSubmitting}
-                required={false}
-                disabled={!values.discount}
-                className="discountPrice"
-              >
-                <FieldCheckbox
-                  name="discount"
+                <FieldsCheckboxes
+                  title="Український продукт"
                   handleChange={handleChange}
                   setSubmitting={setSubmitting}
+                  name="isUkraine"
+                  text="Відмітьте, якщо ваш товар від українського виробника."
                 />
-                <div className="is_discount">
-                  <CheckIcon />
-                </div>
-              </FieldPrice>
+              </label>
             </Box>
+            {values.category !== 'Подарую/віддам' && (
+              <PriceComponent
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
+                values={values}
+              />
+            )}
             <Buttons>
               <Button
                 type="button"

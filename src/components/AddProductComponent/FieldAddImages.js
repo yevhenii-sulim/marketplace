@@ -1,18 +1,41 @@
 import { useRef, useState } from 'react';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Field,
   Images,
   addImageSignButton,
   AddImageList,
   AddImageButton,
+  styleRemoveImgButton,
 } from './AddProductComponent.styled';
 
-export default function FieldAddImages({ values, setFieldValue }) {
+export default function FieldAddImages({ values, setFieldValue, id }) {
   const [imageBig, setImageBig] = useState([]);
+  const [field, setField] = useState(false);
   const inputRef = useRef(null);
 
-  function onAddFileByClick() {
+  function onChangeFieldByClickDown() {
+    if (field) return;
+    setField(prev => !prev);
+  }
+  function removeFieldByClick(e) {
+    if (!field) return;
+    const { value } = inputRef.current;
+    const valuePease = value.includes('/')
+      ? value.split('/')
+      : value.split('\\');
+    setImageBig([]);
+    setFieldValue(
+      `file`,
+      values.file.filter(
+        ({ name }) => name !== valuePease[valuePease.length - 1]
+      )
+    );
+    setField(false);
+  }
+  function onAddFileByClickUp(e) {
+    if (e.target.closest("[data-remove='imageField']")) return;
     inputRef.current?.click();
   }
 
@@ -22,54 +45,53 @@ export default function FieldAddImages({ values, setFieldValue }) {
     const img = URL.createObjectURL(file);
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
-    if (value.length === 0) {
-      reader.onloadend = () => {
-        setImageBig([img]);
-        setFieldValue('file', [file]);
-      };
-    } else {
-      reader.onloadend = () => {
-        setImageBig(prev => [...prev, img]);
-        setFieldValue('file', [...value, file]);
-      };
-    }
-  }
 
-  // const handleDeleteIconClick = () => {
-  //   setImageBig([]);
-  //   setFieldValue('image', null);
-  //   const input = inputRef.current;
-  //   if (input) input.value = '';
-  // };
+    reader.onloadend = () => {
+      setImageBig(prev => [...prev, img]);
+      setFieldValue('file', [...value, file]);
+    };
+  }
 
   return (
     <>
       <AddImageList>
-        <AddImageButton type="button" onClick={onAddFileByClick}>
-          <Field name="file">
-            {() => (
-              <>
-                <AddSharpIcon sx={addImageSignButton} />
-                <input
-                  className="input-file"
-                  type="file"
-                  accept="image/*"
-                  required={true}
-                  ref={inputRef}
-                  onChange={event => {
-                    handleFileUpload(event, setFieldValue, values.file);
-                    event.target.disabled = true;
-                  }}
-                />
-                <Images>
-                  {imageBig.length !== 0 &&
-                    imageBig.map(item => {
-                      return <img src={item} key={item} alt="img" />;
-                    })}
-                </Images>
-              </>
-            )}
-          </Field>
+        <AddImageButton
+          $fullUpFul={field}
+          type="button"
+          onMouseDown={onChangeFieldByClickDown}
+          onMouseUp={onAddFileByClickUp}
+        >
+          <AddSharpIcon sx={addImageSignButton} />
+          {field && (
+            <Field name="file">
+              {() => (
+                <>
+                  <input
+                    className="input-file"
+                    type="file"
+                    accept="image/*"
+                    required={true}
+                    ref={inputRef}
+                    onChange={event => {
+                      handleFileUpload(event, setFieldValue, values.file);
+                      event.target.disabled = true;
+                    }}
+                  />
+                  <Images>
+                    {imageBig.length !== 0 &&
+                      imageBig.map(item => {
+                        return <img src={item} key={item} alt="img" />;
+                      })}
+                  </Images>
+                  <CloseIcon
+                    sx={styleRemoveImgButton}
+                    onMouseUp={removeFieldByClick}
+                    data-remove="imageField"
+                  />
+                </>
+              )}
+            </Field>
+          )}
         </AddImageButton>
       </AddImageList>
     </>

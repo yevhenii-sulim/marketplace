@@ -8,11 +8,12 @@ export default function SubCategories() {
   const categoryObject = navigationList.filter(
     item => item.nameList === category
   );
+  console.log(categoryObject);
 
   return (
     <>
       <SubcategoriesComponent
-        subCategory={categoryObject[0].subCategories}
+        subCategory={categoryObject[0]?.subCategories}
         path={categoryObject.linkList}
       />
     </>
