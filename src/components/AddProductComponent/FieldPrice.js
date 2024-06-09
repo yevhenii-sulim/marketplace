@@ -14,22 +14,18 @@ export default function FieldPrice({
   return (
     <>
       <label>
-        {required ? (
-          <Label label={label} />
-        ) : (
-          <Sign disabled={disabled}>{label}</Sign>
-        )}
+        {required ? <Label label={label} /> : <Sign>{label}</Sign>}
         <Price className={className}>
           {children}
           <Field
             name={name}
             type="text"
-            disabled={disabled}
             onChange={e => {
               setSubmitting(false);
               handleChange(e);
             }}
             required={required}
+            disabled={disabled}
           />
           грн
         </Price>

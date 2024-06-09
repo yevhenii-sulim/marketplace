@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from 'utils/theme';
 import { Field as FieldForm, Form as FormContainer } from 'formik';
+
 export const ContainerAddProduct = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,6 +9,7 @@ export const ContainerAddProduct = styled.div`
   gap: 34px;
   margin-bottom: 40px;
 `;
+
 export const Form = styled(FormContainer)`
   display: flex;
   flex-direction: column;
@@ -48,7 +50,7 @@ export const IsCheckbox = styled.div`
   background-color: ${({ theme }) => theme.color.bgCheckbox};
   border: 4px solid ${({ theme }) => theme.color.bgCheckbox};
   border-radius: 20px;
-  transition: all 1000ms ease;
+  transition: all 1000ms ease out;
   &::before {
     position: absolute;
     left: 0;
@@ -82,6 +84,9 @@ export const Field = styled(FieldForm)`
   }
   &.brand {
     width: 320px;
+  }
+  &.color {
+    display: none;
   }
   &[type='checkbox'] {
     display: none;
@@ -120,6 +125,19 @@ export const Box = styled.div`
   }
 `;
 
+export const ColorSign = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: ${({ $color }) => {
+    if ($color === '#ffffff') return `1px solid #43C550`;
+  }};
+  background: ${({ $color }) => {
+    if (typeof $color === 'string') return `${$color}`;
+    return `radial-gradient(${$color[0]}, ${$color[1]})`;
+  }};
+`;
+
 export const Price = styled.div`
   position: relative;
   display: flex;
@@ -156,7 +174,6 @@ export const LabelSign = styled.p`
   font-size: 18px;
   font-weight: 600;
   line-height: 1.44;
-  margin-bottom: 8px;
 `;
 
 export const Sign = styled.h3`
@@ -164,13 +181,6 @@ export const Sign = styled.h3`
   font-weight: 600;
   line-height: 1.44;
   margin-bottom: 8px;
-  color: ${({ disabled, theme }) => {
-    if (disabled) {
-      return theme.color.colorTextDisable;
-    } else {
-      return theme.color.colorMainText;
-    }
-  }};
 `;
 
 export const Explainment = styled.p`
@@ -232,7 +242,8 @@ export const AddImageButton = styled.button`
   width: 100%;
   height: 100%;
   font-size: 18px;
-  background-color: ${({ theme }) => theme.color.bgAddImage};
+  background-color: ${({ $fullUpFul, theme }) =>
+    $fullUpFul ? 'rgba(250, 0, 0, .8)' : theme.color.bgAddImage};
   &:hover {
     box-shadow: 0 4px 8px ${({ theme }) => theme.color.bgButton};
   }
@@ -296,4 +307,59 @@ export const viewProductButton = {
   '&:active': {
     boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
   },
+};
+
+export const styleSelect = {
+  width: '100%',
+  maxWidth: '300px',
+  'em, span': {
+    fontSize: '16px',
+    fontFamily: 'Nunito Sans',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    color: `${theme.color.colorTextExplainment}`,
+  },
+  '.MuiInputBase-root': {
+    fontSize: '16px',
+    fontFamily: 'Nunito Sans',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: '1.25',
+    color: `${theme.color.colorTextExplainment}`,
+    borderRadius: '6px',
+    border: 'none',
+  },
+  '.arrow_select': {
+    lineHeight: '0',
+    transform: 'rotate(180deg)',
+  },
+  '[aria-expanded="true"]~.arrow_select': {
+    transform: 'rotate(0deg)',
+  },
+  '.MuiSelect-select': {
+    padding: '8px 12px',
+    fontSize: '16px',
+    fontFamily: 'Nunito Sans',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: '1.25',
+  },
+  '[aria-expanded="true"]~.MuiOutlinedInput-notchedOutline': {
+    boxShadow: `inset 0 0 0 3px ${theme.color.borderRegister}`,
+    border: `1px solid ${theme.color.borderRegister}`,
+  },
+  '.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    boxShadow: `inset 0 0 0 3px ${theme.color.borderRegister}`,
+    border: 'none',
+  },
+};
+
+export const styleRemoveImgButton = {
+  position: 'absolute',
+  color: `${theme.color.bgButton}`,
+  bgcolor: `${theme.color.bgBackdrop}`,
+  borderRadius: '6px',
+  zIndex: '2',
+  top: '10px',
+  right: '10px',
 };

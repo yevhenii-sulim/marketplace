@@ -6,7 +6,7 @@ import { loginWithSocial } from '../../redux/auth/slice';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import ProductPage from 'pages/ProductPage';
 import CatalogPage from 'pages/CatalogPage';
-import AddProduct from 'pages/AddProduct';
+// import AddProduct from 'pages/AddProduct';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
 import SubCategories from 'pages/SubCategories';
@@ -68,14 +68,14 @@ export default function App() {
             <Route path="selected" element={<SelectedPage />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>
-          <Route
+          {/* <Route
             path="add_product"
             element={
               <PrivateRoute>
                 <AddProduct />
               </PrivateRoute>
             }
-          />
+          /> */}
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

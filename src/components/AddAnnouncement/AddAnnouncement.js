@@ -26,7 +26,11 @@ export default memo(function AddAnnouncement() {
 
   return (
     <div>
-      <AddProduct to="add_product" onClick={onOpen}>
+      <AddProduct
+        to="user_page/my_poster"
+        state={'Створити оголошення'}
+        onClick={onOpen}
+      >
         Створити оголошення
       </AddProduct>
       {!isAuth &&
