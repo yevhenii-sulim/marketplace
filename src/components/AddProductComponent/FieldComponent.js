@@ -6,6 +6,7 @@ import {
 } from './AddProductComponent.styled';
 import PropTypes from 'prop-types';
 import Label from './Label';
+import { theme } from 'utils/theme';
 
 export default function FieldComponent({
   name,
@@ -18,6 +19,8 @@ export default function FieldComponent({
   className,
   explainment,
   placeholder,
+  errors,
+  touched,
 }) {
   return (
     <WrapperField>
@@ -28,6 +31,13 @@ export default function FieldComponent({
           name={name}
           type={type}
           placeholder={placeholder}
+          style={
+            touched && errors
+              ? {
+                  border: `3px solid ${theme.color.colorTextErrorForm}`,
+                }
+              : {}
+          }
           onChange={e => {
             setSubmitting(false);
             handleChange(e);
