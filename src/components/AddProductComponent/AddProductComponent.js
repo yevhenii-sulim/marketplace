@@ -88,7 +88,7 @@ export default function AddProductComponent() {
                 name="title"
                 required={true}
                 type="text"
-                label="Назва продукту"
+                label="Назва"
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}
                 className="title"
@@ -114,7 +114,6 @@ export default function AddProductComponent() {
                 label="Бренд"
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}
-                explainment="Додатковий текст"
                 placeholder="Введіть бренд товару"
               />
             </Box>
@@ -222,7 +221,7 @@ export default function AddProductComponent() {
                   setSubmitting={setSubmitting}
                   name="eco"
                   text="Відмітьте, якщо ваш продукт виготовлений з натуральних
-                    метеріалів, не тестувався на тваринах або процес його
+                    матеріалів, не тестувався на тваринах або процес його
                     виробництва не має негативного впливу на оточуюче
                     середовище."
                 />

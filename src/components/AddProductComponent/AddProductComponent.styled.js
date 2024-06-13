@@ -184,6 +184,8 @@ export const Sign = styled.h3`
   font-weight: 600;
   line-height: 1.44;
   margin-bottom: 8px;
+  color: ${({ $disable, theme }) =>
+    $disable ? `${theme.color.bgArrowList}` : `${theme.color.colorMainText}`};
 `;
 
 export const Explainment = styled.p`
@@ -288,7 +290,7 @@ export const addProductButton = {
 };
 export const viewProductButton = {
   display: 'flex',
-  textTransform: 'capitalize',
+  textTransform: 'none',
   alignItems: 'center',
   width: '264px',
   fontSize: '22px',

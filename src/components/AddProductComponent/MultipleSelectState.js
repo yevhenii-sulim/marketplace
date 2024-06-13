@@ -57,7 +57,7 @@ export default function MultipleSelectState({
           }}
           MenuProps={MenuProps}
         >
-          <MenuItem value="Нове">Нове</MenuItem>
+          <MenuItem value="Нове">Новий товар</MenuItem>
           <MenuItem value="Вживаний товар">Вживаний товар</MenuItem>
         </Select>
       </FormControl>

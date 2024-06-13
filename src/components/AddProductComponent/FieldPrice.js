@@ -14,7 +14,11 @@ export default function FieldPrice({
   return (
     <>
       <label>
-        {required ? <Label label={label} /> : <Sign>{label}</Sign>}
+        {required ? (
+          <Label label={label} />
+        ) : (
+          <Sign $disable={disabled}>{label}</Sign>
+        )}
         <Price className={className}>
           {children}
           <Field
