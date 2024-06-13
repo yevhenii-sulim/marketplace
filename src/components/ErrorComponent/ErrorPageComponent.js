@@ -1,15 +1,17 @@
 import React from 'react';
 import {
+  Back,
   Container,
   ContainerError,
   Images,
+  Question,
   Solution,
+  Text,
 } from './ErrorPageComponent.styled';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import ErrorImage from 'SvgComponents/ErrorSVG/ErrorImage';
 import ErrorText from 'SvgComponents/ErrorSVG/ErrorText';
-import { Link } from 'react-router-dom';
 
 export default function ErrorPageComponent() {
   return (
@@ -19,16 +21,15 @@ export default function ErrorPageComponent() {
         <Images>
           <ErrorText />
           <ErrorImage />
-          <p>
-            Йой... Здається такої сторінки не існує або вона була переміщена.
-            <br />
-            Але ми спробуєм вам допомогти!
-          </p>
+          <Text>
+            <p>
+              Йой... Здається такої сторінки не існує або вона була переміщена.
+            </p>
+          </Text>
         </Images>
         <Solution>
-          <Link to="/">Повернутися назад</Link>
-          <Link to="/">Часті питання</Link>
-          <Link to="/">Зв'язатися з підтримкою</Link>
+          <Back to="/">Повернутися назад</Back>
+          <Question to="/">Часті питання</Question>
         </Solution>
       </Container>
       <Footer />

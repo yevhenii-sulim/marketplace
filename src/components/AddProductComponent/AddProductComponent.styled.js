@@ -288,31 +288,6 @@ export const addProductButton = {
     color: 'black',
   },
 };
-export const viewProductButton = {
-  display: 'flex',
-  textTransform: 'none',
-  alignItems: 'center',
-  width: '264px',
-  fontSize: '22px',
-  fontWeight: '700',
-  bgcolor: `${theme.color.bgProduct}`,
-  borderRadius: '8px',
-  height: '48px',
-  padding: '0',
-  fontFamily: 'Jost',
-  lineHeight: '1.45',
-  outline: 'none',
-  color: `${theme.color.bgHeader}`,
-  border: `1px solid ${theme.color.bgButton}`,
-  '&:hover': {
-    color: `${theme.color.colorSecondText}`,
-    bgcolor: `${theme.color.bgButtonHover}`,
-    border: 'none',
-  },
-  '&:active': {
-    boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
-  },
-};
 
 export const styleSelect = {
   width: '100%',
@@ -367,4 +342,28 @@ export const styleRemoveImgButton = {
   zIndex: '2',
   top: '10px',
   right: '10px',
+};
+
+export const viewProductButton = {
+  textTransform: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  bgcolor: theme.color.bgProduct,
+  borderRadius: '8px',
+  height: '48px',
+  padding: '6px 16px',
+  fontFamily: 'Jost',
+  fontSize: '22px',
+  fontWeight: '700',
+  lineHeight: '1.45',
+  outline: 'none',
+  color: theme.color.bgHeader,
+  border: `1px solid ${theme.color.bgButton}`,
+  '&:hover': {
+    color: theme.color.colorButtonText,
+    backgroundColor: theme.color.bgButtonHover,
+  },
+  '&:active': {
+    boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
+  },
 };
