@@ -21,9 +21,12 @@ export const fetchProduct = createAsyncThunk(
 
 export const likeComment = createAsyncThunk(
   'productPage/likeComment',
-  async ({ commentId, index }, { getState }) => {
+  async ({ commentId }, { getState }) => {
     try {
       const token = getState().users.token;
+      const comments = getState().productPage.product.comments;
+      const userId = getState().users._id;
+
       const response = await urlProduct.post(
         '/comment/like',
         {
@@ -36,7 +39,7 @@ export const likeComment = createAsyncThunk(
         }
       );
 
-      return { ...response.data, index };
+      return { ...response.data, comments, userId };
     } catch (error) {
       console.error('Error:', error);
       throw error;
@@ -66,12 +69,51 @@ export const dislikeComment = createAsyncThunk(
   }
 );
 
+// const findAndUpdate = (idUser, idComment, likeAction, comments) => {
+//   const { _id, like, dislike, comments: nestedComments } = comments;
+
+//   if (_id === idComment) {
+//     if (likeAction === 'like') {
+//       if (!like) {
+//         comments.like = [idUser];
+//       } else if (!like.includes(idUser)) {
+//         comments.like.push(idUser);
+//       } else {
+//         comments.like = like.filter(likeId => likeId !== idUser);
+//       }
+//       // Видаляємо дизлайк, якщо він вже встановлений для цього користувача
+//       if (dislike && dislike.includes(idUser)) {
+//         comments.dislike = dislike.filter(dislikeId => dislikeId !== idUser);
+//       }
+//     } else if (likeAction === 'dislike') {
+//       if (!dislike) {
+//         comments.dislike = [idUser];
+//       } else if (!dislike.includes(idUser)) {
+//         comments.dislike.push(idUser);
+//       } else {
+//         comments.dislike = dislike.filter(dislikeId => dislikeId !== idUser);
+//       }
+//       // Видаляємо лайк, якщо він вже встановлений для цього користувача
+//       if (like && like.includes(idUser)) {
+//         comments.like = like.filter(likeId => likeId !== idUser);
+//       }
+//     }
+//   }
+
+//   if (nestedComments?.length > 0) {
+//     nestedComments.forEach(nestedComment => {
+//       findAndUpdate(idUser, idComment, likeAction, nestedComment);
+//     });
+//   }
+//   return comments;
+// };
+
 export const addComment = createAsyncThunk(
   'productPage/addComment',
   async ({ parent, comment, id, parentIndex }, { getState }) => {
     try {
       const token = getState().users.token;
-      const response = await axios.post(
+      const response = await urlProduct.post(
         `/comment`,
         {
           parent,
@@ -107,20 +149,18 @@ const productPageSlice = createSlice({
       })
       .addCase(likeComment.pending, (state, payload) => {})
       .addCase(likeComment.fulfilled, (state, action) => {
-        const index = action.meta.arg.index;
-        state.product.comments[index] = action.payload;
+        state.product.comments = action.payload;
       })
       .addCase(dislikeComment.pending, (state, payload) => {})
       .addCase(dislikeComment.fulfilled, (state, action) => {
-        const index = action.meta.arg.index;
-        state.product.comments[index] = action.payload;
+        state.product.comments = action.payload;
       })
       .addCase(addComment.pending, (state, payload) => {
         state.createCommentLoading = true;
       })
       .addCase(addComment.fulfilled, (state, action) => {
         const { parentIndex, ...newComment } = action.payload;
-        console.log(newComment);
+
         if (!newComment.parent) {
           state.product.comments.push(newComment);
         } else {
