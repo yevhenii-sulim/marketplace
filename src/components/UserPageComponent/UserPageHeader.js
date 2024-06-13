@@ -1,6 +1,5 @@
 import StarIcon from '@mui/icons-material/Star';
 import {
-  Balance,
   Header,
   Name,
   Rating,
@@ -21,7 +20,6 @@ export default function UserPageHeader({ rating, nameUser, imgUser }) {
           </Rating>
         </UserName>
       </User>
-      <Balance>Баланс:1000 грн</Balance>
     </Header>
   );
 }

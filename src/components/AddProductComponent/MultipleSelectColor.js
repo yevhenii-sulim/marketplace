@@ -28,7 +28,7 @@ export default function MultipleSelectColor({
     const {
       target: { value = [] },
     } = event;
-    if (personName.length >= 3) {
+    if (value.length > 3) {
       return;
     }
     setPersonName(typeof value === 'string' ? value.split(',') : value);
