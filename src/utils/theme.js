@@ -23,7 +23,7 @@ export const theme = {
     colorTextErrorLink: '#43C550',
     colorPriceDiscant: '#5E5F5F',
     colorSecondText: '#ffffff',
-    colorTextErrorForm: '#ff0000',
+    colorTextErrorForm: '#F04438',
     colorMainText: '#000000',
     colorInputText: '#00000050',
     colorButton: '#000000',

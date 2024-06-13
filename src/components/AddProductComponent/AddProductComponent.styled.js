@@ -200,6 +200,12 @@ export const Explainment = styled.p`
 export const ExplainmentInputSign = styled.p`
   font-size: 12px;
   line-height: 1.5;
+  color: ${({ children, theme }) => {
+    return children?.slice(0, 5).includes('Назва') ||
+      children?.slice(0, 4).includes('Опис')
+      ? theme.color.colorMainText
+      : theme.color.colorTextErrorForm;
+  }};
 `;
 export const SelectorsList = styled.ul`
   display: grid;

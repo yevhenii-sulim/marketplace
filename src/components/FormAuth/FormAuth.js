@@ -51,12 +51,7 @@ export default function FormAuth({ onClose, openForgetWind }) {
           <Form>
             <label>
               Електронна пошта
-              <Field
-                type="email"
-                name="email"
-                value={values.email.trim()}
-                autocomplete="on"
-              />
+              <Field type="email" name="email" value={values.email.trim()} />
               <ErrorMessage name="email" component="p" />
             </label>
             <label>

@@ -1,6 +1,7 @@
 import { createPortal } from 'react-dom';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
+import * as Yup from 'yup';
 import { navigationList } from 'data/navListData';
 import FieldComponent from './FieldComponent';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +38,24 @@ import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
 import { selectorViewAddingProductModal } from '../../redux/modalViewProduct/selectors';
 
 const modalEnter = document.querySelector('#modal');
+
+const SignupSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(3, 'Щонайменше 3 символи')
+    .max(50, 'Щонайбільше 50 символів')
+    .required('Будь ласка додайте назву товару'),
+  describe: Yup.string()
+    .min(30, 'Щонайменше 30 символи')
+    .max(4000, 'Щонайбільше 4000 символів')
+    .required('Будь ласка додайте опис товару'),
+  brand: Yup.string().max(50, 'Забагато символів'),
+  category: Yup.string().required(),
+  subCategory: Yup.string().required(),
+  color: Yup.string().required(),
+  sex: Yup.string().required(),
+  size: Yup.string().required(),
+  price: Yup.string().required(),
+});
 
 export default function AddProductComponent() {
   const dispatch = useDispatch();
@@ -78,6 +97,7 @@ export default function AddProductComponent() {
           isUkraine: false,
           file: [],
         }}
+        validationSchema={SignupSchema}
         onSubmit={values => {
           console.log(values);
           handleSubmit(values);
@@ -89,6 +109,9 @@ export default function AddProductComponent() {
           handleChange,
           setSubmitting,
           isSubmitting,
+          errors,
+          touched,
+          handleBlur,
         }) => (
           <Form>
             <Box>
@@ -97,22 +120,41 @@ export default function AddProductComponent() {
                 required={true}
                 type="text"
                 label="Назва"
-                handleChange={handleChange}
+                handleChange={e => {
+                  handleChange(e);
+                  console.log(touched);
+                }}
                 setSubmitting={setSubmitting}
                 className="title"
-                explainment="Назва повинна містити мінімум 3 та максимум 100 символів"
+                errors={errors.title}
+                touched={touched.title}
+                explainment={
+                  touched.title && errors.title
+                    ? errors.title
+                    : 'Назва повинна містити мінімум 3 та максимум 100 символів'
+                }
                 placeholder="Додайте назву товару, наприклад: Нічний крем для сухої шкіри, 50 мл"
               />
               <FieldComponent
                 required={true}
                 as="textarea"
+                onBlur={handleBlur}
                 name="describe"
                 className="describe"
                 type="text"
                 label="Опис товару"
-                handleChange={handleChange}
+                handleChange={e => {
+                  handleChange(e);
+                  console.log(touched);
+                }}
                 setSubmitting={setSubmitting}
-                explainment="Опис повинен містити від 30 до 4000 символів"
+                errors={errors.describe}
+                touched={touched.describe}
+                explainment={
+                  touched.describe && errors.describe
+                    ? errors.describe
+                    : 'Опис повинен містити від 30 до 4000 символів'
+                }
                 placeholder="Додайте детальний опис товару, наприклад: користуючись нашою косметикою ви помітите ефект вже через пару місяців"
               />
               <FieldComponent
@@ -122,7 +164,13 @@ export default function AddProductComponent() {
                 label="Бренд"
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}
-                explainment="Назва бренду не повинна перевищувати 50 символів"
+                touched={touched.brand}
+                errors={errors.brand}
+                explainment={
+                  touched.brand && errors.brand
+                    ? errors.brand
+                    : 'Назва бренду не повинна перевищувати 50 символів'
+                }
                 placeholder="Введіть бренд товару"
               />
             </Box>
