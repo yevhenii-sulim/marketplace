@@ -124,6 +124,7 @@ function CommentItem({
             comments={comment.comments}
             product={comment.product}
             commentId={commentId}
+            parentIndex={parentIndex}
             parent={comment.parent !== null ? comment.parent : null}
             setCommentId={setCommentId}
           />
