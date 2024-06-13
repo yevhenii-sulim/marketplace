@@ -18,6 +18,7 @@ import { categoryReducer } from './category/slice';
 import { productReducer } from './product/slice';
 import { productPageReducer } from './productPage/productPageSlice';
 import { reducerBasket } from './basket/slice';
+import { modalViewAddedProductReducer } from './modalViewProduct/slice';
 
 const persistUser = {
   key: 'token',
@@ -31,6 +32,7 @@ const persistAllStore = {
 };
 
 const rootReducer = combineReducers({
+  viewAddProduct: modalViewAddedProductReducer,
   productPage: productPageReducer,
   products: productReducer,
   modalCatalog: modalCatalogReducer,

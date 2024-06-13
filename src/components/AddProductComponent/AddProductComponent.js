@@ -1,8 +1,9 @@
+import { createPortal } from 'react-dom';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
 import { navigationList } from 'data/navListData';
 import FieldComponent from './FieldComponent';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FieldAddImages from './FieldAddImages';
 import Label from './Label';
 import MultipleSelectColor from './MultipleSelectColor';
@@ -31,12 +32,19 @@ import {
   sizeClothes,
   colorProduct,
 } from 'data/forAddProductPage';
+import { toggleModalView } from '../../redux/modalViewProduct/slice';
+import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
+import { selectorViewAddingProductModal } from '../../redux/modalViewProduct/selectors';
+
+const modalEnter = document.querySelector('#modal');
 
 export default function AddProductComponent() {
   const dispatch = useDispatch();
+  const onViewProduct = useSelector(selectorViewAddingProductModal);
+  function aheadViewProduct() {
+    dispatch(toggleModalView(true));
+  }
   function handleSubmit(values) {
-    console.log(values);
-
     const formData = new FormData();
     for (const key in values) {
       if (!values.hasOwnProperty(key)) return;
@@ -114,6 +122,7 @@ export default function AddProductComponent() {
                 label="Бренд"
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}
+                explainment="Назва бренду не повинна перевищувати 50 символів"
                 placeholder="Введіть бренд товару"
               />
             </Box>
@@ -250,6 +259,7 @@ export default function AddProductComponent() {
                 type="button"
                 sx={viewProductButton}
                 disabled={isSubmitting}
+                onClick={aheadViewProduct}
               >
                 Попередній перегляд
               </Button>
@@ -261,6 +271,7 @@ export default function AddProductComponent() {
                 Опублікувати
               </Button>
             </Buttons>
+            {onViewProduct && createPortal(<ViewAheadComponent />, modalEnter)}
           </Form>
         )}
       </Formik>

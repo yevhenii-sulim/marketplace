@@ -33,8 +33,8 @@ export const navigationList = [
   },
   {
     id: 2,
-    linkList: 'embroidery',
-    nameList: 'Вишивка',
+    linkList: 'clothes',
+    nameList: 'Одяг',
     img: '/marketplace/images/catalog/embroidery.png',
     subCategories: [
       {
@@ -53,6 +53,12 @@ export const navigationList = [
         id: 3,
         link: 'blouses',
         nameList: 'Блузки',
+        img: '/marketplace/images/subCatalog/blouses.png',
+      },
+      {
+        id: 4,
+        link: 'embroidery',
+        nameList: 'Вишивка',
         img: '/marketplace/images/subCatalog/blouses.png',
       },
     ],

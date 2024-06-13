@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 export const ContainerError = styled.div`
   display: flex;
@@ -10,24 +11,56 @@ export const ContainerError = styled.div`
 `;
 export const Images = styled.div`
   position: relative;
-  padding-top: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
   p {
     text-align: center;
   }
 `;
+
+export const Back = styled(Link)`
+  width: 264px;
+  font-family: Jost;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.44;
+  color: ${({ theme }) => theme.color.colorButtonText};
+  background-color: ${({ theme }) => theme.color.bgButton};
+  border-radius: 6px;
+  text-align: center;
+  padding: 8px 0px;
+  text-transform: none;
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: ${({ theme }) => theme.color.bgButton};
+  }
+  &:active {
+    box-shadow: none;
+  }
+  &:disabled {
+    color: black;
+  }
+`;
+export const Question = styled(Link)`
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.44;
+  color: ${({ theme }) => theme.color.colorTextErrorLink};
+`;
+export const Text = styled.div`
+  text-align: center;
+`;
+
 export const Solution = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  text-align: center;
   width: 100%;
-  a {
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.44;
-    color: ${({ theme }) => theme.color.colorTextErrorLink};
-  }
+  gap: 16px;
 `;
 export const Container = styled.main`
   display: grid;

@@ -6,7 +6,6 @@ import { loginWithSocial } from '../../redux/auth/slice';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import ProductPage from 'pages/ProductPage';
 import CatalogPage from 'pages/CatalogPage';
-// import AddProduct from 'pages/AddProduct';
 import UserPage from 'pages/UserPage';
 import HomePage from 'pages/HomePage';
 import SubCategories from 'pages/SubCategories';
@@ -68,39 +67,9 @@ export default function App() {
             <Route path="selected" element={<SelectedPage />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>
-          {/* <Route
-            path="add_product"
-            element={
-              <PrivateRoute>
-                <AddProduct />
-              </PrivateRoute>
-            }
-          /> */}
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Wrapper>
   );
 }
-// const LayoutPage = lazy(() => import('pages/LayoutPage'));
-
-// const ErrorPage = lazy(() => import('pages/ErrorPage'));
-// const AddProduct = lazy(() => import('pages/AddProduct'));
-// const ProfilePage = lazy(() => import('pages/UserPage/ProfilePage'));
-// const SelectedPage = lazy(() => import('pages/UserPage/SelectedPage'));
-// const NotificationPages = lazy(() =>
-//   import('pages/UserPage/NotificationPages')
-// );
-// const MyPosterPage = lazy(() => import('pages/UserPage/MyPosterPage'));
-// const MyOrdersPage = lazy(() => import('pages/UserPage/MyOrdersPage'));
-// const PrivateRoute = lazy(() => import('components/PrivateRoute/PrivateRoute'));
-// const UserPage = lazy(() => import('pages/UserPage'));
-// const ProductPage = lazy(() => import('pages/ProductPage'));
-// const SubCategories = lazy(() => import('pages/SubCategories'));
-// const Contacts = lazy(() => import('pages/Contacts'));
-// const CatalogPage = lazy(() => import('pages/CatalogPage'));
-// const Confederacy = lazy(() => import('pages/Confederacy'));
-// const Agreement = lazy(() => import('pages/Agreement'));
-// const RestorePassword = lazy(() => import('pages/RestorePassword'));
-// const AllCatalogPage = lazy(() => import('pages/AllCatalogPage'));
-// const HomePage = lazy(() => import('pages/HomePage'));

@@ -1,4 +1,5 @@
 export const initialState = {
+  viewAddProduct: false,
   products: {
     product: [],
     totalPage: 0,
