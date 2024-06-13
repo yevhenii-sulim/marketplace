@@ -49,6 +49,7 @@ const userSlice = createSlice({
       state.token = payload.accessJwt;
       state._id = payload.user._id;
       state.user = payload.user;
+      state.isActivated = payload.user.isActivated;
     },
   },
   extraReducers: builder => {
