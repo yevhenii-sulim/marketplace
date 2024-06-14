@@ -85,11 +85,18 @@ export const sendQueryRestorePassword = createAsyncThunk(
 export const restorePassword = createAsyncThunk(
   'user/restorePassword',
   async (password, { dispatch }) => {
+    const tokenIndex = window.location.href.indexOf('token=');
+    const token = window.location.href.slice(
+      tokenIndex + 6,
+      window.location.href.length
+    );
     try {
-      const { data } = await publicInstans.post(
-        '/auth/changePassword',
-        password
-      );
+      const data = await publicInstans.post('/auth/changePassword', password, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       dispatch(toggleModalForm(false));
 
       Notiflix.Notify.success(
