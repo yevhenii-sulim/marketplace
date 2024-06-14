@@ -16,7 +16,7 @@ export default function AllCatalogPage() {
   const category = useSelector(selectCategory);
   const totalItemsCount = useSelector(selectTotalPages);
 
-  const limit = 5;
+  const limit = 12;
 
   const location = useLocation();
   const dispatch = useDispatch();

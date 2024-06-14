@@ -36,6 +36,11 @@ export const SimilarProductItemIcon = styled.div`
     top: 8px;
     right: 8px;
   }
+  .flag-ukraine {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
 `;
 export const Price = styled.div``;
 export const SimilarProductItemName = styled.h4`

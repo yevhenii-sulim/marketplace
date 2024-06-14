@@ -14,23 +14,25 @@ export default function FieldComponent({
   label,
   handleChange,
   setSubmitting,
-  required,
+  require,
   as,
   className,
   explainment,
   placeholder,
   errors,
   touched,
+  handleBlur,
 }) {
   return (
     <WrapperField>
       <label>
-        {required ? <Label label={label} /> : <Sign>{label}</Sign>}
+        {require ? <Label label={label} /> : <Sign>{label}</Sign>}
         <Field
           as={as}
           name={name}
           type={type}
           placeholder={placeholder}
+          onBlur={handleBlur}
           style={
             touched && errors
               ? {
@@ -42,7 +44,6 @@ export default function FieldComponent({
             setSubmitting(false);
             handleChange(e);
           }}
-          required={required}
           className={className}
         />
         <ExplainmentInputSign>{explainment}</ExplainmentInputSign>

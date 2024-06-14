@@ -24,6 +24,8 @@ export default function MultipleSelectSize({
   sizeClothes,
   values,
   name,
+  error,
+  touched,
 }) {
   const [personName, setPersonName] = useState([]);
 
@@ -78,6 +80,7 @@ export default function MultipleSelectSize({
                 );
               })}
         </Select>
+        {touched && error && <p className="error">{error}</p>}
       </FormControl>
     </div>
   );

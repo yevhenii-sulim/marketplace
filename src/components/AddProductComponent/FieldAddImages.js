@@ -10,7 +10,12 @@ import {
   styleRemoveImgButton,
 } from './AddProductComponent.styled';
 
-export default function FieldAddImages({ values, setFieldValue, id }) {
+export default function FieldAddImages({
+  values,
+  setFieldValue,
+
+  name,
+}) {
   const [imageBig, setImageBig] = useState([]);
   const [field, setField] = useState(false);
   const inputRef = useRef(null);
@@ -63,7 +68,7 @@ export default function FieldAddImages({ values, setFieldValue, id }) {
         >
           <AddSharpIcon sx={addImageSignButton} />
           {field && (
-            <Field name="file">
+            <Field name={name}>
               {() => (
                 <>
                   <input

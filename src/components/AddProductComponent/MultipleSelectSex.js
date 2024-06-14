@@ -21,6 +21,8 @@ export default function MultipleSelectSexState({
   setSubmitting,
   name,
   placeholder,
+  error,
+  touched,
 }) {
   const [personName, setPersonName] = useState('');
 
@@ -61,6 +63,7 @@ export default function MultipleSelectSexState({
           <MenuItem value="Для чоловіків">Для чоловіків</MenuItem>
           <MenuItem value="Унісекс">Унісекс</MenuItem>
         </Select>
+        {touched && error && <p className="error">{error}</p>}
       </FormControl>
     </div>
   );

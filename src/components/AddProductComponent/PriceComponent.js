@@ -7,6 +7,8 @@ export default function PriceComponent({
   handleChange,
   setSubmitting,
   values,
+  error,
+  touched,
 }) {
   return (
     <Box className="price_box">
@@ -16,7 +18,9 @@ export default function PriceComponent({
         handleChange={handleChange}
         setSubmitting={setSubmitting}
         className="price"
-        required={true}
+        require={true}
+        error={error}
+        touched={touched}
       />
       <FieldPrice
         name="discountPrice"

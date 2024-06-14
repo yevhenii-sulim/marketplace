@@ -10,11 +10,15 @@ import { logOut } from '../../redux/auth/thunk';
 import StoryOrderSvg from 'SvgComponents/StoryOrderSvg/StoryOrderSvg';
 import { createPortal } from 'react-dom';
 import { useState } from 'react';
-import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
+import ConfirmExit from 'components/ConfirmExit/ConfirmExit';
+import { Exit } from './UserPageComponent.styled';
+
 const modalEnter = document.querySelector('#modal');
+
 export default function UserPageSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+
   function onExit() {
     dispatch(logOut());
   }
@@ -46,16 +50,13 @@ export default function UserPageSidebar() {
       <SidebarListComponent nameList="Профіль" path={'profile'}>
         <PersonOutlineOutlinedIcon />
       </SidebarListComponent>
-      <SidebarListComponent
-        nameList="Вийти"
-        path={'/'}
-        onClick={() => onToggleModal(true)}
-      >
+      <Exit onClick={() => onToggleModal(true)}>
         <LogoutOutlinedIcon />
-      </SidebarListComponent>
+        <span>Вийти</span>
+      </Exit>
       {isOpen &&
         createPortal(
-          <ViewAheadComponent onExit={onExit} onToggleModal={onToggleModal} />,
+          <ConfirmExit onExit={onExit} onToggleModal={onToggleModal} />,
           modalEnter
         )}
     </>
