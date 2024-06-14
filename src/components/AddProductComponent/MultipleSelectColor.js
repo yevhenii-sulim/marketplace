@@ -22,6 +22,9 @@ export default function MultipleSelectColor({
   names,
   handleChange,
   setSubmitting,
+  error,
+  touched,
+  name,
 }) {
   const [personName, setPersonName] = useState([]);
   const handleChangeComponent = event => {
@@ -33,7 +36,6 @@ export default function MultipleSelectColor({
     }
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
-
   return (
     <div>
       <FormControl sx={styleSelect}>
@@ -45,7 +47,7 @@ export default function MultipleSelectColor({
           )}
           multiple
           displayEmpty
-          name="color"
+          name={name}
           value={personName}
           onChange={e => {
             handleChangeComponent(e);
@@ -68,6 +70,7 @@ export default function MultipleSelectColor({
             </MenuItem>
           ))}
         </Select>
+        {touched && error && <p className="error">{error}</p>}
       </FormControl>
     </div>
   );

@@ -8,7 +8,6 @@ export default function SubCategories() {
   const categoryObject = navigationList.filter(
     item => item.nameList === category
   );
-  console.log(categoryObject);
 
   return (
     <>

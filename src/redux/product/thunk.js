@@ -10,8 +10,6 @@ export const getAllProducts = createAsyncThunk(
   async ({ page, limit }) => {
     try {
       const data = await axios.get(`/products?page=${page}&limit=${limit}`);
-      console.log('data', data.data);
-
       return data.data;
     } catch (error) {
       console.log('error', error);
@@ -22,14 +20,10 @@ export const getAllProducts = createAsyncThunk(
 export const getProductsBySubCategory = createAsyncThunk(
   'products/getProductsBySubCategory',
   async subCategory => {
-    console.log(subCategory);
-
     try {
-      const { data } = await axios.get(
+      const data = await axios.get(
         `products/filterBySubcategory/${subCategory}`
       );
-      console.log('dataSub', data);
-
       return data;
     } catch (error) {
       console.log('error', error);
@@ -44,7 +38,7 @@ export const getProductsByCategory = createAsyncThunk(
       const { data } = await axios.get(
         `/products/filterByCategory/${category}`
       );
-      console.log('dataSub', data);
+      console.log('datacategory', data);
 
       return data;
     } catch (error) {

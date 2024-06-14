@@ -28,7 +28,9 @@ const handleFulfilledSearch = (state, { payload }) => {
 };
 
 const handleFulfilledGetProductsBySubCategory = (state, { payload }) => {
-  state.product = payload;
+  console.log(payload);
+
+  state.product = payload.data;
   state.totalPage = 0;
 };
 

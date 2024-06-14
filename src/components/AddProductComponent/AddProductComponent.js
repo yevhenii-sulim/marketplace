@@ -49,12 +49,15 @@ const SignupSchema = Yup.object().shape({
     .max(4000, 'Щонайбільше 4000 символів')
     .required('Будь ласка додайте опис товару'),
   brand: Yup.string().max(50, 'Забагато символів'),
-  category: Yup.string().required(),
-  subCategory: Yup.string().required(),
-  color: Yup.string().required(),
-  sex: Yup.string().required(),
-  size: Yup.string().required(),
-  price: Yup.string().required(),
+  category: Yup.string().required("Обов'язкове поле"),
+  subCategory: Yup.string().required("Обов'язкове поле"),
+  color: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
+  sex: Yup.string().required("Обов'язкове поле"),
+  // size: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
+  file: Yup.array()
+    .of(Yup.string().required())
+    .min(1, 'Додайте мінімум 1 картинку'),
+  price: Yup.number().min(1, 'Встановіть ціну').required("Обов'язкове поле"),
 });
 
 export default function AddProductComponent() {
@@ -73,7 +76,6 @@ export default function AddProductComponent() {
         formData.append(key, values[key]);
       }
     }
-
     dispatch(createProduct(formData));
   }
 
@@ -99,7 +101,6 @@ export default function AddProductComponent() {
         }}
         validationSchema={SignupSchema}
         onSubmit={values => {
-          console.log(values);
           handleSubmit(values);
         }}
       >
@@ -117,13 +118,10 @@ export default function AddProductComponent() {
             <Box>
               <FieldComponent
                 name="title"
-                required={true}
+                require={true}
                 type="text"
                 label="Назва"
-                handleChange={e => {
-                  handleChange(e);
-                  console.log(touched);
-                }}
+                handleChange={handleChange}
                 setSubmitting={setSubmitting}
                 className="title"
                 errors={errors.title}
@@ -136,16 +134,14 @@ export default function AddProductComponent() {
                 placeholder="Додайте назву товару, наприклад: Нічний крем для сухої шкіри, 50 мл"
               />
               <FieldComponent
-                required={true}
+                require={true}
                 as="textarea"
-                onBlur={handleBlur}
+                handleBlur={handleBlur}
                 name="describe"
                 className="describe"
-                type="text"
                 label="Опис товару"
                 handleChange={e => {
                   handleChange(e);
-                  console.log(touched);
                 }}
                 setSubmitting={setSubmitting}
                 errors={errors.describe}
@@ -184,6 +180,8 @@ export default function AddProductComponent() {
                       setSubmitting={setSubmitting}
                       names={navigationList}
                       name="category"
+                      error={errors.category}
+                      touched={touched.category}
                     />
                   </label>
                 </li>
@@ -197,6 +195,8 @@ export default function AddProductComponent() {
                         names={navigationList}
                         name="subCategory"
                         values={values}
+                        error={errors.subCategory}
+                        touched={touched.subCategory}
                       />
                     </label>
                   </li>
@@ -217,8 +217,11 @@ export default function AddProductComponent() {
                     <Label label="Колір" />
                     <MultipleSelectColor
                       names={colorProduct}
+                      name="color"
                       handleChange={handleChange}
                       setSubmitting={setSubmitting}
+                      error={errors.color}
+                      touched={touched.color}
                     />
                   </label>
                 </li>
@@ -231,6 +234,8 @@ export default function AddProductComponent() {
                       setSubmitting={setSubmitting}
                       name="sex"
                       placeholder="Оберіть кому підходить товар"
+                      error={errors.sex}
+                      touched={touched.sex}
                     />
                   </label>
                 </li>
@@ -246,6 +251,8 @@ export default function AddProductComponent() {
                         sizeClothes={sizeClothes}
                         values={values}
                         name="size"
+                        error={errors.size}
+                        touched={touched.size}
                       />
                     </label>
                   </li>
@@ -258,6 +265,9 @@ export default function AddProductComponent() {
                 <Explainment>
                   Додайте фотографії вашого товару гарної якості. Перше фото
                   буде обкладинкою оголошення.
+                  {touched.file && errors.file && (
+                    <p className="error">{errors.file}</p>
+                  )}
                 </Explainment>
                 <FieldImagesList>
                   {pictures.map((_, index) => (
@@ -265,6 +275,7 @@ export default function AddProductComponent() {
                       key={index}
                       values={values}
                       setFieldValue={setFieldValue}
+                      name="file"
                     />
                   ))}
                 </FieldImagesList>
@@ -300,6 +311,8 @@ export default function AddProductComponent() {
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}
                 values={values}
+                error={errors.price}
+                touched={touched.price}
               />
             )}
             <Buttons>

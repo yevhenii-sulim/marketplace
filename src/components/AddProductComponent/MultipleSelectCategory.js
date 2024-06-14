@@ -31,6 +31,8 @@ export default function MultipleSelectCategory({
   setSubmitting,
   names,
   name,
+  error,
+  touched,
 }) {
   const theme = useTheme();
   const [personName, setPersonName] = useState([]);
@@ -92,6 +94,7 @@ export default function MultipleSelectCategory({
             );
           })}
         </Select>
+        {touched && error && <p className="error">{error}</p>}
       </FormControl>
     </div>
   );

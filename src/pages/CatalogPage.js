@@ -18,6 +18,7 @@ export default function CatalogPage() {
   const products = useSelector(selectProduct);
   const category = useSelector(selectCategory);
   const limit = 5;
+  console.log(products.length);
 
   const totalItemsCount = Math.ceil(products.length / limit);
 

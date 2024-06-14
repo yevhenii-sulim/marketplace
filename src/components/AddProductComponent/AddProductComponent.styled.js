@@ -187,12 +187,21 @@ export const Sign = styled.h3`
   color: ${({ $disable, theme }) =>
     $disable ? `${theme.color.bgArrowList}` : `${theme.color.colorMainText}`};
 `;
-
+export const Error = styled.p`
+  color: ${({ theme }) => theme.color.colorTextErrorForm};
+`;
 export const Explainment = styled.p`
+  position: relative;
   color: ${({ theme }) => theme.color.colorTextExplainment};
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  .error {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    color: ${({ theme }) => theme.color.colorTextErrorForm};
+  }
   &.sign_checkbox {
     width: 60%;
   }
@@ -242,6 +251,7 @@ export const addImageSignButton = {
   transform: 'translate(-50%, -50%)',
 };
 export const AddImageList = styled.li`
+  position: relative;
   width: 126px;
   height: 126px;
   border: 1px solid ${({ theme }) => theme.color.colorTextStartUserPage};
@@ -296,8 +306,15 @@ export const addProductButton = {
 };
 
 export const styleSelect = {
+  position: 'relative',
   width: '100%',
   maxWidth: '300px',
+  '.error': {
+    position: 'absolute',
+    bottom: '48px',
+    right: '0',
+    color: `${theme.color.colorTextErrorForm}`,
+  },
   'em, span': {
     fontSize: '16px',
     fontFamily: 'Nunito Sans',

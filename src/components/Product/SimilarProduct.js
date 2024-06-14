@@ -15,6 +15,7 @@ import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
 import { formatDate } from 'data/headphoneProduct';
 import { useDispatch } from 'react-redux';
 import { addFavoriteProduct } from '../../redux/product/thunk';
+import FlagUkrSvg from 'SvgComponents/FlagUkrSvg/FlagUkrSvg';
 
 function scrollToByClick() {
   window.scrollTo({
@@ -29,12 +30,13 @@ function SimilarProduct({
   title,
   price,
   img,
-  discountItem,
+  discountPrice,
   discount,
   createDate,
   eco,
   category,
   subCategory,
+  isUkraine,
 }) {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -59,6 +61,7 @@ function SimilarProduct({
         >
           <SimilarProductItemIcon>
             {eco && <EcoSvg />}
+            {isUkraine && <FlagUkrSvg />}
             <img src={img[0]} alt={title} />
           </SimilarProductItemIcon>
           <SimilarProductItemName>{title}</SimilarProductItemName>
@@ -70,7 +73,7 @@ function SimilarProduct({
                 <SimilarProductItemDiscount>
                   {price} грн
                 </SimilarProductItemDiscount>
-                <p>{discountItem} грн</p>
+                <p>{discountPrice} грн</p>
               </>
             ) : (
               <p>{price} грн</p>
@@ -91,14 +94,14 @@ function SimilarProduct({
 
 export default SimilarProduct;
 SimilarProduct.propTypes = {
-  id: PropTypes.string,
-  title: PropTypes.string,
-  price: PropTypes.number,
-  img: PropTypes.arrayOf(PropTypes.string),
-  discountItem: PropTypes.number,
-  discount: PropTypes.bool,
-  createDate: PropTypes.string,
-  eco: PropTypes.bool,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  img: PropTypes.arrayOf(PropTypes.string).isRequired,
+  discountPrice: PropTypes.number.isRequired,
+  discount: PropTypes.bool.isRequired,
+  createDate: PropTypes.string.isRequired,
+  eco: PropTypes.bool.isRequired,
   category: PropTypes.object.isRequired,
   subCategory: PropTypes.object.isRequired,
 };

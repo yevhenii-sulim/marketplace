@@ -1,4 +1,5 @@
-import { Field, Price, Sign } from './AddProductComponent.styled';
+import { theme } from 'utils/theme';
+import { Error, Field, Price, Sign } from './AddProductComponent.styled';
 import Label from './Label';
 
 export default function FieldPrice({
@@ -7,14 +8,16 @@ export default function FieldPrice({
   disabled,
   handleChange,
   setSubmitting,
-  required,
+  require,
   className,
   children,
+  error,
+  touched,
 }) {
   return (
     <>
       <label>
-        {required ? (
+        {require ? (
           <Label label={label} />
         ) : (
           <Sign $disable={disabled}>{label}</Sign>
@@ -28,11 +31,18 @@ export default function FieldPrice({
               setSubmitting(false);
               handleChange(e);
             }}
-            required={required}
             disabled={disabled}
+            style={
+              touched && error
+                ? {
+                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
           />
           грн
         </Price>
+        {touched && error && <Error>{error}</Error>}
       </label>
     </>
   );

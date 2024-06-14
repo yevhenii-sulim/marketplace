@@ -70,7 +70,7 @@ export default function ProductListPage({
                 _id,
                 img,
                 price,
-                discountItem,
+                discountPrice,
                 createDate,
                 discount,
                 eco,
@@ -83,7 +83,7 @@ export default function ProductListPage({
                   title={title}
                   price={price}
                   img={img}
-                  discountItem={discountItem}
+                  discountPrice={discountPrice}
                   discount={discount}
                   createDate={createDate}
                   eco={eco}
@@ -109,18 +109,16 @@ export default function ProductListPage({
 }
 
 ProductListPage.propTypes = {
-  headphoneProduct: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      img: PropTypes.string,
-      title: PropTypes.string,
-      price: PropTypes.string,
-      discountItem: PropTypes.string,
-      createDate: PropTypes.string,
-      discount: PropTypes.bool,
-      eco: PropTypes.bool,
-      visit: PropTypes.number,
-      category: PropTypes.string,
-    })
-  ),
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
+  getMaxValue: PropTypes.func.isRequired,
+  getMinValue: PropTypes.func.isRequired,
+  valueSort: PropTypes.string.isRequired,
+  handleSort: PropTypes.func.isRequired,
+  sortedProduct: PropTypes.func.isRequired,
+  handlePageClick: PropTypes.func.isRequired,
+  totalItemsCount: PropTypes.number.isRequired,
 };

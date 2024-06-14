@@ -79,14 +79,8 @@ export const Sidebar = styled.ul`
   padding: 24px;
 `;
 
-const colorExit = ({ children, theme }) => {
-  if (children.props.state === 'Вийти')
-    return `${theme.color.colorTextSidebarActive}`;
-};
-
 export const List = styled.li`
   a {
-    color: ${colorExit};
     display: flex;
     padding: 10px;
     gap: 20px;
@@ -101,7 +95,18 @@ export const List = styled.li`
     }
   }
 `;
-
+export const Exit = styled.button`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  color: ${({ theme }) => theme.color.colorTextSidebarActive};
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+  align-items: center;
+  background-color: transparent;
+`;
 export const PagesForSidebar = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
