@@ -90,6 +90,8 @@ export const restorePassword = createAsyncThunk(
       tokenIndex + 6,
       window.location.href.length
     );
+    console.log(token);
+
     try {
       const data = await publicInstans.post('/auth/changePassword', password, {
         headers: {
@@ -98,13 +100,9 @@ export const restorePassword = createAsyncThunk(
         },
       });
       dispatch(toggleModalForm(false));
-
-      Notiflix.Notify.success(
-        'Ми відправили інформацію для відновлення паролю вам на ел. пошту'
-      );
       return data;
     } catch (error) {
-      Notiflix.Notify.failure(error.response.data.message);
+      Notiflix.Notify.failure(error.response.data.message[0]);
       console.log('error', error);
     }
   }
