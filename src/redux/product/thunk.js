@@ -52,6 +52,19 @@ export const getProductsByCategory = createAsyncThunk(
     }
   }
 );
+export const searchProduct = createAsyncThunk(
+  'products/searchProduct',
+  async title => {
+    try {
+      const data = await axios.get(`/products/search/${title}`);
+      console.log('search', data);
+
+      return data;
+    } catch (error) {
+      console.log('error', error);
+    }
+  }
+);
 
 export const addFavoriteProduct = createAsyncThunk(
   'products/addFavoriteProduct',

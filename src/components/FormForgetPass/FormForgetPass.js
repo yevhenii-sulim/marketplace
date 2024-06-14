@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 import {
   ContainerForm,
@@ -9,9 +8,9 @@ import {
   socialSingInButton,
   ErrorMessage,
 } from './FormForgetPass.styled';
-import { restorePassword } from '../../redux/auth/thunk';
+import { sendQueryRestorePassword } from '../../redux/auth/thunk';
 
-export default function FormForgetPass({ onClose }) {
+export default function FormForgetPass() {
   const dispatch = useDispatch();
 
   return (
@@ -29,7 +28,7 @@ export default function FormForgetPass({ onClose }) {
           return errors;
         }}
         onSubmit={values => {
-          dispatch(restorePassword(values));
+          dispatch(sendQueryRestorePassword(values));
         }}
       >
         {({ isSubmitting, handleChange, setSubmitting }) => (
@@ -60,7 +59,3 @@ export default function FormForgetPass({ onClose }) {
     </ContainerForm>
   );
 }
-
-FormForgetPass.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
