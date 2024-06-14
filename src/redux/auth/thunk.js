@@ -90,6 +90,8 @@ export const restorePassword = createAsyncThunk(
       tokenIndex + 6,
       window.location.href.length
     );
+    console.log('password', password);
+
     try {
       const data = await publicInstans.post('/auth/changePassword', password, {
         headers: {
@@ -97,6 +99,8 @@ export const restorePassword = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
+      console.log('restorePasswordData', data);
+
       dispatch(toggleModalForm(false));
       return data;
     } catch (error) {
