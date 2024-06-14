@@ -90,8 +90,6 @@ export const restorePassword = createAsyncThunk(
       tokenIndex + 6,
       window.location.href.length
     );
-    console.log(token);
-
     try {
       const data = await publicInstans.post('/auth/changePassword', password, {
         headers: {

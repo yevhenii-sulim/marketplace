@@ -44,7 +44,6 @@ export default function ChangePassword() {
       >
         {({ isSubmitting, handleChange, setSubmitting, errors }) => (
           <Form>
-            {console.log(errors)}
             <label>
               Введіть пароль
               <Field
