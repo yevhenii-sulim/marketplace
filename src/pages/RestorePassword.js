@@ -1,3 +1,5 @@
+import ChangePassword from 'components/ChangePassword/ChangePassword';
+
 export default function RestorePassword() {
-  return <div>RestorePassword</div>;
+  return <ChangePassword />;
 }

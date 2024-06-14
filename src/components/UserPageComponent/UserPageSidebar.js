@@ -8,12 +8,21 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SidebarListComponent from './SidebarListComponent';
 import { logOut } from '../../redux/auth/thunk';
 import StoryOrderSvg from 'SvgComponents/StoryOrderSvg/StoryOrderSvg';
-
+import { createPortal } from 'react-dom';
+import { useState } from 'react';
+import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
+const modalEnter = document.querySelector('#modal');
 export default function UserPageSidebar() {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   function onExit() {
     dispatch(logOut());
   }
+
+  function onToggleModal(bool) {
+    setIsOpen(bool);
+  }
+
   return (
     <>
       <SidebarListComponent nameList="Мій кошик" path={'my_order'}>
@@ -37,9 +46,18 @@ export default function UserPageSidebar() {
       <SidebarListComponent nameList="Профіль" path={'profile'}>
         <PersonOutlineOutlinedIcon />
       </SidebarListComponent>
-      <SidebarListComponent nameList="Вийти" path={'/'} onClick={onExit}>
+      <SidebarListComponent
+        nameList="Вийти"
+        path={'/'}
+        onClick={() => onToggleModal(true)}
+      >
         <LogoutOutlinedIcon />
       </SidebarListComponent>
+      {isOpen &&
+        createPortal(
+          <ViewAheadComponent onExit={onExit} onToggleModal={onToggleModal} />,
+          modalEnter
+        )}
     </>
   );
 }

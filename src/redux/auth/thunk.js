@@ -37,7 +37,10 @@ export const signUp = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      Notiflix.Notify.failure(error.response.data.message);
+      console.log(error.response.data.errors);
+      error.response.data.errors.forEach(({ field, message }) =>
+        Notiflix.Notify.failure(`${field}:${message[0]}`)
+      );
     }
   }
 );
@@ -45,29 +48,48 @@ export const signUp = createAsyncThunk(
 export const logIn = createAsyncThunk('user/enterUser', async user => {
   try {
     const { data } = await publicInstans.post('/auth/login', user);
-    if (!data.user.isActivated) {
-      Notiflix.Notify.failure(
-        'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
-      );
-      throw new Error('Це помилка!');
-    }
     token.set(data.backend_tokens.token);
-    console.log(data);
-
-    window.location.reload();
+    // window.location.reload();
+    // if (!data.user.isActivated) {
+    //   throw new Error(
+    //     Notiflix.Notify.failure(
+    //       'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
+    //     )
+    //   );
+    // }
     return data;
   } catch (error) {
     Notiflix.Notify.failure('Неправильний логін або пароль');
-    // : Notiflix.Notify.failure(error.response.data.message);
     console.log(error);
   }
 });
 
-export const restorePassword = createAsyncThunk(
-  'user/restorePassword',
+export const sendQueryRestorePassword = createAsyncThunk(
+  'user/sendQueryRestorePassword',
   async (user, { dispatch }) => {
     try {
       const { data } = await publicInstans.post('/auth/forgotPassword', user);
+      dispatch(toggleModalForm(false));
+
+      Notiflix.Notify.success(
+        'Ми відправили інформацію для відновлення паролю вам на ел. пошту'
+      );
+      return data;
+    } catch (error) {
+      Notiflix.Notify.failure(error.response.data.message);
+      console.log('error', error);
+    }
+  }
+);
+
+export const restorePassword = createAsyncThunk(
+  'user/restorePassword',
+  async (password, { dispatch }) => {
+    try {
+      const { data } = await publicInstans.post(
+        '/auth/changePassword',
+        password
+      );
       dispatch(toggleModalForm(false));
 
       Notiflix.Notify.success(

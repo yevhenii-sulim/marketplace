@@ -1,12 +1,14 @@
-import PropTypes from 'prop-types';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import React from 'react';
 import { FormSearch } from './Search.styled';
+import { useDispatch } from 'react-redux';
+import { searchProduct } from '../../redux/product/thunk';
 
-export default function Search({ searchProduct }) {
+export default function Search() {
+  const dispatch = useDispatch();
   function onSubmit(evt) {
     evt.preventDefault();
-    searchProduct(evt.target.elements.search.value);
+    dispatch(searchProduct(evt.target.elements.search.value));
   }
   return (
     <FormSearch onSubmit={onSubmit}>
@@ -18,7 +20,3 @@ export default function Search({ searchProduct }) {
     </FormSearch>
   );
 }
-
-Search.propTypes = {
-  searchProduct: PropTypes.func.isRequired,
-};

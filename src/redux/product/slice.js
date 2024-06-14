@@ -5,6 +5,7 @@ import {
   getProduct,
   getProductsByCategory,
   getProductsBySubCategory,
+  searchProduct,
 } from './thunk';
 
 const handlePending = state => {};
@@ -20,6 +21,10 @@ const handleFulfilledGetProductsByCategory = (state, { payload }) => {
 
   state.product = payload;
   state.totalPage = 0;
+};
+
+const handleFulfilledSearch = (state, { payload }) => {
+  console.log(payload);
 };
 
 const handleFulfilledGetProductsBySubCategory = (state, { payload }) => {
@@ -60,6 +65,7 @@ const productSlice = createSlice({
         getProductsBySubCategory.rejected,
         handleRejectedGetProductsBySubCategory
       )
+      .addCase(searchProduct.fulfilled, handleFulfilledSearch)
       .addMatcher(
         isAnyOf(getAllProducts.pending, getProduct.pending),
         handlePending

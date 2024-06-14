@@ -6,10 +6,6 @@ import OpenCategory from 'components/OpenCategory/OpenCategory';
 import Auxiliary from 'components/Auxiliary/Auxiliary';
 // import useWindowDimensions from 'hooks/useWindowDimensions';
 
-function searchProduct(nameProduct) {
-  console.log(nameProduct);
-}
-
 export default function Header() {
   // const { width } = useWindowDimensions();
 
@@ -20,7 +16,7 @@ export default function Header() {
           <Logo fill="#ffffff" />
           <OpenCategory />
         </NavContainer>
-        <Search searchProduct={searchProduct} />
+        <Search />
         <Auxiliary />
         <AddAnnouncement />
       </Container>
