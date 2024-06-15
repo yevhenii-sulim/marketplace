@@ -15,9 +15,8 @@ export default function ConfirmExit({ onExit, onToggleModal }) {
   }
 
   function onExitOutAccount() {
-    onToggleModal(false);
-    window.location.reload();
     onExit();
+    window.location.reload();
   }
 
   return (
