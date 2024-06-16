@@ -23,10 +23,13 @@ const handleLogInFulfilled = (state, { payload }) => {
   state._id = payload.user._id;
 };
 
-const handleUpdateFulfilled = (state, { payload }) => {};
+const handleUpdateFulfilled = (state, { payload }) => {
+  console.log(payload);
+};
 const handleGetUserFulfilled = (state, { payload }) => {
   state.myUser = payload;
 };
+
 const handleLogOutFulfilled = state => {
   state.user = {
     firstName: '',
@@ -36,6 +39,8 @@ const handleLogOutFulfilled = state => {
     password: '',
   };
   state.token = null;
+  state._id = null;
+  state.myUser = null;
 };
 const handleRejected = state => {
   state.isLoading = false;

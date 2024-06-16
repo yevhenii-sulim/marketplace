@@ -21,8 +21,8 @@ export default function FlagUkrSvg() {
             y2="0"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0.479227" stop-color="#FED703" />
-            <stop offset="0.479406" stop-color="#0256B7" />
+            <stop offset="0.479227" stopColor="#FED703" />
+            <stop offset="0.479406" stopColor="#0256B7" />
           </linearGradient>
         </defs>
       </svg>

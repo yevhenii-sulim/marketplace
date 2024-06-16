@@ -50,7 +50,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
                 discountPrice,
                 createDate,
                 discount,
-                eco,
+                parameters,
                 category,
               },
               index
@@ -63,10 +63,11 @@ export default function HomePageComponent({ filteredProducts, title }) {
                     title={title}
                     price={price}
                     img={img}
-                    discountItem={discountPrice}
+                    discountPrice={discountPrice}
                     discount={discount}
                     createDate={createDate}
-                    eco={eco}
+                    eco={parameters.eco}
+                    isUkraine={parameters.isUkraine}
                     category={{ ...category }}
                   />
                 </Slide>

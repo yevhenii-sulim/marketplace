@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import { getUser } from '../auth/thunk';
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -10,6 +11,8 @@ export const getAllProducts = createAsyncThunk(
   async ({ page, limit }) => {
     try {
       const data = await axios.get(`/products?page=${page}&limit=${limit}`);
+      console.log(data);
+
       return data.data;
     } catch (error) {
       console.log('error', error);
@@ -26,7 +29,7 @@ export const getProductsBySubCategory = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      console.log('error', error);
+      console.log('errorGetProductBySubCateg', error);
     }
   }
 );
@@ -42,7 +45,7 @@ export const getProductsByCategory = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log('error', error);
+      console.log('errorGetProductByCateg', error);
     }
   }
 );
@@ -55,14 +58,14 @@ export const searchProduct = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log('error', error);
+      console.log('errorSearch', error);
     }
   }
 );
 
 export const addFavoriteProduct = createAsyncThunk(
   'products/addFavoriteProduct',
-  async (productId, { getState }) => {
+  async (productId, { getState, dispatch }) => {
     try {
       const { data } = await axios.patch(
         `/favorite/add/${productId}`,
@@ -74,11 +77,33 @@ export const addFavoriteProduct = createAsyncThunk(
           },
         }
       );
-      console.log('dataSub', data);
-
+      dispatch(getUser(getState().users.myUser._id));
       return data;
     } catch (error) {
-      console.log('error', error);
+      console.log('errorFavoriteProduct', error);
+    }
+  }
+);
+
+export const removeFavoriteProduct = createAsyncThunk(
+  'products/removeFavoriteProduct',
+  async (productId, { getState, dispatch }) => {
+    try {
+      const { data } = await axios.patch(
+        `/favorite/remove/${productId}`,
+        productId,
+        {
+          headers: {
+            Authorization: `Bearer ${getState().users.token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      console.log('dataSub', data);
+      dispatch(getUser(getState().users.myUser._id));
+      return data;
+    } catch (error) {
+      console.log('errorFavoriteProduct', error);
     }
   }
 );
@@ -88,7 +113,7 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
     const { data } = await axios.get(`/products/${id}`);
     return data;
   } catch (error) {
-    console.log('error', error);
+    console.log('errorGetProduct', error);
   }
 });
 
@@ -102,13 +127,13 @@ export const createProduct = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('data', data);
+      window.location.reload();
       return data;
     } catch (error) {
       Notiflix.Notify.failure(error.data.message, {
         timeout: 6000,
       });
-      console.log('error', error);
+      console.log('errorCreateProduct', error);
     }
   }
 );

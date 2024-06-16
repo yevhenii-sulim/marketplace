@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {
   SimilarProductItem,
   SimilarProductItemPrice,
@@ -13,9 +14,14 @@ import {
 } from './SimilarProduct.styled';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
 import { formatDate } from 'data/headphoneProduct';
-import { useDispatch } from 'react-redux';
-import { addFavoriteProduct } from '../../redux/product/thunk';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addFavoriteProduct,
+  removeFavoriteProduct,
+} from '../../redux/product/thunk';
 import FlagUkrSvg from 'SvgComponents/FlagUkrSvg/FlagUkrSvg';
+import { selectMyUser } from '../../redux/auth/selector';
+import { theme } from 'utils/theme';
 
 function scrollToByClick() {
   window.scrollTo({
@@ -26,6 +32,7 @@ function scrollToByClick() {
 }
 
 function SimilarProduct({
+  children,
   id,
   title,
   price,
@@ -38,19 +45,24 @@ function SimilarProduct({
   subCategory,
   isUkraine,
 }) {
+  const user = useSelector(selectMyUser);
   const location = useLocation();
   const dispatch = useDispatch();
   function countCharacter(count) {
     return location.pathname.match(/[/]/g).length === count;
   }
 
-  function addFavorite(id) {
-    dispatch(addFavoriteProduct(id));
+  function toggleFavorite(id) {
+    if (user.favorites.some(({ _id }) => id === _id)) {
+      dispatch(removeFavoriteProduct(id));
+    } else {
+      dispatch(addFavoriteProduct(id));
+    }
   }
-
   return (
     <>
       <SimilarProductItem>
+        {children}
         <Link
           onClick={scrollToByClick}
           to={
@@ -80,8 +92,12 @@ function SimilarProduct({
             )}
           </Price>
 
-          <SimilarProductItemIconWrapper onClick={() => addFavorite(id)}>
-            <FavoriteBorderIcon />
+          <SimilarProductItemIconWrapper onClick={() => toggleFavorite(id)}>
+            {user.favorites.some(({ _id }) => id === _id) ? (
+              <FavoriteIcon sx={{ color: theme.color.bgNumberBasket }} />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
           </SimilarProductItemIconWrapper>
         </SimilarProductItemPrice>
         <SimilarProductDatePublic>
@@ -102,6 +118,9 @@ SimilarProduct.propTypes = {
   discount: PropTypes.bool.isRequired,
   createDate: PropTypes.string.isRequired,
   eco: PropTypes.bool.isRequired,
-  category: PropTypes.object.isRequired,
-  subCategory: PropTypes.object.isRequired,
+  category: PropTypes.string.isRequired,
+  subCategory: PropTypes.string.isRequired,
+  // category: PropTypes.object.isRequired,
+  // subCategory: PropTypes.object.isRequired,
+  isUkraine: PropTypes.bool.isRequired,
 };

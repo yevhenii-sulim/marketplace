@@ -11,20 +11,35 @@ export const formatDate = dateString => {
 };
 export const headphoneProduct = [
   {
-    id: '1',
+    _id: '1',
     img: '#',
     title: 'назва прдукту',
     price: '700$',
     discountItem: '500$',
-
     date: formatDate(new Date()),
-
     discount: true,
     eco: true,
     visit: 20,
     producer: 'anyBody',
     subCategory: 'vacuum',
     category: 'headphone',
+  },
+
+  {
+    createDate: '2024-05-16T08:29:16.458Z',
+    discount: false,
+    discountPrice: 0,
+    img: ['https://i.ibb.co/3rF9XGS/1715803383313-20109056.png'],
+    parameters: {
+      brand: '-',
+      eco: true,
+      isUkraine: true,
+    },
+    price: 1550,
+    subCategory: '66486d84bd0ee0adbd7bba3e',
+    title: 'Шкатулка для прикрас ',
+    visit: 36,
+    _id: '6645c3dc3fc9f80364c650cf',
   },
   {
     id: '2',
