@@ -13,7 +13,6 @@ const publicInstans = axios.create({
   baseURL: 'https://internet-shop-api-production.up.railway.app',
   signal: new AbortController().signal,
 });
-
 const token = {
   set(token) {
     privateInstans.defaults.headers.common.Authorization = `Bearer ${token}`;

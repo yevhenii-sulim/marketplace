@@ -30,7 +30,7 @@ function SimilarProductList() {
                 _id,
                 img,
                 price,
-                eco,
+                parameters,
                 discount,
                 discountPrice,
                 createDate,
@@ -46,10 +46,11 @@ function SimilarProductList() {
                   title={title}
                   price={price}
                   img={img}
-                  discountItem={discountPrice}
+                  discountPrice={discountPrice}
                   discount={discount}
                   createDate={createDate}
-                  eco={eco}
+                  eco={parameters.eco}
+                  isUkraine={parameters.isUkraine}
                   category={category}
                   subCategory={subCategory}
                 />

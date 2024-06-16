@@ -1,7 +1,17 @@
 import { Link as Location } from 'react-router-dom';
 import styled from 'styled-components';
+import { theme } from 'utils/theme';
 
 export const ContainerOrders = styled.div``;
+export const ContainerFavorite = styled.div``;
+export const ContainerNotification = styled.div`
+  padding-top: 56px;
+  padding-bottom: 56px;
+  p {
+    max-width: 755px;
+    text-align: center;
+  }
+`;
 export const Empty = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,6 +23,18 @@ export const Empty = styled.div`
     color: ${({ theme }) => theme.color.colorTextStartUserPage};
   }
 `;
+
+export const styleRemoveProductButton = {
+  position: 'absolute',
+  color: `${theme.color.bgButton}`,
+  bgcolor: `${theme.color.bgBackdrop}`,
+  borderRadius: '6px',
+  zIndex: '2',
+  bottom: '10px',
+  right: '10px',
+  cursor: 'pointer',
+};
+
 export const Link = styled(Location)`
   background-color: ${({ theme }) => theme.color.bgButton};
   color: ${({ theme }) => theme.color.colorButtonText};

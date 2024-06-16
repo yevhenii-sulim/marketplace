@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Wrapper } from './App.styled';
 import { loginWithSocial } from '../../redux/auth/slice';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
@@ -22,9 +22,14 @@ import Confederacy from 'pages/Confederacy';
 import Contacts from 'pages/Contacts';
 import AllCatalogPage from 'pages/AllCatalogPage';
 import MyStoryOrdersPage from 'pages/UserPage/MyStoryOrdersPage';
+import { selectId, selectMyUser } from '../../redux/auth/selector';
+import { getUser } from '../../redux/auth/thunk';
 
 export default function App() {
   const dispatch = useDispatch();
+  const id = useSelector(selectId);
+  const user = useSelector(selectMyUser);
+
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const userDataParam = searchParams.get('userData');
@@ -34,6 +39,13 @@ export default function App() {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (user !== null) {
+      return;
+    }
+    dispatch(getUser(id));
+  }, [dispatch, user, id]);
 
   return (
     <Wrapper>

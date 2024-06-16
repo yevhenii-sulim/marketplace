@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SimilarProductItem = styled.li`
+  position: relative;
   width: 232px;
   display: flex;
   gap: 12px;

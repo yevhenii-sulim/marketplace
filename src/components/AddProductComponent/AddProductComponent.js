@@ -15,7 +15,7 @@ import MultipleSelectState from './MultipleSelectState';
 import MultipleSelectSize from './MultipleSelectSize';
 import PriceComponent from './PriceComponent';
 import FieldsCheckboxes from './FieldsCheckboxes';
-import { createProduct } from '../../redux/product/thunk';
+// import { createProduct } from '../../redux/product/thunk';
 import {
   Box,
   Buttons,
@@ -53,11 +53,18 @@ const SignupSchema = Yup.object().shape({
   subCategory: Yup.string().required("Обов'язкове поле"),
   color: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
   sex: Yup.string().required("Обов'язкове поле"),
-  // size: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
+  size: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
   file: Yup.array()
     .of(Yup.string().required())
     .min(1, 'Додайте мінімум 1 картинку'),
-  price: Yup.number().min(1, 'Встановіть ціну').required("Обов'язкове поле"),
+  // price: Yup.number().min(1, 'Встановіть ціну').required("Обов'язкове поле"),
+  price: Yup.number().when('category', {
+    is: 'Подарую/віддам',
+    then: Yup.number().notRequired(),
+    otherwise: Yup.number()
+      .min(1, 'Встановіть ціну')
+      .required("Обов'язкове поле"),
+  }),
 });
 
 export default function AddProductComponent() {
@@ -76,7 +83,8 @@ export default function AddProductComponent() {
         formData.append(key, values[key]);
       }
     }
-    dispatch(createProduct(formData));
+
+    // dispatch(createProduct(formData));
   }
 
   return (

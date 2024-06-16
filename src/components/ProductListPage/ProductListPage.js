@@ -73,7 +73,7 @@ export default function ProductListPage({
                 discountPrice,
                 createDate,
                 discount,
-                eco,
+                parameters,
                 category,
                 subCategory,
               }) => (
@@ -86,7 +86,8 @@ export default function ProductListPage({
                   discountPrice={discountPrice}
                   discount={discount}
                   createDate={createDate}
-                  eco={eco}
+                  eco={parameters.eco}
+                  isUkraine={parameters.isUkraine}
                   category={category}
                   subCategory={subCategory}
                 />
@@ -118,7 +119,7 @@ ProductListPage.propTypes = {
   getMinValue: PropTypes.func.isRequired,
   valueSort: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
-  sortedProduct: PropTypes.func.isRequired,
+  sortedProduct: PropTypes.array.isRequired,
   handlePageClick: PropTypes.func.isRequired,
   totalItemsCount: PropTypes.number.isRequired,
 };

@@ -23,7 +23,7 @@ export default function Sort({ value, handleSort }) {
         <SelectSort
           onClick={() => setOpen(prev => !prev)}
           name="sort"
-          value={value}
+          defaultValue={'new'}
           onChange={handleChangeSort}
         >
           <option value="new">Спочатку нові</option>
