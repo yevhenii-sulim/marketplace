@@ -25,6 +25,8 @@ function OrderSection() {
       title: product.title,
       price: product.price,
       img: product.img[0],
+      discount: product.discount,
+      discountPrice: product.discountPrice,
       count: 1,
     };
     dispatch(addProduct(productAdded));

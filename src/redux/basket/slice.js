@@ -11,6 +11,9 @@ const sliceBasket = createSlice({
     deleteProduct(state, { payload }) {
       return state.filter(({ id }) => id !== payload);
     },
+    deleteBasket(state) {
+      return (state = []);
+    },
     changeCount(state, { payload }) {
       return state.reduce((cum, item) => {
         item.id === payload.id
@@ -22,4 +25,5 @@ const sliceBasket = createSlice({
   },
 });
 export const reducerBasket = sliceBasket.reducer;
-export const { addProduct, deleteProduct, changeCount } = sliceBasket.actions;
+export const { addProduct, deleteProduct, changeCount, deleteBasket } =
+  sliceBasket.actions;

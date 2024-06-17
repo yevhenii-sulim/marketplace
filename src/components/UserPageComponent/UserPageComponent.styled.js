@@ -108,7 +108,5 @@ export const Exit = styled.button`
   background-color: transparent;
 `;
 export const PagesForSidebar = styled.div`
-  background-color: ${({ theme }) => theme.color.bgProduct};
-  border-radius: 12px;
   flex-grow: 2;
 `;
