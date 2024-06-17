@@ -118,9 +118,7 @@ SimilarProduct.propTypes = {
   discount: PropTypes.bool.isRequired,
   createDate: PropTypes.string.isRequired,
   eco: PropTypes.bool.isRequired,
-  category: PropTypes.string.isRequired,
-  subCategory: PropTypes.string.isRequired,
-  // category: PropTypes.object.isRequired,
-  // subCategory: PropTypes.object.isRequired,
+  category: PropTypes.object.isRequired,
+  subCategory: PropTypes.object.isRequired,
   isUkraine: PropTypes.bool.isRequired,
 };
