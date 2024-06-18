@@ -1,22 +1,24 @@
+import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { Backdrop } from 'components/ModalForm/ModalForm.styled';
-import React from 'react';
 import {
   Buttons,
   WrapperModal,
   exitOutButton,
   stayInButton,
 } from './ConfirmExit.styled';
+import { toggleModalForm } from '../../redux/modalForm/slice';
 
-export default function ConfirmExit({ onExit, onToggleModal }) {
+export default function ConfirmExit({ onExit, onToggleModalConfirm }) {
+  const dispatch = useDispatch();
   function oncloseByClickOutside(evt) {
     if (evt.currentTarget !== evt.target) return;
-    onToggleModal(false);
+    onToggleModalConfirm(false);
   }
 
   function onExitOutAccount() {
     onExit();
-    window.location.reload();
+    dispatch(toggleModalForm(false));
   }
 
   return (
@@ -30,7 +32,7 @@ export default function ConfirmExit({ onExit, onToggleModal }) {
           <Button
             type="submit"
             sx={stayInButton}
-            onClick={() => onToggleModal(false)}
+            onClick={() => onToggleModalConfirm(false)}
           >
             Залишитись
           </Button>

@@ -31,6 +31,14 @@ export default function App() {
   const user = useSelector(selectMyUser);
 
   useEffect(() => {
+    if (user !== null) {
+      return;
+    }
+    if (!id) return;
+    dispatch(getUser(id));
+  }, [dispatch, user, id]);
+
+  useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const userDataParam = searchParams.get('userData');
     if (userDataParam) {
@@ -39,13 +47,6 @@ export default function App() {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, [dispatch]);
-
-  useEffect(() => {
-    if (user !== null) {
-      return;
-    }
-    dispatch(getUser(id));
-  }, [dispatch, user, id]);
 
   return (
     <Wrapper>
