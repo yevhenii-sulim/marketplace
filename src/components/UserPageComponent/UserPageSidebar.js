@@ -23,7 +23,7 @@ export default function UserPageSidebar() {
     dispatch(logOut());
   }
 
-  function onToggleModal(bool) {
+  function onToggleModalConfirm(bool) {
     setIsOpen(bool);
   }
 
@@ -50,13 +50,16 @@ export default function UserPageSidebar() {
       <SidebarListComponent nameList="Профіль" path={'profile'}>
         <PersonOutlineOutlinedIcon />
       </SidebarListComponent>
-      <Exit onClick={() => onToggleModal(true)}>
+      <Exit onClick={() => onToggleModalConfirm(true)}>
         <LogoutOutlinedIcon />
         <span>Вийти</span>
       </Exit>
       {isOpen &&
         createPortal(
-          <ConfirmExit onExit={onExit} onToggleModal={onToggleModal} />,
+          <ConfirmExit
+            onExit={onExit}
+            onToggleModalConfirm={onToggleModalConfirm}
+          />,
           modalEnter
         )}
     </>

@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import PropTypes from 'prop-types';
 import {
   SimilarProductItem,
   SimilarProductItemPrice,
@@ -14,7 +15,6 @@ import {
 } from './SimilarProduct.styled';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
 import { formatDate } from 'data/headphoneProduct';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   addFavoriteProduct,
   removeFavoriteProduct,
@@ -51,7 +51,6 @@ function SimilarProduct({
   function countCharacter(count) {
     return location.pathname.match(/[/]/g).length === count;
   }
-
   function toggleFavorite(id) {
     if (user.favorites.some(({ _id }) => id === _id)) {
       dispatch(removeFavoriteProduct(id));
@@ -93,7 +92,7 @@ function SimilarProduct({
           </Price>
 
           <SimilarProductItemIconWrapper onClick={() => toggleFavorite(id)}>
-            {user.favorites.some(({ _id }) => id === _id) ? (
+            {user?.favorites.some(({ _id }) => id === _id) ? (
               <FavoriteIcon sx={{ color: theme.color.bgNumberBasket }} />
             ) : (
               <FavoriteBorderIcon />
