@@ -24,9 +24,10 @@ export const getProductsBySubCategory = createAsyncThunk(
   'products/getProductsBySubCategory',
   async subCategory => {
     try {
-      const data = await axios.get(
+      const { data } = await axios.get(
         `products/filterBySubcategory/${subCategory}`
       );
+      console.log('subcategory', data);
       return data;
     } catch (error) {
       console.log('errorGetProductBySubCateg', error);

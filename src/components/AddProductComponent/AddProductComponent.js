@@ -15,7 +15,7 @@ import MultipleSelectState from './MultipleSelectState';
 import MultipleSelectSize from './MultipleSelectSize';
 import PriceComponent from './PriceComponent';
 import FieldsCheckboxes from './FieldsCheckboxes';
-// import { createProduct } from '../../redux/product/thunk';
+import { createProduct } from '../../redux/product/thunk';
 import {
   Box,
   Buttons,
@@ -50,16 +50,33 @@ const SignupSchema = Yup.object().shape({
     .required('Будь ласка додайте опис товару'),
   brand: Yup.string().max(50, 'Забагато символів'),
   category: Yup.string().required("Обов'язкове поле"),
-  subCategory: Yup.string().required("Обов'язкове поле"),
+  // subCategory: Yup.string().required("Обов'язкове поле"),
+  subCategory: Yup.string().when('category', {
+    is: 'Подарую',
+    then: Yup.string().notRequired(),
+    otherwise: Yup.string()
+      .min(1, 'Встановіть ціну')
+      .required("Обов'язкове поле"),
+  }),
   color: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
   sex: Yup.string().required("Обов'язкове поле"),
-  size: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
+  // size: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
+  size: Yup.array()
+    .of(
+      Yup.string().when('category', {
+        is: 'Подарую',
+        then: Yup.string().notRequired(),
+        otherwise: Yup.string(),
+      })
+    )
+    .min(1, 'Встановіть ціну')
+    .required("Обов'язкове поле"),
   file: Yup.array()
     .of(Yup.string().required())
     .min(1, 'Додайте мінімум 1 картинку'),
   // price: Yup.number().min(1, 'Встановіть ціну').required("Обов'язкове поле"),
   price: Yup.number().when('category', {
-    is: 'Подарую/віддам',
+    is: 'Подарую',
     then: Yup.number().notRequired(),
     otherwise: Yup.number()
       .min(1, 'Встановіть ціну')
@@ -84,7 +101,7 @@ export default function AddProductComponent() {
       }
     }
 
-    // dispatch(createProduct(formData));
+    dispatch(createProduct(formData));
   }
 
   return (
@@ -193,7 +210,7 @@ export default function AddProductComponent() {
                     />
                   </label>
                 </li>
-                {values.category !== 'Подарую/віддам' && (
+                {values.category !== 'Подарую' && (
                   <li>
                     <label>
                       <Label label="Підкатегорія" />
@@ -314,7 +331,7 @@ export default function AddProductComponent() {
                 />
               </label>
             </Box>
-            {values.category !== 'Подарую/віддам' && (
+            {values.category !== 'Подарую' && (
               <PriceComponent
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}

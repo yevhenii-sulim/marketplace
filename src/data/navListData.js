@@ -164,7 +164,7 @@ export const navigationList = [
   {
     id: 7,
     linkList: 'forFree',
-    nameList: 'Подарую/віддам',
+    nameList: 'Подарую',
     img: '/marketplace/images/catalog/for-free.png',
   },
 ];

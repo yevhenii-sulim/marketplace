@@ -30,7 +30,7 @@ const handleFulfilledSearch = (state, { payload }) => {
 const handleFulfilledGetProductsBySubCategory = (state, { payload }) => {
   console.log(payload);
 
-  state.product = payload.data;
+  state.product = payload.products;
   state.totalPage = 0;
 };
 

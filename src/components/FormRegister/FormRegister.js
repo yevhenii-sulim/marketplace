@@ -37,65 +37,65 @@ export default function FormRegister() {
         }}
         validateOnChange={false}
         validateOnBlur={false}
-        // validate={values => {
-        //   const errors = {};
+        validate={values => {
+          const errors = {};
 
-        //   if (!values.firstName) {
-        //     errors.firstName = "Обов'язкове поле";
-        //   } else if (
-        //     values.firstName.length < 2 ||
-        //     values.firstName.length > 20
-        //   ) {
-        //     errors.firstName = 'Має бути від 2 до 20 символів';
-        //   } else if (
-        //     values.firstName.slice(0, 1) ===
-        //     values.firstName.slice(0, 1).toLowerCase()
-        //   ) {
-        //     errors.firstName = 'Має починатися з великої літери';
-        //   }
+          if (!values.firstName) {
+            errors.firstName = "Обов'язкове поле";
+          } else if (
+            values.firstName.length < 2 ||
+            values.firstName.length > 20
+          ) {
+            errors.firstName = 'Має бути від 2 до 20 символів';
+          } else if (
+            values.firstName.slice(0, 1) ===
+            values.firstName.slice(0, 1).toLowerCase()
+          ) {
+            errors.firstName = 'Має починатися з великої літери';
+          }
 
-        //   if (!values.lastName) {
-        //     errors.lastName = "Обов'язкове поле";
-        //   } else if (
-        //     values.lastName.length < 2 ||
-        //     values.lastName.length > 20
-        //   ) {
-        //     errors.lastName = 'Має бути від 2 до 20 символів';
-        //   } else if (
-        //     values.lastName.slice(0, 1) ===
-        //     values.lastName.slice(0, 1).toLowerCase()
-        //   ) {
-        //     errors.lastName = 'Має починатися з великої літери';
-        //   }
+          if (!values.lastName) {
+            errors.lastName = "Обов'язкове поле";
+          } else if (
+            values.lastName.length < 2 ||
+            values.lastName.length > 20
+          ) {
+            errors.lastName = 'Має бути від 2 до 20 символів';
+          } else if (
+            values.lastName.slice(0, 1) ===
+            values.lastName.slice(0, 1).toLowerCase()
+          ) {
+            errors.lastName = 'Має починатися з великої літери';
+          }
 
-        //   if (!values.numberPhone) {
-        //     errors.numberPhone = "Обов'язкове поле";
-        //   } else if (
-        //     !/^((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}$/i.test(
-        //       values.numberPhone
-        //     )
-        //   ) {
-        //     errors.numberPhone = 'Некоректний номер';
-        //   }
+          if (!values.numberPhone) {
+            errors.numberPhone = "Обов'язкове поле";
+          } else if (
+            !/^((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}$/i.test(
+              values.numberPhone
+            )
+          ) {
+            errors.numberPhone = 'Некоректний номер';
+          }
 
-        //   if (!values.email) {
-        //     errors.email = "Обов'язкове поле";
-        //   } else if (
-        //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        //   ) {
-        //     errors.email = 'Неправильна email адреса';
-        //   }
-        //   if (!values.password) {
-        //     errors.password = "Обов'язкове поле";
-        //   } else if (
-        //     !/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+={};:'",.<>?/\\[\]|]).{6,20}$/.test(
-        //       values.password
-        //     )
-        //   ) {
-        //     errors.password = 'Некоректний пароль';
-        //   }
-        //   return errors;
-        // }}
+          if (!values.email) {
+            errors.email = "Обов'язкове поле";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = 'Неправильна email адреса';
+          }
+          if (!values.password) {
+            errors.password = "Обов'язкове поле";
+          } else if (
+            !/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+={};:'",.<>?/\\[\]|]).{6,20}$/.test(
+              values.password
+            )
+          ) {
+            errors.password = 'Некоректний пароль';
+          }
+          return errors;
+        }}
         onSubmit={values => {
           dispatch(signUp(values));
         }}
