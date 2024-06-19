@@ -5,7 +5,6 @@ import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
 import {
   About,
   Actives,
-  ContainerOrders,
   Count,
   DeleteAdd,
   Discount,
@@ -67,7 +66,7 @@ export default function MyOrders() {
   };
 
   return (
-    <ContainerOrders onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       {basket.length === 0 ? (
         <Empty>
           <ShoppingCart />
@@ -88,7 +87,7 @@ export default function MyOrders() {
                     <input
                       type="text"
                       name={title}
-                      className="hidden"
+                      className="visibility-hidden"
                       defaultValue={`Кількість: ${count}шт; ціна за ${count}шт: ${
                         price * count
                       }грн; ціна за 1шт. без знижки: ${price}грн; ціна за 1шт. зі знижкою: ${
@@ -103,7 +102,7 @@ export default function MyOrders() {
                       <Image>
                         <img height="114" src={img} alt={title} />
                       </Image>
-                      <About>
+                      <About className="basket">
                         <Title>{title}</Title>
                         <Count>
                           <button
@@ -138,7 +137,7 @@ export default function MyOrders() {
                             <p className="price">{price} &#8372;</p>
                           )}
                         </Price>
-                        <DeleteAdd>
+                        <DeleteAdd className="basket">
                           <button
                             type="button"
                             className="favorite"
@@ -165,7 +164,7 @@ export default function MyOrders() {
             <input
               type="text"
               name="$Загально"
-              className="hidden"
+              className="visibility-hidden"
               defaultValue={`До сплати: ${total}грн; сума без знижки: ${totalPrice}грн; знижка: ${
                 totalDiscount ? totalDiscount + 'грн' : 'без знижки'
               };`}
@@ -199,6 +198,6 @@ export default function MyOrders() {
           </WrapperBuy>
         </WrapperOrder>
       )}
-    </ContainerOrders>
+    </form>
   );
 }

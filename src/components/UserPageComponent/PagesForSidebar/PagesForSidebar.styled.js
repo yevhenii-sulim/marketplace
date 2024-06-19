@@ -1,5 +1,5 @@
-import { Link as Location } from 'react-router-dom';
 import styled from 'styled-components';
+import { Link as Location } from 'react-router-dom';
 import { theme } from 'utils/theme';
 
 export const WrapperOrder = styled.div`
@@ -9,23 +9,51 @@ export const WrapperOrder = styled.div`
   font-size: 18px;
   font-weight: 800;
   line-height: 1.44;
+  & .visibility-hidden {
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    margin: -1px;
+  }
+`;
+
+export const WrapperStoryOrder = styled.ul`
+  gap: 32px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.44;
 `;
 
 export const WrapperProduct = styled.div`
   display: flex;
   justify-content: space-between;
+  &.story {
+    justify-content: flex-start;
+  }
 `;
+
 export const About = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
-  margin-right: auto;
+  gap: 4px;
+  &.basket {
+    margin-right: auto;
+  }
 `;
 export const Title = styled.h2`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  &.story {
+    margin-right: auto;
+  }
 `;
 export const Actives = styled.div`
   display: flex;
@@ -37,6 +65,9 @@ export const Price = styled.div`
   font-size: 22px;
   font-weight: 700;
   line-height: 1.45;
+  &.story {
+    margin: auto;
+  }
   .price-discount {
     color: ${({ theme }) => theme.color.colorPriceDiscant};
     font-size: 16px;
@@ -51,10 +82,17 @@ export const Price = styled.div`
     color: ${({ theme }) => theme.color.colorMainText};
   }
 `;
+
 export const DeleteAdd = styled.div`
   display: flex;
   gap: 44px;
-  button {
+  width: 100%;
+  &.story {
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+  }
+  &.basket button {
     background-color: transparent;
   }
 `;
@@ -65,6 +103,10 @@ export const TotalPrice = styled.div`
   padding: 32px 8px;
 `;
 export const WrapperBuy = styled.div`
+  &.story {
+    display: flex;
+    align-items: center;
+  }
   .info-price {
     font-size: 18px;
     font-weight: 800;
@@ -83,7 +125,6 @@ export const WrapperButton = styled.div`
   text-align: center;
 `;
 export const addProductButton = {
-  width: '264px',
   fontSize: '22px',
   fontWeight: '700',
   fontFamily: 'Jost',
@@ -95,6 +136,7 @@ export const addProductButton = {
   lineHeight: 1.4,
   textTransform: 'none',
   translate: 'all 100ms ease',
+  whiteSpace: 'nowrap',
   '&:hover': {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
     bgcolor: theme.color.bgButton,
@@ -104,6 +146,31 @@ export const addProductButton = {
   },
   '&:disabled': {
     color: 'black',
+  },
+};
+
+export const viewProductButton = {
+  textTransform: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  bgcolor: theme.color.bgProduct,
+  borderRadius: '8px',
+  height: '48px',
+  padding: '6px 16px',
+  fontFamily: 'Jost',
+  fontSize: '22px',
+  fontWeight: '700',
+  lineHeight: '1.45',
+  outline: 'none',
+  color: theme.color.bgHeader,
+  whiteSpace: 'nowrap',
+  border: `1px solid ${theme.color.bgButton}`,
+  '&:hover': {
+    color: theme.color.colorButtonText,
+    backgroundColor: theme.color.bgButtonHover,
+  },
+  '&:active': {
+    boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
   },
 };
 
@@ -137,12 +204,16 @@ export const Image = styled.div`
   width: 114px;
   height: 114px;
   box-sizing: border-box;
-  padding: 16px;
+  margin: 16px 16px 16px 0;
   border-radius: 50%;
   overflow: hidden;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
-export const ContainerOrders = styled.form``;
 export const ContainerFavorite = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
@@ -205,17 +276,16 @@ export const List = styled.li`
   &:not(:last-child) {
     margin-bottom: 24px;
   }
-  .hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
+`;
+
+export const ListStoryOrder = styled.li`
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  border-radius: 12px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 2fr 300px;
+  &:not(:last-child) {
+    margin-bottom: 24px;
   }
 `;
 export const Count = styled.div`
@@ -232,4 +302,55 @@ export const Count = styled.div`
     height: 16px;
     background-color: transparent;
   }
+`;
+
+export const NumberOrder = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25; /* 125% */
+`;
+export const DateOrer = styled.span`
+  color: ${({ theme }) => theme.color.colorTextExplainment};
+  font-family: 'Nunito Sans';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
+  white-space: nowrap;
+`;
+export const ImageStory = styled.div`
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 16px 16px 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+export const State = styled.span`
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.44; /* 144.444% */
+  color: ${({ $state, theme }) => {
+    switch ($state[0]) {
+      case 'worked':
+        return theme.color.colorTextWorkedOrder;
+      case 'waited':
+        return theme.color.colorTextWaitedOrder;
+      default:
+        return theme.color.colorTextCancelledOrder;
+    }
+  }};
+`;
+export const Coust = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-grow: 2;
+  align-items: center;
+  margin-left: 16px;
 `;
