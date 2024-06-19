@@ -20,12 +20,14 @@ export default function FieldAddImages({
   const [field, setField] = useState(false);
   const inputRef = useRef(null);
 
-  function onChangeFieldByClickDown() {
+  function onChangeFieldByClickDown(e) {
     if (field) return;
+    if (e.button !== 0) return;
     setField(prev => !prev);
   }
   function removeFieldByClick(e) {
     if (!field) return;
+    if (e.button !== 0) return;
     const { value } = inputRef.current;
     const valuePease = value.includes('/')
       ? value.split('/')
@@ -40,6 +42,7 @@ export default function FieldAddImages({
     setField(false);
   }
   function onAddFileByClickUp(e) {
+    if (e.button !== 0) return;
     if (e.target.closest("[data-remove='imageField']")) return;
     inputRef.current?.click();
   }
