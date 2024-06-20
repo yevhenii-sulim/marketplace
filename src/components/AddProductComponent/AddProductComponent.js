@@ -1,10 +1,15 @@
 import { createPortal } from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
-import * as Yup from 'yup';
 import { navigationList } from 'data/navListData';
+import {
+  pictures,
+  sizeFootwear,
+  sizeClothes,
+  colorProduct,
+} from 'data/forAddProductPage';
 import FieldComponent from './FieldComponent';
-import { useDispatch, useSelector } from 'react-redux';
 import FieldAddImages from './FieldAddImages';
 import Label from './Label';
 import MultipleSelectColor from './MultipleSelectColor';
@@ -16,6 +21,10 @@ import MultipleSelectSize from './MultipleSelectSize';
 import PriceComponent from './PriceComponent';
 import FieldsCheckboxes from './FieldsCheckboxes';
 import { createProduct } from '../../redux/product/thunk';
+import { toggleModalView } from '../../redux/modalViewProduct/slice';
+import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
+import { selectorViewAddingProductModal } from '../../redux/modalViewProduct/selectors';
+import SignupSchema from './validationSchema';
 import {
   Box,
   Buttons,
@@ -27,62 +36,8 @@ import {
   addProductButton,
   viewProductButton,
 } from './AddProductComponent.styled';
-import {
-  pictures,
-  sizeFootwear,
-  sizeClothes,
-  colorProduct,
-} from 'data/forAddProductPage';
-import { toggleModalView } from '../../redux/modalViewProduct/slice';
-import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
-import { selectorViewAddingProductModal } from '../../redux/modalViewProduct/selectors';
 
 const modalEnter = document.querySelector('#modal');
-
-const SignupSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(3, 'Щонайменше 3 символи')
-    .max(50, 'Щонайбільше 50 символів')
-    .required('Будь ласка додайте назву товару'),
-  describe: Yup.string()
-    .min(30, 'Щонайменше 30 символи')
-    .max(4000, 'Щонайбільше 4000 символів')
-    .required('Будь ласка додайте опис товару'),
-  brand: Yup.string().max(50, 'Забагато символів'),
-  category: Yup.string().required("Обов'язкове поле"),
-  // subCategory: Yup.string().required("Обов'язкове поле"),
-  subCategory: Yup.string().when('category', {
-    is: 'Подарую',
-    then: Yup.string().notRequired(),
-    otherwise: Yup.string()
-      .min(1, 'Встановіть ціну')
-      .required("Обов'язкове поле"),
-  }),
-  color: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
-  sex: Yup.string().required("Обов'язкове поле"),
-  // size: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
-  size: Yup.array()
-    .of(
-      Yup.string().when('category', {
-        is: 'Подарую',
-        then: Yup.string().notRequired(),
-        otherwise: Yup.string(),
-      })
-    )
-    .min(1, 'Встановіть ціну')
-    .required("Обов'язкове поле"),
-  file: Yup.array()
-    .of(Yup.string().required())
-    .min(1, 'Додайте мінімум 1 картинку'),
-  // price: Yup.number().min(1, 'Встановіть ціну').required("Обов'язкове поле"),
-  price: Yup.number().when('category', {
-    is: 'Подарую',
-    then: Yup.number().notRequired(),
-    otherwise: Yup.number()
-      .min(1, 'Встановіть ціну')
-      .required("Обов'язкове поле"),
-  }),
-});
 
 export default function AddProductComponent() {
   const dispatch = useDispatch();
@@ -201,7 +156,13 @@ export default function AddProductComponent() {
                   <label>
                     <Label label="Категорія" />
                     <MultipleSelectCategory
-                      handleChange={handleChange}
+                      handleChange={selectedOption => {
+                        handleChange(selectedOption);
+                        setFieldValue('category', selectedOption);
+                        setFieldValue('subCategory', '');
+                        setFieldValue('price', '');
+                        setFieldValue('size', []);
+                      }}
                       setSubmitting={setSubmitting}
                       names={navigationList}
                       name="category"

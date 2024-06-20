@@ -22,7 +22,57 @@ export const WrapperOrder = styled.div`
     margin: -1px;
   }
 `;
-
+export const Filter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  border-radius: 12px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 24px;
+`;
+export const FormSearch = styled.form`
+  width: 433px;
+  height: 48px;
+  position: relative;
+  input {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    padding: 8px 8px 8px 24px;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    border: 1px solid ${({ theme }) => theme.color.borderSearch};
+    outline: none;
+    &:placeholder {
+      font-size: 18px;
+      line-height: 1.44;
+      color: ${({ theme }) => theme.color.borderSearch};
+    }
+  }
+  button {
+    background-color: ${({ theme }) => theme.color.bgButton};
+    color: ${({ theme }) => theme.color.colorButtonText};
+    font-weight: 700;
+    line-height: 1.25;
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 12px;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translatey(-50%);
+    &:active {
+      box-shadow: inset 0 0 3px ${({ theme }) => theme.color.colorButtonText};
+    }
+  }
+  svg {
+    fill: ${({ theme }) => theme.color.colorButtonText};
+  }
+`;
 export const WrapperStoryOrder = styled.ul`
   gap: 32px;
   font-size: 18px;
@@ -34,7 +84,8 @@ export const WrapperProduct = styled.div`
   display: flex;
   justify-content: space-between;
   &.story {
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
   }
 `;
 
@@ -43,6 +94,7 @@ export const About = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+  width: 200px;
   &.basket {
     margin-right: auto;
   }
@@ -348,9 +400,103 @@ export const State = styled.span`
   }};
 `;
 export const Coust = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   justify-content: center;
   flex-grow: 2;
   align-items: center;
   margin-left: 16px;
 `;
+
+export const WrapperModal = styled.div`
+  width: 100%;
+  position: absolute;
+  box-shadow: 0px 9px 30px 2px rgba(0, 0, 0, 0.15),
+    0px -164px 46px 0px rgba(130, 130, 130, 0),
+    0px -105px 42px 0px rgba(130, 130, 130, 0.01),
+    0px -59px 35px 0px rgba(130, 130, 130, 0.03),
+    0px -26px 26px 0px rgba(130, 130, 130, 0.05),
+    0px -7px 14px 0px rgba(130, 130, 130, 0.06);
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  padding: 44px 52px;
+  @media screen and (min-width: 480px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 424px;
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      height: 100%;
+    }
+  }
+  p {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .close-modal {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  .comment {
+    font-family: 'Nunito Sans';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1, 44;
+    width: 100%;
+    min-height: 400px;
+    border-radius: 6px;
+    resize: vertical;
+    outline: none;
+    padding: 16px;
+    focus {
+      box-shadow: inset 0 0 0 2px ${({ theme }) => theme.color.bgButton};
+    }
+  }
+`;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => theme.color.bgBackdrop};
+`;
+
+export const stayInButton = {
+  width: '148px',
+  fontSize: '18px',
+  whiteSpace: 'nowrap',
+  fontWeight: '800',
+  fontFamily: 'Nunito Sans',
+  color: theme.color.colorButtonText,
+  bgcolor: theme.color.bgButton,
+  borderRadius: '6px',
+  textAlign: 'center',
+  padding: '8px 0px',
+  lineHeight: 1.4,
+  textTransform: 'none',
+  translate: 'all 100ms ease',
+  '&:hover': {
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+    bgcolor: theme.color.bgButton,
+  },
+  '&:active': {
+    boxShadow: 'none',
+  },
+  '&:disabled': {
+    color: 'black',
+  },
+};

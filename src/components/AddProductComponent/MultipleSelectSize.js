@@ -30,9 +30,9 @@ export default function MultipleSelectSize({
   const [personName, setPersonName] = useState([]);
 
   const handleChangeComponent = event => {
-    const {
-      target: { value },
-    } = event;
+    const { value } = event.target;
+    handleChange(value);
+    setSubmitting(false);
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -49,11 +49,7 @@ export default function MultipleSelectSize({
           displayEmpty
           name={name}
           value={personName}
-          onChange={e => {
-            handleChangeComponent(e);
-            handleChange(e);
-            setSubmitting(false);
-          }}
+          onChange={handleChangeComponent}
           // MenuProps={MenuProps}
           renderValue={selected => {
             if (selected.length === 0) {

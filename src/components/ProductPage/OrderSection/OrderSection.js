@@ -34,6 +34,7 @@ function OrderSection() {
       discount: product.discount,
       discountPrice: product.discountPrice,
       count: 1,
+      // сюди треба фільтри додати які обирає користувач
     };
     dispatch(addProduct(productAdded));
   }

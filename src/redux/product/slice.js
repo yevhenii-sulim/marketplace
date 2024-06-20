@@ -43,6 +43,10 @@ const productSlice = createSlice({
   initialState: initialState.products,
   extraReducers: builder => {
     builder
+      // .addCase(
+      //   addCommentFromStory.fulfilled,
+      //   handlePendingGetProductsByCategory
+      // )
       .addCase(
         getProductsByCategory.pending,
         handlePendingGetProductsByCategory

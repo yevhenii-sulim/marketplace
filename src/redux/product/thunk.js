@@ -20,6 +20,32 @@ export const getAllProducts = createAsyncThunk(
   }
 );
 
+export const addCommentFromStory = createAsyncThunk(
+  'products/addComment',
+  async ({ comment, id }, { getState }) => {
+    try {
+      const token = getState().users.token;
+      const response = await axios.post(
+        `/comment`,
+        {
+          parent: null,
+          body: comment,
+          product: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const getProductsBySubCategory = createAsyncThunk(
   'products/getProductsBySubCategory',
   async subCategory => {

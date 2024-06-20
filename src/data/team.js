@@ -18,6 +18,12 @@ export const team = [
     link: 'https://www.linkedin.com/in/mariia-smetanina-7803b72aa/',
   },
   {
+    id: 11,
+    name: 'Катерина Головащенко',
+    spec: 'UI/UX Designer',
+    link: 'https://www.linkedin.com/in/mariia-smetanina-7803b72aa/', //--------------
+  },
+  {
     id: 3,
     name: 'Євгеній Сулім',
     spec: 'FrontEnd Dev',

@@ -96,7 +96,6 @@ export default function CatalogPage() {
       behavior: 'smooth',
     });
   };
-
   return (
     <>
       <ProductListPage

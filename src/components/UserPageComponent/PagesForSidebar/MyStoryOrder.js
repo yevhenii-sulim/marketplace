@@ -1,34 +1,69 @@
-import { useSelector } from 'react-redux';
-import { myProduct } from 'data/myProduct';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Button } from '@mui/material';
 import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
 import { selectMyUser } from '../../../redux/auth/selector';
 import {
-  About,
-  Coust,
-  DateOrer,
   DeleteAdd,
   Empty,
-  ImageStory,
   Link,
   ListStoryOrder,
-  NumberOrder,
-  Price,
-  State,
-  Title,
   WrapperBuy,
   WrapperStoryOrder,
-  WrapperProduct,
   addProductButton,
   viewProductButton,
+  Filter,
 } from './PagesForSidebar.styled';
-
-export default function MyStoryOrder() {
+import Sort from 'components/ProductListPage/Sort';
+import { useState } from 'react';
+import Search from '../Search';
+import { useNavigate } from 'react-router-dom';
+import SendComment from './SendComment';
+import { createPortal } from 'react-dom';
+import { addCommentFromStory } from '../../../redux/product/thunk';
+import AboutPoductStory from './AboutPoductStory';
+const modalEnter = document.querySelector('#modal');
+export default function MyStoryOrder({
+  sortedProduct,
+  setValueSort,
+  valueSort,
+  setValue,
+  value,
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
+
   const basket = user?.basket ?? [];
 
-  console.log('user', user);
-  console.log('myProduct', myProduct);
+  const handleSort = sort => {
+    setValueSort(sort);
+  };
+  const navigate = useNavigate();
+
+  function repeatOrder(id, category, subCategory) {
+    navigate(`/${category.en}/${subCategory.en}/${id}`);
+  }
+
+  function onOpenModal() {
+    setIsOpen(true);
+  }
+
+  function onCloseModal() {
+    setIsOpen(false);
+  }
+
+  function onSend(evt, id) {
+    evt.preventDefault();
+    dispatch(
+      addCommentFromStory({
+        comment: evt.target.elements.comment.value,
+        id: id,
+      })
+    );
+    setIsOpen(false);
+  }
+
   return (
     <div>
       {basket.length === 0 ? (
@@ -38,61 +73,72 @@ export default function MyStoryOrder() {
           <Link to="/">Перейти до товарів</Link>
         </Empty>
       ) : (
-        <WrapperStoryOrder>
-          {myProduct.map(
-            ({
-              _id,
-              state,
-              title,
-              date,
-              price,
-              discountPrice,
-              img,
-              number,
-              discount,
-            }) => {
-              return (
-                <ListStoryOrder key={_id}>
-                  <WrapperProduct className="story">
-                    <About>
-                      <State $state={Object.keys(state)}>
-                        {Object.values(state)}
-                      </State>
-                      <NumberOrder>&#8470;{number}</NumberOrder>
-                      <ImageStory>
-                        <img src={img} alt={title} />
-                      </ImageStory>
-                      <DateOrer>{date}</DateOrer>
-                    </About>
-                    <Coust>
-                      <Title className="story">{title}</Title>
-                      <Price className="story">
-                        {discount ? (
-                          <>
-                            <p className="price-discount">{price} &#8372;</p>
-                            <p className="discount">{discountPrice} &#8372;</p>
-                          </>
-                        ) : (
-                          <p className="price">{price} &#8372;</p>
-                        )}
-                      </Price>
-                    </Coust>
-                  </WrapperProduct>
-                  <WrapperBuy className="story">
-                    <DeleteAdd className="story">
-                      <Button type="button" sx={addProductButton}>
-                        Повторити замовлення
-                      </Button>
-                      <Button type="button" sx={viewProductButton}>
-                        Залишити відгук
-                      </Button>
-                    </DeleteAdd>
-                  </WrapperBuy>
-                </ListStoryOrder>
-              );
-            }
-          )}
-        </WrapperStoryOrder>
+        <>
+          <Filter>
+            <Search value={value} setValue={setValue} />
+            <Sort value={valueSort} handleSort={handleSort} />
+          </Filter>
+          <WrapperStoryOrder>
+            {sortedProduct.map(
+              ({
+                _id,
+                state,
+                title,
+                createDate,
+                price,
+                discountPrice,
+                img,
+                number,
+                discount,
+                category,
+                subCategory,
+              }) => {
+                return (
+                  <ListStoryOrder key={_id}>
+                    <AboutPoductStory
+                      state={state}
+                      title={title}
+                      createDate={createDate}
+                      price={price}
+                      discountPrice={discountPrice}
+                      img={img}
+                      number={number}
+                      discount={discount}
+                    />
+                    <WrapperBuy className="story">
+                      <DeleteAdd className="story">
+                        <Button
+                          type="button"
+                          sx={addProductButton}
+                          onClick={() =>
+                            repeatOrder(_id, category, subCategory)
+                          }
+                        >
+                          Повторити замовлення
+                        </Button>
+                        <Button
+                          type="button"
+                          sx={viewProductButton}
+                          onClick={onOpenModal}
+                        >
+                          Залишити відгук
+                        </Button>
+                      </DeleteAdd>
+                    </WrapperBuy>
+                    {isOpen &&
+                      createPortal(
+                        <SendComment
+                          onSend={evt => onSend(evt, _id)}
+                          onCloseModal={onCloseModal}
+                        />,
+                        modalEnter
+                      )}
+                  </ListStoryOrder>
+                );
+              }
+            )}
+          </WrapperStoryOrder>
+        </>
       )}
     </div>
   );
