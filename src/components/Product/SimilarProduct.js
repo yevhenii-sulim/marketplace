@@ -14,7 +14,7 @@ import {
   Price,
 } from './SimilarProduct.styled';
 import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
-import { formatDate } from 'data/headphoneProduct';
+import { formatDate } from 'data/formatDate';
 import {
   addFavoriteProduct,
   removeFavoriteProduct,

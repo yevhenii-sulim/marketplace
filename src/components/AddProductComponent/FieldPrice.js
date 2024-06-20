@@ -14,6 +14,11 @@ export default function FieldPrice({
   error,
   touched,
 }) {
+  const handleChangeComponent = event => {
+    const { value } = event.target;
+    handleChange(value);
+    setSubmitting(false);
+  };
   return (
     <>
       <label>
@@ -27,10 +32,7 @@ export default function FieldPrice({
           <Field
             name={name}
             type="text"
-            onChange={e => {
-              setSubmitting(false);
-              handleChange(e);
-            }}
+            onChange={handleChangeComponent}
             disabled={disabled}
             style={
               touched && error
