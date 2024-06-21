@@ -5,7 +5,7 @@ export const selectProduct = state => state.products.product;
 export const selectTotalPages = state => state.products.totalPage;
 
 export const selectProductEco = createSelector([selectProduct], product => {
-  return product?.filter(({ eco }) => eco === true);
+  return product?.filter(({ parameters }) => parameters.eco === true);
 });
 
 export const selectProductDiscount = createSelector(
