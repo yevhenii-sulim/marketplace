@@ -1,5 +1,5 @@
-import React from 'react';
-import { List } from './UserPageComponent.styled';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { List, Sign } from './UserPageComponent.styled';
 import { NavLink } from 'react-router-dom';
 
 export default function SidebarListComponent({
@@ -11,8 +11,11 @@ export default function SidebarListComponent({
   return (
     <List onClick={onClick}>
       <NavLink to={path} state={nameList}>
-        {children}
-        <span>{nameList}</span>
+        <Sign>
+          {children}
+          <span>{nameList}</span>
+        </Sign>
+        <ArrowForwardIosIcon />
       </NavLink>
     </List>
   );
