@@ -7,10 +7,6 @@ export const ContainerAddProduct = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 34px;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
 `;
 
 export const Form = styled(FormContainer)`
@@ -113,6 +109,9 @@ export const Box = styled.div`
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   padding-bottom: 24px;
+  padding-top: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
   &.price_box {
     display: flex;
     justify-content: space-between;

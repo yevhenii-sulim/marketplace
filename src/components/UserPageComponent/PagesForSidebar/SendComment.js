@@ -2,7 +2,6 @@ import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { Backdrop, WrapperModal, stayInButton } from './PagesForSidebar.styled';
 import { Button } from '@mui/material';
-// import { useDispatch } from 'react-redux';
 
 export default function SendComment({ onSend, onCloseModal }) {
   const [comment, setComment] = useState('');
@@ -13,16 +12,6 @@ export default function SendComment({ onSend, onCloseModal }) {
     if (evt.currentTarget !== evt.target) return;
     onCloseModal(false);
   }
-  //   const dispatch = useDispatch();
-  //   function oncloseByClickOutside(evt) {
-  //     if (evt.currentTarget !== evt.target) return;
-  //     onToggleModalConfirm(false);
-  //   }
-
-  //   function onExitOutAccount() {
-  //     onExit();
-  //     dispatch(toggleModalForm(false));
-  //   }
 
   return (
     <Backdrop onMouseDown={oncloseByClickOutside}>

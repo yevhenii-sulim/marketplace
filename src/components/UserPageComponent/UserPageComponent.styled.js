@@ -24,12 +24,6 @@ export const Header = styled.div`
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.bgProduct};
 `;
-export const Main = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
 export const User = styled.div`
   display: flex;
   justify-content: center;
@@ -58,34 +52,45 @@ export const Rating = styled.div`
   gap: 8px;
   font-size: 16px;
 `;
-export const RatingText = styled.p``;
 export const Balance = styled.div`
   font-family: 'Jost';
   align-self: flex-end;
   font-size: 22px;
   line-height: 1.45;
 `;
+
+export const Main = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
 export const ContainerUserMain = styled.div`
   display: grid;
-  grid-template: 1fr/274px auto;
+  grid-template-columns: 274px auto;
+  align-items: flex-start;
   gap: 32px;
 `;
+
 export const Sidebar = styled.ul`
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px;
+  padding: 40px 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
 `;
 
 export const List = styled.li`
   a {
     display: flex;
-    padding: 10px;
-    gap: 20px;
+    justify-content: space-between;
     align-items: center;
-    &.active svg {
+    padding: 10px;
+    &.active & svg {
       stroke: ${({ theme }) => theme.color.bgButton};
     }
     &.active {
@@ -94,6 +99,12 @@ export const List = styled.li`
       border-radius: 4px;
     }
   }
+`;
+
+export const Sign = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
 `;
 export const Exit = styled.button`
   display: flex;
