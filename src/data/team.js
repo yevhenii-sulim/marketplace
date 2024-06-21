@@ -21,7 +21,7 @@ export const team = [
     id: 11,
     name: 'Катерина Головащенко',
     spec: 'UI/UX Designer',
-    link: 'https://www.linkedin.com/in/mariia-smetanina-7803b72aa/', //--------------
+    link: 'http://linkedin.com/in/rina-go-design',
   },
   {
     id: 3,
