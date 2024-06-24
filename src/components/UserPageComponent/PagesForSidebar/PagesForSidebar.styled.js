@@ -184,7 +184,7 @@ export const addProductButton = {
   bgcolor: theme.color.bgButton,
   borderRadius: '6px',
   textAlign: 'center',
-  padding: '8px 0px',
+  padding: '8px 12px',
   lineHeight: 1.4,
   textTransform: 'none',
   translate: 'all 100ms ease',
@@ -331,11 +331,13 @@ export const List = styled.li`
 `;
 
 export const ListStoryOrder = styled.li`
+  position: relative;
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
   padding: 32px;
   display: grid;
   grid-template-columns: 2fr 300px;
+  overflow: hidden;
   &:not(:last-child) {
     margin-bottom: 24px;
   }
@@ -394,8 +396,10 @@ export const State = styled.span`
         return theme.color.colorTextWorkedOrder;
       case 'waited':
         return theme.color.colorTextWaitedOrder;
-      default:
+      case 'cancelled':
         return theme.color.colorTextCancelledOrder;
+      default:
+        return theme.color.bgButton;
     }
   }};
 `;

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import FilterPrice from 'components/ProductListPage/FilterPrice';
+import FilterPrice from 'components/Filters/FilterPrice';
 import PaginationList from 'components/Pagination/PaginationList';
 
 import Sort from './Sort';

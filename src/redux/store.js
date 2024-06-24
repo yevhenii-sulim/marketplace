@@ -19,6 +19,7 @@ import { productReducer } from './product/slice';
 import { productPageReducer } from './productPage/productPageSlice';
 import { reducerBasket } from './basket/slice';
 import { modalViewAddedProductReducer } from './modalViewProduct/slice';
+import { slicePosterReducer } from './myPoster/slice';
 
 const persistUser = {
   key: 'token',
@@ -28,7 +29,7 @@ const persistUser = {
 const persistAllStore = {
   key: 'category',
   storage,
-  whitelist: ['category', 'product', 'basket'],
+  whitelist: ['category', 'product', 'basket', 'poster'],
 };
 
 const rootReducer = combineReducers({
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   products: productReducer,
   modalCatalog: modalCatalogReducer,
   modalForm: modalFormReducer,
+  poster: slicePosterReducer,
   category: categoryReducer,
   users: persistReducer(persistUser, userAuthReducer),
   basket: reducerBasket,

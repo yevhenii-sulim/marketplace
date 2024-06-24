@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@mui/material';
-import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
 import { selectMyUser } from '../../../redux/auth/selector';
 import {
   DeleteAdd,
@@ -22,6 +21,7 @@ import SendComment from './SendComment';
 import { createPortal } from 'react-dom';
 import { addCommentFromStory } from '../../../redux/product/thunk';
 import AboutPoductStory from './AboutPoductStory';
+import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
 const modalEnter = document.querySelector('#modal');
 export default function MyStoryOrder({
   sortedProduct,
@@ -34,8 +34,7 @@ export default function MyStoryOrder({
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
 
-  const basket = user?.basket ?? [];
-
+  const purchasedGoods = user?.purchasedGoods ?? [];
   const handleSort = sort => {
     setValueSort(sort);
   };
@@ -66,9 +65,9 @@ export default function MyStoryOrder({
 
   return (
     <div>
-      {basket.length === 0 ? (
+      {purchasedGoods.length === 0 ? (
         <Empty>
-          <ShoppingCart />
+          <MyStoryOrderSvg />
           <p>Зробіть ваше переше замовлення</p>
           <Link to="/">Перейти до товарів</Link>
         </Empty>

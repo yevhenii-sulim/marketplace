@@ -24,6 +24,8 @@ import AllCatalogPage from 'pages/AllCatalogPage';
 import MyStoryOrdersPage from 'pages/UserPage/MyStoryOrdersPage';
 import { selectId, selectMyUser } from '../../redux/auth/selector';
 import { getUser } from '../../redux/auth/thunk';
+import MyPosterListPage from 'pages/UserPage/MyPosterListPage';
+import PostConfirmedPage from 'pages/PostConfirmedPage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -55,6 +57,7 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="all" element={<AllCatalogPage />} />
           <Route path="auth/activate" element={<RestorePassword />} />
+          <Route path="post/сonfirmed" element={<PostConfirmedPage />} />
           <Route path="agreement" element={<Agreement />} />
           <Route path="confederacy" element={<Confederacy />} />
           <Route path="forFree" element={<CatalogPage />} />
@@ -76,6 +79,7 @@ export default function App() {
             <Route path="my_order" element={<MyOrdersPage />} />
             <Route path="my_story_order" element={<MyStoryOrdersPage />} />
             <Route path="my_poster" element={<MyPosterPage />} />
+            <Route path="my_post_list" element={<MyPosterListPage />} />
             <Route path="notification" element={<NotificationPages />} />
             <Route path="selected" element={<SelectedPage />} />
             <Route path="profile" element={<ProfilePage />} />

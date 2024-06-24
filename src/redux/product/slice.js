@@ -32,6 +32,7 @@ const handleFulfilledGetProductsBySubCategory = (state, { payload }) => {
 
   state.product = payload.products;
   state.totalPage = 0;
+  state.filters = payload.filters;
 };
 
 const handleRejected = state => {};

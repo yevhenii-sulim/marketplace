@@ -1,8 +1,10 @@
 export const initialState = {
+  poster: false,
   viewAddProduct: false,
   products: {
     product: [],
     totalPage: 0,
+    filters: {},
   },
   basket: [],
   openCatalog: false,

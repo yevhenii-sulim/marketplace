@@ -1,7 +1,7 @@
-export const myProduct = [
+export const myPosterList = [
   {
     _id: '6645c5183fc9f80364c650d4',
-    state: { worked: 'Виконано' }, // {"waited":"Очікується відправка"},// {"cancelled":"Скасовано"},
+    state: { disable: 'Деактивовене' }, // {"enable":"Активне"}
     title: 'Щось там',
     createDate: '2024-04-19T06:00:12.130Z',
     price: 300,
@@ -11,11 +11,13 @@ export const myProduct = [
     number: 125,
     category: { en: 'gift', uk: 'Подарункові товари' },
     subCategory: { en: 'souvenirs', uk: 'Сувеніри' },
-    // фільтри які були створені при замовленні
+    message: [], // Поки що масив. Не знаю що буде. Тут непрочитані меседжи будуть.
+    like: 5,
+    visit: 20,
   },
   {
     _id: '6645d115682e8d5dff4f4879',
-    state: { waited: 'Очікується відправка' },
+    state: { enable: 'Активне' },
     title: 'Щось там dssdaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa cdscdsc',
     createDate: '2024-05-19T06:00:12.130Z',
     price: 200,
@@ -25,18 +27,24 @@ export const myProduct = [
     number: 327,
     category: { en: 'gift', uk: 'Подарункові товари' },
     subCategory: { en: 'souvenirs', uk: 'Сувеніри' },
+    message: [], // Поки що масив. Не знаю що буде. Тут непрочитані меседжи будуть.
+    like: 5,
+    visit: 20,
   },
   {
-    _id: '6649956c52e5e7c430fd10d3',
-    state: { cancelled: 'Скасовано' },
-    title: 'Щось там',
-    createDate: '2024-03-19T06:00:12.130Z',
-    price: 100,
+    _id: '6645c3dc3fc9f80364c650cf',
+    state: { enable: 'Активне' },
+    title: 'Щось там dssdaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa cdscdsc',
+    createDate: '2024-05-19T06:00:12.130Z',
+    price: 200,
     discount: true,
-    discountPrice: 500,
-    img: 'https://i.ibb.co/0r29qQK/1716098407004-348578334.png',
-    number: 40,
+    discountPrice: 400,
+    img: 'https://i.ibb.co/8gZp9wn/1718565098144-690586531.png',
+    number: 327,
     category: { en: 'gift', uk: 'Подарункові товари' },
     subCategory: { en: 'souvenirs', uk: 'Сувеніри' },
+    message: [], // Поки що масив. Не знаю що буде. Тут непрочитані меседжи будуть.
+    like: 5,
+    visit: 20,
   },
 ];
