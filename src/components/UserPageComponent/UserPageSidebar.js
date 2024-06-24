@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -12,17 +12,17 @@ import { createPortal } from 'react-dom';
 import { useState } from 'react';
 import ConfirmExit from 'components/ConfirmExit/ConfirmExit';
 import { Exit } from './UserPageComponent.styled';
+import { selectPoster } from '../../redux/myPoster/selector';
 
 const modalEnter = document.querySelector('#modal');
 
 export default function UserPageSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-
+  const condition = useSelector(selectPoster);
   function onExit() {
     dispatch(logOut());
   }
-
   function onToggleModalConfirm(bool) {
     setIsOpen(bool);
   }
@@ -38,7 +38,10 @@ export default function UserPageSidebar() {
       >
         <StoryOrderSvg />
       </SidebarListComponent>
-      <SidebarListComponent nameList="Мої оголошення " path={'my_poster'}>
+      <SidebarListComponent
+        nameList="Мої оголошення "
+        path={condition ? 'my_poster' : 'my_post_list'}
+      >
         <NotificationsNoneIcon />
       </SidebarListComponent>
       <SidebarListComponent nameList="Повідомлення" path={'notification'}>

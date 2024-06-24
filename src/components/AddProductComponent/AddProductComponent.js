@@ -2,6 +2,7 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { navigationList } from 'data/navListData';
 import {
   pictures,
@@ -32,10 +33,12 @@ import {
   Explainment,
   FieldImagesList,
   Form,
+  NavLink,
   SelectorsList,
   addProductButton,
   viewProductButton,
 } from './AddProductComponent.styled';
+import { togglePoster } from '../../redux/myPoster/slice';
 
 const modalEnter = document.querySelector('#modal');
 
@@ -45,22 +48,39 @@ export default function AddProductComponent() {
   function aheadViewProduct() {
     dispatch(toggleModalView(true));
   }
+
+  function setCondition() {
+    dispatch(togglePoster(false));
+  }
   function handleSubmit(values) {
     const formData = new FormData();
+    console.log(values);
     for (const key in values) {
       if (!values.hasOwnProperty(key)) return;
-      if (key === 'file') {
+      if (key === 'price') {
+        formData.append('price', values.key || 0);
+      } else if (key === 'subCategory') {
+        formData.append('subCategory', values.key || '');
+      } else if (key === 'size') {
+        values[key].forEach(file => formData.append('size', file || ''));
+      } else if (key === 'file') {
         values[key].forEach(file => formData.append('file', file));
       } else {
         formData.append(key, values[key]);
       }
     }
-
     dispatch(createProduct(formData));
   }
 
   return (
     <ContainerAddProduct>
+      <NavLink
+        to="/user_page/my_post_list"
+        state={'Мої оголошення'}
+        onClick={setCondition}
+      >
+        <CloseIcon />
+      </NavLink>
       <Formik
         initialValues={{
           title: '',
@@ -226,7 +246,7 @@ export default function AddProductComponent() {
                   </label>
                 </li>
                 {(values.category === 'Взуття з натуральних матеріалів' ||
-                  values.category === 'Вишивка') && (
+                  values.category === 'Одяг') && (
                   <li>
                     <label>
                       <Label label="Розмір" />

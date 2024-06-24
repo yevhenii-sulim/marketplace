@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Button } from '@mui/material';
 import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
 import {
   About,
@@ -29,7 +30,6 @@ import {
   deleteBasket,
   deleteProduct,
 } from '../../../redux/basket/slice';
-import { Button } from '@mui/material';
 
 export default function MyOrders() {
   const basket = useSelector(selectBasket);
@@ -61,7 +61,6 @@ export default function MyOrders() {
         shopping[item.name] = `${item.value}`;
       }
     }
-    console.log(shopping);
     dispatch(deleteBasket());
   };
 

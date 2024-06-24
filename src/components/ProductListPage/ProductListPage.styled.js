@@ -35,6 +35,12 @@ export const PriceSlide = styled.li`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  h3 {
+    font-family: Jost;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.45; /* 145.455% */
+  }
 `;
 export const SliderRange = {
   color: theme.color.bgRange,
@@ -81,12 +87,12 @@ export const CountPrice = styled.form`
   }
 `;
 
-export const TitleSort = styled.h3`
+export const TitleSort = styled.h2`
   font-family: 'Jost';
   font-size: 28px;
   font-weight: 400;
   line-height: 1.5;
-  margin: 0 auto;
+  margin: 0 auto 25px;
   white-space: nowrap;
 `;
 export const SortProduct = styled.div`
@@ -138,10 +144,9 @@ export const ListPath = styled.li`
     font-weight: 700;
   }
 `;
-export const TitleProducts = styled.h2`
+export const TitleProducts = styled.h1`
   font-family: 'Jost';
   font-size: 44px;
   font-weight: 700;
   line-height: 1.22;
 `;
-export const ContainerSex = styled.li``;

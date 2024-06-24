@@ -13,6 +13,7 @@ export default function FieldPrice({
   children,
   error,
   touched,
+  // defaulValue
 }) {
   const handleChangeComponent = event => {
     const { value } = event.target;
@@ -32,6 +33,7 @@ export default function FieldPrice({
           <Field
             name={name}
             type="text"
+            // defaulValue={defaulValue}
             onChange={handleChangeComponent}
             disabled={disabled}
             style={

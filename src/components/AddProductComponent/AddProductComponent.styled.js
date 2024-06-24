@@ -1,14 +1,20 @@
+import { NavLink as LinkToPost } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'utils/theme';
 import { Field as FieldForm, Form as FormContainer } from 'formik';
 
 export const ContainerAddProduct = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 34px;
 `;
-
+export const NavLink = styled(LinkToPost)`
+  position: absolute;
+  top: -52px;
+  right: 0;
+`;
 export const Form = styled(FormContainer)`
   display: flex;
   flex-direction: column;
@@ -223,7 +229,8 @@ export const SelectorsList = styled.ul`
 `;
 
 export const FieldImagesList = styled.ul`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, auto);
   gap: 16px;
   margin-top: 24px;
 `;
@@ -251,7 +258,6 @@ export const addImageSignButton = {
 };
 export const AddImageList = styled.li`
   position: relative;
-  width: 126px;
   height: 126px;
   border: 1px solid ${({ theme }) => theme.color.colorTextStartUserPage};
   border-radius: 4px;

@@ -7,6 +7,7 @@ import { toggleModalForm } from '../../redux/modalForm/slice';
 import { selectAuth } from '../../redux/auth/selector';
 import { selectOpenFormModal } from '../../redux/modalForm/selectors';
 import ModalForm from 'components/ModalForm/ModalForm';
+import { togglePoster } from '../../redux/myPoster/slice';
 
 const modalEnter = document.querySelector('#modal');
 
@@ -19,9 +20,14 @@ export default memo(function AddAnnouncement() {
     dispatch(toggleModalForm(false));
   }
 
+  function toCreatePost() {
+    dispatch(togglePoster(true));
+  }
+
   function onOpen(evt) {
     !isAuth && evt.preventDefault();
     dispatch(toggleModalForm(true));
+    isAuth && toCreatePost();
   }
 
   return (

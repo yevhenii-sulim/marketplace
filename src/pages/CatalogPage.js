@@ -1,45 +1,35 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductListPage from 'components/ProductListPage/ProductListPage';
 import {
   getProductsByCategory,
   getProductsBySubCategory,
 } from '../redux/product/thunk';
-import { selectProduct } from '../redux/product/selector';
+import { selectFilters, selectProduct } from '../redux/product/selector';
 import { selectCategory } from '../redux/category/selectors';
 
 export default function CatalogPage() {
-  const [priceMin, setPriceMin] = useState(0);
-  const [priceMax, setPriceMax] = useState(15000);
   const [valueSort, setValueSort] = useState('new');
   const [page, setPage] = useState(1);
+  const [min, setMin] = useState(0);
+  const [max, setMmax] = useState(0);
 
   const products = useSelector(selectProduct);
+  const filters = useSelector(selectFilters);
   const category = useSelector(selectCategory);
   const limit = 5;
-
   const totalItemsCount = Math.ceil(products.length / limit);
 
   const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (products.length === 0) {
-      return;
-    }
-    setPriceMax(
-      products.toSorted(
-        (max, min) => parseInt(min.price) - parseInt(max.price)
-      )[0].price
-    );
-
-    setPriceMin(
-      products.toSorted(
-        (max, min) => parseInt(max.price) - parseInt(min.price)
-      )[0].price
-    );
-  }, [products]);
+    if (!filters.price) return;
+    setMin(filters.price.min);
+    setMmax(filters.price.max);
+  }, [filters]);
 
   useEffect(() => {
     if (location.pathname.split('/').slice(-1)[0] === 'forFree') return;
@@ -78,13 +68,12 @@ export default function CatalogPage() {
         );
     }
   };
-
-  const getMaxValue = num => {
-    console.log('num', num);
-  };
-  const getMinValue = num => {
-    console.log('num', num);
-  };
+  const getMaxValue = debounce(num => {
+    console.log(num);
+  }, 1500);
+  const getMinValue = debounce(num => {
+    console.log(num);
+  }, 1500);
 
   const sortedProduct = sortProduct(valueSort);
 
@@ -99,8 +88,8 @@ export default function CatalogPage() {
   return (
     <>
       <ProductListPage
-        min={priceMin}
-        max={priceMax}
+        min={min}
+        max={max}
         page={page}
         category={category}
         location={location}

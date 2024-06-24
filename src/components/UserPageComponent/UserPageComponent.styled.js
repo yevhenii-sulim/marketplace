@@ -90,7 +90,7 @@ export const List = styled.li`
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    &.active & svg {
+    &.active svg {
       stroke: ${({ theme }) => theme.color.bgButton};
     }
     &.active {
