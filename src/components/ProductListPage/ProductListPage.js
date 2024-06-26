@@ -19,13 +19,13 @@ import {
   ListPath,
   FilterList,
 } from './ProductListPage.styled';
-
+import { useSelector } from 'react-redux';
+import { selectCategory } from '../../redux/category/selectors';
+import { productForProductPage } from '../../redux/productPage/selectors';
 export default function ProductListPage({
   min,
   max,
   page,
-  category,
-  location,
   getMaxValue,
   getMinValue,
   valueSort,
@@ -34,6 +34,8 @@ export default function ProductListPage({
   handlePageClick,
   totalItemsCount,
 }) {
+  const product = useSelector(productForProductPage);
+  const categories = useSelector(selectCategory);
   return (
     <ContainerProductPageList>
       <Navigation>
@@ -43,11 +45,16 @@ export default function ProductListPage({
             <ChevronRightIcon />
           </ListPath>
           <ListPath>
-            {category} <ChevronRightIcon />
+            <NavLink to={`/${categories.category.en}`}>
+              {categories.category.ua}
+            </NavLink>
+            {categories.subCategory && <ChevronRightIcon />}
           </ListPath>
-          <ListPath>{location.state}</ListPath>
+          {categories.subCategory && (
+            <ListPath>{categories?.subCategory.ua}</ListPath>
+          )}
         </Nav>
-        <TitleProducts>{location.state}</TitleProducts>
+        <TitleProducts>{product.title}</TitleProducts>
       </Navigation>
       <ProductsPage>
         <div>
@@ -113,8 +120,6 @@ ProductListPage.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
-  category: PropTypes.string.isRequired,
-  location: PropTypes.object.isRequired,
   getMaxValue: PropTypes.func.isRequired,
   getMinValue: PropTypes.func.isRequired,
   valueSort: PropTypes.string.isRequired,
