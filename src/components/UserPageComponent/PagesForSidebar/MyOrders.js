@@ -23,6 +23,7 @@ import {
   WrapperOrder,
   WrapperProduct,
   addProductButton,
+  viewProductButton,
 } from './PagesForSidebar.styled';
 import { selectBasket } from '../../../redux/basket/select';
 import {
@@ -30,14 +31,24 @@ import {
   deleteBasket,
   deleteProduct,
 } from '../../../redux/basket/slice';
+import { useNavigate } from 'react-router-dom';
+import { selectCategory } from '../../../redux/category/selectors';
 
 export default function MyOrders() {
+  const categories = useSelector(selectCategory);
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
+
   let total = 0;
   let totalPrice = 0;
   let totalDiscount = 0;
   let totalCount = 0;
+  const navigation = useNavigate();
+
+  function comeBackAtShopping() {
+    navigation(`/${categories.category.en}/${categories.subCategory.en}`);
+  }
+
   const addCount = payload => {
     dispatch(changeCount(payload));
   };
@@ -195,6 +206,13 @@ export default function MyOrders() {
               </WrapperButton>
             </TotalPrice>
           </WrapperBuy>
+          <Button
+            type="button"
+            sx={viewProductButton}
+            onClick={comeBackAtShopping}
+          >
+            Продовжити покупки
+          </Button>
         </WrapperOrder>
       )}
     </form>

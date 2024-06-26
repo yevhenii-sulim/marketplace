@@ -14,7 +14,7 @@ export default function CatalogPage() {
   const [valueSort, setValueSort] = useState('new');
   const [page, setPage] = useState(1);
   const [min, setMin] = useState(0);
-  const [max, setMmax] = useState(0);
+  const [max, setMax] = useState(0);
 
   const products = useSelector(selectProduct);
   const filters = useSelector(selectFilters);
@@ -28,7 +28,7 @@ export default function CatalogPage() {
   useEffect(() => {
     if (!filters.price) return;
     setMin(filters.price.min);
-    setMmax(filters.price.max);
+    setMax(filters.price.max);
   }, [filters]);
 
   useEffect(() => {
@@ -92,7 +92,6 @@ export default function CatalogPage() {
         max={max}
         page={page}
         category={category}
-        location={location}
         valueSort={valueSort}
         sortedProduct={sortedProduct}
         totalItemsCount={totalItemsCount}

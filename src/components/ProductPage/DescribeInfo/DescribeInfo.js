@@ -20,19 +20,19 @@ function DescribeInfo() {
         <DescribeInfoHeader>Опис</DescribeInfoHeader>
         <DescribeInfoState>
           <DescribeInfoStateItem>
-            Стан:{' '}
+            Стан:
             <span style={{ fontWeight: 400, marginLeft: '5px' }}>
               {product.parameters.state}
             </span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Розмір:{' '}
+            Розмір:
             <span style={{ fontWeight: 400, marginLeft: '5px' }}>
               {product.parameters.size}
             </span>
           </DescribeInfoStateItem>
           <DescribeInfoStateItem>
-            Стан:{' '}
+            Стан:
             <span style={{ fontWeight: 400, marginLeft: '5px' }}>
               {product.parameters.state}
             </span>

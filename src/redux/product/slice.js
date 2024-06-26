@@ -17,22 +17,17 @@ const handleFulfilled = (state, { payload }) => {
   state.totalPage = payload.totalPages;
 };
 const handleFulfilledGetProductsByCategory = (state, { payload }) => {
-  console.log(payload);
-
-  state.product = payload;
+  state.product = payload.products;
+  state.filters = payload.filters;
   state.totalPage = 0;
 };
 
-const handleFulfilledSearch = (state, { payload }) => {
-  console.log(payload);
-};
+const handleFulfilledSearch = (state, { payload }) => {};
 
 const handleFulfilledGetProductsBySubCategory = (state, { payload }) => {
-  console.log(payload);
-
   state.product = payload.products;
-  state.totalPage = 0;
   state.filters = payload.filters;
+  state.totalPage = 0;
 };
 
 const handleRejected = state => {};
@@ -44,10 +39,6 @@ const productSlice = createSlice({
   initialState: initialState.products,
   extraReducers: builder => {
     builder
-      // .addCase(
-      //   addCommentFromStory.fulfilled,
-      //   handlePendingGetProductsByCategory
-      // )
       .addCase(
         getProductsByCategory.pending,
         handlePendingGetProductsByCategory
