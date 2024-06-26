@@ -123,7 +123,7 @@ export const addComment = createAsyncThunk(
         },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZXNzczEyN0B1a3IubmV0Iiwic3ViIjoiNjY2Yzk3NWY2MGJhZTA4OTQ0MDU4YzU3IiwiaWQiOiI2NjZjOTc1ZjYwYmFlMDg5NDQwNThjNTciLCJpYXQiOjE3MTkzODg5NTEsImV4cCI6MTcxOTQ3NTM1MX0.OON6EsWVMUUvtl0hDDr_7KT-RLBLRFwfYaIsBRKdfu0`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
