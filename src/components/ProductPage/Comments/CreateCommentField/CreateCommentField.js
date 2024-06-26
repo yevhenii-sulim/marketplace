@@ -15,22 +15,25 @@ import { Button } from '@mui/material';
 import { SyncLoader } from 'react-spinners';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from '../../../../redux/productPage/productPageSlice';
+import { Rating } from '@mui/material';
 
 function CreateCommentField({ productId, parent, parentIndex }) {
   const createCommentLoading = useSelector(
     state => state.productPage.createCommentLoading
   );
+
+  const [value, setValue] = useState(0);
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState('');
   const [showValidationComment, setShowValidationComment] = useState(false);
   const validationComment = comment => {
     return comment && comment.length >= 4;
   };
-  const addNewComment = async (parent, comment, id, parentIndex) => {
+  const addNewComment = async (parent, comment, id, parentIndex, rating) => {
     if (validationComment(comment)) {
       setShowValidationComment(false);
 
-      dispatch(addComment({ parent, comment, id, parentIndex }));
+      dispatch(addComment({ parent, comment, id, parentIndex, rating }));
       setNewComment('');
     } else {
       setShowValidationComment(true);
@@ -47,11 +50,22 @@ function CreateCommentField({ productId, parent, parentIndex }) {
               This comment is very short
             </ErrorValidationComment>
           )}
+          {parent ? null : (
+            <Rating
+              name="half-rating"
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              sx={{ position: 'absolute', right: 0, top: '5px' }}
+            />
+          )}
           <CreateCommentInput
             placeholder={createCommentLoading ? '' : 'Placeholder'}
             onChange={e => setNewComment(e.target.value)}
             value={newComment}
           />
+
           <LoaderWrapper>
             <SyncLoader
               color="grey"
@@ -60,6 +74,7 @@ function CreateCommentField({ productId, parent, parentIndex }) {
               loading={createCommentLoading}
             />
           </LoaderWrapper>
+
           <CommentButtonBlock>
             <Button
               variant="outlined"
@@ -100,7 +115,7 @@ function CreateCommentField({ productId, parent, parentIndex }) {
                 },
               }}
               onClick={() =>
-                addNewComment(parent, newComment, productId, parentIndex)
+                addNewComment(parent, newComment, productId, parentIndex, value)
               }
             >
               Коментувати
