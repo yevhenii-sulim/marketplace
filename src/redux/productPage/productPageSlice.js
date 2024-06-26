@@ -110,7 +110,7 @@ export const dislikeComment = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   'productPage/addComment',
-  async ({ parent, comment, id, parentIndex }, { getState }) => {
+  async ({ parent, comment, id, parentIndex, rating }, { getState }) => {
     try {
       const token = getState().users.token;
       const response = await urlProduct.post(
@@ -119,10 +119,11 @@ export const addComment = createAsyncThunk(
           parent,
           body: comment,
           product: id,
+          rating,
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZXNzczEyN0B1a3IubmV0Iiwic3ViIjoiNjY2Yzk3NWY2MGJhZTA4OTQ0MDU4YzU3IiwiaWQiOiI2NjZjOTc1ZjYwYmFlMDg5NDQwNThjNTciLCJpYXQiOjE3MTkzODg5NTEsImV4cCI6MTcxOTQ3NTM1MX0.OON6EsWVMUUvtl0hDDr_7KT-RLBLRFwfYaIsBRKdfu0`,
           },
         }
       );
@@ -162,7 +163,7 @@ const productPageSlice = createSlice({
         const { parentIndex, ...newComment } = action.payload;
 
         if (!newComment.parent) {
-          state.product.comments.push(newComment);
+          state.product.comments.unshift(newComment);
         } else {
           state.product.comments[parentIndex].comments.push(newComment);
         }

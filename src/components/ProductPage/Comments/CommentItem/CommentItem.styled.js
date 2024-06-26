@@ -92,3 +92,10 @@ export const CommentsAnswer = styled.button`
 export const DotsWrapper = styled.div`
   margin-left: auto;
 `;
+export const WrapperForRating = styled.div`
+  display: flex;
+`;
+export const RatingNumber = styled.span`
+  margin-left: 4px;
+  color: #faaf00;
+`;

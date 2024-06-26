@@ -15,6 +15,8 @@ import {
   DotsWrapper,
   IconDislikeWrapper,
   IconLikeWrapper,
+  RatingNumber,
+  WrapperForRating,
 } from './CommentItem.styled';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
@@ -26,6 +28,7 @@ import {
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { userIdForProductPage } from '../../../../redux/productPage/selectors';
 import CreateCommentField from '../CreateCommentField/CreateCommentField';
+import { Rating } from '@mui/material';
 
 function CommentItem({
   name,
@@ -41,6 +44,7 @@ function CommentItem({
   commentId,
   parentIndex,
   parent,
+  rating,
   setCommentId,
 }) {
   const dispatch = useDispatch();
@@ -75,6 +79,17 @@ function CommentItem({
                 <MoreVertIcon />
               </DotsWrapper>
             </CommentsNameAndDataBlock>
+            {rating ? (
+              <WrapperForRating>
+                <Rating
+                  name="half-rating"
+                  value={rating}
+                  readOnly
+                  size="small"
+                />{' '}
+                <RatingNumber>{rating}</RatingNumber>
+              </WrapperForRating>
+            ) : null}
             <CommentsTextBlock>{body}</CommentsTextBlock>
             <CommentsRating>
               <CommentsRatingThumbUp>
