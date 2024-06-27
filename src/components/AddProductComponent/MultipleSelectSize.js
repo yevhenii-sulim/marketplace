@@ -6,17 +6,6 @@ import { useState } from 'react';
 import { styleSelect } from './AddProductComponent.styled';
 import { Checkbox, ListItemText } from '@mui/material';
 
-// const ITEM_HEIGHT = 48;
-// const ITEM_PADDING_TOP = 8;
-// const MenuProps = {
-//   PaperProps: {
-//     style: {
-//       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-//       width: 250,
-//     },
-//   },
-// };
-
 export default function MultipleSelectSize({
   handleChange,
   setSubmitting,
@@ -31,8 +20,10 @@ export default function MultipleSelectSize({
 
   const handleChangeComponent = event => {
     const {
-      target: { value = [] },
+      target: { value },
     } = event;
+    handleChange(event);
+    setSubmitting(false);
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
 
@@ -49,12 +40,7 @@ export default function MultipleSelectSize({
           displayEmpty
           name={name}
           value={personName}
-          onChange={e => {
-            handleChangeComponent(e);
-            handleChange(e);
-            setSubmitting(false);
-          }}
-          // MenuProps={MenuProps}
+          onChange={handleChangeComponent}
           renderValue={selected => {
             if (selected.length === 0) {
               return <em>Оберіть розмір</em>;

@@ -16,11 +16,12 @@ const SignupSchema = Yup.object().shape({
     then: e => e.required("Обов'язкове поле"),
     otherwise: e => e.nullable().default(''),
   }),
-  color: Yup.array().of(Yup.string().required("Обов'язкове поле")),
+  color: Yup.array().length(1, 'Вкажіть колір'),
   sex: Yup.string().required("Обов'язкове поле"),
   size: Yup.array().when('category', {
-    is: category => category !== 'Подарую',
-    then: e => e.of(Yup.string().required('Вкажіть розмір')),
+    is: category =>
+      category === 'Одяг' || category === 'Взуття з натуральних матеріалів',
+    then: e => e.length(1, 'Вкажіть розмір'),
     otherwise: e => e.nullable().default(() => []),
   }),
   file: Yup.array()

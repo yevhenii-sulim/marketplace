@@ -39,7 +39,7 @@ export default function MultipleSelectSubCategory({
   const [personName, setPersonName] = useState('');
   const handleChangeComponent = event => {
     const { value } = event.target;
-    handleChange(value);
+    handleChange(event);
     setSubmitting(false);
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };

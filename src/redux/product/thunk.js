@@ -148,13 +148,13 @@ export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (product, { getState }) => {
     try {
-      product.forEach(item => console.log(`item`, item));
       const data = await axios.post(`/products/create`, product, {
         headers: {
           Authorization: `Bearer ${getState().users.token}`,
           'Content-Type': 'multipart/form-data',
         },
       });
+
       window.location.reload();
       return data;
     } catch (error) {

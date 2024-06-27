@@ -58,14 +58,11 @@ export default function AddProductComponent() {
     for (const key in values) {
       if (!values.hasOwnProperty(key)) return;
       if (key === 'price') {
-        formData.append('price', values.key || 0);
+        formData.append('price', values[key] || 0);
       } else if (key === 'subCategory') {
-        formData.append('subCategory', values.key || '');
+        formData.append('subCategory', values[key] || '');
       } else if (key === 'size') {
-        values[key].forEach(file => {
-          console.log(file);
-          return formData.append('size', file || '');
-        });
+        formData.append('size', values[key] || []);
       } else if (key === 'file') {
         values[key].forEach(file => formData.append('file', file));
       } else {
