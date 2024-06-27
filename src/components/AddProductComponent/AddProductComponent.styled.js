@@ -207,7 +207,7 @@ export const Sign = styled.h3`
 export const Error = styled.p`
   color: ${({ theme }) => theme.color.colorTextErrorForm};
 `;
-export const Explainment = styled.p`
+export const Explainment = styled.div`
   position: relative;
   color: ${({ theme }) => theme.color.colorTextExplainment};
   font-size: 16px;
