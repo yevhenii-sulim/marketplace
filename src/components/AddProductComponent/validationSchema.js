@@ -16,11 +16,11 @@ const SignupSchema = Yup.object().shape({
     then: e => e.required("Обов'язкове поле"),
     otherwise: e => e.nullable().default(''),
   }),
-  color: Yup.array().of(Yup.string().required()).min(1, "Обов'язкове поле"),
+  color: Yup.array().of(Yup.string().required("Обов'язкове поле")),
   sex: Yup.string().required("Обов'язкове поле"),
   size: Yup.array().when('category', {
     is: category => category !== 'Подарую',
-    then: e => e.of(e.required("Обов'язкове поле")).min(1, 'Вкажіть розмір'),
+    then: e => e.of(Yup.string().required('Вкажіть розмір')),
     otherwise: e => e.nullable().default(() => []),
   }),
   file: Yup.array()

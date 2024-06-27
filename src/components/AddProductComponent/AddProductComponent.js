@@ -62,7 +62,10 @@ export default function AddProductComponent() {
       } else if (key === 'subCategory') {
         formData.append('subCategory', values.key || '');
       } else if (key === 'size') {
-        values[key].forEach(file => formData.append('size', file || ''));
+        values[key].forEach(file => {
+          console.log(file);
+          return formData.append('size', file || '');
+        });
       } else if (key === 'file') {
         values[key].forEach(file => formData.append('file', file));
       } else {

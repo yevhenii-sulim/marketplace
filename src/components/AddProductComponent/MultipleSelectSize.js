@@ -31,7 +31,7 @@ export default function MultipleSelectSize({
 
   const handleChangeComponent = event => {
     const {
-      target: { value },
+      target: { value = [] },
     } = event;
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
