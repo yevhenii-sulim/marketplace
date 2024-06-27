@@ -1,16 +1,16 @@
 export const initialState = {
   poster: false,
   viewAddProduct: false,
+  basket: [],
+  openCatalog: false,
+  openFormModal: false,
+  categoryProduct: { subCategory: {}, category: {} },
+  error: null,
   products: {
     product: [],
     totalPage: 0,
     filters: {},
   },
-  basket: [],
-  openCatalog: false,
-  openFormModal: false,
-  categoryProduct: '',
-  error: null,
   productPage: {
     product: {},
     isLoading: true,

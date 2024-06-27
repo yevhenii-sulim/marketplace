@@ -58,6 +58,7 @@ function SimilarProduct({
       dispatch(addFavoriteProduct(id));
     }
   }
+
   return (
     <>
       <SimilarProductItem>
@@ -67,7 +68,7 @@ function SimilarProduct({
           to={
             countCharacter(2)
               ? `${id}`
-              : `/${category?.en}/${subCategory?.en}/${id}`
+              : `/${category?.mainCategory.en}/${subCategory?.subCategory.en}/${id}`
           }
         >
           <SimilarProductItemIcon>

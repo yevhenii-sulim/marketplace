@@ -6,7 +6,7 @@ import SubcategoriesComponent from 'components/SubcategoriesComponent/Subcategor
 export default function SubCategories() {
   const category = useSelector(selectCategory);
   const categoryObject = navigationList.filter(
-    item => item.nameList === category
+    item => item.nameList === category.category.ua
   );
 
   return (

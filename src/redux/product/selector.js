@@ -2,7 +2,6 @@ import { createSelector } from '@reduxjs/toolkit';
 
 export const selectProduct = state => state.products.product;
 export const selectFilters = state => state.products.filters;
-
 export const selectTotalPages = state => state.products.totalPage;
 
 export const selectProductEco = createSelector([selectProduct], product => {

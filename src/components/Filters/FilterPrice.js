@@ -8,10 +8,11 @@ import {
   SliderRange,
 } from '../ProductListPage/ProductListPage.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
-import { selectFilters } from '../../redux/product/selector';
+import { selectFilters, selectProduct } from '../../redux/product/selector';
 
 export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {
   const filters = useSelector(selectFilters);
+  const products = useSelector(selectProduct);
   const [value, setValue] = useState([min, max]);
   const { width } = useWindowDimensions();
 
@@ -20,7 +21,7 @@ export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {
     setValue([filters.price.min, filters.price.max]);
     getMinValue(filters.price.min);
     getMaxValue(filters.price.max);
-  }, [filters, getMaxValue, getMinValue]);
+  }, [filters, getMaxValue, getMinValue, products.length]);
 
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {

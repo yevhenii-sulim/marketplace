@@ -118,6 +118,18 @@ export const Box = styled.div`
   padding-top: 24px;
   padding-left: 24px;
   padding-right: 24px;
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'],
+  input[type='number']:hover,
+  input[type='number']:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+  }
   &.price_box {
     display: flex;
     justify-content: space-between;

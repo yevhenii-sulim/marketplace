@@ -7,8 +7,8 @@ export default function UserPage() {
 
   return (
     <UserPageComponents
-      rating={0 || user?.rating}
-      nameUser={'' || user?.firstName}
+      rating={0 || user?.rating.count}
+      nameUser={0 || user?.firstName}
       imgUser={user?.img || '/marketplace/images/catalog/for-free.png'}
     />
   );

@@ -45,7 +45,9 @@ export default function CategoryList() {
                 <Slide index={index} key={id}>
                   <CategoryHomePage
                     key={id}
-                    nameCategory={nameList}
+                    nameCategory={{
+                      category: { en: linkList, ua: nameList },
+                    }}
                     titleCategory={nameList}
                     srcCategory={img}
                     link={linkList}

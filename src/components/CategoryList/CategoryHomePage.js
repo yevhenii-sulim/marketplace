@@ -8,10 +8,11 @@ export default function CategoryHomePage({
   link,
 }) {
   const dispatch = useDispatch();
+
   return (
     <List onClick={() => dispatch(changeCategory(nameCategory))}>
       <Link to={link}>
-        <img src={srcCategory} alt={nameCategory} />
+        <img src={srcCategory} alt={nameCategory.category.ua} />
         <NameCategory>{titleCategory}</NameCategory>
       </Link>
     </List>

@@ -64,7 +64,11 @@ export default function NavsSectionList({ onCloseModal }) {
                   label={nameList}
                   onClick={() => {
                     openList(linkList, subCategories);
-                    dispatch(changeCategory(nameList));
+                    dispatch(
+                      changeCategory({
+                        category: { en: linkList, ua: nameList },
+                      })
+                    );
                   }}
                   variant={'solid'}
                   icon={<OpenList />}
@@ -79,7 +83,11 @@ export default function NavsSectionList({ onCloseModal }) {
                   onClick={() => {
                     navigate(linkList);
                     onOpen(false);
-                    dispatch(changeCategory(nameList));
+                    dispatch(
+                      changeCategory({
+                        category: { en: linkList, ua: nameList },
+                      })
+                    );
                   }}
                   variant={'solid'}
                   alignitems="flex-start"
