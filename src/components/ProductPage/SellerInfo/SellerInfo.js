@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 
 function SellerInfo() {
   const product = useSelector(state => state.productPage.product);
-
+  console.log(product, product.producer.rating.count);
   return (
     <SellerInfoWrapper>
       <SellerInfoContainer>
@@ -34,7 +34,10 @@ function SellerInfo() {
                 Рейтинг:{' '}
                 {product.producer.rating.count === 0
                   ? 0
-                  : product.producer.rating.sum / product.producer.rating.count}
+                  : (
+                      product.producer.rating.sum /
+                      product.producer.rating.count
+                    ).toFixed(1)}
               </SellerRating>
             </SellerRatingBlock>
           </SellerNameBlock>
