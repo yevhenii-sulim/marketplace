@@ -7,17 +7,6 @@ import Checkbox from '@mui/material/Checkbox';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
 import { ColorSign, styleSelect } from './AddProductComponent.styled';
 
-// const ITEM_HEIGHT = 48;
-// const ITEM_PADDING_TOP = 8;
-// const MenuProps = {
-//   PaperProps: {
-//     style: {
-//       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-//       width: 250,
-//     },
-//   },
-// };
-
 export default function MultipleSelectColor({
   names,
   handleChange,
@@ -35,6 +24,8 @@ export default function MultipleSelectColor({
       return;
     }
     setPersonName(typeof value === 'string' ? value.split(',') : value);
+    handleChange(event);
+    setSubmitting(false);
   };
   return (
     <div>
@@ -49,12 +40,7 @@ export default function MultipleSelectColor({
           displayEmpty
           name={name}
           value={personName}
-          onChange={e => {
-            handleChangeComponent(e);
-            handleChange(e);
-            setSubmitting(false);
-          }}
-          // MenuProps={MenuProps}
+          onChange={handleChangeComponent}
           renderValue={selected => {
             if (selected.length === 0) {
               return <em>Оберіть не більше 3 кольорів</em>;
