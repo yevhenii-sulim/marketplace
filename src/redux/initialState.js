@@ -1,5 +1,6 @@
 export const initialState = {
   poster: false,
+  ordering: false,
   viewAddProduct: false,
   basket: [],
   openCatalog: false,

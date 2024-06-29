@@ -18,6 +18,7 @@ export const theme = {
     bgActivePaginationList: '#7FD888',
     bgNumberBasket: '#FF9C07',
     bgCheckbox: '#C3C3C3',
+    bgLabelDelivery: '#8d8d8d',
     colorTextDisable: '#A8A8A8',
     colorTextSidebarActive: '#F04438',
     colorTextErrorLink: '#43C550',

@@ -26,6 +26,7 @@ import { selectId, selectMyUser } from '../../redux/auth/selector';
 import { getUser } from '../../redux/auth/thunk';
 import MyPosterListPage from 'pages/UserPage/MyPosterListPage';
 import PostConfirmedPage from 'pages/PostConfirmedPage';
+import OrderingPage from 'pages/UserPage/OrderingPage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ export default function App() {
             <Route path="notification" element={<NotificationPages />} />
             <Route path="selected" element={<SelectedPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="ordering" element={<OrderingPage />} />
           </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />

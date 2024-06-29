@@ -280,8 +280,9 @@ export const AddImageButton = styled.button`
   width: 100%;
   height: 100%;
   font-size: 18px;
-  background-color: ${({ $fullUpFul, theme }) =>
-    $fullUpFul ? 'rgba(250, 0, 0, .8)' : theme.color.bgAddImage};
+  box-shadow: inset;
+  box-shadow: ${({ $fullUpFul, theme }) =>
+    $fullUpFul && `inset 0 0 0 1px ${theme.color.bgButton}`};
   &:hover {
     box-shadow: 0 4px 8px ${({ theme }) => theme.color.bgButton};
   }
