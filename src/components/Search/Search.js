@@ -8,6 +8,8 @@ export default function Search() {
   const dispatch = useDispatch();
   function onSubmit(evt) {
     evt.preventDefault();
+    console.log(evt.target.elements.search.value);
+
     dispatch(searchProduct(evt.target.elements.search.value));
   }
   return (

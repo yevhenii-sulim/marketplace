@@ -54,15 +54,18 @@ export default function AddProductComponent() {
   }
   function handleSubmit(values) {
     const formData = new FormData();
-    console.log(values);
     for (const key in values) {
       if (!values.hasOwnProperty(key)) return;
       if (key === 'price') {
         formData.append('price', values[key] || 0);
       } else if (key === 'subCategory') {
-        formData.append('subCategory', values[key] || '');
+        formData.append('subCategory', values[key] || 'Мило');
       } else if (key === 'size') {
-        formData.append('size', values[key] || []);
+        if (values[key].length === 0) {
+          formData.append('size', 'Без розміру');
+        } else {
+          formData.append('size', values[key]);
+        }
       } else if (key === 'file') {
         values[key].forEach(file => formData.append('file', file));
       } else {

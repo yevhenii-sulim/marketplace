@@ -130,7 +130,7 @@ export const navigationList = [
       {
         id: 1,
         link: 'soap',
-        nameList: 'Мило',
+        nameList: 'мило',
         img: '/marketplace/images/subCatalog/soap.png',
       },
       {
@@ -156,7 +156,7 @@ export const navigationList = [
       {
         id: 2,
         link: 'second_hand',
-        nameList: 'Востановленний секонд хэнд',
+        nameList: 'Востановленний секонд хенд',
         img: '#',
       },
     ],

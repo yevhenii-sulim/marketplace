@@ -57,6 +57,7 @@ export const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.color.bgBackdrop};
+  z-index: 10;
 `;
 export const Box = styled.div`
   display: flex;

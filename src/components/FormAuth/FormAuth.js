@@ -17,7 +17,7 @@ import {
   socialSingInButton,
 } from './FormAuth.styled';
 
-export default function FormAuth({ onClose, openForgetWind }) {
+export default function FormAuth({ openForgetWind }) {
   const [visible, setVisible] = useState(false);
 
   const dispatch = useDispatch();

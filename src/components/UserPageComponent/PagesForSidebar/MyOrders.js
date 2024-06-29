@@ -26,19 +26,15 @@ import {
   viewProductButton,
 } from './PagesForSidebar.styled';
 import { selectBasket } from '../../../redux/basket/select';
-import {
-  changeCount,
-  deleteBasket,
-  deleteProduct,
-} from '../../../redux/basket/slice';
+import { changeCount, deleteProduct } from '../../../redux/basket/slice';
 import { useNavigate } from 'react-router-dom';
 import { selectCategory } from '../../../redux/category/selectors';
+import { toggleOrdering } from '../../../redux/myOrder/slice';
 
 export default function MyOrders() {
   const categories = useSelector(selectCategory);
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
-
   let total = 0;
   let totalPrice = 0;
   let totalDiscount = 0;
@@ -61,22 +57,13 @@ export default function MyOrders() {
     dispatch(deleteProduct(id));
   };
 
-  const onSubmit = evt => {
-    evt.preventDefault();
-    const shopping = {};
-    for (const item of evt.target.elements) {
-      if (item.name) {
-        shopping[item.name] = `${item.value}`;
-      }
-      if (item.name === '$Загально') {
-        shopping[item.name] = `${item.value}`;
-      }
-    }
-    dispatch(deleteBasket());
+  const makeOrder = () => {
+    navigation('/user_page/ordering');
+    dispatch(toggleOrdering(true));
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <div>
       {basket.length === 0 ? (
         <Empty>
           <ShoppingCart />
@@ -94,20 +81,6 @@ export default function MyOrders() {
                 totalCount += count;
                 return (
                   <List key={id}>
-                    <input
-                      type="text"
-                      name={title}
-                      className="visibility-hidden"
-                      defaultValue={`Кількість: ${count}шт; ціна за ${count}шт: ${
-                        price * count
-                      }грн; ціна за 1шт. без знижки: ${price}грн; ціна за 1шт. зі знижкою: ${
-                        discount ? discountPrice + 'грн' : 'без знижки'
-                      }; знижка за 1шт: ${
-                        discount ? price - discountPrice : 0
-                      }грн; загальна знижка: ${
-                        discount ? (price - discountPrice) * count : 0
-                      }грн`}
-                    />
                     <WrapperProduct>
                       <Image>
                         <img height="114" src={img} alt={title} />
@@ -171,14 +144,6 @@ export default function MyOrders() {
             )}
           </ul>
           <WrapperBuy>
-            <input
-              type="text"
-              name="$Загально"
-              className="visibility-hidden"
-              defaultValue={`До сплати: ${total}грн; сума без знижки: ${totalPrice}грн; знижка: ${
-                totalDiscount ? totalDiscount + 'грн' : 'без знижки'
-              };`}
-            />
             <TotalPrice>
               <Sum>
                 <span className="info">{totalCount} товар на суму</span>
@@ -200,7 +165,7 @@ export default function MyOrders() {
                 </span>
               </Total>
               <WrapperButton>
-                <Button type="submit" sx={addProductButton}>
+                <Button type="button" onClick={makeOrder} sx={addProductButton}>
                   Оформити замовлення
                 </Button>
               </WrapperButton>
@@ -215,6 +180,6 @@ export default function MyOrders() {
           </Button>
         </WrapperOrder>
       )}
-    </form>
+    </div>
   );
 }
