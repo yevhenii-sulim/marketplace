@@ -13,14 +13,12 @@ import { useState } from 'react';
 import ConfirmExit from 'components/ConfirmExit/ConfirmExit';
 import { Exit } from './UserPageComponent.styled';
 import { selectPoster } from '../../redux/myPoster/selector';
-import { selectOrder } from '../../redux/myOrder/selector';
 
 const modalEnter = document.querySelector('#modal');
 
 export default function UserPageSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const condition = useSelector(selectPoster);
-  const isOrdering = useSelector(selectOrder);
 
   const dispatch = useDispatch();
   function onExit() {
@@ -32,10 +30,7 @@ export default function UserPageSidebar() {
 
   return (
     <>
-      <SidebarListComponent
-        nameList="Мій кошик"
-        path={isOrdering ? 'ordering' : 'my_order'}
-      >
+      <SidebarListComponent nameList="Мій кошик" path={'my_order'}>
         <ShoppingCartOutlinedIcon />
       </SidebarListComponent>
       <SidebarListComponent

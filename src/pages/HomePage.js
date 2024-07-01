@@ -18,9 +18,6 @@ export default function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (productAll.length !== 0) {
-      return;
-    }
     dispatch(getAllProducts({ page: 1, limit: 100 }));
   }, [dispatch, productAll]);
 
