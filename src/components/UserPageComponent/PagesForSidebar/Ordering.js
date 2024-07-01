@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { selectBasket } from '../../../redux/basket/select';
 import { deleteBasket, deleteProduct } from '../../../redux/basket/slice';
-import { toggleOrdering } from '../../../redux/myOrder/slice';
 import {
   About,
   Actives,
@@ -34,23 +33,30 @@ let totalCount = 0;
 
 function handleOrder(data) {
   const orderData = data.map(
-    ({ count, discount, discountPrice, price, title }) => ({
-      title: `назва: ${title}`,
-      count: `кількість: ${count}шт;`,
-      price: `ціна за: ${count}шт: ${price * count}грн;`,
-      priceForOne: `ціна за 1шт. без знижки: ${price}грн;`,
-      priceForOneWithDiscount: `ціна за 1шт. зі знижкою: ${
-        discount ? discountPrice + 'грн' : 'без знижки'
-      };`,
-      discountForOne: `знижка за 1шт: ${
-        discount ? price - discountPrice : 0
-      }грн;`,
-      discountAll: `загальна знижка: ${
-        discount ? (price - discountPrice) * count : 0
-      }грн;`,
-    })
+    ({ count, discount, discountPrice, price, title }) => {
+      return {
+        title: `назва: ${title}`,
+        count: `кількість: ${count}шт;`,
+        price: `ціна за: ${count}шт: ${price * count}грн;`,
+        priceForOne: `ціна за 1шт. без знижки: ${price}грн;`,
+        priceForOneWithDiscount: `ціна за 1шт. зі знижкою: ${
+          discount ? discountPrice + 'грн' : 'без знижки'
+        };`,
+        discountForOne: `знижка за 1шт: ${
+          discount ? price - discountPrice : 0
+        }грн;`,
+        discountAll: `загальна знижка: ${
+          discount ? (price - discountPrice) * count : 0
+        }грн;`,
+      };
+    }
   );
-
+  for (const { count, discount, discountPrice, price } of data) {
+    total += discount ? discountPrice * count : price * count;
+    totalPrice += price * count;
+    totalDiscount += discount && (price - discountPrice) * count;
+    totalCount += count;
+  }
   orderData.push({
     toPay: `до сплати: ${total}грн;`,
     sumWithoutDiscount: `сума без знижки: ${totalPrice}грн;`,
@@ -58,27 +64,29 @@ function handleOrder(data) {
       totalDiscount ? totalDiscount + 'грн' : 'без знижки'
     };`,
   });
+  console.log(total, totalPrice, totalDiscount, totalCount);
+  console.log('first');
+
   return orderData;
 }
+
 export default function Ordering() {
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
-  const order = [];
 
   useEffect(() => {
-    console.log(handleOrder(basket));
-
-    return () => {
-      dispatch(toggleOrdering(false));
-    };
-  }, [dispatch, basket]);
+    total = 0;
+    totalPrice = 0;
+    totalDiscount = 0;
+    totalCount = 0;
+    handleOrder(basket);
+  }, [basket]);
 
   const deleteFromBasket = id => {
     dispatch(deleteProduct(id));
   };
 
   const handleSubmit = value => {
-    console.log(value);
     dispatch(deleteBasket());
   };
   return (
@@ -94,7 +102,6 @@ export default function Ordering() {
             wayDelivery: '',
             postOffice: '',
             apartment: '',
-            data: order,
           }}
           validateOnChange={false}
           validateOnBlur={false}
@@ -117,22 +124,7 @@ export default function Ordering() {
                 <WrapperListOrder>
                   <ul>
                     {basket.map(
-                      ({
-                        id,
-                        title,
-                        price,
-                        img,
-                        discount,
-                        discountPrice,
-                        count,
-                      }) => {
-                        total += discount
-                          ? discountPrice * count
-                          : price * count;
-                        totalPrice += price * count;
-                        totalDiscount +=
-                          discount && (price - discountPrice) * count;
-                        totalCount += count;
+                      ({ id, title, price, img, discount, discountPrice }) => {
                         return (
                           <List key={id}>
                             <WrapperProduct>

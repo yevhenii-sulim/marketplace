@@ -8,9 +8,15 @@ import {
   searchProduct,
 } from './thunk';
 
-const handlePending = state => {};
-const handlePendingGetProductsBySubCategory = (state, { payload }) => {};
-const handlePendingGetProductsByCategory = (state, { payload }) => {};
+const handlePending = state => {
+  state = [];
+};
+const handlePendingGetProductsBySubCategory = (state, { payload }) => {
+  state = [];
+};
+const handlePendingGetProductsByCategory = (state, { payload }) => {
+  state = [];
+};
 
 const handleFulfilled = (state, { payload }) => {
   state.product = payload.products;

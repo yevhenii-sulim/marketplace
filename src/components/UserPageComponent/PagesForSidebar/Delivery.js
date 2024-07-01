@@ -1,57 +1,85 @@
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
-import { useState } from 'react';
-import { styleSelect } from './Placing.styled';
-import { ListItemText } from '@mui/material';
-const names = ['Харків', 'Львов'];
+import { useEffect, useState } from 'react';
+import { Field, ListTown, WrapperTown } from './Placing.styled';
 
 export default function Delivery({
   handleChange,
   setSubmitting,
   name,
-  placeholder,
+  getTown,
 }) {
-  const [personName, setPersonName] = useState('');
+  const [townName, setTownName] = useState([]);
+  const [enteredName, setEnteredName] = useState('');
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  useEffect(() => {
+    async function fetchDataPost() {
+      const isQuery = enteredName?.split(' ').length;
+
+      if (enteredName && isQuery > 2) {
+        return;
+      }
+
+      try {
+        const result = await fetch(`https://api.novaposhta.ua/v2.0/json/`, {
+          method: 'POST',
+          body: JSON.stringify({
+            apiKey: 'd06a7185b61614248a730316bfc45e0d',
+            modelName: 'AddressGeneral',
+            calledMethod: 'searchSettlements',
+            methodProperties: {
+              CityName: `${enteredName.toLowerCase()}`,
+              Limit: '50',
+              Page: '1',
+            },
+          }),
+        });
+        const { data } = await result.json();
+        if (data[0].Addresses.length === 0) {
+          setIsOpenMenu(false);
+        } else {
+          setIsOpenMenu(true);
+        }
+        setTownName(data[0].Addresses);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchDataPost();
+  }, [enteredName]);
 
   const handleChangeComponent = event => {
-    const {
-      target: { value },
-    } = event;
+    setEnteredName(event.target.value);
     handleChange(event);
     setSubmitting(false);
-    setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
 
   return (
-    <div>
-      <FormControl sx={styleSelect}>
-        <Select
-          IconComponent={() => (
-            <span className="arrow_select">
-              <ExpandMoreIcon />
-            </span>
-          )}
-          displayEmpty
-          name={name}
-          value={personName}
-          onChange={handleChangeComponent}
-          renderValue={selected => {
-            if (selected.length === 0) {
-              return <em>{placeholder}</em>;
-            }
-
-            return selected.join(', ');
-          }}
-        >
-          {names.map(name => (
-            <MenuItem key={name} value={name}>
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <WrapperTown>
+      <Field
+        type="text"
+        name={name}
+        className="town"
+        value={enteredName}
+        onChange={handleChangeComponent}
+        placeholder="Київ"
+      />
+      {isOpenMenu && (
+        <ListTown>
+          {townName.map(({ Present }) => {
+            return (
+              <li
+                key={Present}
+                onClick={evt => {
+                  setEnteredName(evt.target.innerText);
+                  setIsOpenMenu(false);
+                }}
+              >
+                {Present}
+              </li>
+            );
+          })}
+        </ListTown>
+      )}
+    </WrapperTown>
   );
 }

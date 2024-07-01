@@ -1,9 +1,8 @@
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
-import Delivery from './Delivery';
+// import Delivery from './Delivery';
 import { addAddressDelivery } from './Functional';
 import { Box, Field, TitleBox, WrapperForm } from './Placing.styled';
-// import { useSearchParams } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import Delivery from './Delivery';
 
 export default function Placing({
   values,
@@ -15,31 +14,6 @@ export default function Placing({
   email,
   wayDelivery,
 }) {
-  //   const dispatch = useDispatch();
-  // const [searchParams, setSearchParams] = useSearchParams({
-  //   apiKey: 'd06a7185b61614248a730316bfc45e0d',
-  //   modelName: 'AddressGeneral',
-  //   calledMethod: 'searchSettlements',
-  //   methodProperties: {
-  //     CityName: 'київ',
-  //     Limit: '50',
-  //     Page: '2',
-  //   },
-  // });
-  // useEffect(() => {
-  //   searchParams.forEach(item => console.log(item));
-  //   async function fetchDataPost() {
-  //     const data = await fetch(
-  //       `https://api.novaposhta.ua/v2.0/json/${searchParams}`
-  //     );
-
-  //     const result = await data.json();
-  //     console.log('data', result);
-  //   }
-
-  //   fetchDataPost();
-  // }, [searchParams]);
-
   return (
     <div>
       <Box className="contacts">

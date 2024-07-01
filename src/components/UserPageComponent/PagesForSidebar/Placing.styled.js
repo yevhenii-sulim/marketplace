@@ -22,6 +22,9 @@ export const Field = styled(FieldInput)`
     background: transparent;
     padding: 8px 12px;
   }
+  &.town {
+    width: 100%;
+  }
 `;
 export const Box = styled.div`
   border-radius: 12px;
@@ -161,3 +164,34 @@ export const styleSelect = {
     border: 'none',
   },
 };
+
+export const WrapperTown = styled.div`
+  position: relative;
+  width: 100%;
+`;
+export const ListTown = styled.ul`
+  position: absolute;
+  top: calc(100% + 24px);
+  z-index: 2;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid ${({ theme }) => theme.color.colorTextStartUserPage};
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  padding-bottom: 24px;
+  padding-top: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  max-height: 400px;
+  overflow-y: auto;
+  li {
+    padding: 8px;
+    border-radius: 12px;
+    &:hover {
+      box-shadow: 0 0 0 1px ${({ theme }) => theme.color.borderRegister};
+    }
+  }
+`;
