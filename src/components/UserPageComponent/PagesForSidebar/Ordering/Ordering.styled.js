@@ -13,7 +13,7 @@ export const List = styled.li`
 
 export const Form = styled(FormContainer)`
   display: grid;
-  grid-template-columns: 2fr 323px;
+  grid-template-columns: 2fr auto;
   gap: 32px;
   font-size: 18px;
   font-weight: 800;
@@ -134,7 +134,6 @@ export const Price = styled.div`
   .price-discount {
     color: ${({ theme }) => theme.color.colorPriceDiscant};
     font-size: 16px;
-    font-weight: 400;
     line-height: 1.25; /* 125% */
     text-decoration: line-through;
   }

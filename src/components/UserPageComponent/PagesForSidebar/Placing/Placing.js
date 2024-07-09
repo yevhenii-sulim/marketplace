@@ -1,11 +1,10 @@
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
-// import Delivery from './Delivery';
-import { addAddressDelivery } from './Functional';
+import AddressDeliveryByPostMan from '../AddressDeliveryByPostMan';
 import { Box, Field, TitleBox, WrapperForm } from './Placing.styled';
-import Delivery from './Delivery';
+import ChooseTown from './ChooseTown';
+import ChoosePostOffice from './ChoosePostOffice';
 
 export default function Placing({
-  values,
   handleChange,
   setSubmitting,
   firstName,
@@ -13,6 +12,11 @@ export default function Placing({
   tel,
   email,
   wayDelivery,
+  setFieldValue,
+  valueListTown,
+  refTown,
+  errors,
+  touched,
 }) {
   return (
     <div>
@@ -85,17 +89,13 @@ export default function Placing({
         <TitleBox>Спосіб доставки</TitleBox>
         <WrapperForm className="wrapper-delivery">
           <label>
-            <p>
-              <span className="label-place">
-                Ваше місто
-                <MarkSvg />
-              </span>
-            </p>
-            <Delivery
+            <ChooseTown
               handleChange={handleChange}
               setSubmitting={setSubmitting}
               name="town"
               placeholder="Оберіть ваше місце"
+              setFieldValue={setFieldValue}
+              valueListTown={valueListTown}
             />
           </label>
           <Field
@@ -109,6 +109,17 @@ export default function Placing({
           <label className="checkbox" htmlFor="at-section">
             До відділення Нової Пошти
           </label>
+          {wayDelivery === 'До відділення Нової Пошти' && (
+            <ChoosePostOffice
+              handleChange={handleChange}
+              setSubmitting={setSubmitting}
+              setFieldValue={setFieldValue}
+              error={errors}
+              touched={touched}
+              town={refTown}
+              kindOfSection="відділення"
+            />
+          )}
           <Field
             id="at-post"
             type="radio"
@@ -120,6 +131,17 @@ export default function Placing({
           <label className="checkbox" htmlFor="at-post">
             До поштомату Нової Пошти
           </label>
+          {wayDelivery === 'До поштомату Нової Пошти' && (
+            <ChoosePostOffice
+              handleChange={handleChange}
+              setSubmitting={setSubmitting}
+              setFieldValue={setFieldValue}
+              error={errors}
+              touched={touched}
+              town={refTown}
+              kindOfSection={'поштомат або пункт для видачі'}
+            />
+          )}
           <Field
             id="by-postman"
             type="radio"
@@ -131,7 +153,16 @@ export default function Placing({
           <label className="checkbox" htmlFor="by-postman">
             Кур'єром Нової Пошти
           </label>
-          {addAddressDelivery(values, handleChange, setSubmitting, wayDelivery)}
+          {wayDelivery === "Кур'єром Нової Пошти" && (
+            <AddressDeliveryByPostMan
+              handleChange={handleChange}
+              setSubmitting={setSubmitting}
+              setFieldValue={setFieldValue}
+              error={errors}
+              touched={touched}
+              town={refTown}
+            />
+          )}
         </WrapperForm>
       </Box>
     </div>

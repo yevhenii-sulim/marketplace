@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/product/thunk';
 import {
-  selectProduct,
   selectProductDiscount,
   selectProductEco,
   selectProductNewer,
@@ -14,12 +13,11 @@ export default function HomePage() {
   const productsEco = useSelector(selectProductEco);
   const productsDiscount = useSelector(selectProductDiscount);
   const productsNew = useSelector(selectProductNewer);
-  const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProducts({ page: 1, limit: 100 }));
-  }, [dispatch, productAll]);
+  }, [dispatch]);
 
   return (
     <>

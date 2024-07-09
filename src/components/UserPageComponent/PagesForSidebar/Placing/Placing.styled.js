@@ -22,8 +22,23 @@ export const Field = styled(FieldInput)`
     background: transparent;
     padding: 8px 12px;
   }
+  &.street {
+    background: transparent;
+    padding: 8px 12px;
+    width: 100%;
+  }
+  &.building {
+    background: transparent;
+    padding: 8px 12px;
+  }
+  &.floor {
+    background: transparent;
+    padding: 8px 12px;
+  }
   &.town {
     width: 100%;
+    background: transparent;
+    padding: 8px 12px;
   }
 `;
 export const Box = styled.div`
@@ -194,4 +209,21 @@ export const ListTown = styled.ul`
       box-shadow: 0 0 0 1px ${({ theme }) => theme.color.borderRegister};
     }
   }
+`;
+export const RefTown = styled.span`
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+`;
+export const PlaceAddress = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
 `;

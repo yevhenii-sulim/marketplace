@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container } from './UserPageComponent.styled';
 import UserPageHeader from './UserPageHeader';
 import UserPageMain from './UserPageMain';

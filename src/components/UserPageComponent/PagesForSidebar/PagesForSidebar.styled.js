@@ -363,7 +363,7 @@ export const NumberOrder = styled.span`
   font-weight: 400;
   line-height: 1.25; /* 125% */
 `;
-export const DateOrer = styled.span`
+export const DateOrder = styled.span`
   color: ${({ theme }) => theme.color.colorTextExplainment};
   font-family: 'Nunito Sans';
   font-size: 14px;
@@ -403,7 +403,7 @@ export const State = styled.span`
     }
   }};
 `;
-export const Coust = styled.div`
+export const Cost = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   justify-content: center;
