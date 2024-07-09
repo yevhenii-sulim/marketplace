@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import {
   CountPrice,
   PriceSlide,
   SliderRange,
 } from '../ProductListPage/ProductListPage.styled';
-import useWindowDimensions from 'hooks/useWindowDimensions';
 import { selectFilters, selectProduct } from '../../redux/product/selector';
 
 export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {

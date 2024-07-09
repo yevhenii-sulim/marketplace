@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   About,
-  Coust,
-  DateOrer,
+  Cost,
+  DateOrder,
   ImageStory,
   NumberOrder,
   Price,
@@ -12,7 +12,7 @@ import {
 } from './PagesForSidebar.styled';
 import { formatDate } from 'data/formatDate';
 
-export default function AboutPoductStory({
+export default function AboutProductStory({
   state,
   title,
   createDate,
@@ -30,9 +30,9 @@ export default function AboutPoductStory({
         <ImageStory>
           <img src={img} alt={title} />
         </ImageStory>
-        <DateOrer>{formatDate(createDate)}</DateOrer>
+        <DateOrder>{formatDate(createDate)}</DateOrder>
       </About>
-      <Coust>
+      <Cost>
         <Title className="story">{title}</Title>
         <Price className="story">
           {discount ? (
@@ -44,7 +44,7 @@ export default function AboutPoductStory({
             <p className="price">{price} &#8372;</p>
           )}
         </Price>
-      </Coust>
+      </Cost>
     </WrapperProduct>
   );
 }

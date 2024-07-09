@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 const SignupSchema = Yup.object().shape({
   title: Yup.string()
     .min(3, 'Щонайменше 3 символи')
-    .max(50, 'Щонайбільше 50 символів')
+    .max(100, 'Щонайбільше 100 символів')
     .required('Будь ласка додайте назву товару'),
   describe: Yup.string()
     .min(30, 'Щонайменше 30 символи')

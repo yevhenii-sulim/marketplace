@@ -2,12 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import { togglePoster } from '../../../redux/myPoster/slice';
+import { togglePoster } from '../../../../redux/myPoster/slice';
 import PosterSvg from 'SvgComponents/PosterSVG/PosterSvg';
-import Search from '../Search';
 import Sort from 'components/ProductListPage/Sort';
-import AboutPoductStory from './AboutPoductStory';
-import { Empty } from './PagesForSidebar.styled';
 import MessageSvg from 'SvgComponents/Message/MessageSvg';
 import EyeSvg from 'SvgComponents/Eye/EyeSvg';
 import {
@@ -25,10 +22,13 @@ import {
   WrapperPoster,
 } from './MyPoster.styled';
 import DeleteSvg from 'SvgComponents/Delete/DeleteSvg';
-import DeactiveSvg from 'SvgComponents/Deactive/DeactiveSvg';
+import DeactivateSvg from 'SvgComponents/Deactivate/DeactivateSvg';
 import EditSvg from 'SvgComponents/Edit/EditSvg';
 import { useRef } from 'react';
-import { selectMyUser } from '../../../redux/auth/selector';
+import { selectMyUser } from '../../../../redux/auth/selector';
+import AboutProductStory from '../AboutProductStory';
+import { Empty } from '../PagesForSidebar.styled';
+import Search from 'components/Search/Search';
 
 export default function MyPosterList({
   sortedProduct,
@@ -114,7 +114,7 @@ export default function MyPosterList({
               }) => {
                 return (
                   <ListStoryOrder key={_id} $state={Object.keys(state)}>
-                    <AboutPoductStory
+                    <AboutProductStory
                       state={state}
                       title={title}
                       createDate={createDate}
@@ -135,7 +135,7 @@ export default function MyPosterList({
                             Редагувати
                           </ActiveProduct>
                           <ActiveProduct type="button">
-                            <DeactiveSvg />
+                            <DeactivateSvg />
                             Деактивувати
                           </ActiveProduct>
                           <ActiveProduct type="button">

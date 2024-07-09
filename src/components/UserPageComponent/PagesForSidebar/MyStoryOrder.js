@@ -20,8 +20,8 @@ import { useNavigate } from 'react-router-dom';
 import SendComment from './SendComment';
 import { createPortal } from 'react-dom';
 import { addCommentFromStory } from '../../../redux/product/thunk';
-import AboutPoductStory from './AboutPoductStory';
 import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
+import AboutProductStory from './AboutProductStory';
 const modalEnter = document.querySelector('#modal');
 export default function MyStoryOrder({
   sortedProduct,
@@ -94,7 +94,7 @@ export default function MyStoryOrder({
               }) => {
                 return (
                   <ListStoryOrder key={_id}>
-                    <AboutPoductStory
+                    <AboutProductStory
                       state={state}
                       title={title}
                       createDate={createDate}

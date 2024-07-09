@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function DeactiveSvg() {
+export default function DeactivateSvg() {
   return (
     <svg
       width="26"

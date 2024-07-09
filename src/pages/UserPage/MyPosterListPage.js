@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import MyPosterList from 'components/UserPageComponent/PagesForSidebar/MyPosterList';
 import { selectMyUser } from '../../redux/auth/selector';
+import MyPosterList from 'components/UserPageComponent/PagesForSidebar/MyPoster/MyPosterList';
 
 export default function MyPosterListPage() {
   const [valueSort, setValueSort] = useState('new');
