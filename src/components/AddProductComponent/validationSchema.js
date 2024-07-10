@@ -29,7 +29,11 @@ const SignupSchema = Yup.object().shape({
     .min(1, 'Додайте мінімум 1 картинку'),
   price: Yup.number().when('category', {
     is: category => category !== 'Подарую',
-    then: e => e.min(1, 'Встановіть ціну').required("Обов'язкове поле"),
+    then: e =>
+      e
+        .min(1, 'Встановіть ціну')
+        .max(8, 'Дуже дорого')
+        .required("Обов'язкове поле"),
     otherwise: e => e.nullable().default(() => 0),
   }),
 });
