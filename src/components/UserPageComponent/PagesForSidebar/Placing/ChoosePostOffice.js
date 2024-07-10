@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import { styleSelect } from './Placing.styled';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import Label from 'components/AddProductComponent/Label';
+import { theme } from 'utils/theme';
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName?.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+// function getStyles(name, personName, themeSelect) {
+//   return {
+//     fontWeight:
+//       personName?.indexOf(name) === -1
+//         ? themeSelect.typography.fontWeightRegular
+//         : themeSelect.typography.fontWeightMedium,
+//   };
+// }
 
 export default function ChoosePostOffice({
   handleChange,
   setSubmitting,
-  setFieldValue,
-  error,
+  errors,
   touched,
   town,
   kindOfSection,
 }) {
   const [postOffice, setPostOffice] = useState([]);
   const [personName, setPersonName] = useState('');
-  const theme = useTheme();
+  // const themeSelect = useTheme();
 
   useEffect(() => {
     setPersonName('');
@@ -44,7 +44,7 @@ export default function ChoosePostOffice({
         });
         const { data } = await result.json();
 
-        console.log('dataPost', typeof town, new Date().getSeconds());
+        console.log('dataPost', data, new Date().getSeconds());
 
         setPostOffice(data);
       } catch (error) {
@@ -63,8 +63,6 @@ export default function ChoosePostOffice({
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
 
-  console.log(postOffice);
-
   return (
     <>
       {postOffice.length !== 0 && (
@@ -81,6 +79,13 @@ export default function ChoosePostOffice({
               name="postOffice"
               value={personName}
               onChange={handleChangeComponent}
+              style={
+                touched.postOffice && errors.postOffice
+                  ? {
+                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    }
+                  : {}
+              }
               renderValue={selected => {
                 if (selected.length === 0) {
                   return <em>{kindOfSection}</em>;
@@ -95,18 +100,11 @@ export default function ChoosePostOffice({
                     .includes(Description.split(' ')[0].toLowerCase())
                 )
                 .map(({ Description, SiteKey }) => (
-                  <MenuItem
-                    key={SiteKey}
-                    value={Description}
-                    style={getStyles(Description, personName, theme)}
-                  >
+                  <MenuItem key={SiteKey} value={Description}>
                     {Description}
                   </MenuItem>
                 ))}
             </Select>
-            {touched.postOffice && error.postOffice && (
-              <p className="error">{error.postOffice}</p>
-            )}
           </FormControl>
         </div>
       )}

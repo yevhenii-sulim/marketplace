@@ -205,23 +205,16 @@ export const ListTown = styled.ul`
   li {
     padding: 8px;
     border-radius: 12px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1, 44;
+    cursor: pointer;
     &:hover {
       box-shadow: 0 0 0 1px ${({ theme }) => theme.color.borderRegister};
     }
   }
 `;
-export const RefTown = styled.span`
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  margin: -1px;
-`;
+
 export const PlaceAddress = styled.div`
   display: flex;
   justify-content: space-between;

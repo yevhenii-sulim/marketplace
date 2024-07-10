@@ -1,12 +1,13 @@
 import Label from 'components/AddProductComponent/Label';
 import AddressDelivery from './Placing/AddressDelivery';
 import { Field, PlaceAddress } from './Placing/Placing.styled';
+import { theme } from 'utils/theme';
 
 export default function AddressDeliveryByPostMan({
   handleChange,
   setSubmitting,
   setFieldValue,
-  error,
+  errors,
   touched,
   town,
 }) {
@@ -16,7 +17,7 @@ export default function AddressDeliveryByPostMan({
         handleChange={handleChange}
         setSubmitting={setSubmitting}
         setFieldValue={setFieldValue}
-        error={error}
+        errors={errors}
         touched={touched}
         town={town}
       />
@@ -29,12 +30,19 @@ export default function AddressDeliveryByPostMan({
             className="building"
             onChange={handleChange}
             placeholder="56"
+            style={
+              touched.building && errors.building
+                ? {
+                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
           />
         </label>
         <label>
           Квартира
           <Field
-            type="text"
+            type="number"
             name="floor"
             className="floor"
             onChange={handleChange}
@@ -44,7 +52,7 @@ export default function AddressDeliveryByPostMan({
         <label>
           Поверх
           <Field
-            type="text"
+            type="number"
             name="apartment"
             className="apartment"
             onChange={handleChange}
