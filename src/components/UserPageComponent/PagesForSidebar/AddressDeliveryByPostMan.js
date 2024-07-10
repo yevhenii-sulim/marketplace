@@ -33,7 +33,8 @@ export default function AddressDeliveryByPostMan({
             style={
               touched.building && errors.building
                 ? {
-                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                   }
                 : {}
             }

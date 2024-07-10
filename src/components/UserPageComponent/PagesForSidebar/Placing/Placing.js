@@ -40,7 +40,8 @@ export default function Placing({
               style={
                 touched.firstName && errors.firstName
                   ? {
-                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                      border: 'none',
+                      boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                     }
                   : {}
               }
@@ -62,7 +63,8 @@ export default function Placing({
               style={
                 touched.lastName && errors.lastName
                   ? {
-                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                      border: 'none',
+                      boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                     }
                   : {}
               }
@@ -84,7 +86,8 @@ export default function Placing({
               style={
                 touched.tel && errors.tel
                   ? {
-                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                      border: 'none',
+                      boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                     }
                   : {}
               }
@@ -106,7 +109,8 @@ export default function Placing({
               style={
                 touched.email && errors.email
                   ? {
-                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                      border: 'none',
+                      boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                     }
                   : {}
               }
@@ -139,7 +143,8 @@ export default function Placing({
             style={
               touched.wayDelivery && errors.wayDelivery
                 ? {
-                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                   }
                 : {}
             }
@@ -168,7 +173,8 @@ export default function Placing({
             style={
               touched.wayDelivery && errors.wayDelivery
                 ? {
-                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                   }
                 : {}
             }
@@ -197,7 +203,8 @@ export default function Placing({
             style={
               touched.wayDelivery && errors.wayDelivery
                 ? {
-                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                   }
                 : {}
             }
