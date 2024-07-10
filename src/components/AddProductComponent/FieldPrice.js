@@ -15,6 +15,7 @@ export default function FieldPrice({
   touched,
 }) {
   const handleChangeComponent = event => {
+    if (event.target.value.length > 8) return;
     handleChange(event);
     setSubmitting(false);
   };

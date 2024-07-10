@@ -121,7 +121,6 @@ export default function Ordering() {
         >
           {({
             values,
-            isSubmitting,
             handleChange,
             setSubmitting,
             setFieldValue,
