@@ -1,58 +1,48 @@
 import { useEffect, useState } from 'react';
 import { Field, ListTown, WrapperTown } from './Placing.styled';
 import Label from 'components/AddProductComponent/Label';
+import { theme } from 'utils/theme';
 
 export default function ChooseTown({
   handleChange,
   setSubmitting,
   setFieldValue,
   valueListTown,
-  kindOfSection,
+  errors,
+  touched,
 }) {
   const [townName, setTownName] = useState([]);
   const [enteredName, setEnteredName] = useState('');
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
+  async function fetchDataPost() {
+    try {
+      const result = await fetch(`https://api.novaposhta.ua/v2.0/json/`, {
+        method: 'POST',
+        body: JSON.stringify({
+          apiKey: 'd06a7185b61614248a730316bfc45e0d',
+          modelName: 'AddressGeneral',
+          calledMethod: 'getCities',
+          methodProperties: {
+            FindByString: `${enteredName.toLowerCase()}`,
+          },
+        }),
+      });
+      const { data } = await result.json();
+      console.log('dataPost', data, new Date().getSeconds());
+      setIsOpenMenu(true);
+      setTownName(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    const abortController = new AbortController();
-
-    if (typeof enteredName !== 'string') {
-      abortController.abort();
-      setTownName([]);
+    if (enteredName) {
+      fetchDataPost();
+    } else {
       setIsOpenMenu(false);
-      return;
     }
-
-    if (enteredName === '') {
-      abortController.abort();
-      setTownName([]);
-      setIsOpenMenu(false);
-      return;
-    }
-
-    async function fetchDataPost() {
-      try {
-        const result = await fetch(`https://api.novaposhta.ua/v2.0/json/`, {
-          signal: abortController.signal,
-          method: 'POST',
-          body: JSON.stringify({
-            apiKey: 'd06a7185b61614248a730316bfc45e0d',
-            modelName: 'AddressGeneral',
-            calledMethod: 'getCities',
-            methodProperties: {
-              FindByString: `${enteredName.toLowerCase()}`,
-            },
-          }),
-        });
-        const { data } = await result.json();
-        console.log('dataPost', data, new Date().getSeconds());
-        setIsOpenMenu(true);
-        setTownName(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchDataPost();
   }, [enteredName]);
 
   const handleChangeComponent = event => {
@@ -66,6 +56,8 @@ export default function ChooseTown({
   return (
     <WrapperTown>
       <Label label="Ваше місто" />
+      {console.log(errors)}
+
       <Field
         type="text"
         name="town"
@@ -73,6 +65,14 @@ export default function ChooseTown({
         value={valueListTown}
         onChange={handleChangeComponent}
         placeholder="Київ"
+        style={
+          touched.town && errors.town
+            ? {
+                border: `3px solid ${theme.color.colorTextErrorForm}`,
+                // boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
+              }
+            : {}
+        }
       />
       <Field name="town" type="hidden">
         {({ field }) => <input type="hidden" {...field} value={enteredName} />}
@@ -90,6 +90,7 @@ export default function ChooseTown({
                   ];
                   setFieldValue('town', selectedTown);
                   setEnteredName(selectedTown);
+                  setIsOpenMenu(false);
                 }}
               >
                 {SettlementTypeDescription} {Description}

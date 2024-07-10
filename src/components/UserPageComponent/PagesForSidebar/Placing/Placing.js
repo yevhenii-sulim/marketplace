@@ -3,6 +3,7 @@ import AddressDeliveryByPostMan from '../AddressDeliveryByPostMan';
 import { Box, Field, TitleBox, WrapperForm } from './Placing.styled';
 import ChooseTown from './ChooseTown';
 import ChoosePostOffice from './ChoosePostOffice';
+import { theme } from 'utils/theme';
 
 export default function Placing({
   handleChange,
@@ -36,6 +37,13 @@ export default function Placing({
               value={firstName.trim()}
               onChange={handleChange}
               placeholder="Михайло"
+              style={
+                touched.firstName && errors.firstName
+                  ? {
+                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    }
+                  : {}
+              }
             />
           </label>
           <label>
@@ -51,6 +59,13 @@ export default function Placing({
               value={lastName.trim()}
               onChange={handleChange}
               placeholder="Багряний"
+              style={
+                touched.lastName && errors.lastName
+                  ? {
+                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    }
+                  : {}
+              }
             />
           </label>
           <label>
@@ -66,6 +81,13 @@ export default function Placing({
               value={tel.trim()}
               onChange={handleChange}
               placeholder="050-589-00-32"
+              style={
+                touched.tel && errors.tel
+                  ? {
+                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    }
+                  : {}
+              }
             />
           </label>
           <label>
@@ -81,6 +103,13 @@ export default function Placing({
               onChange={handleChange}
               value={email.trim()}
               placeholder="mbagrianiy@gmail.com"
+              style={
+                touched.email && errors.email
+                  ? {
+                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                    }
+                  : {}
+              }
             />
           </label>
         </WrapperForm>
@@ -93,9 +122,11 @@ export default function Placing({
               handleChange={handleChange}
               setSubmitting={setSubmitting}
               name="town"
-              placeholder="Оберіть ваше місце"
+              placeholder="Оберіть ваше місто"
               setFieldValue={setFieldValue}
               valueListTown={valueListTown}
+              errors={errors}
+              touched={touched}
             />
           </label>
           <Field
@@ -105,6 +136,13 @@ export default function Placing({
             onChange={handleChange}
             value="До відділення Нової Пошти"
             checked={wayDelivery === 'До відділення Нової Пошти'}
+            style={
+              touched.wayDelivery && errors.wayDelivery
+                ? {
+                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
           />
           <label className="checkbox" htmlFor="at-section">
             До відділення Нової Пошти
@@ -114,7 +152,7 @@ export default function Placing({
               handleChange={handleChange}
               setSubmitting={setSubmitting}
               setFieldValue={setFieldValue}
-              error={errors}
+              errors={errors}
               touched={touched}
               town={refTown}
               kindOfSection="відділення"
@@ -127,6 +165,13 @@ export default function Placing({
             value="До поштомату Нової Пошти"
             checked={wayDelivery === 'До поштомату Нової Пошти'}
             onChange={handleChange}
+            style={
+              touched.wayDelivery && errors.wayDelivery
+                ? {
+                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
           />
           <label className="checkbox" htmlFor="at-post">
             До поштомату Нової Пошти
@@ -136,7 +181,7 @@ export default function Placing({
               handleChange={handleChange}
               setSubmitting={setSubmitting}
               setFieldValue={setFieldValue}
-              error={errors}
+              errors={errors}
               touched={touched}
               town={refTown}
               kindOfSection={'поштомат або пункт для видачі'}
@@ -149,6 +194,13 @@ export default function Placing({
             onChange={handleChange}
             value="Кур'єром Нової Пошти"
             checked={wayDelivery === "Кур'єром Нової Пошти"}
+            style={
+              touched.wayDelivery && errors.wayDelivery
+                ? {
+                    border: `3px solid ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
           />
           <label className="checkbox" htmlFor="by-postman">
             Кур'єром Нової Пошти
@@ -157,8 +209,8 @@ export default function Placing({
             <AddressDeliveryByPostMan
               handleChange={handleChange}
               setSubmitting={setSubmitting}
+              errors={errors}
               setFieldValue={setFieldValue}
-              error={errors}
               touched={touched}
               town={refTown}
             />

@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Field, ListTown, WrapperTown } from './Placing.styled';
 import Label from 'components/AddProductComponent/Label';
+import { theme } from 'utils/theme';
 
 export default function AddressDelivery({
   handleChange,
   setSubmitting,
   setFieldValue,
-  error,
+  errors,
   touched,
   town,
 }) {
@@ -37,11 +38,11 @@ export default function AddressDelivery({
           method: 'POST',
           body: JSON.stringify({
             apiKey: 'd06a7185b61614248a730316bfc45e0d',
-            modelName: 'AddressGeneral',
-            calledMethod: 'searchSettlementStreets',
+            modelName: 'Address',
+            calledMethod: 'getStreet',
             methodProperties: {
-              StreetName: `${enteredName.toLowerCase()}`,
-              SettlementRef: `${town}`,
+              CityRef: `${town}`,
+              FindByString: `${enteredName.toLowerCase()}`,
             },
           }),
         });
@@ -60,7 +61,6 @@ export default function AddressDelivery({
   const handleChangeComponent = event => {
     const newValue = event.target.value;
     setEnteredName(newValue);
-    setFieldValue('town', newValue);
     handleChange(event);
     setSubmitting(false);
   };
@@ -77,19 +77,26 @@ export default function AddressDelivery({
         value={enteredName}
         onChange={handleChangeComponent}
         placeholder="Київ"
+        style={
+          touched.street && errors.street
+            ? {
+                border: `3px solid ${theme.color.colorTextErrorForm}`,
+              }
+            : {}
+        }
       />
       {isOpenMenu && (
         <ListTown>
-          {streetName.map(({ Present }) => {
+          {streetName.map(({ Ref, StreetsType, Description }) => {
             return (
               <li
-                key={Present}
+                key={Ref}
                 onClick={() => {
-                  setFieldValue('town', Present);
-                  setEnteredName(Present);
+                  setEnteredName([`${StreetsType} ${Description}`]);
+                  setFieldValue('street', [`${StreetsType} ${Description}`]);
                 }}
               >
-                {Present}
+                {StreetsType} {Description}
               </li>
             );
           })}

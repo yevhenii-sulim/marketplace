@@ -24,6 +24,7 @@ import {
 import { Button } from '@mui/material';
 import Placing from '../Placing/Placing';
 import { Formik } from 'formik';
+import signupSchema from '../Placing/validationSchema';
 
 const prices = {
   total: 0,
@@ -102,7 +103,7 @@ export default function Ordering() {
             lastName: '',
             tel: '',
             email: '',
-            town: [],
+            town: '',
             wayDelivery: '',
             postOffice: '',
             street: '',
@@ -112,6 +113,7 @@ export default function Ordering() {
           }}
           validateOnChange={false}
           validateOnBlur={false}
+          validationSchema={signupSchema}
           onSubmit={values => {
             onSubmitOrder(basket, values);
             handleSubmit();
@@ -197,6 +199,9 @@ export default function Ordering() {
                       </List>
                     )
                   )}
+                  <div>
+                    {touched.building && errors.building && errors.building}
+                  </div>
                 </ul>
                 <WrapperBuy>
                   <TotalPrice>

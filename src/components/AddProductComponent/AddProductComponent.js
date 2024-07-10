@@ -59,7 +59,7 @@ export default function AddProductComponent() {
       if (key === 'price') {
         formData.append('price', values[key] || 0);
       } else if (key === 'subCategory') {
-        formData.append('subCategory', values[key] || 'Мило');
+        formData.append('subCategory', values[key] || '');
       } else if (key === 'size') {
         if (values[key].length === 0) {
           formData.append('size', 'Без розміру');
