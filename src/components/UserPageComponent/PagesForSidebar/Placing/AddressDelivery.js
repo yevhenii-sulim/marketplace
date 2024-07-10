@@ -80,7 +80,8 @@ export default function AddressDelivery({
         style={
           touched.street && errors.street
             ? {
-                border: `3px solid ${theme.color.colorTextErrorForm}`,
+                border: 'none',
+                boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
               }
             : {}
         }

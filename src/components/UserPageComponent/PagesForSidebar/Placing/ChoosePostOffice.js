@@ -26,7 +26,7 @@ export default function ChoosePostOffice({
   const [postOffice, setPostOffice] = useState([]);
   const [personName, setPersonName] = useState('');
   // const themeSelect = useTheme();
-
+  console.log('dataPost', new Date().getSeconds());
   useEffect(() => {
     setPersonName('');
     async function fetchDataPost() {
@@ -51,7 +51,10 @@ export default function ChoosePostOffice({
         console.log(error);
       }
     }
-    fetchDataPost();
+
+    if (town) {
+      fetchDataPost();
+    }
   }, [town]);
 
   const handleChangeComponent = event => {
@@ -82,7 +85,8 @@ export default function ChoosePostOffice({
               style={
                 touched.postOffice && errors.postOffice
                   ? {
-                      border: `3px solid ${theme.color.colorTextErrorForm}`,
+                      border: 'none',
+                      boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
                     }
                   : {}
               }
