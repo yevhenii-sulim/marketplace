@@ -16,7 +16,7 @@ export const myStory = [
   {
     _id: '6645d115682e8d5dff4f4879',
     state: { waited: 'Очікується відправка' },
-    title: 'Щось там dssdaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaa cdscdsc',
+    title: 'Щось там ',
     createDate: '2024-05-19T06:00:12.130Z',
     price: 200,
     discount: true,

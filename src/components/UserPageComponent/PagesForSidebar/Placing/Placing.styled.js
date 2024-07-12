@@ -78,11 +78,13 @@ export const WrapperForm = styled.div`
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
-  &.wrapper-delivery {
+  &.wrapper-delivery,
+  &.wrapper-pay {
     display: flex;
     flex-direction: column;
     gap: 24px;
   }
+
   .label-place {
     position: relative;
   }
@@ -216,7 +218,7 @@ export const ListTown = styled.ul`
 `;
 
 export const PlaceAddress = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 120px));
   justify-content: space-between;
-  gap: 25px;
 `;

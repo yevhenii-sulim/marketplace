@@ -30,7 +30,7 @@ export default function ChooseTown({
           }),
         });
         const { data } = await result.json();
-        console.log('dataPost', data, new Date().getSeconds());
+
         setIsOpenMenu(true);
         setTownName(data);
       } catch (error) {
@@ -63,8 +63,6 @@ export default function ChooseTown({
   return (
     <WrapperTown>
       <Label label="Ваше місто" />
-      {console.log(errors)}
-
       <Field
         type="text"
         name="town"

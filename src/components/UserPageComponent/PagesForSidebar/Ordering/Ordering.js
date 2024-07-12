@@ -33,7 +33,7 @@ const prices = {
   totalCount: 0,
 };
 
-function onSubmitOrder(data) {
+function onSubmitOrder(data, values) {
   const orderData = data.map(
     ({ count, discount, discountPrice, price, title }) => {
       return {
@@ -54,13 +54,16 @@ function onSubmitOrder(data) {
     }
   );
 
-  orderData.push({
-    toPay: `до сплати: ${prices.total}грн;`,
-    sumWithoutDiscount: `сума без знижки: ${prices.totalPrice}грн;`,
-    discountAll: `знижка: ${
-      prices.totalDiscount ? prices.totalDiscount + 'грн' : 'без знижки'
-    };`,
-  });
+  orderData.push(
+    {
+      toPay: `до сплати: ${prices.total}грн;`,
+      sumWithoutDiscount: `сума без знижки: ${prices.totalPrice}грн;`,
+      discountAll: `знижка: ${
+        prices.totalDiscount ? prices.totalDiscount + 'грн' : 'без знижки'
+      };`,
+    },
+    { values }
+  );
   console.log(orderData);
 }
 
@@ -110,6 +113,7 @@ export default function Ordering() {
             building: '',
             floor: '',
             apartment: '',
+            pay: '',
           }}
           validateOnChange={false}
           validateOnBlur={false}
@@ -139,6 +143,7 @@ export default function Ordering() {
                 setFieldValue={setFieldValue}
                 errors={errors}
                 touched={touched}
+                pay={values.pay}
                 refTown={
                   typeof values.town === 'string' ? values.town : values.town[1]
                 }
@@ -198,9 +203,7 @@ export default function Ordering() {
                       </List>
                     )
                   )}
-                  <div>
-                    {touched.building && errors.building && errors.building}
-                  </div>
+                  <div>{console.log(errors)}</div>
                 </ul>
                 <WrapperBuy>
                   <TotalPrice>
