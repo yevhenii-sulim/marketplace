@@ -20,12 +20,13 @@ const handlePendingGetProductsByCategory = (state, { payload }) => {
 
 const handleFulfilled = (state, { payload }) => {
   state.product = payload.products;
+  state.filters = payload.filters;
   state.totalPage = payload.totalPages;
 };
 const handleFulfilledGetProductsByCategory = (state, { payload }) => {
   state.product = payload.products;
   state.filters = payload.filters;
-  state.totalPage = 0;
+  state.totalPage = payload.totalPages;
 };
 
 const handleFulfilledSearch = (state, { payload }) => {};
@@ -33,7 +34,7 @@ const handleFulfilledSearch = (state, { payload }) => {};
 const handleFulfilledGetProductsBySubCategory = (state, { payload }) => {
   state.product = payload.products;
   state.filters = payload.filters;
-  state.totalPage = 0;
+  state.totalPage = payload.totalPages;
 };
 
 const handleRejected = state => {};

@@ -1,19 +1,9 @@
 import { useEffect, useState } from 'react';
-// import { useTheme } from '@mui/material/styles';
 import { styleSelect } from './Placing.styled';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
 import { FormControl, MenuItem, Select } from '@mui/material';
 import Label from 'components/AddProductComponent/Label';
 import { theme } from 'utils/theme';
-
-// function getStyles(name, personName, themeSelect) {
-//   return {
-//     fontWeight:
-//       personName?.indexOf(name) === -1
-//         ? themeSelect.typography.fontWeightRegular
-//         : themeSelect.typography.fontWeightMedium,
-//   };
-// }
 
 export default function ChoosePostOffice({
   handleChange,
@@ -25,7 +15,6 @@ export default function ChoosePostOffice({
 }) {
   const [postOffice, setPostOffice] = useState([]);
   const [personName, setPersonName] = useState('');
-  // const themeSelect = useTheme();
   console.log('dataPost', new Date().getSeconds());
   useEffect(() => {
     setPersonName('');
@@ -52,9 +41,7 @@ export default function ChoosePostOffice({
       }
     }
 
-    if (town) {
-      fetchDataPost();
-    }
+    fetchDataPost();
   }, [town]);
 
   const handleChangeComponent = event => {
@@ -68,7 +55,7 @@ export default function ChoosePostOffice({
 
   return (
     <>
-      {postOffice.length !== 0 && (
+      {
         <div>
           <Label label={`Оберіть ${kindOfSection}`} />
           <FormControl sx={styleSelect}>
@@ -111,7 +98,7 @@ export default function ChoosePostOffice({
             </Select>
           </FormControl>
         </div>
-      )}
+      }
     </>
   );
 }

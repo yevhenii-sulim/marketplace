@@ -18,6 +18,7 @@ export default function Placing({
   refTown,
   errors,
   touched,
+  pay,
 }) {
   return (
     <div>
@@ -95,10 +96,7 @@ export default function Placing({
           </label>
           <label>
             <p>
-              <span className="label-place">
-                Електрона адреса
-                <MarkSvg />
-              </span>
+              <span className="label-place">Електрона адреса</span>
             </p>
             <Field
               type="email"
@@ -222,6 +220,50 @@ export default function Placing({
               town={refTown}
             />
           )}
+        </WrapperForm>
+      </Box>
+      <Box className="pay">
+        <TitleBox>Оплата</TitleBox>
+        {console.log(pay)}
+        <WrapperForm className="wrapper-pay">
+          <Field
+            id="after-pay"
+            type="radio"
+            name="pay"
+            onChange={handleChange}
+            value="Післяплата"
+            checked={pay === 'Післяплата'}
+            style={
+              touched.pay && errors.pay
+                ? {
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
+          />
+          <label className="checkbox" htmlFor="after-pay">
+            Післяплата
+          </label>
+          <Field
+            id="before-pay"
+            type="radio"
+            name="pay"
+            value="Карткою"
+            checked={pay === 'Карткою'}
+            onChange={handleChange}
+            style={
+              touched.pay && errors.pay
+                ? {
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
+          />
+          <label className="checkbox" htmlFor="before-pay">
+            Карткою
+          </label>
         </WrapperForm>
       </Box>
     </div>

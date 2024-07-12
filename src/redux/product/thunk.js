@@ -10,10 +10,10 @@ export const getAllProducts = createAsyncThunk(
   'products/getAllProduct',
   async ({ page, limit }) => {
     try {
-      const data = await axios.get(`/products?page=${page}&limit=${limit}`);
+      const { data } = await axios.get(`/products?page=${page}&limit=${limit}`);
       console.log(data);
 
-      return data.data;
+      return data;
     } catch (error) {
       console.log('error', error);
     }

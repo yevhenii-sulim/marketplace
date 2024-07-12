@@ -31,7 +31,7 @@ export default function AddressDeliveryByPostMan({
             onChange={handleChange}
             placeholder="56"
             style={
-              touched.building && errors.building
+              touched.street && errors.street
                 ? {
                     border: 'none',
                     boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,

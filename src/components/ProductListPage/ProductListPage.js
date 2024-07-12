@@ -22,6 +22,7 @@ import {
 import { useSelector } from 'react-redux';
 import { selectCategory } from '../../redux/category/selectors';
 import { productForProductPage } from '../../redux/productPage/selectors';
+import FilterColor from 'components/Filters/FilterColor/FilterColor';
 export default function ProductListPage({
   min,
   max,
@@ -60,6 +61,7 @@ export default function ProductListPage({
         <div>
           <TitleSort>Підбір за параметрами</TitleSort>
           <FilterList>
+            <FilterColor />
             <FilterPrice
               min={min}
               max={max}

@@ -16,22 +16,6 @@ export default function AddressDelivery({
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   useEffect(() => {
-    const abortController = new AbortController();
-
-    if (typeof enteredName !== 'string') {
-      abortController.abort();
-      setStreetName([]);
-      setIsOpenMenu(false);
-      return;
-    }
-
-    if (enteredName === '') {
-      abortController.abort();
-      setStreetName([]);
-      setIsOpenMenu(false);
-      return;
-    }
-
     async function fetchDataPost() {
       try {
         const result = await fetch(`https://api.novaposhta.ua/v2.0/json/`, {
@@ -48,14 +32,17 @@ export default function AddressDelivery({
         });
         const { data } = await result.json();
 
-        console.log('dataAddress', data, new Date().getSeconds());
         setIsOpenMenu(true);
         setStreetName(data);
       } catch (error) {
         console.log('error', error);
       }
     }
-    fetchDataPost();
+    if (enteredName && enteredName.split(' ').length < 2) {
+      fetchDataPost();
+    } else {
+      setIsOpenMenu(false);
+    }
   }, [enteredName, town]);
 
   const handleChangeComponent = event => {
@@ -65,7 +52,12 @@ export default function AddressDelivery({
     setSubmitting(false);
   };
 
-  console.log('adress', streetName);
+  const handleClick = (StreetsType, Description) => {
+    const selectedTown = `${StreetsType} ${Description}`;
+    setFieldValue('street', selectedTown);
+    setEnteredName(selectedTown);
+    setIsOpenMenu(false);
+  };
 
   return (
     <WrapperTown>
@@ -86,16 +78,13 @@ export default function AddressDelivery({
             : {}
         }
       />
-      {isOpenMenu && (
+      {isOpenMenu && enteredName && streetName.length !== 0 && (
         <ListTown>
           {streetName.map(({ Ref, StreetsType, Description }) => {
             return (
               <li
                 key={Ref}
-                onClick={() => {
-                  setEnteredName([`${StreetsType} ${Description}`]);
-                  setFieldValue('street', [`${StreetsType} ${Description}`]);
-                }}
+                onClick={() => handleClick(StreetsType, Description)}
               >
                 {StreetsType} {Description}
               </li>

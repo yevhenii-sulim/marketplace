@@ -7,7 +7,11 @@ import {
   getProductsByCategory,
   getProductsBySubCategory,
 } from '../redux/product/thunk';
-import { selectFilters, selectProduct } from '../redux/product/selector';
+import {
+  selectFilters,
+  selectProduct,
+  selectTotalPages,
+} from '../redux/product/selector';
 import { selectCategory } from '../redux/category/selectors';
 
 export default function CatalogPage() {
@@ -19,8 +23,7 @@ export default function CatalogPage() {
   const products = useSelector(selectProduct);
   const filters = useSelector(selectFilters);
   const category = useSelector(selectCategory);
-  const limit = 5;
-  const totalItemsCount = Math.ceil(products.length / limit);
+  const totalItemsCount = useSelector(selectTotalPages);
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -42,10 +45,6 @@ export default function CatalogPage() {
     if (location.pathname.split('/').slice(-1)[0] !== 'forFree') return;
     dispatch(getProductsByCategory(location.pathname.split('/').slice(-1)[0]));
   }, [dispatch, location.pathname]);
-
-  // useEffect(() => {
-  //   dispatch(getAllProducts({ page: page, limit: limit }));
-  // }, [dispatch, page]);
 
   const handleSort = sort => {
     setValueSort(sort);

@@ -20,6 +20,7 @@ import { selectBasket } from '../../../redux/basket/select';
 function OrderSection() {
   const product = useSelector(productForProductPage);
   const basket = useSelector(selectBasket);
+  console.log(product);
 
   const dispatch = useDispatch();
   function sendIdProduct() {
@@ -34,7 +35,8 @@ function OrderSection() {
       discount: product.discount,
       discountPrice: product.discountPrice,
       count: 1,
-      // сюди треба фільтри додати які обирає користувач
+      category: product.category.mainCategory,
+      subCategory: product.subCategory.subCategory,
     };
     dispatch(addProduct(productAdded));
   }
