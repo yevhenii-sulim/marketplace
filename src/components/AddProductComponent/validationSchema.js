@@ -32,7 +32,7 @@ const SignupSchema = Yup.object().shape({
     then: e =>
       e
         .min(1, 'Встановіть ціну')
-        .max(8, 'Дуже дорого')
+        .max(99999999, 'Дуже дорого')
         .required("Обов'язкове поле"),
     otherwise: e => e.nullable().default(() => 0),
   }),

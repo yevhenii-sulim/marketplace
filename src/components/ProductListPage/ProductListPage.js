@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import FilterPrice from 'components/Filters/FilterPrice';
 import PaginationList from 'components/Pagination/PaginationList';
 
 import Sort from './Sort';
@@ -17,12 +16,12 @@ import {
   TitleProducts,
   TitleSort,
   ListPath,
-  FilterList,
 } from './ProductListPage.styled';
 import { useSelector } from 'react-redux';
 import { selectCategory } from '../../redux/category/selectors';
-import { productForProductPage } from '../../redux/productPage/selectors';
-import FilterColor from 'components/Filters/FilterColor/FilterColor';
+
+import { selectFilters } from '../../redux/product/selector';
+import Filters from './FilterList/FilterList';
 export default function ProductListPage({
   min,
   max,
@@ -35,8 +34,10 @@ export default function ProductListPage({
   handlePageClick,
   totalItemsCount,
 }) {
-  const product = useSelector(productForProductPage);
   const categories = useSelector(selectCategory);
+  const filters = useSelector(selectFilters);
+  console.log(filters);
+
   return (
     <ContainerProductPageList>
       <Navigation>
@@ -55,20 +56,19 @@ export default function ProductListPage({
             <ListPath>{categories?.subCategory.ua}</ListPath>
           )}
         </Nav>
-        <TitleProducts>{product.title}</TitleProducts>
+        <TitleProducts>
+          {categories.subCategory && <>{categories?.subCategory.ua}</>}
+        </TitleProducts>
       </Navigation>
       <ProductsPage>
         <div>
           <TitleSort>Підбір за параметрами</TitleSort>
-          <FilterList>
-            <FilterColor />
-            <FilterPrice
-              min={min}
-              max={max}
-              getMaxValue={getMaxValue}
-              getMinValue={getMinValue}
-            />
-          </FilterList>
+          <Filters
+            min={min}
+            max={max}
+            getMaxValue={getMaxValue}
+            getMinValue={getMinValue}
+          />
         </div>
         <ProductList>
           <Sort value={valueSort} handleSort={handleSort} />

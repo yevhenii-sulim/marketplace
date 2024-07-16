@@ -15,7 +15,12 @@ export default function FieldPrice({
   touched,
 }) {
   const handleChangeComponent = event => {
+    const dotIndex = event.target.value.indexOf('.');
     if (event.target.value.length > 8) return;
+    if (dotIndex !== -1) {
+      if (event.target.value.length > dotIndex + 3) return;
+    }
+
     handleChange(event);
     setSubmitting(false);
   };
