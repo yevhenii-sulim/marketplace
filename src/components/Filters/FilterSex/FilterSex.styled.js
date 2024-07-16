@@ -1,3 +1,3 @@
 import styled from 'styled-components';
 
-export const ContainerSex = styled.li``;
+export const Container = styled.li``;

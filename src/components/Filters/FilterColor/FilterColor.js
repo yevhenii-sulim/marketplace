@@ -1,11 +1,15 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectFilters } from '../../../redux/product/selector';
-import { WrapperFilterColor } from './FilterColor.styled';
+import { Container } from './FilterColor.styled';
 
-export default function FilterColor() {
+export default function FilterColor({
+  handleChange,
+  setSubmitting,
+  name,
+  placeholder,
+}) {
   const { colors } = useSelector(selectFilters);
   console.log(colors);
 
-  return <WrapperFilterColor>FilterColor</WrapperFilterColor>;
+  return <Container></Container>;
 }
