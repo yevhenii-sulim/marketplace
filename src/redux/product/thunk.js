@@ -132,6 +132,7 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
 export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (product, { getState }) => {
+    product.foreach(item => console.log(item));
     try {
       const data = await axios.post(`/products/create`, product, {
         headers: {

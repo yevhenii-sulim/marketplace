@@ -14,7 +14,7 @@ const SignupSchema = Yup.object().shape({
   subCategory: Yup.string().when('category', {
     is: category => category !== 'Подарую',
     then: e => e.required("Обов'язкове поле"),
-    otherwise: e => e.nullable().default(''),
+    otherwise: e => e.nullable().default(null),
   }),
   color: Yup.array().min(1, 'Вкажіть колір'),
   sex: Yup.string().required("Обов'язкове поле"),
