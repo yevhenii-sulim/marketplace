@@ -17,10 +17,10 @@ export default function FilterSize() {
         </ButtonExpand>
       </h3>
       {open &&
-        sizes.map(sex => (
-          <Fragment key={sex}>
-            <input type="checkbox" id="sex" />
-            <SignSize for="sex">{sex}</SignSize>
+        sizes.map(size => (
+          <Fragment key={size}>
+            <input type="checkbox" id="size" />
+            <SignSize htmlFor="size">{size}</SignSize>
           </Fragment>
         ))}
     </Container>

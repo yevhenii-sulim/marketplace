@@ -21,7 +21,7 @@ export default function FilterSex() {
         sex.map(sex => (
           <Fragment key={sex}>
             <input type="checkbox" id="sex" />
-            <SignSex for="sex">{sex}</SignSex>
+            <SignSex htmlFor="sex">{sex}</SignSex>
           </Fragment>
         ))}
     </Container>

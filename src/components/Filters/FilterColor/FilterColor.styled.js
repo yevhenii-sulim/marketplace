@@ -25,6 +25,8 @@ export const ButtonExpand = styled.button`
 `;
 export const SignColor = styled.label`
   position: relative;
+  display: flex;
+  justify-content: space-between;
   font-size: 18px;
   line-height: 26px;
   padding-left: 30px;

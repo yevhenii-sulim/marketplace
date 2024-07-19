@@ -21,7 +21,7 @@ export const ProductsPage = styled.div`
 `;
 export const Product = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(4, auto);
   justify-content: flex-start;
   gap: 25px;
 `;
