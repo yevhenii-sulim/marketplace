@@ -4,7 +4,6 @@ import ButtonAddSimilarProducts from './ButtonAddSimilarProducts/ButtonAddSimila
 import SimilarProduct from 'components/Product/SimilarProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProduct } from './../../../redux/product/selector';
-import { getAllProducts } from './../../../redux/product/thunk';
 import { useLocation } from 'react-router-dom';
 
 function SimilarProductList() {
@@ -17,7 +16,7 @@ function SimilarProductList() {
       return;
     }
     dispatch(location.pathname.split('/').slice(-1)[0]);
-  }, [dispatch, productAll]);
+  }, [dispatch, productAll, location.pathname]);
   console.log('productAll', productAll);
 
   return (
