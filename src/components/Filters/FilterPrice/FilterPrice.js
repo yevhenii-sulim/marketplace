@@ -4,21 +4,19 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
-import { selectFilters, selectProduct } from '../../../redux/product/selector';
+import { selectFiltersPrice } from '../../../redux/product/selector';
 import { CountPrice, PriceSlide, SliderRange } from './FilterPrice.styled';
 
-export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {
-  const filters = useSelector(selectFilters);
-  const products = useSelector(selectProduct);
-  const [value, setValue] = useState([min, max]);
+export default function FilterPrice({ getMaxValue, getMinValue }) {
+  const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
+  const [value, setValue] = useState([price.min, price.max]);
   const { width } = useWindowDimensions();
 
   useEffect(() => {
-    if (!filters.price) return;
-    setValue([filters.price.min, filters.price.max]);
-    getMinValue(filters.price.min);
-    getMaxValue(filters.price.max);
-  }, [filters, getMaxValue, getMinValue, products.length]);
+    setValue([price.min, price.max]);
+    getMinValue(price.min);
+    getMaxValue(price.max);
+  }, [getMaxValue, getMinValue, price.max, price.min]);
 
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -75,8 +73,8 @@ export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {
           value={value}
           onChange={handleChange}
           disableSwap
-          min={min}
-          max={max}
+          min={price.min}
+          max={price.max}
         />
       </Box>
     </PriceSlide>

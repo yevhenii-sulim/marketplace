@@ -68,7 +68,9 @@ function SimilarProduct({
           to={
             countCharacter(2)
               ? `${id}`
-              : `/${category?.mainCategory.en}/${subCategory?.subCategory.en}/${id}`
+              : `/${category?.mainCategory?.en || category?.en}/${
+                  subCategory?.subCategory?.en || subCategory?.en
+                }/${id}`
           }
         >
           <SimilarProductItemIcon>

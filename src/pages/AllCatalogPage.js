@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductListPage from 'components/ProductListPage/ProductListPage';
-import { getAllProducts } from '../redux/product/thunk';
+import { getProducts } from '../redux/product/thunk';
 import { selectProduct, selectTotalPages } from '../redux/product/selector';
 import { selectCategory } from '../redux/category/selectors';
 
@@ -39,7 +39,7 @@ export default function AllCatalogPage() {
   }, [productAll]);
 
   useEffect(() => {
-    dispatch(getAllProducts({ page: page, limit: limit }));
+    dispatch(getProducts(location.pathname.split('/').slice(-1)[0]));
   }, [dispatch, page]);
 
   const handleSort = sort => {
