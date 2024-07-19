@@ -20,11 +20,11 @@ export default function CatalogPage() {
 
   useEffect(() => {
     if (location.pathname.includes('all')) {
-      dispatch(getAllProducts());
+      dispatch(getAllProducts({ page: page, limit: 20 }));
       return;
     }
     dispatch(getProducts(location.pathname.split('/').slice(-1)[0]));
-  }, [dispatch, location.pathname]);
+  }, [dispatch, location.pathname, page]);
 
   const handleSort = sort => {
     setValueSort(sort);

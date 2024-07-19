@@ -17,10 +17,10 @@ export default function FilterState() {
         </ButtonExpand>
       </h3>
       {open &&
-        states.map(sex => (
-          <Fragment key={sex}>
-            <input type="checkbox" id="sex" />
-            <SignState for="sex">{sex}</SignState>
+        states.map(state => (
+          <Fragment key={state}>
+            <input type="checkbox" id="state" />
+            <SignState htmlFor="state">{state}</SignState>
           </Fragment>
         ))}
     </Container>
