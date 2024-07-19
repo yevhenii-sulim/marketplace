@@ -5,16 +5,18 @@ import SimilarProduct from 'components/Product/SimilarProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProduct } from './../../../redux/product/selector';
 import { getAllProducts } from './../../../redux/product/thunk';
+import { useLocation } from 'react-router-dom';
 
 function SimilarProductList() {
   const productAll = useSelector(selectProduct);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     if (productAll.length !== 0) {
       return;
     }
-    dispatch(getAllProducts());
+    dispatch(location.pathname.split('/').slice(-1)[0]);
   }, [dispatch, productAll]);
   console.log('productAll', productAll);
 

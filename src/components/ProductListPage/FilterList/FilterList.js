@@ -5,15 +5,10 @@ import FilterSize from 'components/Filters/FilterSize/FilterSize';
 import FilterState from 'components/Filters/FilterState/FilterState';
 import { FilterList } from './FilterList.styled';
 
-export default function Filters({ min, max, getMaxValue, getMinValue }) {
+export default function Filters({ getMaxValue, getMinValue }) {
   return (
     <FilterList>
-      <FilterPrice
-        min={min}
-        max={max}
-        getMaxValue={getMaxValue}
-        getMinValue={getMinValue}
-      />
+      <FilterPrice getMaxValue={getMaxValue} getMinValue={getMinValue} />
       <FilterSex />
       <FilterSize />
       <FilterColor />
