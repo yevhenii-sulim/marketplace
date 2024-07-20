@@ -50,7 +50,6 @@ export const ColorMark = styled.div`
   height: 20px;
   border-radius: 50%;
   border: ${({ $color }) => {
-    console.log($color);
     if ($color.toLowerCase() === '#ffffff') return `1px solid #43C550`;
   }};
   background: ${({ $color }) => {

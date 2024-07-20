@@ -3,7 +3,9 @@ import { initialState } from '../initialState';
 import { getAllProducts, getProducts, searchProduct } from './thunk';
 
 const handlePending = state => {
-  state = [];
+  state.product = [];
+  state.filters = [];
+  state.totalPage = [];
 };
 
 const handleFulfilled = (state, { payload }) => {

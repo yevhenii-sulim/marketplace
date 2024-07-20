@@ -19,6 +19,8 @@ export default function CatalogPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('first');
+
     if (location.pathname.includes('all')) {
       dispatch(getAllProducts({ page: page, limit: 20 }));
       return;
