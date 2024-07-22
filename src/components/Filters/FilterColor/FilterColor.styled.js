@@ -15,6 +15,15 @@ export const Container = styled.li`
     line-height: 1.45;
   }
 `;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+`;
+
 export const ButtonExpand = styled.button`
   position: absolute;
   top: 50%;
@@ -30,6 +39,7 @@ export const SignColor = styled.label`
   font-size: 18px;
   line-height: 26px;
   padding-left: 30px;
+  cursor: pointer;
   &:not(:last-child) {
     margin-bottom: 15px;
   }
@@ -50,11 +60,13 @@ export const ColorMark = styled.div`
   height: 20px;
   border-radius: 50%;
   border: ${({ $color }) => {
-    console.log($color);
     if ($color.toLowerCase() === '#ffffff') return `1px solid #43C550`;
   }};
   background: ${({ $color }) => {
     if (typeof $color === 'string') return `${$color}`;
     return `radial-gradient(${$color[0]}, ${$color[1]})`;
   }};
+`;
+export const ColorList = styled.div`
+  padding-top: 8px;
 `;

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductListPage from 'components/ProductListPage/ProductListPage';
-import { getAllProducts, getProducts } from '../redux/product/thunk';
+import { getProducts } from '../redux/product/thunk';
 import { selectProduct, selectTotalPages } from '../redux/product/selector';
 import { selectCategory } from '../redux/category/selectors';
 
@@ -19,12 +19,11 @@ export default function CatalogPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (location.pathname.includes('all')) {
-      dispatch(getAllProducts({ page: page, limit: 20 }));
-      return;
-    }
-    dispatch(getProducts(location.pathname.split('/').slice(-1)[0]));
-  }, [dispatch, location.pathname, page]);
+    const textQuery = location.pathname.split('/').slice(-1)[0];
+    const paramQuery = location.search.slice(1, location.search.length) ?? '';
+
+    dispatch(getProducts({ textQuery, paramQuery, page }));
+  }, [dispatch, location.pathname, location.search, page]);
 
   const handleSort = sort => {
     setValueSort(sort);

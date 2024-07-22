@@ -8,7 +8,7 @@ import {
 } from './ProductListPage.styled';
 import { useState } from 'react';
 
-export default function Sort({ value, handleSort }) {
+export default function Sort({ valueSort, handleSort }) {
   const [open, setOpen] = useState(false);
   const handleChangeSort = evt => {
     handleSort(evt.target.value);
@@ -23,7 +23,7 @@ export default function Sort({ value, handleSort }) {
         <SelectSort
           onClick={() => setOpen(prev => !prev)}
           name="sort"
-          defaultValue={'new'}
+          value={valueSort}
           onChange={handleChangeSort}
         >
           <option value="new">Спочатку нові</option>
