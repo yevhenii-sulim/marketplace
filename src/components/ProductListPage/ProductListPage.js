@@ -19,15 +19,14 @@ import {
 } from './ProductListPage.styled';
 import { useSelector } from 'react-redux';
 import { selectCategory } from '../../redux/category/selectors';
-
-import Filters from './FilterList/FilterList';
+import Filters from './FilterList/Filters';
 
 export default function ProductListPage({
   page,
   getMaxValue,
   getMinValue,
-  valueSort,
   handleSort,
+  valueSort,
   sortedProduct,
   handlePageClick,
   totalItemsCount,
@@ -61,7 +60,7 @@ export default function ProductListPage({
           <Filters getMaxValue={getMaxValue} getMinValue={getMinValue} />
         </div>
         <ProductList>
-          <Sort value={valueSort} handleSort={handleSort} />
+          <Sort handleSort={handleSort} valueSort={valueSort} />
           <Product>
             {sortedProduct.map(
               ({

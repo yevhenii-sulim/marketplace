@@ -15,6 +15,14 @@ export const Container = styled.li`
     line-height: 1.45;
   }
 `;
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+`;
+
 export const ButtonExpand = styled.button`
   position: absolute;
   top: 50%;
@@ -28,6 +36,7 @@ export const SignState = styled.label`
   font-size: 18px;
   line-height: 26px;
   padding-left: 30px;
+  cursor: pointer;
   &:not(:last-child) {
     margin-bottom: 15px;
   }
@@ -42,4 +51,7 @@ export const SignState = styled.label`
     border: 1px solid ${({ theme }) => theme.color.borderRegister};
     border-radius: 3px;
   }
+`;
+export const StateList = styled.div`
+  padding-top: 8px;
 `;

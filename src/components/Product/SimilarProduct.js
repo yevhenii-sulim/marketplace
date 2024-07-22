@@ -121,6 +121,6 @@ SimilarProduct.propTypes = {
   createDate: PropTypes.string.isRequired,
   eco: PropTypes.bool,
   category: PropTypes.object.isRequired,
-  subCategory: PropTypes.object.isRequired,
+  subCategory: PropTypes.object,
   isUkraine: PropTypes.bool,
 };

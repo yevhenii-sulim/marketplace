@@ -2,7 +2,16 @@ import styled from 'styled-components';
 
 export const Container = styled.li`
   [type='checkbox'] {
-    display: none;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    margin: -1px;
   }
   [type='checkbox']:checked + label:before {
     background-color: red;
@@ -15,6 +24,12 @@ export const Container = styled.li`
     line-height: 1.45;
   }
 `;
+export const SizeList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+`;
 export const ButtonExpand = styled.button`
   position: absolute;
   top: 50%;
@@ -23,23 +38,23 @@ export const ButtonExpand = styled.button`
   transform: translateY(-50%);
   font-size: 0;
 `;
-export const SignSize = styled.label`
-  position: relative;
+export const Box = styled.div`
   font-size: 18px;
   line-height: 26px;
-  padding-left: 30px;
-  &:not(:last-child) {
-    margin-bottom: 15px;
+  min-width: 60px;
+  min-height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid ${({ theme }) => theme.color.borderSize};
+  border-radius: 6px;
+  transition: all 500ms ease;
+  cursor: pointer;
+  * {
+    cursor: pointer;
   }
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 22px;
-    height: 22px;
-    border: 1px solid ${({ theme }) => theme.color.borderRegister};
-    border-radius: 3px;
+  &:hover {
+    color: ${({ theme }) => theme.color.colorTextHover};
+    border: 1px solid ${({ theme }) => theme.color.colorTextHover};
   }
 `;

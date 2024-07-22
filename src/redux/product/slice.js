@@ -4,8 +4,7 @@ import { getAllProducts, getProducts, searchProduct } from './thunk';
 
 const handlePending = state => {
   state.product = [];
-  state.filters = [];
-  state.totalPage = [];
+  state.totalPage = 0;
 };
 
 const handleFulfilled = (state, { payload }) => {
