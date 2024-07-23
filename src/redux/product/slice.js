@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
-import { getAllProducts, getProducts, searchProduct } from './thunk';
+import { getProducts, searchProduct } from './thunk';
 
 const handlePending = state => {
   state.product = [];
@@ -24,9 +24,6 @@ const productSlice = createSlice({
       .addCase(getProducts.pending, handlePending)
       .addCase(getProducts.fulfilled, handleFulfilled)
       .addCase(getProducts.rejected, handleRejected)
-      .addCase(getAllProducts.pending, handlePending)
-      .addCase(getAllProducts.fulfilled, handleFulfilled)
-      .addCase(getAllProducts.rejected, handleRejected)
       .addCase(searchProduct.fulfilled, handleFulfilled);
   },
 });

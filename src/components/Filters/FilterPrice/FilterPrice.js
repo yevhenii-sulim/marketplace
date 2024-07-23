@@ -6,17 +6,48 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { selectFiltersPrice } from '../../../redux/product/selector';
 import { CountPrice, PriceSlide, SliderRange } from './FilterPrice.styled';
+import { useSearchParams } from 'react-router-dom';
+import { debounce } from 'lodash';
 
-export default function FilterPrice({ getMaxValue, getMinValue }) {
+export default function FilterPrice() {
   const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
   const [value, setValue] = useState([price.min, price.max]);
   const { width } = useWindowDimensions();
 
+  const [params, setParams] = useSearchParams('');
+
+  const colors = params.getAll('colors') ?? [];
+  const sex = params.getAll('sex') ?? [];
+  const states = params.getAll('states') ?? [];
+  const sizes = params.getAll('sizes') ?? [];
+
+  const getMaxValue = debounce(
+    num =>
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: price.min,
+        maxPrice: num,
+        states,
+      }),
+    1500
+  );
+  const getMinValue = debounce(
+    num =>
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: num,
+        maxPrice: price.max,
+        states,
+      }),
+    1500
+  );
   useEffect(() => {
     setValue([price.min, price.max]);
-    getMinValue(price.min);
-    getMaxValue(price.max);
-  }, [getMaxValue, getMinValue, price.max, price.min]);
+  }, [price.max, price.min]);
 
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {

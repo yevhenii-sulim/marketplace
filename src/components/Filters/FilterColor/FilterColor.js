@@ -13,14 +13,14 @@ import {
   SignColor,
 } from './FilterColor.styled';
 
-function FilterColor({ getColorList }) {
+function FilterColor() {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
   const [params, setParams] = useSearchParams('');
   const [checkedState, setCheckedState] = useState([]);
-  const [colorList, setColorList] = useState([]);
 
   const location = useLocation();
+
   const sex = params.getAll('sex') ?? [];
   const minPrice = params.getAll('minPrice') ?? [];
   const maxPrice = params.getAll('maxPrice') ?? [];
@@ -41,7 +41,6 @@ function FilterColor({ getColorList }) {
       if (!updatedCheckedState[i]) continue;
       colorsList.push(colors[i]._id);
     }
-    setColorList(colorsList);
     setParams({
       colors: colorsList,
       sizes,
@@ -56,10 +55,6 @@ function FilterColor({ getColorList }) {
     if (!colors) return;
     setCheckedState(new Array(colors.length).fill(false));
   }, [colors]);
-
-  useEffect(() => {
-    getColorList(colorList);
-  }, [colorList, getColorList]);
 
   return (
     <Container>
@@ -81,7 +76,7 @@ function FilterColor({ getColorList }) {
                     id={_id}
                     name={color}
                     value={color}
-                    checked={location.search.includes(encodeURIComponent(_id))}
+                    checked={location.search.includes(_id)}
                     onChange={() => handleOnChange(index)}
                   />
                   <SignColor htmlFor={_id}>

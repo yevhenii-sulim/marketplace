@@ -9,7 +9,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ButtonSlider, Category, TitleCategory } from './Category.styled';
+import { ButtonSlider, Category } from './Category.styled';
 import { navigationList } from 'data/navListData';
 import CategoryHomePage from './CategoryHomePage';
 import useWindowDimensions from 'hooks/useWindowDimensions';
@@ -28,7 +28,7 @@ export default function CategoryList() {
 
   return (
     <Category>
-      <TitleCategory>Популярні категорії</TitleCategory>
+      {/* <TitleCategory>Популярні категорії</TitleCategory> */}
       <CarouselProvider
         className="slide"
         totalSlides={navigationList.length}

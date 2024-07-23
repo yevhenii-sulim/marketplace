@@ -13,13 +13,11 @@ import {
 import { memo } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
-function FilterSex({ getSexList }) {
+function FilterSex() {
   const [open, setOpen] = useState(false);
   const sex = useSelector(selectFiltersSex);
   const [params, setParams] = useSearchParams('');
   const [checkedState, setCheckedState] = useState([]);
-
-  const [sexList, setSexList] = useState([]);
 
   const location = useLocation();
 
@@ -36,13 +34,13 @@ function FilterSex({ getSexList }) {
     setCheckedState(updatedCheckedState);
     createStateList(updatedCheckedState);
   };
+
   const createStateList = updatedCheckedState => {
     const sexList = [];
     for (let i = 0; i < updatedCheckedState.length; i++) {
       if (!updatedCheckedState[i]) continue;
       sexList.push(sex[i]);
     }
-    setSexList(sexList);
     setParams({ sex: sexList, colors, sizes, minPrice, maxPrice, states });
   };
 
@@ -51,13 +49,7 @@ function FilterSex({ getSexList }) {
     setCheckedState(new Array(sex.length).fill(false));
   }, [sex]);
 
-  useEffect(() => {
-    getSexList(sexList);
-  }, [sexList, getSexList]);
-
   function displaySexTranslate(sex) {
-    console.log(sex);
-
     switch (sex) {
       case 'female':
         return 'жіноче';
@@ -86,7 +78,7 @@ function FilterSex({ getSexList }) {
                 id={sex}
                 name={sex}
                 value={sex}
-                checked={location.search.includes(encodeURIComponent(sex))}
+                checked={location.search.includes(sex)}
                 onChange={() => handleOnChange(index)}
               />
               <SignSex htmlFor={sex}>{displaySexTranslate(sex)}</SignSex>

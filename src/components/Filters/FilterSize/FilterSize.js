@@ -6,20 +6,20 @@ import { selectFiltersSizes } from '../../../redux/product/selector';
 import { Box, ButtonExpand, Container, SizeList } from './FilterSize.styled';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
-export default function FilterSize({ getSizesList }) {
+export default function FilterSize() {
   const [open, setOpen] = useState(false);
   const sizes = useSelector(selectFiltersSizes);
   const [params, setParams] = useSearchParams('');
   const [checkedState, setCheckedState] = useState([]);
-  const [sizesList, setSizesList] = useState([]);
 
   const location = useLocation();
 
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
-  const minPrice = params.getAll('minPrice') ?? [];
-  const maxPrice = params.getAll('maxPrice') ?? [];
+  const minPrice = params.getAll('minPrice') ?? '';
+  const maxPrice = params.getAll('maxPrice') ?? '';
   const states = params.getAll('states') ?? [];
+
   const handleOnChange = position => {
     const updatedCheckedState = checkedState.map((item, index) => {
       return index === position ? !item : item;
@@ -33,7 +33,6 @@ export default function FilterSize({ getSizesList }) {
       if (!updatedCheckedState[i]) continue;
       sizesList.push(sizes[i]);
     }
-    setSizesList(sizesList);
     setParams({
       colors,
       sizes: sizesList,
@@ -48,10 +47,6 @@ export default function FilterSize({ getSizesList }) {
     if (!sizes) return;
     setCheckedState(new Array(sizes.length).fill(false));
   }, [sizes, params]);
-
-  useEffect(() => {
-    getSizesList(sizesList);
-  }, [sizesList, getSizesList]);
 
   return (
     <Container>

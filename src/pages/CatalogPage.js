@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { debounce } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductListPage from 'components/ProductListPage/ProductListPage';
 import { getProducts } from '../redux/product/thunk';
@@ -21,16 +20,16 @@ export default function CatalogPage() {
   useEffect(() => {
     const textQuery = location.pathname.split('/').slice(-1)[0];
     const paramQuery = location.search.slice(1, location.search.length) ?? '';
+    const timer = setTimeout(() => {
+      dispatch(getProducts({ textQuery, paramQuery, page }));
+    }, 500);
 
-    dispatch(getProducts({ textQuery, paramQuery, page }));
+    return () => clearTimeout(timer);
   }, [dispatch, location.pathname, location.search, page]);
 
   const handleSort = sort => {
     setValueSort(sort);
   };
-
-  const getMaxValue = debounce(num => num, 1500);
-  const getMinValue = debounce(num => num, 1500);
 
   const handlePageClick = page => {
     setPage(page);
@@ -48,8 +47,6 @@ export default function CatalogPage() {
         valueSort={valueSort}
         sortedProduct={products}
         totalItemsCount={totalItemsCount}
-        getMaxValue={getMaxValue}
-        getMinValue={getMinValue}
         handleSort={handleSort}
         handlePageClick={handlePageClick}
       />
