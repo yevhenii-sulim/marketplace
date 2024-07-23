@@ -9,7 +9,6 @@ import { changeCategory } from '../../../redux/category/slice';
 function BreadcrumbsComponent() {
   const dispatch = useDispatch();
   const product = useSelector(productForProductPage);
-  console.log(product);
 
   useEffect(() => {
     if (!product.category) return;

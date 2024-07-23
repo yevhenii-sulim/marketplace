@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { SimilarProductsWrapper } from './SimilarProductList.styled';
 import ButtonAddSimilarProducts from './ButtonAddSimilarProducts/ButtonAddSimilarProducts';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectProduct } from './../../../redux/product/selector';
-import { useLocation } from 'react-router-dom';
+import { getProducts } from '../../../redux/product/thunk';
 
 function SimilarProductList() {
   const productAll = useSelector(selectProduct);
@@ -15,13 +16,13 @@ function SimilarProductList() {
     if (productAll.length !== 0) {
       return;
     }
-    dispatch(location.pathname.split('/').slice(-1)[0]);
-  }, [dispatch, productAll, location.pathname]);
-  console.log('productAll', productAll);
+    const textQuery = location.pathname.split('/').slice(-2)[0];
+    dispatch(getProducts({ textQuery, paramQuery: '', page: 1 }));
+  }, [dispatch, location.pathname, productAll.length]);
 
   return (
     <>
-      <SimilarProductsWrapper>
+      <SimilarProductsWrapper $length={productAll.length}>
         {productAll
           .slice(0, 5)
           .map(
