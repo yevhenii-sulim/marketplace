@@ -22,6 +22,7 @@ export const NameCategory = styled.p`
 
 export const Category = styled.ul`
   margin-bottom: 32px;
+  margin-top: 32px;
   .slide {
     width: 100%;
     position: relative;
@@ -73,13 +74,13 @@ export const Category = styled.ul`
     }
   }
 `;
-export const TitleCategory = styled.h3`
-  font-family: 'Jost';
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.5;
-  margin-bottom: 32px;
-`;
+// export const TitleCategory = styled.h3`
+//   font-family: 'Jost';
+//   font-size: 28px;
+//   font-weight: 700;
+//   line-height: 1.5;
+//   margin-bottom: 32px;
+// `;
 export const List = styled.li`
   width: 172px;
   padding: 4px;

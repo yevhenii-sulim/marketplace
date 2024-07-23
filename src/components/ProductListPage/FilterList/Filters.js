@@ -6,19 +6,15 @@ import FilterState from 'components/Filters/FilterState/FilterState';
 import { FilterList } from './Filters.styled';
 import { memo } from 'react';
 
-function Filters({ getMaxValue, getMinValue }) {
-  const getColorList = color => {};
-  const getStateList = state => {};
-  const getSizesList = size => {};
-  const getSexList = sex => {};
+function Filters() {
   return (
     <form>
       <FilterList>
-        <FilterPrice getMaxValue={getMaxValue} getMinValue={getMinValue} />
-        <FilterSex getSexList={getSexList} />
-        <FilterSize getSizesList={getSizesList} />
-        <FilterColor getColorList={getColorList} />
-        <FilterState getStateList={getStateList} />
+        <FilterPrice />
+        <FilterSex />
+        <FilterSize />
+        <FilterColor />
+        <FilterState />
       </FilterList>
     </form>
   );

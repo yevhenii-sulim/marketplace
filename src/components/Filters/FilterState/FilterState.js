@@ -12,14 +12,13 @@ import {
 } from './FilterState.styled';
 import { selectFiltersStates } from '../../../redux/product/selector';
 
-export default function FilterState({ getStateList }) {
+export default function FilterState() {
   const [open, setOpen] = useState(false);
   const [checkedState, setCheckedState] = useState([]);
   const location = useLocation();
   const [params, setParams] = useSearchParams('');
   const states = useSelector(selectFiltersStates);
 
-  const [stateList, setStateList] = useState([]);
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
   const minPrice = params.getAll('minPrice') ?? [];
@@ -27,6 +26,8 @@ export default function FilterState({ getStateList }) {
   const sizes = params.getAll('sizes') ?? [];
   const handleOnChange = position => {
     const updatedCheckedState = checkedState.map((item, index) => {
+      console.log(item);
+
       return index === position ? !item : item;
     });
     setCheckedState(updatedCheckedState);
@@ -38,7 +39,6 @@ export default function FilterState({ getStateList }) {
       if (!updatedCheckedState[i]) continue;
       statesList.push(states[i]);
     }
-    setStateList(statesList);
     setParams({
       colors,
       sizes,
@@ -53,10 +53,6 @@ export default function FilterState({ getStateList }) {
     if (!states) return;
     setCheckedState(new Array(states.length).fill(false));
   }, [states]);
-
-  useEffect(() => {
-    getStateList(stateList);
-  }, [stateList, getStateList]);
 
   return (
     <Container>

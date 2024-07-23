@@ -23,8 +23,7 @@ import Filters from './FilterList/Filters';
 
 export default function ProductListPage({
   page,
-  getMaxValue,
-  getMinValue,
+
   handleSort,
   valueSort,
   sortedProduct,
@@ -57,7 +56,7 @@ export default function ProductListPage({
       <ProductsPage>
         <div>
           <TitleSort>Підбір за параметрами</TitleSort>
-          <Filters getMaxValue={getMaxValue} getMinValue={getMinValue} />
+          <Filters />
         </div>
         <ProductList>
           <Sort handleSort={handleSort} valueSort={valueSort} />
@@ -107,8 +106,6 @@ export default function ProductListPage({
 
 ProductListPage.propTypes = {
   page: PropTypes.number.isRequired,
-  getMaxValue: PropTypes.func.isRequired,
-  getMinValue: PropTypes.func.isRequired,
   valueSort: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
   sortedProduct: PropTypes.array.isRequired,
