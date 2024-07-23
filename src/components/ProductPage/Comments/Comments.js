@@ -74,7 +74,6 @@ function Comments() {
   };
 
   const processedComments = processComments(product.comments || []);
-  console.log(processedComments);
   return (
     <>
       <CreateCommentField productId={product._id} />

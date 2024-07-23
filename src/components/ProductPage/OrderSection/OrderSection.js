@@ -20,7 +20,6 @@ import { selectBasket } from '../../../redux/basket/select';
 function OrderSection() {
   const product = useSelector(productForProductPage);
   const basket = useSelector(selectBasket);
-  console.log(product);
 
   const dispatch = useDispatch();
   function sendIdProduct() {
