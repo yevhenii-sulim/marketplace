@@ -1,18 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { selectFiltersSizes } from '../../../redux/product/selector';
 import { Box, ButtonExpand, Container, SizeList } from './FilterSize.styled';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 export default function FilterSize() {
   const [open, setOpen] = useState(false);
   const sizes = useSelector(selectFiltersSizes);
   const [params, setParams] = useSearchParams('');
-  const [checkedState, setCheckedState] = useState([]);
-
-  const location = useLocation();
+  const [checkValue, setCheckValue] = useState(params.getAll('sizes'));
 
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
@@ -20,33 +18,32 @@ export default function FilterSize() {
   const maxPrice = params.getAll('maxPrice') ?? '';
   const states = params.getAll('states') ?? [];
 
-  const handleOnChange = position => {
-    const updatedCheckedState = checkedState.map((item, index) => {
-      return index === position ? !item : item;
-    });
-    setCheckedState(updatedCheckedState);
-    createStateList(updatedCheckedState);
-  };
-  const createStateList = updatedCheckedState => {
-    const sizesList = [];
-    for (let i = 0; i < updatedCheckedState.length; i++) {
-      if (!updatedCheckedState[i]) continue;
-      sizesList.push(sizes[i]);
+  const handleOnChange = size => {
+    if (checkValue.includes(size)) {
+      setCheckValue(prev => {
+        const updatedValue = prev.filter(item => item !== size);
+        createStateList(updatedValue);
+        return updatedValue;
+      });
+    } else {
+      setCheckValue(prev => {
+        const updatedValue = [...prev, size];
+        createStateList(updatedValue);
+        return updatedValue;
+      });
     }
+  };
+
+  const createStateList = updatedValue => {
     setParams({
+      sizes: updatedValue,
       colors,
-      sizes: sizesList,
       sex,
       minPrice,
       maxPrice,
       states,
     });
   };
-
-  useEffect(() => {
-    if (!sizes) return;
-    setCheckedState(new Array(sizes.length).fill(false));
-  }, [sizes, params]);
 
   return (
     <Container>
@@ -68,8 +65,8 @@ export default function FilterSize() {
                     id={size}
                     name={size}
                     value={size}
-                    checked={location.search.includes(size)}
-                    onChange={() => handleOnChange(index)}
+                    checked={checkValue.includes(size)}
+                    onChange={() => handleOnChange(size)}
                   />
                   <label htmlFor={size}>{size}</label>
                 </Box>

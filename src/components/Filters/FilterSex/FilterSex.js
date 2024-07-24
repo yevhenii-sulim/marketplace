@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { selectFiltersSex } from '../../../redux/product/selector';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   ButtonExpand,
@@ -11,43 +11,46 @@ import {
   SignSex,
 } from './FilterSex.styled';
 import { memo } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 function FilterSex() {
   const [open, setOpen] = useState(false);
   const sex = useSelector(selectFiltersSex);
   const [params, setParams] = useSearchParams('');
-  const [checkedState, setCheckedState] = useState([]);
-
-  const location = useLocation();
+  const [checkValue, setCheckValue] = useState(params.getAll('sizes'));
 
   const colors = params.getAll('colors') ?? [];
-  const minPrice = params.getAll('minPrice') ?? [];
-  const maxPrice = params.getAll('maxPrice') ?? [];
+  const minPrice = params.getAll('minPrice') ?? '';
+  const maxPrice = params.getAll('maxPrice') ?? '';
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
 
-  const handleOnChange = position => {
-    const updatedCheckedState = checkedState.map((item, index) => {
-      return index === position ? !item : item;
-    });
-    setCheckedState(updatedCheckedState);
-    createStateList(updatedCheckedState);
+  const handleOnChange = sex => {
+    if (checkValue.includes(sex)) {
+      setCheckValue(prev => {
+        const updatedValue = prev.filter(item => item !== sex);
+        createStateList(updatedValue);
+        return updatedValue;
+      });
+    } else {
+      setCheckValue(prev => {
+        const updatedValue = [...prev, sex];
+        createStateList(updatedValue);
+        return updatedValue;
+      });
+    }
   };
 
   const createStateList = updatedCheckedState => {
-    const sexList = [];
-    for (let i = 0; i < updatedCheckedState.length; i++) {
-      if (!updatedCheckedState[i]) continue;
-      sexList.push(sex[i]);
-    }
-    setParams({ sex: sexList, colors, sizes, minPrice, maxPrice, states });
+    setParams({
+      sex: updatedCheckedState,
+      colors,
+      sizes,
+      minPrice,
+      maxPrice,
+      states,
+    });
   };
-
-  useEffect(() => {
-    if (!sex) return;
-    setCheckedState(new Array(sex.length).fill(false));
-  }, [sex]);
 
   function displaySexTranslate(sex) {
     switch (sex) {
@@ -71,15 +74,15 @@ function FilterSex() {
       <SexList>
         {open &&
           sex &&
-          sex.map((sex, index) => (
+          sex.map(sex => (
             <Box key={sex}>
               <input
                 type="checkbox"
                 id={sex}
                 name={sex}
                 value={sex}
-                checked={location.search.includes(sex)}
-                onChange={() => handleOnChange(index)}
+                checked={checkValue.includes(sex)}
+                onChange={() => handleOnChange(sex)}
               />
               <SignSex htmlFor={sex}>{displaySexTranslate(sex)}</SignSex>
             </Box>

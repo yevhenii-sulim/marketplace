@@ -13,8 +13,9 @@ export const Container = styled.li`
     clip-path: inset(50%);
     margin: -1px;
   }
-  [type='checkbox']:checked + label:before {
-    background-color: red;
+  [type='checkbox']:checked + label {
+    color: ${({ theme }) => theme.color.colorTextHover};
+    border: 1px solid ${({ theme }) => theme.color.colorTextHover};
   }
   h3 {
     position: relative;
@@ -43,18 +44,20 @@ export const Box = styled.div`
   line-height: 26px;
   min-width: 60px;
   min-height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid ${({ theme }) => theme.color.borderSize};
-  border-radius: 6px;
-  transition: all 500ms ease;
-  cursor: pointer;
-  * {
+
+  label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid ${({ theme }) => theme.color.borderSize};
+    border-radius: 6px;
     cursor: pointer;
-  }
-  &:hover {
-    color: ${({ theme }) => theme.color.colorTextHover};
-    border: 1px solid ${({ theme }) => theme.color.colorTextHover};
+    transition: all 500ms ease;
+    &:hover {
+      color: ${({ theme }) => theme.color.colorTextHover};
+      border: 1px solid ${({ theme }) => theme.color.colorTextHover};
+    }
   }
 `;

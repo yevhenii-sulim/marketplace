@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import {
@@ -14,45 +14,41 @@ import { selectFiltersStates } from '../../../redux/product/selector';
 
 export default function FilterState() {
   const [open, setOpen] = useState(false);
-  const [checkedState, setCheckedState] = useState([]);
-  const location = useLocation();
   const [params, setParams] = useSearchParams('');
   const states = useSelector(selectFiltersStates);
+  const [checkValue, setCheckValue] = useState(params.getAll('states'));
 
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
   const minPrice = params.getAll('minPrice') ?? [];
   const maxPrice = params.getAll('maxPrice') ?? [];
   const sizes = params.getAll('sizes') ?? [];
-  const handleOnChange = position => {
-    const updatedCheckedState = checkedState.map((item, index) => {
-      console.log(item);
 
-      return index === position ? !item : item;
-    });
-    setCheckedState(updatedCheckedState);
-    createStateList(updatedCheckedState);
+  const handleOnChange = states => {
+    if (checkValue.includes(states)) {
+      setCheckValue(prev => {
+        const updatedValue = prev.filter(item => item !== states);
+        createStateList(updatedValue);
+        return updatedValue;
+      });
+    } else {
+      setCheckValue(prev => {
+        const updatedValue = [...prev, states];
+        createStateList(updatedValue);
+        return updatedValue;
+      });
+    }
   };
   const createStateList = updatedCheckedState => {
-    const statesList = [];
-    for (let i = 0; i < updatedCheckedState.length; i++) {
-      if (!updatedCheckedState[i]) continue;
-      statesList.push(states[i]);
-    }
     setParams({
       colors,
       sizes,
       sex,
       minPrice,
       maxPrice,
-      states: statesList,
+      states: updatedCheckedState,
     });
   };
-
-  useEffect(() => {
-    if (!states) return;
-    setCheckedState(new Array(states.length).fill(false));
-  }, [states]);
 
   return (
     <Container>
@@ -65,15 +61,15 @@ export default function FilterState() {
       <StateList>
         {open &&
           states &&
-          states.map((state, index) => (
+          states.map(state => (
             <Box key={state}>
               <input
                 type="checkbox"
                 id={state}
                 name={state}
                 value={state}
-                checked={location.search.includes(state)}
-                onChange={() => handleOnChange(index)}
+                checked={checkValue.includes(state)}
+                onChange={() => handleOnChange(state)}
               />
               <SignState htmlFor={state}>{state}</SignState>
             </Box>
