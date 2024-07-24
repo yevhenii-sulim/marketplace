@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
 export const Product = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
   gap: 25px;
 `;
 
 export const ProductsPage = styled.div`
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: 52px auto;
+  grid-template-columns: 1fr;
+  align-items: center;
   justify-content: center;
   row-gap: 30px;
   height: 100%;
