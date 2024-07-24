@@ -23,7 +23,6 @@ import Filters from './FilterList/Filters';
 
 export default function ProductListPage({
   page,
-
   handleSort,
   valueSort,
   sortedProduct,

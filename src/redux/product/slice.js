@@ -14,6 +14,9 @@ const handleFulfilled = (state, { payload }) => {
   state.totalPage = payload.totalPages;
 };
 
+const handleSearchFulfilled = (state, { payload }) => {
+  state.search = payload;
+};
 const handleRejected = state => {};
 
 const productSlice = createSlice({
@@ -24,7 +27,7 @@ const productSlice = createSlice({
       .addCase(getProducts.pending, handlePending)
       .addCase(getProducts.fulfilled, handleFulfilled)
       .addCase(getProducts.rejected, handleRejected)
-      .addCase(searchProduct.fulfilled, handleFulfilled);
+      .addCase(searchProduct.fulfilled, handleSearchFulfilled);
   },
 });
 

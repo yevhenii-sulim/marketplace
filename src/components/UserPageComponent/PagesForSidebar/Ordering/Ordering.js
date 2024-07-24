@@ -64,12 +64,9 @@ function onSubmitOrder(data, values) {
     },
     { values }
   );
-  console.log(orderData);
 }
 
 function handleOrder(data, values) {
-  console.log('values', values);
-
   prices.total = 0;
   prices.totalPrice = 0;
   prices.totalDiscount = 0;
@@ -151,7 +148,6 @@ export default function Ordering() {
                   typeof values.town === 'string' ? values.town : values.town[0]
                 }
               />
-              {console.log(values)}
               <WrapperListOrder>
                 <ul>
                   {basket.map(
@@ -179,14 +175,14 @@ export default function Ordering() {
                               {discount ? (
                                 <>
                                   <p className="price-discount">
-                                    {price}&#8372;
+                                    {price} &#8372;
                                   </p>
                                   <p className="discount">
-                                    {discountPrice}&#8372;
+                                    {discountPrice} &#8372;
                                   </p>
                                 </>
                               ) : (
-                                <p className="price">{price}&#8372;</p>
+                                <p className="price">{price} &#8372;</p>
                               )}
                             </Price>
                             <DeleteAdd className="basket">
@@ -203,28 +199,28 @@ export default function Ordering() {
                       </List>
                     )
                   )}
-                  <div>{console.log(errors)}</div>
                 </ul>
                 <WrapperBuy>
                   <TotalPrice>
                     <Sum>
                       <span className="info">
-                        {prices.totalCount} товар на суму
+                        {prices.totalCount}{' '}
+                        {prices.totalCount > 1 ? 'товарів' : 'товар'} на суму
                       </span>
                       <span className="info-price">
-                        {prices.totalPrice}&#8372;
+                        {prices.totalPrice} &#8372;
                       </span>
                     </Sum>
                     <Discount>
                       <span className="info">Знижка</span>
                       <span className="info-price info-price_discount">
-                        {prices.totalDiscount}&#8372;
+                        {prices.totalDiscount} &#8372;
                       </span>
                     </Discount>
 
                     <Total>
                       <span>Загальна сума</span>
-                      <span>{prices.total}&#8372;</span>
+                      <span>{prices.total} &#8372;</span>
                     </Total>
                     <WrapperButton>
                       <Button type="submit" sx={addProductButton}>

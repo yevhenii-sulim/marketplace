@@ -43,21 +43,19 @@ export const signUp = createAsyncThunk(
     }
   }
 );
-
 export const logIn = createAsyncThunk('user/enterUser', async user => {
   try {
     const { data } = await publicInstans.post('/auth/login', user);
     token.set(data.backend_tokens.token);
-    // window.location.reload();
-    // if (!data.user.isActivated) {
-    //   throw new Error(
-    //     Notiflix.Notify.failure(
-    //       'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
-    //     )
-    //   );
-    // }
+    if (!data.user.isActivated) {
+      Notiflix.Notify.failure(
+        'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
+      );
+    }
+    window.location.reload();
     return data;
   } catch (error) {
+    console.log(error);
     Notiflix.Notify.failure('Неправильний логін або пароль');
     console.log(error);
   }
