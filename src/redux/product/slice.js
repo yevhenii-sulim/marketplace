@@ -8,7 +8,6 @@ const handlePending = state => {
 };
 
 const handleFulfilled = (state, { payload }) => {
-  console.log(payload);
   state.product = payload.products;
   state.filters = payload.filters;
   state.totalPage = payload.totalPages;

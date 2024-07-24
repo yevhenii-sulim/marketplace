@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { selectFiltersColors } from '../../../redux/product/selector';
@@ -17,9 +17,7 @@ function FilterColor() {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
   const [params, setParams] = useSearchParams('');
-  const [checkedState, setCheckedState] = useState([]);
-
-  const location = useLocation();
+  const [checkValue, setCheckValue] = useState(params.getAll('colors'));
 
   const sex = params.getAll('sex') ?? [];
   const minPrice = params.getAll('minPrice') ?? [];
@@ -27,22 +25,25 @@ function FilterColor() {
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
 
-  const handleOnChange = position => {
-    const updatedCheckedState = checkedState.map((item, index) => {
-      return index === position ? !item : item;
-    });
-    setCheckedState(updatedCheckedState);
-    createColorList(updatedCheckedState);
+  const handleOnChange = colors => {
+    if (checkValue.includes(colors)) {
+      setCheckValue(prev => {
+        const updatedValue = prev.filter(item => item !== colors);
+        createColorList(updatedValue);
+        return updatedValue;
+      });
+    } else {
+      setCheckValue(prev => {
+        const updatedValue = [...prev, colors];
+        createColorList(updatedValue);
+        return updatedValue;
+      });
+    }
   };
 
   const createColorList = updatedCheckedState => {
-    const colorsList = [];
-    for (let i = 0; i < updatedCheckedState.length; i++) {
-      if (!updatedCheckedState[i]) continue;
-      colorsList.push(colors[i]._id);
-    }
     setParams({
-      colors: colorsList,
+      colors: updatedCheckedState,
       sizes,
       sex,
       minPrice,
@@ -50,11 +51,6 @@ function FilterColor() {
       states,
     });
   };
-
-  useEffect(() => {
-    if (!colors) return;
-    setCheckedState(new Array(colors.length).fill(false));
-  }, [colors]);
 
   return (
     <Container>
@@ -76,8 +72,8 @@ function FilterColor() {
                     id={_id}
                     name={color}
                     value={color}
-                    checked={location.search.includes(_id)}
-                    onChange={() => handleOnChange(index)}
+                    checked={checkValue.includes(_id)}
+                    onChange={() => handleOnChange(_id)}
                   />
                   <SignColor htmlFor={_id}>
                     <p className="color-name">{colorName}</p>

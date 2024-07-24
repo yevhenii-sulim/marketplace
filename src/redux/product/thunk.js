@@ -35,13 +35,10 @@ export const addCommentFromStory = createAsyncThunk(
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async ({ textQuery, paramQuery, page }) => {
-    console.log(textQuery, paramQuery, page);
-
     try {
       const { data } = await axios.get(
         `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
       );
-      console.log('subcategoryData', data);
       return data;
     } catch (error) {
       console.log('errorGetProductBySubCateg', error);
