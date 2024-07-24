@@ -50,7 +50,7 @@ export default function MyOrders() {
   };
 
   const removeCount = (payload, count) => {
-    if (count <= 0) return;
+    if (count <= 1) return;
     dispatch(changeCount(payload));
   };
   const deleteFromBasket = id => {
@@ -146,23 +146,21 @@ export default function MyOrders() {
           <WrapperBuy>
             <TotalPrice>
               <Sum>
-                <span className="info">{totalCount} товар на суму</span>
+                <span className="info">
+                  {totalCount} {totalCount > 1 ? 'товарів' : 'товар'} на суму
+                </span>
                 <span className="info-price">{totalPrice} &#8372;</span>
               </Sum>
               <Discount>
                 <span className="info">Знижка</span>
                 <span className="info-price info-price_discount">
-                  {totalDiscount}
-                  &#8372;
+                  {totalDiscount} &#8372;
                 </span>
               </Discount>
 
               <Total>
                 <span>Загальна сума</span>
-                <span>
-                  {total}
-                  &#8372;
-                </span>
+                <span>{total} &#8372;</span>
               </Total>
               <WrapperButton>
                 <Button type="button" onClick={makeOrder} sx={addProductButton}>

@@ -35,6 +35,8 @@ export const addCommentFromStory = createAsyncThunk(
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async ({ textQuery, paramQuery, page }) => {
+    console.log(textQuery, paramQuery, page);
+
     try {
       const { data } = await axios.get(
         `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
@@ -51,7 +53,7 @@ export const searchProduct = createAsyncThunk(
   'products/searchProduct',
   async title => {
     try {
-      const data = await axios.get(`/products/search/${title}`);
+      const { data } = await axios.get(`/products/search?title=${title}`);
       console.log('search', data);
 
       return data;

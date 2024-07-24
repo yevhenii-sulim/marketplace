@@ -77,11 +77,7 @@ export default function AddProductComponent() {
 
   return (
     <ContainerAddProduct>
-      <NavLink
-        to="/user_page/my_post_list"
-        state={'Мої оголошення'}
-        onClick={setCondition}
-      >
+      <NavLink to="/user_page/my_post_list" onClick={setCondition}>
         <CloseIcon />
       </NavLink>
       <Formik
