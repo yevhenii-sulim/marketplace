@@ -1,17 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { initialState } from '../initialState';
-
-const urlProduct = axios.create({
-  withCredentials: true,
-  baseURL: 'https://internet-shop-api-production.up.railway.app',
-});
+import $api from '../interceptors/interceptor';
 
 export const fetchProduct = createAsyncThunk(
   'productPage/fetchProduct',
   async id => {
     try {
-      const response = await urlProduct.get(`/products/${id}`);
+      const response = await $api.get(`/products/${id}`);
 
       return response.data;
     } catch (error) {
@@ -24,21 +19,12 @@ export const likeComment = createAsyncThunk(
   'productPage/likeComment',
   async ({ commentId }, { getState }) => {
     try {
-      const token = getState().users.token;
       const comments = getState().productPage.product.comments;
       const userId = getState().users._id;
 
-      const response = await urlProduct.post(
-        '/comment/like',
-        {
-          commentId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await $api.post('/comment/like', {
+        commentId,
+      });
 
       return { ...response.data, comments, userId };
     } catch (error) {
@@ -49,20 +35,11 @@ export const likeComment = createAsyncThunk(
 );
 export const dislikeComment = createAsyncThunk(
   'productPage/dislikeComment',
-  async ({ commentId, index }, { getState }) => {
+  async ({ commentId, index }) => {
     try {
-      const token = getState().users.token;
-      const response = await urlProduct.post(
-        `/comment/dislike`,
-        {
-          commentId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await $api.post(`/comment/dislike`, {
+        commentId,
+      });
       return { ...response.data, index };
     } catch (error) {
       console.log(error);
@@ -111,23 +88,15 @@ export const dislikeComment = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   'productPage/addComment',
-  async ({ parent, comment, id, parentIndex, rating }, { getState }) => {
+  async ({ parent, comment, id, parentIndex, rating }) => {
     try {
-      const token = getState().users.token;
-      const response = await urlProduct.post(
-        `/comment`,
-        {
-          parent,
-          body: comment,
-          product: id,
-          rating,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await $api.post(`/comment`, {
+        parent,
+        body: comment,
+        product: id,
+        rating,
+      });
+      console.log(response);
       return { ...response.data, parentIndex };
     } catch (error) {
       console.log(error);
