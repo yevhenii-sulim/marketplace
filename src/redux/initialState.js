@@ -18,6 +18,16 @@ export const initialState = {
     isLoading: true,
     createCommentLoading: false,
   },
+  user: {
+    lastName: '',
+    firstName: '',
+    surname: '',
+    birthName: '',
+    gender: '',
+    profilePictureSrc: '',
+    email: '',
+    phoneNumber: ''
+  },
   users: {
     token: null,
     isLoading: true,
@@ -33,4 +43,19 @@ export const initialState = {
       password: '',
     },
   },
+  orderData: {
+    firstName: '',
+    lastName: '',
+    tel: '',
+    email: '',
+    town: '',
+    wayDelivery: '',
+    postOffice: '',
+    street: '',
+    building: '',
+    floor: '',
+    apartment: '',
+    pay: '',
+    products: []
+  }
 };

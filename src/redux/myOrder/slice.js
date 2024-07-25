@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 
-const sliceOrder = createSlice({
+const orderDataSlice = createSlice({
   name: 'ordering',
   initialState: initialState.ordering,
   reducers: {
@@ -11,5 +11,5 @@ const sliceOrder = createSlice({
   },
 });
 
-export const sliceOrderReducer = sliceOrder.reducer;
-export const { toggleOrdering } = sliceOrder.actions;
+export const sliceOrderReducer = orderDataSlice.reducer;
+export const { toggleOrdering } = orderDataSlice.actions;

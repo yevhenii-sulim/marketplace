@@ -25,6 +25,10 @@ import { Button } from '@mui/material';
 import Placing from '../Placing/Placing';
 import { Formik } from 'formik';
 import signupSchema from '../Placing/validationSchema';
+import { useNavigate } from 'react-router-dom';
+import { setOrder } from '../../../../redux/orderData/slice';
+import { selectMyUser } from '../../../../redux/auth/selector';
+import { addNewProduct } from '../../../../data/myStory';
 
 const prices = {
   total: 0,
@@ -81,8 +85,12 @@ function handleOrder(data, values) {
 }
 
 export default function Ordering() {
+
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
+  const navigation = useNavigate();
+
+  const userData = useSelector(selectMyUser);
 
   const deleteFromBasket = id => {
     dispatch(deleteProduct(id));
@@ -92,7 +100,19 @@ export default function Ordering() {
     dispatch(deleteBasket());
   };
 
+  const makeOrder = (values) => {
+    dispatch(setOrder({
+      ...values,
+      products: [...basket]
+    }));
+    addNewProduct(...basket);
+
+    navigation('/purchase');
+  }
+
   handleOrder(basket);
+
+  console.log(userData);
 
   return (
     <>
@@ -217,13 +237,13 @@ export default function Ordering() {
                         {prices.totalDiscount} &#8372;
                       </span>
                     </Discount>
-
+                    
                     <Total>
                       <span>Загальна сума</span>
                       <span>{prices.total} &#8372;</span>
                     </Total>
                     <WrapperButton>
-                      <Button type="submit" sx={addProductButton}>
+                      <Button type="submit" sx={addProductButton} onClick={() => makeOrder(values)}>
                         Оформити замовлення
                       </Button>
                     </WrapperButton>

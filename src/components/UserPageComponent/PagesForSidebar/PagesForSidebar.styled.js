@@ -290,9 +290,9 @@ export const Empty = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
   padding-top: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 75px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 24px;
 
   p {
     color: ${({ theme }) => theme.color.colorTextStartUserPage};

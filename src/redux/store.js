@@ -21,6 +21,7 @@ import { reducerBasket } from './basket/slice';
 import { modalViewAddedProductReducer } from './modalViewProduct/slice';
 import { slicePosterReducer } from './myPoster/slice';
 import { sliceOrderReducer } from './myOrder/slice';
+import { orderDataReducer } from './orderData/slice';
 
 const persistUser = {
   key: 'token',
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
   category: categoryReducer,
   users: persistReducer(persistUser, userAuthReducer),
   basket: reducerBasket,
+  orderData: orderDataReducer,
 });
 
 const persistedReducer = persistReducer(persistAllStore, rootReducer);

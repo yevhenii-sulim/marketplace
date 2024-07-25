@@ -1,0 +1,1 @@
+export const selectOrderData = state => state.orderData;
