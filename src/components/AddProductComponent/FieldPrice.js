@@ -17,7 +17,7 @@ export default function FieldPrice({
   const handleChangeComponent = event => {
     const dotIndex = event.target.value.indexOf('.');
     if (event.target.value.length > 8) return;
-    if (dotIndex !== -1) {
+    if (!!~dotIndex) {
       if (event.target.value.length > dotIndex + 3) return;
     }
 

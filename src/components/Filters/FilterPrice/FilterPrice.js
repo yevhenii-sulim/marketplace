@@ -4,21 +4,84 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
-import { selectFilters, selectProduct } from '../../../redux/product/selector';
+import { selectFiltersPrice } from '../../../redux/product/selector';
 import { CountPrice, PriceSlide, SliderRange } from './FilterPrice.styled';
+import { useSearchParams } from 'react-router-dom';
+import { debounce } from 'lodash';
 
-export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {
-  const filters = useSelector(selectFilters);
-  const products = useSelector(selectProduct);
-  const [value, setValue] = useState([min, max]);
+export default function FilterPrice() {
+  const [params, setParams] = useSearchParams('');
+  const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
+  const [value, setValue] = useState([
+    params.getAll('minPrice'),
+    params.getAll('maxPrice'),
+  ]);
   const { width } = useWindowDimensions();
 
+  const colors = params.getAll('colors') ?? [];
+  const sex = params.getAll('sex') ?? [];
+  const states = params.getAll('states') ?? [];
+  const sizes = params.getAll('sizes') ?? [];
+
+  const getMaxValue = debounce(num => {
+    if (params.getAll('minPrice').length !== 0) {
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: parseInt(...params.getAll('minPrice')),
+        maxPrice: num,
+        states,
+      });
+      return;
+    }
+    setParams({
+      colors,
+      sizes,
+      sex,
+      minPrice: price.min,
+      maxPrice: num,
+      states,
+    });
+  }, 1500);
+
+  const getMinValue = debounce(num => {
+    if (params.getAll('maxPrice').length !== 0) {
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: num,
+        maxPrice: parseInt(...params.getAll('maxPrice')),
+        states,
+      });
+      return;
+    }
+    setParams({
+      colors,
+      sizes,
+      sex,
+      minPrice: num,
+      maxPrice: price.max,
+      states,
+    });
+  }, 1500);
+
+  console.log(params.getAll('minPrice'), params.getAll('maxPrice'));
+
   useEffect(() => {
-    if (!filters.price) return;
-    setValue([filters.price.min, filters.price.max]);
-    getMinValue(filters.price.min);
-    getMaxValue(filters.price.max);
-  }, [filters, getMaxValue, getMinValue, products.length]);
+    if (
+      params.getAll('minPrice').length !== 0 &&
+      params.getAll('maxPrice').length !== 0
+    ) {
+      setValue([
+        parseInt(...params.getAll('minPrice')),
+        parseInt(...params.getAll('maxPrice')),
+      ]);
+      return;
+    }
+    setValue([price.min, price.max]);
+  }, [params, price.max, price.min]);
 
   const handleChange = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -75,8 +138,8 @@ export default function FilterPrice({ min, max, getMaxValue, getMinValue }) {
           value={value}
           onChange={handleChange}
           disableSwap
-          min={min}
-          max={max}
+          min={price.min}
+          max={price.max}
         />
       </Box>
     </PriceSlide>

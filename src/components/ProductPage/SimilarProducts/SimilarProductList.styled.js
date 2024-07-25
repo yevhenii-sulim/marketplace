@@ -4,7 +4,19 @@ export const SimilarProductsWrapper = styled.section`
   width: 100%;
   display: flex;
   margin-top: 20px;
-  justify-content: space-between;
+  justify-content: ${({ $length }) => {
+    if ($length > 4) {
+      return 'space-between';
+    }
+    return 'flex-start';
+  }};
+
+  gap: ${({ $length }) => {
+    if ($length > 4) {
+      return '';
+    }
+    return '42px';
+  }};
 `;
 export const SimilarProductsHeader = styled.header`
   font-weight: 700;

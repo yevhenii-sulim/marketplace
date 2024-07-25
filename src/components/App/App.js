@@ -20,7 +20,6 @@ import LayoutPage from 'pages/LayoutPage';
 import Agreement from 'pages/Agreement';
 import Confederacy from 'pages/Confederacy';
 import Contacts from 'pages/Contacts';
-import AllCatalogPage from 'pages/AllCatalogPage';
 import MyStoryOrdersPage from 'pages/UserPage/MyStoryOrdersPage';
 import { selectId, selectMyUser } from '../../redux/auth/selector';
 import { getUser } from '../../redux/auth/thunk';
@@ -28,6 +27,7 @@ import MyPosterListPage from 'pages/UserPage/MyPosterListPage';
 import PostConfirmedPage from 'pages/PostConfirmedPage';
 import OrderingPage from 'pages/UserPage/OrderingPage';
 import OrderConfirmed from 'pages/UserPage/OrderConfirmed';
+import SearchedProductPage from 'pages/SearchedProductPage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -57,7 +57,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           <Route index element={<HomePage />} />
-          <Route path="all" element={<AllCatalogPage />} />
+          <Route path="all" element={<CatalogPage />} />
+          <Route path="search" element={<SearchedProductPage />} />
           <Route path="auth/activate" element={<RestorePassword />} />
           <Route path="post/сonfirmed" element={<PostConfirmedPage />} />
           <Route path="agreement" element={<Agreement />} />

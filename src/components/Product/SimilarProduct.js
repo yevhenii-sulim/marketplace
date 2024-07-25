@@ -68,7 +68,9 @@ function SimilarProduct({
           to={
             countCharacter(2)
               ? `${id}`
-              : `/${category?.mainCategory.en}/${subCategory?.subCategory.en}/${id}`
+              : `/${category?.mainCategory?.en || category?.en}/${
+                  subCategory?.subCategory?.en || subCategory?.en
+                }/${id}`
           }
         >
           <SimilarProductItemIcon>
@@ -119,6 +121,6 @@ SimilarProduct.propTypes = {
   createDate: PropTypes.string.isRequired,
   eco: PropTypes.bool,
   category: PropTypes.object.isRequired,
-  subCategory: PropTypes.object.isRequired,
+  subCategory: PropTypes.object,
   isUkraine: PropTypes.bool,
 };

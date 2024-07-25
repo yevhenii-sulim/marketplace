@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from 'utils/theme';
 
-export const CountPrice = styled.form`
+export const CountPrice = styled.div`
   label {
     display: flex;
     gap: 8px;

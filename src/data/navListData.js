@@ -156,7 +156,7 @@ export const navigationList = [
       {
         id: 2,
         link: 'second_hand',
-        nameList: 'Відновленний секонд хенд',
+        nameList: 'Відновлений секонд хенд',
         img: '#',
       },
     ],

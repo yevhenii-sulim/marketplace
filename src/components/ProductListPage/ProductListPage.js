@@ -19,25 +19,17 @@ import {
 } from './ProductListPage.styled';
 import { useSelector } from 'react-redux';
 import { selectCategory } from '../../redux/category/selectors';
+import Filters from './FilterList/Filters';
 
-import { selectFilters } from '../../redux/product/selector';
-import Filters from './FilterList/FilterList';
 export default function ProductListPage({
-  min,
-  max,
   page,
-  getMaxValue,
-  getMinValue,
-  valueSort,
   handleSort,
+  valueSort,
   sortedProduct,
   handlePageClick,
   totalItemsCount,
 }) {
   const categories = useSelector(selectCategory);
-  const filters = useSelector(selectFilters);
-  console.log(filters);
-
   return (
     <ContainerProductPageList>
       <Navigation>
@@ -63,15 +55,10 @@ export default function ProductListPage({
       <ProductsPage>
         <div>
           <TitleSort>Підбір за параметрами</TitleSort>
-          <Filters
-            min={min}
-            max={max}
-            getMaxValue={getMaxValue}
-            getMinValue={getMinValue}
-          />
+          <Filters />
         </div>
         <ProductList>
-          <Sort value={valueSort} handleSort={handleSort} />
+          <Sort handleSort={handleSort} valueSort={valueSort} />
           <Product>
             {sortedProduct.map(
               ({
@@ -103,15 +90,13 @@ export default function ProductListPage({
               )
             )}
           </Product>
-          {sortedProduct.length !== 0 && (
-            <Pagination>
-              <PaginationList
-                handlePageChange={handlePageClick}
-                activePage={page}
-                totalItemsCount={totalItemsCount}
-              />
-            </Pagination>
-          )}
+          <Pagination>
+            <PaginationList
+              handlePageChange={handlePageClick}
+              activePage={page}
+              totalItemsCount={totalItemsCount}
+            />
+          </Pagination>
         </ProductList>
       </ProductsPage>
     </ContainerProductPageList>
@@ -119,11 +104,7 @@ export default function ProductListPage({
 }
 
 ProductListPage.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
-  getMaxValue: PropTypes.func.isRequired,
-  getMinValue: PropTypes.func.isRequired,
   valueSort: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
   sortedProduct: PropTypes.array.isRequired,

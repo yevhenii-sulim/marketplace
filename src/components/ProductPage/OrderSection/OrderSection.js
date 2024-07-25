@@ -14,21 +14,19 @@ import DatePublication from './DatePublication/DatePublication';
 import { useDispatch, useSelector } from 'react-redux';
 import { productForProductPage } from '../../../redux/productPage/selectors';
 import { addProduct } from '../../../redux/basket/slice';
-import { nanoid } from 'nanoid';
 import { selectBasket } from '../../../redux/basket/select';
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
   const basket = useSelector(selectBasket);
-  console.log(product);
 
   const dispatch = useDispatch();
   function sendIdProduct() {
     for (const item of basket) {
-      if (item.title === product.title) return;
+      if (item.id === product._id) return;
     }
     const productAdded = {
-      id: nanoid(),
+      id: product._id,
       title: product.title,
       price: product.price,
       img: product.img[0],
