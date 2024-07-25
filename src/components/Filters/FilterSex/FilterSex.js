@@ -1,8 +1,9 @@
+import { useState, memo } from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { selectFiltersSex } from '../../../redux/product/selector';
-import { useState } from 'react';
 import {
   Box,
   ButtonExpand,
@@ -10,14 +11,12 @@ import {
   SexList,
   SignSex,
 } from './FilterSex.styled';
-import { memo } from 'react';
-import { useSearchParams } from 'react-router-dom';
 
 function FilterSex() {
   const [open, setOpen] = useState(false);
   const sex = useSelector(selectFiltersSex);
   const [params, setParams] = useSearchParams('');
-  const [checkValue, setCheckValue] = useState(params.getAll('sizes'));
+  const [checkValue, setCheckValue] = useState(params.getAll('sex'));
 
   const colors = params.getAll('colors') ?? [];
   const minPrice = params.getAll('minPrice') ?? '';
