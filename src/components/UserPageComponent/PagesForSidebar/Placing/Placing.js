@@ -4,6 +4,9 @@ import { Box, Field, TitleBox, WrapperForm } from './Placing.styled';
 import ChooseTown from './ChooseTown';
 import ChoosePostOffice from './ChoosePostOffice';
 import { theme } from 'utils/theme';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectId } from '../../../../redux/auth/selector';
 
 export default function Placing({
   handleChange,
@@ -20,6 +23,7 @@ export default function Placing({
   touched,
   pay,
 }) {
+  
   return (
     <div>
       <Box className="contacts">

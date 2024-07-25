@@ -40,3 +40,41 @@ export const myStory = [
     subCategory: { en: 'souvenirs', uk: 'Сувеніри' },
   },
 ];
+
+const generateRandomId = () => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < 12; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+export const addNewProduct = (...products) => {
+  products.forEach(({ 
+    id, 
+    category, 
+    count, 
+    discount, 
+    discountPrice, 
+    img, 
+    price, 
+    subCategory, 
+    title, 
+    number, 
+  }) => {
+    myStory.push({
+      _id: id + '-' + generateRandomId(),
+      category,
+      count,
+      discount,
+      discountPrice,
+      img,
+      price,
+      subCategory,
+      title,
+      number,
+      state: {waited: "Очікується відправка"}
+    });
+  })
+};

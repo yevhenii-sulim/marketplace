@@ -27,6 +27,7 @@ import { getUser } from '../../redux/auth/thunk';
 import MyPosterListPage from 'pages/UserPage/MyPosterListPage';
 import PostConfirmedPage from 'pages/PostConfirmedPage';
 import OrderingPage from 'pages/UserPage/OrderingPage';
+import OrderConfirmed from 'pages/UserPage/OrderConfirmed';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ export default function App() {
             <Route path="profile" element={<ProfilePage />} />
             <Route path="ordering" element={<OrderingPage />} />
           </Route>
+          <Route path="purchase" element={<OrderConfirmed />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
