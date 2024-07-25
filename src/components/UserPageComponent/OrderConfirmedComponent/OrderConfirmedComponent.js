@@ -6,10 +6,8 @@ import {
   FullOrderInfo,
   MyOrdersButton,
   OrderConfirmedButtons,
-  OrderNumber,
   OrderProducts,
   Title,
-  YellowTitle,
 } from './OrderConfirmedComponent.styled';
 import OrderProduct from './OrderProduct';
 import { useNavigate } from 'react-router-dom';

@@ -25,7 +25,7 @@ export default function NewPasswordInput() {
 
   useEffect(() => {
     validateNewPassword();
-  }, [newPassword]);
+  }, [newPassword, validateNewPassword]);
 
   return (
     <NewPasswordField>
