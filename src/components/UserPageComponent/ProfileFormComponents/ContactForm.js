@@ -1,8 +1,8 @@
 import { FormContainer, InputColumn, RedactContainer, RedactButton, CancelRedactingButton } from "./ProfilePage.styled";
 import PhoneNumberFormField from "./PhoneNumberFormField";
 import { useSelector } from "react-redux";
-import { selectId, selectMyUser } from "../../../redux/auth/selector";
-import { useEffect, useState } from "react";
+import { selectMyUser } from "../../../redux/auth/selector";
+import { useState } from "react";
 import InputField from "./InputField";
 
 export default function ContactForm({ redacting, onSaveChanges, onCancelChanges, onStartRedacting }) {

@@ -1,7 +1,6 @@
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DateInput, FormField } from "./ProfilePage.styled";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useState } from "react";
 import dayjs from "dayjs";
 
 export default function DateFormField({ label, disabled, value, onChange }) {
