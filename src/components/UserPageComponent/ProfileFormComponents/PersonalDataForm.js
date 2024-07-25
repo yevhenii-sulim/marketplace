@@ -52,6 +52,8 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
     });
   }
 
+  console.log(123);
+
   return (
     <>
       <FormContainer justifycontent={'space-between'}>
