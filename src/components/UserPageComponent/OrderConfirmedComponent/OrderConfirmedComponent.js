@@ -34,13 +34,17 @@ export default function OrderConfirmedComponent() {
     <Container>
       <Title>Дякуємо за ваше замовлення!</Title>
       <FullOrderInfo>
-        <OrderProducts>
-          {myStory.filter(product => product.state.waited).map(({ _id, img, title, price }) => {
-            return (
-              <OrderProduct key={_id} imgSrc={img} title={title} price={price} />
-            );
-          })}
-        </OrderProducts>
+        {myStory.filter(product => product.state.waited).length ? (
+          <OrderProducts>
+            {myStory.filter(product => product.state.waited).map(({ _id, img, title, price }) => {
+              return (
+                <OrderProduct key={_id} productId={_id} imgSrc={img} title={title} price={price} />
+              );
+            })}
+          </OrderProducts>
+        ) : (
+          <p>Немає замовлень</p>
+        )}
         <OrderConfirmedButtons>
           <MyOrdersButton onClick={handleMyOrdersButton}>
             Мої замовлення
