@@ -16,7 +16,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "formik": "^2.4.5",
     "lodash": "^4.17.21",
     "nanoid": "^5.0.7",

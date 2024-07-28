@@ -38,7 +38,8 @@ $api.interceptors.response.use(
 
         const storage = JSON.parse(localStorage.getItem('persist:token'));
 
-        const newToken = `\"${response.data}\"`;
+        const newToken = `"${response.data}"`;
+
         storage.token = newToken;
         localStorage.setItem('persist:token', JSON.stringify(storage));
 
