@@ -11,8 +11,21 @@ export const myStory = [
     number: 125,
     category: { en: 'gift', uk: 'Подарункові товари' },
     subCategory: { en: 'souvenirs', uk: 'Сувеніри' },
+    firstName: 'John',
+    lastName: 'Doe',
+    tel: '+380 056 789 85 53',
+    email: 'johndoe@gmail.com',
+    town: 'Kiev',
+    wayDelivery: 'Відділення N1 (до 10 кг): вул. Соборна, 6',
+    postOffice: 'Пункт приймання видачі (до 30 кг): вул. Квітнева, 15А',
+    street: 'вул. Хрещатик',
+    building: '35',
+    floor: '1',
+    apartment: '5',
+    pay: '200',
     // фільтри які були створені при замовленні
   },
+  /*
   {
     _id: '6645d115682e8d5dff4f4879',
     state: { waited: 'Очікується відправка' },
@@ -25,7 +38,20 @@ export const myStory = [
     number: 327,
     category: { en: 'gift', uk: 'Подарункові товари' },
     subCategory: { en: 'souvenirs', uk: 'Сувеніри' },
+    firstName: 'John',
+    lastName: 'Doe',
+    tel: '+380 056 789 85 53',
+    email: 'johndoe@gmail.com',
+    town: 'Kiev',
+    wayDelivery: 'Відділення N1 (до 10 кг): вул. Соборна, 6',
+    postOffice: 'Пункт приймання видачі (до 30 кг): вул. Квітнева, 15А',
+    street: 'вул. Хрещатик',
+    building: '35',
+    floor: '1',
+    apartment: '5',
+    pay: '200',
   },
+  */
   {
     _id: '6649956c52e5e7c430fd10d3',
     state: { cancelled: 'Скасовано' },
@@ -38,43 +64,36 @@ export const myStory = [
     number: 40,
     category: { en: 'gift', uk: 'Подарункові товари' },
     subCategory: { en: 'souvenirs', uk: 'Сувеніри' },
+    firstName: 'John',
+    lastName: 'Doe',
+    tel: '+380 056 789 85 53',
+    email: 'johndoe@gmail.com',
+    town: 'Kiev',
+    wayDelivery: 'Відділення N1 (до 10 кг): вул. Соборна, 6',
+    postOffice: 'Пункт приймання видачі (до 30 кг): вул. Квітнева, 15А',
+    street: 'вул. Хрещатик',
+    building: '35',
+    floor: '1',
+    apartment: '5',
+    pay: '200',
   },
 ];
 
 const generateRandomId = () => {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const chars =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
   for (let i = 0; i < 12; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
-}
-
-export const addNewProduct = (...products) => {
-  products.forEach(({ 
-    id, 
-    category, 
-    count, 
-    discount, 
-    discountPrice, 
-    img, 
-    price, 
-    subCategory, 
-    title, 
-    number, 
-  }) => {
-    myStory.push({
-      _id: id + '-' + generateRandomId(),
-      category,
-      count,
-      discount,
-      discountPrice,
-      img,
-      price,
-      subCategory,
-      title,
-      number,
-      state: {waited: "Очікується відправка"}
-    });
-  })
 };
+
+export const addNewProduct = (id, productData, contactData) => {
+  myStory.push({
+    _id: id + '-' + generateRandomId(),
+    ...productData,
+    state: { waited: 'Очікується відправка' },
+    ...contactData
+  });
+}

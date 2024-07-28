@@ -96,19 +96,23 @@ export default function Ordering() {
     dispatch(deleteProduct(id));
   };
 
-  const handleSubmit = () => {
-    dispatch(deleteBasket());
-  };
+  const handleSubmit = (values) => {
+    console.log('Values: ');
+    console.log(values);
 
-  const makeOrder = (values) => {
+    dispatch(deleteBasket());
+    
     dispatch(setOrder({
       ...values,
       products: [...basket]
     }));
-    addNewProduct(...basket);
+
+    basket.forEach(item => {
+      addNewProduct(item.id, item, values);
+    });
 
     navigation('/purchase');
-  }
+  };
 
   handleOrder(basket);
 
@@ -137,7 +141,7 @@ export default function Ordering() {
           validationSchema={signupSchema}
           onSubmit={values => {
             onSubmitOrder(basket, values);
-            handleSubmit();
+            handleSubmit(values);
           }}
         >
           {({
@@ -243,7 +247,7 @@ export default function Ordering() {
                       <span>{prices.total} &#8372;</span>
                     </Total>
                     <WrapperButton>
-                      <Button type="submit" sx={addProductButton} onClick={() => makeOrder(values)}>
+                      <Button type="submit" sx={addProductButton}>
                         Оформити замовлення
                       </Button>
                     </WrapperButton>

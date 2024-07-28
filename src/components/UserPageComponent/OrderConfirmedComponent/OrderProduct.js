@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import {
   YellowTitle,
   OrderNumber,
@@ -11,11 +10,11 @@ import {
   OrderReceiverData,
   OrderProductContainer
 } from './OrderConfirmedComponent.styled';
-import { selectOrderData } from '../../../redux/orderData/selector';
+import { myStory } from 'data/myStory';
 
-export default function OrderProduct({ imgSrc, title, price }) {
+export default function OrderProduct({ productId, imgSrc, title, price }) {
 
-  const orderData = useSelector(selectOrderData);
+  const orderData = myStory.find(item => item._id === productId);
 
   return (
     <>
