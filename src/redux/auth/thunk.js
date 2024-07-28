@@ -8,10 +8,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 const privateInstans = axios.create({
   baseURL: 'https://internet-shop-api-production.up.railway.app',
   signal: new AbortController().signal,
+  withCredentials: true,
 });
 const publicInstans = axios.create({
   baseURL: 'https://internet-shop-api-production.up.railway.app',
   signal: new AbortController().signal,
+  withCredentials: true,
 });
 const token = {
   set(token) {
@@ -52,7 +54,7 @@ export const logIn = createAsyncThunk('user/enterUser', async user => {
         'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
       );
     }
-    window.location.reload();
+    // window.location.reload();
     return data;
   } catch (error) {
     console.log(error);
