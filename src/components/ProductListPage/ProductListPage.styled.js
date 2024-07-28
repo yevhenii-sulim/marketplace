@@ -31,7 +31,7 @@ export const TitleSort = styled.h2`
   font-size: 28px;
   font-weight: 400;
   line-height: 1.5;
-  margin: 0 auto 25px;
+  margin: 0 auto;
   white-space: nowrap;
 `;
 export const SortProduct = styled.div`

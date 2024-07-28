@@ -1,10 +1,79 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectFilters } from '../../../redux/product/selector';
-import { Container } from './FilterSize.styled';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { selectFiltersSizes } from '../../../redux/product/selector';
+import { Box, ButtonExpand, Container, SizeList } from './FilterSize.styled';
+import { useSearchParams } from 'react-router-dom';
 
 export default function FilterSize() {
-  const { sizes } = useSelector(selectFilters);
-  console.log(sizes);
+  const [open, setOpen] = useState(false);
+  const sizes = useSelector(selectFiltersSizes);
+  const [params, setParams] = useSearchParams('');
+  const [checkValue, setCheckValue] = useState(params.getAll('sizes'));
 
-  return <Container>FilterSize</Container>;
+  const colors = params.getAll('colors') ?? [];
+  const sex = params.getAll('sex') ?? [];
+  const minPrice = params.getAll('minPrice') ?? '';
+  const maxPrice = params.getAll('maxPrice') ?? '';
+  const states = params.getAll('states') ?? [];
+
+  const handleOnChange = size => {
+    if (checkValue.includes(size)) {
+      setCheckValue(prev => {
+        const updatedValue = prev.filter(item => item !== size);
+        createStateList(updatedValue);
+        return updatedValue;
+      });
+    } else {
+      setCheckValue(prev => {
+        const updatedValue = [...prev, size];
+        createStateList(updatedValue);
+        return updatedValue;
+      });
+    }
+  };
+
+  const createStateList = updatedValue => {
+    setParams({
+      sizes: updatedValue,
+      colors,
+      sex,
+      minPrice,
+      maxPrice,
+      states,
+    });
+  };
+
+  return (
+    <Container>
+      <h3>
+        Розмір
+        <ButtonExpand onClick={() => setOpen(prev => !prev)} type="button">
+          {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </ButtonExpand>
+      </h3>
+      <SizeList>
+        {open &&
+          sizes &&
+          sizes.map((size, index) => {
+            return (
+              size !== 'Без розміру' && (
+                <Box key={size}>
+                  <input
+                    type="checkbox"
+                    id={size}
+                    name={size}
+                    value={size}
+                    checked={checkValue.includes(size)}
+                    onChange={() => handleOnChange(size)}
+                  />
+                  <label htmlFor={size}>{size}</label>
+                </Box>
+              )
+            );
+          })}
+      </SizeList>
+    </Container>
+  );
 }

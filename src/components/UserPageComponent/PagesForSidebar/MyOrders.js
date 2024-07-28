@@ -1,8 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Button } from '@mui/material';
 import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
+import { selectBasket } from '../../../redux/basket/select';
+import { changeCount, deleteProduct } from '../../../redux/basket/slice';
+import { useNavigate } from 'react-router-dom';
+import { selectCategory } from '../../../redux/category/selectors';
+import { toggleOrdering } from '../../../redux/myOrder/slice';
+import { selectMyUser } from '../../../redux/auth/selector';
+import {
+  addFavoriteProduct,
+  removeFavoriteProduct,
+} from '../../../redux/product/thunk';
 import {
   About,
   Actives,
@@ -25,15 +36,26 @@ import {
   addProductButton,
   viewProductButton,
 } from './PagesForSidebar.styled';
-import { selectBasket } from '../../../redux/basket/select';
-import { changeCount, deleteProduct } from '../../../redux/basket/slice';
-import { useNavigate } from 'react-router-dom';
-import { selectCategory } from '../../../redux/category/selectors';
-import { toggleOrdering } from '../../../redux/myOrder/slice';
+import { theme } from 'utils/theme';
+
+function defineWordByCount(product) {
+  if (product === 1) return 'товар';
+  console.log(String(product).slice(-2, String(product).length - 1));
+
+  if (
+    String(product).slice(-2, String(product).length - 1) !== '1' &&
+    (String(product).slice(-1) === '2' ||
+      String(product).slice(-1) === '3' ||
+      String(product).slice(-1) === '4')
+  )
+    return 'товари';
+  return 'товарів';
+}
 
 export default function MyOrders() {
   const categories = useSelector(selectCategory);
   const basket = useSelector(selectBasket);
+  const user = useSelector(selectMyUser);
   const dispatch = useDispatch();
   let total = 0;
   let totalPrice = 0;
@@ -50,7 +72,7 @@ export default function MyOrders() {
   };
 
   const removeCount = (payload, count) => {
-    if (count <= 0) return;
+    if (count <= 1) return;
     dispatch(changeCount(payload));
   };
   const deleteFromBasket = id => {
@@ -58,9 +80,17 @@ export default function MyOrders() {
   };
 
   const makeOrder = () => {
-    navigation('/user_page/ordering');
+    navigation('/ordering');
     dispatch(toggleOrdering(true));
   };
+
+  function toggleFavorite(id) {
+    if (user.favorites.some(({ _id }) => id === _id)) {
+      dispatch(removeFavoriteProduct(id));
+    } else {
+      dispatch(addFavoriteProduct(id));
+    }
+  }
 
   return (
     <div>
@@ -124,9 +154,15 @@ export default function MyOrders() {
                           <button
                             type="button"
                             className="favorite"
-                            onClick={() => deleteFromBasket(id)}
+                            onClick={() => toggleFavorite(id)}
                           >
-                            <FavoriteBorderIcon />
+                            {user?.favorites.some(({ _id }) => id === _id) ? (
+                              <FavoriteIcon
+                                sx={{ color: theme.color.bgNumberBasket }}
+                              />
+                            ) : (
+                              <FavoriteBorderIcon />
+                            )}
                           </button>
                           <button
                             type="button"
@@ -146,23 +182,21 @@ export default function MyOrders() {
           <WrapperBuy>
             <TotalPrice>
               <Sum>
-                <span className="info">{totalCount} товар на суму</span>
+                <span className="info">
+                  {totalCount} {defineWordByCount(totalCount)} на суму
+                </span>
                 <span className="info-price">{totalPrice} &#8372;</span>
               </Sum>
               <Discount>
                 <span className="info">Знижка</span>
                 <span className="info-price info-price_discount">
-                  {totalDiscount}
-                  &#8372;
+                  {totalDiscount} &#8372;
                 </span>
               </Discount>
 
               <Total>
                 <span>Загальна сума</span>
-                <span>
-                  {total}
-                  &#8372;
-                </span>
+                <span>{total} &#8372;</span>
               </Total>
               <WrapperButton>
                 <Button type="button" onClick={makeOrder} sx={addProductButton}>

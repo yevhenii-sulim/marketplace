@@ -59,7 +59,7 @@ export default function AddProductComponent() {
       if (key === 'price') {
         formData.append('price', values[key] || 0);
       } else if (key === 'subCategory') {
-        formData.append('subCategory', values[key] || '');
+        formData.append('subCategory', values[key] || null);
       } else if (key === 'size') {
         if (values[key].length === 0) {
           formData.append('size', 'Без розміру');
@@ -77,11 +77,7 @@ export default function AddProductComponent() {
 
   return (
     <ContainerAddProduct>
-      <NavLink
-        to="/user_page/my_post_list"
-        state={'Мої оголошення'}
-        onClick={setCondition}
-      >
+      <NavLink to="/user_page/my_post_list" onClick={setCondition}>
         <CloseIcon />
       </NavLink>
       <Formik

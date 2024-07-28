@@ -100,8 +100,11 @@ export default function Ordering() {
   };
 
   const handleSubmit = (values) => {
-    dispatch(deleteBasket());
+    console.log('Values: ');
+    console.log(values);
 
+    dispatch(deleteBasket());
+    
     dispatch(setOrder({
       ...values,
       products: [...basket]

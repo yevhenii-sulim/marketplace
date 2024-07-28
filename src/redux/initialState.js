@@ -11,6 +11,7 @@ export const initialState = {
     product: [],
     totalPage: 0,
     filters: {},
+    search: [],
   },
   productPage: {
     product: {},

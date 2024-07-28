@@ -6,20 +6,6 @@ import { getUser } from '../auth/thunk';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-export const getAllProducts = createAsyncThunk(
-  'products/getAllProduct',
-  async ({ page, limit }) => {
-    try {
-      const { data } = await axios.get(`/products?page=${page}&limit=${limit}`);
-      console.log(data);
-
-      return data;
-    } catch (error) {
-      console.log('error', error);
-    }
-  }
-);
-
 export const addCommentFromStory = createAsyncThunk(
   'products/addComment',
   async ({ comment, id }, { getState }) => {
@@ -46,14 +32,13 @@ export const addCommentFromStory = createAsyncThunk(
   }
 );
 
-export const getProductsBySubCategory = createAsyncThunk(
-  'products/getProductsBySubCategory',
-  async subCategory => {
+export const getProducts = createAsyncThunk(
+  'products/getProducts',
+  async ({ textQuery, paramQuery, page }) => {
     try {
       const { data } = await axios.get(
-        `products/filterBySubcategory/${subCategory}`
+        `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
       );
-      console.log('subcategory', data);
       return data;
     } catch (error) {
       console.log('errorGetProductBySubCateg', error);
@@ -61,26 +46,11 @@ export const getProductsBySubCategory = createAsyncThunk(
   }
 );
 
-export const getProductsByCategory = createAsyncThunk(
-  'products/getProductsByCategory',
-  async category => {
-    try {
-      const { data } = await axios.get(
-        `/products/filterByCategory/${category}`
-      );
-      console.log('datacategory', data);
-
-      return data;
-    } catch (error) {
-      console.log('errorGetProductByCateg', error);
-    }
-  }
-);
 export const searchProduct = createAsyncThunk(
   'products/searchProduct',
   async title => {
     try {
-      const data = await axios.get(`/products/search/${title}`);
+      const { data } = await axios.get(`/products/search?title=${title}`);
       console.log('search', data);
 
       return data;
@@ -147,6 +117,7 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
 export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (product, { getState }) => {
+    product.foreach(item => console.log(item));
     try {
       const data = await axios.post(`/products/create`, product, {
         headers: {

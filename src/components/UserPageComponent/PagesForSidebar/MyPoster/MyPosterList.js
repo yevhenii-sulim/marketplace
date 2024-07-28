@@ -73,11 +73,7 @@ export default function MyPosterList({
         <Empty>
           <PosterSvg />
           <p>Додайте ваше перше оголошення!</p>
-          <Link
-            to="/user_page/my_poster"
-            onClick={toCreatePost}
-            state={'Створити оголошення'}
-          >
+          <Link to="/user_page/my_poster" onClick={toCreatePost}>
             Створити оголошення
           </Link>
         </Empty>

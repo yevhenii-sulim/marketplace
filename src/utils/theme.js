@@ -22,6 +22,7 @@ export const theme = {
     colorTextDisable: '#A8A8A8',
     colorTextSidebarActive: '#F04438',
     colorTextErrorLink: '#43C550',
+    colorTextHover: '#43C550',
     colorPriceDiscant: '#5E5F5F',
     colorSecondText: '#ffffff',
     colorTextErrorForm: '#F04438',
@@ -39,5 +40,6 @@ export const theme = {
     colorTextCancelledOrder: '#F04438',
     borderRegister: '#43C550',
     borderSearch: '#646464',
+    borderSize: '#575757',
   },
 };

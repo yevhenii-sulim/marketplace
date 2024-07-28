@@ -17,7 +17,6 @@ import { useSelector } from 'react-redux';
 
 function SellerInfo() {
   const product = useSelector(state => state.productPage.product);
-  console.log(product, product.producer.rating.count);
   return (
     <SellerInfoWrapper>
       <SellerInfoContainer>
