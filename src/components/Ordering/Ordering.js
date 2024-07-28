@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { selectBasket } from '../../../../redux/basket/select';
-import { deleteBasket, deleteProduct } from '../../../../redux/basket/slice';
+import { selectBasket } from '../../redux/basket/select';
+import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
 import {
   About,
   Actives,
@@ -22,9 +22,9 @@ import {
   addProductButton,
 } from './Ordering.styled';
 import { Button } from '@mui/material';
-import Placing from '../Placing/Placing';
 import { Formik } from 'formik';
-import signupSchema from '../Placing/validationSchema';
+import signupSchema from 'components/Placing/validationSchema';
+import Placing from 'components/Placing/Placing';
 
 const prices = {
   total: 0,
@@ -35,7 +35,7 @@ const prices = {
 
 function onSubmitOrder(data, values) {
   const orderData = data.map(
-    ({ count, discount, discountPrice, price, title }) => {
+    ({ count, discount, discountPrice, price, title, id }) => {
       return {
         title: `назва: ${title}`,
         count: `кількість: ${count}шт;`,
@@ -78,6 +78,18 @@ function handleOrder(data, values) {
     prices.totalCount += count;
   }
   return prices;
+}
+
+function defineWordByCount(product) {
+  if (product === 1) return 'товар';
+  if (
+    String(product).slice(-2, String(product).length - 1) !== '1' &&
+    (String(product).slice(-1) === '2' ||
+      String(product).slice(-1) === '3' ||
+      String(product).slice(-1) === '4')
+  )
+    return 'товари';
+  return 'товарів';
 }
 
 export default function Ordering() {
@@ -205,7 +217,7 @@ export default function Ordering() {
                     <Sum>
                       <span className="info">
                         {prices.totalCount}{' '}
-                        {prices.totalCount > 1 ? 'товарів' : 'товар'} на суму
+                        {defineWordByCount(prices.totalCount)} на суму
                       </span>
                       <span className="info-price">
                         {prices.totalPrice} &#8372;

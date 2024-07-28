@@ -6,10 +6,9 @@ Notiflix.Notify.init({
   width: '360px',
   position: 'center-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' - 'center-top' - 'center-bottom' - 'center-center'
   distance: '100px',
-  timeout: 3000,
+  timeout: 7000,
   fontFamily: 'Jost',
   fontSize: '18px',
-  closeButton: true,
   success: {
     background: theme.color.bgHeader,
   },
