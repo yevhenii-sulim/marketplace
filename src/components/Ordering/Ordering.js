@@ -24,9 +24,9 @@ import {
 import { Button } from '@mui/material';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { setOrder } from '../../../../redux/orderData/slice';
-import { selectMyUser } from '../../../../redux/auth/selector';
-import { addNewProduct } from '../../../../data/myStory';
+import { setOrder } from '../../redux/orderData/slice';
+import { selectMyUser } from '../../redux/auth/selector';
+import { addNewProduct } from '../../data/myStory';
 import signupSchema from 'components/Placing/validationSchema';
 import Placing from 'components/Placing/Placing';
 
