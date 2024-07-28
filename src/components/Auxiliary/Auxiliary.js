@@ -23,11 +23,7 @@ export default memo(function Auxiliary() {
       <NavLink to="user_page/selected" onClick={onOpen} state={'Обране'}>
         <FavoriteBorderIcon />
       </NavLink>
-      <NavLink
-        to="user_page/my_order"
-        onClick={onOpen}
-        state={'Мої замовлення'}
-      >
+      <NavLink to="my_order" onClick={onOpen} state={'Мої замовлення'}>
         {basket.length !== 0 && (
           <TotalProduct>
             {basket.reduce((cum, item) => {

@@ -1,5 +1,5 @@
 import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
-import AddressDeliveryByPostMan from '../AddressDeliveryByPostMan';
+import AddressDeliveryByPostMan from './AddressDeliveryByPostMan';
 import { Box, Field, TitleBox, WrapperForm } from './Placing.styled';
 import ChooseTown from './ChooseTown';
 import ChoosePostOffice from './ChoosePostOffice';

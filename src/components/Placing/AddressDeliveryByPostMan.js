@@ -1,7 +1,7 @@
 import Label from 'components/AddProductComponent/Label';
-import AddressDelivery from './Placing/AddressDelivery';
-import { Field, PlaceAddress } from './Placing/Placing.styled';
+import { Field, PlaceAddress } from './Placing.styled';
 import { theme } from 'utils/theme';
+import AddressDelivery from './AddressDelivery';
 
 export default function AddressDeliveryByPostMan({
   handleChange,

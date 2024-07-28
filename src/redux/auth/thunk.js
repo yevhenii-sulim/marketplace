@@ -53,8 +53,8 @@ export const logIn = createAsyncThunk('user/enterUser', async user => {
       Notiflix.Notify.failure(
         'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
       );
+      return;
     }
-    // window.location.reload();
     return data;
   } catch (error) {
     console.log(error);

@@ -49,10 +49,13 @@ export default function ModalForm({ onClose }) {
     if (evt.currentTarget !== evt.target) return;
     onClose(false);
   }
+  function onCloseWithButton() {
+    onClose(false);
+  }
   return (
     <Backdrop onMouseDown={oncloseByClickOutside}>
       <WrapperModal>
-        <IconButton sx={cssButtonClose} onClick={() => onClose(false)}>
+        <IconButton sx={cssButtonClose} onClick={onCloseWithButton}>
           <CloseIcon className="close" />
         </IconButton>
         <Box>

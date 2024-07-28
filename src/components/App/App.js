@@ -67,6 +67,8 @@ export default function App() {
           <Route path="contacts" element={<Contacts />} />
           <Route path=":category" element={<SubCategories />} />
           <Route path=":category/:subcategories" element={<CatalogPage />} />
+          <Route path="ordering" element={<OrderingPage />} />
+          <Route path="my_order" element={<MyOrdersPage />} />
           <Route
             path=":category/:subcategories/:product_page"
             element={<ProductPage />}
@@ -79,14 +81,12 @@ export default function App() {
               </PrivateRoute>
             }
           >
-            <Route path="my_order" element={<MyOrdersPage />} />
             <Route path="my_story_order" element={<MyStoryOrdersPage />} />
             <Route path="my_poster" element={<MyPosterPage />} />
             <Route path="my_post_list" element={<MyPosterListPage />} />
             <Route path="notification" element={<NotificationPages />} />
             <Route path="selected" element={<SelectedPage />} />
             <Route path="profile" element={<ProfilePage />} />
-            <Route path="ordering" element={<OrderingPage />} />
           </Route>
           <Route path="purchase" element={<OrderConfirmed />} />
         </Route>

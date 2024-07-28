@@ -1,4 +1,4 @@
-import Ordering from 'components/UserPageComponent/PagesForSidebar/Ordering/Ordering';
+import Ordering from 'components/Ordering/Ordering';
 
 export default function OrderingPage() {
   return <Ordering />;

@@ -26,15 +26,15 @@ export default function ConfirmExit({ onExit, onToggleModalConfirm }) {
       <WrapperModal>
         <p> Бажаєте вийти з акаунту?</p>
         <Buttons>
-          <Button type="button" sx={exitOutButton} onClick={onExitOutAccount}>
-            Так, вийти
-          </Button>
           <Button
             type="submit"
             sx={stayInButton}
             onClick={() => onToggleModalConfirm(false)}
           >
             Залишитись
+          </Button>
+          <Button type="button" sx={exitOutButton} onClick={onExitOutAccount}>
+            Так, вийти
           </Button>
         </Buttons>
       </WrapperModal>

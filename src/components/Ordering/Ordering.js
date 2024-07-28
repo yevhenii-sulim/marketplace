@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { selectBasket } from '../../../../redux/basket/select';
-import { deleteBasket, deleteProduct } from '../../../../redux/basket/slice';
+import { selectBasket } from '../../redux/basket/select';
+import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
 import {
   About,
   Actives,
@@ -22,13 +22,13 @@ import {
   addProductButton,
 } from './Ordering.styled';
 import { Button } from '@mui/material';
-import Placing from '../Placing/Placing';
 import { Formik } from 'formik';
-import signupSchema from '../Placing/validationSchema';
 import { useNavigate } from 'react-router-dom';
 import { setOrder } from '../../../../redux/orderData/slice';
 import { selectMyUser } from '../../../../redux/auth/selector';
 import { addNewProduct } from '../../../../data/myStory';
+import signupSchema from 'components/Placing/validationSchema';
+import Placing from 'components/Placing/Placing';
 
 const prices = {
   total: 0,
@@ -39,7 +39,7 @@ const prices = {
 
 function onSubmitOrder(data, values) {
   const orderData = data.map(
-    ({ count, discount, discountPrice, price, title }) => {
+    ({ count, discount, discountPrice, price, title, id }) => {
       return {
         title: `назва: ${title}`,
         count: `кількість: ${count}шт;`,
@@ -84,8 +84,19 @@ function handleOrder(data, values) {
   return prices;
 }
 
-export default function Ordering() {
+function defineWordByCount(product) {
+  if (product === 1) return 'товар';
+  if (
+    String(product).slice(-2, String(product).length - 1) !== '1' &&
+    (String(product).slice(-1) === '2' ||
+      String(product).slice(-1) === '3' ||
+      String(product).slice(-1) === '4')
+  )
+    return 'товари';
+  return 'товарів';
+}
 
+export default function Ordering() {
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -96,16 +107,18 @@ export default function Ordering() {
     dispatch(deleteProduct(id));
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = values => {
     console.log('Values: ');
     console.log(values);
 
     dispatch(deleteBasket());
-    
-    dispatch(setOrder({
-      ...values,
-      products: [...basket]
-    }));
+
+    dispatch(
+      setOrder({
+        ...values,
+        products: [...basket],
+      })
+    );
 
     basket.forEach(item => {
       addNewProduct(item.id, item, values);
@@ -141,7 +154,7 @@ export default function Ordering() {
           validationSchema={signupSchema}
           onSubmit={values => {
             onSubmitOrder(basket, values);
-            handleSubmit(values);
+            handleSubmit();
           }}
         >
           {({
@@ -229,7 +242,7 @@ export default function Ordering() {
                     <Sum>
                       <span className="info">
                         {prices.totalCount}{' '}
-                        {prices.totalCount > 1 ? 'товарів' : 'товар'} на суму
+                        {defineWordByCount(prices.totalCount)} на суму
                       </span>
                       <span className="info-price">
                         {prices.totalPrice} &#8372;
@@ -241,7 +254,7 @@ export default function Ordering() {
                         {prices.totalDiscount} &#8372;
                       </span>
                     </Discount>
-                    
+
                     <Total>
                       <span>Загальна сума</span>
                       <span>{prices.total} &#8372;</span>

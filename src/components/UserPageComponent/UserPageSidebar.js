@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -30,9 +29,9 @@ export default function UserPageSidebar() {
 
   return (
     <>
-      <SidebarListComponent nameList="Мій кошик" path={'my_order'}>
+      {/* <SidebarListComponent nameList="Мій кошик" path={'my_order'}>
         <ShoppingCartOutlinedIcon />
-      </SidebarListComponent>
+      </SidebarListComponent> */}
       <SidebarListComponent
         nameList="Історія замовлень"
         path={'my_story_order'}
