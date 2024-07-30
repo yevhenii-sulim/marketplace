@@ -21,12 +21,14 @@ export const DescribeInfoState = styled.span`
   display: flex;
   font-size: 22px;
   font-weight: 700;
-  margin: 16px 0;
+  margin: 4px 0;
 `;
 
 export const DescribeInfoStateItem = styled.div`
+  font-size: 18px;
   display: flex;
-  margin-right: 16px;
+  margin: 12px 8px 12px 0;
+  align-items: center;
 `;
 export const DescribeInfoParagraph = styled.p``;
 export const DescribeInfoComplaintBlock = styled.div`
@@ -38,4 +40,21 @@ export const DescribeInfoComplaintBlock = styled.div`
 
 export const DescribeInfoComplaint = styled.a`
   color: #f04438;
+`;
+
+export const ColorWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  margin-left: 4px;
+`;
+
+export const ColorCircle = styled.div`
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: ${({ $color }) => $color};
+  margin-left: 4px;
 `;

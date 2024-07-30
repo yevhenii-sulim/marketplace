@@ -17,6 +17,7 @@ export const initialState = {
     product: {},
     isLoading: true,
     createCommentLoading: false,
+    commentsExpanded: new Set(),
   },
   user: {
     lastName: '',
@@ -26,7 +27,7 @@ export const initialState = {
     gender: '',
     profilePictureSrc: '',
     email: '',
-    phoneNumber: ''
+    phoneNumber: '',
   },
   users: {
     token: null,
@@ -56,6 +57,6 @@ export const initialState = {
     floor: '',
     apartment: '',
     pay: '',
-    products: []
-  }
+    products: [],
+  },
 };
