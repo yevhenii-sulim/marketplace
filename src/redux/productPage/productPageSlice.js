@@ -107,6 +107,14 @@ export const addComment = createAsyncThunk(
 const productPageSlice = createSlice({
   name: 'productPage',
   initialState: initialState.productPage,
+  reducers: {
+    addToCommentsExpanded(state, { payload }) {
+      state.commentsExpanded.add(payload);
+    },
+    deleteIdInCommentsExpanded(state, { payload }) {
+      state.commentsExpanded.delete(payload);
+    },
+  },
 
   extraReducers: builder => {
     builder
@@ -143,3 +151,5 @@ const productPageSlice = createSlice({
 });
 
 export const productPageReducer = productPageSlice.reducer;
+export const { addToCommentsExpanded, deleteIdInCommentsExpanded } =
+  productPageSlice.actions;

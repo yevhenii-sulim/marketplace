@@ -3,18 +3,17 @@ import styled from 'styled-components';
 export const CommentsWrapper = styled.section`
   width: ${({ $isNested }) => ($isNested ? '82%' : '100%')};
   border-radius: 12px;
-  margin: ${({ $isNested }) =>
-    $isNested ? '24px auto 0 100px' : '24px 0 0 0'};
+  margin: ${({ $isNested }) => ($isNested ? '8px auto 0 120px' : '24px 0 0 0')};
 `;
 export const CommentsContainer = styled.article`
   display: flex;
   width: 98%;
   margin: 16px auto;
-  justify-content: space-evenly;
+  ${({ $isNested }) => ($isNested ? '' : 'justify-content: space-evenly')};
 `;
 export const CommentsIconBlock = styled.div`
-  width: 64px;
-  height: 64px;
+  width: ${({ $isNested }) => ($isNested ? '32px' : '64px')};
+  height: ${({ $isNested }) => ($isNested ? '32px' : '64px')};
   background-color: #d9d9d9;
   border-radius: 50%;
   border: 1px solid black;
@@ -24,6 +23,7 @@ export const CommentsContentBlock = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
+  ${({ $isNested }) => ($isNested ? 'margin-left: 16px' : '')};
 `;
 
 export const CommentsNameAndDataBlock = styled.div`
@@ -98,4 +98,22 @@ export const WrapperForRating = styled.div`
 export const RatingNumber = styled.span`
   margin-left: 4px;
   color: #faaf00;
+`;
+
+export const ParameterWrapper = styled.div`
+  font-weight: 400;
+  margin-left: 5px;
+`;
+
+export const CommentsExpandedWrapper = styled.div`
+  width: 100%;
+  margin-left: 17%;
+  display: flex;
+`;
+export const CommentsExpandedButton = styled.button`
+  width: 110px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  justify-content: space-between;
 `;
