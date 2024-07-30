@@ -108,9 +108,6 @@ export default function Ordering() {
   };
 
   const handleSubmit = values => {
-    console.log('Values: ');
-    console.log(values);
-
     dispatch(deleteBasket());
 
     dispatch(
@@ -129,7 +126,7 @@ export default function Ordering() {
 
   handleOrder(basket);
 
-  console.log(userData);
+  console.log('userData', userData);
 
   return (
     <>

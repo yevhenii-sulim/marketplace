@@ -4,8 +4,14 @@ import { NavLink as LinkAux } from 'react-router-dom';
 export const NavLink = styled(LinkAux)`
   font-size: 0;
   position: relative;
-  &.active svg {
-    color: ${({ theme }) => theme.color.borderSearch};
+  &.active:before {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.color.colorButtonText};
   }
   svg {
     color: ${({ theme }) => theme.color.colorButtonText};
