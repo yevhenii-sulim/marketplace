@@ -33,7 +33,7 @@ export default function ChoosePostOffice({
         });
         const { data } = await result.json();
 
-        console.log('dataPost', data, new Date().getSeconds());
+        console.log('dataPost', data);
 
         setPostOffice(data);
       } catch (error) {
@@ -85,7 +85,7 @@ export default function ChoosePostOffice({
               }}
             >
               {postOffice
-                ?.filter(({ Description }) =>
+                .filter(({ Description }) =>
                   `${kindOfSection}`
                     .toLowerCase()
                     .includes(Description.split(' ')[0].toLowerCase())

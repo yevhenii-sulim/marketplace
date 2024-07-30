@@ -69,6 +69,7 @@ export default function App() {
           <Route path=":category/:subcategories" element={<CatalogPage />} />
           <Route path="ordering" element={<OrderingPage />} />
           <Route path="my_order" element={<MyOrdersPage />} />
+          <Route path="purchase" element={<OrderConfirmed />} />
           <Route
             path=":category/:subcategories/:product_page"
             element={<ProductPage />}
@@ -88,7 +89,6 @@ export default function App() {
             <Route path="selected" element={<SelectedPage />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>
-          <Route path="purchase" element={<OrderConfirmed />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
