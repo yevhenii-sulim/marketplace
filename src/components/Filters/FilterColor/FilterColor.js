@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { selectFiltersColors } from '../../../redux/product/selector';
+import {
+  selectFilters,
+  selectFiltersColors,
+} from '../../../redux/product/selector';
 import {
   Box,
   ButtonExpand,
@@ -16,25 +19,29 @@ import {
 function FilterColor() {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
+  console.log('colors', colors);
+  const filters = useSelector(selectFilters);
+  console.log('filters', filters);
+
   const [params, setParams] = useSearchParams('');
   const [checkValue, setCheckValue] = useState(params.getAll('colors'));
 
   const sex = params.getAll('sex') ?? [];
-  const minPrice = params.getAll('minPrice') ?? [];
-  const maxPrice = params.getAll('maxPrice') ?? [];
+  const minPrice = params.get('minPrice') ?? '';
+  const maxPrice = params.get('maxPrice') ?? '';
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
 
-  const handleOnChange = colors => {
-    if (checkValue.includes(colors)) {
+  const handleOnChange = color => {
+    if (checkValue.includes(color)) {
       setCheckValue(prev => {
-        const updatedValue = prev.filter(item => item !== colors);
+        const updatedValue = prev.filter(item => item !== color);
         createColorList(updatedValue);
         return updatedValue;
       });
     } else {
       setCheckValue(prev => {
-        const updatedValue = [...prev, colors];
+        const updatedValue = [...prev, color];
         createColorList(updatedValue);
         return updatedValue;
       });

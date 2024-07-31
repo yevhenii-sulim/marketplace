@@ -26,7 +26,7 @@ export const initialState = {
     gender: '',
     profilePictureSrc: '',
     email: '',
-    phoneNumber: ''
+    phoneNumber: '',
   },
   users: {
     token: null,
@@ -56,6 +56,6 @@ export const initialState = {
     floor: '',
     apartment: '',
     pay: '',
-    products: []
-  }
+    products: [],
+  },
 };

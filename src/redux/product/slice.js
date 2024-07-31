@@ -33,3 +33,27 @@ const productSlice = createSlice({
 });
 
 export const productReducer = productSlice.reducer;
+
+// import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+// interface InitialState {
+//   isNextClicked: boolean;
+// }
+
+// const initialState: InitialState = {
+//   isNextClicked: false,
+// };
+
+// export const editTenderSlice = createSlice({
+//   name: 'editTender',
+//   initialState,
+//   reducers: {
+//     setIsNextClicked(state, { payload }: PayloadAction<boolean>) {
+//       state.isNextClicked = payload;
+//     },
+//   },
+// });
+
+// export const { setIsNextClicked } = editTenderSlice.actions;
+
+// export default editTenderSlice.reducer;
