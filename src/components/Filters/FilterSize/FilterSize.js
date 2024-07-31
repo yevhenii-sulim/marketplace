@@ -10,7 +10,6 @@ export default function FilterSize() {
   const [open, setOpen] = useState(false);
   const sizes = useSelector(selectFiltersSizes);
   const [params, setParams] = useSearchParams('');
-  const [checkValue, setCheckValue] = useState(params.getAll('sizes'));
 
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
@@ -19,18 +18,14 @@ export default function FilterSize() {
   const states = params.getAll('states') ?? [];
 
   const handleOnChange = size => {
-    if (checkValue.includes(size)) {
-      setCheckValue(prev => {
-        const updatedValue = prev.filter(item => item !== size);
-        createStateList(updatedValue);
-        return updatedValue;
-      });
+    if (params.getAll('sizes').includes(size)) {
+      const updatedValue = params.getAll('sizes').filter(item => item !== size);
+      createStateList(updatedValue);
+      return updatedValue;
     } else {
-      setCheckValue(prev => {
-        const updatedValue = [...prev, size];
-        createStateList(updatedValue);
-        return updatedValue;
-      });
+      const updatedValue = [...params.getAll('sizes'), size];
+      createStateList(updatedValue);
+      return updatedValue;
     }
   };
 
@@ -65,7 +60,7 @@ export default function FilterSize() {
                     id={size}
                     name={size}
                     value={size}
-                    checked={checkValue.includes(size)}
+                    checked={params.getAll('sizes').includes(size)}
                     onChange={() => handleOnChange(size)}
                   />
                   <label htmlFor={size}>{size}</label>

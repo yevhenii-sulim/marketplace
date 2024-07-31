@@ -16,7 +16,6 @@ function FilterSex() {
   const [open, setOpen] = useState(false);
   const sex = useSelector(selectFiltersSex);
   const [params, setParams] = useSearchParams('');
-  const [checkValue, setCheckValue] = useState(params.getAll('sex'));
 
   const colors = params.getAll('colors') ?? [];
   const minPrice = params.getAll('minPrice') ?? '';
@@ -25,18 +24,14 @@ function FilterSex() {
   const sizes = params.getAll('sizes') ?? [];
 
   const handleOnChange = sex => {
-    if (checkValue.includes(sex)) {
-      setCheckValue(prev => {
-        const updatedValue = prev.filter(item => item !== sex);
-        createStateList(updatedValue);
-        return updatedValue;
-      });
+    if (params.getAll('sex').includes(sex)) {
+      const updatedValue = params.getAll('sex').filter(item => item !== sex);
+      createStateList(updatedValue);
+      return updatedValue;
     } else {
-      setCheckValue(prev => {
-        const updatedValue = [...prev, sex];
-        createStateList(updatedValue);
-        return updatedValue;
-      });
+      const updatedValue = [...params.getAll('sex'), sex];
+      createStateList(updatedValue);
+      return updatedValue;
     }
   };
 
@@ -80,7 +75,7 @@ function FilterSex() {
                 id={sex}
                 name={sex}
                 value={sex}
-                checked={checkValue.includes(sex)}
+                checked={params.getAll('sex').includes(sex)}
                 onChange={() => handleOnChange(sex)}
               />
               <SignSex htmlFor={sex}>{displaySexTranslate(sex)}</SignSex>

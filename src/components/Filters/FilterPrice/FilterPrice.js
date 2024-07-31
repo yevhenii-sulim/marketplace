@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
@@ -7,15 +6,10 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 import { selectFiltersPrice } from '../../../redux/product/selector';
 import { CountPrice, PriceSlide, SliderRange } from './FilterPrice.styled';
 import { useSearchParams } from 'react-router-dom';
-import { debounce } from 'lodash';
 
 export default function FilterPrice() {
   const [params, setParams] = useSearchParams('');
   const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
-  const [value, setValue] = useState([
-    params.getAll('minPrice'),
-    params.getAll('maxPrice'),
-  ]);
   const { width } = useWindowDimensions();
 
   const colors = params.getAll('colors') ?? [];
@@ -23,87 +17,75 @@ export default function FilterPrice() {
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
 
-  const getMaxValue = debounce(num => {
-    if (params.getAll('minPrice').length !== 0) {
+  const min =
+    +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
+      ? +params.get('minPrice')
+      : price.min;
+  const max =
+    +params.get('maxPrice') && !Number.isNaN(+params.get('maxPrice'))
+      ? +params.get('maxPrice')
+      : price.max;
+
+  const getMaxValue = num => {
+    if (!Number.isNaN(num)) {
       setParams({
         colors,
         sizes,
         sex,
-        minPrice: parseInt(...params.getAll('minPrice')),
+        minPrice: params.get('minPrice'),
         maxPrice: num,
         states,
       });
-      return;
+    } else {
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: params.get('minPrice'),
+        maxPrice: 0,
+        states,
+      });
     }
-    setParams({
-      colors,
-      sizes,
-      sex,
-      minPrice: price.min,
-      maxPrice: num,
-      states,
-    });
-  }, 1500);
+  };
 
-  const getMinValue = debounce(num => {
-    if (params.getAll('maxPrice').length !== 0) {
+  const getMinValue = num => {
+    if (!Number.isNaN(num)) {
       setParams({
         colors,
         sizes,
         sex,
         minPrice: num,
-        maxPrice: parseInt(...params.getAll('maxPrice')),
+        maxPrice: parseInt(params.get('maxPrice')),
         states,
       });
-      return;
-    }
-    setParams({
-      colors,
-      sizes,
-      sex,
-      minPrice: num,
-      maxPrice: price.max,
-      states,
-    });
-  }, 1500);
-
-  console.log(params.getAll('minPrice'), params.getAll('maxPrice'));
-
-  useEffect(() => {
-    if (
-      params.getAll('minPrice').length !== 0 &&
-      params.getAll('maxPrice').length !== 0
-    ) {
-      setValue([
-        parseInt(...params.getAll('minPrice')),
-        parseInt(...params.getAll('maxPrice')),
-      ]);
-      return;
-    }
-    setValue([price.min, price.max]);
-  }, [params, price.max, price.min]);
-
-  const handleChange = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (activeThumb === 0) {
-      setValue([Math.min(newValue[0]), value[1]]);
-      getMinValue(Math.min(newValue[0]));
     } else {
-      setValue([value[0], Math.max(newValue[1])]);
-      getMaxValue(Math.min(newValue[1]));
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: 0,
+        maxPrice: parseInt(params.get('maxPrice')),
+        states,
+      });
     }
   };
 
   const handleInputChange = event => {
     if (event.target.name === 'min') {
-      setValue([parseInt(event.target.value) || 0, value[1]]);
       getMinValue(parseInt(event.target.value));
     } else {
-      setValue([value[0], parseInt(event.target.value) || 0]);
       getMaxValue(parseInt(event.target.value));
+    }
+  };
+
+  const handleChangeSlider = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+    if (activeThumb === 0) {
+      getMinValue(Math.min(newValue[0]));
+    } else {
+      getMaxValue(Math.min(newValue[1]));
     }
   };
 
@@ -115,7 +97,7 @@ export default function FilterPrice() {
           Від
           <input
             type="text"
-            value={value[0]}
+            value={min}
             onChange={handleInputChange}
             name="min"
           />
@@ -125,7 +107,7 @@ export default function FilterPrice() {
           Дo
           <input
             type="text"
-            value={value[1]}
+            value={max}
             onChange={handleInputChange}
             name="max"
           />
@@ -135,8 +117,8 @@ export default function FilterPrice() {
       <Box sx={{ width: '100%' }}>
         <Slider
           sx={SliderRange}
-          value={value}
-          onChange={handleChange}
+          value={[min, max]}
+          onChange={handleChangeSlider}
           disableSwap
           min={price.min}
           max={price.max}

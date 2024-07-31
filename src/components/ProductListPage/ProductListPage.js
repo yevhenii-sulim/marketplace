@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import PaginationList from 'components/Pagination/PaginationList';
@@ -20,8 +19,9 @@ import {
 import { useSelector } from 'react-redux';
 import { selectCategory } from '../../redux/category/selectors';
 import Filters from './FilterList/Filters';
+import { memo } from 'react';
 
-export default function ProductListPage({
+export default memo(function ProductListPage({
   page,
   handleSort,
   valueSort,
@@ -30,6 +30,8 @@ export default function ProductListPage({
   totalItemsCount,
 }) {
   const categories = useSelector(selectCategory);
+  console.log('first');
+
   return (
     <ContainerProductPageList>
       <Navigation>
@@ -101,13 +103,4 @@ export default function ProductListPage({
       </ProductsPage>
     </ContainerProductPageList>
   );
-}
-
-ProductListPage.propTypes = {
-  page: PropTypes.number.isRequired,
-  valueSort: PropTypes.string.isRequired,
-  handleSort: PropTypes.func.isRequired,
-  sortedProduct: PropTypes.array.isRequired,
-  handlePageClick: PropTypes.func.isRequired,
-  totalItemsCount: PropTypes.number.isRequired,
-};
+});
