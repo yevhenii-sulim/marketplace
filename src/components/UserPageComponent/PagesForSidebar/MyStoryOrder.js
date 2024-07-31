@@ -13,7 +13,6 @@ import {
   viewProductButton,
   Filter,
 } from './PagesForSidebar.styled';
-import Sort from 'components/ProductListPage/Sort';
 import { useState } from 'react';
 import Search from '../Search';
 import { useNavigate } from 'react-router-dom';
@@ -22,11 +21,13 @@ import { createPortal } from 'react-dom';
 import { addCommentFromStory } from '../../../redux/product/thunk';
 import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
 import AboutProductStory from './AboutProductStory';
+import Sort from 'components/Filters/Sort/Sort';
+// import { myStory } from 'data/myStory';
 const modalEnter = document.querySelector('#modal');
+
 export default function MyStoryOrder({
   sortedProduct,
   setValueSort,
-  valueSort,
   setValue,
   value,
 }) {
@@ -35,6 +36,7 @@ export default function MyStoryOrder({
   const user = useSelector(selectMyUser);
 
   const purchasedGoods = user?.purchasedGoods ?? [];
+  // const purchasedGoods = myStory;
   const handleSort = sort => {
     setValueSort(sort);
   };
@@ -75,7 +77,11 @@ export default function MyStoryOrder({
         <>
           <Filter>
             <Search value={value} setValue={setValue} />
-            <Sort value={valueSort} handleSort={handleSort} />
+            <Sort
+              name="sort"
+              placeholder="Сортувати за"
+              handleSort={handleSort}
+            />
           </Filter>
           <WrapperStoryOrder>
             {sortedProduct.map(

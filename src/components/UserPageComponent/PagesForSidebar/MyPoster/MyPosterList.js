@@ -4,7 +4,7 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { togglePoster } from '../../../../redux/myPoster/slice';
 import PosterSvg from 'SvgComponents/PosterSVG/PosterSvg';
-import Sort from 'components/ProductListPage/Sort';
+
 import MessageSvg from 'SvgComponents/Message/MessageSvg';
 import EyeSvg from 'SvgComponents/Eye/EyeSvg';
 import {
@@ -28,12 +28,12 @@ import { useRef } from 'react';
 import { selectMyUser } from '../../../../redux/auth/selector';
 import AboutProductStory from '../AboutProductStory';
 import { Empty } from '../PagesForSidebar.styled';
-import Search from 'components/Search/Search';
+import Sort from 'components/Filters/Sort/Sort';
+import Search from '../Search/Search';
 
 export default function MyPosterList({
   sortedProduct,
   setValueSort,
-  valueSort,
   setValue,
   value,
 }) {
@@ -41,6 +41,7 @@ export default function MyPosterList({
   const user = useSelector(selectMyUser);
 
   const soldGoods = user?.soldGoods ?? [];
+
   const ref = useRef();
   function toCreatePost() {
     dispatch(togglePoster(true));
@@ -81,7 +82,11 @@ export default function MyPosterList({
         <>
           <Filter>
             <Search value={value} setValue={setValue} />
-            <Sort value={valueSort} handleSort={handleSort} />
+            <Sort
+              name="sort"
+              placeholder="Сортувати за"
+              handleSort={handleSort}
+            />
             <ToCreatePostLink>
               <Link
                 to="/user_page/my_poster"

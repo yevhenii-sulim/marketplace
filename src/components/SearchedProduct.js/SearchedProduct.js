@@ -1,7 +1,7 @@
 import React from 'react';
 import { Product, ProductsPage, TitleSort } from './SearchedProduct.styled';
-import Sort from 'components/ProductListPage/Sort';
 import SimilarProduct from 'components/Product/SimilarProduct';
+import Sort from 'components/Filters/Sort/Sort';
 
 export default function SearchedProduct({
   handleSort,
@@ -12,7 +12,7 @@ export default function SearchedProduct({
     <ProductsPage>
       <header>
         <TitleSort>Пошук</TitleSort>
-        <Sort handleSort={handleSort} valueSort={valueSort} />
+        <Sort name="sort" placeholder="Сортувати за" handleSort={handleSort} />
       </header>
       <Product>
         {sortedProduct.map(

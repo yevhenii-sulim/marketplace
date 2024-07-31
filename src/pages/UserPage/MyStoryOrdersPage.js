@@ -2,17 +2,19 @@ import MyStoryOrder from 'components/UserPageComponent/PagesForSidebar/MyStoryOr
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectMyUser } from '../../redux/auth/selector';
+// import { myStory } from 'data/myStory';
 
 export default function MyStoryOrdersPage() {
-  const [valueSort, setValueSort] = useState('new');
+  const [valueSort, setValueSort] = useState('Спочатку нові');
   const [value, setValue] = useState('');
 
   const user = useSelector(selectMyUser);
   const purchasedGoods = user?.purchasedGoods ?? [];
+  // const purchasedGoods = myStory;
 
   function sortProduct(criterion) {
     switch (criterion) {
-      case 'cheep':
+      case 'Найдешевші':
         return purchasedGoods.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(max.discountPrice) - parseInt(min.discountPrice);
@@ -21,7 +23,7 @@ export default function MyStoryOrdersPage() {
           }
         });
 
-      case 'expensive':
+      case 'Найдорожчі':
         return purchasedGoods.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(min.discountPrice) - parseInt(max.discountPrice);
@@ -36,6 +38,7 @@ export default function MyStoryOrdersPage() {
     }
   }
   const products = sortProduct(valueSort);
+
   function onSort() {
     return products.filter(({ title, number }) => {
       return (
