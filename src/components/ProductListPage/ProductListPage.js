@@ -89,6 +89,8 @@ export default memo(function ProductListPage({
         });
     }
   }
+  console.log('first');
+
   return (
     <ContainerProductPageList>
       <Navigation>

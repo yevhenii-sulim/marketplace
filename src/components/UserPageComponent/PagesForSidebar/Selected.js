@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ContainerFavorite, Empty, Link } from './PagesForSidebar.styled';
 import FavoriteSvg from 'SvgComponents/FavoriteSVG/FavoriteSvg';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import Sort from 'components/ProductListPage/Sort';
 import {
   Product,
   ProductList,
@@ -10,6 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectId, selectMyUser } from '../../../redux/auth/selector';
 import { getUser } from '../../../redux/auth/thunk';
+import Sort from 'components/Filters/Sort/Sort';
 
 export default function Selected() {
   const [valueSort, setValueSort] = useState('new');
@@ -58,7 +58,11 @@ export default function Selected() {
         )}
         {favorites.length !== 0 && (
           <ProductList>
-            <Sort value={valueSort} handleSort={handleSort} />
+            <Sort
+              name="sort"
+              placeholder="Сортувати за"
+              handleSort={handleSort}
+            />
             <Product>
               {sortedProduct.map(
                 ({
