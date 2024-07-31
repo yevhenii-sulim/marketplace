@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
@@ -7,61 +6,50 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 import { selectFiltersPrice } from '../../../redux/product/selector';
 import { CountPrice, PriceSlide, SliderRange } from './FilterPrice.styled';
 import { useSearchParams } from 'react-router-dom';
-import { debounce } from 'lodash';
-
-// function useDebounce(cb, delay) {
-//   const [debounceValue, setDebounceValue] = useState(cb);
-//   useEffect(() => {
-//     const handler = setTimeout(() => {
-//       setDebounceValue(cb);
-//     }, delay);
-
-//     return () => {
-//       clearTimeout(handler);
-//     };
-//   }, [cb, delay]);
-//   return debounceValue;
-// }
 
 export default function FilterPrice() {
   const [params, setParams] = useSearchParams('');
   const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
-  // const [value, setValue] = useState([
-  //   +params.get('minPrice'),
-  //   +params.get('maxPrice'),
-  // ]);
   const { width } = useWindowDimensions();
-  console.log(price);
 
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
 
-  const getMaxValue = debounce(num => {
-    if (Number(params.get('minPrice'))) {
+  const min =
+    +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
+      ? +params.get('minPrice')
+      : price.min;
+  const max =
+    +params.get('maxPrice') && !Number.isNaN(+params.get('maxPrice'))
+      ? +params.get('maxPrice')
+      : price.max;
+
+  const getMaxValue = num => {
+    if (!Number.isNaN(num)) {
       setParams({
         colors,
         sizes,
         sex,
-        minPrice: parseInt(params.get('minPrice')),
+        minPrice: params.get('minPrice'),
         maxPrice: num,
         states,
       });
-      return;
+    } else {
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: params.get('minPrice'),
+        maxPrice: 0,
+        states,
+      });
     }
-    setParams({
-      colors,
-      sizes,
-      sex,
-      minPrice: price.min,
-      maxPrice: num,
-      states,
-    });
-  }, 1500);
+  };
 
-  const getMinValue = debounce(num => {
-    if (Number(params.get('maxPrice'))) {
+  const getMinValue = num => {
+    if (!Number.isNaN(num)) {
       setParams({
         colors,
         sizes,
@@ -70,56 +58,34 @@ export default function FilterPrice() {
         maxPrice: parseInt(params.get('maxPrice')),
         states,
       });
-      return;
-    }
-    setParams({
-      colors,
-      sizes,
-      sex,
-      minPrice: num,
-      maxPrice: price.max,
-      states,
-    });
-  }, 1500);
-
-  // console.log(params.get('minPrice'), params.getAll('maxPrice'));
-
-  // useEffect(() => {
-  //   if (
-  //     params.getAll('minPrice').length !== 0 &&
-  //     params.getAll('maxPrice').length !== 0
-  //   ) {
-  //     setValue([
-  //       parseInt(...params.getAll('minPrice')),
-  //       parseInt(...params.getAll('maxPrice')),
-  //     ]);
-  //     return;
-  //   }
-  //   setValue([price.min, price.max]);
-  // }, [params, price.max, price.min]);
-
-  const handleChange = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-    console.log(newValue);
-
-    if (activeThumb === 0) {
-      // setValue([Math.min(newValue[0]), value[1]]);
-      Math.min(newValue[0]);
     } else {
-      // setValue([value[0], Math.max(newValue[1])]);
-      getMaxValue(Math.min(newValue[1]));
+      setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice: 0,
+        maxPrice: parseInt(params.get('maxPrice')),
+        states,
+      });
     }
   };
 
   const handleInputChange = event => {
     if (event.target.name === 'min') {
-      // setValue([parseInt(event.target.value) || 0, value[1]]);
       getMinValue(parseInt(event.target.value));
     } else {
-      // setValue([value[0], parseInt(event.target.value) || 0]);
       getMaxValue(parseInt(event.target.value));
+    }
+  };
+
+  const handleChangeSlider = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+    if (activeThumb === 0) {
+      getMinValue(Math.min(newValue[0]));
+    } else {
+      getMaxValue(Math.min(newValue[1]));
     }
   };
 
@@ -131,7 +97,7 @@ export default function FilterPrice() {
           Від
           <input
             type="text"
-            value={parseInt(params.get('minPrice') ?? price.min)}
+            value={min}
             onChange={handleInputChange}
             name="min"
           />
@@ -141,7 +107,7 @@ export default function FilterPrice() {
           Дo
           <input
             type="text"
-            value={parseInt(params.get('maxPrice') ?? price.max)}
+            value={max}
             onChange={handleInputChange}
             name="max"
           />
@@ -151,8 +117,8 @@ export default function FilterPrice() {
       <Box sx={{ width: '100%' }}>
         <Slider
           sx={SliderRange}
-          value={[+params.get('minPrice'), +params.get('maxPrice')]}
-          onChange={handleChange}
+          value={[min, max]}
+          onChange={handleChangeSlider}
           disableSwap
           min={price.min}
           max={price.max}
@@ -161,17 +127,3 @@ export default function FilterPrice() {
     </PriceSlide>
   );
 }
-
-// function useDebounce(cb, delay) {
-//   const [debounceValue, setDebounceValue] = useState(cb);
-//   useEffect(() => {
-//     const handler = setTimeout(() => {
-//       setDebounceValue(cb);
-//     }, delay);
-
-//     return () => {
-//       clearTimeout(handler);
-//     };
-//   }, [cb, delay]);
-//   return debounceValue;
-// }

@@ -3,10 +3,7 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import {
-  selectFilters,
-  selectFiltersColors,
-} from '../../../redux/product/selector';
+import { selectFiltersColors } from '../../../redux/product/selector';
 import {
   Box,
   ButtonExpand,
@@ -19,12 +16,8 @@ import {
 function FilterColor() {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
-  console.log('colors', colors);
-  const filters = useSelector(selectFilters);
-  console.log('filters', filters);
 
   const [params, setParams] = useSearchParams('');
-  const [checkValue, setCheckValue] = useState(params.getAll('colors'));
 
   const sex = params.getAll('sex') ?? [];
   const minPrice = params.get('minPrice') ?? '';
@@ -33,18 +26,16 @@ function FilterColor() {
   const sizes = params.getAll('sizes') ?? [];
 
   const handleOnChange = color => {
-    if (checkValue.includes(color)) {
-      setCheckValue(prev => {
-        const updatedValue = prev.filter(item => item !== color);
-        createColorList(updatedValue);
-        return updatedValue;
-      });
+    if (params.getAll('colors').includes(color)) {
+      const updatedValue = params
+        .getAll('colors')
+        .filter(item => item !== color);
+      createColorList(updatedValue);
+      return updatedValue;
     } else {
-      setCheckValue(prev => {
-        const updatedValue = [...prev, color];
-        createColorList(updatedValue);
-        return updatedValue;
-      });
+      const updatedValue = [...params.getAll('colors'), color];
+      createColorList(updatedValue);
+      return updatedValue;
     }
   };
 
@@ -79,7 +70,7 @@ function FilterColor() {
                     id={_id}
                     name={color}
                     value={color}
-                    checked={checkValue.includes(_id)}
+                    checked={params.getAll('colors').includes(_id)}
                     onChange={() => handleOnChange(_id)}
                   />
                   <SignColor htmlFor={_id}>

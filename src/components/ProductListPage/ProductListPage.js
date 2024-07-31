@@ -30,6 +30,7 @@ export default function ProductListPage({
   totalItemsCount,
 }) {
   const categories = useSelector(selectCategory);
+  console.log('dfsf');
   return (
     <ContainerProductPageList>
       <Navigation>
