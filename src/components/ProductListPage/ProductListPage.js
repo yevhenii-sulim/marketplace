@@ -1,9 +1,8 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import PaginationList from 'components/Pagination/PaginationList';
 
-import Sort from './Sort';
 import {
   ContainerProductPageList,
   Pagination,
@@ -20,18 +19,76 @@ import { useSelector } from 'react-redux';
 import { selectCategory } from '../../redux/category/selectors';
 import Filters from './FilterList/Filters';
 import { memo } from 'react';
+import Sort from 'components/Filters/Sort/Sort';
 
 export default memo(function ProductListPage({
   page,
-  handleSort,
-  valueSort,
   sortedProduct,
   handlePageClick,
   totalItemsCount,
 }) {
+  const [params, setParams] = useSearchParams('');
   const categories = useSelector(selectCategory);
-  console.log('first');
 
+  const colors = params.getAll('colors') ?? [];
+  const sex = params.getAll('sex') ?? [];
+  const minPrice = params.getAll('minPrice') ?? [];
+  const maxPrice = params.getAll('maxPrice') ?? [];
+  const sizes = params.getAll('sizes') ?? [];
+  const states = params.getAll('states') ?? [];
+  const sortField = params.getAll('sortField') ?? [];
+  const sortOrder = params.getAll('sortOrder') ?? [];
+
+  function handleSort(valueSort) {
+    console.log(valueSort);
+
+    switch (valueSort) {
+      case 'Спочатку нові':
+        return setParams({
+          colors,
+          sizes,
+          sex,
+          minPrice,
+          maxPrice,
+          states,
+          sortField: 'createDate',
+          sortOrder: 'desc',
+        });
+      case 'Найдешевші':
+        return setParams({
+          colors,
+          sizes,
+          sex,
+          minPrice,
+          maxPrice,
+          states,
+          sortField: 'price',
+          sortOrder: 'asc',
+        });
+      case 'Найдорожчі':
+        return setParams({
+          colors,
+          sizes,
+          sex,
+          minPrice,
+          maxPrice,
+          states,
+          sortField: 'price',
+          sortOrder: 'desc',
+        });
+      default:
+        return setParams({
+          colors,
+          sizes,
+          sex,
+          minPrice,
+          maxPrice,
+          states,
+          sortField,
+          sortOrder,
+        });
+    }
+  }
   return (
     <ContainerProductPageList>
       <Navigation>
@@ -60,7 +117,11 @@ export default memo(function ProductListPage({
           <Filters />
         </div>
         <ProductList>
-          <Sort handleSort={handleSort} valueSort={valueSort} />
+          <Sort
+            name="sort"
+            placeholder="Сортувати за:"
+            handleSort={handleSort}
+          />
           <Product>
             {sortedProduct.map(
               ({

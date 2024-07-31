@@ -22,6 +22,8 @@ export default function FilterState() {
   const minPrice = params.getAll('minPrice') ?? [];
   const maxPrice = params.getAll('maxPrice') ?? [];
   const sizes = params.getAll('sizes') ?? [];
+  const sortField = params.getAll('sortField') ?? [];
+  const sortOrder = params.getAll('sortOrder') ?? [];
 
   const handleOnChange = states => {
     if (params.getAll('states').includes(states)) {
@@ -43,6 +45,8 @@ export default function FilterState() {
       sex,
       minPrice,
       maxPrice,
+      sortField,
+      sortOrder,
       states: updatedCheckedState,
     });
   };

@@ -16,6 +16,8 @@ export default function FilterPrice() {
   const sex = params.getAll('sex') ?? [];
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
+  const sortField = params.getAll('sortField') ?? [];
+  const sortOrder = params.getAll('sortOrder') ?? [];
 
   const min =
     +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
@@ -32,18 +34,22 @@ export default function FilterPrice() {
         colors,
         sizes,
         sex,
-        minPrice: params.get('minPrice'),
+        minPrice: min,
         maxPrice: num,
         states,
+        sortField,
+        sortOrder,
       });
     } else {
       setParams({
         colors,
         sizes,
         sex,
-        minPrice: params.get('minPrice'),
+        minPrice: min,
         maxPrice: 0,
         states,
+        sortField,
+        sortOrder,
       });
     }
   };
@@ -55,8 +61,10 @@ export default function FilterPrice() {
         sizes,
         sex,
         minPrice: num,
-        maxPrice: parseInt(params.get('maxPrice')),
+        maxPrice: max,
         states,
+        sortField,
+        sortOrder,
       });
     } else {
       setParams({
@@ -64,8 +72,10 @@ export default function FilterPrice() {
         sizes,
         sex,
         minPrice: 0,
-        maxPrice: parseInt(params.get('maxPrice')),
+        maxPrice: max,
         states,
+        sortField,
+        sortOrder,
       });
     }
   };
