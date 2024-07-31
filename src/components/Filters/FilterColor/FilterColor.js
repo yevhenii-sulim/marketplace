@@ -16,7 +16,6 @@ import {
 function FilterColor() {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
-
   const [params, setParams] = useSearchParams('');
 
   const sex = params.getAll('sex') ?? [];

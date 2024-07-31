@@ -16,7 +16,6 @@ export default function FilterState() {
   const [open, setOpen] = useState(false);
   const [params, setParams] = useSearchParams('');
   const states = useSelector(selectFiltersStates);
-  const [checkValue, setCheckValue] = useState(params.getAll('states'));
 
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
@@ -25,18 +24,16 @@ export default function FilterState() {
   const sizes = params.getAll('sizes') ?? [];
 
   const handleOnChange = states => {
-    if (checkValue.includes(states)) {
-      setCheckValue(prev => {
-        const updatedValue = prev.filter(item => item !== states);
-        createStateList(updatedValue);
-        return updatedValue;
-      });
+    if (params.getAll('states').includes(states)) {
+      const updatedValue = params
+        .getAll('states')
+        .filter(item => item !== states);
+      createStateList(updatedValue);
+      return updatedValue;
     } else {
-      setCheckValue(prev => {
-        const updatedValue = [...prev, states];
-        createStateList(updatedValue);
-        return updatedValue;
-      });
+      const updatedValue = [...params.getAll('states'), states];
+      createStateList(updatedValue);
+      return updatedValue;
     }
   };
   const createStateList = updatedCheckedState => {
@@ -68,7 +65,7 @@ export default function FilterState() {
                 id={state}
                 name={state}
                 value={state}
-                checked={checkValue.includes(state)}
+                checked={params.getAll('states').includes(state)}
                 onChange={() => handleOnChange(state)}
               />
               <SignState htmlFor={state}>{state}</SignState>
