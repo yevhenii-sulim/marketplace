@@ -7,3 +7,4 @@ export const selectFiltersStates = state => state.products.filters.states;
 export const selectFiltersColors = state => state.products.filters.colors;
 export const selectTotalPages = state => state.products.totalPage;
 export const selectTotalSearch = state => state.products.search;
+export const selectPrevProductSearch = state => state.products.prevSearch;

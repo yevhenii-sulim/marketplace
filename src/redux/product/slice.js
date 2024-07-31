@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
-import { getProducts, searchProduct } from './thunk';
+import { getProducts, prevSearchProduct, searchProduct } from './thunk';
 
 const handlePending = state => {
   state.product = [];
@@ -18,6 +18,9 @@ const handleFulfilled = (state, { payload }) => {
 const handleSearchFulfilled = (state, { payload }) => {
   state.search = payload;
 };
+const handlePrevSearchFulfilled = (state, { payload }) => {
+  state.prevSearch = payload;
+};
 const handleRejected = state => {};
 
 const productSlice = createSlice({
@@ -28,7 +31,8 @@ const productSlice = createSlice({
       .addCase(getProducts.pending, handlePending)
       .addCase(getProducts.fulfilled, handleFulfilled)
       .addCase(getProducts.rejected, handleRejected)
-      .addCase(searchProduct.fulfilled, handleSearchFulfilled);
+      .addCase(searchProduct.fulfilled, handleSearchFulfilled)
+      .addCase(prevSearchProduct.fulfilled, handlePrevSearchFulfilled);
   },
 });
 
