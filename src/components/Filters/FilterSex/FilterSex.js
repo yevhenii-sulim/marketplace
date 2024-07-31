@@ -18,10 +18,12 @@ function FilterSex() {
   const [params, setParams] = useSearchParams('');
 
   const colors = params.getAll('colors') ?? [];
-  const minPrice = params.getAll('minPrice') ?? '';
-  const maxPrice = params.getAll('maxPrice') ?? '';
+  const minPrice = params.getAll('minPrice') ?? [];
+  const maxPrice = params.getAll('maxPrice') ?? [];
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
+  const sortField = params.getAll('sortField') ?? [];
+  const sortOrder = params.getAll('sortOrder') ?? [];
 
   const handleOnChange = sex => {
     if (params.getAll('sex').includes(sex)) {
@@ -43,6 +45,8 @@ function FilterSex() {
       minPrice,
       maxPrice,
       states,
+      sortField,
+      sortOrder,
     });
   };
 

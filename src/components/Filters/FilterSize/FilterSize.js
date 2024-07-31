@@ -13,9 +13,11 @@ export default function FilterSize() {
 
   const colors = params.getAll('colors') ?? [];
   const sex = params.getAll('sex') ?? [];
-  const minPrice = params.getAll('minPrice') ?? '';
-  const maxPrice = params.getAll('maxPrice') ?? '';
+  const minPrice = params.getAll('minPrice') ?? [];
+  const maxPrice = params.getAll('maxPrice') ?? [];
   const states = params.getAll('states') ?? [];
+  const sortField = params.getAll('sortField') ?? [];
+  const sortOrder = params.getAll('sortOrder') ?? [];
 
   const handleOnChange = size => {
     if (params.getAll('sizes').includes(size)) {
@@ -37,6 +39,8 @@ export default function FilterSize() {
       minPrice,
       maxPrice,
       states,
+      sortField,
+      sortOrder,
     });
   };
 
