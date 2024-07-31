@@ -12,6 +12,7 @@ export const initialState = {
     totalPage: 0,
     filters: {},
     search: [],
+    prevSearch: [],
   },
   productPage: {
     product: {},
