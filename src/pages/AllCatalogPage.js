@@ -16,8 +16,6 @@ export default function AllCatalogPage() {
   const category = useSelector(selectCategory);
   const totalItemsCount = useSelector(selectTotalPages);
 
-  const limit = 12;
-
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -40,7 +38,7 @@ export default function AllCatalogPage() {
 
   useEffect(() => {
     dispatch(getProducts(location.pathname.split('/').slice(-1)[0]));
-  }, [dispatch, page]);
+  }, [dispatch, location.pathname]);
 
   const handleSort = sort => {
     setValueSort(sort);
