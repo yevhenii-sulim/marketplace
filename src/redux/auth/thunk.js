@@ -51,7 +51,7 @@ export const logIn = createAsyncThunk('user/enterUser', async user => {
     token.set(data.backend_tokens.token);
     if (!data.user.isActivated) {
       Notiflix.Notify.failure(
-        'Ваша пошта не підтверджена. Перейдіть на пошту для підтвердження адреси'
+        'Ваша електронна адреса не підтверджена. Будь ласка, перевірте свою пошту та підтвердьте електронну адресу для продовження'
       );
       return;
     }
