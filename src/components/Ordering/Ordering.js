@@ -68,6 +68,7 @@ function onSubmitOrder(data, values) {
     },
     { values }
   );
+  console.log(values);
 }
 
 function handleOrder(data, values) {
@@ -85,6 +86,7 @@ function handleOrder(data, values) {
 }
 
 function defineWordByCount(product) {
+  if (!product) return;
   if (product === 1) return 'товар';
   if (
     String(product).slice(-2, String(product).length - 1) !== '1' &&
