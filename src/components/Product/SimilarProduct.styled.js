@@ -3,32 +3,35 @@ import styled from 'styled-components';
 export const SimilarProductItem = styled.li`
   position: relative;
   width: 232px;
+  height: 440px;
   display: flex;
   gap: 12px;
   flex-direction: column;
-  padding: 8px;
+  justify-content: stretch;
+  padding: 8px 8px 20px 8px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   a {
     width: 100%;
     display: flex;
-    gap: 12px;
+
     flex-direction: column;
   }
 `;
 
 export const SimilarProductDatePublic = styled.p`
+  display: flex;
+  padding: 0 0 2px 0;
   color: ${({ theme }) => theme.color.colorTextPublicProduct};
+  margin: auto 0 0 0;
 `;
 export const SimilarProductItemIcon = styled.div`
   position: relative;
-  height: auto;
   width: 100%;
   box-shadow: inset 0 0 1px black;
   padding: 2px;
   img {
     width: 100%;
-    height: auto;
     display: block;
     object-fit: cover;
   }
@@ -46,8 +49,16 @@ export const SimilarProductItemIcon = styled.div`
 export const Price = styled.div``;
 export const SimilarProductItemName = styled.h4`
   font-size: 18px;
-  line-height: 1.4;
+  font-weight: 400;
+  margin-top: 12px;
+  height: 42px;
   color: ${({ theme }) => theme.color.colorMainText};
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 `;
 export const SimilarProductItemPrice = styled.div`
   display: flex;

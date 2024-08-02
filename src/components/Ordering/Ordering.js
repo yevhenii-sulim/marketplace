@@ -68,7 +68,9 @@ function onSubmitOrder(data, values) {
     },
     { values }
   );
+
   console.log(orderData);
+  console.log(values);
 }
 
 function handleOrder(data, values) {
@@ -87,6 +89,19 @@ function handleOrder(data, values) {
   return prices;
 }
 
+function defineWordByCount(product) {
+  if (!product) return;
+  if (product === 1) return 'товар';
+  if (
+    String(product).slice(-2, String(product).length - 1) !== '1' &&
+    (String(product).slice(-1) === '2' ||
+      String(product).slice(-1) === '3' ||
+      String(product).slice(-1) === '4')
+  )
+    return 'товари';
+  return 'товарів';
+}
+
 export default function Ordering() {
 
   const basket = useSelector(selectBasket);
@@ -99,10 +114,7 @@ export default function Ordering() {
     dispatch(deleteProduct(id));
   };
 
-  const handleSubmit = (values) => {
-    console.log('Values: ');
-    console.log(values);
-
+  const handleSubmit = values => {
     dispatch(deleteBasket());
     
     dispatch(setOrder({
@@ -119,7 +131,7 @@ export default function Ordering() {
 
   handleOrder(basket);
 
-  console.log(userData);
+  console.log('userData', userData);
 
   return (
     <>

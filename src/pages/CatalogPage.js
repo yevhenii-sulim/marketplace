@@ -7,7 +7,6 @@ import { selectProduct, selectTotalPages } from '../redux/product/selector';
 import { selectCategory } from '../redux/category/selectors';
 
 export default function CatalogPage() {
-  const [valueSort, setValueSort] = useState('new');
   const [page, setPage] = useState(1);
 
   const products = useSelector(selectProduct);
@@ -27,10 +26,6 @@ export default function CatalogPage() {
     return () => clearTimeout(timer);
   }, [dispatch, location.pathname, location.search, page]);
 
-  const handleSort = sort => {
-    setValueSort(sort);
-  };
-
   const handlePageClick = page => {
     setPage(page);
     window.scrollTo({
@@ -44,10 +39,8 @@ export default function CatalogPage() {
       <ProductListPage
         page={page}
         category={category}
-        valueSort={valueSort}
         sortedProduct={products}
         totalItemsCount={totalItemsCount}
-        handleSort={handleSort}
         handlePageClick={handlePageClick}
       />
     </>

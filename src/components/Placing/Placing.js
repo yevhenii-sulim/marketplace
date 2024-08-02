@@ -20,7 +20,6 @@ export default function Placing({
   touched,
   pay,
 }) {
-  
   return (
     <div>
       <Box className="contacts">
@@ -225,7 +224,6 @@ export default function Placing({
       </Box>
       <Box className="pay">
         <TitleBox>Оплата</TitleBox>
-        {console.log(pay)}
         <WrapperForm className="wrapper-pay">
           <Field
             id="after-pay"

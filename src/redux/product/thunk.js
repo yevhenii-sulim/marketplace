@@ -59,6 +59,19 @@ export const searchProduct = createAsyncThunk(
     }
   }
 );
+export const prevSearchProduct = createAsyncThunk(
+  'products/prevSearchProduct',
+  async title => {
+    try {
+      const { data } = await axios.get(`/products/search?title=${title}`);
+      console.log('search', data);
+
+      return data;
+    } catch (error) {
+      console.log('errorSearch', error);
+    }
+  }
+);
 
 export const addFavoriteProduct = createAsyncThunk(
   'products/addFavoriteProduct',

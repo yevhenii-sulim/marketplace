@@ -1,23 +1,37 @@
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import React from 'react';
+import React, { useState } from 'react';
 import { FormSearch } from './Search.styled';
-import { useDispatch } from 'react-redux';
-import { searchProduct } from '../../redux/product/thunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { prevSearchProduct, searchProduct } from '../../redux/product/thunk';
 import { useNavigate } from 'react-router-dom';
+import { selectPrevProductSearch } from '../../redux/product/selector';
 
 export default function Search() {
+  const [value, setValue] = useState('');
+  const searchedProduct = useSelector(selectPrevProductSearch);
+  console.log(searchedProduct);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   function onSubmit(evt) {
     evt.preventDefault();
     navigate('/search');
-    console.log(evt.target.elements.search.value);
-
-    dispatch(searchProduct(evt.target.elements.search.value));
+    dispatch(searchProduct(value));
+    setValue('');
+  }
+  function handleChange(e) {
+    setValue(e.target.value);
+    dispatch(prevSearchProduct(e.target.value));
   }
   return (
     <FormSearch onSubmit={onSubmit}>
-      <input type="text" name="search" placeholder="Я шукаю..." />
+      <input
+        type="text"
+        name="search"
+        placeholder="Я шукаю..."
+        value={value}
+        onChange={handleChange}
+      />
       <button type="submit">
         <SearchTwoToneIcon />
         Пошук

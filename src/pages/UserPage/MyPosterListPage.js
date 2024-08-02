@@ -11,7 +11,7 @@ export default function MyPosterListPage() {
   const purchasedGoods = user?.purchasedGoods ?? [];
   function sortProduct(criterion) {
     switch (criterion) {
-      case 'cheep':
+      case 'Найдешевші':
         return purchasedGoods.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(max.discountPrice) - parseInt(min.discountPrice);
@@ -20,7 +20,7 @@ export default function MyPosterListPage() {
           }
         });
 
-      case 'expensive':
+      case 'Найдорожчі':
         return purchasedGoods.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(min?.discountPrice) - parseInt(max?.discountPrice);

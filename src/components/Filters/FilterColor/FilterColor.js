@@ -17,27 +17,26 @@ function FilterColor() {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
   const [params, setParams] = useSearchParams('');
-  const [checkValue, setCheckValue] = useState(params.getAll('colors'));
 
   const sex = params.getAll('sex') ?? [];
   const minPrice = params.getAll('minPrice') ?? [];
   const maxPrice = params.getAll('maxPrice') ?? [];
   const states = params.getAll('states') ?? [];
   const sizes = params.getAll('sizes') ?? [];
+  const sortField = params.getAll('sortField') ?? [];
+  const sortOrder = params.getAll('sortOrder') ?? [];
 
-  const handleOnChange = colors => {
-    if (checkValue.includes(colors)) {
-      setCheckValue(prev => {
-        const updatedValue = prev.filter(item => item !== colors);
-        createColorList(updatedValue);
-        return updatedValue;
-      });
+  const handleOnChange = color => {
+    if (params.getAll('colors').includes(color)) {
+      const updatedValue = params
+        .getAll('colors')
+        .filter(item => item !== color);
+      createColorList(updatedValue);
+      return updatedValue;
     } else {
-      setCheckValue(prev => {
-        const updatedValue = [...prev, colors];
-        createColorList(updatedValue);
-        return updatedValue;
-      });
+      const updatedValue = [...params.getAll('colors'), color];
+      createColorList(updatedValue);
+      return updatedValue;
     }
   };
 
@@ -49,6 +48,8 @@ function FilterColor() {
       minPrice,
       maxPrice,
       states,
+      sortField,
+      sortOrder,
     });
   };
 
@@ -72,7 +73,7 @@ function FilterColor() {
                     id={_id}
                     name={color}
                     value={color}
-                    checked={checkValue.includes(_id)}
+                    checked={params.getAll('colors').includes(_id)}
                     onChange={() => handleOnChange(_id)}
                   />
                   <SignColor htmlFor={_id}>

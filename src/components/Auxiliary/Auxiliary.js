@@ -20,10 +20,10 @@ export default memo(function Auxiliary() {
 
   return (
     <AuxiliaryContainer>
-      <NavLink to="user_page/selected" onClick={onOpen} state={'Обране'}>
+      <NavLink to="user_page/selected" onClick={onOpen}>
         <FavoriteBorderIcon />
       </NavLink>
-      <NavLink to="my_order" onClick={onOpen} state={'Мої замовлення'}>
+      <NavLink to="my_order">
         {basket.length !== 0 && (
           <TotalProduct>
             {basket.reduce((cum, item) => {
@@ -34,7 +34,7 @@ export default memo(function Auxiliary() {
         )}
         <ShoppingCartOutlinedIcon />
       </NavLink>
-      <NavLink to="user_page/profile" onClick={onOpen} state={'Профіль'}>
+      <NavLink to="user_page/profile" onClick={onOpen}>
         <PersonOutlineIcon />
       </NavLink>
     </AuxiliaryContainer>
