@@ -6,18 +6,12 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 import { selectFiltersPrice } from '../../../redux/product/selector';
 import { CountPrice, PriceSlide, SliderRange } from './FilterPrice.styled';
 import { useSearchParams } from 'react-router-dom';
+import { setMaxPriceFilterParam, setMinPriceFilterParam } from './setParams';
 
 export default function FilterPrice() {
   const [params, setParams] = useSearchParams('');
   const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
   const { width } = useWindowDimensions();
-
-  const colors = params.getAll('colors') ?? [];
-  const sex = params.getAll('sex') ?? [];
-  const states = params.getAll('states') ?? [];
-  const sizes = params.getAll('sizes') ?? [];
-  const sortField = params.getAll('sortField') ?? [];
-  const sortOrder = params.getAll('sortOrder') ?? [];
 
   const min =
     +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
@@ -29,55 +23,11 @@ export default function FilterPrice() {
       : price.max;
 
   const getMaxValue = num => {
-    if (!Number.isNaN(num)) {
-      setParams({
-        colors,
-        sizes,
-        sex,
-        minPrice: min,
-        maxPrice: num,
-        states,
-        sortField,
-        sortOrder,
-      });
-    } else {
-      setParams({
-        colors,
-        sizes,
-        sex,
-        minPrice: min,
-        maxPrice: 0,
-        states,
-        sortField,
-        sortOrder,
-      });
-    }
+    setMaxPriceFilterParam(setParams, num, min, params);
   };
 
   const getMinValue = num => {
-    if (!Number.isNaN(num)) {
-      setParams({
-        colors,
-        sizes,
-        sex,
-        minPrice: num,
-        maxPrice: max,
-        states,
-        sortField,
-        sortOrder,
-      });
-    } else {
-      setParams({
-        colors,
-        sizes,
-        sex,
-        minPrice: 0,
-        maxPrice: max,
-        states,
-        sortField,
-        sortOrder,
-      });
-    }
+    setMinPriceFilterParam(setParams, num, max, params);
   };
 
   const handleInputChange = event => {

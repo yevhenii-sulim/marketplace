@@ -20,6 +20,7 @@ import { selectCategory } from '../../redux/category/selectors';
 import Filters from './FilterList/Filters';
 import { memo } from 'react';
 import Sort from 'components/Filters/Sort/Sort';
+import { selectIsLoading } from '../../redux/product/selector';
 
 export default memo(function ProductListPage({
   page,
@@ -38,10 +39,8 @@ export default memo(function ProductListPage({
   const states = params.getAll('states') ?? [];
   const sortField = params.getAll('sortField') ?? [];
   const sortOrder = params.getAll('sortOrder') ?? [];
-
+  const isLoading = useSelector(selectIsLoading);
   function handleSort(valueSort) {
-    console.log(valueSort);
-
     switch (valueSort) {
       case 'Спочатку нові':
         return setParams({
@@ -89,7 +88,6 @@ export default memo(function ProductListPage({
         });
     }
   }
-  console.log('first');
 
   return (
     <ContainerProductPageList>
@@ -124,6 +122,39 @@ export default memo(function ProductListPage({
             placeholder="Сортувати за:"
             handleSort={handleSort}
           />
+          {isLoading && (
+            <Product>
+              {sortedProduct.map(
+                ({
+                  title,
+                  _id,
+                  img,
+                  price,
+                  discountPrice,
+                  createDate,
+                  discount,
+                  parameters,
+                  category,
+                  subCategory,
+                }) => (
+                  <SimilarProduct
+                    key={_id}
+                    id={_id}
+                    title={title}
+                    price={price}
+                    img={img}
+                    discountPrice={discountPrice}
+                    discount={discount}
+                    createDate={createDate}
+                    eco={parameters.eco}
+                    isUkraine={parameters.isUkraine}
+                    category={category}
+                    subCategory={subCategory}
+                  />
+                )
+              )}
+            </Product>
+          )}
           <Product>
             {sortedProduct.map(
               ({

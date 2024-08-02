@@ -3,13 +3,15 @@ import { initialState } from '../initialState';
 import { getProducts, prevSearchProduct, searchProduct } from './thunk';
 
 const handlePending = state => {
-  state.product = [];
+  state.isLoading = false;
   state.totalPage = 0;
+};
+const handlePendingSearchPrev = state => {
+  state.isLoadingSearch = false;
 };
 
 const handleFulfilled = (state, { payload }) => {
-  console.log(payload);
-
+  state.isLoading = true;
   state.product = payload.products;
   state.filters = payload.filters;
   state.totalPage = payload.totalPages;
@@ -20,6 +22,7 @@ const handleSearchFulfilled = (state, { payload }) => {
 };
 const handlePrevSearchFulfilled = (state, { payload }) => {
   state.prevSearch = payload;
+  state.isLoadingSearch = true;
 };
 const handleRejected = state => {};
 
@@ -32,7 +35,8 @@ const productSlice = createSlice({
       .addCase(getProducts.fulfilled, handleFulfilled)
       .addCase(getProducts.rejected, handleRejected)
       .addCase(searchProduct.fulfilled, handleSearchFulfilled)
-      .addCase(prevSearchProduct.fulfilled, handlePrevSearchFulfilled);
+      .addCase(prevSearchProduct.fulfilled, handlePrevSearchFulfilled)
+      .addCase(prevSearchProduct.pending, handlePendingSearchPrev);
   },
 });
 
