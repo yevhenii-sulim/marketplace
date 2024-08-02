@@ -40,7 +40,7 @@ export const signUp = createAsyncThunk(
     } catch (error) {
       console.log(error.response.data.errors);
       error.response.data.errors.forEach(({ field, message }) =>
-        Notiflix.Notify.failure(`${field}:${message[0]}`)
+        Notiflix.Notify.failure(`Введене ім'я містить недопустимі символи. Будь ласка, використовуйте лише літери латиниці або кирилиці.`)
       );
     }
   }

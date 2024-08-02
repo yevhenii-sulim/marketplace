@@ -1,26 +1,35 @@
 import { FormContainer, InputColumn, RedactContainer, RedactButton, CancelRedactingButton } from "./ProfilePage.styled";
 import PhoneNumberFormField from "./PhoneNumberFormField";
 import { useSelector } from "react-redux";
-import { selectMyUser } from "../../../redux/auth/selector";
+import { selectMyUser, selectToken } from "../../../redux/auth/selector";
 import { useState } from "react";
 import InputField from "./InputField";
+import axios from "axios";
 
 export default function ContactForm({ redacting, onSaveChanges, onCancelChanges, onStartRedacting }) {
 
   const user = useSelector(selectMyUser);
+  const token = useSelector(selectToken);
 
   const [contactDataChanges, setContactDataChanges] = useState({
     email: '',
     phoneNumber: ''
   });
 
-  const saveChanges = () => {
-    /*
-    setContactData({
+  const saveChanges = async () => {
+    const changes = {
       email: contactDataChanges?.email || user?.email,
-      phoneNumber: contactDataChanges?.phoneNumber || user?.phoneNumber
+      numberPhone: contactDataChanges?.phoneNumber || user?.numberPhone
+    };
+
+    const { data } = await axios.post('https://internet-shop-api-production.up.railway.app/user', changes, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`
+      }
     });
-    */
+
+    console.log(data);
   }
 
   const cancelChanges = () => {
@@ -38,7 +47,7 @@ export default function ContactForm({ redacting, onSaveChanges, onCancelChanges,
             label={'Електрона адреса'}
             placeholder={'Введіть електрону адресу'}
             required={true}
-            value={user?.email}
+            value={contactDataChanges?.email || user?.email}
             onChange={event => setContactDataChanges({ ...contactDataChanges, email: event.target.value })}
             disabled={!redacting}
           />
@@ -47,7 +56,7 @@ export default function ContactForm({ redacting, onSaveChanges, onCancelChanges,
           <PhoneNumberFormField 
             label={'Телефон'}
             placeholder={'+38 --- --- -- --'}
-            value={user?.numberPhone}
+            value={contactDataChanges?.phoneNumber || user?.numberPhone}
             onChange={event => setContactDataChanges({ ...contactDataChanges, phoneNumber: event.target.value })}
             disabled={!redacting}
           />

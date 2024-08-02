@@ -3,19 +3,31 @@ import { ProfilePictureSelectField, ProfilePictureSelectInput } from './ProfileP
 import DefaultProfilePicture from './DefaultProfilePicture';
 import { useState } from 'react';
 
-export default function ProfilePictureSelect({ disabled, onChange }) {
+export default function ProfilePictureSelect({ disabled, value, onChange }) {
 
-  const [profilePictureSrc, setProfilePictureSrc] = useState('');
+  const [profilePicturePreview, setProfilePicturePreview] = useState('');
 
   const handleChange = event => {
     const file = event.target.files?.[0];
-    setProfilePictureSrc(file ? URL.createObjectURL(file) : '');
+
+    if (!file) return;
+
+    const imgSrc = URL.createObjectURL(file);
+
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+
+    reader.onloadend = () => {
+      console.log('Changed pfp');
+      onChange(reader.result);
+      setProfilePicturePreview(imgSrc);
+    }
   }
 
   return (
     <ProfilePictureSelectField>
-      {profilePictureSrc ? (
-        <img src={profilePictureSrc} alt='' />
+      {value ? (
+        <img src={profilePicturePreview || value} alt='' />
       ) : (
         <DefaultProfilePicture />
       )}
@@ -28,7 +40,6 @@ export default function ProfilePictureSelect({ disabled, onChange }) {
           Фото профілю
           <PencilSvg />
           <input type="file" alt='' onChange={event => {
-            onChange(event);
             handleChange(event)
           }} />
         </ProfilePictureSelectInput>

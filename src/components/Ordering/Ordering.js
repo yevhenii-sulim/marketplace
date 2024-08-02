@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { selectBasket } from '../../../../redux/basket/select';
-import { deleteBasket, deleteProduct } from '../../../../redux/basket/slice';
+import { selectBasket } from '../../redux/basket/select';
+import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
 import {
   About,
   Actives,
@@ -26,9 +26,9 @@ import Placing from '../Placing/Placing';
 import { Formik } from 'formik';
 import signupSchema from '../Placing/validationSchema';
 import { useNavigate } from 'react-router-dom';
-import { setOrder } from '../../../../redux/orderData/slice';
-import { selectMyUser } from '../../../../redux/auth/selector';
-import { addNewProduct } from '../../../../data/myStory';
+import { setOrder } from '../../redux/orderData/slice';
+import { selectMyUser } from '../../redux/auth/selector';
+import { addNewProduct } from '../../data/myStory';
 
 const prices = {
   total: 0,
