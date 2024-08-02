@@ -16,7 +16,13 @@ const MenuProps = {
   },
 };
 
-export default function Sort({ name, placeholder, handleSort }) {
+export default function Sort({
+  name,
+  placeholder,
+  handleSort,
+  setParams,
+  params,
+}) {
   const [personName, setPersonName] = useState('');
 
   const handleChangeComponent = event => {
@@ -25,7 +31,7 @@ export default function Sort({ name, placeholder, handleSort }) {
     } = event;
 
     setPersonName(value);
-    handleSort(value);
+    handleSort(value, setParams, params);
   };
 
   return (
