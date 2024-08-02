@@ -63,6 +63,7 @@ function SimilarProduct({
     <>
       <SimilarProductItem>
         {children}
+
         <Link
           onClick={scrollToByClick}
           to={

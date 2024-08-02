@@ -20,6 +20,7 @@ export const initialState = {
     product: {},
     isLoading: true,
     createCommentLoading: false,
+    commentsExpanded: new Set(),
   },
   user: {
     lastName: '',

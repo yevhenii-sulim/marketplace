@@ -15,7 +15,7 @@ export const PersonalDataContainer = styled.div`
 
 export const FormContainer = styled.div`
   display: flex;
-  justify-content: ${props => props.justifycontent || 'start'};
+  justify-content: ${props => props.$justifycontent || 'start'};
   gap: 74px;
 `;
 
@@ -214,6 +214,11 @@ export const PasswordToggleButton = styled.div`
 export const NewPasswordField = styled.div`
   display: flex;
   gap: 72px;
+`;
+
+export const PasswordConfirmationError = styled.p`
+  color: #ff0000;
+  font: 600 18px 'Nunito Sans';
 `;
 
 export const SaveNewPasswordButton = styled.button`
