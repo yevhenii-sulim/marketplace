@@ -1,18 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
-import { FormField, NewPasswordField } from './ProfilePage.styled';
+import { useCallback, useEffect } from 'react';
+import { FormField, NewPasswordField, PasswordConfirmationError } from './ProfilePage.styled';
 import CorrectSvg from 'SvgComponents/CorrectSVG/CorrectSvg';
 import FalseSvg from 'SvgComponents/FalseSVG/FalseSvg';
 
-export default function NewPasswordInput() {
-  const [newPassword, setNewPassword] = useState('');
-  const [newPasswordStatus, setNewPasswordStatus] = useState({
-    correctLength: false,
-    correctChars: false,
-    hasSpecialSymbol: false,
-    hasCapitalLetter: false,
-    hasNumber: false
-  });
-
+export default function NewPasswordInput({ 
+  newPassword, 
+  setNewPassword, 
+  confirmNewPassword, 
+  setConfirmNewPassword,
+  newPasswordStatus,
+  setNewPasswordStatus,
+  passwordConfirmationError
+}) {
+  
   const validateNewPassword = useCallback(() => {
     setNewPasswordStatus({
       correctLength: newPassword.length >= 6 && newPassword.length <= 20,
@@ -21,7 +21,7 @@ export default function NewPasswordInput() {
       hasCapitalLetter: /[A-Z]/.test(newPassword),
       hasNumber: /[0-9]/.test(newPassword)
     });
-  }, [newPassword]);
+  }, [newPassword, setNewPasswordStatus]);
 
   useEffect(() => {
     validateNewPassword();
@@ -57,7 +57,12 @@ export default function NewPasswordInput() {
       </FormField>
       <FormField required={true}>
         <label>Підтвердити новий пароль</label>
-        <input type='text' />
+        <input type='text' value={confirmNewPassword} onChange={event => setConfirmNewPassword(event.target.value)} />
+        {passwordConfirmationError ? (
+          <PasswordConfirmationError>
+            Паролі не співпадають
+          </PasswordConfirmationError>
+        ) : null}
       </FormField>
     </NewPasswordField>
   );

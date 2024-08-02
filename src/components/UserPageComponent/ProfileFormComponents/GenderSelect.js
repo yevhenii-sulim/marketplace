@@ -1,16 +1,13 @@
-import { useState } from "react";
 import { FormField } from "./ProfilePage.styled";
 
-export default function GenderSelect({ disabled, onChange }) {
-
-  const [gender, setGender] = useState('');
+export default function GenderSelect({ disabled, value, onChange }) {
 
   return (
     <FormField required={false}>
       {disabled ? (
         <>
           <p>Стать</p>
-          <span>{gender || '-'}</span>
+          <span>{value && (value === 'male' ? 'Чоловік' : 'Жінка')}</span>
         </>
       ) : (
         <>
@@ -19,8 +16,8 @@ export default function GenderSelect({ disabled, onChange }) {
           </label>
           <select onChange={event => {
             onChange(event);
-            setGender(event.target.value);
           }}>
+            <option disabled>Оберіть стать</option>
             <option>Чоловік</option>
             <option>Жінка</option>
           </select>
