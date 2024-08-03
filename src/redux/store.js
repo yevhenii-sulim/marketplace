@@ -22,7 +22,9 @@ import { modalViewAddedProductReducer } from './modalViewProduct/slice';
 import { slicePosterReducer } from './myPoster/slice';
 import { sliceOrderReducer } from './myOrder/slice';
 import { orderDataReducer } from './orderData/slice';
+import { enableMapSet } from 'immer';
 
+enableMapSet();
 const persistUser = {
   key: 'token',
   storage,
@@ -56,6 +58,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: ['productPage.commentsExpanded'],
       },
     }),
 });

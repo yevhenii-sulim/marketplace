@@ -104,7 +104,7 @@ section {
 
 body {
   line-height: 1;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -144,3 +144,47 @@ a {
   color: #000000;
 }
 
+.slide-enter {
+  max-height: 0;
+  transform: translateY(-10px);
+  opacity: 0;
+}
+.slide-enter-active {
+  max-height: 100px;
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 500ms ease-in-out;
+}
+.slide-exit {
+  max-height: 100px;
+  transform: translateY(0);
+  opacity: 1;
+}
+.slide-exit-active {
+  max-height: 0;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+}
+
+.arrow-icon.up {
+  cursor: pointer;
+  transition: all 0.35s ease-in-out;
+}
+
+.arrow-icon.down {
+  transform: rotate(180deg);
+  transition: all 0.35s ease-in-out;
+}
+.count_comments.show {
+  visibility: visible;
+  opacity: 1;
+  margin-right: 4px;
+  transition: all 0.5 ease-in-out;
+}
+.count_comments.hidden {
+  visibility: hidden;
+  opacity: 0;
+  margin-right: 4px;
+  transition: all 0.5 ease-in-out;
+}

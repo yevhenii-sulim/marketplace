@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import CommentItem from './CommentItem/CommentItem';
 import CreateCommentField from './CreateCommentField/CreateCommentField';
 import { useSelector } from 'react-redux';
-import { productForProductPage } from '../../../redux/productPage/selectors';
+import {
+  commentsExpandedSelector,
+  productForProductPage,
+} from '../../../redux/productPage/selectors';
 
 function Comments() {
   const product = useSelector(productForProductPage);
   const [commentId, setCommentId] = useState('');
-
+  const commentsExpanded = useSelector(commentsExpandedSelector);
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
     const currentDate = new Date();
@@ -80,23 +83,26 @@ function Comments() {
 
       {processedComments.length > 0 &&
         processedComments.map((el, index) => (
-          <CommentItem
-            key={index}
-            name={el.author.firstName}
-            body={el.body}
-            like={el.like}
-            dislike={el.dislike}
-            id={el._id}
-            daysPassed={el.daysPassed}
-            comments={el.comments}
-            isNested={false}
-            product={el.product}
-            commentId={commentId}
-            parentIndex={index}
-            parent={el._id}
-            rating={el.rating}
-            setCommentId={setCommentId}
-          />
+          <>
+            <CommentItem
+              key={index}
+              name={el.author.firstName}
+              body={el.body}
+              like={el.like}
+              dislike={el.dislike}
+              id={el._id}
+              daysPassed={el.daysPassed}
+              comments={el.comments}
+              isNested={false}
+              product={el.product}
+              commentId={commentId}
+              parentIndex={index}
+              parent={el._id}
+              rating={el.rating}
+              setCommentId={setCommentId}
+              commentsExpanded={commentsExpanded}
+            />
+          </>
         ))}
     </>
   );

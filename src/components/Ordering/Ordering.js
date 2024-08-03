@@ -31,6 +31,7 @@ import {
   addProductButton,
 } from './Ordering.styled';
 
+
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app/';
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 
@@ -40,6 +41,7 @@ const prices = {
   totalDiscount: 0,
   totalCount: 0,
 };
+
 
 function onSubmitOrder(data, values, user) {
   const orderData = data.map(({ count, id }) => {
@@ -59,6 +61,7 @@ function onSubmitOrder(data, values, user) {
 }
 
 function handleOrder(data) {
+
   prices.total = 0;
   prices.totalPrice = 0;
   prices.totalDiscount = 0;
@@ -72,6 +75,7 @@ function handleOrder(data) {
   return prices;
 }
 
+/*
 function defineWordByCount(product) {
   if (!product) return;
   if (product === 1) return 'товар';
@@ -84,8 +88,10 @@ function defineWordByCount(product) {
     return 'товари';
   return 'товарів';
 }
+  */
 
 export default function Ordering() {
+
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -98,13 +104,11 @@ export default function Ordering() {
 
   const handleSubmit = values => {
     dispatch(deleteBasket());
-
-    dispatch(
-      setOrder({
-        ...values,
-        products: [...basket],
-      })
-    );
+    
+    dispatch(setOrder({
+      ...values,
+      products: [...basket]
+    }));
 
     basket.forEach(item => {
       addNewProduct(item.id, item, values);
@@ -137,8 +141,10 @@ export default function Ordering() {
           validateOnBlur={false}
           validationSchema={signupSchema}
           onSubmit={values => {
+
             onSubmitOrder(basket, values, userData);
-            handleSubmit();
+            handleSubmit(values);
+
           }}
         >
           {({
@@ -169,6 +175,7 @@ export default function Ordering() {
                   typeof values.town === 'string' ? values.town : values.town[0]
                 }
               />
+              {console.log(values)}
               <WrapperListOrder>
                 <ul>
                   {basket.map(
@@ -196,14 +203,14 @@ export default function Ordering() {
                               {discount ? (
                                 <>
                                   <p className="price-discount">
-                                    {price} &#8372;
+                                    {price}&#8372;
                                   </p>
                                   <p className="discount">
-                                    {discountPrice} &#8372;
+                                    {discountPrice}&#8372;
                                   </p>
                                 </>
                               ) : (
-                                <p className="price">{price} &#8372;</p>
+                                <p className="price">{price}&#8372;</p>
                               )}
                             </Price>
                             <DeleteAdd className="basket">
@@ -220,28 +227,28 @@ export default function Ordering() {
                       </List>
                     )
                   )}
+                  <div>{console.log(errors)}</div>
                 </ul>
                 <WrapperBuy>
                   <TotalPrice>
                     <Sum>
                       <span className="info">
-                        {prices.totalCount}{' '}
-                        {defineWordByCount(prices.totalCount)} на суму
+                        {prices.totalCount} товар на суму
                       </span>
                       <span className="info-price">
-                        {prices.totalPrice} &#8372;
+                        {prices.totalPrice}&#8372;
                       </span>
                     </Sum>
                     <Discount>
                       <span className="info">Знижка</span>
                       <span className="info-price info-price_discount">
-                        {prices.totalDiscount} &#8372;
+                        {prices.totalDiscount}&#8372;
                       </span>
                     </Discount>
-
+                    
                     <Total>
                       <span>Загальна сума</span>
-                      <span>{prices.total} &#8372;</span>
+                      <span>{prices.total}&#8372;</span>
                     </Total>
                     <WrapperButton>
                       <Button type="submit" sx={addProductButton}>
