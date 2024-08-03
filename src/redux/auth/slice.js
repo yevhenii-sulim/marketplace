@@ -18,7 +18,7 @@ const handleLogInFulfilled = (state, { payload }) => {
   state.error = null;
   state.user = payload.user;
   state.isLoading = false;
-  state.token = payload.backend_tokens.token;
+  state.token = payload.tokens.access_token;
   state.isActivated = payload.user.isActivated;
   state._id = payload.user._id;
 };
