@@ -11,7 +11,6 @@ import HomePage from 'pages/HomePage';
 import SubCategories from 'pages/SubCategories';
 import RestorePassword from 'pages/RestorePassword';
 import ErrorPage from 'pages/ErrorPage';
-import MyOrdersPage from 'pages/UserPage/MyOrdersPage';
 import MyPosterPage from 'pages/UserPage/MyPosterPage';
 import NotificationPages from 'pages/UserPage/NotificationPages';
 import SelectedPage from 'pages/UserPage/SelectedPage';
@@ -28,6 +27,7 @@ import PostConfirmedPage from 'pages/PostConfirmedPage';
 import OrderingPage from 'pages/UserPage/OrderingPage';
 import OrderConfirmed from 'pages/UserPage/OrderConfirmed';
 import SearchedProductPage from 'pages/SearchedProductPage';
+import BasketPage from 'pages/UserPage/BasketPage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -68,7 +68,7 @@ export default function App() {
           <Route path=":category" element={<SubCategories />} />
           <Route path=":category/:subcategories" element={<CatalogPage />} />
           <Route path="ordering" element={<OrderingPage />} />
-          <Route path="my_order" element={<MyOrdersPage />} />
+          <Route path="my_order" element={<BasketPage />} />
           <Route path="purchase" element={<OrderConfirmed />} />
           <Route
             path=":category/:subcategories/:product_page"

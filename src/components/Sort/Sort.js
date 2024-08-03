@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
-import { useEffect, useState } from 'react';
 import { Container, SortText, styleSelect } from './Sort.styled';
 
 const ITEM_HEIGHT = 48;
@@ -16,13 +16,7 @@ const MenuProps = {
   },
 };
 
-export default function Sort({
-  name,
-  placeholder,
-  handleSort,
-  setParams,
-  params,
-}) {
+export default function Sort({ name, placeholder, handleSort }) {
   const [personName, setPersonName] = useState('');
 
   const handleChangeComponent = event => {
@@ -31,29 +25,9 @@ export default function Sort({
     } = event;
 
     setPersonName(value);
-    handleSort(value, setParams, params);
+    handleSort(value);
   };
-  useEffect(() => {
-    if (params.getAll('sortField')[0] === 'createDate') {
-      setPersonName('Спочатку нові');
-      return;
-    }
-    if (
-      params.getAll('sortField')[0] === 'price' &&
-      params.getAll('sortOrder')[0] === 'asc'
-    ) {
-      setPersonName('Найдешевші');
-      return;
-    }
-    if (
-      params.getAll('sortField')[0] === 'price' &&
-      params.getAll('sortOrder')[0] === 'desc'
-    ) {
-      setPersonName('Найдорожчі');
-      return;
-    }
-    setPersonName('');
-  }, [params]);
+
   return (
     <Container>
       <SortText>Сортування:</SortText>

@@ -12,3 +12,4 @@ export const selectPrevProductSearchLoading = state =>
   state.products.prevSearch;
 export const selectIsLoading = state => state.products.isLoading;
 export const selectIsLoadingSearching = state => state.products.isLoadingSearch;
+export const selectLoader = state => state.products.loader;

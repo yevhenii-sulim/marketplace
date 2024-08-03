@@ -1,6 +1,6 @@
 export const initialState = {
   poster: false,
-  ordering: false,
+  openModalBasket: false,
   viewAddProduct: false,
   basket: [],
   openCatalog: false,
@@ -15,6 +15,7 @@ export const initialState = {
     prevSearch: [],
     isLoading: true,
     isLoadingSearch: false,
+    loader: false,
   },
   productPage: {
     product: {},

@@ -1,4 +1,4 @@
-import React from 'react';
+import { createPortal } from 'react-dom';
 import {
   IconWrapper,
   OrderSectionContainer,
@@ -15,13 +15,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productForProductPage } from '../../../redux/productPage/selectors';
 import { addProduct } from '../../../redux/basket/slice';
 import { selectBasket } from '../../../redux/basket/select';
+import { toggleOrdering } from '../../../redux/myOrder/slice';
+import BasketModal from 'components/BasketModal/BasketModal';
+import { selectOrder } from '../../../redux/myOrder/selector';
+
+const modalEnter = document.querySelector('#modal');
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
+  const isOpen = useSelector(selectOrder);
   const basket = useSelector(selectBasket);
-
   const dispatch = useDispatch();
+
   function sendIdProduct() {
+    dispatch(toggleOrdering(true));
+    console.log(isOpen);
     for (const item of basket) {
       if (item.id === product._id) return;
     }
@@ -64,6 +72,7 @@ function OrderSection() {
         <ButtonBlock sendIdProduct={sendIdProduct} />
         <DatePublication />
       </OrderSectionContainer>
+      {isOpen && createPortal(<BasketModal />, modalEnter)}
     </OrderSectionWrapper>
   );
 }

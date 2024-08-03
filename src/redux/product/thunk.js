@@ -49,6 +49,8 @@ export const getProducts = createAsyncThunk(
 export const searchProduct = createAsyncThunk(
   'products/searchProduct',
   async title => {
+    if (!title) return;
+
     try {
       const { data } = await axios.get(`/products/search?title=${title}`);
       console.log('search', data);
@@ -61,9 +63,13 @@ export const searchProduct = createAsyncThunk(
 );
 export const prevSearchProduct = createAsyncThunk(
   'products/prevSearchProduct',
-  async title => {
+  async (title, { signal }) => {
+    console.log('searshThunk', title);
+    if (!title) return;
     try {
-      const { data } = await axios.get(`/products/search?title=${title}`);
+      const { data } = await axios.get(`/products/search?title=${title}`, {
+        signal,
+      });
       console.log('search', data);
 
       return data;

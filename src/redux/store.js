@@ -31,14 +31,7 @@ const persistUser = {
 const persistAllStore = {
   key: 'category',
   storage,
-  whitelist: [
-    'category',
-    'product',
-    'basket',
-    'poster',
-    'subCategory',
-    'ordering',
-  ],
+  whitelist: ['category', 'product', 'basket', 'poster', 'subCategory'],
 };
 
 const rootReducer = combineReducers({
@@ -48,7 +41,7 @@ const rootReducer = combineReducers({
   modalCatalog: modalCatalogReducer,
   modalForm: modalFormReducer,
   poster: slicePosterReducer,
-  ordering: sliceOrderReducer,
+  openModalBasket: sliceOrderReducer,
   category: categoryReducer,
   users: persistReducer(persistUser, userAuthReducer),
   basket: reducerBasket,
