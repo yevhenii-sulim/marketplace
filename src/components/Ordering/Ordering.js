@@ -89,6 +89,7 @@ function handleOrder(data, values) {
   return prices;
 }
 
+/*
 function defineWordByCount(product) {
   if (!product) return;
   if (product === 1) return 'товар';
@@ -101,6 +102,7 @@ function defineWordByCount(product) {
     return 'товари';
   return 'товарів';
 }
+  */
 
 export default function Ordering() {
 
