@@ -1,1 +1,1 @@
-export const selectOrder = state => state.ordering;
+export const selectOrder = state => state.openModalBasket;

@@ -21,6 +21,7 @@ import Filters from './FilterList/Filters';
 import { memo } from 'react';
 import Sort from 'components/Filters/Sort/Sort';
 import { selectIsLoading } from '../../redux/product/selector';
+import { handleSort } from './handleSort';
 
 export default memo(function ProductListPage({
   page,
@@ -30,64 +31,7 @@ export default memo(function ProductListPage({
 }) {
   const [params, setParams] = useSearchParams('');
   const categories = useSelector(selectCategory);
-
-  const colors = params.getAll('colors') ?? [];
-  const sex = params.getAll('sex') ?? [];
-  const minPrice = params.getAll('minPrice') ?? [];
-  const maxPrice = params.getAll('maxPrice') ?? [];
-  const sizes = params.getAll('sizes') ?? [];
-  const states = params.getAll('states') ?? [];
-  const sortField = params.getAll('sortField') ?? [];
-  const sortOrder = params.getAll('sortOrder') ?? [];
   const isLoading = useSelector(selectIsLoading);
-  function handleSort(valueSort) {
-    switch (valueSort) {
-      case 'Спочатку нові':
-        return setParams({
-          colors,
-          sizes,
-          sex,
-          minPrice,
-          maxPrice,
-          states,
-          sortField: 'createDate',
-          sortOrder: 'desc',
-        });
-      case 'Найдешевші':
-        return setParams({
-          colors,
-          sizes,
-          sex,
-          minPrice,
-          maxPrice,
-          states,
-          sortField: 'price',
-          sortOrder: 'asc',
-        });
-      case 'Найдорожчі':
-        return setParams({
-          colors,
-          sizes,
-          sex,
-          minPrice,
-          maxPrice,
-          states,
-          sortField: 'price',
-          sortOrder: 'desc',
-        });
-      default:
-        return setParams({
-          colors,
-          sizes,
-          sex,
-          minPrice,
-          maxPrice,
-          states,
-          sortField,
-          sortOrder,
-        });
-    }
-  }
 
   return (
     <ContainerProductPageList>
@@ -121,6 +65,8 @@ export default memo(function ProductListPage({
             name="sort"
             placeholder="Сортувати за:"
             handleSort={handleSort}
+            setParams={setParams}
+            params={params}
           />
           {isLoading && (
             <Product>

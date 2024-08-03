@@ -29,9 +29,6 @@ export default function UserPageSidebar() {
 
   return (
     <>
-      {/* <SidebarListComponent nameList="Мій кошик" path={'my_order'}>
-        <ShoppingCartOutlinedIcon />
-      </SidebarListComponent> */}
       <SidebarListComponent
         nameList="Історія замовлень"
         path={'my_story_order'}

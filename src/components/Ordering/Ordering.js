@@ -1,8 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { Formik } from 'formik';
+import { Button } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { selectBasket } from '../../redux/basket/select';
 import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
+import { setOrder } from '../../redux/orderData/slice';
+import { selectMyUser } from '../../redux/auth/selector';
+import { addNewProduct } from '../../data/myStory';
+import signupSchema from 'components/Placing/validationSchema';
+import Placing from 'components/Placing/Placing';
 import {
   About,
   Actives,
@@ -22,14 +30,7 @@ import {
   WrapperProduct,
   addProductButton,
 } from './Ordering.styled';
-import { Button } from '@mui/material';
-import Placing from '../Placing/Placing';
-import { Formik } from 'formik';
-import signupSchema from '../Placing/validationSchema';
-import { useNavigate } from 'react-router-dom';
-import { setOrder } from '../../redux/orderData/slice';
-import { selectMyUser } from '../../redux/auth/selector';
-import { addNewProduct } from '../../data/myStory';
+
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app/';
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';

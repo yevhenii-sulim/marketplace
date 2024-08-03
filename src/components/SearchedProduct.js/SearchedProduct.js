@@ -1,13 +1,9 @@
 import React from 'react';
 import { Product, ProductsPage, TitleSort } from './SearchedProduct.styled';
 import SimilarProduct from 'components/Product/SimilarProduct';
-import Sort from 'components/Filters/Sort/Sort';
+import Sort from 'components/Sort/Sort';
 
-export default function SearchedProduct({
-  handleSort,
-  valueSort,
-  sortedProduct,
-}) {
+export default function SearchedProduct({ handleSort, sortedProduct }) {
   return (
     <ProductsPage>
       <header>

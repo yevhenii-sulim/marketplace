@@ -2,26 +2,6 @@ import styled from 'styled-components';
 import { Link as Location } from 'react-router-dom';
 import { theme } from 'utils/theme';
 
-export const WrapperOrder = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 300px;
-  gap: 32px;
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 1.44;
-  & .visibility-hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
-  }
-`;
 export const Filter = styled.div`
   display: flex;
   justify-content: space-between;
@@ -95,9 +75,6 @@ export const About = styled.div`
   justify-content: center;
   gap: 4px;
   width: 200px;
-  &.basket {
-    margin-right: auto;
-  }
 `;
 export const Title = styled.h2`
   font-size: 16px;
@@ -107,11 +84,11 @@ export const Title = styled.h2`
     margin-right: auto;
   }
 `;
-export const Actives = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
+// export const Actives = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// `;
 export const Price = styled.div`
   font-family: Jost;
   font-size: 22px;
@@ -143,9 +120,6 @@ export const DeleteAdd = styled.div`
     flex-direction: column;
     gap: 32px;
     justify-content: center;
-  }
-  &.basket button {
-    background-color: transparent;
   }
 `;
 export const TotalPrice = styled.div`
@@ -346,7 +320,7 @@ export const Count = styled.div`
   display: flex;
   gap: 14px;
   align-items: center;
-  .count {
+  /* .count {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -355,7 +329,7 @@ export const Count = styled.div`
     width: 16px;
     height: 16px;
     background-color: transparent;
-  }
+  } */
 `;
 
 export const NumberOrder = styled.span`

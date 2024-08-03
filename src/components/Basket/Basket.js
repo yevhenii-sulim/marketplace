@@ -1,22 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
-import { selectBasket } from '../../../redux/basket/select';
-import { changeCount, deleteProduct } from '../../../redux/basket/slice';
-import { useNavigate } from 'react-router-dom';
-import { selectCategory } from '../../../redux/category/selectors';
-import { toggleOrdering } from '../../../redux/myOrder/slice';
-import { selectMyUser } from '../../../redux/auth/selector';
+import DeleteSvg from 'SvgComponents/DeleteSvg/DeleteSvg';
+import { selectBasket } from '../../redux/basket/select';
+import { selectCategory } from '../../redux/category/selectors';
+import { selectMyUser } from '../../redux/auth/selector';
+import { changeCount, deleteProduct } from '../../redux/basket/slice';
 import {
   addFavoriteProduct,
   removeFavoriteProduct,
-} from '../../../redux/product/thunk';
+} from '../../redux/product/thunk';
+import { theme } from 'utils/theme';
 import {
   About,
   Actives,
+  addProductButton,
   Count,
   DeleteAdd,
   Discount,
@@ -29,14 +32,12 @@ import {
   Title,
   Total,
   TotalPrice,
+  viewProductButton,
   WrapperButton,
   WrapperBuy,
   WrapperOrder,
   WrapperProduct,
-  addProductButton,
-  viewProductButton,
-} from './PagesForSidebar.styled';
-import { theme } from 'utils/theme';
+} from './Basket.styled';
 
 function defineWordByCount(product) {
   if (product === 1) return 'товар';
@@ -52,16 +53,16 @@ function defineWordByCount(product) {
   return 'товарів';
 }
 
-export default function MyOrders() {
+export default function Basket() {
   const categories = useSelector(selectCategory);
   const basket = useSelector(selectBasket);
   const user = useSelector(selectMyUser);
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   let total = 0;
   let totalPrice = 0;
   let totalDiscount = 0;
   let totalCount = 0;
-  const navigation = useNavigate();
 
   function comeBackAtShopping() {
     navigation(`/${categories.category.en}/${categories.subCategory.en}`);
@@ -81,7 +82,6 @@ export default function MyOrders() {
 
   const makeOrder = () => {
     navigation('/ordering');
-    dispatch(toggleOrdering(true));
   };
 
   function toggleFavorite(id) {
@@ -115,7 +115,7 @@ export default function MyOrders() {
                       <Image>
                         <img height="114" src={img} alt={title} />
                       </Image>
-                      <About className="basket">
+                      <About>
                         <Title>{title}</Title>
                         <Count>
                           <button
@@ -125,7 +125,7 @@ export default function MyOrders() {
                               removeCount({ id, increment: -1 }, count)
                             }
                           >
-                            &#8722;
+                            <RemoveIcon />
                           </button>
                           <span>{count}</span>
                           <button
@@ -133,7 +133,7 @@ export default function MyOrders() {
                             type="button"
                             onClick={() => addCount({ id, increment: 1 })}
                           >
-                            &#43;
+                            <AddIcon />
                           </button>
                         </Count>
                       </About>
@@ -161,7 +161,7 @@ export default function MyOrders() {
                                 sx={{ color: theme.color.bgNumberBasket }}
                               />
                             ) : (
-                              <FavoriteBorderIcon />
+                              <FavoriteBorderIcon sx={{ color: '#727272' }} />
                             )}
                           </button>
                           <button
@@ -169,7 +169,7 @@ export default function MyOrders() {
                             className="delete"
                             onClick={() => deleteFromBasket(id)}
                           >
-                            <DeleteOutlineIcon />
+                            <DeleteSvg />
                           </button>
                         </DeleteAdd>
                       </Actives>
@@ -198,12 +198,12 @@ export default function MyOrders() {
                 <span>Загальна сума</span>
                 <span>{total} &#8372;</span>
               </Total>
-              <WrapperButton>
-                <Button type="button" onClick={makeOrder} sx={addProductButton}>
-                  Оформити замовлення
-                </Button>
-              </WrapperButton>
             </TotalPrice>
+            <WrapperButton>
+              <Button type="button" onClick={makeOrder} sx={addProductButton}>
+                Оформити замовлення
+              </Button>
+            </WrapperButton>
           </WrapperBuy>
           <Button
             type="button"

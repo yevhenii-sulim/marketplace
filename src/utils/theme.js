@@ -41,5 +41,6 @@ export const theme = {
     borderRegister: '#43C550',
     borderSearch: '#646464',
     borderSize: '#575757',
+    borderBasketList: '#D0D0D0',
   },
 };

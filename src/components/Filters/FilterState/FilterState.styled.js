@@ -5,7 +5,7 @@ export const Container = styled.li`
     display: none;
   }
   [type='checkbox']:checked + label:before {
-    background-color: red;
+    color: ${({ theme }) => theme.color.borderRegister};
   }
   h3 {
     position: relative;
@@ -41,7 +41,12 @@ export const SignState = styled.label`
     margin-bottom: 15px;
   }
   &::before {
-    content: '';
+    content: '✓';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: transparent;
+    font-weight: 600;
     position: absolute;
     top: 50%;
     left: 0;
