@@ -1,12 +1,20 @@
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { togglePoster } from '../../../../redux/myPoster/slice';
+import { selectMyUser } from '../../../../redux/auth/selector';
 import PosterSvg from 'SvgComponents/PosterSVG/PosterSvg';
-
 import MessageSvg from 'SvgComponents/Message/MessageSvg';
 import EyeSvg from 'SvgComponents/Eye/EyeSvg';
+import DeleteSvg from 'SvgComponents/Delete/DeleteSvg';
+import DeactivateSvg from 'SvgComponents/Deactivate/DeactivateSvg';
+import EditSvg from 'SvgComponents/Edit/EditSvg';
+import Sort from 'components/Filters/Sort/Sort';
+import Search from '../Search/Search';
+import AboutProductStory from '../AboutProductStory';
+import { Empty } from '../PagesForSidebar.styled';
 import {
   ActiveProduct,
   FeedBack,
@@ -21,15 +29,6 @@ import {
   WrapperBuy,
   WrapperPoster,
 } from './MyPoster.styled';
-import DeleteSvg from 'SvgComponents/Delete/DeleteSvg';
-import DeactivateSvg from 'SvgComponents/Deactivate/DeactivateSvg';
-import EditSvg from 'SvgComponents/Edit/EditSvg';
-import { useRef } from 'react';
-import { selectMyUser } from '../../../../redux/auth/selector';
-import AboutProductStory from '../AboutProductStory';
-import { Empty } from '../PagesForSidebar.styled';
-import Sort from 'components/Filters/Sort/Sort';
-import Search from '../Search/Search';
 
 export default function MyPosterList({
   sortedProduct,

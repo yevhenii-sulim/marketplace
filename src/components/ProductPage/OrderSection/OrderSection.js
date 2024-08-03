@@ -18,8 +18,9 @@ import { selectBasket } from '../../../redux/basket/select';
 import { toggleOrdering } from '../../../redux/myOrder/slice';
 import BasketModal from 'components/BasketModal/BasketModal';
 import { selectOrder } from '../../../redux/myOrder/selector';
-
+const body = document.querySelector('body');
 const modalEnter = document.querySelector('#modal');
+const widthScroll = window.innerWidth - body.offsetWidth;
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
@@ -29,6 +30,7 @@ function OrderSection() {
 
   function sendIdProduct() {
     dispatch(toggleOrdering(true));
+    body.style.paddingLeft = `${widthScroll}px`;
     console.log(isOpen);
     for (const item of basket) {
       if (item.id === product._id) return;

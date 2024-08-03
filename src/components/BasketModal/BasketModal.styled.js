@@ -27,6 +27,7 @@ export const Backdrop = styled.div`
   height: 100%;
   background: ${({ theme }) => theme.color.bgBackdrop};
   z-index: 10;
+  overflow-y: auto;
 `;
 export const Empty = styled.div`
   position: relative;
@@ -95,7 +96,16 @@ export const Total = styled.div`
   width: 100%;
   margin-bottom: 32px;
 `;
-
+export const TitleSection = styled.h1`
+  position: absolute;
+  left: 40px;
+  top: 24px;
+  font-family: Jost;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.5; /* 150% */
+  letter-spacing: -0.32px;
+`;
 export const Image = styled.div`
   display: flex;
   justify-content: center;
@@ -234,7 +244,7 @@ export const WrapperOrder = styled.div`
   margin-top: 32px;
   padding-left: 40px;
   padding-right: 40px;
-  padding-top: 24px;
+  padding-top: 80px;
   padding-bottom: 24px;
   margin: 100px auto;
   & .visibility-hidden {
