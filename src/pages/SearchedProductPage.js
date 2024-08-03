@@ -28,6 +28,7 @@ export default function SearchedProductPage() {
     }
   }
   const sortedProduct = sortingProduct();
+
   return (
     <SearchedProduct
       handleSort={handleSort}

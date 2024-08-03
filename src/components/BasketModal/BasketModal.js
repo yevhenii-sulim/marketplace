@@ -30,6 +30,7 @@ import {
   Price,
   Sum,
   Title,
+  TitleSection,
   Total,
   TotalPrice,
   WrapperButton,
@@ -39,6 +40,7 @@ import {
 } from './BasketModal.styled';
 import DeleteSvg from 'SvgComponents/DeleteSvg/DeleteSvg';
 import { useEffect } from 'react';
+const body = document.querySelector('body');
 
 function defineWordByCount(product) {
   if (product === 1) return 'товар';
@@ -73,6 +75,7 @@ export default function BasketModal() {
 
   function onClose() {
     dispatch(toggleOrdering(false));
+    body.style.paddingLeft = `0px`;
   }
 
   useEffect(() => {
@@ -110,112 +113,120 @@ export default function BasketModal() {
     <Backdrop onClick={oncloseByClickOutside}>
       {basket.length === 0 ? (
         <Empty>
-          <IconButton sx={cssButtonClose} onClick={onCloseWithButton}>
-            <CloseIcon className="close" />
-          </IconButton>
-          <ShoppingCart />
-          <p>Зробіть ваше переше замовлення</p>
-          <Link to="/" onClick={continueShopping}>
-            Перейти до товарів
-          </Link>
+          <TitleSection>Мій кошик</TitleSection>
+          <>
+            <IconButton sx={cssButtonClose} onClick={onCloseWithButton}>
+              <CloseIcon className="close" />
+            </IconButton>
+            <ShoppingCart />
+            <p>Зробіть ваше переше замовлення</p>
+            <Link to="/" onClick={continueShopping}>
+              Перейти до товарів
+            </Link>
+          </>
         </Empty>
       ) : (
-        <WrapperOrder>
-          <IconButton sx={cssButtonClose} onClick={onCloseWithButton}>
-            <CloseIcon className="close" />
-          </IconButton>
-          <ul>
-            {basket.map(
-              ({ id, title, price, img, discount, discountPrice, count }) => {
-                total += discount ? discountPrice * count : price * count;
-                totalPrice += price * count;
-                totalDiscount += discount && (price - discountPrice) * count;
-                totalCount += count;
-                return (
-                  <List key={id}>
-                    <WrapperProduct>
-                      <Image>
-                        <img height="114" src={img} alt={title} />
-                      </Image>
-                      <About>
-                        <Title>{title}</Title>
-                        <Price>
-                          {discount ? (
-                            <>
-                              <p className="price-discount">{price} &#8372;</p>
-                              <p className="discount">
-                                {discountPrice} &#8372;
-                              </p>
-                            </>
-                          ) : (
-                            <p className="price">{price} &#8372;</p>
-                          )}
-                        </Price>
-                      </About>
-                      <Actives>
-                        <button
-                          type="button"
-                          className="favorite"
-                          onClick={() => toggleFavorite(id)}
-                        >
-                          {user?.favorites.some(({ _id }) => id === _id) ? (
-                            <FavoriteIcon
-                              sx={{ color: theme.color.bgNumberBasket }}
-                            />
-                          ) : (
-                            <FavoriteBorderIcon sx={{ color: '#727272' }} />
-                          )}
-                        </button>
-                        <button
-                          type="button"
-                          className="delete"
-                          onClick={() => deleteFromBasket(id)}
-                        >
-                          <DeleteSvg />
-                        </button>
-                      </Actives>
-                    </WrapperProduct>
-                  </List>
-                );
-              }
-            )}
-          </ul>
-          <WrapperBuy>
-            <TotalPrice>
-              <Sum>
-                <span className="info">
-                  {totalCount} {defineWordByCount(totalCount)} на суму
-                </span>
-                <span className="info-price">{totalPrice} &#8372;</span>
-              </Sum>
-              <Discount>
-                <span className="info">Знижка</span>
-                <span className="info-price info-price_discount">
-                  {totalDiscount} &#8372;
-                </span>
-              </Discount>
+        <>
+          <WrapperOrder>
+            <TitleSection>Мій кошик</TitleSection>
+            <IconButton sx={cssButtonClose} onClick={onCloseWithButton}>
+              <CloseIcon className="close" />
+            </IconButton>
+            <ul>
+              {basket.map(
+                ({ id, title, price, img, discount, discountPrice, count }) => {
+                  total += discount ? discountPrice * count : price * count;
+                  totalPrice += price * count;
+                  totalDiscount += discount && (price - discountPrice) * count;
+                  totalCount += count;
+                  return (
+                    <List key={id}>
+                      <WrapperProduct>
+                        <Image>
+                          <img height="114" src={img} alt={title} />
+                        </Image>
+                        <About>
+                          <Title>{title}</Title>
+                          <Price>
+                            {discount ? (
+                              <>
+                                <p className="price-discount">
+                                  {price} &#8372;
+                                </p>
+                                <p className="discount">
+                                  {discountPrice} &#8372;
+                                </p>
+                              </>
+                            ) : (
+                              <p className="price">{price} &#8372;</p>
+                            )}
+                          </Price>
+                        </About>
+                        <Actives>
+                          <button
+                            type="button"
+                            className="favorite"
+                            onClick={() => toggleFavorite(id)}
+                          >
+                            {user?.favorites.some(({ _id }) => id === _id) ? (
+                              <FavoriteIcon
+                                sx={{ color: theme.color.bgNumberBasket }}
+                              />
+                            ) : (
+                              <FavoriteBorderIcon sx={{ color: '#727272' }} />
+                            )}
+                          </button>
+                          <button
+                            type="button"
+                            className="delete"
+                            onClick={() => deleteFromBasket(id)}
+                          >
+                            <DeleteSvg />
+                          </button>
+                        </Actives>
+                      </WrapperProduct>
+                    </List>
+                  );
+                }
+              )}
+            </ul>
+            <WrapperBuy>
+              <TotalPrice>
+                <Sum>
+                  <span className="info">
+                    {totalCount} {defineWordByCount(totalCount)} на суму
+                  </span>
+                  <span className="info-price">{totalPrice} &#8372;</span>
+                </Sum>
+                <Discount>
+                  <span className="info">Знижка</span>
+                  <span className="info-price info-price_discount">
+                    {totalDiscount} &#8372;
+                  </span>
+                </Discount>
 
-              <Total>
-                <span>Загальна сума</span>
-                <span>{total} &#8372;</span>
-              </Total>
-            </TotalPrice>
-          </WrapperBuy>
-          <WrapperButton>
-            <Button
-              type="button"
-              sx={continueShoppingButton}
-              onClick={continueShopping}
-            >
-              Продовжити покупки
-            </Button>
-          </WrapperButton>
-          <WrapperButton>
-            <Button type="button" onClick={makeOrder} sx={makeShoppingButton}>
-              Оформити замовлення
-            </Button>
-          </WrapperButton>
-        </WrapperOrder>
+                <Total>
+                  <span>Загальна сума</span>
+                  <span>{total} &#8372;</span>
+                </Total>
+              </TotalPrice>
+            </WrapperBuy>
+            <WrapperButton>
+              <Button
+                type="button"
+                sx={continueShoppingButton}
+                onClick={continueShopping}
+              >
+                Продовжити покупки
+              </Button>
+            </WrapperButton>
+            <WrapperButton>
+              <Button type="button" onClick={makeOrder} sx={makeShoppingButton}>
+                Оформити замовлення
+              </Button>
+            </WrapperButton>
+          </WrapperOrder>
+        </>
       )}
     </Backdrop>
   );
