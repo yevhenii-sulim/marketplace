@@ -117,3 +117,5 @@ export const CommentsExpandedButton = styled.button`
   background-color: transparent;
   justify-content: space-between;
 `;
+
+export const AllCommentsContainer = styled.div``;

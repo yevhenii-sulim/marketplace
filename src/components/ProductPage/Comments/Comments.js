@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CommentItem from './CommentItem/CommentItem';
 import CreateCommentField from './CreateCommentField/CreateCommentField';
 import { useSelector } from 'react-redux';
@@ -6,11 +6,17 @@ import {
   commentsExpandedSelector,
   productForProductPage,
 } from '../../../redux/productPage/selectors';
+import { AllCommentsContainer } from './CommentItem/CommentItem.styled';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import '../../../index.css';
 
 function Comments() {
   const product = useSelector(productForProductPage);
   const [commentId, setCommentId] = useState('');
   const commentsExpanded = useSelector(commentsExpandedSelector);
+  const [page, setPage] = useState(1);
+  const [scrollLevel, setScrollLevel] = useState(0);
+  const [flagStartComments, setFlagStartComments] = useState(true);
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
     const currentDate = new Date();
@@ -77,33 +83,65 @@ function Comments() {
   };
 
   const processedComments = processComments(product.comments || []);
+  const handlerScroll = useCallback(() => {
+    const scrollPosition =
+      window.innerHeight + document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+
+    if (scrollPosition > 2000 && flagStartComments) {
+      setFlagStartComments(false);
+      setScrollLevel(scrollPosition);
+    }
+
+    if (
+      scrollPosition > 2000 &&
+      scrollPosition + 250 > scrollLevel &&
+      !flagStartComments
+    ) {
+      setPage(prev => prev + 1);
+      setScrollLevel(scrollHeight);
+    }
+  }, [flagStartComments, scrollLevel]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handlerScroll);
+    return () => {
+      window.removeEventListener('scroll', handlerScroll);
+    };
+  }, [handlerScroll]);
+
   return (
     <>
       <CreateCommentField productId={product._id} />
-
-      {processedComments.length > 0 &&
-        processedComments.map((el, index) => (
-          <>
-            <CommentItem
-              key={index}
-              name={el.author.firstName}
-              body={el.body}
-              like={el.like}
-              dislike={el.dislike}
-              id={el._id}
-              daysPassed={el.daysPassed}
-              comments={el.comments}
-              isNested={false}
-              product={el.product}
-              commentId={commentId}
-              parentIndex={index}
-              parent={el._id}
-              rating={el.rating}
-              setCommentId={setCommentId}
-              commentsExpanded={commentsExpanded}
-            />
-          </>
-        ))}
+      <AllCommentsContainer>
+        <TransitionGroup component={null}>
+          {processedComments.length > 0 &&
+            processedComments.slice(0, page * 4).map((el, index) => (
+              <CSSTransition key={el._id} timeout={500} classNames="fade">
+                <div>
+                  <CommentItem
+                    key={index}
+                    name={el.author.firstName}
+                    body={el.body}
+                    like={el.like}
+                    dislike={el.dislike}
+                    id={el._id}
+                    daysPassed={el.daysPassed}
+                    comments={el.comments}
+                    isNested={false}
+                    product={el.product}
+                    commentId={commentId}
+                    parentIndex={index}
+                    parent={el._id}
+                    rating={el.rating}
+                    setCommentId={setCommentId}
+                    commentsExpanded={commentsExpanded}
+                  />
+                </div>
+              </CSSTransition>
+            ))}
+        </TransitionGroup>
+      </AllCommentsContainer>
     </>
   );
 }

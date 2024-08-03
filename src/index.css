@@ -188,3 +188,29 @@ a {
   margin-right: 4px;
   transition: all 0.5 ease-in-out;
 }
+
+.fade-enter {
+  max-height: 0;
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.fade-enter-active {
+  max-height: 100px;
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 500ms ease-in-out;
+}
+
+.fade-exit {
+  max-height: 100px;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade-exit-active {
+  max-height: 0;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+}
