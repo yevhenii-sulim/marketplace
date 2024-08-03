@@ -13,6 +13,8 @@ export const initialState = {
     filters: {},
     search: [],
     prevSearch: [],
+    isLoading: true,
+    isLoadingSearch: false,
   },
   productPage: {
     product: {},

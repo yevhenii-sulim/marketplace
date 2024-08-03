@@ -15,7 +15,6 @@ export default function ChoosePostOffice({
 }) {
   const [postOffice, setPostOffice] = useState([]);
   const [personName, setPersonName] = useState('');
-  console.log('dataPost', new Date().getSeconds());
   useEffect(() => {
     setPersonName('');
     async function fetchDataPost() {
@@ -31,16 +30,15 @@ export default function ChoosePostOffice({
             },
           }),
         });
+
         const { data } = await result.json();
-
-        console.log('dataPost', data);
-
         setPostOffice(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
     }
-
+    if (!town) return;
     fetchDataPost();
   }, [town]);
 
@@ -52,7 +50,6 @@ export default function ChoosePostOffice({
     setSubmitting(false);
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
-
   return (
     <>
       {
@@ -84,17 +81,18 @@ export default function ChoosePostOffice({
                 return selected.join(', ');
               }}
             >
-              {postOffice
-                .filter(({ Description }) =>
-                  `${kindOfSection}`
-                    .toLowerCase()
-                    .includes(Description.split(' ')[0].toLowerCase())
-                )
-                .map(({ Description, SiteKey }) => (
-                  <MenuItem key={SiteKey} value={Description}>
-                    {Description}
-                  </MenuItem>
-                ))}
+              {town &&
+                postOffice
+                  .filter(({ Description }) =>
+                    `${kindOfSection}`
+                      .toLowerCase()
+                      .includes(Description.split(' ')[0].toLowerCase())
+                  )
+                  .map(({ Description, SiteKey }) => (
+                    <MenuItem key={SiteKey} value={Description}>
+                      {Description}
+                    </MenuItem>
+                  ))}
             </Select>
           </FormControl>
         </div>

@@ -11,8 +11,10 @@ export const FormSearch = styled.form`
     background-color: ${({ theme }) => theme.color.bgProduct};
     border: none;
     outline: none;
+    font-size: 16px;
+    line-height: 26px;
     &:placeholder {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.44;
       color: ${({ theme }) => theme.color.borderSearch};
     }

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { selectBasket } from '../../redux/basket/select';
 import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
@@ -30,6 +31,9 @@ import { setOrder } from '../../redux/orderData/slice';
 import { selectMyUser } from '../../redux/auth/selector';
 import { addNewProduct } from '../../data/myStory';
 
+axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app/';
+axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+
 const prices = {
   total: 0,
   totalPrice: 0,
@@ -37,44 +41,25 @@ const prices = {
   totalCount: 0,
 };
 
-function onSubmitOrder(data, values) {
-  const orderData = data.map(
-    ({ count, discount, discountPrice, price, title }) => {
-      return {
-        title: `назва: ${title}`,
-        count: `кількість: ${count}шт;`,
-        price: `ціна за: ${count}шт: ${price * count}грн;`,
-        priceForOne: `ціна за 1шт. без знижки: ${price}грн;`,
-        priceForOneWithDiscount: `ціна за 1шт. зі знижкою: ${
-          discount ? discountPrice + 'грн' : 'без знижки'
-        };`,
-        discountForOne: `знижка за 1шт: ${
-          discount ? price - discountPrice : 0
-        }грн;`,
-        discountAll: `загальна знижка: ${
-          discount ? (price - discountPrice) * count : 0
-        }грн;`,
-      };
-    }
-  );
 
-  orderData.push(
-    {
-      toPay: `до сплати: ${prices.total}грн;`,
-      sumWithoutDiscount: `сума без знижки: ${prices.totalPrice}грн;`,
-      discountAll: `знижка: ${
-        prices.totalDiscount ? prices.totalDiscount + 'грн' : 'без знижки'
-      };`,
-    },
-    { values }
-  );
+function onSubmitOrder(data, values, user) {
+  const orderData = data.map(({ count, id }) => {
+    return {
+      id,
+      value: { ...values, quantity: count, userId: user?._id ?? '' },
+    };
+  });
 
-  console.log(orderData);
-  console.log(values);
+  return orderData.forEach(({ id, value }) => {
+    return axios({
+      method: 'post',
+      url: `purchase/${id}`,
+      data: value,
+    });
+  });
 }
 
-function handleOrder(data, values) {
-  console.log('values', values);
+function handleOrder(data) {
 
   prices.total = 0;
   prices.totalPrice = 0;
@@ -133,8 +118,6 @@ export default function Ordering() {
 
   handleOrder(basket);
 
-  console.log('userData', userData);
-
   return (
     <>
       {basket.length !== 0 && (
@@ -157,8 +140,10 @@ export default function Ordering() {
           validateOnBlur={false}
           validationSchema={signupSchema}
           onSubmit={values => {
-            onSubmitOrder(basket, values);
+
+            onSubmitOrder(basket, values, userData);
             handleSubmit(values);
+
           }}
         >
           {({
@@ -279,3 +264,27 @@ export default function Ordering() {
     </>
   );
 }
+// ({ count, discount, discountPrice, price, title, id }) => {
+// return {
+//   title: `назва: ${title}`,
+//   count: `кількість: ${count}шт;`,
+//   price: `ціна за: ${count}шт: ${price * count}грн;`,
+//   priceForOne: `ціна за 1шт. без знижки: ${price}грн;`,
+//   priceForOneWithDiscount: `ціна за 1шт. зі знижкою: ${
+//     discount ? discountPrice + 'грн' : 'без знижки'
+//   };`,
+//   discountForOne: `знижка за 1шт: ${
+//     discount ? price - discountPrice : 0
+//   }грн;`,
+//   discountAll: `загальна знижка: ${
+//     discount ? (price - discountPrice) * count : 0
+//   }грн;`,
+// };
+
+// const finishedMessage = {
+//   toPay: `до сплати: ${prices.total}грн;`,
+//   sumWithoutDiscount: `сума без знижки: ${prices.totalPrice}грн;`,
+//   discountAll: `знижка: ${
+//     prices.totalDiscount ? prices.totalDiscount + 'грн' : 'без знижки'
+//   };`,
+// };
