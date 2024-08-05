@@ -22,7 +22,6 @@ import { addCommentFromStory } from '../../../redux/product/thunk';
 import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
 import AboutProductStory from './AboutProductStory';
 import Sort from 'components/Filters/Sort/Sort';
-// import { myStory } from 'data/myStory';
 const modalEnter = document.querySelector('#modal');
 
 export default function MyStoryOrder({
@@ -36,7 +35,6 @@ export default function MyStoryOrder({
   const user = useSelector(selectMyUser);
 
   const purchasedGoods = user?.purchasedGoods ?? [];
-  // const purchasedGoods = myStory;
   const handleSort = sort => {
     setValueSort(sort);
   };

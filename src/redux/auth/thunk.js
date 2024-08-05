@@ -1,19 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import Notiflix from 'notiflix';
 import { toggleModalForm } from '../modalForm/slice';
+import $api from '../interceptors/interceptor';
 
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
-const privateInstans = axios.create({
+const privateInstans = $api.create({
   baseURL: 'https://internet-shop-api-production.up.railway.app',
-  signal: new AbortController().signal,
-  withCredentials: true,
 });
-const publicInstans = axios.create({
+const publicInstans = $api.create({
   baseURL: 'https://internet-shop-api-production.up.railway.app',
-  signal: new AbortController().signal,
-  withCredentials: true,
 });
 const token = {
   set(token) {
@@ -113,7 +107,7 @@ export const restorePassword = createAsyncThunk(
 
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
-    await privateInstans.post('/auth/logout');
+    await privateInstans.get('/auth/logout');
     token.unSet();
   } catch (error) {
     console.log(error.message);
