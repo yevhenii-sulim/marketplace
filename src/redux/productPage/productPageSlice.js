@@ -17,33 +17,23 @@ export const fetchProduct = createAsyncThunk(
 
 export const likeComment = createAsyncThunk(
   'productPage/likeComment',
-  async ({ commentId }, { getState }) => {
-    try {
-      const comments = getState().productPage.product.comments;
-      const userId = getState().users._id;
-
-      const response = await $api.post('/comment/like', {
-        commentId,
-      });
-
-      return { ...response.data, comments, userId };
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
+  async ({ commentId }) => {
+    const response = await $api.post('/comment/like', {
+      commentId,
+    });
+    if (response.status === 401) return;
+    return response.data;
   }
 );
 export const dislikeComment = createAsyncThunk(
   'productPage/dislikeComment',
-  async ({ commentId, index }) => {
-    try {
-      const response = await $api.post(`/comment/dislike`, {
-        commentId,
-      });
-      return { ...response.data, index };
-    } catch (error) {
-      console.log(error);
-    }
+  async ({ commentId }) => {
+    const response = await $api.post(`/comment/dislike`, {
+      commentId,
+    });
+
+    if (response.status === 401) return;
+    return response.data;
   }
 );
 
