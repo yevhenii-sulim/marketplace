@@ -76,6 +76,7 @@ function Comments() {
     }
   }
   const processComments = comments => {
+    console.log(comments);
     return comments.map(comment => ({
       ...comment,
       daysPassed: calculateDate(comment.createDate),
