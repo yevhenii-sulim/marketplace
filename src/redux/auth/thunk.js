@@ -40,7 +40,9 @@ export const signUp = createAsyncThunk(
     } catch (error) {
       console.log(error.response.data.errors);
       error.response.data.errors.forEach(({ field, message }) =>
-        Notiflix.Notify.failure(`Введене ім'я містить недопустимі символи. Будь ласка, використовуйте лише літери латиниці або кирилиці.`)
+        Notiflix.Notify.failure(
+          `Введене ім'я містить недопустимі символи. Будь ласка, використовуйте лише літери латиниці або кирилиці.`
+        )
       );
     }
   }
@@ -48,7 +50,7 @@ export const signUp = createAsyncThunk(
 export const logIn = createAsyncThunk('user/enterUser', async user => {
   try {
     const { data } = await publicInstans.post('/auth/login', user);
-    token.set(data.backend_tokens.token);
+    token.set(data.tokens.accessJwt);
     if (!data.user.isActivated) {
       Notiflix.Notify.failure(
         'Ваша електронна адреса не підтверджена. Будь ласка, перевірте свою пошту та підтвердьте електронну адресу для продовження'

@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import CommentItem from './CommentItem/CommentItem';
+import React, { useState } from 'react';
+import CommentItems from './CommentItem/CommentItems';
 import CreateCommentField from './CreateCommentField/CreateCommentField';
 import { useSelector } from 'react-redux';
 import {
@@ -9,14 +9,15 @@ import {
 import { AllCommentsContainer } from './CommentItem/CommentItem.styled';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../../index.css';
+import CommentsExpanded from './CommentsExpande';
 
 function Comments() {
   const product = useSelector(productForProductPage);
   const [commentId, setCommentId] = useState('');
   const commentsExpanded = useSelector(commentsExpandedSelector);
   const [page, setPage] = useState(1);
-  const [scrollLevel, setScrollLevel] = useState(0);
-  const [flagStartComments, setFlagStartComments] = useState(true);
+  const [toggleAnimationArrow, setToggleAnimationArrow] = useState(false);
+  const [commentsLeft, setCommentsLeft] = useState(product.comments.length - 4);
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
     const currentDate = new Date();
@@ -83,43 +84,26 @@ function Comments() {
   };
 
   const processedComments = processComments(product.comments || []);
-  const handlerScroll = useCallback(() => {
-    const scrollPosition =
-      window.innerHeight + document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight;
 
-    if (scrollPosition > 2000 && flagStartComments) {
-      setFlagStartComments(false);
-      setScrollLevel(scrollPosition);
-    }
-
-    if (
-      scrollPosition > 2000 &&
-      scrollPosition + 250 > scrollLevel &&
-      !flagStartComments
-    ) {
-      setPage(prev => prev + 1);
-      setScrollLevel(scrollHeight);
-    }
-  }, [flagStartComments, scrollLevel]);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handlerScroll);
-    return () => {
-      window.removeEventListener('scroll', handlerScroll);
-    };
-  }, [handlerScroll]);
+  const handlerExpandedComments = () => {
+    if (!commentsLeft) return;
+    setToggleAnimationArrow(true);
+    setPage(prev => prev + 1);
+    setTimeout(() => {
+      setToggleAnimationArrow(false);
+      setCommentsLeft(prev => prev - 4);
+    }, 500);
+  };
 
   return (
     <>
-      <CreateCommentField productId={product._id} />
       <AllCommentsContainer>
         <TransitionGroup component={null}>
           {processedComments.length > 0 &&
             processedComments.slice(0, page * 4).map((el, index) => (
               <CSSTransition key={el._id} timeout={500} classNames="fade">
                 <div>
-                  <CommentItem
+                  <CommentItems
                     key={index}
                     name={el.author.firstName}
                     body={el.body}
@@ -141,7 +125,17 @@ function Comments() {
               </CSSTransition>
             ))}
         </TransitionGroup>
+        <CommentsExpanded
+          parent={null}
+          handlerExpandedComments={handlerExpandedComments}
+          commentsExpanded={commentsExpanded}
+          commentsLeft={commentsLeft}
+          textForButton={'Ще 4 відгуки'}
+          mainComments={true}
+          toggleAnimationArrow={toggleAnimationArrow}
+        />
       </AllCommentsContainer>
+      <CreateCommentField productId={product._id} />
     </>
   );
 }
