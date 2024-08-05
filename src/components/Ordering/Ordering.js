@@ -31,9 +31,7 @@ import {
   addProductButton,
 } from './Ordering.styled';
 
-
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app/';
-axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
 const prices = {
   total: 0,
@@ -41,7 +39,6 @@ const prices = {
   totalDiscount: 0,
   totalCount: 0,
 };
-
 
 function onSubmitOrder(data, values, user) {
   const orderData = data.map(({ count, id }) => {
@@ -54,14 +51,13 @@ function onSubmitOrder(data, values, user) {
   return orderData.forEach(({ id, value }) => {
     return axios({
       method: 'post',
-      url: `purchase/${id}`,
+      url: `/purchase/${id}`,
       data: value,
     });
   });
 }
 
 function handleOrder(data) {
-
   prices.total = 0;
   prices.totalPrice = 0;
   prices.totalDiscount = 0;
@@ -75,7 +71,6 @@ function handleOrder(data) {
   return prices;
 }
 
-/*
 function defineWordByCount(product) {
   if (!product) return;
   if (product === 1) return 'товар';
@@ -88,10 +83,8 @@ function defineWordByCount(product) {
     return 'товари';
   return 'товарів';
 }
-  */
 
 export default function Ordering() {
-
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -104,11 +97,13 @@ export default function Ordering() {
 
   const handleSubmit = values => {
     dispatch(deleteBasket());
-    
-    dispatch(setOrder({
-      ...values,
-      products: [...basket]
-    }));
+
+    dispatch(
+      setOrder({
+        ...values,
+        products: [...basket],
+      })
+    );
 
     basket.forEach(item => {
       addNewProduct(item.id, item, values);
@@ -141,10 +136,8 @@ export default function Ordering() {
           validateOnBlur={false}
           validationSchema={signupSchema}
           onSubmit={values => {
-
             onSubmitOrder(basket, values, userData);
             handleSubmit(values);
-
           }}
         >
           {({
@@ -233,7 +226,8 @@ export default function Ordering() {
                   <TotalPrice>
                     <Sum>
                       <span className="info">
-                        {prices.totalCount} товар на суму
+                        {prices.totalCount}{' '}
+                        {defineWordByCount(prices.totalCount)} на суму
                       </span>
                       <span className="info-price">
                         {prices.totalPrice}&#8372;
@@ -245,7 +239,7 @@ export default function Ordering() {
                         {prices.totalDiscount}&#8372;
                       </span>
                     </Discount>
-                    
+
                     <Total>
                       <span>Загальна сума</span>
                       <span>{prices.total}&#8372;</span>

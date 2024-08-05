@@ -2,7 +2,6 @@ import MyStoryOrder from 'components/UserPageComponent/PagesForSidebar/MyStoryOr
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectMyUser } from '../../redux/auth/selector';
-// import { myStory } from 'data/myStory';
 
 export default function MyStoryOrdersPage() {
   const [valueSort, setValueSort] = useState('Спочатку нові');
@@ -10,7 +9,6 @@ export default function MyStoryOrdersPage() {
 
   const user = useSelector(selectMyUser);
   const purchasedGoods = user?.purchasedGoods ?? [];
-  // const purchasedGoods = myStory;
 
   function sortProduct(criterion) {
     switch (criterion) {
