@@ -30,4 +30,23 @@ export const cancelButton = {
   },
 };
 
+export const buttonAddMoreComments = {
+  display: 'flex',
+  borderColor: '#43C550',
+  textTransform: 'none',
+  color: '#43C550',
+  height: '40px',
+  padding: '0 20px',
+  fontSize: '18px',
+  fontWeight: '700',
+  fontFamily: 'Jost',
+  margin: '35px auto 0 auto',
+  '&:focus': {
+    borderColor: '#43C550',
+  },
+  '&:hover': {
+    borderColor: '#43C550',
+  },
+};
+
 export const rating = { position: 'absolute', left: 0, bottom: '5px' };
