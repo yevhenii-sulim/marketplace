@@ -9,14 +9,13 @@ import {
 import { AllCommentsContainer } from './CommentItem/CommentItem.styled';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../../index.css';
-import CommentsExpanded from './CommentsExpande';
+import ButtonAddMoreComments from './ButtonAddMoreComments';
 
 function Comments() {
   const product = useSelector(productForProductPage);
   const [commentId, setCommentId] = useState('');
   const commentsExpanded = useSelector(commentsExpandedSelector);
-  const [page, setPage] = useState(1);
-  const [toggleAnimationArrow, setToggleAnimationArrow] = useState(false);
+  const [quantityComments, setQuantityComments] = useState(4);
   const [commentsLeft, setCommentsLeft] = useState(product.comments.length - 4);
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
@@ -76,7 +75,6 @@ function Comments() {
     }
   }
   const processComments = comments => {
-    console.log(comments);
     return comments.map(comment => ({
       ...comment,
       daysPassed: calculateDate(comment.createDate),
@@ -86,13 +84,12 @@ function Comments() {
 
   const processedComments = processComments(product.comments || []);
 
-  const handlerExpandedComments = () => {
+  const handlerExpandedComments = (event, quantityComments) => {
+    console.log(quantityComments);
     if (!commentsLeft) return;
-    setToggleAnimationArrow(true);
-    setPage(prev => prev + 1);
+    setQuantityComments(prev => prev + quantityComments);
     setTimeout(() => {
-      setToggleAnimationArrow(false);
-      setCommentsLeft(prev => prev - 4);
+      setCommentsLeft(prev => prev - quantityComments);
     }, 500);
   };
 
@@ -101,7 +98,7 @@ function Comments() {
       <AllCommentsContainer>
         <TransitionGroup component={null}>
           {processedComments.length > 0 &&
-            processedComments.slice(0, page * 4).map((el, index) => (
+            processedComments.slice(0, quantityComments).map((el, index) => (
               <CSSTransition key={el._id} timeout={500} classNames="fade">
                 <div>
                   <CommentItems
@@ -126,14 +123,9 @@ function Comments() {
               </CSSTransition>
             ))}
         </TransitionGroup>
-        <CommentsExpanded
-          parent={null}
+        <ButtonAddMoreComments
           handlerExpandedComments={handlerExpandedComments}
-          commentsExpanded={commentsExpanded}
           commentsLeft={commentsLeft}
-          textForButton={'Ще 4 відгуки'}
-          mainComments={true}
-          toggleAnimationArrow={toggleAnimationArrow}
         />
       </AllCommentsContainer>
       <CreateCommentField productId={product._id} />
