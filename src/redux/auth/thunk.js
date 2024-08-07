@@ -79,22 +79,20 @@ export const sendQueryRestorePassword = createAsyncThunk(
 
 export const restorePassword = createAsyncThunk(
   'user/restorePassword',
-  async (password, { dispatch }) => {
+  async (password, action) => {
     const tokenIndex = window.location.href.indexOf('token=');
     const token = window.location.href.slice(
       tokenIndex + 6,
       window.location.href.length
     );
-
+    window.location.href = '/marketplace';
     try {
       const data = await publicInstans.post('/auth/changePassword', password, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log('restorePasswordData', data);
 
-      dispatch(toggleModalForm(false));
       return data;
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message[0]);
