@@ -85,7 +85,6 @@ export const restorePassword = createAsyncThunk(
       tokenIndex + 6,
       window.location.href.length
     );
-    window.location.href = '/marketplace';
     try {
       const data = await publicInstans.post('/auth/changePassword', password, {
         headers: {
@@ -93,6 +92,7 @@ export const restorePassword = createAsyncThunk(
         },
       });
 
+      window.location.href = '/marketplace';
       return data;
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message[0]);
