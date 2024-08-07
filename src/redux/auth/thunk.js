@@ -86,22 +86,20 @@ export const restorePassword = createAsyncThunk(
       window.location.href.length
     );
 
-    console.log('password', token);
+    try {
+      const data = await publicInstans.post('/auth/changePassword', password, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('restorePasswordData', data);
 
-    // try {
-    //   const data = await publicInstans.post('/auth/changePassword', password, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   });
-    //   console.log('restorePasswordData', data);
-
-    //   dispatch(toggleModalForm(false));
-    //   return data;
-    // } catch (error) {
-    //   Notiflix.Notify.failure(error.response.data.message[0]);
-    //   console.log('error', error);
-    // }
+      dispatch(toggleModalForm(false));
+      return data;
+    } catch (error) {
+      Notiflix.Notify.failure(error.response.data.message[0]);
+      console.log('error', error);
+    }
   }
 );
 
