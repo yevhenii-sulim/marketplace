@@ -1,8 +1,13 @@
 import { NavLink, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { selectCategory } from '../../redux/category/selectors';
+import { selectIsLoading } from '../../redux/product/selector';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import PaginationList from 'components/Pagination/PaginationList';
-
+import Sort from 'components/Filters/Sort/Sort';
+import Filters from './FilterList/Filters';
+import { handleSort } from './handleSort';
 import {
   ContainerProductPageList,
   Pagination,
@@ -15,15 +20,8 @@ import {
   TitleSort,
   ListPath,
 } from './ProductListPage.styled';
-import { useSelector } from 'react-redux';
-import { selectCategory } from '../../redux/category/selectors';
-import Filters from './FilterList/Filters';
-import { memo } from 'react';
-import Sort from 'components/Filters/Sort/Sort';
-import { selectIsLoading } from '../../redux/product/selector';
-import { handleSort } from './handleSort';
 
-export default memo(function ProductListPage({
+export default function ProductListPage({
   page,
   sortedProduct,
   handlePageClick,
@@ -32,7 +30,10 @@ export default memo(function ProductListPage({
   const [params, setParams] = useSearchParams('');
   const categories = useSelector(selectCategory);
   const isLoading = useSelector(selectIsLoading);
-
+  function setRouting(categories) {
+    if (!categories) return;
+    return categories.subCategory;
+  }
   return (
     <ContainerProductPageList>
       <Navigation>
@@ -45,14 +46,14 @@ export default memo(function ProductListPage({
             <NavLink to={`/${categories.category.en}`}>
               {categories.category.ua}
             </NavLink>
-            {categories.subCategory && <ChevronRightIcon />}
+            {setRouting(categories) && <ChevronRightIcon />}
           </ListPath>
-          {categories.subCategory && (
-            <ListPath>{categories?.subCategory.ua}</ListPath>
+          {setRouting(categories) && (
+            <ListPath>{categories.subCategory.ua}</ListPath>
           )}
         </Nav>
         <TitleProducts>
-          {categories.subCategory && <>{categories?.subCategory.ua}</>}
+          {setRouting(categories) && <>{categories.subCategory.ua}</>}
         </TitleProducts>
       </Navigation>
       <ProductsPage>
@@ -101,37 +102,6 @@ export default memo(function ProductListPage({
               )}
             </Product>
           )}
-          <Product>
-            {sortedProduct.map(
-              ({
-                title,
-                _id,
-                img,
-                price,
-                discountPrice,
-                createDate,
-                discount,
-                parameters,
-                category,
-                subCategory,
-              }) => (
-                <SimilarProduct
-                  key={_id}
-                  id={_id}
-                  title={title}
-                  price={price}
-                  img={img}
-                  discountPrice={discountPrice}
-                  discount={discount}
-                  createDate={createDate}
-                  eco={parameters.eco}
-                  isUkraine={parameters.isUkraine}
-                  category={category}
-                  subCategory={subCategory}
-                />
-              )
-            )}
-          </Product>
           <Pagination>
             <PaginationList
               handlePageChange={handlePageClick}
@@ -143,4 +113,4 @@ export default memo(function ProductListPage({
       </ProductsPage>
     </ContainerProductPageList>
   );
-});
+}

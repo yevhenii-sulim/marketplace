@@ -30,22 +30,32 @@ function OrderSection() {
 
   function sendIdProduct() {
     dispatch(toggleOrdering(true));
-    body.style.paddingLeft = `${widthScroll}px`;
-    console.log(isOpen);
+    body.style.paddingright = `${widthScroll}px`;
     for (const item of basket) {
       if (item.id === product._id) return;
     }
-    const productAdded = {
-      id: product._id,
-      title: product.title,
-      price: product.price,
-      img: product.img[0],
-      discount: product.discount,
-      discountPrice: product.discountPrice,
-      count: 1,
-      category: product.category.mainCategory,
-      subCategory: product.subCategory.subCategory,
-    };
+    const productAdded = product.subCategory
+      ? {
+          id: product._id,
+          title: product.title,
+          price: product.price,
+          img: product.img[0],
+          discount: product.discount,
+          discountPrice: product.discountPrice,
+          count: 1,
+          category: product.category.mainCategory,
+          subCategory: product.subCategory.subCategory,
+        }
+      : {
+          id: product._id,
+          title: product.title,
+          price: product.price,
+          img: product.img[0],
+          discount: product.discount,
+          discountPrice: product.discountPrice,
+          count: 1,
+          category: product.category.mainCategory,
+        };
     dispatch(addProduct(productAdded));
   }
   return (

@@ -25,11 +25,11 @@ export const signUp = createAsyncThunk(
       const { data } = await publicInstans.post('/auth/registration', user);
 
       token.set(data.accessJwt);
-      dispatch(toggleModalForm(false));
 
       Notiflix.Notify.success(
         'Підтвердіть свою електронну адресу, щоб мати можливість продавати та купувати товари на нашому маркетплейсі'
       );
+      dispatch(toggleModalForm(false));
       return data;
     } catch (error) {
       console.log(error.response.data.errors);
@@ -41,34 +41,38 @@ export const signUp = createAsyncThunk(
     }
   }
 );
-export const logIn = createAsyncThunk('user/enterUser', async user => {
-  try {
-    const { data } = await publicInstans.post('/auth/login', user);
-    token.set(data.tokens.accessJwt);
-    if (!data.user.isActivated) {
-      Notiflix.Notify.failure(
-        'Ваша електронна адреса не підтверджена. Будь ласка, перевірте свою пошту та підтвердьте електронну адресу для продовження'
-      );
-      return;
+export const logIn = createAsyncThunk(
+  'user/enterUser',
+  async (user, { dispatch }) => {
+    try {
+      const { data } = await publicInstans.post('/auth/login', user);
+      token.set(data.tokens.accessJwt);
+      if (!data.user.isActivated) {
+        Notiflix.Notify.failure(
+          'Ваша електронна адреса не підтверджена. Будь ласка, перевірте свою пошту та підтвердьте електронну адресу для продовження'
+        );
+        return;
+      }
+      dispatch(toggleModalForm(false));
+      return data;
+    } catch (error) {
+      console.log(error);
+      Notiflix.Notify.failure('Неправильний логін або пароль');
+      console.log(error);
     }
-    return data;
-  } catch (error) {
-    console.log(error);
-    Notiflix.Notify.failure('Неправильний логін або пароль');
-    console.log(error);
   }
-});
+);
 
 export const sendQueryRestorePassword = createAsyncThunk(
   'user/sendQueryRestorePassword',
   async (user, { dispatch }) => {
     try {
       const { data } = await publicInstans.post('/auth/forgotPassword', user);
-      dispatch(toggleModalForm(false));
 
       Notiflix.Notify.success(
         'Ми відправили інформацію для відновлення паролю вам на ел. пошту'
       );
+      dispatch(toggleModalForm(false));
       return data;
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message);

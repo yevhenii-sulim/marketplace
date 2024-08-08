@@ -64,6 +64,7 @@ export default function App() {
           <Route path="agreement" element={<Agreement />} />
           <Route path="confederacy" element={<Confederacy />} />
           <Route path="forFree" element={<CatalogPage />} />
+          <Route path="forFree/:id" element={<ProductPage />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path=":category" element={<SubCategories />} />
           <Route path=":category/:subcategories" element={<CatalogPage />} />
@@ -71,7 +72,7 @@ export default function App() {
           <Route path="my_order" element={<BasketPage />} />
           <Route path="purchase" element={<OrderConfirmed />} />
           <Route
-            path=":category/:subcategories/:product_page"
+            path=":category/:subcategories/:id"
             element={<ProductPage />}
           />
           <Route

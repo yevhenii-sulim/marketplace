@@ -32,7 +32,6 @@ export const addCommentFromStory = createAsyncThunk(
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async ({ textQuery, paramQuery, page }) => {
-    console.log('getProductBySubCateg', textQuery, paramQuery, page);
     try {
       const { data } = await $api.get(
         `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
@@ -40,6 +39,7 @@ export const getProducts = createAsyncThunk(
       return data;
     } catch (error) {
       console.log('errorGetProductBySubCateg', error);
+      window.location.href = '/marketplace/err/err/err/err';
     }
   }
 );

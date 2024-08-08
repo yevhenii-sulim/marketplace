@@ -56,7 +56,7 @@ function BreadcrumbsComponent() {
         {setRouting(product) && (
           <Link
             key="3"
-            to={`/${product?.category.mainCategory.en}/${
+            to={`/${product.category.mainCategory.en}/${
               product.subCategory ? product.subCategory.subCategory.en : ''
             }`}
           >
