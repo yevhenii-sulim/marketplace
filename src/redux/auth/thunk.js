@@ -48,7 +48,8 @@ export const signUp = createAsyncThunk(
 export const logIn = createAsyncThunk('user/enterUser', async user => {
   try {
     const { data } = await publicInstans.post('/auth/login', user);
-    token.set(data.backend_tokens.token);
+    // token.set(data.backend_tokens.token);
+    token.set(data.tokens.accessJwt);
     if (!data.user.isActivated) {
       Notiflix.Notify.failure(
         'Ваша електронна адреса не підтверджена. Будь ласка, перевірте свою пошту та підтвердьте електронну адресу для продовження'
@@ -89,6 +90,7 @@ export const restorePassword = createAsyncThunk(
       tokenIndex + 6,
       window.location.href.length
     );
+
     console.log('password', password);
 
     try {
