@@ -20,6 +20,7 @@ import {
   TitleSort,
   ListPath,
 } from './ProductListPage.styled';
+import SkeletonCatalogList from 'components/SkeletonCatalogList/SkeletonCatalogList';
 
 export default function ProductListPage({
   page,
@@ -69,7 +70,7 @@ export default function ProductListPage({
             setParams={setParams}
             params={params}
           />
-          {isLoading && (
+          {isLoading ? (
             <Product>
               {sortedProduct.map(
                 ({
@@ -101,7 +102,10 @@ export default function ProductListPage({
                 )
               )}
             </Product>
+          ) : (
+            <SkeletonCatalogList />
           )}
+
           <Pagination>
             <PaginationList
               handlePageChange={handlePageClick}

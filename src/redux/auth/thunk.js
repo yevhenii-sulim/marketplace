@@ -3,18 +3,15 @@ import Notiflix from 'notiflix';
 import { toggleModalForm } from '../modalForm/slice';
 import $api from '../interceptors/interceptor';
 
-const privateInstans = $api.create({
-  baseURL: 'https://internet-shop-api-production.up.railway.app',
-});
 const publicInstans = $api.create({
   baseURL: 'https://internet-shop-api-production.up.railway.app',
 });
 const token = {
   set(token) {
-    privateInstans.defaults.headers.common.Authorization = `Bearer ${token}`;
+    publicInstans.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unSet() {
-    privateInstans.defaults.headers.common.Authorization = '';
+    publicInstans.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -107,7 +104,7 @@ export const restorePassword = createAsyncThunk(
 
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
-    await privateInstans.get('/auth/logout');
+    await publicInstans.get('/auth/logout');
     token.unSet();
   } catch (error) {
     console.log(error.message);
@@ -121,7 +118,7 @@ export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
   if (presentToken) {
     try {
       token.set(presentToken);
-      const { data } = await privateInstans.get('/auth/refresh');
+      const { data } = await publicInstans.get('/auth/refresh');
       return data;
     } catch (error) {
       console.log(error);
@@ -132,7 +129,7 @@ export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
 
 export const getUser = createAsyncThunk('myUser/getUser', async user => {
   try {
-    const { data } = await privateInstans.get(`/user/${user}`);
+    const { data } = await publicInstans.get(`/user/${user}`);
     console.log(data);
 
     return data;

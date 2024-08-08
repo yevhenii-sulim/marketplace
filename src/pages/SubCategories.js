@@ -10,11 +10,9 @@ export default function SubCategories() {
   );
 
   return (
-    <>
-      <SubcategoriesComponent
-        subCategory={categoryObject[0]?.subCategories}
-        path={categoryObject.linkList}
-      />
-    </>
+    <SubcategoriesComponent
+      subCategory={categoryObject[0]?.subCategories}
+      path={categoryObject.linkList}
+    />
   );
 }

@@ -9,7 +9,7 @@ export default function MyStoryOrdersPage() {
 
   const user = useSelector(selectMyUser);
   const purchasedGoods = user?.purchasedGoods ?? [];
-
+  console.log('purchasedGoods', purchasedGoods);
   function sortProduct(criterion) {
     switch (criterion) {
       case 'Найдешевші':
@@ -36,7 +36,6 @@ export default function MyStoryOrdersPage() {
     }
   }
   const products = sortProduct(valueSort);
-
   function onSort() {
     return products.filter(({ title, number }) => {
       return (

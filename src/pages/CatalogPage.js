@@ -35,14 +35,12 @@ export default function CatalogPage() {
     });
   };
   return (
-    <>
-      <ProductListPage
-        page={page}
-        category={category}
-        sortedProduct={products}
-        totalItemsCount={totalItemsCount}
-        handlePageClick={handlePageClick}
-      />
-    </>
+    <ProductListPage
+      page={page}
+      category={category}
+      sortedProduct={products}
+      totalItemsCount={totalItemsCount}
+      handlePageClick={handlePageClick}
+    />
   );
 }
