@@ -4,11 +4,13 @@ import { theme } from 'utils/theme';
 export const WrapperOrder = styled.div`
   display: grid;
   grid-template-columns: 2fr 300px;
+  align-items: start;
   gap: 32px;
   font-size: 18px;
   font-weight: 800;
   line-height: 1.44;
   margin-top: 32px;
+  margin-bottom: 32px;
   & .visibility-hidden {
     position: absolute;
     white-space: nowrap;
@@ -30,6 +32,7 @@ export const Empty = styled.div`
   gap: 34px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   margin-top: 32px;
+  margin-bottom: 32px;
   border-radius: 12px;
   padding-top: 24px;
   padding-left: 40px;

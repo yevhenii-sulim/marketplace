@@ -4,7 +4,8 @@ import { theme } from 'utils/theme';
 
 export const About = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
   gap: 40px;
   margin-right: auto;

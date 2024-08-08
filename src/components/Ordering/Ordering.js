@@ -168,7 +168,6 @@ export default function Ordering() {
                   typeof values.town === 'string' ? values.town : values.town[0]
                 }
               />
-              {console.log(values)}
               <WrapperListOrder>
                 <ul>
                   {basket.map(
@@ -220,7 +219,6 @@ export default function Ordering() {
                       </List>
                     )
                   )}
-                  <div>{console.log(errors)}</div>
                 </ul>
                 <WrapperBuy>
                   <TotalPrice>

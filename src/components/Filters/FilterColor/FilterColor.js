@@ -52,7 +52,6 @@ function FilterColor() {
       sortOrder,
     });
   };
-
   return (
     <Container>
       <h3>

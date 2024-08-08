@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -6,6 +7,7 @@ import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
+import DeleteSvg from 'SvgComponents/DeleteSvg/DeleteSvg';
 import { theme } from 'utils/theme';
 import { selectBasket } from '../../redux/basket/select';
 import { selectMyUser } from '../../redux/auth/selector';
@@ -38,9 +40,6 @@ import {
   WrapperOrder,
   WrapperProduct,
 } from './BasketModal.styled';
-import DeleteSvg from 'SvgComponents/DeleteSvg/DeleteSvg';
-import { useEffect } from 'react';
-const body = document.querySelector('body');
 
 function defineWordByCount(product) {
   if (product === 1) return 'товар';
@@ -75,7 +74,6 @@ export default function BasketModal() {
 
   function onClose() {
     dispatch(toggleOrdering(false));
-    body.style.paddingLeft = `0px`;
   }
 
   useEffect(() => {
@@ -161,29 +159,29 @@ export default function BasketModal() {
                               <p className="price">{price} &#8372;</p>
                             )}
                           </Price>
+                          <Actives>
+                            <button
+                              type="button"
+                              className="favorite"
+                              onClick={() => toggleFavorite(id)}
+                            >
+                              {user?.favorites.some(({ _id }) => id === _id) ? (
+                                <FavoriteIcon
+                                  sx={{ color: theme.color.bgNumberBasket }}
+                                />
+                              ) : (
+                                <FavoriteBorderIcon sx={{ color: '#727272' }} />
+                              )}
+                            </button>
+                            <button
+                              type="button"
+                              className="delete"
+                              onClick={() => deleteFromBasket(id)}
+                            >
+                              <DeleteSvg />
+                            </button>
+                          </Actives>
                         </About>
-                        <Actives>
-                          <button
-                            type="button"
-                            className="favorite"
-                            onClick={() => toggleFavorite(id)}
-                          >
-                            {user?.favorites.some(({ _id }) => id === _id) ? (
-                              <FavoriteIcon
-                                sx={{ color: theme.color.bgNumberBasket }}
-                              />
-                            ) : (
-                              <FavoriteBorderIcon sx={{ color: '#727272' }} />
-                            )}
-                          </button>
-                          <button
-                            type="button"
-                            className="delete"
-                            onClick={() => deleteFromBasket(id)}
-                          >
-                            <DeleteSvg />
-                          </button>
-                        </Actives>
                       </WrapperProduct>
                     </List>
                   );

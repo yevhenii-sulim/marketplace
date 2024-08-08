@@ -21,8 +21,10 @@ export default function PriceComponent({
         require={true}
         error={error}
         touched={touched}
+        value={values.price}
       />
       <FieldPrice
+        value={values.discount}
         name="discountPrice"
         label="Ціна зі знижкою"
         handleChange={handleChange}

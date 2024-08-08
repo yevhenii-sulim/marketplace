@@ -240,10 +240,6 @@ export const Image = styled.div`
   }
 `;
 
-export const ContainerFavorite = styled.div`
-  background-color: ${({ theme }) => theme.color.bgProduct};
-  border-radius: 12px;
-`;
 export const ContainerNotification = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
