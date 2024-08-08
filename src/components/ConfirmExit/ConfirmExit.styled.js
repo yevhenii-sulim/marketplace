@@ -38,32 +38,6 @@ export const WrapperModal = styled.div`
 
 export const exitOutButton = {
   width: '148px',
-  textTransform: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  whiteSpace: 'nowrap',
-  fontFamily: 'Nunito Sans',
-  bgcolor: theme.color.bgProduct,
-  borderRadius: '8px',
-  height: '48px',
-  padding: '6px 16px',
-  fontSize: '18px',
-  fontWeight: '800',
-  lineHeight: '1.45',
-  outline: 'none',
-  color: theme.color.bgHeader,
-  border: `1px solid ${theme.color.bgButton}`,
-  '&:hover': {
-    color: theme.color.colorButtonText,
-    backgroundColor: theme.color.bgButtonHover,
-  },
-  '&:active': {
-    boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
-  },
-};
-
-export const stayInButton = {
-  width: '148px',
   fontSize: '18px',
   whiteSpace: 'nowrap',
   fontWeight: '800',
@@ -85,5 +59,31 @@ export const stayInButton = {
   },
   '&:disabled': {
     color: 'black',
+  },
+};
+
+export const stayInButton = {
+  width: '148px',
+  textTransform: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  whiteSpace: 'nowrap',
+  fontFamily: 'Nunito Sans',
+  bgcolor: theme.color.bgProduct,
+  borderRadius: '8px',
+  height: '48px',
+  padding: '6px 16px',
+  fontSize: '18px',
+  fontWeight: '800',
+  lineHeight: '1.45',
+  outline: 'none',
+  color: theme.color.bgHeader,
+  border: `1px solid ${theme.color.bgButton}`,
+  '&:hover': {
+    color: theme.color.colorButtonText,
+    backgroundColor: theme.color.bgButtonHover,
+  },
+  '&:active': {
+    boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
   },
 };
