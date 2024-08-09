@@ -9,10 +9,11 @@ import {
 } from './OrderConfirmedComponent.styled';
 import OrderProduct from './OrderProduct';
 import { useNavigate } from 'react-router-dom';
-import { myStory } from 'data/myStory';
+import { clearAllProducts } from 'data/myStory';
 
 export default function OrderConfirmedComponent() {
   const navigation = useNavigate();
+  const productStory = JSON.parse(localStorage.getItem('productStory')) || [];
 
   const handleMyOrdersButton = () => {
     navigation('/my_order');
@@ -22,14 +23,20 @@ export default function OrderConfirmedComponent() {
     navigation('/');
   };
 
+  const handlePageLeave = () => {
+    localStorage.removeItem('productStory');
+    clearAllProducts();
+  }
+
+  window.addEventListener('visibilitychange', handlePageLeave);
+
   return (
     <Container>
       <Title>Дякуємо за ваше замовлення!</Title>
       <FullOrderInfo>
-        {myStory.filter(product => product.state.waited).length ? (
+        {productStory.length ? (
           <OrderProducts>
-            {myStory
-              .filter(product => product.state.waited)
+            {productStory
               .map(({ _id, img, title, price }) => {
                 return (
                   <OrderProduct

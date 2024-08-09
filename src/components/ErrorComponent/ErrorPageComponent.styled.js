@@ -51,6 +51,7 @@ export const Question = styled(Link)`
   color: ${({ theme }) => theme.color.colorTextErrorLink};
 `;
 export const Text = styled.div`
+  margin-top: 12px;
   text-align: center;
 `;
 
@@ -71,6 +72,7 @@ export const Container = styled.main`
   gap: 71px;
   width: 100%;
   height: 100%;
+  padding-top: 74px;
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 54px;

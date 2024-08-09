@@ -28,7 +28,7 @@ import signupSchema from '../Placing/validationSchema';
 import { useNavigate } from 'react-router-dom';
 import { setOrder } from '../../redux/orderData/slice';
 import { selectMyUser } from '../../redux/auth/selector';
-import { addNewProduct } from '../../data/myStory';
+import { addNewProduct, myStory } from '../../data/myStory';
 
 const prices = {
   total: 0,
@@ -116,7 +116,7 @@ export default function Ordering() {
     dispatch(deleteProduct(id));
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = async (values) => {
     dispatch(deleteBasket());
     
     dispatch(setOrder({
@@ -127,6 +127,8 @@ export default function Ordering() {
     basket.forEach(item => {
       addNewProduct(item.id, item, values);
     });
+
+    localStorage.setItem('productStory', JSON.stringify(myStory.filter(item => item.state.waited)));
 
     navigation('/purchase');
   };

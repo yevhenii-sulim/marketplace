@@ -21,12 +21,12 @@ export default function ErrorPageComponent() {
         <Images>
           <ErrorText />
           <ErrorImage />
-          <Text>
-            <p>
-              Йой... Здається такої сторінки не існує або вона була переміщена.
-            </p>
-          </Text>
         </Images>
+        <Text>
+          <p>
+            Йой... Здається такої сторінки не існує або вона була переміщена.
+          </p>
+        </Text>
         <Solution>
           <Back to="/">Повернутися назад</Back>
           <Question to="/">Часті питання</Question>
