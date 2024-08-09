@@ -1,7 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { Formik } from 'formik';
+import { Button } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { selectBasket } from '../../redux/basket/select';
 import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
+import { setOrder } from '../../redux/orderData/slice';
+import { selectMyUser } from '../../redux/auth/selector';
+import { addNewProduct } from '../../data/myStory';
+import signupSchema from 'components/Placing/validationSchema';
+import Placing from 'components/Placing/Placing';
 import {
   About,
   Actives,
@@ -21,6 +30,7 @@ import {
   WrapperProduct,
   addProductButton,
 } from './Ordering.styled';
+<<<<<<< HEAD
 import { Button } from '@mui/material';
 import Placing from '../Placing/Placing';
 import { Formik } from 'formik';
@@ -29,6 +39,10 @@ import { useNavigate } from 'react-router-dom';
 import { setOrder } from '../../redux/orderData/slice';
 import { selectMyUser } from '../../redux/auth/selector';
 import { addNewProduct, myStory } from '../../data/myStory';
+=======
+
+axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
+>>>>>>> 37885fc0032554714d73b9bb34122bd8fc3f29ad
 
 const prices = {
   total: 0,
@@ -37,45 +51,24 @@ const prices = {
   totalCount: 0,
 };
 
-function onSubmitOrder(data, values) {
-  const orderData = data.map(
-    ({ count, discount, discountPrice, price, title }) => {
-      return {
-        title: `назва: ${title}`,
-        count: `кількість: ${count}шт;`,
-        price: `ціна за: ${count}шт: ${price * count}грн;`,
-        priceForOne: `ціна за 1шт. без знижки: ${price}грн;`,
-        priceForOneWithDiscount: `ціна за 1шт. зі знижкою: ${
-          discount ? discountPrice + 'грн' : 'без знижки'
-        };`,
-        discountForOne: `знижка за 1шт: ${
-          discount ? price - discountPrice : 0
-        }грн;`,
-        discountAll: `загальна знижка: ${
-          discount ? (price - discountPrice) * count : 0
-        }грн;`,
-      };
-    }
-  );
+function onSubmitOrder(data, values, user) {
+  const orderData = data.map(({ count, id }) => {
+    return {
+      id,
+      value: { ...values, quantity: count, userId: user?._id ?? '' },
+    };
+  });
 
-  orderData.push(
-    {
-      toPay: `до сплати: ${prices.total}грн;`,
-      sumWithoutDiscount: `сума без знижки: ${prices.totalPrice}грн;`,
-      discountAll: `знижка: ${
-        prices.totalDiscount ? prices.totalDiscount + 'грн' : 'без знижки'
-      };`,
-    },
-    { values }
-  );
-
-  console.log(orderData);
-  console.log(values);
+  return orderData.forEach(({ id, value }) => {
+    return axios({
+      method: 'post',
+      url: `/purchase/${id}`,
+      data: value,
+    });
+  });
 }
 
-function handleOrder(data, values) {
-  console.log('values', values);
-
+function handleOrder(data) {
   prices.total = 0;
   prices.totalPrice = 0;
   prices.totalDiscount = 0;
@@ -89,7 +82,6 @@ function handleOrder(data, values) {
   return prices;
 }
 
-/*
 function defineWordByCount(product) {
   if (!product) return;
   if (product === 1) return 'товар';
@@ -102,10 +94,8 @@ function defineWordByCount(product) {
     return 'товари';
   return 'товарів';
 }
-  */
 
 export default function Ordering() {
-
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -118,11 +108,13 @@ export default function Ordering() {
 
   const handleSubmit = async (values) => {
     dispatch(deleteBasket());
-    
-    dispatch(setOrder({
-      ...values,
-      products: [...basket]
-    }));
+
+    dispatch(
+      setOrder({
+        ...values,
+        products: [...basket],
+      })
+    );
 
     basket.forEach(item => {
       addNewProduct(item.id, item, values);
@@ -134,8 +126,6 @@ export default function Ordering() {
   };
 
   handleOrder(basket);
-
-  console.log('userData', userData);
 
   return (
     <>
@@ -159,7 +149,7 @@ export default function Ordering() {
           validateOnBlur={false}
           validationSchema={signupSchema}
           onSubmit={values => {
-            onSubmitOrder(basket, values);
+            onSubmitOrder(basket, values, userData);
             handleSubmit(values);
           }}
         >
@@ -191,7 +181,6 @@ export default function Ordering() {
                   typeof values.town === 'string' ? values.town : values.town[0]
                 }
               />
-              {console.log(values)}
               <WrapperListOrder>
                 <ul>
                   {basket.map(
@@ -243,13 +232,13 @@ export default function Ordering() {
                       </List>
                     )
                   )}
-                  <div>{console.log(errors)}</div>
                 </ul>
                 <WrapperBuy>
                   <TotalPrice>
                     <Sum>
                       <span className="info">
-                        {prices.totalCount} товар на суму
+                        {prices.totalCount}{' '}
+                        {defineWordByCount(prices.totalCount)} на суму
                       </span>
                       <span className="info-price">
                         {prices.totalPrice}&#8372;
@@ -261,7 +250,7 @@ export default function Ordering() {
                         {prices.totalDiscount}&#8372;
                       </span>
                     </Discount>
-                    
+
                     <Total>
                       <span>Загальна сума</span>
                       <span>{prices.total}&#8372;</span>
@@ -281,3 +270,27 @@ export default function Ordering() {
     </>
   );
 }
+// ({ count, discount, discountPrice, price, title, id }) => {
+// return {
+//   title: `назва: ${title}`,
+//   count: `кількість: ${count}шт;`,
+//   price: `ціна за: ${count}шт: ${price * count}грн;`,
+//   priceForOne: `ціна за 1шт. без знижки: ${price}грн;`,
+//   priceForOneWithDiscount: `ціна за 1шт. зі знижкою: ${
+//     discount ? discountPrice + 'грн' : 'без знижки'
+//   };`,
+//   discountForOne: `знижка за 1шт: ${
+//     discount ? price - discountPrice : 0
+//   }грн;`,
+//   discountAll: `загальна знижка: ${
+//     discount ? (price - discountPrice) * count : 0
+//   }грн;`,
+// };
+
+// const finishedMessage = {
+//   toPay: `до сплати: ${prices.total}грн;`,
+//   sumWithoutDiscount: `сума без знижки: ${prices.totalPrice}грн;`,
+//   discountAll: `знижка: ${
+//     prices.totalDiscount ? prices.totalDiscount + 'грн' : 'без знижки'
+//   };`,
+// };

@@ -59,28 +59,49 @@ function SimilarProduct({
     }
   }
 
+  function checkSubCategory(subCategory) {
+    switch (true) {
+      case !subCategory:
+        return false;
+      case subCategory === 'No Subcategory':
+        return false;
+      default:
+        return true;
+    }
+  }
   return (
     <>
       <SimilarProductItem>
         {children}
+        {checkSubCategory(subCategory) ? (
+          <Link
+            onClick={scrollToByClick}
+            to={
+              countCharacter(2)
+                ? `${id}`
+                : `/${category.mainCategory?.en || category.en}/${
+                    subCategory.subCategory?.en || subCategory.en
+                  }/${id}`
+            }
+          >
+            <SimilarProductItemIcon>
+              {eco && <EcoSvg />}
+              {isUkraine && <FlagUkrSvg />}
+              <img src={img[0]} alt={title} />
+            </SimilarProductItemIcon>
+            <SimilarProductItemName>{title}</SimilarProductItemName>
+          </Link>
+        ) : (
+          <Link onClick={scrollToByClick} to={`${id}`}>
+            <SimilarProductItemIcon>
+              {eco && <EcoSvg />}
+              {isUkraine && <FlagUkrSvg />}
+              <img src={img[0]} alt={title} />
+            </SimilarProductItemIcon>
+            <SimilarProductItemName>{title}</SimilarProductItemName>
+          </Link>
+        )}
 
-        <Link
-          onClick={scrollToByClick}
-          to={
-            countCharacter(2)
-              ? `${id}`
-              : `/${category?.mainCategory?.en || category?.en}/${
-                  subCategory?.subCategory?.en || subCategory?.en
-                }/${id}`
-          }
-        >
-          <SimilarProductItemIcon>
-            {eco && <EcoSvg />}
-            {isUkraine && <FlagUkrSvg />}
-            <img src={img[0]} alt={title} />
-          </SimilarProductItemIcon>
-          <SimilarProductItemName>{title}</SimilarProductItemName>
-        </Link>
         <SimilarProductItemPrice $discount={discount}>
           <Price>
             {discount ? (
@@ -122,6 +143,6 @@ SimilarProduct.propTypes = {
   createDate: PropTypes.string.isRequired,
   eco: PropTypes.bool,
   category: PropTypes.object.isRequired,
-  subCategory: PropTypes.object,
+  subCategory: PropTypes.any,
   isUkraine: PropTypes.bool,
 };

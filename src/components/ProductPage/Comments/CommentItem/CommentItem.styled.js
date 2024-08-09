@@ -42,6 +42,8 @@ export const CommentsTextBlock = styled.p`
   font-weight: 400;
   font-size: 18px;
   margin-top: 4px;
+  white-space: normal;
+  overflow-wrap: break-word;
 `;
 export const CommentsRating = styled.div`
   display: flex;
@@ -106,14 +108,18 @@ export const ParameterWrapper = styled.div`
 `;
 
 export const CommentsExpandedWrapper = styled.div`
-  width: 100%;
-  margin-left: 17%;
-  display: flex;
+  ${({ $mainComments }) =>
+    $mainComments
+      ? ' width: 100%;display: flex; justify-content: center;'
+      : ' width: 100%;margin-left: 17%;display: flex;'};
 `;
 export const CommentsExpandedButton = styled.button`
-  width: 110px;
+  width: ${({ $mainComments }) => ($mainComments ? '150px' : '110px')};
   display: flex;
   align-items: center;
   background-color: transparent;
   justify-content: space-between;
+  white-space: nowrap;
 `;
+
+export const AllCommentsContainer = styled.div``;

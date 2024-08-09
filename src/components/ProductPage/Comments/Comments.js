@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import CommentItem from './CommentItem/CommentItem';
+import CommentItems from './CommentItem/CommentItems';
 import CreateCommentField from './CreateCommentField/CreateCommentField';
 import { useSelector } from 'react-redux';
 import {
   commentsExpandedSelector,
   productForProductPage,
 } from '../../../redux/productPage/selectors';
+import { AllCommentsContainer } from './CommentItem/CommentItem.styled';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import '../../../index.css';
+import ButtonAddMoreComments from './ButtonAddMoreComments';
 
 function Comments() {
   const product = useSelector(productForProductPage);
   const [commentId, setCommentId] = useState('');
   const commentsExpanded = useSelector(commentsExpandedSelector);
+  const [quantityComments, setQuantityComments] = useState(4);
+  const [commentsLeft, setCommentsLeft] = useState(product.comments.length - 4);
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
     const currentDate = new Date();
@@ -77,33 +83,52 @@ function Comments() {
   };
 
   const processedComments = processComments(product.comments || []);
+
+  const handlerExpandedComments = (event, quantityComments) => {
+    console.log(quantityComments);
+    if (!commentsLeft) return;
+    setQuantityComments(prev => prev + quantityComments);
+    setTimeout(() => {
+      setCommentsLeft(prev => prev - quantityComments);
+    }, 500);
+  };
+
   return (
     <>
+      <AllCommentsContainer>
+        <TransitionGroup component={null}>
+          {processedComments.length > 0 &&
+            processedComments.slice(0, quantityComments).map((el, index) => (
+              <CSSTransition key={el._id} timeout={500} classNames="fade">
+                <div>
+                  <CommentItems
+                    key={index}
+                    name={el.author.firstName}
+                    body={el.body}
+                    like={el.like}
+                    dislike={el.dislike}
+                    id={el._id}
+                    daysPassed={el.daysPassed}
+                    comments={el.comments}
+                    isNested={false}
+                    product={el.product}
+                    commentId={commentId}
+                    parentIndex={index}
+                    parent={el._id}
+                    rating={el.rating}
+                    setCommentId={setCommentId}
+                    commentsExpanded={commentsExpanded}
+                  />
+                </div>
+              </CSSTransition>
+            ))}
+        </TransitionGroup>
+        <ButtonAddMoreComments
+          handlerExpandedComments={handlerExpandedComments}
+          commentsLeft={commentsLeft}
+        />
+      </AllCommentsContainer>
       <CreateCommentField productId={product._id} />
-
-      {processedComments.length > 0 &&
-        processedComments.map((el, index) => (
-          <>
-            <CommentItem
-              key={index}
-              name={el.author.firstName}
-              body={el.body}
-              like={el.like}
-              dislike={el.dislike}
-              id={el._id}
-              daysPassed={el.daysPassed}
-              comments={el.comments}
-              isNested={false}
-              product={el.product}
-              commentId={commentId}
-              parentIndex={index}
-              parent={el._id}
-              rating={el.rating}
-              setCommentId={setCommentId}
-              commentsExpanded={commentsExpanded}
-            />
-          </>
-        ))}
     </>
   );
 }

@@ -25,7 +25,12 @@ export default function ChooseTown({
             modelName: 'AddressGeneral',
             calledMethod: 'getCities',
             methodProperties: {
-              FindByString: `${enteredName.toLowerCase()}`,
+              FindByString:
+                typeof enteredName === 'object'
+                  ? `${enteredName[0].toLowerCase().split(' ')[1]}`
+                  : enteredName?.toLowerCase().split(' ').length === 1
+                  ? `${enteredName.toLowerCase()}`
+                  : `${enteredName.toLowerCase().split(' ')[1]}`,
             },
           }),
         });
@@ -37,11 +42,12 @@ export default function ChooseTown({
         console.log(error);
       }
     }
-    if (enteredName) {
-      fetchDataPost();
+    if (enteredName && typeof enteredName === 'string') {
+      var timer = setTimeout(() => fetchDataPost(), 500);
     } else {
       setIsOpenMenu(false);
     }
+    return () => clearTimeout(timer);
   }, [enteredName]);
 
   const handleChangeComponent = event => {

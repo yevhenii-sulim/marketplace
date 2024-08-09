@@ -8,3 +8,8 @@ export const selectFiltersColors = state => state.products.filters.colors;
 export const selectTotalPages = state => state.products.totalPage;
 export const selectTotalSearch = state => state.products.search;
 export const selectPrevProductSearch = state => state.products.prevSearch;
+export const selectPrevProductSearchLoading = state =>
+  state.products.prevSearch;
+export const selectIsLoading = state => state.products.isLoading;
+export const selectIsLoadingSearching = state => state.products.isLoadingSearch;
+export const selectLoader = state => state.products.loader;

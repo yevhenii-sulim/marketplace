@@ -39,9 +39,7 @@ export default function ChangePassword() {
           return errors;
         }}
         onSubmit={values => {
-          console.log(values.new_password);
-
-          dispatch(restorePassword(values.new_password));
+          dispatch(restorePassword({ password: values.new_password }));
         }}
       >
         {({ isSubmitting, handleChange, setSubmitting, errors }) => (
