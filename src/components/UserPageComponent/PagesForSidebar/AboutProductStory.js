@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   About,
   Cost,
@@ -13,7 +12,7 @@ import {
 import { formatDate } from 'data/formatDate';
 
 export default function AboutProductStory({
-  state,
+  status,
   title,
   createDate,
   price,
@@ -25,7 +24,7 @@ export default function AboutProductStory({
   return (
     <WrapperProduct className="story">
       <About>
-        <State $state={Object.keys(state)}>{Object.values(state)}</State>
+        <State $state={Object.keys(status)}>{Object.values(status)}</State>
         <NumberOrder>&#8470;{number}</NumberOrder>
         <ImageStory>
           <img src={img} alt={title} />

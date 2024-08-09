@@ -9,39 +9,43 @@ export default function MyStoryOrdersPage() {
 
   const user = useSelector(selectMyUser);
   const purchasedGoods = user?.purchasedGoods ?? [];
-  console.log('purchasedGoods', purchasedGoods);
   function sortProduct(criterion) {
     switch (criterion) {
       case 'Найдешевші':
         return purchasedGoods.toSorted((max, min) => {
           if (min.discountPrice) {
-            return parseInt(max.discountPrice) - parseInt(min.discountPrice);
+            return (
+              parseInt(max.product.discountPrice) -
+              parseInt(min.product.discountPrice)
+            );
           } else {
-            return parseInt(max.price) - parseInt(min.price);
+            return parseInt(max.product.price) - parseInt(min.product.price);
           }
         });
 
       case 'Найдорожчі':
         return purchasedGoods.toSorted((max, min) => {
           if (min.discountPrice) {
-            return parseInt(min.discountPrice) - parseInt(max.discountPrice);
+            return (
+              parseInt(min.product.discountPrice) -
+              parseInt(max.product.discountPrice)
+            );
           } else {
-            return parseInt(min.price) - parseInt(max.price);
+            return parseInt(min.product.price) - parseInt(max.product.price);
           }
         });
       default:
         return purchasedGoods.toSorted(
-          (a, b) => new Date(b.createDate) - new Date(a.createDate)
+          (a, b) =>
+            new Date(b.product.createDate) - new Date(a.product.createDate)
         );
     }
   }
   const products = sortProduct(valueSort);
   function onSort() {
-    return products.filter(({ title, number }) => {
-      return (
-        title.toLowerCase().includes(value.toLowerCase()) ||
-        `${number}`.includes(value)
-      );
+    return products.filter(({ product }) => {
+      return product.title.toLowerCase().includes(value.toLowerCase());
+      //  ||`${number}`.includes(value)
     });
   }
 
