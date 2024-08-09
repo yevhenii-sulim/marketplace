@@ -21,7 +21,7 @@ import { createPortal } from 'react-dom';
 import { addCommentFromStory } from '../../../redux/product/thunk';
 import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
 import AboutProductStory from './AboutProductStory';
-import Sort from 'components/Filters/Sort/Sort';
+import Sort from 'components/Sort/Sort';
 const modalEnter = document.querySelector('#modal');
 
 export default function MyStoryOrder({
@@ -85,27 +85,28 @@ export default function MyStoryOrder({
             {sortedProduct.map(
               ({
                 _id,
-                state,
-                title,
+                status,
                 createDate,
-                price,
-                discountPrice,
-                img,
-                number,
-                discount,
-                category,
-                subCategory,
+                product: {
+                  title,
+                  price,
+                  discountPrice,
+                  minImage,
+                  discount,
+                  subCategory,
+                  category,
+                },
               }) => {
                 return (
                   <ListStoryOrder key={_id}>
                     <AboutProductStory
-                      state={state}
+                      status={status}
                       title={title}
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      img={img}
-                      number={number}
+                      img={minImage}
+                      number={5}
                       discount={discount}
                     />
                     <WrapperBuy className="story">

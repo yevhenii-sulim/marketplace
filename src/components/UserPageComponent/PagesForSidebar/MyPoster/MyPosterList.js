@@ -39,7 +39,7 @@ export default function MyPosterList({
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
 
-  const soldGoods = user?.soldGoods ?? [];
+  const products = user?.products ?? [];
 
   const ref = useRef();
   function toCreatePost() {
@@ -69,7 +69,7 @@ export default function MyPosterList({
   }
   return (
     <div>
-      {soldGoods.length === 0 ? (
+      {products.length === 0 ? (
         <Empty>
           <PosterSvg />
           <p>Додайте ваше перше оголошення!</p>
@@ -99,29 +99,29 @@ export default function MyPosterList({
           <WrapperPoster ref={ref}>
             {sortedProduct.map(
               ({
-                _id,
-                state,
+                parameters: { _id },
+                status,
                 title,
                 createDate,
                 price,
                 discountPrice,
-                img,
-                number,
+                minImage,
+                // number,
                 discount,
                 message,
-                like,
+                // like,
                 visit,
               }) => {
                 return (
-                  <ListStoryOrder key={_id} $state={Object.keys(state)}>
+                  <ListStoryOrder key={_id} $state={Object.keys(status)}>
                     <AboutProductStory
-                      state={state}
+                      status={status}
                       title={title}
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      img={img}
-                      number={number}
+                      img={minImage}
+                      number={5}
                       discount={discount}
                     />
                     <WrapperBuy className="poster">
@@ -150,7 +150,7 @@ export default function MyPosterList({
                           <MessageSvg />
                         </FeedBackSign>
                         <FeedBackSign>
-                          <span className="heart">{like}</span>
+                          {/* <span className="heart">{like}</span> */}
                           <FavoriteBorderOutlinedIcon />
                         </FeedBackSign>
                         <FeedBackSign>
