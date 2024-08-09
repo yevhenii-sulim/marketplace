@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
-import { useState } from 'react';
 import { styleSelect } from './AddProductComponent.styled';
 
 const ITEM_HEIGHT = 48;
@@ -37,6 +37,11 @@ export default function MultipleSelectSubCategory({
 }) {
   const theme = useTheme();
   const [personName, setPersonName] = useState('');
+
+  useEffect(() => {
+    setPersonName('');
+  }, [values.category]);
+
   const handleChangeComponent = event => {
     const { value } = event.target;
     handleChange(event);

@@ -5,22 +5,19 @@ import SearchedProduct from 'components/SearchedProduct.js/SearchedProduct';
 
 export default function SearchedProductPage() {
   const [valueSort, setValueSort] = useState('new');
-
   const products = useSelector(selectTotalSearch);
-  console.log(products);
-
   const handleSort = sort => {
     setValueSort(sort);
   };
 
   function sortingProduct() {
     switch (valueSort) {
-      case 'cheep':
+      case 'Найдешевші':
         return products.toSorted(
           (max, min) => parseInt(max.price) - parseInt(min.price)
         );
 
-      case 'expensive':
+      case 'Найдорожчі':
         return products.toSorted(
           (max, min) => parseInt(min.price) - parseInt(max.price)
         );
@@ -31,6 +28,7 @@ export default function SearchedProductPage() {
     }
   }
   const sortedProduct = sortingProduct();
+
   return (
     <SearchedProduct
       handleSort={handleSort}

@@ -1,20 +1,16 @@
 import React from 'react';
 import Slider from '../Slider/Slider';
 import DescribeInfo from '../DescribeInfo/DescribeInfo';
-import {
-  DescriptionProductHeaderComments,
-  DescriptionProductWrapper,
-} from './DescriptionContainerProduct.styled';
+import { DescriptionProductWrapper } from './DescriptionContainerProduct.styled';
 import Comments from '../Comments/Comments';
+import CommentsHeader from '../Comments/CommentsHeader';
 
 function DescriptionContainerProduct() {
   return (
     <DescriptionProductWrapper>
       <Slider />
       <DescribeInfo />
-      <DescriptionProductHeaderComments>
-        Відгуки до оголошення
-      </DescriptionProductHeaderComments>
+      <CommentsHeader />
       <Comments />
     </DescriptionProductWrapper>
   );

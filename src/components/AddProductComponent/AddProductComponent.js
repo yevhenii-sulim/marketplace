@@ -3,13 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { navigationList } from 'data/navListData';
-import {
-  pictures,
-  sizeFootwear,
-  sizeClothes,
-  colorProduct,
-} from 'data/forAddProductPage';
 import FieldComponent from './FieldComponent';
 import FieldAddImages from './FieldAddImages';
 import Label from './Label';
@@ -23,9 +16,17 @@ import PriceComponent from './PriceComponent';
 import FieldsCheckboxes from './FieldsCheckboxes';
 import { createProduct } from '../../redux/product/thunk';
 import { toggleModalView } from '../../redux/modalViewProduct/slice';
-import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
 import { selectorViewAddingProductModal } from '../../redux/modalViewProduct/selectors';
+import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
+import { togglePoster } from '../../redux/myPoster/slice';
 import SignupSchema from './validationSchema';
+import { navigationList } from 'data/navListData';
+import {
+  pictures,
+  sizeFootwear,
+  sizeClothes,
+  colorProduct,
+} from 'data/forAddProductPage';
 import {
   Box,
   Buttons,
@@ -38,7 +39,6 @@ import {
   addProductButton,
   viewProductButton,
 } from './AddProductComponent.styled';
-import { togglePoster } from '../../redux/myPoster/slice';
 
 const modalEnter = document.querySelector('#modal');
 
@@ -48,7 +48,24 @@ export default function AddProductComponent() {
   function aheadViewProduct() {
     dispatch(toggleModalView(true));
   }
-
+  function translateSexValue(value) {
+    switch (value) {
+      case 'Для жінок':
+        return 'famale';
+      case 'Для чоловіків':
+        return 'male';
+      default:
+        return 'unsex';
+    }
+  }
+  function translateStateValue(value) {
+    switch (value) {
+      case 'Новий товар':
+        return 'Нове';
+      default:
+        return 'Уживаний товар';
+    }
+  }
   function setCondition() {
     dispatch(togglePoster(false));
   }
@@ -58,6 +75,12 @@ export default function AddProductComponent() {
       if (!values.hasOwnProperty(key)) return;
       if (key === 'price') {
         formData.append('price', values[key] || 0);
+      } else if (key === 'sex') {
+        formData.append('sex', translateSexValue(values[key]));
+        console.log(translateSexValue(values[key]));
+      } else if (key === 'state') {
+        formData.append('state', translateStateValue(values[key]));
+        console.log(translateStateValue(values[key]));
       } else if (key === 'subCategory') {
         formData.append('subCategory', values[key] || null);
       } else if (key === 'size') {

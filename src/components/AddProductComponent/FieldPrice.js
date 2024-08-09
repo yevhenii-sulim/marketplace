@@ -36,6 +36,7 @@ export default function FieldPrice({
           {children}
           <Field
             name={name}
+            step="1"
             type="number"
             onChange={handleChangeComponent}
             disabled={disabled}

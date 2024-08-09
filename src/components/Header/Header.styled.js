@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme.color.bgHeader};
+  position: relative;
 `;
 
 export const Container = styled.div`

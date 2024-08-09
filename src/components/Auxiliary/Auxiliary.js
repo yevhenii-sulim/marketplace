@@ -14,7 +14,8 @@ export default memo(function Auxiliary() {
   const dispatch = useDispatch();
 
   function onOpen(evt) {
-    !isAuth && evt.preventDefault();
+    if (isAuth) return;
+    evt.preventDefault();
     dispatch(toggleModalForm(true));
   }
 

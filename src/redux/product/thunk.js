@@ -1,17 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import Notiflix from 'notiflix';
 import { getUser } from '../auth/thunk';
-
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+import $api from '../interceptors/interceptor';
 
 export const addCommentFromStory = createAsyncThunk(
   'products/addComment',
   async ({ comment, id }, { getState }) => {
     try {
       const token = getState().users.token;
-      const response = await axios.post(
+      const response = await $api.post(
         `/comment`,
         {
           parent: null,
@@ -36,12 +33,13 @@ export const getProducts = createAsyncThunk(
   'products/getProducts',
   async ({ textQuery, paramQuery, page }) => {
     try {
-      const { data } = await axios.get(
+      const { data } = await $api.get(
         `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
       );
       return data;
     } catch (error) {
       console.log('errorGetProductBySubCateg', error);
+      window.location.href = '/marketplace/err/err/err/err';
     }
   }
 );
@@ -49,8 +47,10 @@ export const getProducts = createAsyncThunk(
 export const searchProduct = createAsyncThunk(
   'products/searchProduct',
   async title => {
+    if (!title) return;
+
     try {
-      const { data } = await axios.get(`/products/search?title=${title}`);
+      const { data } = await $api.get(`/products/search?title=${title}`);
       console.log('search', data);
 
       return data;
@@ -61,9 +61,13 @@ export const searchProduct = createAsyncThunk(
 );
 export const prevSearchProduct = createAsyncThunk(
   'products/prevSearchProduct',
-  async title => {
+  async (title, { signal }) => {
+    console.log('searshThunk', title);
+    if (!title) return;
     try {
-      const { data } = await axios.get(`/products/search?title=${title}`);
+      const { data } = await $api.get(`/products/search?title=${title}`, {
+        signal,
+      });
       console.log('search', data);
 
       return data;
@@ -77,7 +81,7 @@ export const addFavoriteProduct = createAsyncThunk(
   'products/addFavoriteProduct',
   async (productId, { getState, dispatch }) => {
     try {
-      const { data } = await axios.patch(
+      const { data } = await $api.patch(
         `/favorite/add/${productId}`,
         productId,
         {
@@ -99,7 +103,7 @@ export const removeFavoriteProduct = createAsyncThunk(
   'products/removeFavoriteProduct',
   async (productId, { getState, dispatch }) => {
     try {
-      const { data } = await axios.patch(
+      const { data } = await $api.patch(
         `/favorite/remove/${productId}`,
         productId,
         {
@@ -120,7 +124,7 @@ export const removeFavoriteProduct = createAsyncThunk(
 
 export const getProduct = createAsyncThunk('products/getProduct', async id => {
   try {
-    const { data } = await axios.get(`/products/${id}`);
+    const { data } = await $api.get(`/products/${id}`);
     return data;
   } catch (error) {
     console.log('errorGetProduct', error);
@@ -130,9 +134,8 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
 export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (product, { getState }) => {
-    product.foreach(item => console.log(item));
     try {
-      const data = await axios.post(`/products/create`, product, {
+      const data = await $api.post(`/products/create`, product, {
         headers: {
           Authorization: `Bearer ${getState().users.token}`,
           'Content-Type': 'multipart/form-data',

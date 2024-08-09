@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import {
-  CommentsContainer,
-  CommentsIconBlock,
-  CommentsWrapper,
-} from '../CommentItem/CommentItem.styled';
+import { CommentsWrapper } from '../CommentItem/CommentItem.styled';
 import {
   CommentButtonBlock,
   CreateCommentInput,
   CreateFieldBlock,
+  CreateFieldContainer,
   ErrorValidationComment,
   LoaderWrapper,
 } from './CreateCommentField.styled';
@@ -16,8 +13,9 @@ import { SyncLoader } from 'react-spinners';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from '../../../../redux/productPage/productPageSlice';
 import { Rating } from '@mui/material';
+import { cancelButton, commentedButton, rating } from './material.styles';
 
-function CreateCommentField({ productId, parent, parentIndex }) {
+function CreateCommentField({ productId, parent, parentIndex, isNested }) {
   const createCommentLoading = useSelector(
     state => state.productPage.createCommentLoading
   );
@@ -42,9 +40,8 @@ function CreateCommentField({ productId, parent, parentIndex }) {
 
   return (
     <CommentsWrapper>
-      <CommentsContainer>
-        <CommentsIconBlock></CommentsIconBlock>
-        <CreateFieldBlock>
+      <CreateFieldBlock>
+        <CreateFieldContainer>
           {showValidationComment && (
             <ErrorValidationComment>
               This comment is very short
@@ -57,11 +54,11 @@ function CreateCommentField({ productId, parent, parentIndex }) {
               onChange={(event, newValue) => {
                 setValue(newValue);
               }}
-              sx={{ position: 'absolute', right: 0, top: '5px' }}
+              sx={rating}
             />
           )}
           <CreateCommentInput
-            placeholder={createCommentLoading ? '' : 'Placeholder'}
+            placeholder={createCommentLoading ? '' : 'Додавайте коментар...'}
             onChange={e => setNewComment(e.target.value)}
             value={newComment}
           />
@@ -75,45 +72,17 @@ function CreateCommentField({ productId, parent, parentIndex }) {
             />
           </LoaderWrapper>
 
-          <CommentButtonBlock>
+          <CommentButtonBlock $isNested={isNested}>
             <Button
               variant="outlined"
-              sx={{
-                borderColor: '#43C550',
-                textTransform: 'none',
-                color: 'black',
-                height: '40px',
-                padding: '0 20px',
-                fontSize: '18px',
-                fontWeight: '600',
-
-                '&:focus': {
-                  borderColor: '#43C550',
-                },
-                '&:hover': {
-                  borderColor: '#43C550',
-                },
-              }}
+              sx={cancelButton}
               onClick={() => setNewComment('')}
             >
               Скасувати
             </Button>
             <Button
               variant="contained"
-              sx={{
-                backgroundColor: '#43C550',
-                textTransform: 'none',
-                height: '40px',
-                padding: '0 20px',
-                fontSize: '18px',
-                fontWeight: '800',
-                '&:focus': {
-                  backgroundColor: '#43C550',
-                },
-                '&:hover': {
-                  backgroundColor: '#43C550',
-                },
-              }}
+              sx={commentedButton}
               onClick={() =>
                 addNewComment(parent, newComment, productId, parentIndex, value)
               }
@@ -121,8 +90,8 @@ function CreateCommentField({ productId, parent, parentIndex }) {
               Коментувати
             </Button>
           </CommentButtonBlock>
-        </CreateFieldBlock>
-      </CommentsContainer>
+        </CreateFieldContainer>
+      </CreateFieldBlock>
     </CommentsWrapper>
   );
 }

@@ -3,13 +3,12 @@ import { initialState } from '../initialState';
 import { getProducts, prevSearchProduct, searchProduct } from './thunk';
 
 const handlePending = state => {
-  state.product = [];
+  state.isLoading = false;
   state.totalPage = 0;
 };
 
 const handleFulfilled = (state, { payload }) => {
-  console.log(payload);
-
+  state.isLoading = true;
   state.product = payload.products;
   state.filters = payload.filters;
   state.totalPage = payload.totalPages;
@@ -17,11 +16,23 @@ const handleFulfilled = (state, { payload }) => {
 
 const handleSearchFulfilled = (state, { payload }) => {
   state.search = payload;
+  state.loader = false;
 };
+
+const handlePendingSearchPrev = state => {
+  state.isLoadingSearch = false;
+  state.loader = true;
+};
+
 const handlePrevSearchFulfilled = (state, { payload }) => {
   state.prevSearch = payload;
+  state.isLoadingSearch = true;
+  state.loader = false;
 };
-const handleRejected = state => {};
+const handleRejected = state => {
+  state.isLoadingSearch = true;
+  state.loader = false;
+};
 
 const productSlice = createSlice({
   name: 'products',
@@ -31,33 +42,13 @@ const productSlice = createSlice({
       .addCase(getProducts.pending, handlePending)
       .addCase(getProducts.fulfilled, handleFulfilled)
       .addCase(getProducts.rejected, handleRejected)
+      .addCase(searchProduct.pending, handlePendingSearchPrev)
       .addCase(searchProduct.fulfilled, handleSearchFulfilled)
-      .addCase(prevSearchProduct.fulfilled, handlePrevSearchFulfilled);
+      .addCase(searchProduct.rejected, handleRejected)
+      .addCase(prevSearchProduct.fulfilled, handlePrevSearchFulfilled)
+      .addCase(prevSearchProduct.rejected, handleRejected)
+      .addCase(prevSearchProduct.pending, handlePendingSearchPrev);
   },
 });
 
 export const productReducer = productSlice.reducer;
-
-// import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-// interface InitialState {
-//   isNextClicked: boolean;
-// }
-
-// const initialState: InitialState = {
-//   isNextClicked: false,
-// };
-
-// export const editTenderSlice = createSlice({
-//   name: 'editTender',
-//   initialState,
-//   reducers: {
-//     setIsNextClicked(state, { payload }: PayloadAction<boolean>) {
-//       state.isNextClicked = payload;
-//     },
-//   },
-// });
-
-// export const { setIsNextClicked } = editTenderSlice.actions;
-
-// export default editTenderSlice.reducer;
