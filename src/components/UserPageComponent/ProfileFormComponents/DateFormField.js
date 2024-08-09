@@ -16,7 +16,7 @@ export default function DateFormField({ label, disabled, value, onChange }) {
     const date = `${(valueToDate.toDate().getDate() < 10) ? '0' : ''}${valueToDate.toDate().getDate()}`;
     const fullYear = `${valueToDate.toDate().getFullYear()}`;
 
-    return `${month}-${date}-${fullYear}`;
+    return `${fullYear}-${month}-${date}`;
   }
 
   return (

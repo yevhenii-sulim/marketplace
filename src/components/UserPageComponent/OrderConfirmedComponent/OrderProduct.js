@@ -39,7 +39,7 @@ export default function OrderProduct({ productId, imgSrc, title, price }) {
             <strong>Оплата:</strong> {orderData.pay.toLowerCase()}
           </p>
           <p>
-            <strong>Отримувач:</strong> {orderData.lastName} {orderData.firstName} +380-{orderData.tel}
+            <strong>Отримувач:</strong> {orderData.lastName} {orderData.firstName} {orderData.tel}
           </p>
         </OrderReceiverData>
       </OrderProductContainer>

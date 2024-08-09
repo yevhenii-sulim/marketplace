@@ -2,6 +2,7 @@ import HomePageComponent from 'components/HomePageComponent/HomePageComponent';
 import CategoryList from 'components/CategoryList/CategoryList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import HomePageAdSlider from 'components/HomePageAdSlider/HomePageAdSlider';
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -53,6 +54,7 @@ export default function HomePage() {
 
   return (
     <>
+      <HomePageAdSlider />
       <CategoryList />
       {productsDiscount.length !== 0 && (
         <HomePageComponent

@@ -38,6 +38,7 @@ export const signUp = createAsyncThunk(
     }
   }
 );
+
 export const logIn = createAsyncThunk(
   'user/enterUser',
   async (user, { dispatch }) => {
@@ -86,6 +87,7 @@ export const restorePassword = createAsyncThunk(
       tokenIndex + 6,
       window.location.href.length
     );
+
     try {
       const data = await publicInstans.post('/auth/changePassword', password, {
         headers: {
