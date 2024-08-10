@@ -76,6 +76,7 @@ function SimilarProduct({
         {checkSubCategory(subCategory) ? (
           <Link
             onClick={scrollToByClick}
+            state={location}
             to={
               countCharacter(2)
                 ? `${id}`

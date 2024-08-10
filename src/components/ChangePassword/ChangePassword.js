@@ -1,15 +1,15 @@
-import { Button } from '@mui/material';
-import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Formik } from 'formik';
+import { Button } from '@mui/material';
+import { restorePassword } from '../../redux/auth/thunk';
+import FieldPasswordComponent from './FieldPasswordComponent';
 import {
   ContainerForm,
   ErrorMessage,
-  Field,
   Form,
   socialSingInButton,
+  cancelButton,
 } from './ChangePassword.styled';
-import { Formik } from 'formik';
-import { restorePassword } from '../../redux/auth/thunk';
 
 export default function ChangePassword() {
   const dispatch = useDispatch();
@@ -45,15 +45,13 @@ export default function ChangePassword() {
         {({ isSubmitting, handleChange, setSubmitting, errors }) => (
           <Form>
             <label>
-              Введіть пароль
-              <Field
-                type="text"
+              <h2>Введіть новий пароль</h2>
+              <FieldPasswordComponent
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
                 name="new_password"
-                onChange={e => {
-                  handleChange(e);
-                  setSubmitting(false);
-                }}
               />
+
               {!errors.new_password && (
                 <p>
                   Пароль повинен мати довжину 6-20 символів, одну велику літеру,
@@ -64,14 +62,11 @@ export default function ChangePassword() {
             </label>
 
             <label>
-              Підтвердіть пароль
-              <Field
-                type="text"
+              <h2>Підтвердіть новий пароль</h2>
+              <FieldPasswordComponent
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
                 name="confirm_new_password"
-                onChange={e => {
-                  handleChange(e);
-                  setSubmitting(false);
-                }}
               />
               <ErrorMessage name="confirm_new_password" component="p" />
             </label>
@@ -81,20 +76,14 @@ export default function ChangePassword() {
               disabled={isSubmitting}
               sx={socialSingInButton}
             >
-              Надіслати код
+              Зберегти зміни
+            </Button>
+            <Button type="button" sx={cancelButton}>
+              Скасувати
             </Button>
           </Form>
         )}
       </Formik>
     </ContainerForm>
-    // <form
-    //   onSubmit={e => {
-    //     e.preventDefault();
-    //     console.log(e.target.elements.new_password.value);
-    //   }}
-    // >
-    //   <input type="text" name="new_password" />
-    //   <Button type="submit">ChsngePassword</Button>
-    // </form>
   );
 }

@@ -63,7 +63,7 @@ function FilterColor() {
       <ColorList>
         {open &&
           colors &&
-          colors.map(({ colorName, color, _id }, index) => {
+          colors.map(({ colorName, color, _id }) => {
             return (
               colorName !== 'без кольору' && (
                 <Box key={_id}>
