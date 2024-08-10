@@ -427,7 +427,7 @@ export const WrapperModal = styled.div`
     font-family: 'Nunito Sans';
     font-size: 18px;
     font-weight: 400;
-    line-height: 1, 44;
+    line-height: 144%;
     width: 100%;
     min-height: 400px;
     border-radius: 6px;

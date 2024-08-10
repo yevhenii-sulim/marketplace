@@ -23,6 +23,12 @@ export const ProductsPage = styled.div`
     justify-content: space-between;
   }
 `;
+export const BoxSvg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+`;
 export const TitleSort = styled.h2`
   font-family: 'Jost';
   font-size: 28px;
@@ -35,8 +41,24 @@ export const TitleSection = styled.h1`
   left: 40px;
   top: 24px;
   font-family: Jost;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   line-height: 1.5; /* 150% */
   letter-spacing: -0.32px;
+`;
+export const EmptySearch = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+  margin-top: 32px;
+  margin-bottom: 32px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  border-radius: 12px;
+  padding: 48px 24px;
+  ul {
+    text-align: center;
+  }
+  li {
+    list-style: inside;
+  }
 `;
