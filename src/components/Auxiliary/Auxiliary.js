@@ -24,7 +24,7 @@ export default memo(function Auxiliary() {
       <NavLink to="user_page/selected" onClick={onOpen}>
         <FavoriteBorderIcon />
       </NavLink>
-      <NavLink to="my_order">
+      <NavLink to="/my_order">
         {basket.length !== 0 && (
           <TotalProduct>
             {basket.reduce((cum, item) => {

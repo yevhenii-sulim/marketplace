@@ -31,6 +31,8 @@ export default function MyStoryOrder({
   value,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [idList, setIdList] = useState('');
+
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
 
@@ -44,8 +46,9 @@ export default function MyStoryOrder({
     navigate(`/${category.en}/${subCategory.en}/${id}`);
   }
 
-  function onOpenModal() {
+  function onOpenModal(id) {
     setIsOpen(true);
+    setIdList(id);
   }
 
   function onCloseModal() {
@@ -91,7 +94,7 @@ export default function MyStoryOrder({
                   title,
                   price,
                   discountPrice,
-                  minImage,
+                  img,
                   discount,
                   subCategory,
                   category,
@@ -105,7 +108,7 @@ export default function MyStoryOrder({
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      img={minImage}
+                      img={img[0]}
                       number={5}
                       discount={discount}
                     />
@@ -123,25 +126,25 @@ export default function MyStoryOrder({
                         <Button
                           type="button"
                           sx={viewProductButton}
-                          onClick={onOpenModal}
+                          onClick={() => onOpenModal(_id)}
                         >
                           Залишити відгук
                         </Button>
                       </DeleteAdd>
                     </WrapperBuy>
-                    {isOpen &&
-                      createPortal(
-                        <SendComment
-                          onSend={evt => onSend(evt, _id)}
-                          onCloseModal={onCloseModal}
-                        />,
-                        modalEnter
-                      )}
                   </ListStoryOrder>
                 );
               }
             )}
           </WrapperStoryOrder>
+          {isOpen &&
+            createPortal(
+              <SendComment
+                onSend={evt => onSend(evt, idList)}
+                onCloseModal={onCloseModal}
+              />,
+              modalEnter
+            )}
         </>
       )}
     </div>
