@@ -97,3 +97,9 @@ export const addNewProduct = (id, productData, contactData) => {
     ...contactData
   });
 }
+
+export const clearAllProducts = () => {
+  myStory.length = 0;
+  console.log('Products:');
+  console.log(myStory);
+}

@@ -83,7 +83,7 @@ export default function Placing({
               name="tel"
               value={tel.trim()}
               onChange={handleChange}
-              placeholder="050-589-00-32"
+              placeholder="+380-050-589-00-32"
               style={
                 touched.tel && errors.tel
                   ? {

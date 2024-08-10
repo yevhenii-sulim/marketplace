@@ -4,12 +4,17 @@ import { FirstWordVariants, SecondWordVariants, ThirdWordVariants } from "./Thir
 
 export const HomePageAdSliderContainer = styled.ul`
   margin-top: 30px;
+
   .slide {
     position: relative;
     height: 270px;
+    border-radius: 15px;
+    overflow: hidden;
   }
   .carousel__slide {
     background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
   }
   .carousel__inner-slide {
     height: auto;

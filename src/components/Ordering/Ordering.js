@@ -30,8 +30,19 @@ import {
   WrapperProduct,
   addProductButton,
 } from './Ordering.styled';
+<<<<<<< HEAD
+import { Button } from '@mui/material';
+import Placing from '../Placing/Placing';
+import { Formik } from 'formik';
+import signupSchema from '../Placing/validationSchema';
+import { useNavigate } from 'react-router-dom';
+import { setOrder } from '../../redux/orderData/slice';
+import { selectMyUser } from '../../redux/auth/selector';
+import { addNewProduct, myStory } from '../../data/myStory';
+=======
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
+>>>>>>> 37885fc0032554714d73b9bb34122bd8fc3f29ad
 
 const prices = {
   total: 0,
@@ -95,7 +106,7 @@ export default function Ordering() {
     dispatch(deleteProduct(id));
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = async (values) => {
     dispatch(deleteBasket());
 
     dispatch(
@@ -108,6 +119,8 @@ export default function Ordering() {
     basket.forEach(item => {
       addNewProduct(item.id, item, values);
     });
+
+    localStorage.setItem('productStory', JSON.stringify(myStory.filter(item => item.state.waited)));
 
     navigation('/purchase');
   };
