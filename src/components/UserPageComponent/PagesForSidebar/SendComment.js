@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
-import { Backdrop, WrapperModal, stayInButton } from './PagesForSidebar.styled';
-import { Button } from '@mui/material';
+import CommentComponent from '../RatingComponents/Comment/CommentComponent';
+import { selectorRating } from '../../../redux/rating/selector';
+import {
+  Action,
+  Backdrop,
+  Order,
+  WrapperModal,
+} from './PagesForSidebar.styled';
+import Rating from '../RatingComponents/Rating/Rating';
 
 export default function SendComment({ onSend, onCloseModal }) {
-  const [comment, setComment] = useState('');
-  function hendleChange(evt) {
-    setComment(evt.target.value);
-  }
+  const rating = useSelector(selectorRating);
   function oncloseByClickOutside(evt) {
     if (evt.currentTarget !== evt.target) return;
     onCloseModal(false);
@@ -16,26 +20,46 @@ export default function SendComment({ onSend, onCloseModal }) {
   return (
     <Backdrop onMouseDown={oncloseByClickOutside}>
       <WrapperModal>
-        <button
-          type="button"
-          className="close-modal"
-          onClick={() => onCloseModal(false)}
-        >
-          <CloseIcon />
-        </button>
-        <p>Залиште відгук</p>
-        <form onSubmit={onSend}>
-          <textarea
-            name="comment"
-            className="comment"
-            type="text"
-            value={comment}
-            onChange={hendleChange}
+        <Action>
+          <Order $rating={rating.length}>
+            <div></div>
+          </Order>
+          <button
+            type="button"
+            className="close-modal"
+            onClick={() => onCloseModal(false)}
+          >
+            <CloseIcon />
+          </button>
+        </Action>
+        {rating.length === 1 && (
+          <Rating
+            title="Як швидко з Вами зв’язалися?"
+            number={0}
+            bad="Дуже довго"
+            norm="Середньо"
+            good="Дуже швидко"
           />
-          <Button type="submit" sx={stayInButton}>
-            Відправити
-          </Button>
-        </form>
+        )}
+        {rating.length === 2 && (
+          <Rating
+            title="Як швидко товар було відправлено?"
+            number={1}
+            bad="Дуже довго"
+            norm="Середньо"
+            good="Дуже швидко"
+          />
+        )}
+        {rating.length === 3 && (
+          <Rating
+            title="Чи був товар у наявності?"
+            number={2}
+            bad=""
+            norm=""
+            good=""
+          />
+        )}
+        {rating.length === 4 && <CommentComponent onSend={onSend} />}
       </WrapperModal>
     </Backdrop>
   );

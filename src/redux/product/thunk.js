@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
 export const addCommentFromStory = createAsyncThunk(
   'products/addComment',
-  async ({ comment, id }, { getState, rejectWithValue }) => {
+  async ({ comment, rating, id }, { getState, rejectWithValue }) => {
     try {
       const token = getState().users.token;
       const response = await axios.post(
@@ -16,6 +16,7 @@ export const addCommentFromStory = createAsyncThunk(
           parent: null,
           body: comment,
           product: id,
+          rating,
         },
         {
           headers: {

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
+import { enableMapSet } from 'immer';
 import {
   persistStore,
   persistReducer,
@@ -21,7 +22,7 @@ import { reducerBasket } from './basket/slice';
 import { modalViewAddedProductReducer } from './modalViewProduct/slice';
 import { slicePosterReducer } from './myPoster/slice';
 import { orderDataReducer } from './orderData/slice';
-import { enableMapSet } from 'immer';
+import { ratingReducer } from './rating/slice';
 
 enableMapSet();
 const persistUser = {
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   users: persistReducer(persistUser, userAuthReducer),
   basket: reducerBasket,
   orderData: orderDataReducer,
+  rating: ratingReducer,
 });
 
 const persistedReducer = persistReducer(persistAllStore, rootReducer);
