@@ -3,11 +3,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
 import { getUser } from '../auth/thunk';
 import { refreshToken } from '../refreshToken';
+import { deleteRating } from '../rating/slice';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
 export const addCommentFromStory = createAsyncThunk(
   'products/addComment',
-  async ({ comment, rating, id }, { getState, rejectWithValue }) => {
+  async ({ comment, rating, id }, { getState, rejectWithValue, dispatch }) => {
     try {
       const token = getState().users.token;
       const response = await axios.post(
@@ -51,6 +52,8 @@ export const addCommentFromStory = createAsyncThunk(
       }
       console.log('errorCommentProduct', error);
       return rejectWithValue(error.message);
+    } finally {
+      dispatch(deleteRating());
     }
   }
 );
