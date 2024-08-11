@@ -86,19 +86,20 @@ export default function MyStoryOrder({
           </Filter>
           <WrapperStoryOrder>
             {sortedProduct.map(
-              ({
-                _id,
-                status,
-                createDate,
-                product: {
-                  title,
-                  price,
-                  discountPrice,
-                  img,
-                  discount,
-                  subCategory,
-                  category,
-
+              (
+                {
+                  _id,
+                  status,
+                  createDate,
+                  product: {
+                    title,
+                    price,
+                    discountPrice,
+                    img,
+                    discount,
+                    subCategory,
+                    category,
+                  },
                 },
                 index
               ) => {
@@ -110,11 +111,8 @@ export default function MyStoryOrder({
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-
                       number={index + 1}
-
                       img={img[0]}
-
                       discount={discount}
                     />
                     <WrapperBuy className="story">
