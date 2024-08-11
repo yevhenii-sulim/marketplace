@@ -1,7 +1,16 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Button } from '@mui/material';
 import { selectMyUser } from '../../../redux/auth/selector';
+import { addCommentFromStory } from '../../../redux/product/thunk';
+import { selectorRating } from '../../../redux/rating/selector';
+import Search from '../Search';
+import SendComment from './SendComment';
+import AboutProductStory from './AboutProductStory';
+import Sort from 'components/Sort/Sort';
+import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
 import {
   DeleteAdd,
   Empty,
@@ -13,15 +22,7 @@ import {
   viewProductButton,
   Filter,
 } from './PagesForSidebar.styled';
-import { useState } from 'react';
-import Search from '../Search';
-import { useNavigate } from 'react-router-dom';
-import SendComment from './SendComment';
-import { createPortal } from 'react-dom';
-import { addCommentFromStory } from '../../../redux/product/thunk';
-import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
-import AboutProductStory from './AboutProductStory';
-import Sort from 'components/Sort/Sort';
+import { addNullRating, deleteRating } from '../../../redux/rating/slice';
 const modalEnter = document.querySelector('#modal');
 
 export default function MyStoryOrder({
@@ -34,6 +35,7 @@ export default function MyStoryOrder({
   const [idList, setIdList] = useState('');
 
   const dispatch = useDispatch();
+  const rating = useSelector(selectorRating);
   const user = useSelector(selectMyUser);
 
   const purchasedGoods = user?.purchasedGoods ?? [];
@@ -47,25 +49,33 @@ export default function MyStoryOrder({
   }
 
   function onOpenModal(id) {
+    dispatch(addNullRating());
     setIsOpen(true);
     setIdList(id);
   }
 
   function onCloseModal() {
     setIsOpen(false);
+    dispatch(deleteRating());
   }
 
-  function onSend(evt, id) {
+  function onSend(evt, id, rating) {
     evt.preventDefault();
+    const fullRating = () =>
+      rating.reduce((acc, item) => {
+        acc += item;
+        return acc;
+      }, 0);
+    const middleRating = fullRating() / (rating.length - 1);
     dispatch(
       addCommentFromStory({
         comment: evt.target.elements.comment.value,
+        rating: middleRating,
         id: id,
       })
     );
-    setIsOpen(false);
+    setTimeout(() => setIsOpen(false), 500);
   }
-  console.log(sortedProduct);
   return (
     <div>
       {purchasedGoods.length === 0 ? (
@@ -143,7 +153,7 @@ export default function MyStoryOrder({
           {isOpen &&
             createPortal(
               <SendComment
-                onSend={evt => onSend(evt, idList)}
+                onSend={evt => onSend(evt, idList, rating)}
                 onCloseModal={onCloseModal}
               />,
               modalEnter

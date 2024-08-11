@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link as Location } from 'react-router-dom';
 import { theme } from 'utils/theme';
+import { widthComponentLevelLoadComment } from './widthComponentLevelLoadComment';
 
 export const Filter = styled.div`
   display: flex;
@@ -316,16 +317,6 @@ export const Count = styled.div`
   display: flex;
   gap: 14px;
   align-items: center;
-  /* .count {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid ${({ theme }) => theme.color.bgButton};
-    border-radius: 3px;
-    width: 16px;
-    height: 16px;
-    background-color: transparent;
-  } */
 `;
 
 export const NumberOrder = styled.span`
@@ -391,55 +382,50 @@ export const WrapperModal = styled.div`
     0px -59px 35px 0px rgba(130, 130, 130, 0.03),
     0px -26px 26px 0px rgba(130, 130, 130, 0.05),
     0px -7px 14px 0px rgba(130, 130, 130, 0.06);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 8px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   padding: 44px 52px;
-  @media screen and (min-width: 480px) {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 424px;
-    form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 32px;
-      height: 100%;
-    }
+  padding-top: 32px;
+  padding-bottom: 98px;
+  padding-left: 24px;
+  padding-right: 24px;
+  @media screen and (min-width: 769px) {
+    width: 769px;
   }
-  p {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.25;
+  h3 {
     text-align: center;
-    margin-bottom: 12px;
-  }
-  .close-modal {
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  .comment {
-    font-family: 'Nunito Sans';
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 144%;
-    width: 100%;
-    min-height: 400px;
-    border-radius: 6px;
-    resize: vertical;
-    outline: none;
-    padding: 16px;
-    focus {
-      box-shadow: inset 0 0 0 2px ${({ theme }) => theme.color.bgButton};
-    }
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.25;
   }
 `;
-
+export const Action = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 88px;
+  .close-modal {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+`;
+export const Order = styled.div`
+  width: 92%;
+  height: 16px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.color.bgBackdropLinePoPup};
+  div {
+    ${prop => console.log(prop)}
+    width: ${({ $rating }) => widthComponentLevelLoadComment($rating)};
+    height: 100%;
+    background-color: ${({ theme }) => theme.color.bgButton};
+    border-radius: 5px;
+  }
+`;
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
@@ -448,29 +434,3 @@ export const Backdrop = styled.div`
   height: 100%;
   background: ${({ theme }) => theme.color.bgBackdrop};
 `;
-
-export const stayInButton = {
-  width: '148px',
-  fontSize: '18px',
-  whiteSpace: 'nowrap',
-  fontWeight: '800',
-  fontFamily: 'Nunito Sans',
-  color: theme.color.colorButtonText,
-  bgcolor: theme.color.bgButton,
-  borderRadius: '6px',
-  textAlign: 'center',
-  padding: '8px 0px',
-  lineHeight: 1.4,
-  textTransform: 'none',
-  translate: 'all 100ms ease',
-  '&:hover': {
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
-    bgcolor: theme.color.bgButton,
-  },
-  '&:active': {
-    boxShadow: 'none',
-  },
-  '&:disabled': {
-    color: 'black',
-  },
-};
