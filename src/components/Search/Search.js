@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { prevSearchProduct, searchProduct } from '../../redux/product/thunk';
@@ -24,8 +24,13 @@ export default function Search() {
   const [isOpen, setIsOpen] = useState(false);
   const [wasClick, setWasClick] = useState(true);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setValue('');
+  }, [location]);
 
   useEffect(() => {
     if (value && wasClick) {

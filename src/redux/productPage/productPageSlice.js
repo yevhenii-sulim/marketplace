@@ -10,6 +10,7 @@ export const fetchProduct = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      window.location.href = '/marketplace/error';
       console.log(error);
     }
   }

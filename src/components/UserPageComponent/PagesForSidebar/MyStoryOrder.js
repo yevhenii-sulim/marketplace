@@ -31,6 +31,8 @@ export default function MyStoryOrder({
   value,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [idList, setIdList] = useState('');
+
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
 
@@ -44,8 +46,9 @@ export default function MyStoryOrder({
     navigate(`/${category.en}/${subCategory.en}/${id}`);
   }
 
-  function onOpenModal() {
+  function onOpenModal(id) {
     setIsOpen(true);
+    setIdList(id);
   }
 
   function onCloseModal() {
@@ -83,20 +86,19 @@ export default function MyStoryOrder({
           </Filter>
           <WrapperStoryOrder>
             {sortedProduct.map(
-              (
-                {
-                  _id,
-                  status,
-                  createDate,
-                  product: {
-                    title,
-                    price,
-                    discountPrice,
-                    minImage,
-                    discount,
-                    subCategory,
-                    category,
-                  },
+              ({
+                _id,
+                status,
+                createDate,
+                product: {
+                  title,
+                  price,
+                  discountPrice,
+                  img,
+                  discount,
+                  subCategory,
+                  category,
+
                 },
                 index
               ) => {
@@ -108,8 +110,11 @@ export default function MyStoryOrder({
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      img={minImage}
+
                       number={index + 1}
+
+                      img={img[0]}
+
                       discount={discount}
                     />
                     <WrapperBuy className="story">
@@ -126,25 +131,25 @@ export default function MyStoryOrder({
                         <Button
                           type="button"
                           sx={viewProductButton}
-                          onClick={onOpenModal}
+                          onClick={() => onOpenModal(_id)}
                         >
                           Залишити відгук
                         </Button>
                       </DeleteAdd>
                     </WrapperBuy>
-                    {isOpen &&
-                      createPortal(
-                        <SendComment
-                          onSend={evt => onSend(evt, _id)}
-                          onCloseModal={onCloseModal}
-                        />,
-                        modalEnter
-                      )}
                   </ListStoryOrder>
                 );
               }
             )}
           </WrapperStoryOrder>
+          {isOpen &&
+            createPortal(
+              <SendComment
+                onSend={evt => onSend(evt, idList)}
+                onCloseModal={onCloseModal}
+              />,
+              modalEnter
+            )}
         </>
       )}
     </div>

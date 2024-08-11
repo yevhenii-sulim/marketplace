@@ -20,7 +20,6 @@ import { productPageReducer } from './productPage/productPageSlice';
 import { reducerBasket } from './basket/slice';
 import { modalViewAddedProductReducer } from './modalViewProduct/slice';
 import { slicePosterReducer } from './myPoster/slice';
-import { sliceOrderReducer } from './myOrder/slice';
 import { orderDataReducer } from './orderData/slice';
 import { enableMapSet } from 'immer';
 
@@ -43,7 +42,6 @@ const rootReducer = combineReducers({
   modalCatalog: modalCatalogReducer,
   modalForm: modalFormReducer,
   poster: slicePosterReducer,
-  openModalBasket: sliceOrderReducer,
   category: categoryReducer,
   users: persistReducer(persistUser, userAuthReducer),
   basket: reducerBasket,

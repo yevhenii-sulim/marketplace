@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,7 +12,6 @@ import { theme } from 'utils/theme';
 import { selectBasket } from '../../redux/basket/select';
 import { selectMyUser } from '../../redux/auth/selector';
 import { deleteProduct } from '../../redux/basket/slice';
-import { toggleOrdering } from '../../redux/myOrder/slice';
 import {
   addFavoriteProduct,
   removeFavoriteProduct,
@@ -53,11 +52,12 @@ function defineWordByCount(product) {
   return 'товарів';
 }
 
-export default function BasketModal() {
+export default function BasketModal({ setIsOpen }) {
   const basket = useSelector(selectBasket);
   const user = useSelector(selectMyUser);
   const dispatch = useDispatch();
   const navigation = useNavigate();
+  const location = useLocation();
 
   let total = 0;
   let totalPrice = 0;
@@ -73,20 +73,20 @@ export default function BasketModal() {
   }
 
   function onClose() {
-    dispatch(toggleOrdering(false));
+    setIsOpen(false);
   }
 
   useEffect(() => {
     function onCloseByEsc(evt) {
       if (evt.code === 'Escape') {
-        dispatch(toggleOrdering(false));
+        setIsOpen(false);
       }
     }
     window.addEventListener('keydown', onCloseByEsc);
     return () => {
       window.removeEventListener('keydown', onCloseByEsc);
     };
-  }, [dispatch]);
+  }, [setIsOpen]);
 
   const deleteFromBasket = id => {
     dispatch(deleteProduct(id));
@@ -96,6 +96,9 @@ export default function BasketModal() {
     onClose();
   };
   const continueShopping = () => {
+    navigation(location.state);
+  };
+  const makeFirstOrder = () => {
     onClose();
   };
 
@@ -118,7 +121,7 @@ export default function BasketModal() {
             </IconButton>
             <ShoppingCart />
             <p>Зробіть ваше переше замовлення</p>
-            <Link to="/" onClick={continueShopping}>
+            <Link to="/" onClick={makeFirstOrder}>
               Перейти до товарів
             </Link>
           </>

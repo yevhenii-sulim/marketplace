@@ -31,7 +31,7 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
       lastName: userDataChanges?.lastName || user?.lastName,
       firstName: userDataChanges?.firstName || user?.firstName,
       surName: userDataChanges?.surname || user?.surName,
-      gender: userDataChanges?.gender || user?.gender
+      gender: userDataChanges?.gender || user?.gender,
     };
 
     if (userDataChanges?.img) {

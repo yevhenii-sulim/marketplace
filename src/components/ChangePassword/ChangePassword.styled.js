@@ -24,6 +24,17 @@ export const Form = styled(FormContainer)`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.42;
+    color: ${({ theme }) => theme.color.borderSize};
+  }
   label {
     position: relative;
     display: flex;
@@ -66,3 +77,49 @@ export const socialSingInButton = {
     boxShadow: 'none',
   },
 };
+
+export const cancelButton = {
+  textTransform: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  bgcolor: theme.color.bgProduct,
+  borderRadius: '6px',
+  padding: '8px 0',
+  fontFamily: 'Jost',
+  fontSize: '18px',
+  fontWeight: '700',
+  lineHeight: '1.4',
+  outline: 'none',
+  color: theme.color.bgHeader,
+  boxShadow: `inset 0 0 0 1px ${theme.color.bgButton}`,
+  '&:hover': {
+    color: theme.color.colorButtonText,
+    backgroundColor: theme.color.bgButtonHover,
+  },
+  '&:active': {
+    boxShadow: `inset 0 0 5px 0px ${theme.color.bgHeader}`,
+  },
+};
+
+export const UnView = styled.span`
+  position: absolute;
+  transform: translate(-19%, -150%) rotate(-45deg);
+  top: 50%;
+  left: 0;
+  width: 150%;
+  height: 2px;
+  background-color: ${({ theme }) => theme.color.colorMainText};
+`;
+export const BoxEye = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translatey(-50%);
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+export const FieldPassword = styled.div`
+  position: relative;
+`;

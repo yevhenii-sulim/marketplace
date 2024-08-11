@@ -61,10 +61,12 @@ export const getProducts = createAsyncThunk(
       const { data } = await axios.get(
         `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
       );
+      console.log(data);
+
       return data;
     } catch (error) {
       console.log('errorGetProductBySubCateg', error);
-      window.location.href = '/marketplace/err/err/err/err';
+      window.location.href = '/marketplace/error';
     }
   }
 );
@@ -80,6 +82,7 @@ export const searchProduct = createAsyncThunk(
 
       return data;
     } catch (error) {
+      window.location.href = '/marketplace/error';
       console.log('errorSearch', error);
     }
   }
@@ -190,6 +193,7 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
     const { data } = await axios.get(`/products/${id}`);
     return data;
   } catch (error) {
+    window.location.href = '/marketplace/error';
     console.log('errorGetProduct', error);
   }
 });

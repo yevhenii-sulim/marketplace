@@ -1,21 +1,32 @@
 import React from 'react';
 import {
+  BoxSvg,
   Product,
   ProductsPage,
   TitleSection,
+  EmptySearch,
   TitleSort,
 } from './SearchedProduct.styled';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import Sort from 'components/Sort/Sort';
+import NoSearched from 'SvgComponents/NoSearched/NoSearched';
 
 export default function SearchedProduct({ handleSort, sortedProduct }) {
   return (
     <>
       {sortedProduct?.length === 0 ? (
-        <TitleSection>
-          На жаль, за вашим запитом нічого не знайдено, спробуйте ввести інший
-          запит.
-        </TitleSection>
+        <EmptySearch>
+          <TitleSection>
+            На жаль, за вашим запитом нічого не знайдено.
+          </TitleSection>
+          <ul>
+            <li>Перевірте правильність введення пошукового запиту.</li>
+            <li>Спробуйте використати інші ключові слова або фрази.</li>
+          </ul>
+          <BoxSvg>
+            <NoSearched />
+          </BoxSvg>
+        </EmptySearch>
       ) : (
         <ProductsPage>
           <header>

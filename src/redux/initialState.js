@@ -1,6 +1,5 @@
 export const initialState = {
   poster: false,
-  openModalBasket: false,
   viewAddProduct: false,
   basket: [],
   openCatalog: false,

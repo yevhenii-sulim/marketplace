@@ -15,21 +15,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productForProductPage } from '../../../redux/productPage/selectors';
 import { addProduct } from '../../../redux/basket/slice';
 import { selectBasket } from '../../../redux/basket/select';
-import { toggleOrdering } from '../../../redux/myOrder/slice';
 import BasketModal from 'components/BasketModal/BasketModal';
-import { selectOrder } from '../../../redux/myOrder/selector';
+import { useState } from 'react';
 const body = document.querySelector('body');
 const modalEnter = document.querySelector('#modal');
 const widthScroll = window.innerWidth - body.offsetWidth;
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
-  const isOpen = useSelector(selectOrder);
+  const [isOpen, setIsOpen] = useState(false);
+
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
 
   function sendIdProduct() {
-    dispatch(toggleOrdering(true));
+    setIsOpen(true);
     body.style.paddingright = `${widthScroll}px`;
     for (const item of basket) {
       if (item.id === product._id) return;
@@ -84,7 +84,8 @@ function OrderSection() {
         <ButtonBlock sendIdProduct={sendIdProduct} />
         <DatePublication />
       </OrderSectionContainer>
-      {isOpen && createPortal(<BasketModal />, modalEnter)}
+      {isOpen &&
+        createPortal(<BasketModal setIsOpen={setIsOpen} />, modalEnter)}
     </OrderSectionWrapper>
   );
 }

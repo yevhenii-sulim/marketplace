@@ -30,6 +30,7 @@ import {
   WrapperProduct,
   addProductButton,
 } from './Ordering.styled';
+import { myStory } from '../../data/myStory';
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
@@ -95,7 +96,7 @@ export default function Ordering() {
     dispatch(deleteProduct(id));
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = async (values) => {
     dispatch(deleteBasket());
 
     dispatch(
@@ -108,6 +109,8 @@ export default function Ordering() {
     basket.forEach(item => {
       addNewProduct(item.id, item, values);
     });
+
+    localStorage.setItem('productStory', JSON.stringify(myStory.filter(item => item.state.waited)));
 
     navigation('/purchase');
   };
