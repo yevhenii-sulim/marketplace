@@ -43,9 +43,11 @@ export default function MyStoryOrdersPage() {
   }
   const products = sortProduct(valueSort);
   function onSort() {
-    return products.filter(({ product }) => {
-      return product.title.toLowerCase().includes(value.toLowerCase());
-      //  ||`${number}`.includes(value)
+    return products.filter(({ product }, index) => {
+      return (
+        product.title.toLowerCase().includes(value.toLowerCase()) ||
+        `${index + 1}`.includes(value)
+      );
     });
   }
 

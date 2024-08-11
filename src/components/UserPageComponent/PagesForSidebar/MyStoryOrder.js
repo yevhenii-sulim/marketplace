@@ -65,7 +65,7 @@ export default function MyStoryOrder({
     );
     setIsOpen(false);
   }
-
+  console.log(sortedProduct);
   return (
     <div>
       {purchasedGoods.length === 0 ? (
@@ -98,8 +98,10 @@ export default function MyStoryOrder({
                   discount,
                   subCategory,
                   category,
+
                 },
-              }) => {
+                index
+              ) => {
                 return (
                   <ListStoryOrder key={_id}>
                     <AboutProductStory
@@ -108,8 +110,11 @@ export default function MyStoryOrder({
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
+
+                      number={index + 1}
+
                       img={img[0]}
-                      number={5}
+
                       discount={discount}
                     />
                     <WrapperBuy className="story">

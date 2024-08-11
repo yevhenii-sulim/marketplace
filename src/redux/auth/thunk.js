@@ -1,17 +1,15 @@
+import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
 import { toggleModalForm } from '../modalForm/slice';
-import $api from '../interceptors/interceptor';
+axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
-const publicInstans = $api.create({
-  baseURL: 'https://internet-shop-api-production.up.railway.app',
-});
 const token = {
   set(token) {
-    publicInstans.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unSet() {
-    publicInstans.defaults.headers.common.Authorization = '';
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -19,21 +17,20 @@ export const signUp = createAsyncThunk(
   'user/addUser',
   async (user, { dispatch }) => {
     try {
-      const { data } = await publicInstans.post('/auth/registration', user);
+      const { data } = await axios.post('/auth/registration', user);
 
       token.set(data.accessJwt);
 
       Notiflix.Notify.success(
         'Підтвердіть свою електронну адресу, щоб мати можливість продавати та купувати товари на нашому маркетплейсі'
       );
+
       dispatch(toggleModalForm(false));
       return data;
     } catch (error) {
       console.log(error.response.data.errors);
       error.response.data.errors.forEach(({ field, message }) =>
-        Notiflix.Notify.failure(
-          `Введене ім'я містить недопустимі символи. Будь ласка, використовуйте лише літери латиниці або кирилиці.`
-        )
+        Notiflix.Notify.failure(`${field}:${message}`)
       );
     }
   }
@@ -43,7 +40,7 @@ export const logIn = createAsyncThunk(
   'user/enterUser',
   async (user, { dispatch }) => {
     try {
-      const { data } = await publicInstans.post('/auth/login', user);
+      const { data } = await axios.post('/auth/login', user);
       token.set(data.tokens.accessJwt);
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(
@@ -65,7 +62,7 @@ export const sendQueryRestorePassword = createAsyncThunk(
   'user/sendQueryRestorePassword',
   async (user, { dispatch }) => {
     try {
-      const { data } = await publicInstans.post('/auth/forgotPassword', user);
+      const { data } = await axios.post('/auth/forgotPassword', user);
 
       Notiflix.Notify.success(
         'Ми відправили інформацію для відновлення паролю вам на ел. пошту'
@@ -81,7 +78,7 @@ export const sendQueryRestorePassword = createAsyncThunk(
 
 export const restorePassword = createAsyncThunk(
   'user/restorePassword',
-  async (password, action) => {
+  async password => {
     const tokenIndex = window.location.href.indexOf('token=');
     const token = window.location.href.slice(
       tokenIndex + 6,
@@ -89,7 +86,7 @@ export const restorePassword = createAsyncThunk(
     );
 
     try {
-      const data = await publicInstans.post('/auth/changePassword', password, {
+      const data = await axios.post('/auth/changePassword', password, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -106,7 +103,7 @@ export const restorePassword = createAsyncThunk(
 
 export const logOut = createAsyncThunk('user/exitUser', async () => {
   try {
-    await publicInstans.get('/auth/logout');
+    await axios.get('/auth/logout');
     token.unSet();
   } catch (error) {
     console.log(error.message);
@@ -120,7 +117,7 @@ export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
   if (presentToken) {
     try {
       token.set(presentToken);
-      const { data } = await publicInstans.get('/auth/refresh');
+      const { data } = await axios.get('/auth/refresh');
       return data;
     } catch (error) {
       console.log(error);
@@ -131,8 +128,7 @@ export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
 
 export const getUser = createAsyncThunk('myUser/getUser', async user => {
   try {
-    const { data } = await publicInstans.get(`/user/${user}`);
-    console.log(data);
+    const { data } = await axios.get(`/user/${user}`);
 
     return data;
   } catch (error) {

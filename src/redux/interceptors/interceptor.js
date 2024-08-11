@@ -9,7 +9,6 @@ const $api = axios.create({
 
 $api.interceptors.request.use(config => {
   const storage = localStorage.getItem('persist:token');
-
   const parsedStorage = JSON.parse(storage);
 
   const rawToken = parsedStorage.token;
@@ -29,6 +28,11 @@ $api.interceptors.response.use(
   },
   async err => {
     const originalRequest = err.config;
+    console.log(
+      'Number(err.response.status)',
+      Number(err.response.status),
+      err.response.status
+    );
 
     if (Number(err.response.status) === 401 && originalRequest) {
       try {
