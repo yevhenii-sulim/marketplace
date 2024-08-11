@@ -51,7 +51,7 @@ export default function AddProductComponent() {
   function translateSexValue(value) {
     switch (value) {
       case 'Для жінок':
-        return 'famale';
+        return 'female';
       case 'Для чоловіків':
         return 'male';
       default:

@@ -2,7 +2,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styleSelect } from './AddProductComponent.styled';
 import { Checkbox, ListItemText } from '@mui/material';
 
@@ -26,6 +26,10 @@ export default function MultipleSelectSize({
     setSubmitting(false);
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
+
+  useEffect(() => {
+    setPersonName([]);
+  }, [values.category]);
 
   return (
     <div>

@@ -62,7 +62,7 @@ export default function MyStoryOrder({
     );
     setIsOpen(false);
   }
-
+  console.log(sortedProduct);
   return (
     <div>
       {purchasedGoods.length === 0 ? (
@@ -83,20 +83,23 @@ export default function MyStoryOrder({
           </Filter>
           <WrapperStoryOrder>
             {sortedProduct.map(
-              ({
-                _id,
-                status,
-                createDate,
-                product: {
-                  title,
-                  price,
-                  discountPrice,
-                  minImage,
-                  discount,
-                  subCategory,
-                  category,
+              (
+                {
+                  _id,
+                  status,
+                  createDate,
+                  product: {
+                    title,
+                    price,
+                    discountPrice,
+                    minImage,
+                    discount,
+                    subCategory,
+                    category,
+                  },
                 },
-              }) => {
+                index
+              ) => {
                 return (
                   <ListStoryOrder key={_id}>
                     <AboutProductStory
@@ -106,7 +109,7 @@ export default function MyStoryOrder({
                       price={price}
                       discountPrice={discountPrice}
                       img={minImage}
-                      number={5}
+                      number={index + 1}
                       discount={discount}
                     />
                     <WrapperBuy className="story">

@@ -20,6 +20,11 @@ export const Form = styled(FormContainer)`
   flex-direction: column;
   gap: 24px;
   textarea {
+    font-family: 'Nunito Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
     resize: vertical;
     min-height: 50px;
     height: 144px;
@@ -75,6 +80,7 @@ export const Field = styled(FieldForm)`
   border-radius: 6px;
   padding: 12px 12px 12px 12px;
   border: 1px solid ${({ theme }) => theme.color.borderSearch};
+
   &:focus {
     box-shadow: inset 0 0 0 3px ${({ theme }) => theme.color.borderRegister};
     border: 1px solid ${({ theme }) => theme.color.borderRegister};
@@ -89,6 +95,25 @@ export const Field = styled(FieldForm)`
   }
   &.brand {
     width: 320px;
+    font-family: 'Nunito Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  &.title {
+    font-family: 'Nunito Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  &.price {
+    font-family: 'Nunito Sans';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
   }
   &.color {
     display: none;
