@@ -29,8 +29,8 @@ export const signUp = createAsyncThunk(
       return data;
     } catch (error) {
       console.log(error.response.data.errors);
-      error.response.data.errors.forEach(({ field, message }) =>
-        Notiflix.Notify.failure(`${field}:${message}`)
+      error.response.data.errors.forEach(({ message }) =>
+        Notiflix.Notify.failure(`${message}`)
       );
     }
   }
