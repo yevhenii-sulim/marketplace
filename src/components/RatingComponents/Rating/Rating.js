@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addNullRating, addRating } from '../../../../redux/rating/slice';
-import { selectorRating } from '../../../../redux/rating/selector';
+import { addNullRating, addRating } from '../../../redux/rating/slice';
+import { selectorRating } from '../../../redux/rating/selector';
 import EmptyStarForFeedback from 'SvgComponents/Star/EmptyStarForFeedback';
 import StarForFeedback from 'SvgComponents/Star/StarForFeedback';
 import { SetedRating, StarList, Wrapper, Hint } from './Rating.styled';

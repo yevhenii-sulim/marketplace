@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
-import CommentComponent from '../RatingComponents/Comment/CommentComponent';
+
 import { selectorRating } from '../../../redux/rating/selector';
 import {
   Action,
@@ -8,7 +8,8 @@ import {
   Order,
   WrapperModal,
 } from './PagesForSidebar.styled';
-import Rating from '../RatingComponents/Rating/Rating';
+import Rating from 'components/RatingComponents/Rating/Rating';
+import CommentComponent from 'components/RatingComponents/Comment/CommentComponent';
 
 export default function SendComment({ onSend, onCloseModal }) {
   const rating = useSelector(selectorRating);
@@ -52,11 +53,11 @@ export default function SendComment({ onSend, onCloseModal }) {
         )}
         {rating.length === 3 && (
           <Rating
-            title="Чи був товар у наявності?"
+            title="Чи була комплектація товару такою як зазначена на сайті?"
             number={2}
-            bad=""
-            norm=""
-            good=""
+            bad="Не задовільно"
+            norm="Задовільно"
+            good="Повністю задовільно"
           />
         )}
         {rating.length === 4 && <CommentComponent onSend={onSend} />}
