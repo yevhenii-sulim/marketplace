@@ -25,7 +25,7 @@ export default function SuccessAdded() {
         <SendedCommentSvg />
         <p>Ваше оголошення опубліковане!</p>
       </SignSuccess>
-      <Link to={`/${linkToProduct}/${thisProductId}`}>
+      <Link to={`${linkToProduct}/${thisProductId}`}>
         Перейти до оголошення
       </Link>
     </Container>
