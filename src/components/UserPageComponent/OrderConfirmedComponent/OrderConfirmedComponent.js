@@ -10,10 +10,17 @@ import {
 import OrderProduct from './OrderProduct';
 import { useNavigate } from 'react-router-dom';
 import { clearAllProducts } from 'data/myStory';
+import { useSelector } from 'react-redux';
+import { selectMyUser } from '../../../redux/auth/selector';
+import { selectAuth } from '../../../redux/auth/selector';
 
 export default function OrderConfirmedComponent() {
   const navigation = useNavigate();
   const productStory = JSON.parse(localStorage.getItem('productStory')) || [];
+  const user = useSelector(selectMyUser);
+  const isUserRegistered = useSelector(selectAuth);
+
+  console.log(user);
 
   const handleMyOrdersButton = () => {
     navigation('/my_order');
@@ -34,21 +41,18 @@ export default function OrderConfirmedComponent() {
     <Container>
       <Title>Дякуємо за ваше замовлення!</Title>
       <FullOrderInfo>
-        {productStory.length ? (
-          <OrderProducts>
-            {productStory
-              .map(({ _id, img, title, price }) => {
-                return (
-                  <OrderProduct
-                    key={_id}
-                    productId={_id}
-                    imgSrc={img}
-                    title={title}
-                    price={price}
-                  />
-                );
-              })}
-          </OrderProducts>
+        {(isUserRegistered ? user.purchasedGoods : productStory).length ? (
+          (isUserRegistered ? user.purchasedGoods : productStory).map(
+            ({ _id, img, title, price }) => (
+              <OrderProduct
+                key={_id}
+                productId={_id}
+                imgSrc={img}
+                title={title}
+                price={price}
+              />
+            )
+          )
         ) : (
           <p>Немає замовлень</p>
         )}

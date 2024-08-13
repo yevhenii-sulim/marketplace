@@ -56,6 +56,11 @@ const userSlice = createSlice({
       state.user = payload.user;
       state.isActivated = payload.user.isActivated;
     },
+    addNewProduct(state, { payload }) {
+      state.myUser.purchasedGoods = [...state.myUser.purchasedGoods, {
+        ...payload
+      }];
+    }
   },
   extraReducers: builder => {
     builder
@@ -79,4 +84,4 @@ const userSlice = createSlice({
 });
 
 export const userAuthReducer = userSlice.reducer;
-export const { loginWithSocial } = userSlice.actions;
+export const { loginWithSocial, addNewProduct } = userSlice.actions;
