@@ -41,21 +41,23 @@ export default function OrderConfirmedComponent() {
     <Container>
       <Title>Дякуємо за ваше замовлення!</Title>
       <FullOrderInfo>
-        {(isUserRegistered ? user.purchasedGoods : productStory).length ? (
-          (isUserRegistered ? user.purchasedGoods : productStory).map(
-            ({ _id, img, title, price }) => (
-              <OrderProduct
-                key={_id}
-                productId={_id}
-                imgSrc={img}
-                title={title}
-                price={price}
-              />
+        <OrderProducts>
+          {(isUserRegistered ? user.purchasedGoods : productStory).length ? (
+            (isUserRegistered ? user.purchasedGoods : productStory).map(
+              ({ _id, img, title, price }) => (
+                <OrderProduct
+                  key={_id}
+                  productId={_id}
+                  imgSrc={img}
+                  title={title}
+                  price={price}
+                />
+              )
             )
-          )
-        ) : (
-          <p>Немає замовлень</p>
-        )}
+          ) : (
+            <p>Немає замовлень</p>
+          )}
+        </OrderProducts>
         <OrderConfirmedButtons>
           <MyOrdersButton onClick={handleMyOrdersButton}>
             Мої замовлення
