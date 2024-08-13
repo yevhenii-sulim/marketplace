@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
 import { getUser } from '../auth/thunk';
 import { refreshToken } from '../refreshToken';
-import { deleteRating } from '../rating/slice';
+import { addNullRating, deleteRating } from '../rating/slice';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
 export const addCommentFromStory = createAsyncThunk(
@@ -26,6 +26,7 @@ export const addCommentFromStory = createAsyncThunk(
         }
       );
       console.log(response);
+      dispatch(addNullRating());
       return response;
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -51,9 +52,11 @@ export const addCommentFromStory = createAsyncThunk(
         }
       }
       console.log('errorCommentProduct', error);
-      return rejectWithValue(error.message);
-    } finally {
       dispatch(deleteRating());
+      Notiflix.Notify.failure('Вибачте, сталася помилка', {
+        timeout: 6000,
+      });
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -61,6 +64,8 @@ export const addCommentFromStory = createAsyncThunk(
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async ({ textQuery, paramQuery, page }) => {
+    console.log(textQuery, paramQuery, page);
+
     try {
       const { data } = await axios.get(
         `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
@@ -69,7 +74,6 @@ export const getProducts = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log('errorGetProductBySubCateg', error);
       window.location.href = '/marketplace/error';
     }
   }
@@ -213,7 +217,7 @@ export const createProduct = createAsyncThunk(
         },
       });
 
-      window.location.reload();
+      window.location.href = '/marketplace/success-created';
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {

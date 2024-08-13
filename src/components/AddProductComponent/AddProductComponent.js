@@ -358,7 +358,15 @@ export default function AddProductComponent() {
                 Опублікувати
               </Button>
             </Buttons>
-            {onViewProduct && createPortal(<ViewAheadComponent />, modalEnter)}
+            {onViewProduct &&
+              createPortal(
+                <ViewAheadComponent
+                  values={values}
+                  onSubmit={() => handleSubmit(values)}
+                  errors={errors}
+                />,
+                modalEnter
+              )}
           </Form>
         )}
       </Formik>

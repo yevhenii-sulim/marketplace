@@ -1,5 +1,6 @@
 export const initialState = {
   rating: [],
+  link: '',
   poster: false,
   viewAddProduct: false,
   basket: [],

@@ -81,7 +81,7 @@ export default function NavsSectionList({ onCloseModal }) {
                   className="hover-tab"
                   label={nameList}
                   onClick={() => {
-                    navigate(linkList);
+                    navigate(`/${linkList}`);
                     onOpen(false);
                     dispatch(
                       changeCategory({

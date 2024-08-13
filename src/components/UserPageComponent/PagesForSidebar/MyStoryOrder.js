@@ -74,7 +74,6 @@ export default function MyStoryOrder({
         id: id,
       })
     );
-    setTimeout(() => setIsOpen(false), 500);
   }
   return (
     <div>

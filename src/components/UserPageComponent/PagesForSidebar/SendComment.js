@@ -10,6 +10,8 @@ import {
 } from './PagesForSidebar.styled';
 import Rating from 'components/RatingComponents/Rating/Rating';
 import CommentComponent from 'components/RatingComponents/Comment/CommentComponent';
+import SendedComment from 'components/RatingComponents/SendedComment/SendedComment';
+import SendedCommentSvg from 'SvgComponents/SendedComment/SendedCommentSvg';
 
 export default function SendComment({ onSend, onCloseModal }) {
   const rating = useSelector(selectorRating);
@@ -61,6 +63,17 @@ export default function SendComment({ onSend, onCloseModal }) {
           />
         )}
         {rating.length === 4 && <CommentComponent onSend={onSend} />}
+        {rating.length === 5 && (
+          <SendedComment>
+            <SendedCommentSvg />
+            <p>Ваш відгук опублікований!</p>
+          </SendedComment>
+        )}
+        {rating.length === 0 && (
+          <SendedComment>
+            <h3>Під час відправлення відбулася помилка!</h3>
+          </SendedComment>
+        )}
       </WrapperModal>
     </Backdrop>
   );

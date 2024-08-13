@@ -417,9 +417,11 @@ export const Order = styled.div`
   width: 92%;
   height: 16px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.color.bgBackdropLinePoPup};
+  background-color: ${({ $rating, theme }) =>
+    $rating === 0 || $rating === 5
+      ? 'transparent'
+      : theme.color.bgBackdropLinePoPup};
   div {
-    ${prop => console.log(prop)}
     width: ${({ $rating }) => widthComponentLevelLoadComment($rating)};
     height: 100%;
     background-color: ${({ theme }) => theme.color.bgButton};

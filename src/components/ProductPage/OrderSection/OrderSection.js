@@ -72,11 +72,11 @@ function OrderSection() {
             <span
               style={{ textDecoration: product.discount ? 'line-through' : '' }}
             >
-              {product.price} грн
+              {product.price} &#8372;
             </span>
           </StrikePrice>
           {product.discount ? (
-            <SalePrice>{product.discountPrice} грн</SalePrice>
+            <SalePrice>{product.discountPrice} &#8372;</SalePrice>
           ) : (
             ''
           )}
