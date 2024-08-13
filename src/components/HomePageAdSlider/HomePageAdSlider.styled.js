@@ -17,7 +17,7 @@ export const HomePageAdSliderContainer = styled.ul`
     overflow: hidden;
   }
   .carousel__inner-slide {
-    height: auto;
+    height: 100%;
   }
   .carousel__next-button {
     display: flex;
@@ -59,6 +59,27 @@ export const HomePageAdSliderContainer = styled.ul`
       pointer-events: none;
     }
   }
+
+  @media (max-width: 1285px) {
+    .slide {
+      height: 135px;
+    }
+
+    .carousel__next-button,
+    .carousel__back-button {
+      width: 36px;
+      height: 36px;
+      top: 50%;
+    }
+
+    .carousel__next-button {
+      right: 2px;
+    }
+
+    .carousel__back-button {
+      left: 2px;
+    }
+  }
 `;
 
 export const IntersectImage = styled.img`
@@ -66,6 +87,11 @@ export const IntersectImage = styled.img`
   width: 505px;
   height: 290px;
   top: -35px;
+
+  @media (max-width: 1285px) {
+    width: 38%;
+    height: 175px;
+  }
 `;
 
 export const FirstSlideTitle = styled.h3`
@@ -77,6 +103,14 @@ export const FirstSlideTitle = styled.h3`
   font: 400 40px 'Jost';
   line-height: 60px;
   color: #fff;
+
+  @media (max-width: 1285px) {
+    top: 13px;
+    left: 36px;
+    width: 219px;
+    height: 90px;
+    font: 400 24px 'Jost';
+  }
 `;
 
 export const FlagImage = styled.img`
@@ -85,6 +119,13 @@ export const FlagImage = styled.img`
   height: 32px;
   top: 105px;
   left: 351px;
+
+  @media (max-width: 1285px) {
+    top: 55px;
+    left: 210px;
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const LipGlossMockupImg = styled.img`
@@ -107,7 +148,13 @@ export const LipGlossMockupImg = styled.img`
     100% {
       transform: rotate(348deg);
     }
-  } 
+  }
+
+  @media (max-width: 1285px) {
+    left: 43%;
+    width: 65px;
+    height: 65px;
+  }
 `;
 
 export const EarringsImg = styled.img`
@@ -132,6 +179,13 @@ export const EarringsImg = styled.img`
       transform: rotate(18deg);
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 57px;
+    height: 58px;
+    top: 72px;
+    left: 40%;
+  }
 `;
 
 export const BagImg = styled.img`
@@ -155,6 +209,13 @@ export const BagImg = styled.img`
       transform: none;
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 72px;
+    height: 96px;
+    top: 13px;
+    left: 52%;
+  }
 `;
 
 export const SocksImg = styled.img`
@@ -176,6 +237,12 @@ export const SocksImg = styled.img`
     100% {
       transform: none;
     }
+  }
+
+  @media (max-width: 1285px) {
+    width: 65px;
+    top: 88px;
+    left: 61%;
   }
 `;
 
@@ -201,6 +268,13 @@ export const HoodieImg = styled.img`
       transform: rotate(6deg);
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 81px;
+    height: 91px;
+    top: 4px;
+    left: 67%;
+  }
 `;
 
 export const SofaImg = styled.img`
@@ -225,6 +299,13 @@ export const SofaImg = styled.img`
       transform: rotate(3deg);
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 128px;
+    height: 126px;
+    top: 6px;
+    left: 79%;
+  }
 `;
 
 
@@ -234,6 +315,12 @@ export const BrutalistImg = styled.img`
   height: 261px;
   top: -32px;
   right: 0px;
+
+  @media (max-width: 1285px) {
+    width: 30%;
+    height: 130px;
+    top: 0px;
+  }
 `;
 
 export const SecondSlideTitles = styled.div`
@@ -246,24 +333,45 @@ export const SecondSlideTitles = styled.div`
   left: 785px;
   gap: 8px;
   text-align: right;
+
+  @media (max-width: 1285px) {
+    width: 36%;
+    height: 66px;
+    top: 30px;
+    left: 58%;
+    gap: 2px;
+  }
 `;
 
 export const SecondSlideFirstTitle = styled.h5`
   font: 700 28px 'Jost';
   line-height: 42px;
   height: 84px;
+
+  @media (max-width: 1285px) {
+    font: 700 14px 'Jost';
+  }
 `;
 
 export const SecondSlideSecondTitle = styled.p`
   font: 600 16px 'Nunito Sans';
-  line-height: 20px;
+  line-height: 10px;
   height: 20px;
+
+  @media (max-width: 1285px) {
+    font: 700 10px 'Nunito Sans';
+  }
 `;
 
 export const AdButtonAnimationContainer = styled.div`
   position: relative;
   top: 20px;
   left: 502px;
+
+  @media (max-width: 1285px) {
+    top: 10px;
+    left: 38%;
+  }
 `;
 
 export const FirstAdButtonContainer = styled.div`
@@ -289,6 +397,10 @@ export const FirstAdButton = styled.img`
       opacity: 0;
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 82px;
+  }
 `;
 
 export const FirstAdButtonPointer = styled.img`
@@ -307,6 +419,13 @@ export const FirstAdButtonPointer = styled.img`
     100% {
       opacity: 0;
     }
+  }
+
+  @media (max-width: 1285px) {
+    width: 9px;
+    height: 9px;
+    top: 22px;
+    left: 42px;
   }
 `;
 
@@ -344,6 +463,38 @@ export const SecondAdButtonContainer = styled.div`
       width: 264px;
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 62px;
+    top: 16px;
+    left: 0;
+
+    @keyframes secondadcontainermove {
+      0%, 13% {
+        top: 16px;
+        left: 0px;
+        opacity: 0;
+        transform: rotate(-31deg);
+        width: 62px;
+      }
+
+      43%, 98% {
+        top: 8px;
+        left: -200px;
+        opacity: 1;
+        transform: rotate(-2deg);
+        width: 132px;
+      }
+
+      100% {
+        top: 8px;
+        left: -200px;
+        opacity: 0;
+        transform: rotate(-2deg);
+        width: 132px;
+      }
+    }
+  }
 `;
 
 export const SecondAdButton = styled.img`
@@ -375,22 +526,45 @@ export const SecondAdButtonPointer = styled.img`
       opacity: 0;
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 12px;
+    top: 16px;
+    left: 32px;
+
+    @keyframes secondadpointer {
+      0%, 13% {
+        top: 16px;
+        opacity: 1;
+      }
+
+      43%, 98% {
+        top: 27px;
+        opacity: 1;
+      }
+
+      100% {
+        top: 27px;
+        opacity: 0;
+      }
+    }
+  }
 `;
 
 export const ThirdAdButtonContainer = styled.div`
   position: absolute;
-  width: 125px;
-  top: 32px;
-  left: -4px;
+  width: 135px;
+  top: 35px;
+  left: 4px;
   opacity: 0;
   transform: none;
   animation: 5s infinite normal thirdadcontainermove;
 
   @keyframes thirdadcontainermove {
     0%, 43% {
-      width: 125px;
+      width: 135px;
       top: 32px;
-      left: -4px;
+      left: 4px;
       opacity: 0;
       transform: none;
     }
@@ -411,6 +585,38 @@ export const ThirdAdButtonContainer = styled.div`
       opacity: 0;
     }
   }
+
+  @media (max-width: 1285px) {
+    width: 62px;
+    top: 16px;
+    left: 0;
+
+    @keyframes thirdadcontainermove {
+      0%, 43% {
+        width: 67px;
+        top: 16px;
+        left: 0;
+        opacity: 0;
+        transform: none;
+      }
+
+      68%, 98% {
+        width: 171px;
+        top: 47px;
+        transform: rotate(10deg);
+        left: -65px;
+        opacity: 1;
+      }
+
+      100% {
+        width: 171px;
+        top: 47px;
+        transform: rotate(10deg);
+        left: -65px;
+        opacity: 0;
+      }
+    }
+  }
 `;
 
 export const ThirdAdButton = styled.img`
@@ -420,31 +626,58 @@ export const ThirdAdButton = styled.img`
 
 export const ThirdAdButtonPointer = styled.img`
   position: absolute;
-  width: 17px;
+  width: 16px;
   top: 32px;
-  left: 65px;
+  left: 64px;
   opacity: 1;
   animation: 5s infinite normal thirdadpointer;
 
   @keyframes thirdadpointer {
     0%, 43% {
       top: 32px;
-      left: 65px;
+      left: 64px;
       opacity: 1;     
     }
 
     68%, 98% {
       top: 68px;
       left: 250px;
-      width: 27px;
+      width: 26px;
       opacity: 1;
     }
 
     100% {
       top: 68px;
       left: 250px;
-      width: 27px;
+      width: 26px;
       opacity: 0;
+    }
+  }
+
+  @media (max-width: 1285px) {
+    width: 16px;
+    top: 32px;
+
+    @keyframes thirdadpointer {
+      0%, 43% {
+        top: 16px;
+        left: 32px;
+        opacity: 1;     
+      }
+
+      68%, 98% {
+        top: 34px;
+        left: 125px;
+        width: 13px;
+        opacity: 1;
+      }
+
+      100% {
+        top: 34px;
+        left: 125px;
+        width: 13px;
+        opacity: 0;
+      }
     }
   }
 `;
@@ -471,13 +704,20 @@ export const BgRightTitle = styled.img`
   top: 50px;
   left: 752px;
   width: 512px;
-  height: 132px;
+  height: 135px;
+
+  @media (max-width: 1285px) {
+    top: 30px;
+    left: 60%;
+    width: 256px;
+    height: 66px;
+  }
 `;
 
 export const FirstWordImg = styled.img`
   position: absolute;
-  top: 17px;
-  left: 69px;
+  top: 28px;
+  left: 68px;
   height: 68px;
   animation: 5s infinite normal firstwordimgsrc;
   opacity: 0;
@@ -502,12 +742,18 @@ export const FirstWordImg = styled.img`
     }
     94% { opacity: 0; }
   }
+
+  @media (max-width: 1285px) {
+    top: 14px;
+    left: 42px;
+    height: 34px;
+  }
 `;
 
 export const SecondWordImg = styled.img`
   position: absolute;
-  top: 78px;
-  left: 69px;
+  top: 90px;
+  left: 68px;
   height: 68px;
   animation: 5s infinite normal secondwordimgsrc;
   opacity: 0;
@@ -529,12 +775,18 @@ export const SecondWordImg = styled.img`
     }
     94% { opacity: 0; }
   }
+
+  @media (max-width: 1285px) {
+    top: 45px;
+    left: 42px;
+    height: 34px;
+  }
 `;
 
 export const ThirdWordImg = styled.img`
   position: absolute;
-  top: 139px;
-  left: 69px;
+  top: 148px;
+  left: 68px;
   height: 68px;
   animation: 5s infinite normal thirdwordimgsrc;
   opacity: 0;
@@ -555,6 +807,12 @@ export const ThirdWordImg = styled.img`
       content: url("${ThirdWordVariants.ThirdWordVariant8Src}"); 
     }
     94% { opacity: 0; }
+  }
+
+  @media (max-width: 1285px) {
+    top: 74px;
+    left: 42px;
+    height: 34px;
   }
 `;
 
