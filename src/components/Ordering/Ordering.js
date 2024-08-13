@@ -7,8 +7,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { selectBasket } from '../../redux/basket/select';
 import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
 import { setOrder } from '../../redux/orderData/slice';
-import { selectMyUser } from '../../redux/auth/selector';
-import { addNewProduct } from '../../data/myStory';
+import { selectAuth, selectMyUser } from '../../redux/auth/selector';
 import signupSchema from 'components/Placing/validationSchema';
 import Placing from 'components/Placing/Placing';
 import {
@@ -31,6 +30,7 @@ import {
   addProductButton,
 } from './Ordering.styled';
 import { myStory } from '../../data/myStory';
+import { addNewProduct } from '../../redux/auth/slice';
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
@@ -91,6 +91,7 @@ export default function Ordering() {
   const navigation = useNavigate();
 
   const userData = useSelector(selectMyUser);
+  const isUserRegistered = useSelector(selectAuth);
 
   const deleteFromBasket = id => {
     dispatch(deleteProduct(id));
@@ -106,11 +107,35 @@ export default function Ordering() {
       })
     );
 
-    basket.forEach(item => {
-      addNewProduct(item.id, item, values);
-    });
+    console.log(isUserRegistered);
 
-    localStorage.setItem('productStory', JSON.stringify(myStory.filter(item => item.state.waited)));
+    if (isUserRegistered) {
+      basket.forEach(item => {
+        const product = {
+          _id: item.id,
+          ...item,
+          ...values
+        };
+
+        delete product.id;
+
+        dispatch(
+          addNewProduct(product)
+        )
+      });
+    } else {
+      const products = [];
+
+      basket.forEach(item => {
+        products.push({
+          _id: item.id,
+          ...item,
+          ...values
+        });
+      });
+
+      localStorage.setItem('productStory', JSON.stringify(products));
+    }
 
     navigation('/purchase');
   };

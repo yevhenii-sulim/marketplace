@@ -79,8 +79,14 @@ export default function App() {
           <Route path="forFree" element={<CatalogPage />} />
           <Route path="forFree/:id" element={<ProductPage />} />
           <Route path="contacts" element={<Contacts />} />
-          <Route path=":category" element={<SubCategories />} />
-          <Route path=":category/:subcategories" element={<CatalogPage />} />
+          <Route 
+            path=":category" 
+            element={<SubCategories />}
+          />
+          <Route 
+            path=":category/:subcategories" 
+            element={<CatalogPage />}
+          />
           <Route path="ordering" element={<OrderingPage />} />
           <Route path="my_order" element={<BasketPage />} />
           <Route path="purchase" element={<OrderConfirmed />} />

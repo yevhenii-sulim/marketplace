@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import {
   YellowTitle,
   OrderNumber,
@@ -10,11 +11,23 @@ import {
   OrderReceiverData,
   OrderProductContainer
 } from './OrderConfirmedComponent.styled';
-import { myStory } from 'data/myStory';
+import { selectAuth, selectMyUser } from '../../../redux/auth/selector';
 
 export default function OrderProduct({ productId, imgSrc, title, price }) {
 
-  const orderData = myStory.find(item => item._id === productId);
+  const isUserRegistered = useSelector(selectAuth);
+  const user = useSelector(selectMyUser);
+
+  const productStory = JSON.parse(localStorage.getItem('productStory')) || [];
+
+  let productData = null;
+
+  if (isUserRegistered) {
+    productData = user.purchasedGoods.find(item => item._id === productId);
+  }
+  else {
+    productData = productStory.find(item => item._id === productId);
+  }
 
   return (
     <>
@@ -33,13 +46,13 @@ export default function OrderProduct({ productId, imgSrc, title, price }) {
         </OrderProductData>
         <OrderReceiverData>
           <p>
-            <strong>Доставка:</strong> {orderData.wayDelivery} {orderData.postOffice.slice(10)}
+            <strong>Доставка:</strong> {productData.wayDelivery} {productData.postOffice.slice(10)}
           </p>
           <p>
-            <strong>Оплата:</strong> {orderData.pay.toLowerCase()}
+            <strong>Оплата:</strong> {productData.pay.toLowerCase()}
           </p>
           <p>
-            <strong>Отримувач:</strong> {orderData.lastName} {orderData.firstName} {orderData.tel}
+            <strong>Отримувач:</strong> {productData.lastName} {productData.firstName} {productData.tel}
           </p>
         </OrderReceiverData>
       </OrderProductContainer>
