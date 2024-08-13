@@ -29,7 +29,6 @@ import {
   WrapperProduct,
   addProductButton,
 } from './Ordering.styled';
-import { myStory } from '../../data/myStory';
 import { addNewProduct } from '../../redux/auth/slice';
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
