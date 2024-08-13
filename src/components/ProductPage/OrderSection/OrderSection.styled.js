@@ -25,7 +25,7 @@ export const ProductName = styled.p`
 export const IconWrapper = styled.span`
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   margin: auto 0;
   background-color: #bbeac0;
   padding: 8px;

@@ -38,15 +38,22 @@ export const WrapperModal = styled.div`
   border: 3px solid ${({ theme }) => theme.color.borderRegister};
   border-radius: 12px;
   padding: 32px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .MuiSvgIcon-root.close {
     color: ${({ theme }) => theme.color.bgButton};
   }
   @media screen and (min-width: 480px) {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 384px;
+    width: 480px;
+  }
+  @media screen and (min-width: 769px) {
+    width: 769px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 44px 58px;
+    width: 1440px;
   }
 `;
 

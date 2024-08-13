@@ -23,6 +23,7 @@ import { modalViewAddedProductReducer } from './modalViewProduct/slice';
 import { slicePosterReducer } from './myPoster/slice';
 import { orderDataReducer } from './orderData/slice';
 import { ratingReducer } from './rating/slice';
+import { linkReducer } from './createLink/slice';
 
 enableMapSet();
 const persistUser = {
@@ -48,6 +49,7 @@ const rootReducer = combineReducers({
   basket: reducerBasket,
   orderData: orderDataReducer,
   rating: ratingReducer,
+  link: linkReducer,
 });
 
 const persistedReducer = persistReducer(persistAllStore, rootReducer);

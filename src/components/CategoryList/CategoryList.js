@@ -28,7 +28,6 @@ export default function CategoryList() {
 
   return (
     <Category>
-      {/* <TitleCategory>Популярні категорії</TitleCategory> */}
       <CarouselProvider
         className="slide"
         totalSlides={navigationList.length}

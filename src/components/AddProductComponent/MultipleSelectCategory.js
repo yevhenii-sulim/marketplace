@@ -1,9 +1,11 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
-import { useState } from 'react';
+import { addLink } from '../../redux/createLink/slice';
 import { styleSelect } from './AddProductComponent.styled';
 
 const ITEM_HEIGHT = 48;
@@ -16,6 +18,25 @@ const MenuProps = {
     },
   },
 };
+
+function translateNameCategory(value) {
+  switch (value) {
+    case 'Подарункові товари':
+      return 'gift';
+    case 'Одяг':
+      return 'clothes';
+    case 'Аксесуари':
+      return 'accessories';
+    case 'Взуття з натуральних матеріалів':
+      return 'eco';
+    case 'Натуральна косметика':
+      return 'makeup';
+    case 'Товари з перероблених матеріалів':
+      return 'recycledMaterials';
+    default:
+      return 'forFree';
+  }
+}
 
 function getStyles(name, personName, theme) {
   return {
@@ -36,10 +57,18 @@ export default function MultipleSelectCategory({
 }) {
   const theme = useTheme();
   const [personName, setPersonName] = useState([]);
+  const dispatch = useDispatch();
+  function resetLinkToProduct(value) {
+    dispatch(addLink(''));
+    dispatch(addLink(translateNameCategory(value)));
+  }
 
   const handleChangeComponent = event => {
     const { value } = event.target;
+
     handleChange(value);
+    resetLinkToProduct(value);
+
     setSubmitting(false);
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };

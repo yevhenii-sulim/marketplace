@@ -28,6 +28,7 @@ import MyStoryOrdersPage from 'pages/UserPage/MyStoryOrdersPage';
 import { selectId, selectMyUser } from '../../redux/auth/selector';
 import { getUser } from '../../redux/auth/thunk';
 import MyPosterListPage from 'pages/UserPage/MyPosterListPage';
+import SuccessAddedPage from 'pages/SuccessAddedPage';
 // const CatalogPage = lazy(() => import('pages/CatalogPage'));
 // const SearchedProductPage = lazy(() => import('pages/SearchedProductPage'));
 // const HomePage = lazy(() => import('pages/HomePage'));
@@ -90,6 +91,7 @@ export default function App() {
           <Route path="ordering" element={<OrderingPage />} />
           <Route path="my_order" element={<BasketPage />} />
           <Route path="purchase" element={<OrderConfirmed />} />
+          <Route path="success-created" element={<SuccessAddedPage />} />
           <Route
             path=":category/:subcategories/:id"
             element={<ProductPage />}

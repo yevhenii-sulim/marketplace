@@ -58,7 +58,7 @@ function Slider() {
       <SlidersWrapper ref={wrapperSliderBlock}>
         {product.img.map((el, index) => (
           <WrapperSlide key={index} ref={slide}>
-            <img src={el} alt={el} width="50%" />
+            <img src={el} alt={el} />
           </WrapperSlide>
         ))}
       </SlidersWrapper>
