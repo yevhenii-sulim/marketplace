@@ -30,7 +30,6 @@ export default function MultipleSelectSexState({
     const {
       target: { value },
     } = event;
-    console.log('value', event);
     setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
 
