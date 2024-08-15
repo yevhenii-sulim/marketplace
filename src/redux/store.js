@@ -34,7 +34,7 @@ const persistUser = {
 const persistAllStore = {
   key: 'category',
   storage,
-  whitelist: ['category', 'product', 'basket', 'poster', 'subCategory'],
+  whitelist: ['category', 'product', 'basket', 'poster', 'subCategory', 'link'],
 };
 
 const rootReducer = combineReducers({

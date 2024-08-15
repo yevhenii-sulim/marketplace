@@ -25,7 +25,6 @@ export const addCommentFromStory = createAsyncThunk(
           },
         }
       );
-      console.log(response);
       dispatch(addNullRating());
       return response;
     } catch (error) {

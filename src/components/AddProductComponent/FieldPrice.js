@@ -1,6 +1,7 @@
 import { theme } from 'utils/theme';
 import { Error, Field, Price, Sign } from './AddProductComponent.styled';
 import Label from './Label';
+import { useState } from 'react';
 
 export default function FieldPrice({
   name,
@@ -14,13 +15,15 @@ export default function FieldPrice({
   error,
   touched,
 }) {
+  const [value, setValue] = useState('');
+
   const handleChangeComponent = event => {
     const dotIndex = event.target.value.indexOf('.');
     if (event.target.value.length > 8) return;
     if (!!~dotIndex) {
       if (event.target.value.length > dotIndex + 3) return;
     }
-
+    setValue(Math.round(event.target.value));
     handleChange(event);
     setSubmitting(false);
   };
@@ -40,6 +43,7 @@ export default function FieldPrice({
             type="number"
             onChange={handleChangeComponent}
             disabled={disabled}
+            value={value}
             style={
               touched && error
                 ? {

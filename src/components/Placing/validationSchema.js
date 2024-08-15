@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
-const phoneRegExp = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+const phoneRegExp =
+  /^\s*((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}\s*$/i;
 
 const signupSchema = Yup.object().shape({
   firstName: Yup.string().required("Ваше ім'я"),
