@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CommentItems from './CommentItem/CommentItems';
-import CreateCommentField from './CreateCommentField/CreateCommentField';
 import { useSelector } from 'react-redux';
 import {
   commentsExpandedSelector,
@@ -128,7 +127,6 @@ function Comments() {
           commentsLeft={commentsLeft}
         />
       </AllCommentsContainer>
-      <CreateCommentField productId={product._id} />
     </>
   );
 }

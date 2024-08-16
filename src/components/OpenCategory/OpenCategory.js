@@ -38,7 +38,7 @@ export default memo(function OpenCategory() {
   return (
     <>
       <OpenCategoryButton type="button" onClick={() => onOpen(true)}>
-        <CategorySvg />
+        <CategorySvg stroke="white" />
         <TitleNav>Категорії товарів</TitleNav>
       </OpenCategoryButton>
       {isOpen &&

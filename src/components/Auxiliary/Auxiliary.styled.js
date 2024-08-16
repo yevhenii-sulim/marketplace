@@ -24,6 +24,8 @@ export const AuxiliaryContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 36px;
+  margin-left: 8px;
+  margin-right: 8px;
 `;
 export const TotalProduct = styled.span`
   position: absolute;

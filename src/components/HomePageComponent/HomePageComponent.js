@@ -10,12 +10,12 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SimilarProduct from 'components/Product/SimilarProduct';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import {
   ButtonSlider,
   ContainerSlide,
   TitleCategory,
 } from './HomePageComponent.styled';
-import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
@@ -26,7 +26,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
     if (width < 1440 && width > 768) {
       return 3;
     }
-    return 1;
+    return 2;
   };
   return (
     <ContainerSlide>

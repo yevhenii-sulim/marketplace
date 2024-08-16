@@ -5,16 +5,16 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { togglePoster } from '../../../../redux/myPoster/slice';
 import { selectMyUser } from '../../../../redux/auth/selector';
+import { deleteProduct } from '../../../../redux/product/thunk';
 import PosterSvg from 'SvgComponents/PosterSVG/PosterSvg';
 import MessageSvg from 'SvgComponents/Message/MessageSvg';
 import EyeSvg from 'SvgComponents/Eye/EyeSvg';
 import DeleteSvg from 'SvgComponents/Delete/DeleteSvg';
 import DeactivateSvg from 'SvgComponents/Deactivate/DeactivateSvg';
-import EditSvg from 'SvgComponents/Edit/EditSvg';
-import Sort from 'components/Filters/Sort/Sort';
 import Search from '../Search/Search';
 import AboutProductStory from '../AboutProductStory';
 import { Empty } from '../PagesForSidebar.styled';
+import Sort from 'components/Sort/Sort';
 import {
   ActiveProduct,
   FeedBack,
@@ -45,7 +45,9 @@ export default function MyPosterList({
   function toCreatePost() {
     dispatch(togglePoster(true));
   }
-
+  function deleteProductFn() {
+    dispatch(deleteProduct());
+  }
   function handleSort(sort) {
     setValueSort(sort);
   }
@@ -100,27 +102,28 @@ export default function MyPosterList({
             {sortedProduct.map(
               ({
                 parameters: { _id },
-                status,
+                // status,
                 title,
                 createDate,
                 price,
                 discountPrice,
-                minImage,
-                // number,
+                img,
+                // count,
                 discount,
-                message,
+                // message,
                 // like,
                 visit,
               }) => {
                 return (
-                  <ListStoryOrder key={_id} $state={Object.keys(status)}>
+                  // <ListStoryOrder key={_id} $state={Object.keys(status)}>
+                  <ListStoryOrder key={_id}>
                     <AboutProductStory
-                      status={status}
+                      // status={status}
                       title={title}
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      img={minImage}
+                      img={img}
                       number={5}
                       discount={discount}
                     />
@@ -131,14 +134,13 @@ export default function MyPosterList({
                         </OpenOperation>
                         <OperationList>
                           <ActiveProduct type="button">
-                            <EditSvg />
-                            Редагувати
-                          </ActiveProduct>
-                          <ActiveProduct type="button">
                             <DeactivateSvg />
                             Деактивувати
                           </ActiveProduct>
-                          <ActiveProduct type="button">
+                          <ActiveProduct
+                            type="button"
+                            onClick={deleteProductFn}
+                          >
                             <DeleteSvg />
                             Видалити
                           </ActiveProduct>
@@ -146,7 +148,7 @@ export default function MyPosterList({
                       </Operation>
                       <FeedBack>
                         <FeedBackSign>
-                          <span className="message">{message.length}</span>
+                          {/* <span className="message">{message.length}</span> */}
                           <MessageSvg />
                         </FeedBackSign>
                         <FeedBackSign>
