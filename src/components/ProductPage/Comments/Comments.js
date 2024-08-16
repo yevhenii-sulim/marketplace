@@ -16,7 +16,9 @@ function Comments() {
   const [commentId, setCommentId] = useState('');
   const commentsExpanded = useSelector(commentsExpandedSelector);
   const [quantityComments, setQuantityComments] = useState(4);
-  const [commentsLeft, setCommentsLeft] = useState(product.comments.length - 4);
+  const [commentsLeft, setCommentsLeft] = useState(
+    product.comments.length === 0 ? 0 : product.comments.length - 4
+  );
   function calculateDate(createDate) {
     const givenDate = new Date(createDate);
     const currentDate = new Date();
@@ -83,7 +85,6 @@ function Comments() {
   };
 
   const processedComments = processComments(product.comments || []);
-
   const handlerExpandedComments = (event, quantityComments) => {
     console.log(quantityComments);
     if (!commentsLeft) return;
