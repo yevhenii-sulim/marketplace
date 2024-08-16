@@ -15,6 +15,7 @@ import {
   PrevShowSearchedProduct,
 } from './Search.styled';
 import Loader from 'components/Loader/Loader';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function Search() {
   const searchedProduct = useSelector(selectPrevProductSearch);
@@ -27,7 +28,7 @@ export default function Search() {
   const navigate = useNavigate();
 
   const location = useLocation();
-
+  const { width } = useWindowDimensions();
   useEffect(() => {
     setValue('');
   }, [location]);
@@ -96,7 +97,7 @@ export default function Search() {
       </BoxLoader>
       <button type="submit">
         <SearchTwoToneIcon />
-        Пошук
+        {width >= 768 && 'Пошук'}
       </button>
     </FormSearch>
   );

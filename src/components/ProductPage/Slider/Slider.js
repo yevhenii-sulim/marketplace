@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   ArrowLeftWrapper,
   ArrowRightWrapper,
@@ -9,8 +9,12 @@ import {
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useSelector } from 'react-redux';
+import { ImageModal } from './ImageModal';
 
 function Slider() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState('');
+
   const product = useSelector(state => state.productPage.product);
 
   const slide = useRef();
@@ -46,6 +50,11 @@ function Slider() {
     requestAnimationFrame(scroll);
   }
 
+  const handleImageClick = imageUrl => {
+    setCurrentImage(imageUrl);
+    setModalIsOpen(true);
+  };
+
   return (
     <SliderContainer>
       {product.img.length === 1 ? (
@@ -58,7 +67,13 @@ function Slider() {
       <SlidersWrapper ref={wrapperSliderBlock}>
         {product.img.map((el, index) => (
           <WrapperSlide key={index} ref={slide}>
-            <img src={el} alt={el} />
+            <img src={el} alt={el} onClick={() => handleImageClick(el)} />
+            <ImageModal
+              imageUrl={currentImage}
+              isOpen={modalIsOpen}
+              setModalIsOpen={setModalIsOpen}
+              onRequestClose={() => setModalIsOpen(false)}
+            />
           </WrapperSlide>
         ))}
       </SlidersWrapper>

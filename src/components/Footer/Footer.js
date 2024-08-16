@@ -23,10 +23,10 @@ export default function Footer() {
             <AboutContent>Сервіс де продати і купити може кожен!</AboutContent>
           </About>
           <Confederacy>
-            <Link to="agreement">Угода користувача </Link>
-            <Link to="confederacy">Політика конфіденційності</Link>
+            <Link to="/agreement">Угода користувача </Link>
+            <Link to="/confederacy">Політика конфіденційності</Link>
           </Confederacy>
-          <Link to="contacts">Наші контакти</Link>
+          <Link to="/contacts">Наші контакти</Link>
         </ContainerFooter>
         <Sign>© Розробка "Team Challenge" 2024. Усі права захищені.</Sign>
       </Container>

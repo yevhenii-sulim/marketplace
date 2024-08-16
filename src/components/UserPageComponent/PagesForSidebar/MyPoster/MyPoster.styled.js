@@ -103,21 +103,6 @@ export const ListStoryOrder = styled.li`
   &:not(:last-child) {
     margin-bottom: 24px;
   }
-  &:before {
-    content: '';
-    display: ${({ $state }) => {
-      if ($state[0] === 'disable') {
-        return 'block';
-      } else {
-        return 'none';
-      }
-    }};
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #a8a8a850;
-    z-index: 5;
-  }
 `;
 export const Link = styled(Location)`
   display: flex;

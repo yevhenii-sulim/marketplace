@@ -3,23 +3,24 @@ import Logo from 'SvgComponents/LogoSVG/Logo';
 import Search from 'components/Search/Search';
 import OpenCategory from 'components/OpenCategory/OpenCategory';
 import Auxiliary from 'components/Auxiliary/Auxiliary';
-// import useWindowDimensions from 'hooks/useWindowDimensions';
-import {} from '../../redux/product/selector';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { Container, HeaderContainer, NavContainer } from './Header.styled';
+import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 
 export default function Header() {
-  // const { width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   return (
     <HeaderContainer>
       <Container>
+        {width < 1440 && <BurgerMenu />}
         <NavContainer>
           <Logo fill="#ffffff" />
-          <OpenCategory />
+          {width >= 1440 && <OpenCategory />}
         </NavContainer>
-        <Search />
+        {width >= 1440 && <Search />}
         <Auxiliary />
-        <AddAnnouncement />
+        {width >= 1440 && <AddAnnouncement />}
       </Container>
     </HeaderContainer>
   );

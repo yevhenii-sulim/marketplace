@@ -55,6 +55,12 @@ export const ColorCircle = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: ${({ $color }) => $color};
+  box-shadow: ${({ $color }) => {
+    if ($color.toLowerCase() === '#ffffff') return `inset 0 0 0 1px #43C550`;
+  }};
+  background: ${({ $color }) => {
+    if (typeof $color === 'string') return `${$color}`;
+    return `radial-gradient(${$color[0]}, ${$color[1]})`;
+  }};
   margin-left: 4px;
 `;

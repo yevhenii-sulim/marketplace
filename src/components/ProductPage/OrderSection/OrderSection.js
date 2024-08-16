@@ -81,7 +81,10 @@ function OrderSection() {
             ''
           )}
         </ProductCost>
-        <ButtonBlock sendIdProduct={sendIdProduct} />
+        <ButtonBlock
+          sendIdProduct={sendIdProduct}
+          tel={product.producer.numberPhone}
+        />
         <DatePublication />
       </OrderSectionContainer>
       {isOpen &&

@@ -205,6 +205,32 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
   }
 });
 
+export const deleteProduct = createAsyncThunk(
+  'products/deleteProduct',
+  async (id, { getState, rejectWithValue }) => {
+    axios.defaults.headers.common.Authorization = `Bearer ${
+      getState().users.token
+    }`;
+    try {
+      const { data } = await axios.delete(`/products/${id}`);
+      return data;
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        try {
+          const newToken = await refreshToken();
+          axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
+          const { data } = await axios.delete(`/products/${id}`);
+          return data;
+        } catch (refreshError) {
+          return rejectWithValue('Token refresh failed');
+        }
+      }
+      console.log('errorFavoriteProduct', error);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const createProduct = createAsyncThunk(
   'products/createProduct',
   async (product, { getState, rejectWithValue }) => {

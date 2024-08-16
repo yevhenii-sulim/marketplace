@@ -51,4 +51,16 @@ export const WrapperSlide = styled.div`
   min-width: 100%;
   display: flex;
   justify-content: center;
+  img {
+    cursor: pointer;
+  }
+`;
+export const CloseModal = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 `;

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AddProduct } from './AddAnnouncement.styled';
+import { AddProduct, Container } from './AddAnnouncement.styled';
 import { toggleModalForm } from '../../redux/modalForm/slice';
 import { selectAuth } from '../../redux/auth/selector';
 import { selectOpenFormModal } from '../../redux/modalForm/selectors';
@@ -31,13 +31,13 @@ export default memo(function AddAnnouncement() {
   }
 
   return (
-    <div>
+    <Container>
       <AddProduct to="user_page/my_poster" onClick={onOpen}>
         Створити оголошення
       </AddProduct>
       {!isAuth &&
         isOpen &&
         createPortal(<ModalForm onClose={onClose} />, modalEnter)}
-    </div>
+    </Container>
   );
 });

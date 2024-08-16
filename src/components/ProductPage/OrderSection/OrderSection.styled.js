@@ -18,8 +18,10 @@ export const OrderSectionContainer = styled.section`
 export const ProductName = styled.p`
   display: flex;
   justify-content: space-between;
-  font-weight: 700;
+  font-family: Jost;
   font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
   align-items: center;
 `;
 export const IconWrapper = styled.span`

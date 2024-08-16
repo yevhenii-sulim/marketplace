@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
+import PropTypes from 'prop-types';
 import { ButtonBlockWrapper } from './ButtonBlock.styled';
+import { useState } from 'react';
 
-function ButtonBlock({ sendIdProduct }) {
+function ButtonBlock({ sendIdProduct, tel }) {
+  const [isShowTel, setIsShowTel] = useState(false);
+
   return (
     <ButtonBlockWrapper>
       <Button
@@ -14,6 +16,11 @@ function ButtonBlock({ sendIdProduct }) {
           backgroundColor: '#43C550',
           textTransform: 'none',
           height: '40px',
+          fontFamily: 'Jost',
+          fontSize: '22px',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          lineHeight: '1.45',
           '&:focus': {
             backgroundColor: '#43C550',
           },
@@ -32,6 +39,11 @@ function ButtonBlock({ sendIdProduct }) {
           textTransform: 'none',
           color: '#43C550',
           height: '40px',
+          fontFamily: 'Jost',
+          fontSize: '22px',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          lineHeight: '1.45',
           '&:focus': {
             borderColor: '#43C550',
           },
@@ -40,9 +52,10 @@ function ButtonBlock({ sendIdProduct }) {
           },
         }}
       >
-        Повідомлення
+        Зв’язатися з продавцем
       </Button>
       <Button
+        onClick={() => setIsShowTel(prev => !prev)}
         variant="outlined"
         sx={{
           width: '85%',
@@ -50,6 +63,11 @@ function ButtonBlock({ sendIdProduct }) {
           textTransform: 'none',
           color: '#43C550',
           height: '40px',
+          fontFamily: 'Jost',
+          fontSize: '22px',
+          fontStyle: 'normal',
+          fontWeight: '700',
+          lineHeight: '1.45',
           '&:focus': {
             borderColor: '#43C550',
           },
@@ -58,7 +76,7 @@ function ButtonBlock({ sendIdProduct }) {
           },
         }}
       >
-        Показати телефон
+        {isShowTel ? tel : 'Показати телефон'}
       </Button>
     </ButtonBlockWrapper>
   );
