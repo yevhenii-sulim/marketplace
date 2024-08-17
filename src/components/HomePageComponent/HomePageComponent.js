@@ -24,7 +24,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
     if (width / dpr >= 1440) {
       return 5;
     }
-    if (width < 1440 && width > 768) {
+    if (width / dpr < 1440 && width / dpr > 768) {
       return 3;
     }
     return 2;
@@ -79,6 +79,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
         {filteredProducts.length > setVisibleSlides(width) && (
           <>
             <ButtonBack>
+              <div>{width / dpr}</div>
               <ArrowBackIcon sx={ButtonSlider} />
             </ButtonBack>
             <ButtonNext>
