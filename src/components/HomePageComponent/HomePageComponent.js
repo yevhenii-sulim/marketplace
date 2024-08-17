@@ -78,7 +78,9 @@ export default function HomePageComponent({ filteredProducts, title }) {
         </Slider>
         {filteredProducts.length > setVisibleSlides(width) && (
           <>
-            <div>{width / dpr}</div>
+            <div>
+              {width / dpr},{dpr}
+            </div>
             <ButtonBack>
               <ArrowBackIcon sx={ButtonSlider} />
             </ButtonBack>
