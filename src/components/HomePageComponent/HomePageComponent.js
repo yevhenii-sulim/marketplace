@@ -16,11 +16,12 @@ import {
   ContainerSlide,
   TitleCategory,
 } from './HomePageComponent.styled';
+const dpr = window.devicePixelRatio;
 
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
   const setVisibleSlides = width => {
-    if (width >= 1440) {
+    if (width / dpr >= 1440) {
       return 5;
     }
     if (width < 1440 && width > 768) {
@@ -77,7 +78,6 @@ export default function HomePageComponent({ filteredProducts, title }) {
         </Slider>
         {filteredProducts.length > setVisibleSlides(width) && (
           <>
-            <div>{width}</div>
             <ButtonBack>
               <ArrowBackIcon sx={ButtonSlider} />
             </ButtonBack>
