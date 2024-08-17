@@ -45,8 +45,10 @@ export default function MyPosterList({
   function toCreatePost() {
     dispatch(togglePoster(true));
   }
-  function deleteProductFn() {
-    dispatch(deleteProduct());
+  function deleteProductFn(id) {
+    console.log(id);
+
+    dispatch(deleteProduct(id));
   }
   function handleSort(sort) {
     setValueSort(sort);
@@ -101,7 +103,7 @@ export default function MyPosterList({
           <WrapperPoster ref={ref}>
             {sortedProduct.map(
               ({
-                parameters: { _id },
+                _id,
                 // status,
                 title,
                 createDate,
@@ -139,7 +141,7 @@ export default function MyPosterList({
                           </ActiveProduct>
                           <ActiveProduct
                             type="button"
-                            onClick={deleteProductFn}
+                            onClick={() => deleteProductFn(_id)}
                           >
                             <DeleteSvg />
                             Видалити
