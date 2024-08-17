@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// const dpr = window.devicePixelRatio;
+const dpr = window.devicePixelRatio;
 export const FormSearch = styled.form`
   width: 100%;
   height: 32px;
@@ -7,13 +7,13 @@ export const FormSearch = styled.form`
   margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: calc(768px/${dpr})) {
     width: 440px;
     height: 48px;
     margin-left: auto;
     margin-right: auto;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: calc(1440px/${dpr})) {
     width: 433px;
     margin-top: 0;
     margin-left: 0;
@@ -56,7 +56,7 @@ export const FormSearch = styled.form`
     &:active {
       box-shadow: inset 0 0 3px ${({ theme }) => theme.color.colorButtonText};
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: calc(768px/${dpr})) {
       padding: 6px 12px;
     }
   }

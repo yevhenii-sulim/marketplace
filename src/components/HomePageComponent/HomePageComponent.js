@@ -19,7 +19,7 @@ import {
 
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
-  const setvisibleSlides = width => {
+  const setVisibleSlides = width => {
     if (width >= 1440) {
       return 5;
     }
@@ -34,8 +34,8 @@ export default function HomePageComponent({ filteredProducts, title }) {
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        step={setvisibleSlides(width)}
-        visibleSlides={setvisibleSlides(width)}
+        step={setVisibleSlides(width)}
+        visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
       >
         <Slider>
@@ -75,8 +75,9 @@ export default function HomePageComponent({ filteredProducts, title }) {
             }
           )}
         </Slider>
-        {filteredProducts.length > setvisibleSlides(width) && (
+        {filteredProducts.length > setVisibleSlides(width) && (
           <>
+            <div>{width}</div>
             <ButtonBack>
               <ArrowBackIcon sx={ButtonSlider} />
             </ButtonBack>
