@@ -35,7 +35,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        step={setVisibleSlides(width)}
+        // step={setVisibleSlides(width)}
         visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
       >
@@ -78,9 +78,6 @@ export default function HomePageComponent({ filteredProducts, title }) {
         </Slider>
         {filteredProducts.length > setVisibleSlides(width) && (
           <>
-            <div>
-              {width / dpr},{dpr}
-            </div>
             <ButtonBack>
               <ArrowBackIcon sx={ButtonSlider} />
             </ButtonBack>
