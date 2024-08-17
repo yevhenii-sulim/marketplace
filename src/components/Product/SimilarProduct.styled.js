@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-
+const dpr = window.devicePixelRatio;
 export const SimilarProductItem = styled.li`
   width: 160px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: calc(768px/${dpr})) {
     width: 232px;
     height: 440px;
   }

@@ -6,21 +6,21 @@ import Auxiliary from 'components/Auxiliary/Auxiliary';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import { Container, HeaderContainer, NavContainer } from './Header.styled';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
-
+const dpr = window.devicePixelRatio;
 export default function Header() {
   const { width } = useWindowDimensions();
 
   return (
     <HeaderContainer>
       <Container>
-        {width < 1440 && <BurgerMenu />}
+        {width / dpr < 1440 && <BurgerMenu />}
         <NavContainer>
           <Logo fill="#ffffff" />
-          {width >= 1440 && <OpenCategory />}
+          {width / dpr >= 1440 && <OpenCategory />}
         </NavContainer>
-        {width >= 1440 && <Search />}
+        {width / dpr >= 1440 && <Search />}
         <Auxiliary />
-        {width >= 1440 && <AddAnnouncement />}
+        {width / dpr >= 1440 && <AddAnnouncement />}
       </Container>
     </HeaderContainer>
   );
