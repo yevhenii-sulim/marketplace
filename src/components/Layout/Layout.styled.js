@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { dpr } from 'utils/dpr';
 export const ContainerLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,11 +15,11 @@ export const Container = styled.div`
   padding-left: 12px;
   padding-right: 12px;
   margin: auto;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: calc(768px * ${dpr})) {
     width: 768px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: calc(1440px * ${dpr})) {
     width: 1440px;
     padding-left: 58px;
     padding-right: 58px;
