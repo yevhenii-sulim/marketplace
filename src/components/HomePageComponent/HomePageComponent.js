@@ -16,18 +16,18 @@ import {
   ContainerSlide,
   TitleCategory,
 } from './HomePageComponent.styled';
-import { dpr } from 'utils/dpr';
+// import { dpr } from 'utils/dpr';
 
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
   const setVisibleSlides = width => {
-    if (width / dpr >= 1440) {
+    if (width >= 1440) {
       return 5;
     }
-    if (width / dpr < 1440 && width / dpr > 768) {
+    if (width < 1440 && width > 768) {
       return 3;
     }
-    if (width / dpr < 767 && width / dpr > 380) {
+    if (width < 767 && width > 380) {
       return 2;
     }
     return 1;
