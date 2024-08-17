@@ -99,7 +99,7 @@ export default function Search() {
       </BoxLoader>
       <button type="submit">
         <SearchTwoToneIcon />
-        {width / dpr >= 768 && 'Пошук'}
+        {width >= 768 && 'Пошук'}
       </button>
     </FormSearch>
   );

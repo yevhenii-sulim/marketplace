@@ -127,6 +127,7 @@ export const addFavoriteProduct = createAsyncThunk(
       dispatch(getUser(getState().users.myUser._id));
       return data;
     } catch (error) {
+      console.log('newToken');
       if (error.response && error.response.status === 401) {
         try {
           const newToken = await refreshToken();

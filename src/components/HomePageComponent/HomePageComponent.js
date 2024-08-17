@@ -27,7 +27,10 @@ export default function HomePageComponent({ filteredProducts, title }) {
     if (width / dpr < 1440 && width / dpr > 768) {
       return 3;
     }
-    return 2;
+    if (width / dpr < 767 && width / dpr > 380) {
+      return 2;
+    }
+    return 1;
   };
   return (
     <ContainerSlide>
@@ -35,7 +38,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        // step={setVisibleSlides(width)}
+        step={setVisibleSlides(width)}
         visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
       >

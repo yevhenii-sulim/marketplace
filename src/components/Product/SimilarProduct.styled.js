@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-import { dpr } from 'utils/dpr';
 export const SimilarProductItem = styled.li`
-  width: 160px;
-  @media screen and (min-width: calc(768px/${dpr})) {
+  width: 232px;
+
+  @media screen and (min-width: 380px) {
+    width: 160px;
+  }
+  @media screen and (min-width: 768px) {
     width: 232px;
     height: 440px;
   }
