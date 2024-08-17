@@ -6,7 +6,7 @@ import Auxiliary from 'components/Auxiliary/Auxiliary';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import { Container, HeaderContainer, NavContainer } from './Header.styled';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
-const dpr = window.devicePixelRatio;
+import { dpr } from 'utils/dpr';
 export default function Header() {
   const { width } = useWindowDimensions();
 

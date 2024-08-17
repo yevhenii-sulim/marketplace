@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { dpr } from 'utils/dpr';
+// import { dpr } from 'utils/dpr';
 
 export const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme.color.bgHeader};
@@ -16,12 +16,12 @@ export const Container = styled.div`
   padding-bottom: 12px;
   padding-left: 12px;
   padding-right: 12px;
-  @media screen and (min-width: calc(768px * ${dpr})) {
+  @media screen and (min-width: calc(768px)) {
     width: 768px;
     padding-left: 24px;
     padding-right: 24px;
   }
-  @media screen and (min-width: calc(1440px * ${dpr})) {
+  @media screen and (min-width: calc(1440px)) {
     padding-top: 18px;
     padding-bottom: 18px;
     padding-left: 58px;

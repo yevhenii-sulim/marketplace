@@ -16,7 +16,7 @@ import {
   ContainerSlide,
   TitleCategory,
 } from './HomePageComponent.styled';
-const dpr = window.devicePixelRatio;
+import { dpr } from 'utils/dpr';
 
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
