@@ -7,13 +7,13 @@ export const FormSearch = styled.form`
   margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
-  @media screen and (min-width: calc(768px)) {
+  @media screen and (min-width: calc(768px * ${dpr})) {
     width: 440px;
     height: 48px;
     margin-left: auto;
     margin-right: auto;
   }
-  @media screen and (min-width: calc(1440px)) {
+  @media screen and (min-width: calc(1440px * ${dpr})) {
     width: 433px;
     margin-top: 0;
     margin-left: 0;
@@ -34,7 +34,7 @@ export const FormSearch = styled.form`
       line-height: 1.44;
       color: ${({ theme }) => theme.color.borderSearch};
     }
-    @media screen and (min-width: calc(1440px)) {
+    @media screen and (min-width: calc(1440px * ${dpr})) {
       border: none;
     }
   }
