@@ -3,10 +3,7 @@ import {
   IconWrapper,
   OrderSectionContainer,
   OrderSectionWrapper,
-  ProductCost,
   ProductName,
-  SalePrice,
-  StrikePrice,
 } from './OrderSection.styled';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ButtonBlock from './ButtonBlock/ButtonBlock';
@@ -17,6 +14,8 @@ import { addProduct } from '../../../redux/basket/slice';
 import { selectBasket } from '../../../redux/basket/select';
 import BasketModal from 'components/BasketModal/BasketModal';
 import { useState } from 'react';
+import ProductCostSection from './ProductCost';
+
 const body = document.querySelector('body');
 const modalEnter = document.querySelector('#modal');
 const widthScroll = window.innerWidth - body.offsetWidth;
@@ -67,20 +66,7 @@ function OrderSection() {
             <FavoriteBorderIcon />
           </IconWrapper>
         </ProductName>
-        <ProductCost>
-          <StrikePrice>
-            <span
-              style={{ textDecoration: product.discount ? 'line-through' : '' }}
-            >
-              {product.price} &#8372;
-            </span>
-          </StrikePrice>
-          {product.discount ? (
-            <SalePrice>{product.discountPrice} &#8372;</SalePrice>
-          ) : (
-            ''
-          )}
-        </ProductCost>
+        <ProductCostSection product={product} />
         <ButtonBlock
           sendIdProduct={sendIdProduct}
           tel={product.producer.numberPhone}

@@ -8,6 +8,10 @@ export const SliderContainer = styled.section`
   height: 480px;
   background-color: white;
   border-radius: 12px;
+  @media (max-width: 767px) {
+    width: 100%;
+    border-radius: 0;
+  }
 `;
 export const SlidersWrapper = styled.article`
   display: flex;

@@ -1,89 +1,94 @@
 import React from 'react';
-import {
-  ColorCircle,
-  ColorWrapper,
-  DescribeInfoComplaint,
-  DescribeInfoComplaintBlock,
-  DescribeInfoContainer,
-  DescribeInfoHeader,
-  DescribeInfoParagraph,
-  DescribeInfoState,
-  DescribeInfoStateItem,
-  DescribeInfoWrapper,
-} from './DescribeInfo.styled';
 import { useSelector } from 'react-redux';
-import { ParameterWrapper } from '../Comments/CommentItem/CommentItem.styled';
+import DescribeInfoContent from './DescribeInfoContent';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import {
+  ProductName,
+  ProductNameWrapper,
+} from '../OrderSection/OrderSection.styled';
+import DescribeInfoValue from './DescribeInfoValue';
+import ProductCostSection from '../OrderSection/ProductCost';
+import ButtonBlock from '../OrderSection/ButtonBlock/ButtonBlock';
+import { accordionStyles, summaryStyles } from './styles';
+import SellerInfo from '../SellerInfo/SellerInfo';
+import Comments from '../Comments/Comments';
 
-function DescribeInfo() {
-  const { parameters, describe } = useSelector(
-    state => state.productPage.product
-  );
+function DescribeInfo({ showAccordion }) {
+  const product = useSelector(state => state.productPage.product);
 
   return (
-    <DescribeInfoWrapper>
-      <DescribeInfoContainer>
-        <DescribeInfoHeader>Опис</DescribeInfoHeader>
-        <DescribeInfoState>
-          {parameters.state && parameters.state !== '' ? (
-            <DescribeInfoStateItem>
-              Стан:
-              <ParameterWrapper>{parameters.state}</ParameterWrapper>
-            </DescribeInfoStateItem>
-          ) : null}
-          {parameters.size && parameters.size.length > 0 ? (
-            <DescribeInfoStateItem>
-              Розмір:
-              <div
-                style={{
-                  display: 'flex',
-                  height: ' 100%',
-                  fontWeight: 400,
-                  marginLeft: '5px',
-                  fontSize: '14px',
-                  marginTop: '2px',
-                  alignItems: 'center',
-                }}
-              >
-                {parameters.size.map((el, i) => {
-                  if (i === parameters.size.length - 1)
-                    return el.replace('EU ', '');
-                  if (i === 0) return el + ', ';
-
-                  return el.replace('EU ', '') + ', ';
-                })}
-              </div>
-            </DescribeInfoStateItem>
-          ) : null}
-          {parameters.brand &&
-          parameters.brand !== '' &&
-          parameters.brand !== '-' ? (
-            <DescribeInfoStateItem>
-              Бренд:
-              <ParameterWrapper>{parameters.brand}</ParameterWrapper>
-            </DescribeInfoStateItem>
-          ) : null}
-          {parameters.color && parameters.color.length > 0 ? (
-            <DescribeInfoStateItem>
-              Колір:
-              <ParameterWrapper>
-                {parameters.color.map(el => (
-                  <ColorWrapper key={el._id}>
-                    {console.log(el.color)}
-                    <span>{el.colorName}</span>
-                    <ColorCircle $color={el.color} />
-                  </ColorWrapper>
-                ))}
-              </ParameterWrapper>
-            </DescribeInfoStateItem>
-          ) : null}
-        </DescribeInfoState>
-        <DescribeInfoParagraph>{describe}</DescribeInfoParagraph>
-        <DescribeInfoComplaintBlock>
-          <DescribeInfoComplaint>Поскаржитися</DescribeInfoComplaint>
-        </DescribeInfoComplaintBlock>
-      </DescribeInfoContainer>
-    </DescribeInfoWrapper>
+    <>
+      {showAccordion ? (
+        <>
+          <ProductName>
+            <ProductNameWrapper>{product.title}</ProductNameWrapper>
+          </ProductName>
+          <DescribeInfoValue />
+          <ProductCostSection product={product} />
+          <ButtonBlock showAccordion={showAccordion} />
+          <Accordion sx={accordionStyles} disableGutters={true}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              sx={summaryStyles}
+            >
+              Опис
+            </AccordionSummary>
+            <AccordionDetails
+              sx={{
+                padding: 0,
+              }}
+            >
+              <DescribeInfoContent
+                describe={product.describe}
+                showAccordion={showAccordion}
+              />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion sx={accordionStyles} disableGutters={true}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              sx={summaryStyles}
+            >
+              Продавець
+            </AccordionSummary>
+            <AccordionDetails
+              sx={{
+                padding: 0,
+              }}
+            >
+              <SellerInfo showAccordion={showAccordion} />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion sx={accordionStyles} disableGutters={true}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              sx={summaryStyles}
+            >
+              Відгуки
+            </AccordionSummary>
+            <AccordionDetails
+              sx={{
+                paddingBottom: '24px',
+              }}
+            >
+              <Comments />
+            </AccordionDetails>
+          </Accordion>
+        </>
+      ) : (
+        <DescribeInfoContent
+          parameters={product.parameters}
+          describe={product.describe}
+        />
+      )}
+    </>
   );
 }
-
 export default DescribeInfo;
