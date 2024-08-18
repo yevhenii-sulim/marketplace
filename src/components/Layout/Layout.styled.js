@@ -16,7 +16,6 @@ export const Container = styled.div`
   padding-right: 12px;
   margin: auto;
   @media screen and (min-width: calc(768px * ${dpr})) {
-    width: 768px;
   }
 
   @media screen and (min-width: calc(1440px * ${dpr})) {
