@@ -40,7 +40,7 @@ const prices = {
   totalCount: 0,
 };
 
-function onSubmitOrder(data, values, user) {
+function onSubmitOrder(data, values, user, dispatch) {
   const orderData = data.map(({ count, id }) => {
     return {
       id,
@@ -53,7 +53,9 @@ function onSubmitOrder(data, values, user) {
       method: 'post',
       url: `/purchase/${id}`,
       data: value,
-    });
+    })
+      .then(() => dispatch(deleteBasket()))
+      .catch(error => console.log(error));
   });
 }
 
@@ -96,9 +98,7 @@ export default function Ordering() {
     dispatch(deleteProduct(id));
   };
 
-  const handleSubmit = async (values) => {
-    dispatch(deleteBasket());
-
+  const handleSubmit = async values => {
     dispatch(
       setOrder({
         ...values,
@@ -106,21 +106,17 @@ export default function Ordering() {
       })
     );
 
-    console.log(isUserRegistered);
-
     if (isUserRegistered) {
       basket.forEach(item => {
         const product = {
           _id: item.id,
           ...item,
-          ...values
+          ...values,
         };
 
         delete product.id;
 
-        dispatch(
-          addNewProduct(product)
-        )
+        dispatch(addNewProduct(product));
       });
     } else {
       const products = [];
@@ -129,7 +125,7 @@ export default function Ordering() {
         products.push({
           _id: item.id,
           ...item,
-          ...values
+          ...values,
         });
       });
 
@@ -163,7 +159,7 @@ export default function Ordering() {
           validateOnBlur={false}
           validationSchema={signupSchema}
           onSubmit={values => {
-            onSubmitOrder(basket, values, userData);
+            onSubmitOrder(basket, values, userData, dispatch);
             handleSubmit(values);
           }}
         >

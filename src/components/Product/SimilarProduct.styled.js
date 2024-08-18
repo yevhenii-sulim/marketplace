@@ -1,9 +1,16 @@
 import styled from 'styled-components';
-
 export const SimilarProductItem = styled.li`
-  position: relative;
   width: 232px;
-  height: 440px;
+
+  @media screen and (min-width: 380px) {
+    width: 160px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 232px;
+    height: 440px;
+  }
+
+  position: relative;
   display: flex;
   gap: 12px;
   flex-direction: column;

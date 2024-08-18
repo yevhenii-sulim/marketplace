@@ -4,6 +4,7 @@ import { selectMyUser } from '../redux/auth/selector';
 
 export default function UserPage() {
   const user = useSelector(selectMyUser);
+  console.log('user', user);
 
   return (
     <UserPageComponents

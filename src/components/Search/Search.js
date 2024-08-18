@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { prevSearchProduct, searchProduct } from '../../redux/product/thunk';
@@ -15,6 +15,7 @@ import {
   PrevShowSearchedProduct,
 } from './Search.styled';
 import Loader from 'components/Loader/Loader';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function Search() {
   const searchedProduct = useSelector(selectPrevProductSearch);
@@ -24,8 +25,15 @@ export default function Search() {
   const [isOpen, setIsOpen] = useState(false);
   const [wasClick, setWasClick] = useState(true);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+
+  const dpr = window.devicePixelRatio;
+
+  const location = useLocation();
+  const { width } = useWindowDimensions();
+  useEffect(() => {
+    setValue('');
+  }, [location]);
 
   useEffect(() => {
     if (value && wasClick) {
@@ -91,7 +99,7 @@ export default function Search() {
       </BoxLoader>
       <button type="submit">
         <SearchTwoToneIcon />
-        Пошук
+        {width >= 768 && 'Пошук'}
       </button>
     </FormSearch>
   );

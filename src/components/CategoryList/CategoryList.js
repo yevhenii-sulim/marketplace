@@ -14,13 +14,15 @@ import { navigationList } from 'data/navListData';
 import CategoryHomePage from './CategoryHomePage';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
+const dpr = window.devicePixelRatio;
+
 export default function CategoryList() {
   const { width } = useWindowDimensions();
-  const setvisibleSlides = width => {
-    if (width >= 1440) {
+  const setVisibleSlides = width => {
+    if (width / dpr >= 1440) {
       return 7;
     }
-    if (width < 1440 && width > 768) {
+    if (width / dpr < 1440 && width / dpr > 768) {
       return 4;
     }
     return 2;
@@ -28,15 +30,14 @@ export default function CategoryList() {
 
   return (
     <Category>
-      {/* <TitleCategory>Популярні категорії</TitleCategory> */}
       <CarouselProvider
         className="slide"
         totalSlides={navigationList.length}
         isPlaying={true}
-        step={1}
-        visibleSlides={setvisibleSlides(width)}
+        // step={1}
+        visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
-        dragStep={1}
+        // dragStep={1}
       >
         <Slider>
           {navigationList.map(
@@ -58,7 +59,7 @@ export default function CategoryList() {
             }
           )}
         </Slider>
-        {navigationList.length > setvisibleSlides(width) && (
+        {navigationList.length > setVisibleSlides(width) && (
           <>
             <ButtonBack>
               <ArrowBackIcon sx={ButtonSlider} />

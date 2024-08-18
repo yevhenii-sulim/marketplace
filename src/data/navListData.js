@@ -157,7 +157,7 @@ export const navigationList = [
         id: 2,
         link: 'second_hand',
         nameList: 'Відновлений секонд хенд',
-        img: '#',
+        img: '/marketplace/images/subCatalog/revieved-second.png',
       },
     ],
   },

@@ -1,65 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
+import PropTypes from 'prop-types';
 import { ButtonBlockWrapper } from './ButtonBlock.styled';
+import { useState } from 'react';
+import {
+  buttonBuyStyles,
+  buttonConnectStyles,
+  buttonShowTelStyles,
+} from './styles';
 
-function ButtonBlock({ sendIdProduct }) {
+function ButtonBlock({ sendIdProduct, tel, showAccordion }) {
+  const [isShowTel, setIsShowTel] = useState(false);
+
   return (
     <ButtonBlockWrapper>
-      <Button
-        variant="contained"
-        onClick={sendIdProduct}
-        sx={{
-          width: '85%',
-          backgroundColor: '#43C550',
-          textTransform: 'none',
-          height: '40px',
-          '&:focus': {
-            backgroundColor: '#43C550',
-          },
-          '&:hover': {
-            backgroundColor: '#43C550',
-          },
-        }}
-      >
+      <Button variant="contained" onClick={sendIdProduct} sx={buttonBuyStyles}>
         Купити
       </Button>
-      <Button
-        variant="outlined"
-        sx={{
-          width: '85%',
-          borderColor: '#43C550',
-          textTransform: 'none',
-          color: '#43C550',
-          height: '40px',
-          '&:focus': {
-            borderColor: '#43C550',
-          },
-          '&:hover': {
-            borderColor: '#43C550',
-          },
-        }}
-      >
-        Повідомлення
+      <Button variant="outlined" sx={buttonConnectStyles}>
+        Зв’язатися з продавцем
       </Button>
-      <Button
-        variant="outlined"
-        sx={{
-          width: '85%',
-          borderColor: '#43C550',
-          textTransform: 'none',
-          color: '#43C550',
-          height: '40px',
-          '&:focus': {
-            borderColor: '#43C550',
-          },
-          '&:hover': {
-            borderColor: '#43C550',
-          },
-        }}
-      >
-        Показати телефон
-      </Button>
+      {showAccordion ? null : (
+        <Button
+          onClick={() => setIsShowTel(prev => !prev)}
+          variant="outlined"
+          sx={buttonShowTelStyles}
+        >
+          {isShowTel ? tel : 'Показати телефон'}
+        </Button>
+      )}
     </ButtonBlockWrapper>
   );
 }

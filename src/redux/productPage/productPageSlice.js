@@ -10,6 +10,7 @@ export const fetchProduct = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      window.location.href = '/marketplace/error';
       console.log(error);
     }
   }
@@ -104,6 +105,16 @@ const productPageSlice = createSlice({
     deleteIdInCommentsExpanded(state, { payload }) {
       state.commentsExpanded.delete(payload);
     },
+
+    // sortedCommentsByASC(state, { payload }) {
+    //   if (Array.isArray(payload.comments)) {
+    //     const sortedComments = [...payload.comments].sort((a, b) => {
+    //       return new Date(a.createDate) - new Date(b.createDate);
+    //     });
+
+    //     state.product.comments = sortedComments;
+    //   }
+    // },
   },
 
   extraReducers: builder => {
@@ -141,5 +152,8 @@ const productPageSlice = createSlice({
 });
 
 export const productPageReducer = productPageSlice.reducer;
-export const { addToCommentsExpanded, deleteIdInCommentsExpanded } =
-  productPageSlice.actions;
+export const {
+  addToCommentsExpanded,
+  deleteIdInCommentsExpanded,
+  sortedCommentsByASC,
+} = productPageSlice.actions;

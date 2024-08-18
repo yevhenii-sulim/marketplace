@@ -1,5 +1,5 @@
-import ChangePassword from 'components/ChangePassword/ChangePassword';
+import RecoverPassword from 'components/RecoverPassword/RecoverPassword';
 
 export default function RestorePassword() {
-  return <ChangePassword />;
+  return <RecoverPassword />;
 }

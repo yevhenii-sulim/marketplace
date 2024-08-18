@@ -25,6 +25,15 @@ export default function FormRegister() {
     setVisible(prev => !prev);
   }
 
+  function handleSubmit(values) {
+    const formData = new FormData();
+    for (const key in values) {
+      if (!values.hasOwnProperty(key)) return;
+      formData.append(key, values[key].trim());
+    }
+    dispatch(signUp(formData));
+  }
+
   return (
     <ContainerForm>
       <Formik
@@ -71,7 +80,7 @@ export default function FormRegister() {
           if (!values.numberPhone) {
             errors.numberPhone = "Обов'язкове поле";
           } else if (
-            !/^((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}$/i.test(
+            !/^\s*((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}\s*$/i.test(
               values.numberPhone
             )
           ) {
@@ -81,7 +90,7 @@ export default function FormRegister() {
           if (!values.email) {
             errors.email = "Обов'язкове поле";
           } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            !/^\s*[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\s*$/i.test(values.email)
           ) {
             errors.email = 'Неправильна email адреса';
           }
@@ -97,7 +106,8 @@ export default function FormRegister() {
           return errors;
         }}
         onSubmit={values => {
-          dispatch(signUp(values));
+          handleSubmit(values);
+          // dispatch(signUp(values));
         }}
       >
         {({ values, isSubmitting, handleChange, setSubmitting }) => (
@@ -112,7 +122,7 @@ export default function FormRegister() {
               <Field
                 type="text"
                 name="firstName"
-                value={values.firstName.trim()}
+                value={values.firstName}
                 onChange={e => {
                   handleChange(e);
                   setSubmitting(false);
@@ -130,7 +140,7 @@ export default function FormRegister() {
               <Field
                 type="text"
                 name="lastName"
-                value={values.lastName.trim()}
+                value={values.lastName}
                 onChange={e => {
                   handleChange(e);
                   setSubmitting(false);
@@ -149,7 +159,7 @@ export default function FormRegister() {
                 type="tel"
                 name="numberPhone"
                 placeholder="+380 (__) ___-__-__"
-                value={values.numberPhone.trim()}
+                value={values.numberPhone}
                 onChange={e => {
                   handleChange(e);
                   setSubmitting(false);
@@ -168,7 +178,7 @@ export default function FormRegister() {
                 type="email"
                 name="email"
                 placeholder="tanya@example.com"
-                value={values.email.trim()}
+                value={values.email}
                 onChange={e => {
                   handleChange(e);
                   setSubmitting(false);
@@ -188,7 +198,7 @@ export default function FormRegister() {
                   <Field
                     type="text"
                     name="password"
-                    value={values.password.trim()}
+                    value={values.password}
                     onChange={e => {
                       handleChange(e);
                       setSubmitting(false);
@@ -198,7 +208,7 @@ export default function FormRegister() {
                   <Field
                     type="password"
                     name="password"
-                    value={values.password.trim()}
+                    value={values.password}
                     onChange={e => {
                       handleChange(e);
                       setSubmitting(false);

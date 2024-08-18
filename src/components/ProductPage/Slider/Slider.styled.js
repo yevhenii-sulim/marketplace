@@ -8,6 +8,10 @@ export const SliderContainer = styled.section`
   height: 480px;
   background-color: white;
   border-radius: 12px;
+  @media (max-width: 767px) {
+    width: 100%;
+    border-radius: 0;
+  }
 `;
 export const SlidersWrapper = styled.article`
   display: flex;
@@ -25,7 +29,7 @@ export const ArrowLeftWrapper = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   top: 50%;
   left: 8px;
   transform: translateY(-50%);
@@ -38,7 +42,7 @@ export const ArrowRightWrapper = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   top: 50%;
   right: 8px;
   transform: translateY(-50%);
@@ -51,4 +55,16 @@ export const WrapperSlide = styled.div`
   min-width: 100%;
   display: flex;
   justify-content: center;
+  img {
+    cursor: pointer;
+  }
+`;
+export const CloseModal = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 `;

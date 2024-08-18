@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
+import { enableMapSet } from 'immer';
 import {
   persistStore,
   persistReducer,
@@ -20,9 +21,9 @@ import { productPageReducer } from './productPage/productPageSlice';
 import { reducerBasket } from './basket/slice';
 import { modalViewAddedProductReducer } from './modalViewProduct/slice';
 import { slicePosterReducer } from './myPoster/slice';
-import { sliceOrderReducer } from './myOrder/slice';
 import { orderDataReducer } from './orderData/slice';
-import { enableMapSet } from 'immer';
+import { ratingReducer } from './rating/slice';
+import { linkReducer } from './createLink/slice';
 
 enableMapSet();
 const persistUser = {
@@ -33,7 +34,7 @@ const persistUser = {
 const persistAllStore = {
   key: 'category',
   storage,
-  whitelist: ['category', 'product', 'basket', 'poster', 'subCategory'],
+  whitelist: ['category', 'product', 'basket', 'poster', 'subCategory', 'link'],
 };
 
 const rootReducer = combineReducers({
@@ -43,11 +44,12 @@ const rootReducer = combineReducers({
   modalCatalog: modalCatalogReducer,
   modalForm: modalFormReducer,
   poster: slicePosterReducer,
-  openModalBasket: sliceOrderReducer,
   category: categoryReducer,
   users: persistReducer(persistUser, userAuthReducer),
   basket: reducerBasket,
   orderData: orderDataReducer,
+  rating: ratingReducer,
+  link: linkReducer,
 });
 
 const persistedReducer = persistReducer(persistAllStore, rootReducer);

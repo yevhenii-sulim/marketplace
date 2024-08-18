@@ -11,6 +11,7 @@ export const theme = {
     bgHeader: '#43C550',
     bgBorderInput: '#2D3648',
     bgBackdrop: '#00000090',
+    bgBackdropLinePoPup: '#00000010',
     bgCommon: '#D9D9D9',
     bgArrowList: '#A8A8A8',
     bgNavCommon: '#E1E1E1',

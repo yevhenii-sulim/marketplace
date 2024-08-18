@@ -51,7 +51,7 @@ export default function AddProductComponent() {
   function translateSexValue(value) {
     switch (value) {
       case 'Для жінок':
-        return 'famale';
+        return 'female';
       case 'Для чоловіків':
         return 'male';
       default:
@@ -73,14 +73,10 @@ export default function AddProductComponent() {
     const formData = new FormData();
     for (const key in values) {
       if (!values.hasOwnProperty(key)) return;
-      if (key === 'price') {
-        formData.append('price', values[key] || 0);
-      } else if (key === 'sex') {
+      if (key === 'sex') {
         formData.append('sex', translateSexValue(values[key]));
-        console.log(translateSexValue(values[key]));
       } else if (key === 'state') {
         formData.append('state', translateStateValue(values[key]));
-        console.log(translateStateValue(values[key]));
       } else if (key === 'subCategory') {
         formData.append('subCategory', values[key] || null);
       } else if (key === 'size') {
@@ -91,6 +87,8 @@ export default function AddProductComponent() {
         }
       } else if (key === 'file') {
         values[key].forEach(file => formData.append('file', file));
+      } else if (key === 'price') {
+        formData.append('price', values[key] || 0);
       } else {
         formData.append(key, values[key]);
       }
@@ -360,7 +358,15 @@ export default function AddProductComponent() {
                 Опублікувати
               </Button>
             </Buttons>
-            {onViewProduct && createPortal(<ViewAheadComponent />, modalEnter)}
+            {onViewProduct &&
+              createPortal(
+                <ViewAheadComponent
+                  values={values}
+                  onSubmit={() => handleSubmit(values)}
+                  errors={errors}
+                />,
+                modalEnter
+              )}
           </Form>
         )}
       </Formik>

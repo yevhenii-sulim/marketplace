@@ -7,12 +7,13 @@ import { AuxiliaryContainer, NavLink, TotalProduct } from './Auxiliary.styled';
 import { selectAuth } from '../../redux/auth/selector';
 import { toggleModalForm } from '../../redux/modalForm/slice';
 import { selectBasket } from '../../redux/basket/select';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default memo(function Auxiliary() {
   const isAuth = useSelector(selectAuth);
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
-
+  const { width } = useWindowDimensions();
   function onOpen(evt) {
     if (isAuth) return;
     evt.preventDefault();
@@ -21,10 +22,12 @@ export default memo(function Auxiliary() {
 
   return (
     <AuxiliaryContainer>
-      <NavLink to="user_page/selected" onClick={onOpen}>
-        <FavoriteBorderIcon />
-      </NavLink>
-      <NavLink to="my_order">
+      {width >= 1440 && (
+        <NavLink to="/user_page/selected" onClick={onOpen}>
+          <FavoriteBorderIcon />
+        </NavLink>
+      )}
+      <NavLink to="/my_order">
         {basket.length !== 0 && (
           <TotalProduct>
             {basket.reduce((cum, item) => {
@@ -35,9 +38,11 @@ export default memo(function Auxiliary() {
         )}
         <ShoppingCartOutlinedIcon />
       </NavLink>
-      <NavLink to="user_page/profile" onClick={onOpen}>
-        <PersonOutlineIcon />
-      </NavLink>
+      {width >= 1440 && (
+        <NavLink to="/user_page/profile" onClick={onOpen}>
+          <PersonOutlineIcon />
+        </NavLink>
+      )}
     </AuxiliaryContainer>
   );
 });

@@ -10,21 +10,25 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SimilarProduct from 'components/Product/SimilarProduct';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import {
   ButtonSlider,
   ContainerSlide,
   TitleCategory,
 } from './HomePageComponent.styled';
-import useWindowDimensions from 'hooks/useWindowDimensions';
+// import { dpr } from 'utils/dpr';
 
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
-  const setvisibleSlides = width => {
+  const setVisibleSlides = width => {
     if (width >= 1440) {
       return 5;
     }
     if (width < 1440 && width > 768) {
       return 3;
+    }
+    if (width < 767 && width > 380) {
+      return 2;
     }
     return 1;
   };
@@ -34,8 +38,8 @@ export default function HomePageComponent({ filteredProducts, title }) {
       <CarouselProvider
         className="slide"
         totalSlides={filteredProducts.length}
-        step={setvisibleSlides(width)}
-        visibleSlides={setvisibleSlides(width)}
+        step={setVisibleSlides(width)}
+        visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
       >
         <Slider>
@@ -75,7 +79,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
             }
           )}
         </Slider>
-        {filteredProducts.length > setvisibleSlides(width) && (
+        {filteredProducts.length > setVisibleSlides(width) && (
           <>
             <ButtonBack>
               <ArrowBackIcon sx={ButtonSlider} />

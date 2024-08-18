@@ -105,6 +105,9 @@ export const RatingNumber = styled.span`
 export const ParameterWrapper = styled.div`
   font-weight: 400;
   margin-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
 `;
 
 export const CommentsExpandedWrapper = styled.div`

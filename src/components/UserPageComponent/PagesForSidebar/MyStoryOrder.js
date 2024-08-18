@@ -1,7 +1,16 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Button } from '@mui/material';
 import { selectMyUser } from '../../../redux/auth/selector';
+import { addCommentFromStory } from '../../../redux/product/thunk';
+import { selectorRating } from '../../../redux/rating/selector';
+import Search from '../Search';
+import SendComment from './SendComment';
+import AboutProductStory from './AboutProductStory';
+import Sort from 'components/Sort/Sort';
+import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
 import {
   DeleteAdd,
   Empty,
@@ -13,15 +22,7 @@ import {
   viewProductButton,
   Filter,
 } from './PagesForSidebar.styled';
-import { useState } from 'react';
-import Search from '../Search';
-import { useNavigate } from 'react-router-dom';
-import SendComment from './SendComment';
-import { createPortal } from 'react-dom';
-import { addCommentFromStory } from '../../../redux/product/thunk';
-import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
-import AboutProductStory from './AboutProductStory';
-import Sort from 'components/Filters/Sort/Sort';
+import { addNullRating, deleteRating } from '../../../redux/rating/slice';
 const modalEnter = document.querySelector('#modal');
 
 export default function MyStoryOrder({
@@ -31,7 +32,10 @@ export default function MyStoryOrder({
   value,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [idList, setIdList] = useState('');
+
   const dispatch = useDispatch();
+  const rating = useSelector(selectorRating);
   const user = useSelector(selectMyUser);
 
   const purchasedGoods = user?.purchasedGoods ?? [];
@@ -44,25 +48,33 @@ export default function MyStoryOrder({
     navigate(`/${category.en}/${subCategory.en}/${id}`);
   }
 
-  function onOpenModal() {
+  function onOpenModal(id) {
+    dispatch(addNullRating());
     setIsOpen(true);
+    setIdList(id);
   }
 
   function onCloseModal() {
     setIsOpen(false);
+    dispatch(deleteRating());
   }
 
-  function onSend(evt, id) {
+  function onSend(evt, id, rating) {
     evt.preventDefault();
+    const fullRating = () =>
+      rating.reduce((acc, item) => {
+        acc += item;
+        return acc;
+      }, 0);
+    const middleRating = fullRating() / (rating.length - 1);
     dispatch(
       addCommentFromStory({
         comment: evt.target.elements.comment.value,
+        rating: middleRating,
         id: id,
       })
     );
-    setIsOpen(false);
   }
-
   return (
     <div>
       {purchasedGoods.length === 0 ? (
@@ -83,29 +95,33 @@ export default function MyStoryOrder({
           </Filter>
           <WrapperStoryOrder>
             {sortedProduct.map(
-              ({
-                _id,
-                state,
-                title,
-                createDate,
-                price,
-                discountPrice,
-                img,
-                number,
-                discount,
-                category,
-                subCategory,
-              }) => {
+              (
+                {
+                  _id,
+                  status,
+                  createDate,
+                  product: {
+                    title,
+                    price,
+                    discountPrice,
+                    img,
+                    discount,
+                    subCategory,
+                    category,
+                  },
+                },
+                index
+              ) => {
                 return (
                   <ListStoryOrder key={_id}>
                     <AboutProductStory
-                      state={state}
+                      status={status}
                       title={title}
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      img={img}
-                      number={number}
+                      number={index + 1}
+                      img={img[0]}
                       discount={discount}
                     />
                     <WrapperBuy className="story">
@@ -122,25 +138,25 @@ export default function MyStoryOrder({
                         <Button
                           type="button"
                           sx={viewProductButton}
-                          onClick={onOpenModal}
+                          onClick={() => onOpenModal(_id)}
                         >
                           Залишити відгук
                         </Button>
                       </DeleteAdd>
                     </WrapperBuy>
-                    {isOpen &&
-                      createPortal(
-                        <SendComment
-                          onSend={evt => onSend(evt, _id)}
-                          onCloseModal={onCloseModal}
-                        />,
-                        modalEnter
-                      )}
                   </ListStoryOrder>
                 );
               }
             )}
           </WrapperStoryOrder>
+          {isOpen &&
+            createPortal(
+              <SendComment
+                onSend={evt => onSend(evt, idList, rating)}
+                onCloseModal={onCloseModal}
+              />,
+              modalEnter
+            )}
         </>
       )}
     </div>

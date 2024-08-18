@@ -5,16 +5,16 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { togglePoster } from '../../../../redux/myPoster/slice';
 import { selectMyUser } from '../../../../redux/auth/selector';
+import { deleteProduct } from '../../../../redux/product/thunk';
 import PosterSvg from 'SvgComponents/PosterSVG/PosterSvg';
 import MessageSvg from 'SvgComponents/Message/MessageSvg';
 import EyeSvg from 'SvgComponents/Eye/EyeSvg';
 import DeleteSvg from 'SvgComponents/Delete/DeleteSvg';
 import DeactivateSvg from 'SvgComponents/Deactivate/DeactivateSvg';
-import EditSvg from 'SvgComponents/Edit/EditSvg';
-import Sort from 'components/Filters/Sort/Sort';
 import Search from '../Search/Search';
 import AboutProductStory from '../AboutProductStory';
 import { Empty } from '../PagesForSidebar.styled';
+import Sort from 'components/Sort/Sort';
 import {
   ActiveProduct,
   FeedBack,
@@ -39,13 +39,17 @@ export default function MyPosterList({
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
 
-  const soldGoods = user?.soldGoods ?? [];
+  const products = user?.products ?? [];
 
   const ref = useRef();
   function toCreatePost() {
     dispatch(togglePoster(true));
   }
+  function deleteProductFn(id) {
+    console.log(id);
 
+    dispatch(deleteProduct(id));
+  }
   function handleSort(sort) {
     setValueSort(sort);
   }
@@ -69,7 +73,7 @@ export default function MyPosterList({
   }
   return (
     <div>
-      {soldGoods.length === 0 ? (
+      {products.length === 0 ? (
         <Empty>
           <PosterSvg />
           <p>Додайте ваше перше оголошення!</p>
@@ -100,28 +104,29 @@ export default function MyPosterList({
             {sortedProduct.map(
               ({
                 _id,
-                state,
+                // status,
                 title,
                 createDate,
                 price,
                 discountPrice,
                 img,
-                number,
+                // count,
                 discount,
-                message,
-                like,
+                // message,
+                // like,
                 visit,
               }) => {
                 return (
-                  <ListStoryOrder key={_id} $state={Object.keys(state)}>
+                  // <ListStoryOrder key={_id} $state={Object.keys(status)}>
+                  <ListStoryOrder key={_id}>
                     <AboutProductStory
-                      state={state}
+                      // status={status}
                       title={title}
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
                       img={img}
-                      number={number}
+                      number={5}
                       discount={discount}
                     />
                     <WrapperBuy className="poster">
@@ -131,14 +136,13 @@ export default function MyPosterList({
                         </OpenOperation>
                         <OperationList>
                           <ActiveProduct type="button">
-                            <EditSvg />
-                            Редагувати
-                          </ActiveProduct>
-                          <ActiveProduct type="button">
                             <DeactivateSvg />
                             Деактивувати
                           </ActiveProduct>
-                          <ActiveProduct type="button">
+                          <ActiveProduct
+                            type="button"
+                            onClick={() => deleteProductFn(_id)}
+                          >
                             <DeleteSvg />
                             Видалити
                           </ActiveProduct>
@@ -146,11 +150,11 @@ export default function MyPosterList({
                       </Operation>
                       <FeedBack>
                         <FeedBackSign>
-                          <span className="message">{message.length}</span>
+                          {/* <span className="message">{message.length}</span> */}
                           <MessageSvg />
                         </FeedBackSign>
                         <FeedBackSign>
-                          <span className="heart">{like}</span>
+                          {/* <span className="heart">{like}</span> */}
                           <FavoriteBorderOutlinedIcon />
                         </FeedBackSign>
                         <FeedBackSign>

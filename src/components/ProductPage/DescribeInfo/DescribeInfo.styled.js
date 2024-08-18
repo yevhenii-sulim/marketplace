@@ -4,24 +4,45 @@ export const DescribeInfoWrapper = styled.section`
   background-color: white;
   border-radius: 12px;
   margin-top: 16px;
+  @media (max-width: 767px) {
+    margin-top: 0;
+  }
 `;
 export const DescribeInfoContainer = styled.article`
   width: 93%;
   display: flex;
   flex-direction: column;
   margin: 16px auto;
+  @media (max-width: 767px) {
+    width: 95%;
+  }
 `;
 
 export const DescribeInfoHeader = styled.span`
   display: block;
   font-size: 22px;
   font-weight: 700;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 export const DescribeInfoState = styled.span`
+  @media (max-width: 767px) {
+    margin: 0;
+    background-color: white;
+  }
+`;
+
+export const DescribeInfoStateWrapper = styled.div`
   display: flex;
   font-size: 22px;
   font-weight: 700;
   margin: 4px 0;
+  @media (max-width: 767px) {
+    width: 85%;
+    margin: 0 auto;
+    background-color: white;
+  }
 `;
 
 export const DescribeInfoStateItem = styled.div`
@@ -30,12 +51,19 @@ export const DescribeInfoStateItem = styled.div`
   margin: 12px 8px 12px 0;
   align-items: center;
 `;
-export const DescribeInfoParagraph = styled.p``;
+export const DescribeInfoParagraph = styled.p`
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
 export const DescribeInfoComplaintBlock = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 16px 0;
   cursor: pointer;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const DescribeInfoComplaint = styled.a`
@@ -55,6 +83,12 @@ export const ColorCircle = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: ${({ $color }) => $color};
+  box-shadow: ${({ $color }) => {
+    if ($color.toLowerCase() === '#ffffff') return `inset 0 0 0 1px #43C550`;
+  }};
+  background: ${({ $color }) => {
+    if (typeof $color === 'string') return `${$color}`;
+    return `radial-gradient(${$color[0]}, ${$color[1]})`;
+  }};
   margin-left: 4px;
 `;

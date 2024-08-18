@@ -1,22 +1,41 @@
 import styled from 'styled-components';
+const dpr = window.devicePixelRatio;
 export const FormSearch = styled.form`
-  width: 433px;
-  height: 48px;
+  width: 100%;
+  height: 32px;
   position: relative;
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: calc(768px * ${dpr})) {
+    width: 440px;
+    height: 48px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media screen and (min-width: calc(1440px * ${dpr})) {
+    width: 433px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
   input {
+    border: 1px solid ${({ theme }) => theme.color.borderRegister};
     width: 100%;
     height: 100%;
-    border-radius: 8px;
     padding: 8px 8px 8px 24px;
-    background-color: ${({ theme }) => theme.color.bgProduct};
-    border: none;
     outline: none;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    border-radius: 8px;
     font-size: 16px;
     line-height: 26px;
     &:placeholder {
       font-size: 16px;
       line-height: 1.44;
       color: ${({ theme }) => theme.color.borderSearch};
+    }
+    @media screen and (min-width: calc(1440px * ${dpr})) {
+      border: none;
     }
   }
   button {
@@ -28,7 +47,7 @@ export const FormSearch = styled.form`
     display: flex;
     gap: 8px;
     align-items: center;
-    padding: 6px 12px;
+    padding: 0 12px;
     position: absolute;
     top: 50%;
     right: 8px;
@@ -36,6 +55,9 @@ export const FormSearch = styled.form`
 
     &:active {
       box-shadow: inset 0 0 3px ${({ theme }) => theme.color.colorButtonText};
+    }
+    @media screen and (min-width: calc(768px * ${dpr})) {
+      padding: 6px 12px;
     }
   }
 

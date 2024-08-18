@@ -12,14 +12,17 @@ export const SellerInfoContainer = styled.section`
 `;
 export const SellerRole = styled.span`
   display: block;
+  margin-top: 24px;
+  font-family: Jost;
+  font-size: 22px;
   font-weight: 700;
-  margin-top: 16px;
+  line-height: 1.45;
 `;
 export const SellerDate = styled.div`
   display: flex;
   justify-content: space-between;
   width: 40%;
-  margin-top: 16px;
+  margin-top: 24px;
 `;
 export const SellerIconWrapper = styled.div`
   display: flex;
@@ -38,6 +41,9 @@ export const SellerName = styled.span`
   font-size: 20px;
   font-weight: 500;
   display: flex;
+  line-height: 150%;
+  padding-left: 4px;
+  letter-spacing: -0.24px;
 `;
 export const SellerRatingBlock = styled.span`
   display: flex;

@@ -1,7 +1,7 @@
 export const myPosterList = [
   {
     _id: '6645c5183fc9f80364c650d4',
-    state: { disable: 'Деактивовене' }, // {"enable":"Активне"}
+    status: { disable: 'Деактивовене' }, // {"enable":"Активне"}
     title: 'Щось там',
     createDate: '2024-04-19T06:00:12.130Z',
     price: 300,

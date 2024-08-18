@@ -2,8 +2,9 @@ import HomePageComponent from 'components/HomePageComponent/HomePageComponent';
 import CategoryList from 'components/CategoryList/CategoryList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import HomePageAdSlider from 'components/HomePageAdSlider/HomePageAdSlider';
-
+import Search from 'components/Search/Search';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 const param = [
@@ -16,11 +17,14 @@ const param = [
   { name: 'discount', bool: true },
   { name: 'eco', bool: true },
 ];
-
+const dpr = window.devicePixelRatio;
 export default function HomePage() {
   const [productsDiscount, setProductsDiscount] = useState([]);
   const [productsNew, setProductsNew] = useState([]);
   const [productsEco, setProductsEco] = useState([]);
+
+  const { width } = useWindowDimensions();
+
   useEffect(() => {
     const fetchProduct = async () => {
       const productsListPromise = param.map(async item => {
@@ -54,6 +58,7 @@ export default function HomePage() {
 
   return (
     <>
+      {width / dpr < 1440 && <Search />}
       <HomePageAdSlider />
       <CategoryList />
       {productsDiscount.length !== 0 && (

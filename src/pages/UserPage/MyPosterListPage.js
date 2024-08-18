@@ -8,11 +8,11 @@ export default function MyPosterListPage() {
   const [value, setValue] = useState('');
   const user = useSelector(selectMyUser);
 
-  const purchasedGoods = user?.purchasedGoods ?? [];
+  const products = user?.products ?? [];
   function sortProduct(criterion) {
     switch (criterion) {
       case 'Найдешевші':
-        return purchasedGoods.toSorted((max, min) => {
+        return products.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(max.discountPrice) - parseInt(min.discountPrice);
           } else {
@@ -21,7 +21,7 @@ export default function MyPosterListPage() {
         });
 
       case 'Найдорожчі':
-        return purchasedGoods.toSorted((max, min) => {
+        return products.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(min?.discountPrice) - parseInt(max?.discountPrice);
           } else {
@@ -29,29 +29,28 @@ export default function MyPosterListPage() {
           }
         });
       default:
-        return purchasedGoods.toSorted(
+        return products.toSorted(
           (a, b) => new Date(b?.createDate) - new Date(a?.createDate)
         );
     }
   }
-  const products = sortProduct(valueSort);
+  const sortedProducts = sortProduct(valueSort);
 
   function onSort() {
-    return products.filter(({ title, number }) => {
-      return (
-        title.toLowerCase().includes(value.toLowerCase()) ||
-        `${number}`.includes(value)
-      );
+    return sortedProducts.filter(({ title }) => {
+      return title.toLowerCase().includes(value.toLowerCase());
+      // ||
+      // `${count}`.includes(value)
     });
   }
 
   const sortedProduct = onSort();
+  console.log('sortedProduct', sortedProduct);
   return (
     <MyPosterList
       sortedProduct={sortedProduct}
       setValueSort={setValueSort}
       setValue={setValue}
-      valueSort={valueSort}
       value={value}
     />
   );
