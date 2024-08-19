@@ -27,8 +27,6 @@ export default function Search() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const dpr = window.devicePixelRatio;
-
   const location = useLocation();
   const { width } = useWindowDimensions();
   useEffect(() => {
