@@ -11,7 +11,11 @@ export default function BurgerMenu() {
   const [translateMenu, setTranslateMenu] = useState(false);
 
   function toggleMenu() {
-    setIsOpenMenu(prev => !prev);
+    if (isOpenMenu) {
+      setTimeout(() => setIsOpenMenu(prev => !prev), 500);
+    } else {
+      setIsOpenMenu(prev => !prev);
+    }
     setTimeout(() => setTranslateMenu(prev => !prev), 0);
   }
 

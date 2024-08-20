@@ -10,6 +10,11 @@ export const ProductList = styled.ul`
 export const Option = styled.div`
   display: flex;
   gap: 8px;
+  margin-top: 24px;
+  justify-content: center;
+  @media screen and (min-width: 1440px) {
+    margin-top: 0;
+  }
 `;
 export const ContainerProductPageList = styled.div`
   display: flex;
@@ -46,7 +51,6 @@ export const Product = styled.div`
   }
   @media screen and (min-width: 1440px) {
     grid-template-columns: repeat(4, auto);
-    justify-content: flex-start;
   }
   gap: 25px;
 `;
@@ -75,6 +79,25 @@ export const SortProduct = styled.div`
     position: relative;
   }
 `;
+export const FilterOpenButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 160px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 8px;
+  font-family: 'Nunito Sans';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  border-radius: 12px;
+  border: 1px solid rgba(73, 73, 73, 0.4);
+  color: ${({ theme }) => theme.color.colorTextExplainment};
+`;
+
 export const SelectSort = styled.select`
   padding: 6px 8px;
   outline: none;
@@ -105,6 +128,7 @@ export const Navigation = styled.div`
 `;
 export const Nav = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 16px;
 `;
 export const ListPath = styled.li`
@@ -116,8 +140,14 @@ export const ListPath = styled.li`
   }
 `;
 export const TitleProducts = styled.h1`
+  font-size: 24px;
   font-family: 'Jost';
-  font-size: 44px;
   font-weight: 700;
   line-height: 1.22;
+  @media screen and(min-width: 768px) {
+    font-size: 32px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 44px;
+  }
 `;

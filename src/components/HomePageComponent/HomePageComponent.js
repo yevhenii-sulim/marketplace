@@ -16,8 +16,6 @@ import {
   ContainerSlide,
   TitleCategory,
 } from './HomePageComponent.styled';
-// import { dpr } from 'utils/dpr';
-
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
   const setVisibleSlides = width => {

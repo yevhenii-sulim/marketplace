@@ -1,13 +1,24 @@
 import styled from 'styled-components';
 import { theme } from 'utils/theme';
 
+const view = window.innerWidth;
+function setPadding() {
+  if (view < 1440) {
+    return '0';
+  }
+}
+
 export const styleSelect = {
   position: 'relative',
   maxWidth: '300px',
+  width: '160px',
+  '.MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input':
+    {
+      paddingRight: setPadding(),
+    },
   '.MuiSelect-select': {
     paddingTop: '8px',
     paddingBottom: '8px',
-    paddingRight: '0',
     paddingLeft: '12px',
     fontSize: '16px',
     fontFamily: 'Nunito Sans',
@@ -38,7 +49,12 @@ export const styleSelect = {
     fontWeight: '400',
     lineHeight: '1.25',
     color: `${theme.color.colorTextExplainment}`,
-    borderRadius: '6px',
+    borderRadius: `${(() => {
+      if (view < 1440) {
+        return '12px';
+      }
+      return '6px';
+    })()}`,
     border: 'none',
   },
   '.arrow_select': {
@@ -67,5 +83,10 @@ export const Container = styled.form`
   display: flex;
   align-items: center;
   gap: 17px;
-  margin-left: auto;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  border-radius: 12px;
+  @media screen and (min-width: 1440px) {
+    background-color: transparent;
+    margin-left: auto;
+  }
 `;
