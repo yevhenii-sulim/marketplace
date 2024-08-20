@@ -5,18 +5,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
 import { useEffect, useState } from 'react';
 import { Container, SortText, styleSelect } from './Sort.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
-import { dpr } from 'utils/dpr';
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
 export default function Sort({
   name,
@@ -28,7 +16,7 @@ export default function Sort({
   const [personName, setPersonName] = useState('');
 
   const { width } = useWindowDimensions();
-  const isDesktopWidth = width / dpr >= 1400;
+  const isDesktopWidth = width >= 1400;
 
   const handleChangeComponent = event => {
     const {
@@ -73,7 +61,6 @@ export default function Sort({
           name={name}
           value={personName}
           onChange={handleChangeComponent}
-          MenuProps={MenuProps}
         >
           <MenuItem value="">
             <em>{placeholder}</em>

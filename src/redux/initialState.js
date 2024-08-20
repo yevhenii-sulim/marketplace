@@ -9,6 +9,7 @@ export const initialState = {
   categoryProduct: { subCategory: {}, category: {} },
   error: null,
   products: {
+    location: '',
     product: [],
     totalPage: 0,
     filters: {},

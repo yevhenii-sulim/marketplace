@@ -35,8 +35,14 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
     evt.preventDefault();
     dispatch(toggleModalForm(true));
   }
+
+  function oncloseByClickOutside(evt) {
+    if (evt.currentTarget !== evt.target) return;
+    toggleMenu();
+  }
+
   return (
-    <BackDrop>
+    <BackDrop onMouseDown={oncloseByClickOutside}>
       <Menu $isOpenMenu={isOpenMenu}>
         <header>
           <Container>
