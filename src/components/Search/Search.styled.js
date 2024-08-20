@@ -1,19 +1,20 @@
 import styled from 'styled-components';
-const dpr = window.devicePixelRatio;
 export const FormSearch = styled.form`
-  width: 100%;
+  width: 90%;
   height: 32px;
   position: relative;
   margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
-  @media screen and (min-width: calc(768px * ${dpr})) {
+  @media screen and (min-width: 768px) {
     width: 440px;
     height: 48px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
   }
-  @media screen and (min-width: calc(1440px * ${dpr})) {
+  @media screen and (min-width: 1440px) {
     width: 433px;
     margin-top: 0;
     margin-left: 0;
@@ -34,7 +35,7 @@ export const FormSearch = styled.form`
       line-height: 1.44;
       color: ${({ theme }) => theme.color.borderSearch};
     }
-    @media screen and (min-width: calc(1440px * ${dpr})) {
+    @media screen and (min-width: 1440px) {
       border: none;
     }
   }
@@ -56,7 +57,7 @@ export const FormSearch = styled.form`
     &:active {
       box-shadow: inset 0 0 3px ${({ theme }) => theme.color.colorButtonText};
     }
-    @media screen and (min-width: calc(768px * ${dpr})) {
+    @media screen and (min-width: 768px) {
       padding: 6px 12px;
     }
   }

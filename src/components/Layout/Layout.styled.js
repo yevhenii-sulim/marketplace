@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { dpr } from 'utils/dpr';
 export const ContainerLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,18 +9,10 @@ export const ContainerLayout = styled.div`
   }
 `;
 export const Container = styled.div`
-  width: 100%;
+  max-width: 1400px;
   height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
   margin: auto;
-  @media screen and (min-width: calc(768px * ${dpr})) {
-    width: 768px;
-  }
-
-  @media screen and (min-width: calc(1440px * ${dpr})) {
-    width: 1440px;
-    padding-left: 58px;
-    padding-right: 58px;
+  width: auto;
+  @media screen and (min-width: 768px) {
   }
 `;

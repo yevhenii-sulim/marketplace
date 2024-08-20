@@ -3,8 +3,21 @@ import { theme } from 'utils/theme';
 
 export const styleSelect = {
   position: 'relative',
-  width: '100%',
   maxWidth: '300px',
+  '.MuiSelect-select': {
+    paddingTop: '8px',
+    paddingBottom: '8px',
+    paddingRight: '0',
+    paddingLeft: '12px',
+    fontSize: '16px',
+    fontFamily: 'Nunito Sans',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    lineHeight: '1.25',
+  },
+  '& .MuiInputBase-input-MuiOutlinedInput-input': {
+    paddingRight: '0',
+  },
   '.error': {
     position: 'absolute',
     bottom: '48px',
@@ -34,14 +47,6 @@ export const styleSelect = {
   },
   '[aria-expanded="true"]~.arrow_select': {
     transform: 'rotate(0deg)',
-  },
-  '.MuiSelect-select': {
-    padding: '8px 12px',
-    fontSize: '16px',
-    fontFamily: 'Nunito Sans',
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: '1.25',
   },
   '[aria-expanded="true"]~.MuiOutlinedInput-notchedOutline': {
     boxShadow: `inset 0 0 0 3px ${theme.color.borderRegister}`,

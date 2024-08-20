@@ -44,7 +44,7 @@ export const logIn = createAsyncThunk(
       token.set(data.tokens.accessJwt);
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(
-          'Ваша електронна адреса не підтверджена. Будь ласка, перевірте свою пошту та підтвердьте електронну адресу для продовження'
+          'Ваша електронна адреса не підтверджена. Будь ласка, перевірте свою пошту та підтвердьте електронну адресу'
         );
         return;
       }
