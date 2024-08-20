@@ -4,6 +4,8 @@ import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
 import { useEffect, useState } from 'react';
 import { Container, SortText, styleSelect } from './Sort.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { dpr } from 'utils/dpr';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -24,6 +26,9 @@ export default function Sort({
   params,
 }) {
   const [personName, setPersonName] = useState('');
+
+  const { width } = useWindowDimensions();
+  const isDesktopWidth = width / dpr >= 1400;
 
   const handleChangeComponent = event => {
     const {
@@ -56,7 +61,7 @@ export default function Sort({
   }, [params]);
   return (
     <Container>
-      <SortText>Сортування:</SortText>
+      {isDesktopWidth && <SortText>Сортування:</SortText>}
       <FormControl sx={styleSelect}>
         <Select
           IconComponent={() => (

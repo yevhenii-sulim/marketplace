@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { dpr } from 'utils/dpr';
 export const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.color.bgFooter};
 `;
@@ -62,4 +61,5 @@ export const Confederacy = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 16px;
 `;

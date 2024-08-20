@@ -29,6 +29,7 @@ export default function Search() {
 
   const location = useLocation();
   const { width } = useWindowDimensions();
+
   useEffect(() => {
     setValue('');
   }, [location]);

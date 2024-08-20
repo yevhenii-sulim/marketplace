@@ -10,9 +10,8 @@ export const ContainerLayout = styled.div`
   }
 `;
 export const Container = styled.div`
-  width: 100%;
+  max-width: 1400px;
   height: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
   margin: auto;
+  width: auto;
 `;

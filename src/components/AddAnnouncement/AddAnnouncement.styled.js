@@ -17,8 +17,6 @@ export const Container = styled.div`
   border: solid 1px ${({ theme }) => theme.color.bgHeader};
   height: 48px;
   padding: 6px 16px;
-  margin-left: auto;
-  margin-right: auto;
   &:hover {
     background-color: ${({ theme }) => theme.color.bgButtonHover};
     box-shadow: inset 0 0 0px 4px ${({ theme }) => theme.color.colorButtonText};

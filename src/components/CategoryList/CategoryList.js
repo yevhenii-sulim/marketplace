@@ -25,6 +25,10 @@ export default function CategoryList() {
     if (width / dpr < 1440 && width / dpr > 768) {
       return 4;
     }
+    if (width / dpr <= 768 && width / dpr >= 580) {
+      return 3;
+    }
+
     return 2;
   };
 

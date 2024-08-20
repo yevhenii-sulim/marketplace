@@ -6,6 +6,7 @@ import { selectIsLoading } from '../../redux/product/selector';
 import SimilarProduct from 'components/Product/SimilarProduct';
 import PaginationList from 'components/Pagination/PaginationList';
 import Sort from 'components/Filters/Sort/Sort';
+import SkeletonCatalogList from 'components/SkeletonCatalogList/SkeletonCatalogList';
 import Filters from './FilterList/Filters';
 import { handleSort } from './handleSort';
 import {
@@ -19,8 +20,11 @@ import {
   TitleProducts,
   TitleSort,
   ListPath,
+  FiltersList,
+  Option,
 } from './ProductListPage.styled';
-import SkeletonCatalogList from 'components/SkeletonCatalogList/SkeletonCatalogList';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { dpr } from 'utils/dpr';
 
 export default function ProductListPage({
   page,
@@ -31,6 +35,9 @@ export default function ProductListPage({
   const [params, setParams] = useSearchParams('');
   const categories = useSelector(selectCategory);
   const isLoading = useSelector(selectIsLoading);
+  const { width } = useWindowDimensions();
+  console.log(width / dpr >= 1200);
+
   function setRouting(categories) {
     if (!categories) return;
     return categories.subCategory;
@@ -58,18 +65,29 @@ export default function ProductListPage({
         </TitleProducts>
       </Navigation>
       <ProductsPage>
-        <div>
+        <FiltersList>
           <TitleSort>Підбір за параметрами</TitleSort>
           <Filters />
-        </div>
+        </FiltersList>
         <ProductList>
-          <Sort
-            name="sort"
-            placeholder="Сортувати за:"
-            handleSort={handleSort}
-            setParams={setParams}
-            params={params}
-          />
+          <Option>
+            <Sort
+              name="sort"
+              placeholder="Сортувати за:"
+              handleSort={handleSort}
+              setParams={setParams}
+              params={params}
+            />
+            {width / dpr < 1200 && (
+              <Sort
+                name="sort"
+                placeholder="Сортувати за:"
+                handleSort={handleSort}
+                setParams={setParams}
+                params={params}
+              />
+            )}
+          </Option>
           {isLoading ? (
             <Product>
               {sortedProduct.map(
