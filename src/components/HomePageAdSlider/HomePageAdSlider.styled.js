@@ -64,7 +64,7 @@ export const HomePageAdSliderContainer = styled.ul`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     .slide {
       height: 135px;
     }
@@ -92,7 +92,7 @@ export const IntersectImage = styled.img`
   height: 290px;
   top: -35px;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 38%;
     height: 175px;
   }
@@ -108,7 +108,7 @@ export const FirstSlideTitle = styled.h3`
   line-height: 60px;
   color: #fff;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     top: 13px;
     left: 36px;
     width: 219px;
@@ -124,7 +124,7 @@ export const FlagImage = styled.img`
   top: 105px;
   left: 351px;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     top: 55px;
     left: 210px;
     width: 20px;
@@ -154,7 +154,7 @@ export const LipGlossMockupImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     left: 43%;
     width: 65px;
     height: 65px;
@@ -184,7 +184,7 @@ export const EarringsImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 57px;
     height: 58px;
     top: 72px;
@@ -214,7 +214,7 @@ export const BagImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 72px;
     height: 96px;
     top: 13px;
@@ -243,7 +243,7 @@ export const SocksImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 65px;
     top: 88px;
     left: 61%;
@@ -273,7 +273,7 @@ export const HoodieImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 81px;
     height: 91px;
     top: 4px;
@@ -304,7 +304,7 @@ export const SofaImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 128px;
     height: 126px;
     top: 6px;
@@ -319,7 +319,7 @@ export const BrutalistImg = styled.img`
   top: -32px;
   right: 0px;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 30%;
     height: 130px;
     top: 0px;
@@ -337,7 +337,7 @@ export const SecondSlideTitles = styled.div`
   gap: 8px;
   text-align: right;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 36%;
     height: 66px;
     top: 30px;
@@ -351,7 +351,7 @@ export const SecondSlideFirstTitle = styled.h5`
   line-height: 42px;
   height: 84px;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     font: 700 14px 'Jost';
   }
 `;
@@ -361,7 +361,7 @@ export const SecondSlideSecondTitle = styled.p`
   line-height: 10px;
   height: 20px;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     font: 700 10px 'Nunito Sans';
   }
 `;
@@ -371,7 +371,7 @@ export const AdButtonAnimationContainer = styled.div`
   top: 20px;
   left: 502px;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     top: 10px;
     left: 38%;
   }
@@ -402,7 +402,7 @@ export const FirstAdButton = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 82px;
   }
 `;
@@ -426,7 +426,7 @@ export const FirstAdButtonPointer = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 9px;
     height: 9px;
     top: 22px;
@@ -471,7 +471,7 @@ export const SecondAdButtonContainer = styled.div`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 62px;
     top: 16px;
     left: 0;
@@ -538,7 +538,7 @@ export const SecondAdButtonPointer = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 12px;
     top: 16px;
     left: 32px;
@@ -601,7 +601,7 @@ export const ThirdAdButtonContainer = styled.div`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 62px;
     top: 16px;
     left: 0;
@@ -673,7 +673,7 @@ export const ThirdAdButtonPointer = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     width: 16px;
     top: 32px;
 
@@ -726,7 +726,7 @@ export const BgRightTitle = styled.img`
   width: 512px;
   height: 135px;
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     top: 30px;
     left: 60%;
     width: 256px;
@@ -800,7 +800,7 @@ export const FirstWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     top: 14px;
     left: 42px;
     height: 34px;
@@ -859,7 +859,7 @@ export const SecondWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     top: 45px;
     left: 42px;
     height: 34px;
@@ -918,7 +918,7 @@ export const ThirdWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1285px) {
+  @media (max-width: 1300px) {
     top: 74px;
     left: 42px;
     height: 34px;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const ContainerLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,6 +14,4 @@ export const Container = styled.div`
   height: 100%;
   margin: auto;
   width: auto;
-  @media screen and (min-width: 768px) {
-  }
 `;

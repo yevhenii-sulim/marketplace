@@ -9,3 +9,22 @@ export const TabListStyles = {
     textTransform: 'none',
   },
 };
+
+export const selectFilteredCommentsStyle = {
+  boxShadow: 'none',
+  color: 'black',
+  '.MuiSelect-outlined': {
+    padding: 0,
+  },
+  '.MuiOutlinedInput-notchedOutline': {
+    border: 'none',
+    borderBottom: 'none',
+    borderRadius: '0px',
+  },
+  '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+    borderBottom: 'none',
+  },
+  '.MuiSvgIcon-root': {
+    color: 'black',
+  },
+};

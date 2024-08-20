@@ -15,12 +15,12 @@ import StarIcon from '@mui/icons-material/Star';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useSelector } from 'react-redux';
 
-function SellerInfo() {
+function SellerInfo({ showAccordion }) {
   const product = useSelector(state => state.productPage.product);
   return (
     <SellerInfoWrapper>
       <SellerInfoContainer>
-        <SellerRole>Продавець</SellerRole>
+        {showAccordion ? null : <SellerRole>Продавець</SellerRole>}
         <SellerDate>
           <SellerIconWrapper>
             {/* <img src="#" alt="alt" /> */}

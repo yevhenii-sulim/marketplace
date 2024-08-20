@@ -5,8 +5,22 @@ import {
   NameHeader,
 } from './CommentsHeater.styled';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { selectFilteredCommentsStyle } from '../material-styles/productPage-material-styles';
+import { useState } from 'react';
 
 export default function CommentsHeader() {
+  // const product = useSelector(productForProductPage);
+  const [stateSelect] = useState('desc');
+  // const dispatch = useDispatch();
+
+  // console.log(stateSelect);
+
+  // useEffect(() => {
+  //   if (stateSelect === 'asc') {
+  //     dispatch(sortedCommentsByASC(product));
+  //   }
+  // }, [stateSelect, dispatch, product]);
+
   return (
     <DescriptionProductHeaderComments>
       <NameHeader>Відгуки</NameHeader>
@@ -15,31 +29,14 @@ export default function CommentsHeader() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={10}
+            value={stateSelect}
             label="Age"
             IconComponent={KeyboardArrowDownIcon}
-            sx={{
-              boxShadow: 'none',
-              color: 'black',
-              '.MuiSelect-outlined': {
-                padding: 0,
-              },
-              '.MuiOutlinedInput-notchedOutline': {
-                border: 'none',
-                borderBottom: 'none',
-                borderRadius: '0px',
-              },
-              '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline':
-                {
-                  borderBottom: 'none',
-                },
-              '.MuiSvgIcon-root': {
-                color: 'black',
-              },
-            }}
+            sx={selectFilteredCommentsStyle}
+            // onChange={event => setStateSelect(event.target.value)}
           >
-            <MenuItem value={10}>Від нових до старий</MenuItem>
-            <MenuItem value={20}>Від старих до нових</MenuItem>
+            <MenuItem value={'desc'}>Від нових до старий</MenuItem>
+            <MenuItem value={'asc'}>Від старих до нових</MenuItem>
             <MenuItem value={30}>Від нізкого рейтенгу</MenuItem>
             <MenuItem value={30}>Від високого рейтенгу рейтенгу</MenuItem>
           </Select>
