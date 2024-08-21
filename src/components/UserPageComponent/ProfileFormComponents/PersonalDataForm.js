@@ -32,6 +32,7 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
       firstName: userDataChanges?.firstName || user?.firstName,
       surName: userDataChanges?.surname || user?.surName,
       gender: userDataChanges?.gender || user?.gender,
+      birthDate: userDataChanges?.birthDate || user?.birthDate
     };
 
     if (userDataChanges?.img) {
@@ -94,7 +95,7 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
           <DateFormField 
             label={'Дата народження'}
             disabled={!redacting}
-            value={userDataChanges?.birthDate || ''}
+            value={userDataChanges?.birthDate || user?.birthDate}
             onChange={value => setUserDataChanges({ ...userDataChanges, birthDate: value })}
           />
           <GenderSelect 
