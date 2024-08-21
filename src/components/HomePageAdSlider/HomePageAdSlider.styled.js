@@ -64,9 +64,11 @@ export const HomePageAdSliderContainer = styled.ul`
     }
   }
 
-  @media (max-width: 1300px) {
-    .slide {
-      height: 135px;
+  @media (max-width: 1440px) {
+    .slide,
+    .carousel__slider,
+    .carousel__inner-slide {
+      height: 125px;
     }
 
     .carousel__next-button,
@@ -84,17 +86,25 @@ export const HomePageAdSliderContainer = styled.ul`
       left: 2px;
     }
   }
+
+  /* 757px */
+  @media (max-width: 527px) {
+    .slide,
+    .carousel__slider {
+      height: 80px;
+    }
+  }
 `;
 
 export const IntersectImage = styled.img`
   position: absolute;
-  width: 505px;
-  height: 290px;
+  width: 38%;
+  height: 120%;
   top: -35px;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
+    top: 0;
     width: 38%;
-    height: 175px;
   }
 `;
 
@@ -102,18 +112,27 @@ export const FirstSlideTitle = styled.h3`
   position: absolute;
   width: 359px;
   height: 180px;
-  top: 26px;
+  top: 15%;
   left: 72px;
   font: 400 40px 'Jost';
   line-height: 60px;
   color: #fff;
 
-  @media (max-width: 1300px) {
-    top: 13px;
-    left: 36px;
-    width: 219px;
-    height: 90px;
-    font: 400 24px 'Jost';
+  @media (max-width: 1440px) {
+    top: 5%;
+    left: 5%;
+    width: 30%;
+    height: 50%;
+    font: 400 26px 'Jost';
+  }
+
+  @media (max-width: 785px) {
+    top: 2.5vw;
+    font: 400 2.6vw 'Jost';
+  }
+
+  @media (max-width: 400px) {
+    font: 400 3.3vw 'Jost';
   }
 `;
 
@@ -121,14 +140,29 @@ export const FlagImage = styled.img`
   position: absolute;
   width: 32px;
   height: 32px;
-  top: 105px;
+  top: 42%;
   left: 351px;
 
-  @media (max-width: 1300px) {
-    top: 55px;
-    left: 210px;
+  @media (max-width: 1440px) {
+    top: 40%;
+    left: 22%;
     width: 20px;
     height: 20px;
+  }
+
+  @media (max-width: 1088px) {
+    left: 25%;
+  }
+
+  @media (max-width: 947px) {
+    top: 7vw;
+    left: 32%;
+  }
+
+  @media (max-width: 450px) {
+    top: 7vw;
+    width: 15px;
+    height: 15px;
   }
 `;
 
@@ -136,28 +170,33 @@ export const LipGlossMockupImg = styled.img`
   position: absolute;
   width: 110px;
   height: 110px;
-  left: 568px;
+  left: 43%;
   transform: rotate(348deg);
   animation: 2s infinite normal lipglossrotate;
 
   @keyframes lipglossrotate {
-    0% {
+    0%, 100% {
       transform: rotate(348deg);
     }
 
     50% {
       transform: rotate(359deg);
     }
-
-    100% {
-      transform: rotate(348deg);
-    }
   }
 
-  @media (max-width: 1300px) {
-    left: 43%;
+  @media (max-width: 1440px) {
     width: 65px;
     height: 65px;
+  }
+
+  @media (max-width: 587px) {
+    width: 10%;
+    height: 55%;
+  }
+
+  @media (max-width: 450px) {
+    left: 40%;
+    height: 40%;
   }
 `;
 
@@ -165,30 +204,36 @@ export const EarringsImg = styled.img`
   position: absolute;
   width: 94px;
   height: 96px;
-  top: 125px;
-  left: 535px;
+  top: 145px;
+  left: 40%;
   transform: rotate(18deg);
   animation: 2s infinite normal earringsrotate;
 
   @keyframes earringsrotate {
-    0% {
+    0%, 100% {
       transform: rotate(18deg);
     }
 
     50% {
       transform: rotate(7deg);
     }
-
-    100% {
-      transform: rotate(18deg);
-    }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 57px;
     height: 58px;
     top: 72px;
-    left: 40%;
+  }
+
+  @media (max-width: 587px) {
+    width: 9%;
+    height: 55%;
+    top: 55%;
+  }
+
+  @media (max-width: 450px) {
+    height: 35%;
+    top: 35%;
   }
 `;
 
@@ -197,56 +242,64 @@ export const BagImg = styled.img`
   width: 124px;
   height: 172px;
   top: 26px;
-  left: 688px;
+  left: 52%;
   animation: 2s infinite normal bagrotate;
 
   @keyframes bagrotate {
-    0% {
+    0%, 100% {
       transform: none;
     }
 
     50% {
       transform: rotate(10deg);
     }
-
-    100% {
-      transform: none;
-    }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 72px;
     height: 96px;
     top: 13px;
-    left: 52%;
+  }
+
+  @media (max-width: 587px) {
+    width: 10%;
+    height: 70%;
+  }
+
+  @media (max-width: 450px) {
+    height: 50%;
   }
 `;
 
 export const SocksImg = styled.img`
   position: absolute;
   width: 110px;
-  top: 166px;
-  left: 805px;
+  top: 196px;
+  left: 61%;
   animation: 2s infinite normal socksrotate;
 
   @keyframes socksrotate {
-    0% {
+    0%, 100% {
       transform: none;
     }
 
     50% {
       transform: rotate(28deg);
     }
-
-    100% {
-      transform: none;
-    }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 65px;
-    top: 88px;
-    left: 61%;
+    top: 70%;
+  }
+
+  @media (max-width: 587px) {
+    top: 58px;
+    width: 10%;
+  }
+
+  @media (max-width: 450px) {
+    top: 40%;
   }
 `;
 
@@ -255,29 +308,34 @@ export const HoodieImg = styled.img`
   width: 143px;
   height: 161px;
   top: 8px;
-  left: 860px;
+  left: 67%;
   transform: rotate(6deg);
   animation: 2s infinite normal hoodierotate;
 
   @keyframes hoodierotate {
-    0% {
+    0%, 100% {
       transform: rotate(6deg);
     }
 
     50% {
       transform: rotate(-16deg);
     }
-
-    100% {
-      transform: rotate(6deg);
-    }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 81px;
     height: 91px;
     top: 4px;
-    left: 67%;
+  }
+
+  @media (max-width: 587px) {
+    width: 15%;
+    height: 80%;
+  }
+
+  @media (max-width: 450px) {
+    width: 13%;
+    height: 50%;
   }
 `;
 
@@ -286,40 +344,44 @@ export const SofaImg = styled.img`
   width: 237px;
   height: 232px;
   top: 12px;
-  left: 1036px;
+  left: 79%;
   transform: rotate(3deg);
   animation: 2s infinite normal sofarotate;
 
   @keyframes sofarotate {
-    0% {
+    0%, 100% {
       transform: rotate(3deg);
     }
 
     50% {
       transform: rotate(19deg);
     }
-
-    100% {
-      transform: rotate(3deg);
-    }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 128px;
     height: 126px;
     top: 6px;
-    left: 79%;
+  }
+  
+  @media (max-width: 587px) {
+    width: 20%;
+    height: 90%;
+  }
+
+  @media (max-width: 450px) {
+    width: 20%;
+    height: 60%;
   }
 `;
 
 export const BrutalistImg = styled.img`
   position: absolute;
-  width: 401px;
+  width: 30vw;
   height: 261px;
-  top: -32px;
   right: 0px;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 30%;
     height: 130px;
     top: 0px;
@@ -330,19 +392,27 @@ export const SecondSlideTitles = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 475px;
+  width: 32vw;
   height: 112px;
-  top: 60px;
-  left: 785px;
-  gap: 8px;
+  top: 4vw;
+  right: 10vw;
+  gap: 16px;
   text-align: right;
 
-  @media (max-width: 1300px) {
-    width: 36%;
+  @media (max-width: 1440px) {
     height: 66px;
-    top: 30px;
-    left: 58%;
     gap: 2px;
+    top: 2vw;
+  }
+
+  @media (max-width: 747px) {
+    top: 1vw;
+  }
+
+  @media (max-width: 587px) {
+    top: 5px;
+    gap: 2px;
+    height: 42px;
   }
 `;
 
@@ -351,8 +421,12 @@ export const SecondSlideFirstTitle = styled.h5`
   line-height: 42px;
   height: 84px;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     font: 700 14px 'Jost';
+  }
+
+  @media (max-width: 587px) {
+    font: 700 2vw 'Jost';
   }
 `;
 
@@ -361,8 +435,12 @@ export const SecondSlideSecondTitle = styled.p`
   line-height: 10px;
   height: 20px;
 
-  @media (max-width: 1300px) {
-    font: 700 10px 'Nunito Sans';
+  @media (max-width: 1440px) {
+    font: 600 10px 'Nunito Sans';
+  }
+
+  @media (max-width: 587px) {
+    font: 600 1.8vw 'Jost';
   }
 `;
 
@@ -371,7 +449,7 @@ export const AdButtonAnimationContainer = styled.div`
   top: 20px;
   left: 502px;
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     top: 10px;
     left: 38%;
   }
@@ -402,8 +480,13 @@ export const FirstAdButton = styled.img`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 82px;
+  }
+
+  @media (max-width: 757px) {
+    top: -5px;
+    width: 62px;
   }
 `;
 
@@ -426,11 +509,16 @@ export const FirstAdButtonPointer = styled.img`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 9px;
     height: 9px;
     top: 22px;
     left: 42px;
+  }
+
+  @media (max-width: 757px) {
+    top: 10px;
+    left: 32px;
   }
 `;
 
@@ -471,7 +559,7 @@ export const SecondAdButtonContainer = styled.div`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 62px;
     top: 16px;
     left: 0;
@@ -489,7 +577,7 @@ export const SecondAdButtonContainer = styled.div`
       43%,
       98% {
         top: 8px;
-        left: -200px;
+        left: -250px;
         opacity: 1;
         transform: rotate(-2deg);
         width: 132px;
@@ -501,6 +589,32 @@ export const SecondAdButtonContainer = styled.div`
         opacity: 0;
         transform: rotate(-2deg);
         width: 132px;
+      }
+    }
+  }
+
+  @media (max-width: 757px) {
+    width: 22px;
+    
+    @keyframes secondadcontainermove {
+      0%, 13% {
+        top: 8px;
+        left: 0px;
+        opacity: 0;
+        transform: rotate(-31deg);
+        width: 42px;
+      }
+
+      43%, 98% {
+        top: 4px;
+        left: -30%;
+        opacity: 1;
+        transform: rotate(-2deg);
+        width: 92px;
+      }
+
+      100% {
+        opacity: 0;
       }
     }
   }
@@ -538,7 +652,7 @@ export const SecondAdButtonPointer = styled.img`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 12px;
     top: 16px;
     left: 32px;
@@ -557,7 +671,26 @@ export const SecondAdButtonPointer = styled.img`
       }
 
       100% {
-        top: 27px;
+        opacity: 0;
+      }
+    }
+  }
+
+  @media (max-width: 757px) {
+    width: 10px;
+
+    @keyframes secondadpointer {
+      0%, 13% {
+        top: 16px;
+        opacity: 1;
+      }
+
+      43%, 98% {
+        top: 24px;
+        opacity: 1;
+      }
+
+      100% {
         opacity: 0;
       }
     }
@@ -593,15 +726,11 @@ export const ThirdAdButtonContainer = styled.div`
     }
 
     100% {
-      width: 342px;
-      top: 94px;
-      transform: rotate(10deg);
-      left: -130px;
       opacity: 0;
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 62px;
     top: 16px;
     left: 0;
@@ -619,17 +748,39 @@ export const ThirdAdButtonContainer = styled.div`
       68%,
       98% {
         width: 171px;
-        top: 47px;
+        top: 6vw;
         transform: rotate(10deg);
         left: -65px;
         opacity: 1;
       }
 
       100% {
-        width: 171px;
-        top: 47px;
+        opacity: 0;
+      }
+    }
+  }
+
+  @media (max-width: 757px) {
+    width: 42px;
+
+    @keyframes thirdadcontainermove {
+      0%, 43% {
+        width: 67px;
+        top: 16px;
+        left: 0;
+        opacity: 0;
+        transform: none;
+      }
+
+      68%, 98% {
+        width: 111px;
+        top: 6vw;
         transform: rotate(10deg);
-        left: -65px;
+        left: -25px;
+        opacity: 1;
+      }
+
+      100% {
         opacity: 0;
       }
     }
@@ -666,14 +817,11 @@ export const ThirdAdButtonPointer = styled.img`
     }
 
     100% {
-      top: 68px;
-      left: 250px;
-      width: 26px;
       opacity: 0;
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     width: 16px;
     top: 32px;
 
@@ -694,9 +842,30 @@ export const ThirdAdButtonPointer = styled.img`
       }
 
       100% {
-        top: 34px;
-        left: 125px;
+        opacity: 0;
+      }
+    }
+  }
+
+  @media (max-width: 757px) {
+    width: 16px;
+    top: 32px;
+
+    @keyframes thirdadpointer {
+      0%, 43% {
+        top: 16px;
+        left: 32px;
+        opacity: 1;     
+      }
+
+      68%, 98% {
+        top: 20px;
+        left: 78px;
         width: 13px;
+        opacity: 1;
+      }
+
+      100% {
         opacity: 0;
       }
     }
@@ -721,21 +890,25 @@ export const BgRightPart = styled.img`
 export const BgRightTitle = styled.img`
   position: absolute;
   z-index: 2;
-  top: 50px;
-  left: 752px;
+  top: 3vw;
   width: 512px;
   height: 135px;
+  right: 5vw;
 
-  @media (max-width: 1300px) {
-    top: 30px;
-    left: 60%;
+  @media (max-width: 1440px) {
     width: 256px;
     height: 66px;
+  }
+
+  @media (max-width: 757px) {
+    width: 178px;
+    height: 47px;
   }
 `;
 
 export const FirstWordImg = styled.img`
   position: absolute;
+  z-index: 2;
   top: 28px;
   left: 68px;
   height: 68px;
@@ -800,15 +973,26 @@ export const FirstWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     top: 14px;
     left: 42px;
     height: 34px;
+  }
+
+  @media (max-width: 757px) {
+    top: 7px;
+    height: 25%;
+  }
+
+  @media (max-width: 600px) {
+    top: 3px;
+    height: 20%;
   }
 `;
 
 export const SecondWordImg = styled.img`
   position: absolute;
+  z-index: 2;
   top: 90px;
   left: 68px;
   height: 68px;
@@ -859,15 +1043,26 @@ export const SecondWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     top: 45px;
     left: 42px;
     height: 34px;
+  }
+
+  @media (max-width: 757px) {
+    top: 36px;
+    height: 25%;
+  }
+
+  @media (max-width: 600px) {
+    top: 27px;
+    height: 20%;
   }
 `;
 
 export const ThirdWordImg = styled.img`
   position: absolute;
+  z-index: 2;
   top: 148px;
   left: 68px;
   height: 68px;
@@ -918,10 +1113,20 @@ export const ThirdWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1440px) {
     top: 74px;
     left: 42px;
     height: 34px;
+  }
+
+  @media (max-width: 757px) {
+    top: 63px;
+    height: 25%;
+  }
+
+  @media (max-width: 600px) {
+    top: 52px;
+    height: 20%;
   }
 `;
 

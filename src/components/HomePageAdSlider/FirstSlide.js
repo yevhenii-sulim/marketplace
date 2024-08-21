@@ -14,7 +14,7 @@ export default function FirstSlide() {
     <Slide>
       <IntersectImage src={IntersectSrc} alt="intersect" />
       <FirstSlideTitle>
-        Придбайте товари від українських виробників
+        Придбайте товари <br/> від українських <br/> виробників
       </FirstSlideTitle>
       <FlagImage src={FlagSrc} alt="flag" />
       <LipGlossMockupImg src={LipGlossMockupSrc} alt="lip gloss mockup" />
