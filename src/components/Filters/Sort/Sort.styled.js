@@ -7,6 +7,67 @@ function setPadding() {
     return '0';
   }
 }
+export const Container = styled.form`
+  @media screen and (min-width: 1440px) {
+    margin-left: auto;
+  }
+`;
+export const ButtonSort = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 160px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 8px;
+  font-family: 'Nunito Sans';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  border-radius: 12px;
+  border: 1px solid rgba(73, 73, 73, 0.4);
+  color: ${({ theme }) => theme.color.colorTextExplainment};
+`;
+export const ButtonFilters = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 160px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 8px;
+  font-family: 'Nunito Sans';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  border-radius: 12px;
+  border: 1px solid rgba(73, 73, 73, 0.4);
+  color: ${({ theme }) => theme.color.colorTextExplainment};
+`;
+export const Option = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+  justify-content: center;
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+export const WrapperSortDesktop = styled.div`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    border-radius: 12px;
+    background-color: transparent;
+  }
+`;
 
 export const styleSelect = {
   position: 'relative',
@@ -77,16 +138,4 @@ export const styleSelect = {
 export const SortText = styled.p`
   font-size: 18px;
   line-height: 1.44;
-`;
-
-export const Container = styled.form`
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  background-color: ${({ theme }) => theme.color.bgProduct};
-  border-radius: 12px;
-  @media screen and (min-width: 1440px) {
-    background-color: transparent;
-    margin-left: auto;
-  }
 `;

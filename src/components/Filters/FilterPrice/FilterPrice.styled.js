@@ -1,5 +1,20 @@
 import styled from 'styled-components';
+import { view } from 'utils/innerWidth';
 import { theme } from 'utils/theme';
+
+function setWidthForRangeBox() {
+  switch (true) {
+    case view < 1440:
+      return '90%';
+    default:
+      return '95%';
+  }
+}
+
+export const styleBoxRange = {
+  width: `${setWidthForRangeBox()}`,
+  margin: 'auto',
+};
 
 export const CountPrice = styled.div`
   display: flex;

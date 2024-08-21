@@ -24,6 +24,7 @@ import { slicePosterReducer } from './myPoster/slice';
 import { orderDataReducer } from './orderData/slice';
 import { ratingReducer } from './rating/slice';
 import { linkReducer } from './createLink/slice';
+import { modalFormAuthReducer } from './modalAuth/slice';
 
 enableMapSet();
 const persistUser = {
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   products: productReducer,
   modalCatalog: modalCatalogReducer,
   modalForm: modalFormReducer,
+  modalFormAuth: modalFormAuthReducer,
   poster: slicePosterReducer,
   category: categoryReducer,
   users: persistReducer(persistUser, userAuthReducer),

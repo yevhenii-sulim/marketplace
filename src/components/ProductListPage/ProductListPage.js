@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { createPortal } from 'react-dom';
 import { NavLink, useSearchParams } from 'react-router-dom';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import useWindowDimensions from 'hooks/useWindowDimensions';
@@ -12,9 +10,7 @@ import Sort from 'components/Filters/Sort/Sort';
 import SkeletonCatalogList from 'components/SkeletonCatalogList/SkeletonCatalogList';
 import Search from 'components/Search/Search';
 import Filters from '../Filters/FilterList/Filters';
-import FilterOpenSvg from 'SvgComponents/FilterOpen/FilterOpenSvg';
 import { handleSort } from './handleSort';
-import FiltersModal from 'components/Filters/FiltersModal/FiltersModal';
 import {
   ContainerProductPageList,
   Pagination,
@@ -27,11 +23,7 @@ import {
   TitleSort,
   ListPath,
   FiltersList,
-  Option,
-  FilterOpenButton,
 } from './ProductListPage.styled';
-
-const modalEnter = document.querySelector('#modal');
 
 export default function ProductListPage({
   page,
@@ -39,22 +31,10 @@ export default function ProductListPage({
   handlePageClick,
   totalItemsCount,
 }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [translateMenu, setTranslateMenu] = useState(false);
   const [params, setParams] = useSearchParams('');
   const categories = useSelector(selectCategory);
   const isLoading = useSelector(selectIsLoading);
   const { width } = useWindowDimensions();
-
-  function onOpen() {
-    setIsOpen(true);
-    setTimeout(() => setTranslateMenu(true), 0);
-  }
-
-  function onClose(bool) {
-    setTranslateMenu(bool);
-    setTimeout(() => setIsOpen(bool), 500);
-  }
 
   function setRouting(categories) {
     if (!categories) return;
@@ -91,21 +71,14 @@ export default function ProductListPage({
           <Filters />
         </FiltersList>
         <ProductList>
-          <Option>
-            <Sort
-              name="sort"
-              placeholder="Сортувати за:"
-              handleSort={handleSort}
-              setParams={setParams}
-              params={params}
-            />
-            {width < 1440 && (
-              <FilterOpenButton onClick={onOpen}>
-                <span>Фільтрувати</span>
-                <FilterOpenSvg />
-              </FilterOpenButton>
-            )}
-          </Option>
+          <Sort
+            name="sort"
+            placeholder="Сортувати за:"
+            handleSort={handleSort}
+            setParams={setParams}
+            params={params}
+          />
+
           {width < 1440 && (
             <TitleProducts>
               {setRouting(categories) && <>{categories.subCategory.ua}</>}
@@ -156,11 +129,6 @@ export default function ProductListPage({
           </Pagination>
         </ProductList>
       </ProductsPage>
-      {isOpen &&
-        createPortal(
-          <FiltersModal isOpenMenu={translateMenu} onClose={onClose} />,
-          modalEnter
-        )}
     </ContainerProductPageList>
   );
 }

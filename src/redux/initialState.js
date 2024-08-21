@@ -5,6 +5,7 @@ export const initialState = {
   viewAddProduct: false,
   basket: [],
   openCatalog: false,
+  openFormModalAuth: false,
   openFormModal: false,
   categoryProduct: { subCategory: {}, category: {} },
   error: null,

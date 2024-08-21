@@ -17,6 +17,7 @@ function FilterColor() {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
   const [params, setParams] = useSearchParams('');
+
   const sex = params.getAll('sex') ?? [];
   const minPrice = params.getAll('minPrice') ?? [];
   const maxPrice = params.getAll('maxPrice') ?? [];
