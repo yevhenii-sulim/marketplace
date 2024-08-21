@@ -14,6 +14,7 @@ export default memo(function Auxiliary() {
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
   const { width } = useWindowDimensions();
+
   function onOpen(evt) {
     if (isAuth) return;
     evt.preventDefault();

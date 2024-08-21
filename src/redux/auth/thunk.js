@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
-import { toggleModalForm } from '../modalForm/slice';
+import { toggleModalAuth } from '../modalAuth/slice';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
 const token = {
@@ -25,7 +25,7 @@ export const signUp = createAsyncThunk(
         'Підтвердіть свою електронну адресу, щоб мати можливість продавати та купувати товари на нашому маркетплейсі'
       );
 
-      dispatch(toggleModalForm(false));
+      dispatch(toggleModalAuth(false));
       return data;
     } catch (error) {
       console.log(error.response.data.errors);
@@ -48,7 +48,7 @@ export const logIn = createAsyncThunk(
         );
         return;
       }
-      dispatch(toggleModalForm(false));
+      dispatch(toggleModalAuth(false));
       return data;
     } catch (error) {
       console.log(error);
@@ -67,7 +67,7 @@ export const sendQueryRestorePassword = createAsyncThunk(
       Notiflix.Notify.success(
         'Ми відправили інформацію для відновлення паролю вам на ел. пошту'
       );
-      dispatch(toggleModalForm(false));
+      dispatch(toggleModalAuth(false));
       return data;
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message);

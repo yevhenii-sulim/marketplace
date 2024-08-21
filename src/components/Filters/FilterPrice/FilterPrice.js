@@ -4,7 +4,12 @@ import Slider from '@mui/material/Slider';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
 import { selectFiltersPrice } from '../../../redux/product/selector';
-import { CountPrice, PriceSlide, SliderRange } from './FilterPrice.styled';
+import {
+  CountPrice,
+  PriceSlide,
+  SliderRange,
+  styleBoxRange,
+} from './FilterPrice.styled';
 import { useSearchParams } from 'react-router-dom';
 import { setMaxPriceFilterParam, setMinPriceFilterParam } from './setParams';
 
@@ -16,10 +21,14 @@ export default function FilterPrice() {
   const min =
     +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
       ? +params.get('minPrice')
+      : params.get('minPrice')
+      ? 0
       : price.min;
   const max =
     +params.get('maxPrice') && !Number.isNaN(+params.get('maxPrice'))
       ? +params.get('maxPrice')
+      : params.get('maxPrice')
+      ? 0
       : price.max;
 
   const getMaxValue = num => {
@@ -31,10 +40,12 @@ export default function FilterPrice() {
   };
 
   const handleInputChange = event => {
+    const price = Number(event.target.value);
+
     if (event.target.name === 'min') {
-      getMinValue(parseInt(event.target.value));
+      getMinValue(price);
     } else {
-      getMaxValue(parseInt(event.target.value));
+      getMaxValue(price);
     }
   };
 
@@ -74,7 +85,7 @@ export default function FilterPrice() {
           грн
         </label>
       </CountPrice>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={styleBoxRange}>
         <Slider
           sx={SliderRange}
           value={[min, max]}

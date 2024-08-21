@@ -7,15 +7,6 @@ export const ProductList = styled.ul`
   margin: auto;
   width: auto;
 `;
-export const Option = styled.div`
-  display: flex;
-  gap: 8px;
-  margin-top: 24px;
-  justify-content: center;
-  @media screen and (min-width: 1440px) {
-    margin-top: 0;
-  }
-`;
 export const ContainerProductPageList = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,24 +69,6 @@ export const SortProduct = styled.div`
   .select {
     position: relative;
   }
-`;
-export const FilterOpenButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 160px;
-  background-color: ${({ theme }) => theme.color.bgProduct};
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 12px;
-  padding-right: 8px;
-  font-family: 'Nunito Sans';
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.25;
-  border-radius: 12px;
-  border: 1px solid rgba(73, 73, 73, 0.4);
-  color: ${({ theme }) => theme.color.colorTextExplainment};
 `;
 
 export const SelectSort = styled.select`

@@ -46,14 +46,7 @@ export const WrapperModal = styled.div`
     color: ${({ theme }) => theme.color.bgButton};
   }
   @media screen and (min-width: 480px) {
-    width: 480px;
-  }
-  @media screen and (min-width: 769px) {
-    width: 769px;
-  }
-  @media screen and (min-width: 1440px) {
-    padding: 44px 58px;
-    width: 1440px;
+    width: 366px;
   }
 `;
 

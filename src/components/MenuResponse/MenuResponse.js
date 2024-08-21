@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -9,7 +9,6 @@ import CategorySvg from 'SvgComponents/CategorySVG/CategorySvg';
 import { theme } from 'utils/theme';
 import MarkAsk from 'SvgComponents/MarkAsk/MarkAsk';
 import { selectAuth } from '../../redux/auth/selector';
-import { toggleModalForm } from '../../redux/modalForm/slice';
 import {
   AddContainer,
   AuxiliaryComponents,
@@ -21,19 +20,39 @@ import {
   LinkEnter,
   Menu,
 } from './MenuResponse.styled';
+import { modalFormAuthReducer } from '../../redux/modalAuth/slice';
 
 export default function MenuResponse({ toggleMenu, isOpenMenu }) {
   const isAuth = useSelector(selectAuth);
-  const dispatch = useDispatch();
-  console.log(isAuth);
+  const navigate = useNavigate();
 
-  function onOpen(evt) {
+  const dispatch = useDispatch();
+
+  function onOpenSelected(evt) {
     if (isAuth) {
       toggleMenu();
+      navigate('/user_page/selected');
       return;
     }
     evt.preventDefault();
-    dispatch(toggleModalForm(true));
+    dispatch(modalFormAuthReducer(true));
+  }
+  function onOpenProfile(evt) {
+    if (isAuth) {
+      toggleMenu();
+      navigate('/user_page/profile');
+
+      return;
+    }
+    evt.preventDefault();
+    dispatch(modalFormAuthReducer(true));
+  }
+  function onOpenCatalog() {
+    toggleMenu();
+    navigate('/catalog');
+  }
+  function onOpenAddGood(evt) {
+    toggleMenu();
   }
 
   function oncloseByClickOutside(evt) {
@@ -53,7 +72,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
           </Container>
         </header>
         <main>
-          <AddContainer>
+          <AddContainer onClick={onOpenAddGood}>
             <AddAnnouncement />
           </AddContainer>
           <section>
@@ -70,7 +89,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
                 Ввійдіть, щоб отримати рекомендації, персональні бонуси і
                 знижки.
               </p>
-              <LinkEnter to="/user_page/profile" onClick={onOpen}>
+              <LinkEnter to="/user_page/profile" onClick={onOpenProfile}>
                 Увійти в профіль
               </LinkEnter>
             </EnteredProfile>
@@ -83,11 +102,11 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
                 />
                 Кошик
               </LinkAxillary>
-              <LinkAxillary to="">
+              <LinkAxillary to="/catalog" onClick={onOpenCatalog}>
                 <CategorySvg stroke="black" height="32px" width="32px" />
                 Каталог товарів
               </LinkAxillary>
-              <LinkAxillary to="/user_page/selected" onClick={onOpen}>
+              <LinkAxillary to="/user_page/selected" onClick={onOpenSelected}>
                 <FavoriteBorderIcon sx={{ height: '32px', width: '32px' }} />
                 Улюблене
               </LinkAxillary>
