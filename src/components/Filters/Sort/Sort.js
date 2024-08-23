@@ -1,20 +1,23 @@
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
-import { useEffect, useState } from 'react';
-import { Container, SortText, styleSelect } from './Sort.styled';
+import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
+import FilterOpenSvg from 'SvgComponents/FilterOpen/FilterOpenSvg';
+import FiltersModal from '../FiltersModal/FiltersModal';
+import {
+  Container,
+  SortText,
+  styleSelect,
+  WrapperSortDesktop,
+  ButtonSort,
+  Option,
+  ButtonFilters,
+} from './Sort.styled';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
+const modalEnter = document.querySelector('#modal');
 
 export default function Sort({
   name,
@@ -24,6 +27,14 @@ export default function Sort({
   params,
 }) {
   const [personName, setPersonName] = useState('');
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [isOpenSort, setIsOpenSort] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [translateMenu, setTranslateMenu] = useState(false);
+
+  function onClose(bool) {
+    setIsOpen(bool);
+  }
 
   const handleChangeComponent = event => {
     const {
@@ -33,21 +44,34 @@ export default function Sort({
     setPersonName(value);
     handleSort(value, setParams, params);
   };
+
+  function onOpenFilter() {
+    setIsOpen(true);
+    setIsOpenFilter(true);
+    setTimeout(() => setTranslateMenu(true), 0);
+  }
+
+  function onOpenSort() {
+    setIsOpen(true);
+    setIsOpenSort(true);
+    setTimeout(() => setTranslateMenu(true), 0);
+  }
+
   useEffect(() => {
-    if (params.getAll('sortField')[0] === 'createDate') {
+    if (params.get('sortField') === 'createDate') {
       setPersonName('Спочатку нові');
       return;
     }
     if (
-      params.getAll('sortField')[0] === 'price' &&
-      params.getAll('sortOrder')[0] === 'asc'
+      params.get('sortField') === 'price' &&
+      params.get('sortOrder') === 'asc'
     ) {
       setPersonName('Найдешевші');
       return;
     }
     if (
-      params.getAll('sortField')[0] === 'price' &&
-      params.getAll('sortOrder')[0] === 'desc'
+      params.get('sortField') === 'price' &&
+      params.get('sortOrder') === 'desc'
     ) {
       setPersonName('Найдорожчі');
       return;
@@ -56,28 +80,52 @@ export default function Sort({
   }, [params]);
   return (
     <Container>
-      <SortText>Сортування:</SortText>
-      <FormControl sx={styleSelect}>
-        <Select
-          IconComponent={() => (
-            <span className="arrow_select">
-              <ExpandMoreIcon />
-            </span>
-          )}
-          displayEmpty
-          name={name}
-          value={personName}
-          onChange={handleChangeComponent}
-          MenuProps={MenuProps}
-        >
-          <MenuItem value="">
-            <em>{placeholder}</em>
-          </MenuItem>
-          <MenuItem value="Спочатку нові">Спочатку нові</MenuItem>
-          <MenuItem value="Найдешевші">Найдешевші</MenuItem>
-          <MenuItem value="Найдорожчі">Найдорожчі</MenuItem>
-        </Select>
-      </FormControl>
+      <Option>
+        <ButtonSort type="button" onClick={onOpenSort}>
+          <span>Сортувати</span>
+          <UnfoldMoreIcon />
+        </ButtonSort>
+        <ButtonFilters type="button" onClick={onOpenFilter}>
+          <span>Фільтрувати</span>
+          <FilterOpenSvg />
+        </ButtonFilters>
+      </Option>
+      <WrapperSortDesktop>
+        <SortText>Сортування:</SortText>
+        <FormControl sx={styleSelect}>
+          <Select
+            IconComponent={() => (
+              <span className="arrow_select">
+                <ExpandMoreIcon />
+              </span>
+            )}
+            displayEmpty
+            name={name}
+            value={personName}
+            onChange={handleChangeComponent}
+          >
+            <MenuItem value="">
+              <em>{placeholder}</em>
+            </MenuItem>
+            <MenuItem value="Спочатку нові">Спочатку нові</MenuItem>
+            <MenuItem value="Найдешевші">Найдешевші</MenuItem>
+            <MenuItem value="Найдорожчі">Найдорожчі</MenuItem>
+          </Select>
+        </FormControl>
+      </WrapperSortDesktop>
+      {isOpen &&
+        createPortal(
+          <FiltersModal
+            isOpenMenu={translateMenu}
+            isOpenFilter={isOpenFilter}
+            setIsOpenFilter={setIsOpenFilter}
+            isOpenSort={isOpenSort}
+            setIsOpenSort={setIsOpenSort}
+            setTranslateMenu={setTranslateMenu}
+            onClose={onClose}
+          />,
+          modalEnter
+        )}
     </Container>
   );
 }

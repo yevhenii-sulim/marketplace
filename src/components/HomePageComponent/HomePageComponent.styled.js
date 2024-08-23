@@ -3,6 +3,13 @@ import { theme } from 'utils/theme';
 
 export const ContainerSlide = styled.ul`
   margin-bottom: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+
+  @media screen and (min-width: 1440px) {
+    padding-left: 58px;
+    padding-right: 58px;
+  }
   .slide {
     width: 100%;
     position: relative;

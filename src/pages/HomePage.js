@@ -17,7 +17,6 @@ const param = [
   { name: 'discount', bool: true },
   { name: 'eco', bool: true },
 ];
-const dpr = window.devicePixelRatio;
 export default function HomePage() {
   const [productsDiscount, setProductsDiscount] = useState([]);
   const [productsNew, setProductsNew] = useState([]);
@@ -58,7 +57,7 @@ export default function HomePage() {
 
   return (
     <>
-      {width / dpr < 1440 && <Search />}
+      {width < 1440 && <Search />}
       <HomePageAdSlider />
       <CategoryList />
       {productsDiscount.length !== 0 && (

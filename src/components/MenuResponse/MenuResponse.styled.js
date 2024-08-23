@@ -57,6 +57,7 @@ export const AddContainer = styled.div`
   padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 16px;
+  text-align: center;
 `;
 export const Contacts = styled.div`
   display: flex;

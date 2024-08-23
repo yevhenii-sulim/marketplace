@@ -3,21 +3,21 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AddProduct, Container } from './AddAnnouncement.styled';
-import { toggleModalForm } from '../../redux/modalForm/slice';
 import { selectAuth } from '../../redux/auth/selector';
-import { selectOpenFormModal } from '../../redux/modalForm/selectors';
-import ModalForm from 'components/ModalForm/ModalForm';
 import { togglePoster } from '../../redux/myPoster/slice';
+import { toggleModalAuth } from '../../redux/modalAuth/slice';
+import ModalForm from 'components/ModalForm/ModalForm';
+import { selectOpenFormModalAuth } from '../../redux/modalAuth/selectors';
 
 const modalEnter = document.querySelector('#modal');
 
 export default memo(function AddAnnouncement() {
   const isAuth = useSelector(selectAuth);
-  const isOpen = useSelector(selectOpenFormModal);
+  const isOpen = useSelector(selectOpenFormModalAuth);
   const dispatch = useDispatch();
 
   function onClose() {
-    dispatch(toggleModalForm(false));
+    dispatch(toggleModalAuth(false));
   }
 
   function toCreatePost() {
@@ -26,7 +26,7 @@ export default memo(function AddAnnouncement() {
 
   function onOpen(evt) {
     !isAuth && evt.preventDefault();
-    dispatch(toggleModalForm(true));
+    dispatch(toggleModalAuth(true));
     isAuth && toCreatePost();
   }
 

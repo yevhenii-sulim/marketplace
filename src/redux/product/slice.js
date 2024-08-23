@@ -10,8 +10,11 @@ const handlePending = state => {
 const handleFulfilled = (state, { payload }) => {
   state.isLoading = true;
   state.product = payload.products;
-  state.filters = payload.filters;
   state.totalPage = payload.totalPages;
+  if (window.location.pathname !== state.location) {
+    state.filters = payload.filters;
+  }
+  state.location = window.location.pathname;
 };
 
 const handleSearchFulfilled = (state, { payload }) => {

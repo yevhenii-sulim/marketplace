@@ -5,10 +5,12 @@ export const initialState = {
   viewAddProduct: false,
   basket: [],
   openCatalog: false,
+  openFormModalAuth: false,
   openFormModal: false,
   categoryProduct: { subCategory: {}, category: {} },
   error: null,
   products: {
+    location: '',
     product: [],
     totalPage: 0,
     filters: {},
