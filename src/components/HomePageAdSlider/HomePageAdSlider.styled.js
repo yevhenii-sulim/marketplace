@@ -87,11 +87,17 @@ export const HomePageAdSliderContainer = styled.ul`
     }
   }
 
-  /* 757px */
   @media (max-width: 527px) {
     .slide,
     .carousel__slider {
       height: 80px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .slide,
+    .carousel__slider {
+      height: 60px;
     }
   }
 `;
@@ -457,11 +463,6 @@ export const AdButtonAnimationContainer = styled.div`
 
 export const FirstAdButtonContainer = styled.div`
   position: relative;
-`;
-
-export const FirstAdButton = styled.img`
-  position: absolute;
-  width: 125px;
   opacity: 0;
   animation: 5s infinite normal firstadbuttonopacity;
 
@@ -486,16 +487,30 @@ export const FirstAdButton = styled.img`
 
   @media (max-width: 757px) {
     top: -5px;
-    width: 62px;
+    width: 10vw;
+  }
+`;
+
+export const FirstAdButton = styled.img`
+  position: absolute;
+  width: 132px;
+
+  @media (max-width: 1440px) {
+    left: -10px;
+    width: 87px;
+  }
+
+  @media (max-width: 757px) {
+    width: 10vw;
   }
 `;
 
 export const FirstAdButtonPointer = styled.img`
   position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 32px;
-  left: 65px;
+  width: 15px;
+  height: 15px;
+  top: 33px;
+  left: 60px;
   animation: 5s infinite normal firstadpointer;
 
   @keyframes firstadpointer {
@@ -513,18 +528,28 @@ export const FirstAdButtonPointer = styled.img`
     width: 9px;
     height: 9px;
     top: 22px;
-    left: 42px;
+    left: 32px;
   }
 
   @media (max-width: 757px) {
-    top: 10px;
-    left: 32px;
+    top: 1.9vw;
+    left: 4vw;
   }
-`;
+
+  @media (max-width: 482px) {
+    top: 1.5vw;
+  }
+
+  @media (max-width: 390px) {
+    width: 5px;
+    height: 5px;
+    top: 1.7vw;
+  }
+`;  
 
 export const SecondAdButtonContainer = styled.div`
-  position: absolute;
-  width: 125px;
+  position: relative;
+  width: 62px;
   animation: 5s ease-in-out infinite normal secondadcontainermove;
   transform: rotate(-31deg);
   top: 32px;
@@ -538,12 +563,11 @@ export const SecondAdButtonContainer = styled.div`
       left: -4px;
       opacity: 0;
       transform: rotate(-31deg);
-      width: 125px;
+      width: 62px;
     }
 
-    43%,
-    98% {
-      top: 8px;
+    43%, 98% {
+      top: 16px;
       left: -400px;
       opacity: 1;
       transform: rotate(-2deg);
@@ -555,7 +579,7 @@ export const SecondAdButtonContainer = styled.div`
       left: -400px;
       opacity: 0;
       transform: rotate(-2deg);
-      width: 264px;
+      width: 132px;
     }
   }
 
@@ -571,7 +595,7 @@ export const SecondAdButtonContainer = styled.div`
         left: 0px;
         opacity: 0;
         transform: rotate(-31deg);
-        width: 62px;
+        width: 62ox;
       }
 
       43%,
@@ -594,26 +618,30 @@ export const SecondAdButtonContainer = styled.div`
   }
 
   @media (max-width: 757px) {
-    width: 22px;
-    
+    width: 9vw;
+
     @keyframes secondadcontainermove {
       0%, 13% {
-        top: 8px;
+        top: 0.2vw;
         left: 0px;
         opacity: 0;
         transform: rotate(-31deg);
-        width: 42px;
+        width: 9vw;
       }
 
       43%, 98% {
-        top: 4px;
-        left: -30%;
+        top: 0.1vw;
+        left: -25vw;
         opacity: 1;
         transform: rotate(-2deg);
-        width: 92px;
+        width: 18vw;
       }
 
       100% {
+        top: 0.1vw;
+        left: -25vw;
+        transform: rotate(-2deg);
+        width: 18vw;
         opacity: 0;
       }
     }
@@ -621,85 +649,35 @@ export const SecondAdButtonContainer = styled.div`
 `;
 
 export const SecondAdButton = styled.img`
-  position: relative;
+  position: absolute;
   width: 100%;
 `;
 
 export const SecondAdButtonPointer = styled.img`
   position: absolute;
-  width: 17px;
-  top: 32px;
-  left: 65px;
-  opacity: 1;
-  animation: 5s infinite normal secondadpointer;
-
-  @keyframes secondadpointer {
-    0%,
-    13% {
-      top: 32px;
-      opacity: 1;
-    }
-
-    43%,
-    98% {
-      top: 54px;
-      opacity: 1;
-    }
-
-    100% {
-      top: 54px;
-      opacity: 0;
-    }
-  }
+  width: 25px;
+  top: 60px;
+  left: 80px;
 
   @media (max-width: 1440px) {
-    width: 12px;
-    top: 16px;
-    left: 32px;
-
-    @keyframes secondadpointer {
-      0%,
-      13% {
-        top: 16px;
-        opacity: 1;
-      }
-
-      43%,
-      98% {
-        top: 27px;
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
+    width: 15px;
+    top: 27px;
+    left: 40px;
   }
 
   @media (max-width: 757px) {
-    width: 10px;
+    width: 2vw;
+    top: 3.7vw;
+  }
 
-    @keyframes secondadpointer {
-      0%, 13% {
-        top: 16px;
-        opacity: 1;
-      }
-
-      43%, 98% {
-        top: 24px;
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
+  @media (max-width: 482px) {
+    left: 4vw;
   }
 `;
 
 export const ThirdAdButtonContainer = styled.div`
   position: absolute;
-  width: 135px;
+  width: 10vw;
   top: 35px;
   left: 4px;
   opacity: 0;
@@ -707,18 +685,16 @@ export const ThirdAdButtonContainer = styled.div`
   animation: 5s infinite normal thirdadcontainermove;
 
   @keyframes thirdadcontainermove {
-    0%,
-    43% {
-      width: 135px;
+    0%, 43% {
+      width: 10vw;
       top: 32px;
       left: 4px;
       opacity: 0;
       transform: none;
     }
 
-    68%,
-    98% {
-      width: 342px;
+    68%, 98% {
+      width: 25vw;
       top: 94px;
       transform: rotate(10deg);
       left: -130px;
@@ -731,26 +707,24 @@ export const ThirdAdButtonContainer = styled.div`
   }
 
   @media (max-width: 1440px) {
-    width: 62px;
+    width: 132px;
+    /*
     top: 16px;
     left: 0;
+    */
 
     @keyframes thirdadcontainermove {
-      0%,
-      43% {
-        width: 67px;
+      0%, 43% {
         top: 16px;
         left: 0;
         opacity: 0;
         transform: none;
       }
 
-      68%,
-      98% {
-        width: 171px;
-        top: 6vw;
+      68%, 98% {
+        top: 50px;
         transform: rotate(10deg);
-        left: -65px;
+        left: -30px;
         opacity: 1;
       }
 
@@ -761,11 +735,11 @@ export const ThirdAdButtonContainer = styled.div`
   }
 
   @media (max-width: 757px) {
-    width: 42px;
+    width: 10vw;
 
     @keyframes thirdadcontainermove {
       0%, 43% {
-        width: 67px;
+        width: 12vw;
         top: 16px;
         left: 0;
         opacity: 0;
@@ -773,7 +747,7 @@ export const ThirdAdButtonContainer = styled.div`
       }
 
       68%, 98% {
-        width: 111px;
+        width: 22vw;
         top: 6vw;
         transform: rotate(10deg);
         left: -25px;
@@ -794,81 +768,17 @@ export const ThirdAdButton = styled.img`
 
 export const ThirdAdButtonPointer = styled.img`
   position: absolute;
-  width: 16px;
-  top: 32px;
-  left: 64px;
-  opacity: 1;
-  animation: 5s infinite normal thirdadpointer;
-
-  @keyframes thirdadpointer {
-    0%,
-    43% {
-      top: 32px;
-      left: 64px;
-      opacity: 1;
-    }
-
-    68%,
-    98% {
-      top: 68px;
-      left: 250px;
-      width: 26px;
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
+  width: 3vw;
+  top: 50%;
+  left: 50%;
 
   @media (max-width: 1440px) {
-    width: 16px;
-    top: 32px;
-
-    @keyframes thirdadpointer {
-      0%,
-      43% {
-        top: 16px;
-        left: 32px;
-        opacity: 1;
-      }
-
-      68%,
-      98% {
-        top: 34px;
-        left: 125px;
-        width: 13px;
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
+    width: 20px;
   }
 
   @media (max-width: 757px) {
-    width: 16px;
-    top: 32px;
-
-    @keyframes thirdadpointer {
-      0%, 43% {
-        top: 16px;
-        left: 32px;
-        opacity: 1;     
-      }
-
-      68%, 98% {
-        top: 20px;
-        left: 78px;
-        width: 13px;
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
+    top: 44%;
+    width: 3vw;
   }
 `;
 
@@ -891,27 +801,29 @@ export const BgRightTitle = styled.img`
   position: absolute;
   z-index: 2;
   top: 3vw;
-  width: 512px;
-  height: 135px;
+  width: 35vw;
+  height: 9vw;
   right: 5vw;
 
   @media (max-width: 1440px) {
-    width: 256px;
-    height: 66px;
+    top: 25px;
+    width: 300px;
+    height: 78px;
   }
 
-  @media (max-width: 757px) {
-    width: 178px;
-    height: 47px;
+  @media (max-width: 790px) {
+    top: 3vw;
+    width: 35vw;
+    height: 9vw;
   }
 `;
 
 export const FirstWordImg = styled.img`
   position: absolute;
+  top: 15px;
+  left: 6vw;
   z-index: 2;
-  top: 28px;
-  left: 68px;
-  height: 68px;
+  height: 4.8vw;
   animation: 5s infinite normal firstwordimgsrc;
   opacity: 0;
 
@@ -974,28 +886,27 @@ export const FirstWordImg = styled.img`
   }
 
   @media (max-width: 1440px) {
-    top: 14px;
-    left: 42px;
-    height: 34px;
+    top: 5px;
+    height: 38px;
   }
 
-  @media (max-width: 757px) {
-    top: 7px;
-    height: 25%;
+  @media (max-width: 790px) {
+    top: 1vw;
+    height: 4.8vw;
+    left: 9vw;
   }
 
-  @media (max-width: 600px) {
-    top: 3px;
-    height: 20%;
+  @media (max-width: 400px) {
+    left: 14vw;
   }
 `;
 
 export const SecondWordImg = styled.img`
   position: absolute;
+  top: 82px;
+  left: 6vw;
   z-index: 2;
-  top: 90px;
-  left: 68px;
-  height: 68px;
+  height: 4.8vw;
   animation: 5s infinite normal secondwordimgsrc;
   opacity: 0;
 
@@ -1044,28 +955,27 @@ export const SecondWordImg = styled.img`
   }
 
   @media (max-width: 1440px) {
-    top: 45px;
-    left: 42px;
-    height: 34px;
+    top: 42px;
+    height: 38px;
   }
 
-  @media (max-width: 757px) {
-    top: 36px;
-    height: 25%;
+  @media (max-width: 790px) {
+    top: 5.5vw;
+    height: 4.8vw;
+    left: 9vw;
   }
 
-  @media (max-width: 600px) {
-    top: 27px;
-    height: 20%;
+  @media (max-width: 400px) {
+    left: 14vw;
   }
 `;
 
 export const ThirdWordImg = styled.img`
   position: absolute;
-  z-index: 2;
   top: 148px;
-  left: 68px;
-  height: 68px;
+  left: 6vw;
+  z-index: 2;
+  height: 4.8vw;
   animation: 5s infinite normal thirdwordimgsrc;
   opacity: 0;
 
@@ -1114,19 +1024,18 @@ export const ThirdWordImg = styled.img`
   }
 
   @media (max-width: 1440px) {
-    top: 74px;
-    left: 42px;
-    height: 34px;
+    top: 78px;
+    height: 38px;
   }
 
-  @media (max-width: 757px) {
-    top: 63px;
-    height: 25%;
+  @media (max-width: 790px) {
+    top: 10vw;
+    height: 4.8vw;
+    left: 9vw;
   }
 
-  @media (max-width: 600px) {
-    top: 52px;
-    height: 20%;
+  @media (max-width: 400px) {
+    left: 14vw;
   }
 `;
 

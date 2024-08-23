@@ -14,13 +14,13 @@ import {
   SecondSlideFirstTitle, 
   SecondSlideSecondTitle, 
   SecondSlideTitles, 
-  FirstAdButtonContainer,
-  SecondAdButtonContainer,
   SecondAdButton,
   SecondAdButtonPointer,
   ThirdAdButtonContainer,
   ThirdAdButton,
-  ThirdAdButtonPointer
+  ThirdAdButtonPointer,
+  FirstAdButtonContainer,
+  SecondAdButtonContainer
 } from "./HomePageAdSlider.styled";
 
 export default function SecondSlide() {
