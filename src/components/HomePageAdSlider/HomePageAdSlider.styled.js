@@ -83,17 +83,46 @@ export const HomePageAdSliderContainer = styled.ul`
     }
   }
 
-  @media (max-width: 527px) {
-    .slide,
+  @media (max-width: 672px) {
+    .carousel__slide,
     .carousel__slider {
-      height: 80px;
+      height: 35.7vw;
     }
-  }
 
-  @media (max-width: 400px) {
-    .slide,
-    .carousel__slider {
-      height: 60px;
+    .slide {
+      height: 55vw;
+    }
+
+    .carousel__next-button {
+      top: unset;
+      right: 1vw;
+      bottom: 0;
+      width: 9vw;
+      height: 9vw;
+    }
+
+    .carousel__next-button:disabled {
+      opacity: 1;
+      background-color: #D0D0D0;
+    }
+
+    .carousel__back-button {
+      top: unset;
+      left: unset;
+      right: 12vw;
+      bottom: 0;
+      width: 9vw;
+      height: 9vw;
+    }
+
+    .carousel__back-button:disabled {
+      opacity: 1;
+      background-color: #D0D0D0;  
+    }
+
+    .MuiSvgIcon-root {
+      width: 60%;
+      height: 60%;
     }
   }
 `;
@@ -107,6 +136,11 @@ export const IntersectImage = styled.img`
   @media (max-width: 1440px) {
     top: 0;
     width: 38%;
+  }
+
+  @media (max-width: 672px) {
+    width: 63.4vw;
+    height: 35.7vw;
   }
 `;
 
@@ -133,8 +167,13 @@ export const FirstSlideTitle = styled.h3`
     font: 400 2.6vw 'Jost';
   }
 
-  @media (max-width: 400px) {
-    font: 400 3.3vw 'Jost';
+  @media (max-width: 672px) {
+    width: 42vw;
+    height: 64px;
+    top: 3vw;
+    left: 3.57vw;
+    font: 500 3.5vw 'Jost';
+    line-height: 6vw;
   }
 `;
 
@@ -161,10 +200,11 @@ export const FlagImage = styled.img`
     left: 32%;
   }
 
-  @media (max-width: 450px) {
-    top: 7vw;
-    width: 15px;
-    height: 15px;
+  @media (max-width: 672px) {
+    top: 4vw;
+    left: 48vw;
+    width: 6vw;
+    height: 6vw;
   }
 `;
 
@@ -191,14 +231,11 @@ export const LipGlossMockupImg = styled.img`
     height: 65px;
   }
 
-  @media (max-width: 587px) {
-    width: 10%;
-    height: 55%;
-  }
-
-  @media (max-width: 450px) {
-    left: 40%;
-    height: 40%;
+  @media (max-width: 672px) {
+    top: 5vw;
+    left: 70vw;
+    width: 16.4vw;
+    height: 16.4vw;
   }
 `;
 
@@ -227,15 +264,11 @@ export const EarringsImg = styled.img`
     top: 72px;
   }
 
-  @media (max-width: 587px) {
-    width: 9%;
-    height: 55%;
-    top: 55%;
-  }
-
-  @media (max-width: 450px) {
-    height: 35%;
-    top: 35%;
+  @media (max-width: 672px) {
+    left: 63.4vw;
+    top: 71px;
+    width: 14vw;
+    height: 14.3vw;
   }
 `;
 
@@ -263,13 +296,11 @@ export const BagImg = styled.img`
     top: 13px;
   }
 
-  @media (max-width: 587px) {
-    width: 10%;
-    height: 70%;
-  }
-
-  @media (max-width: 450px) {
-    height: 50%;
+  @media (max-width: 672px) {
+    top: 16vw;
+    left: 3vw;
+    width: 12.5vw;
+    height: 17.5vw;
   }
 `;
 
@@ -295,13 +326,11 @@ export const SocksImg = styled.img`
     top: 70%;
   }
 
-  @media (max-width: 587px) {
-    top: 58px;
-    width: 10%;
-  }
-
-  @media (max-width: 450px) {
-    top: 40%;
+  @media (max-width: 672px) {
+    top: 24vw;
+    left: 79.2vw;
+    width: 15vw;
+    height: 13.9vw;
   }
 `;
 
@@ -328,16 +357,6 @@ export const HoodieImg = styled.img`
     width: 81px;
     height: 91px;
     top: 4px;
-  }
-
-  @media (max-width: 587px) {
-    width: 15%;
-    height: 80%;
-  }
-
-  @media (max-width: 450px) {
-    width: 13%;
-    height: 50%;
   }
 `;
 
@@ -366,14 +385,11 @@ export const SofaImg = styled.img`
     top: 6px;
   }
   
-  @media (max-width: 587px) {
-    width: 20%;
-    height: 90%;
-  }
-
-  @media (max-width: 450px) {
-    width: 20%;
-    height: 60%;
+  @media (max-width: 672px) {
+    width: 21vw;
+    height: 21.4vw;
+    top: 13.125vw;
+    left: 31.2vw;
   }
 `;
 
@@ -388,6 +404,12 @@ export const BrutalistImg = styled.img`
     width: 30%;
     height: 130px;
     top: 0px;
+  }
+
+  @media (max-width: 672px) {
+    top: -2vw;
+    width: 40vw;
+    height: 34vw;
   }
 `;
 
@@ -412,10 +434,10 @@ export const SecondSlideTitles = styled.div`
     top: 1vw;
   }
 
-  @media (max-width: 587px) {
-    top: 5px;
-    gap: 2px;
-    height: 42px;
+  @media (max-width: 672px) {
+    top: 5vw;
+    width: 75.8vw;
+    height: 13.5vw;
   }
 `;
 
@@ -428,8 +450,8 @@ export const SecondSlideFirstTitle = styled.h5`
     font: 700 14px 'Jost';
   }
 
-  @media (max-width: 587px) {
-    font: 700 2vw 'Jost';
+  @media (max-width: 672px) {
+    font: 700 4.16vw 'Jost';
   }
 `;
 
@@ -442,8 +464,8 @@ export const SecondSlideSecondTitle = styled.p`
     font: 600 10px 'Nunito Sans';
   }
 
-  @media (max-width: 587px) {
-    font: 600 1.8vw 'Jost';
+  @media (max-width: 672px) {
+    font: 600 2.4vw 'Nunito Sans';
   }
 `;
 
@@ -700,14 +722,9 @@ export const ThirdAdButtonContainer = styled.div`
 
   @media (max-width: 1440px) {
     width: 132px;
-    /*
-    top: 16px;
-    left: 0;
-    */
 
     @keyframes thirdadcontainermove {
       0%, 43% {
-        /* width: 12vw; */
         top: 16px;
         left: 0;
         opacity: 0;
@@ -715,7 +732,6 @@ export const ThirdAdButtonContainer = styled.div`
       }
 
       68%, 98% {
-        /* width: 20vw; */
         top: 50px;
         transform: rotate(10deg);
         left: -30px;
@@ -779,7 +795,7 @@ export const ThirdAdButtonPointer = styled.img`
 
 export const BgLeftPart = styled.img`
   width: 50%;
-  height: 100%;
+  height: 35.7vw;
   overflow: hidden;
 `;
 
@@ -788,7 +804,7 @@ export const BgRightPart = styled.img`
   right: 0;
   z-index: 1;
   width: 60%;
-  height: 100%;
+  height: 35.7vw;
   overflow: hidden;
 `;
 
@@ -810,6 +826,12 @@ export const BgRightTitle = styled.img`
     top: 3vw;
     width: 35vw;
     height: 9vw;
+  }
+
+  @media (max-width: 672px) {
+    top: 6vw;
+    width: 76.2vw;
+    height: 20vw;
   }
 `;
 

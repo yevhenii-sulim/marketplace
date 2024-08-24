@@ -1,5 +1,6 @@
 import { Slide } from "pure-react-carousel";
 import BrutalistSrc from './SliderElements/SecondSlide/Brutalist 32.png';
+import AdaptiveBrutalistSrc from './AdaptiveSliderElements/Brutalist 32.png';
 import AdButtonSrc from './SliderElements/SecondSlide/Button picture.png';
 import AdButtonPointerSrc from './SliderElements/SecondSlide/tabler_pointer.png';
 import SecondAdButtonSrc from './SliderElements/SecondSlide/Button picture (1).png';
@@ -22,11 +23,15 @@ import {
   FirstAdButtonContainer,
   SecondAdButtonContainer
 } from "./HomePageAdSlider.styled";
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 export default function SecondSlide() {
+
+  const { width } = useWindowDimensions();
+
   return (
     <Slide>
-      <BrutalistImg src={BrutalistSrc} alt="brutalist" />
+      <BrutalistImg src={width <= 672 ? AdaptiveBrutalistSrc : BrutalistSrc} alt="brutalist" />
       <SecondSlideTitles>
         <SecondSlideFirstTitle>
           Маєш непотрібні речі? <br />
@@ -36,7 +41,9 @@ export default function SecondSlide() {
           Легко створюй оголошення та продавай будь-що.
         </SecondSlideSecondTitle>
       </SecondSlideTitles>
-      <AdButtonAnimation />
+      {width > 672 ? (
+        <AdButtonAnimation />
+      ) : null}
     </Slide>
   )
 }
