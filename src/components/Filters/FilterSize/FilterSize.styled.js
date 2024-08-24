@@ -15,7 +15,7 @@ export const Container = styled.li`
   }
   [type='checkbox']:checked + label {
     color: ${({ theme }) => theme.color.colorTextHover};
-    border: 1px solid ${({ theme }) => theme.color.colorTextHover};
+    border-color: ${({ theme }) => theme.color.colorTextHover};
   }
   h3 {
     position: relative;
@@ -51,13 +51,17 @@ export const Box = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid ${({ theme }) => theme.color.borderSize};
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${({ theme }) => theme.color.borderSize};
     border-radius: 6px;
     cursor: pointer;
     transition: all 500ms ease;
-    &:hover {
-      color: ${({ theme }) => theme.color.colorTextHover};
-      border: 1px solid ${({ theme }) => theme.color.colorTextHover};
+    @media screen and(min-width:1440px) {
+      &:hover {
+        color: ${({ theme }) => theme.color.colorTextHover};
+        border-color: ${({ theme }) => theme.color.colorTextHover};
+      }
     }
   }
 `;

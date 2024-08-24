@@ -1,17 +1,30 @@
 import styled from 'styled-components';
+import { view } from 'utils/innerWidth';
 import { theme } from 'utils/theme';
 
+function setWidthForRangeBox() {
+  switch (true) {
+    case view < 1440:
+      return '90%';
+    default:
+      return '95%';
+  }
+}
+
+export const styleBoxRange = {
+  width: `${setWidthForRangeBox()}`,
+  margin: 'auto',
+};
+
 export const CountPrice = styled.div`
+  display: flex;
+  gap: 8px;
   label {
     display: flex;
     gap: 8px;
     align-items: center;
     font-size: 18px;
     line-height: 1.44;
-    @media screen and (max-width: 1439px) {
-      margin-bottom: 8px;
-      text-align: left;
-    }
   }
   input {
     padding: 8px;
@@ -20,10 +33,6 @@ export const CountPrice = styled.div`
     font-size: 18px;
     width: 81px;
     border: none;
-  }
-  @media screen and (min-width: 1440px) {
-    display: flex;
-    gap: 8px;
   }
 `;
 export const PriceSlide = styled.li`

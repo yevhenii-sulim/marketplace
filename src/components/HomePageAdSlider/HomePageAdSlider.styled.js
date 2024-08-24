@@ -1,6 +1,10 @@
-import styled from "styled-components";
-import { theme } from "utils/theme";
-import { FirstWordVariants, SecondWordVariants, ThirdWordVariants } from "./ThirdSlideSrcs";
+import styled from 'styled-components';
+import { theme } from 'utils/theme';
+import {
+  FirstWordVariants,
+  SecondWordVariants,
+  ThirdWordVariants,
+} from './ThirdSlideSrcs';
 
 export const HomePageAdSliderContainer = styled.ul`
   margin-top: 30px;
@@ -393,7 +397,6 @@ export const SofaImg = styled.img`
   }
 `;
 
-
 export const BrutalistImg = styled.img`
   position: absolute;
   width: 30vw;
@@ -490,7 +493,8 @@ export const FirstAdButtonContainer = styled.div`
       opacity: 0;
     }
 
-    30%, 98% {
+    30%,
+    98% {
       opacity: 1;
     }
 
@@ -532,7 +536,8 @@ export const FirstAdButtonPointer = styled.img`
   animation: 5s infinite normal firstadpointer;
 
   @keyframes firstadpointer {
-    0%, 98% {
+    0%,
+    98% {
       opacity: 1;
     }
 
@@ -574,7 +579,8 @@ export const SecondAdButtonContainer = styled.div`
   opacity: 0;
 
   @keyframes secondadcontainermove {
-    0%, 13% {
+    0%,
+    13% {
       top: 32px;
       left: -4px;
       opacity: 0;
@@ -605,7 +611,8 @@ export const SecondAdButtonContainer = styled.div`
     left: 0;
 
     @keyframes secondadcontainermove {
-      0%, 13% {
+      0%,
+      13% {
         top: 16px;
         left: 0px;
         opacity: 0;
@@ -613,7 +620,8 @@ export const SecondAdButtonContainer = styled.div`
         width: 62ox;
       }
 
-      43%, 98% {
+      43%,
+      98% {
         top: 8px;
         left: -250px;
         opacity: 1;
@@ -792,7 +800,6 @@ export const ThirdAdButtonPointer = styled.img`
   }
 `;
 
-
 export const BgLeftPart = styled.img`
   width: 50%;
   height: 35.7vw;
@@ -845,24 +852,61 @@ export const FirstWordImg = styled.img`
   opacity: 0;
 
   @keyframes firstwordimgsrc {
-    0%, 2% { opacity: 0; }
-
-    2%, 4%, 6%, 8%, 10%, 12%, 14%, 16%, 18%, 20%, 22%, 24% { opacity: 1; }
-
-    6% { content: url("${FirstWordVariants.FirstWordVariant2Src}"); }
-    8% { content: url("${FirstWordVariants.FirstWordVariant3Src}"); }
-    10% { content: url("${FirstWordVariants.FirstWordVariant4Src}"); }
-    12% { content: url("${FirstWordVariants.FirstWordVariant5Src}"); }
-    14% { content: url("${FirstWordVariants.FirstWordVariant6Src}"); }
-    16% { content: url("${FirstWordVariants.FirstWordVariant7Src}"); }
-    18% { content: url("${FirstWordVariants.FirstWordVariant8Src}"); }
-    20% { content: url("${FirstWordVariants.FirstWordVariant9Src}"); }
-    22% { content: url("${FirstWordVariants.FirstWordVariant10Src}"); }
-    24%, 92% { 
-      opacity: 1;
-      content: url("${FirstWordVariants.FirstWordVariant11Src}"); 
+    0%,
+    2% {
+      opacity: 0;
     }
-    94% { opacity: 0; }
+
+    2%,
+    4%,
+    6%,
+    8%,
+    10%,
+    12%,
+    14%,
+    16%,
+    18%,
+    20%,
+    22%,
+    24% {
+      opacity: 1;
+    }
+
+    6% {
+      content: url('${FirstWordVariants.FirstWordVariant2Src}');
+    }
+    8% {
+      content: url('${FirstWordVariants.FirstWordVariant3Src}');
+    }
+    10% {
+      content: url('${FirstWordVariants.FirstWordVariant4Src}');
+    }
+    12% {
+      content: url('${FirstWordVariants.FirstWordVariant5Src}');
+    }
+    14% {
+      content: url('${FirstWordVariants.FirstWordVariant6Src}');
+    }
+    16% {
+      content: url('${FirstWordVariants.FirstWordVariant7Src}');
+    }
+    18% {
+      content: url('${FirstWordVariants.FirstWordVariant8Src}');
+    }
+    20% {
+      content: url('${FirstWordVariants.FirstWordVariant9Src}');
+    }
+    22% {
+      content: url('${FirstWordVariants.FirstWordVariant10Src}');
+    }
+    24%,
+    92% {
+      opacity: 1;
+      content: url('${FirstWordVariants.FirstWordVariant11Src}');
+    }
+    94% {
+      opacity: 0;
+    }
   }
 
   @media (max-width: 1440px) {
@@ -891,21 +935,47 @@ export const SecondWordImg = styled.img`
   opacity: 0;
 
   @keyframes secondwordimgsrc {
-    0%, 26% { opacity: 0; }
-
-    28%, 30%, 32%, 34%, 36%, 38%, 40% { opacity: 1; }
-
-    28% { content: url("${SecondWordVariants.SecondWordVariant2Src}"); }
-    30% { content: url("${SecondWordVariants.SecondWordVariant3Src}"); }
-    32% { content: url("${SecondWordVariants.SecondWordVariant4Src}"); }
-    34% { content: url("${SecondWordVariants.SecondWordVariant5Src}"); }
-    36% { content: url("${SecondWordVariants.SecondWordVariant6Src}"); }
-    38% { content: url("${SecondWordVariants.SecondWordVariant7Src}"); }
-    40%, 92% {
-      opacity: 1; 
-      content: url("${SecondWordVariants.SecondWordVariant8Src}"); 
+    0%,
+    26% {
+      opacity: 0;
     }
-    94% { opacity: 0; }
+
+    28%,
+    30%,
+    32%,
+    34%,
+    36%,
+    38%,
+    40% {
+      opacity: 1;
+    }
+
+    28% {
+      content: url('${SecondWordVariants.SecondWordVariant2Src}');
+    }
+    30% {
+      content: url('${SecondWordVariants.SecondWordVariant3Src}');
+    }
+    32% {
+      content: url('${SecondWordVariants.SecondWordVariant4Src}');
+    }
+    34% {
+      content: url('${SecondWordVariants.SecondWordVariant5Src}');
+    }
+    36% {
+      content: url('${SecondWordVariants.SecondWordVariant6Src}');
+    }
+    38% {
+      content: url('${SecondWordVariants.SecondWordVariant7Src}');
+    }
+    40%,
+    92% {
+      opacity: 1;
+      content: url('${SecondWordVariants.SecondWordVariant8Src}');
+    }
+    94% {
+      opacity: 0;
+    }
   }
 
   @media (max-width: 1440px) {
@@ -934,21 +1004,47 @@ export const ThirdWordImg = styled.img`
   opacity: 0;
 
   @keyframes thirdwordimgsrc {
-    0%, 40% { opacity: 0; }
-
-    42%, 44%, 46%, 48%, 50%, 52%, 54% { opacity: 1; }
-
-    42% { content: url("${ThirdWordVariants.ThirdWordVariant2Src}"); }
-    44% { content: url("${ThirdWordVariants.ThirdWordVariant3Src}"); }
-    46% { content: url("${ThirdWordVariants.ThirdWordVariant4Src}"); }
-    48% { content: url("${ThirdWordVariants.ThirdWordVariant5Src}"); }
-    50% { content: url("${ThirdWordVariants.ThirdWordVariant6Src}"); }
-    52% { content: url("${ThirdWordVariants.ThirdWordVariant7Src}"); }
-    54%, 92% { 
-      opacity: 1;
-      content: url("${ThirdWordVariants.ThirdWordVariant8Src}"); 
+    0%,
+    40% {
+      opacity: 0;
     }
-    94% { opacity: 0; }
+
+    42%,
+    44%,
+    46%,
+    48%,
+    50%,
+    52%,
+    54% {
+      opacity: 1;
+    }
+
+    42% {
+      content: url('${ThirdWordVariants.ThirdWordVariant2Src}');
+    }
+    44% {
+      content: url('${ThirdWordVariants.ThirdWordVariant3Src}');
+    }
+    46% {
+      content: url('${ThirdWordVariants.ThirdWordVariant4Src}');
+    }
+    48% {
+      content: url('${ThirdWordVariants.ThirdWordVariant5Src}');
+    }
+    50% {
+      content: url('${ThirdWordVariants.ThirdWordVariant6Src}');
+    }
+    52% {
+      content: url('${ThirdWordVariants.ThirdWordVariant7Src}');
+    }
+    54%,
+    92% {
+      opacity: 1;
+      content: url('${ThirdWordVariants.ThirdWordVariant8Src}');
+    }
+    94% {
+      opacity: 0;
+    }
   }
 
   @media (max-width: 1440px) {

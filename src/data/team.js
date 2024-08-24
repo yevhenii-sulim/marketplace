@@ -18,12 +18,6 @@ export const team = [
     link: 'https://www.linkedin.com/in/mariia-smetanina-7803b72aa/',
   },
   {
-    id: 4,
-    name: 'Катерина Головащенко',
-    spec: 'UI/UX Designer',
-    link: 'http://linkedin.com/in/rina-go-design',
-  },
-  {
     id: 5,
     name: 'Євгеній Сулім',
     spec: 'FrontEnd Dev',
@@ -50,19 +44,19 @@ export const team = [
   {
     id: 9,
     name: 'Юрій Пукіш',
-    spec: 'QA',
+    spec: 'QA ментор',
     link: 'https://www.linkedin.com/in/yurapykish?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
   },
   {
     id: 10,
     name: 'Юлія Петровська',
-    spec: 'QA',
+    spec: 'QA dev',
     link: 'https://www.linkedin.com/in/yuliia-petrovska-b0a3a428b',
   },
   {
     id: 11,
     name: 'Олена Міщенко',
-    spec: 'QA',
+    spec: 'QA dev',
     link: 'https://www.linkedin.com/in/olena-mishchenko-276927268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
   },
 ];

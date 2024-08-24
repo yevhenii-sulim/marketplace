@@ -2,11 +2,13 @@ import Pagination from 'react-js-pagination';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import css from './PaginationList.module.css';
-const view = window.innerWidth;
-
-const amountPage = view >= 500 ? 5 : 2;
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 function PaginationList({ handlePageChange, activePage, totalItemsCount }) {
+  const { width } = useWindowDimensions();
+  const amountPage = width >= 500 ? 5 : 3;
+  const isDesktopWidth = width >= 1400;
+
   return (
     <div>
       <Pagination
@@ -17,8 +19,8 @@ function PaginationList({ handlePageChange, activePage, totalItemsCount }) {
         lastPageText={<ArrowForwardIosOutlinedIcon />}
         pageRangeDisplayed={amountPage}
         onChange={handlePageChange}
-        prevPageText={'Попередня'}
-        nextPageText={'Наступна'}
+        prevPageText={isDesktopWidth ? 'Попередня' : ''}
+        nextPageText={isDesktopWidth ? 'Наступна' : ''}
         innerClass={css.pagination}
         activeClass={css.active}
         itemClassPrev={css.changeStatePrev}

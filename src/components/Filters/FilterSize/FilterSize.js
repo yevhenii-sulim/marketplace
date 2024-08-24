@@ -55,7 +55,7 @@ export default function FilterSize() {
       <SizeList>
         {open &&
           sizes &&
-          sizes.map((size, index) => {
+          sizes.map(size => {
             return (
               size !== 'Без розміру' && (
                 <Box key={size}>

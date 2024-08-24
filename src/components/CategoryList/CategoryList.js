@@ -14,17 +14,19 @@ import { navigationList } from 'data/navListData';
 import CategoryHomePage from './CategoryHomePage';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 
-const dpr = window.devicePixelRatio;
-
 export default function CategoryList() {
   const { width } = useWindowDimensions();
   const setVisibleSlides = width => {
-    if (width / dpr >= 1440) {
+    if (width >= 1440) {
       return 7;
     }
-    if (width / dpr < 1440 && width / dpr > 768) {
+    if (width < 1440 && width > 768) {
       return 4;
     }
+    if (width <= 768 && width >= 580) {
+      return 3;
+    }
+
     return 2;
   };
 

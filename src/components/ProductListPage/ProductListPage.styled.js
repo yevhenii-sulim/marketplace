@@ -4,26 +4,53 @@ export const ProductList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 19px;
+  margin: auto;
+  width: auto;
 `;
 export const ContainerProductPageList = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 0 12px 0 12px;
+  @media screen and (min-width: 1440px) {
+    padding: 0 58px 0 58px;
+  }
 `;
 export const Pagination = styled.div`
   margin-top: auto;
 `;
 export const ProductsPage = styled.div`
   display: grid;
-  grid-template-columns: 2fr 7fr;
+  grid-template-columns: auto;
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 2fr 7fr;
+  }
   column-gap: 30px;
   height: 100%;
 `;
 export const Product = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: flex-start;
+  justify-content: center;
+  @media screen and (max-width: 379px) {
+    grid-template-columns: auto;
+  }
+  @media screen and (min-width: 380px) {
+    grid-template-columns: repeat(2, auto);
+  }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, auto);
+  }
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: repeat(4, auto);
+  }
   gap: 25px;
+`;
+
+export const FiltersList = styled.div`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: block;
+  }
 `;
 
 export const TitleSort = styled.h2`
@@ -43,6 +70,7 @@ export const SortProduct = styled.div`
     position: relative;
   }
 `;
+
 export const SelectSort = styled.select`
   padding: 6px 8px;
   outline: none;
@@ -73,6 +101,7 @@ export const Navigation = styled.div`
 `;
 export const Nav = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 16px;
 `;
 export const ListPath = styled.li`
@@ -84,8 +113,14 @@ export const ListPath = styled.li`
   }
 `;
 export const TitleProducts = styled.h1`
+  font-size: 24px;
   font-family: 'Jost';
-  font-size: 44px;
   font-weight: 700;
   line-height: 1.22;
+  @media screen and(min-width: 768px) {
+    font-size: 32px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 44px;
+  }
 `;
