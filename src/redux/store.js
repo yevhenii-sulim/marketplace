@@ -43,7 +43,7 @@ const rootReducer = combineReducers({
   productPage: productPageReducer,
   products: productReducer,
   modalCatalog: modalCatalogReducer,
-  modalForm: modalFormReducer,
+  modalFormConfirm: modalFormReducer,
   modalFormAuth: modalFormAuthReducer,
   poster: slicePosterReducer,
   category: categoryReducer,

@@ -6,4 +6,5 @@ export const Burger = styled.button`
   align-items: center;
   background-color: transparent;
   color: ${({ theme }) => theme.color.bgProduct};
+  outline: none;
 `;

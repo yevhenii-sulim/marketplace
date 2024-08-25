@@ -7,10 +7,25 @@ import {
   exitOutButton,
   stayInButton,
 } from './ConfirmExit.styled';
-import { toggleModalForm } from '../../redux/modalForm/slice';
+import { toggleModalFormConfirm } from '../../redux/modalForm/slice';
+import { useEffect } from 'react';
 
 export default function ConfirmExit({ onExit, onToggleModalConfirm }) {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    function exitModalConfirmByEsc(evt) {
+      if (evt.code === 'Escape') {
+        onToggleModalConfirm(false);
+      }
+      if (evt.code === 'Enter') {
+        onExit();
+      }
+    }
+    window.addEventListener('keydown', exitModalConfirmByEsc);
+    return () => window.removeEventListener('keydown', exitModalConfirmByEsc);
+  }, [onExit, onToggleModalConfirm]);
+
   function oncloseByClickOutside(evt) {
     if (evt.currentTarget !== evt.target) return;
     onToggleModalConfirm(false);
@@ -18,7 +33,7 @@ export default function ConfirmExit({ onExit, onToggleModalConfirm }) {
 
   function onExitOutAccount() {
     onExit();
-    dispatch(toggleModalForm(false));
+    dispatch(toggleModalFormConfirm(false));
   }
 
   return (
