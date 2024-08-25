@@ -117,6 +117,7 @@ export const Exit = styled.button`
   gap: 20px;
   align-items: center;
   background-color: transparent;
+  outline: none;
 `;
 export const PagesForSidebar = styled.div`
   flex-grow: 2;

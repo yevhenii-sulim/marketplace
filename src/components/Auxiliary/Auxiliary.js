@@ -5,9 +5,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { AuxiliaryContainer, NavLink, TotalProduct } from './Auxiliary.styled';
 import { selectAuth } from '../../redux/auth/selector';
-import { toggleModalForm } from '../../redux/modalForm/slice';
 import { selectBasket } from '../../redux/basket/select';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { toggleModalAuth } from '../../redux/modalAuth/slice';
 
 export default memo(function Auxiliary() {
   const isAuth = useSelector(selectAuth);
@@ -18,7 +18,7 @@ export default memo(function Auxiliary() {
   function onOpen(evt) {
     if (isAuth) return;
     evt.preventDefault();
-    dispatch(toggleModalForm(true));
+    dispatch(toggleModalAuth(true));
   }
 
   return (

@@ -2,14 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 
 const sliceModalForm = createSlice({
-  name: 'modalForm',
+  name: 'modalFormConfirm',
   initialState: initialState.openFormModal,
   reducers: {
-    toggleModalForm(state, { payload }) {
+    toggleModalFormConfirm(state, { payload }) {
       return (state = payload);
     },
   },
 });
 
 export const modalFormReducer = sliceModalForm.reducer;
-export const { toggleModalForm } = sliceModalForm.actions;
+export const { toggleModalFormConfirm } = sliceModalForm.actions;

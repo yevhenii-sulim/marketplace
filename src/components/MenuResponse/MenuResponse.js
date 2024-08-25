@@ -20,9 +20,9 @@ import {
   LinkEnter,
   Menu,
 } from './MenuResponse.styled';
-import { modalFormAuthReducer } from '../../redux/modalAuth/slice';
+import { toggleModalAuth } from '../../redux/modalAuth/slice';
 
-export default function MenuResponse({ toggleMenu, isOpenMenu }) {
+export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
   const isAuth = useSelector(selectAuth);
   const navigate = useNavigate();
 
@@ -35,17 +35,16 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
       return;
     }
     evt.preventDefault();
-    dispatch(modalFormAuthReducer(true));
+    dispatch(toggleModalAuth(true));
   }
   function onOpenProfile(evt) {
     if (isAuth) {
       toggleMenu();
       navigate('/user_page/profile');
-
       return;
     }
     evt.preventDefault();
-    dispatch(modalFormAuthReducer(true));
+    dispatch(toggleModalAuth(true));
   }
   function onOpenCatalog() {
     toggleMenu();
@@ -57,7 +56,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
 
   function oncloseByClickOutside(evt) {
     if (evt.currentTarget !== evt.target) return;
-    toggleMenu();
+    onCloseMenu();
   }
 
   return (
@@ -66,7 +65,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
         <header>
           <Container>
             <Logo fill="#ffffff" />
-            <button type="button" onClick={toggleMenu}>
+            <button type="button" onClick={onCloseMenu}>
               <CloseIcon sx={{ color: theme.color.bgProduct }} />
             </button>
           </Container>
@@ -78,7 +77,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
           <section>
             <Contacts>
               <MarkAsk />
-              <Link to="/contacts" onClick={toggleMenu}>
+              <Link to="/contacts" onClick={onCloseMenu}>
                 Контакти команди
               </Link>
             </Contacts>
@@ -96,7 +95,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu }) {
           </section>
           <section>
             <AuxiliaryComponents>
-              <LinkAxillary to="/my_order" onClick={toggleMenu}>
+              <LinkAxillary to="/my_order" onClick={onCloseMenu}>
                 <ShoppingCartOutlinedIcon
                   sx={{ height: '32px', width: '32px' }}
                 />
