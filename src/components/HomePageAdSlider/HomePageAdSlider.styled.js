@@ -92,42 +92,6 @@ export const HomePageAdSliderContainer = styled.ul`
     .carousel__slider {
       height: 35.7vw;
     }
-
-    .slide {
-      height: 55vw;
-    }
-
-    .carousel__next-button {
-      top: unset;
-      right: 1vw;
-      bottom: 0;
-      width: 9vw;
-      height: 9vw;
-    }
-
-    .carousel__next-button:disabled {
-      opacity: 1;
-      background-color: #D0D0D0;
-    }
-
-    .carousel__back-button {
-      top: unset;
-      left: unset;
-      right: 12vw;
-      bottom: 0;
-      width: 9vw;
-      height: 9vw;
-    }
-
-    .carousel__back-button:disabled {
-      opacity: 1;
-      background-color: #D0D0D0;  
-    }
-
-    .MuiSvgIcon-root {
-      width: 60%;
-      height: 60%;
-    }
   }
 `;
 
