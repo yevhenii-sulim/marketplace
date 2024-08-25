@@ -108,6 +108,7 @@ export const ParameterWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  white-space: nowrap;
 `;
 
 export const CommentsExpandedWrapper = styled.div`

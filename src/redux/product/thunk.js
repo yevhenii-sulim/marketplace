@@ -42,6 +42,7 @@ export const addCommentFromStory = createAsyncThunk(
             {
               headers: {
                 Authorization: `Bearer ${newToken}`,
+                withCredentials: true,
               },
             }
           );

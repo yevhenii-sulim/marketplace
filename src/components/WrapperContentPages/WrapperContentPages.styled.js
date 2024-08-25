@@ -5,4 +5,7 @@ export const Wrapper = styled.section`
   width: 90%;
   justify-content: center;
   margin: 0 auto;
+  @media (max-width: 480px) {
+    width: 96%;
+  }
 `;

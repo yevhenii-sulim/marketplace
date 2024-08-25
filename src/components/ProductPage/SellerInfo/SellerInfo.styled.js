@@ -21,7 +21,7 @@ export const SellerRole = styled.span`
 export const SellerDate = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 40%;
+  width: 200px;
   margin-top: 24px;
 `;
 export const SellerIconWrapper = styled.div`

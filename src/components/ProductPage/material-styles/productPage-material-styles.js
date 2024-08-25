@@ -1,3 +1,5 @@
+import { theme } from '../theme/theme';
+
 export const TabListStyles = {
   '& .MuiButtonBase-root.Mui-selected': {
     color: '#7FD888',
@@ -7,6 +9,9 @@ export const TabListStyles = {
   },
   '& .MuiTab-root': {
     textTransform: 'none',
+  },
+  [theme.breakpoints.down('xs')]: {
+    display: 'none',
   },
 };
 
