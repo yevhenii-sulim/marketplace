@@ -31,6 +31,7 @@ export default function DescribeInfoValue() {
                 fontSize: '14px',
                 marginTop: '2px',
                 alignItems: 'center',
+                whiteSpace: 'nowrap',
               }}
             >
               {parameters.size.map((el, i) => {

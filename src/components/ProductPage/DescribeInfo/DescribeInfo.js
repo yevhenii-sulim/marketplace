@@ -64,7 +64,11 @@ function DescribeInfo({ showAccordion }) {
               <SellerInfo showAccordion={showAccordion} />
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={accordionStyles} disableGutters={true}>
+          <Accordion
+            sx={accordionStyles}
+            disableGutters={true}
+            disabled={!product.comments.length}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"

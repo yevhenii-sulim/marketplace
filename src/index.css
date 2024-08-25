@@ -214,3 +214,35 @@ a {
   opacity: 0;
   transition: all 500ms ease-in-out;
 }
+
+.swiper-pagination {
+  margin-top: 20px !important;
+}
+
+.swiper-pagination-bullet {
+  background: #43c550 !important;
+}
+
+.swiper {
+  height: 445px !important;
+}
+@media (min-width: 767px) {
+  .swiper-pagination {
+    margin-top: 50px !important;
+  }
+  .swiper {
+    height: 465px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .swiper {
+    height: 380px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .MuiTabPanel-root {
+    padding: 12px 0 !important;
+  }
+}

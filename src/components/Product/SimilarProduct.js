@@ -110,10 +110,10 @@ function SimilarProduct({
                 <SimilarProductItemDiscount>
                   {price} грн
                 </SimilarProductItemDiscount>
-                <p>{discountPrice} грн</p>
+                <p style={{ whiteSpace: 'nowrap' }}>{discountPrice} грн</p>
               </>
             ) : (
-              <p>{price} грн</p>
+              <p style={{ whiteSpace: 'nowrap' }}>{price} грн</p>
             )}
           </Price>
 

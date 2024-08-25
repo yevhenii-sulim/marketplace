@@ -38,16 +38,21 @@ export const DescribeInfoStateWrapper = styled.div`
   font-size: 22px;
   font-weight: 700;
   margin: 4px 0;
+  flex-wrap: wrap;
   @media (max-width: 767px) {
     width: 85%;
     margin: 0 auto;
     background-color: white;
+  }
+  @media (max-width: 480px) {
+    flex-direction: column;
   }
 `;
 
 export const DescribeInfoStateItem = styled.div`
   font-size: 18px;
   display: flex;
+
   margin: 12px 8px 12px 0;
   align-items: center;
 `;
