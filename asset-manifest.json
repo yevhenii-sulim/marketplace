@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/marketplace/static/css/main.534e0a1b.css",
-    "main.js": "/marketplace/static/js/main.9034a40b.js",
+    "main.css": "/marketplace/static/css/main.790e37da.css",
+    "main.js": "/marketplace/static/js/main.1c37d365.js",
     "static/media/pexels-pixabay-235525 1.png": "/marketplace/static/media/pexels-pixabay-235525 1.0e6f92384077df776649.png",
     "static/media/istockphoto-922897188-2048x2048 1.png": "/marketplace/static/media/istockphoto-922897188-2048x2048 1.f287b28e889838b600ed.png",
     "static/media/Picture.png": "/marketplace/static/media/Picture.1326e08142167614617e.png",
@@ -13,11 +13,11 @@
     "static/media/lip-gloss-mockup_0015_130-nude 1.png": "/marketplace/static/media/lip-gloss-mockup_0015_130-nude 1.a35859f673bac99117ca.png",
     "static/media/Button picture (1).png": "/marketplace/static/media/Button picture (1).9dd21d01217fbd1b18fa.png",
     "index.html": "/marketplace/index.html",
-    "main.534e0a1b.css.map": "/marketplace/static/css/main.534e0a1b.css.map",
-    "main.9034a40b.js.map": "/marketplace/static/js/main.9034a40b.js.map"
+    "main.790e37da.css.map": "/marketplace/static/css/main.790e37da.css.map",
+    "main.1c37d365.js.map": "/marketplace/static/js/main.1c37d365.js.map"
   },
   "entrypoints": [
-    "static/css/main.534e0a1b.css",
-    "static/js/main.9034a40b.js"
+    "static/css/main.790e37da.css",
+    "static/js/main.1c37d365.js"
   ]
 }
