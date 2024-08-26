@@ -20,8 +20,6 @@ export default function UserPageSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const condition = useSelector(selectPoster);
   const location = useLocation();
-  console.log(location);
-
   function choosePath() {
     if (location.pathname === '/user/menu') {
       return '/user_page/';
