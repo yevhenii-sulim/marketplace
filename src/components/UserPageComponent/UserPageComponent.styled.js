@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
+
 export const NavLink = styled(Link)``;
 
 export const Container = styled.div`
@@ -23,6 +24,19 @@ export const Header = styled.div`
   padding: 16px 48px;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.color.bgProduct};
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 366px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 1440px) {
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 0;
+  }
 `;
 export const User = styled.div`
   display: flex;
@@ -67,9 +81,14 @@ export const Main = styled.div`
 `;
 export const ContainerUserMain = styled.div`
   display: grid;
-  grid-template-columns: 274px auto;
-  align-items: flex-start;
-  gap: 32px;
+  grid-template-columns: auto;
+  position: relative;
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 274px auto;
+    align-items: flex-start;
+    gap: 32px;
+    padding-top: 122px;
+  }
 `;
 
 export const Sidebar = styled.ul`
@@ -82,6 +101,13 @@ export const Sidebar = styled.ul`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+`;
+
+export const WrapperSidebar = styled.div`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: block;
+  }
 `;
 
 export const List = styled.li`
@@ -107,17 +133,38 @@ export const Sign = styled.div`
   align-items: center;
 `;
 export const Exit = styled.button`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  color: ${({ theme }) => theme.color.colorTextSidebarActive};
-  display: flex;
-  padding: 10px;
-  gap: 20px;
-  align-items: center;
   background-color: transparent;
   outline: none;
+  color: ${({ theme }) => theme.color.colorTextSidebarActive};
+  font-family: Jost;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  display: block;
+  margin: auto;
+  width: 100%;
+  max-width: 366px;
+  border: 1px solid ${({ theme }) => theme.color.colorTextSidebarActive};
+  border-radius: 8px;
+  svg {
+    display: none;
+  }
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Nunito Sans';
+    max-width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    gap: 20px;
+    padding: 10px;
+    margin: 0;
+    svg {
+      display: block;
+    }
+  }
 `;
 export const PagesForSidebar = styled.div`
   flex-grow: 2;

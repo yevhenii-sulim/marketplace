@@ -11,7 +11,6 @@ import MarkAsk from 'SvgComponents/MarkAsk/MarkAsk';
 import { selectAuth } from '../../redux/auth/selector';
 import {
   AddContainer,
-  AuxiliaryComponents,
   BackDrop,
   Contacts,
   Container,
@@ -88,13 +87,13 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
                 Ввійдіть, щоб отримати рекомендації, персональні бонуси і
                 знижки.
               </p>
-              <LinkEnter to="/user_page/profile" onClick={onOpenProfile}>
+              <LinkEnter to="/user/menu" onClick={onOpenProfile}>
                 Увійти в профіль
               </LinkEnter>
             </EnteredProfile>
           </section>
           <section>
-            <AuxiliaryComponents>
+            <div>
               <LinkAxillary to="/my_order" onClick={onCloseMenu}>
                 <ShoppingCartOutlinedIcon
                   sx={{ height: '32px', width: '32px' }}
@@ -109,7 +108,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
                 <FavoriteBorderIcon sx={{ height: '32px', width: '32px' }} />
                 Улюблене
               </LinkAxillary>
-            </AuxiliaryComponents>
+            </div>
           </section>
         </main>
       </Menu>
