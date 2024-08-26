@@ -6,6 +6,8 @@ import { Sidebar, Title, WrapperSidebar } from './MenuResponse.styled';
 
 export default function ListUserMenu() {
   const user = useSelector(selectMyUser);
+  console.log(user);
+
   return (
     <WrapperSidebar>
       <Title>Профіль</Title>
