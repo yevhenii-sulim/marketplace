@@ -161,6 +161,7 @@ export const Exit = styled.button`
     gap: 20px;
     padding: 10px;
     margin: 0;
+    border: none;
     svg {
       display: block;
     }
