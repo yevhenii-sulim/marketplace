@@ -1,23 +1,33 @@
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import SidebarListComponent from './SidebarListComponent';
 import { logOut } from '../../redux/auth/thunk';
+import { selectPoster } from '../../redux/myPoster/selector';
 import StoryOrderSvg from 'SvgComponents/StoryOrderSvg/StoryOrderSvg';
-import { createPortal } from 'react-dom';
-import { useState } from 'react';
+import SidebarListComponent from './SidebarListComponent';
 import ConfirmExit from 'components/ConfirmExit/ConfirmExit';
 import { Exit } from './UserPageComponent.styled';
-import { selectPoster } from '../../redux/myPoster/selector';
+import { useLocation } from 'react-router-dom';
 
 const modalEnter = document.querySelector('#modal');
 
 export default function UserPageSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const condition = useSelector(selectPoster);
+  const location = useLocation();
+  console.log(location);
+
+  function choosePath() {
+    if (location.pathname === '/user/menu') {
+      return '/user_page/';
+    }
+    return '';
+  }
 
   const dispatch = useDispatch();
   function onExit() {
@@ -31,23 +41,36 @@ export default function UserPageSidebar() {
     <>
       <SidebarListComponent
         nameList="Історія замовлень"
-        path={'my_story_order'}
+        path={`${choosePath() + 'my_story_order'}`}
       >
         <StoryOrderSvg />
       </SidebarListComponent>
       <SidebarListComponent
         nameList="Мої оголошення "
-        path={condition ? 'my_poster' : 'my_post_list'}
+        path={
+          condition
+            ? `${choosePath() + 'my_poster'}`
+            : `${choosePath() + 'my_post_list'}`
+        }
       >
         <NotificationsNoneIcon />
       </SidebarListComponent>
-      <SidebarListComponent nameList="Повідомлення" path={'notification'}>
+      <SidebarListComponent
+        nameList="Повідомлення"
+        path={`${choosePath() + 'notification'}`}
+      >
         <ChatBubbleOutlineIcon />
       </SidebarListComponent>
-      <SidebarListComponent nameList="Обране" path={'selected'}>
+      <SidebarListComponent
+        nameList="Обране"
+        path={`${choosePath() + 'selected'}`}
+      >
         <FavoriteBorderIcon />
       </SidebarListComponent>
-      <SidebarListComponent nameList="Профіль" path={'profile'}>
+      <SidebarListComponent
+        nameList="Профіль"
+        path={`${choosePath() + 'profile'}`}
+      >
         <PersonOutlineOutlinedIcon />
       </SidebarListComponent>
       <Exit onClick={() => onToggleModalConfirm(true)}>

@@ -136,7 +136,7 @@ export const navigationList = [
       {
         id: 2,
         link: 'perfumery',
-        nameList: 'Парфюмерія',
+        nameList: 'Парфумерія',
         img: '/marketplace/images/subCatalog/perfumery.png',
       },
     ],

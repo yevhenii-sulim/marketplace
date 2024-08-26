@@ -87,7 +87,6 @@ export const LinkEnter = styled(LinkEntered)`
   color: ${({ theme }) => theme.color.colorSecondText};
   margin: auto;
 `;
-export const AuxiliaryComponents = styled.div``;
 export const LinkAxillary = styled(linkComponents)`
   display: flex;
   align-items: center;
@@ -99,4 +98,32 @@ export const LinkAxillary = styled(linkComponents)`
   &:not(:last-child) {
     margin-bottom: 16px;
   }
+`;
+export const Sidebar = styled.ul`
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 12px 40px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  width: 100%;
+  max-width: 366px;
+  margin: auto;
+`;
+export const WrapperSidebar = styled.div`
+  width: 100%;
+  max-width: 366px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 40px;
+`;
+export const Title = styled.h1`
+  font-family: Jost;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.33;
+  margin-bottom: 16px;
 `;
