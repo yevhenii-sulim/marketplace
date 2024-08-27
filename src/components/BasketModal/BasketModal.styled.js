@@ -20,6 +20,27 @@ export const Actives = styled.div`
   }
 `;
 
+export const Count = styled.div`
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  width: 16px;
+  height: 16px;
+  gap: 8px;
+  background-color: transparent;
+  .count {
+    background: transparent;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .MuiSvgIcon-root:active {
+    color: ${({ theme }) => theme.color.bgButton};
+  }
+`;
+
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
@@ -170,6 +191,7 @@ export const Title = styled.h2`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  margin-bottom: 12px;
 `;
 
 export const WrapperBuy = styled.div`
