@@ -6,12 +6,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
 import DeleteSvg from 'SvgComponents/DeleteSvg/DeleteSvg';
 import { theme } from 'utils/theme';
 import { selectBasket } from '../../redux/basket/select';
 import { selectMyUser } from '../../redux/auth/selector';
-import { deleteProduct } from '../../redux/basket/slice';
+import { changeCount, deleteProduct } from '../../redux/basket/slice';
 import {
   addFavoriteProduct,
   removeFavoriteProduct,
@@ -21,6 +23,7 @@ import {
   Actives,
   Backdrop,
   continueShoppingButton,
+  Count,
   cssButtonClose,
   Discount,
   Empty,
@@ -71,6 +74,15 @@ export default function BasketModal({ setIsOpen }) {
       dispatch(addFavoriteProduct(id));
     }
   }
+
+  const addCount = payload => {
+    dispatch(changeCount(payload));
+  };
+
+  const removeCount = (payload, count) => {
+    if (count <= 1) return;
+    dispatch(changeCount(payload));
+  };
 
   function onClose() {
     setIsOpen(false);
@@ -147,7 +159,28 @@ export default function BasketModal({ setIsOpen }) {
                           <img height="114" src={img} alt={title} />
                         </Image>
                         <About>
-                          <Title>{title}</Title>
+                          <div>
+                            <Title>{title}</Title>
+                            <Count>
+                              <button
+                                className="count"
+                                type="button"
+                                onClick={() =>
+                                  removeCount({ id, increment: -1 }, count)
+                                }
+                              >
+                                <RemoveIcon />
+                              </button>
+                              <span>{count}</span>
+                              <button
+                                className="count"
+                                type="button"
+                                onClick={() => addCount({ id, increment: 1 })}
+                              >
+                                <AddIcon />
+                              </button>
+                            </Count>
+                          </div>
                           <Price>
                             {discount ? (
                               <>
