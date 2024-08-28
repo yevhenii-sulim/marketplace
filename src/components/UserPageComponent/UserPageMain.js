@@ -6,14 +6,11 @@ import {
   ContainerUserMain,
   Main,
   PagesForSidebar,
-  Sidebar,
   Title,
   WrapperSidebar,
 } from './UserPageComponent.styled';
-import UserPageHeader from './UserPageHeader';
 
 export default function UserPageMain() {
-  const user = useSelector(selectMyUser);
   const location = useLocation();
   function titleSection() {
     if (location.pathname.includes('my_order')) return 'Мій кошик';
@@ -29,16 +26,6 @@ export default function UserPageMain() {
 
   return (
     <ContainerUserMain>
-      <WrapperSidebar>
-        <UserPageHeader
-          rating={0 || user?.rating.count}
-          nameUser={0 || user?.firstName}
-          imgUser={user?.img || '/marketplace/images/catalog/for-free.png'}
-        />
-        <Sidebar>
-          <UserPageSidebar />
-        </Sidebar>
-      </WrapperSidebar>
       <Main>
         <Title>{titleSection()}</Title>
         <PagesForSidebar>

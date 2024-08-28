@@ -31,6 +31,8 @@ export default function NewPasswordInput({
     <NewPasswordField>
       <FormField
         required={true}
+        $width={'100%'}
+        $inputwidth={'70%'}
       >
         <label>Новий пароль</label>
         <input type="text" value={newPassword} onChange={event => setNewPassword(event.target.value)}/>
@@ -55,7 +57,11 @@ export default function NewPasswordInput({
           Щонайменше 1 цифра
         </div>
       </FormField>
-      <FormField required={true}>
+      <FormField 
+        required={true}
+        $width={'100%'}
+        $inputwidth={'70%'}
+      >
         <label>Підтвердити новий пароль</label>
         <input type='text' value={confirmNewPassword} onChange={event => setConfirmNewPassword(event.target.value)} />
         {passwordConfirmationError ? (

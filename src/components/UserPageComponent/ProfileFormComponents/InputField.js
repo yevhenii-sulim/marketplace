@@ -8,10 +8,11 @@ export default function InputField({
   required = false,
   disabled = false, 
   inputType = 'text', 
+  width
 }) {
 
   return (
-    <FormField required={required}>
+    <FormField required={required} $width={width}>
       {disabled ? (
         <>
           <p>{label}</p>

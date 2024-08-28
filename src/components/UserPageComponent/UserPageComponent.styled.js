@@ -7,8 +7,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding: 32px 20px;
+
+  @media (min-width: 1415px) {
+    padding: 32px 0px;
+  }
 `;
 export const Title = styled.h1`
   font-family: Jost;
@@ -16,6 +19,11 @@ export const Title = styled.h1`
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: -0.32px;
+  padding: 0px 20px;
+
+  @media (min-width: 1415px) {
+    padding: unset;
+  }
 `;
 export const Header = styled.div`
   text-align: left;
@@ -78,17 +86,14 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 672px) {
+    width: 100%;
+  }
 `;
 export const ContainerUserMain = styled.div`
-  display: grid;
-  grid-template-columns: auto;
-  position: relative;
-  @media screen and (min-width: 1440px) {
-    grid-template-columns: 274px auto;
-    align-items: flex-start;
-    gap: 32px;
-    padding-top: 122px;
-  }
+  width: 100%;
+  display: block;
 `;
 
 export const Sidebar = styled.ul`

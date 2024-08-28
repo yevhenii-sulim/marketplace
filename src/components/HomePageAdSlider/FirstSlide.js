@@ -20,7 +20,11 @@ export default function FirstSlide() {
     <Slide>
       <IntersectImage src={width <= 672 ? AdaptiveIntersectSrc : IntersectSrc} alt="intersect" />
       <FirstSlideTitle>
-        Придбайте товари від українських виробників
+        {width > 672 ? (
+          <>
+            Придбайте товари <br /> від українських <br /> виробників
+          </>
+        ) : 'Придбайте товари від українських виробників'}
       </FirstSlideTitle>
       <FlagImage src={FlagSrc} alt="flag" />
       <LipGlossMockupImg src={LipGlossMockupSrc} alt="lip gloss mockup" />

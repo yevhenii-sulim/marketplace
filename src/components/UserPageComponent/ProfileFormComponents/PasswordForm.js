@@ -5,8 +5,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../../redux/auth/selector";
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 export default function PasswordForm({ redacting, onSaveChanges, onCancelChanges, onStartRedacting }) {
+
+  const { width } = useWindowDimensions();
 
   const token = useSelector(selectToken);
 
@@ -66,8 +69,8 @@ export default function PasswordForm({ redacting, onSaveChanges, onCancelChanges
 
   return (
     <>
-      <FormContainer>
-        <InputColumn width={'369px'}>
+      <FormContainer $justifycontent={width > 762 ? 'space-between' : null}>
+        <InputColumn $setfullwidth={true} $width={'100%'}>
           <PasswordField
             label='Старий пароль'
             placeholder='Введіть старий пароль'

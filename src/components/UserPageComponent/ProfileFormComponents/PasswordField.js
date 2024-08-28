@@ -2,14 +2,17 @@ import { FormField, PasswordInput, PasswordToggleButton } from "./ProfilePage.st
 import { useState } from "react";
 import EyeSvg from 'SvgComponents/PasswordEyeSVG/PasswordEyeSvg';
 import ClosedEyeSvg from "SvgComponents/PasswordClosedEyeSVG/PasswordClosedEyeSvg";
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 export default function PasswordField({ label, placeholder }) {
+
+  const { width } = useWindowDimensions();
 
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
-      <FormField>
+      <FormField $width={width > 672 ? '320px' : '100%'}>
         <label>
           {label}
         </label>
