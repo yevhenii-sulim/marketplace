@@ -8,6 +8,7 @@ import {
 
 export const HomePageAdSliderContainer = styled.ul`
   margin-top: 30px;
+  padding: 20px;
 
   .slide {
     position: relative;
@@ -88,6 +89,7 @@ export const HomePageAdSliderContainer = styled.ul`
   }
 
   @media (max-width: 672px) {
+    .slide,
     .carousel__slide,
     .carousel__slider {
       height: 35.7vw;
@@ -132,7 +134,8 @@ export const FirstSlideTitle = styled.h3`
 
   @media (max-width: 785px) {
     top: 2.5vw;
-    font: 400 2.6vw 'Jost';
+    font: 400 2.8vw 'Jost';
+    width: 25%;
   }
 
   @media (max-width: 672px) {
@@ -149,7 +152,7 @@ export const FlagImage = styled.img`
   position: absolute;
   width: 32px;
   height: 32px;
-  top: 42%;
+  top: 45%;
   left: 351px;
 
   @media (max-width: 1440px) {
@@ -164,7 +167,7 @@ export const FlagImage = styled.img`
   }
 
   @media (max-width: 947px) {
-    top: 7vw;
+    top: 45%;
     left: 32%;
   }
 

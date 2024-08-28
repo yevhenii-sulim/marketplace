@@ -5,8 +5,11 @@ import { selectMyUser, selectToken } from "../../../redux/auth/selector";
 import { useState } from "react";
 import InputField from "./InputField";
 import axios from "axios";
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 export default function ContactForm({ redacting, onSaveChanges, onCancelChanges, onStartRedacting }) {
+
+  const { width } = useWindowDimensions();
 
   const user = useSelector(selectMyUser);
   const token = useSelector(selectToken);
@@ -41,26 +44,17 @@ export default function ContactForm({ redacting, onSaveChanges, onCancelChanges,
 
   return (
     <>
-      <FormContainer>
-        <InputColumn>
-          <InputField 
-            label={'Електрона адреса'}
-            placeholder={'Введіть електрону адресу'}
-            required={true}
-            value={contactDataChanges?.email || user?.email}
-            onChange={event => setContactDataChanges({ ...contactDataChanges, email: event.target.value })}
-            disabled={!redacting}
-          />
-        </InputColumn>
-        <InputColumn>
-          <PhoneNumberFormField 
-            label={'Телефон'}
-            placeholder={'+38 --- --- -- --'}
-            value={contactDataChanges?.phoneNumber || user?.numberPhone}
-            onChange={event => setContactDataChanges({ ...contactDataChanges, phoneNumber: event.target.value })}
-            disabled={!redacting}
-          />
-        </InputColumn>
+      <FormContainer
+        $justifycontent={(width <= 1180 && width >= 762) ? 'space-between' : null}
+        $gap={width > 762 && '24px'}
+        $desktopwidth={'90%'}
+      >
+        <Form 
+          redacting={redacting}
+          user={user}
+          contactDataChanges={contactDataChanges}
+          setContactDataChanges={setContactDataChanges}
+        />
       </FormContainer>
       <RedactContainer>
         {redacting ? (
@@ -86,4 +80,55 @@ export default function ContactForm({ redacting, onSaveChanges, onCancelChanges,
       </RedactContainer>
     </>
   )
+}
+
+function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
+
+  const { width } = useWindowDimensions();
+
+  return width > 672 ? (
+    <>
+      <InputColumn $setfullwidth={width <= 762} $width={'320px'}>
+        <InputField 
+          label={'Електрона адреса'}
+          placeholder={'Введіть електрону адресу'}
+          required={true}
+          value={contactDataChanges?.email || user?.email}
+          onChange={event => setContactDataChanges({ ...contactDataChanges, email: event.target.value })}
+          disabled={!redacting}
+          width={width > 762 ? '320px' : null}
+        />
+      </InputColumn>
+      <InputColumn $setfullwidth={width <= 762} $width={'320px'}>
+        <PhoneNumberFormField 
+          label={'Телефон'}
+          placeholder={'+38 --- --- -- --'}
+          value={contactDataChanges?.phoneNumber || user?.numberPhone}
+          onChange={event => setContactDataChanges({ ...contactDataChanges, phoneNumber: event.target.value })}
+          disabled={!redacting}
+          width={width > 762 ? '320px' : null}
+        />
+      </InputColumn>
+    </>
+  ) : (
+    <InputColumn
+      $setfullwidth={true}
+    >
+      <InputField 
+        label={'Електрона адреса'}
+        placeholder={'Введіть електрону адресу'}
+        required={true}
+        value={contactDataChanges?.email || user?.email}
+        onChange={event => setContactDataChanges({ ...contactDataChanges, email: event.target.value })}
+        disabled={!redacting}
+      />
+      <PhoneNumberFormField 
+        label={'Телефон'}
+        placeholder={'+38 --- --- -- --'}
+        value={contactDataChanges?.phoneNumber || user?.numberPhone}
+        onChange={event => setContactDataChanges({ ...contactDataChanges, phoneNumber: event.target.value })}
+        disabled={!redacting}
+      />
+    </InputColumn>
+  );
 }

@@ -1,9 +1,16 @@
 import { FormField } from "./ProfilePage.styled"
 
-export default function PhoneNumberFormField({ label, placeholder, value, onChange, disabled }) {
+export default function PhoneNumberFormField({ 
+  label, 
+  placeholder, 
+  value, 
+  onChange, 
+  disabled, 
+  width
+}) {
 
   return (
-    <FormField>
+    <FormField $width={width}>
       {disabled ? (
         <>
           <p>{label}</p>

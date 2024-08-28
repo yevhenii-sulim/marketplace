@@ -4,12 +4,11 @@ import {
   ContainerUserMain,
   Main,
   PagesForSidebar,
-  Sidebar,
   Title,
 } from './UserPageComponent.styled';
-import UserPageSidebar from './UserPageSidebar';
 
 export default function UserPageMain() {
+
   const location = useLocation();
   function titleSection() {
     if (location.pathname.includes('my_order')) return 'Мій кошик';
@@ -24,9 +23,11 @@ export default function UserPageMain() {
   }
   return (
     <ContainerUserMain>
-      <Sidebar>
-        <UserPageSidebar />
-      </Sidebar>
+      {/*
+        <Sidebar>
+          <UserPageSidebar />
+        </Sidebar>
+      */}
       <Main>
         <Title>{titleSection()}</Title>
         <PagesForSidebar>

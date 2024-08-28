@@ -4,6 +4,11 @@ export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 10px;
+
+  @media (min-width: 1400px) {
+    padding: unset;
+  }
 `;
 
 export const PersonalDataContainer = styled.div`
@@ -14,9 +19,22 @@ export const PersonalDataContainer = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  display: flex;
+  width: 100%;
+  display: ${props => props.$redacting ? 'unset' : 'flex'};
+  
+  gap: ${props => props.$redacting ? 'unset' : '24px'};  
   justify-content: ${props => props.$justifycontent || 'start'};
-  gap: 74px;
+  
+  @media (min-width: 762px) {
+    width: 100%;
+    display: flex;
+    gap: ${props => props.$gap || '74px'};
+    justify-content: ${props => props.$justifycontent || 'start'};
+  }
+
+  @media (min-width: 1180px) {
+    flex-direction: row;
+  }
 `;
 
 export const ProfilePageTitle = styled.h5`
@@ -27,13 +45,21 @@ export const ProfilePageTitle = styled.h5`
 `;
 
 export const InputColumn = styled.div`
-  width: ${props => props.width || '320px'};
+  width: ${props => props.$setfullwidth ? '100%' : '320px'};
+  align-items: ${props => props.$setitemscenter ? 'center' : 'unset'};
+  justify-content: ${props => props.$justifycontent || 'space-between'};
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: ${props => props.$gap || '24px'};
+
+  @media (min-width: 762px) {
+    width: ${props => props.$width || '21.4vw'};
+    justify-content: unset;
+  }
 `;
 
 export const FormField = styled.div`
+  width: ${props => props.$width || '100%'};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -56,7 +82,7 @@ export const FormField = styled.div`
   
   input, select {
     display: block;
-    width: 320px;
+    width: 100%;
     height: 44px;
     border: 1px solid #8D8D8D;
     border-radius: 6px;
@@ -81,11 +107,24 @@ export const FormField = styled.div`
     font: 400 16px 'Nunito Sans';
     line-height: 20px;
   }
+
+  @media (min-width: 762px) {
+    width: ${props => props.$width || 'unset'};
+
+    input, select {
+      width: ${props => props.$inputwidth || '21.4vw'};
+    }
+  }
 `;
 
 export const RedactContainer = styled.div`
   display: flex;
   gap: 20px;
+  justify-content: end;
+
+  @media (min-width: 672px) {
+    justify-content: unset;
+  }
 `;
 
 export const RedactButton = styled.button`
@@ -120,6 +159,22 @@ export const DateInput = styled.div`
     border: none;
     padding: 0;
     padding-left: 10px;
+  }
+
+  .MuiInputBase-root > input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .MuiFormControl-root {
+    width: 100%;
+  }
+
+  @media (min-width: 762px) {
+    .MuiFormControl-root {
+      width: 21.4vw;
+    }
   }
 `;
 
@@ -194,7 +249,7 @@ export const PasswordInput = styled.div`
   gap: 5px;
 
   input {
-    width: 320px;
+    width: 100%;
     padding-left: 45px;
   }
 
@@ -202,6 +257,12 @@ export const PasswordInput = styled.div`
     background: transparent;
     width: 44px;
     height: 44px;
+  }
+
+  @media (min-width: 762px) {
+    .input {
+      width: 320px;
+    }
   }
 `;
 
@@ -213,7 +274,20 @@ export const PasswordToggleButton = styled.div`
 
 export const NewPasswordField = styled.div`
   display: flex;
-  gap: 72px;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (min-width: 762px) {
+    width: 100%;
+    display: flex;
+    flex-direction: unset;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 1024px) {
+    justify-content: start;
+    gap: 72px;
+  }
 `;
 
 export const PasswordConfirmationError = styled.p`

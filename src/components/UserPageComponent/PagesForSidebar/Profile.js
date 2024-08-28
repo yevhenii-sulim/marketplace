@@ -10,7 +10,6 @@ import {
 import PersonalDataForm from '../ProfileFormComponents/PersonalDataForm';
 import ContactForm from '../ProfileFormComponents/ContactForm';
 import PasswordForm from '../ProfileFormComponents/PasswordForm';
-import DeleteProfile from '../ProfileFormComponents/DeleteProfile';
 
 export default function Profile() {
 
@@ -125,12 +124,6 @@ export default function Profile() {
               () => console.log('Started redacting')
             )}
           />
-        </PersonalDataContainer>
-      </Empty>
-      <Empty>
-        <PersonalDataContainer>
-          <ProfilePageTitle>Видалити профіль</ProfilePageTitle>
-          <DeleteProfile />
         </PersonalDataContainer>
       </Empty>
     </ProfileContainer>
