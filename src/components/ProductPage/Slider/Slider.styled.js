@@ -37,6 +37,9 @@ export const ArrowLeftWrapper = styled.div`
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 export const ArrowRightWrapper = styled.div`
   position: absolute;
@@ -50,6 +53,9 @@ export const ArrowRightWrapper = styled.div`
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 export const WrapperSlide = styled.div`
   min-width: 100%;

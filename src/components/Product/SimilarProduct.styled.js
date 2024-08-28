@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export const SimilarProductItem = styled.li`
   width: 232px;
-
+  height: 340px;
   @media screen and (min-width: 380px) {
     width: 160px;
   }
@@ -9,7 +9,10 @@ export const SimilarProductItem = styled.li`
     width: 232px;
     height: 440px;
   }
-
+  @media (max-width: 380px) {
+    width: 160px;
+    height: 340px;
+  }
   position: relative;
   display: flex;
   gap: 12px;
@@ -84,6 +87,7 @@ export const SimilarProductItemDiscount = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
+  white-space: nowrap;
 `;
 
 export const SimilarProductItemButtonBlock = styled.div`

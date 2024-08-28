@@ -19,6 +19,10 @@ export const buttonBuyStyles = {
   [theme.breakpoints.down('md')]: {
     height: '52px',
   },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '20px',
+    width: '95%',
+  },
 };
 
 export const buttonConnectStyles = {
@@ -40,6 +44,11 @@ export const buttonConnectStyles = {
   },
   [theme.breakpoints.down('md')]: {
     height: '52px',
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '20px',
+    whiteSpace: 'nowrap',
+    width: '95%',
   },
 };
 

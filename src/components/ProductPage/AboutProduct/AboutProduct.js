@@ -3,10 +3,10 @@ import { AboutProductWrapper } from './AboutProduct.styled';
 import DescriptionContainerProduct from '../DescriptionContainerProduct/DescriptionContainerProduct';
 import PriceSection from '../PriceSection/PriceSection';
 
-function AboutProduct() {
+function AboutProduct({ showAccordion }) {
   return (
     <AboutProductWrapper>
-      <DescriptionContainerProduct />
+      <DescriptionContainerProduct showAccordion={showAccordion} />
       <PriceSection />
     </AboutProductWrapper>
   );

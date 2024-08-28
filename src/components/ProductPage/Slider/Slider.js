@@ -14,7 +14,7 @@ import { ImageModal } from './ImageModal';
 function Slider() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState('');
-
+  const [touchStartPosition, setTouchStartPosition] = useState();
   const product = useSelector(state => state.productPage.product);
 
   const slide = useRef();
@@ -55,8 +55,23 @@ function Slider() {
     setModalIsOpen(true);
   };
 
+  function handleTouchStart(e) {
+    setTouchStartPosition(e.changedTouches[0].clientX);
+  }
+  function handleTouchEnd(e) {
+    if (touchStartPosition + 50 > e.changedTouches[0].clientX) {
+      scrollPhoto('right');
+    }
+    if (touchStartPosition < e.changedTouches[0].clientX + 50) {
+      scrollPhoto('left');
+    }
+  }
+
   return (
-    <SliderContainer>
+    <SliderContainer
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {product.img.length === 1 ? (
         ''
       ) : (

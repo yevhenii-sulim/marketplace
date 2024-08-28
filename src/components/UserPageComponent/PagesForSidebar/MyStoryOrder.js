@@ -75,6 +75,7 @@ export default function MyStoryOrder({
       })
     );
   }
+
   return (
     <div>
       {purchasedGoods.length === 0 ? (
@@ -101,6 +102,7 @@ export default function MyStoryOrder({
                   status,
                   createDate,
                   product: {
+                    _id: productId,
                     title,
                     price,
                     discountPrice,
@@ -138,7 +140,7 @@ export default function MyStoryOrder({
                         <Button
                           type="button"
                           sx={viewProductButton}
-                          onClick={() => onOpenModal(_id)}
+                          onClick={() => onOpenModal(productId)}
                         >
                           Залишити відгук
                         </Button>

@@ -1,14 +1,16 @@
+import { useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
-
+import UserPageSidebar from './UserPageSidebar';
+import { selectMyUser } from '../../redux/auth/selector';
 import {
   ContainerUserMain,
   Main,
   PagesForSidebar,
   Title,
+  WrapperSidebar,
 } from './UserPageComponent.styled';
 
 export default function UserPageMain() {
-
   const location = useLocation();
   function titleSection() {
     if (location.pathname.includes('my_order')) return 'Мій кошик';
@@ -21,13 +23,9 @@ export default function UserPageMain() {
     if (location.pathname.includes('profile')) return 'Профіль';
     if (location.pathname.includes('ordering')) return 'Оформлення замовлення';
   }
+
   return (
     <ContainerUserMain>
-      {/*
-        <Sidebar>
-          <UserPageSidebar />
-        </Sidebar>
-      */}
       <Main>
         <Title>{titleSection()}</Title>
         <PagesForSidebar>

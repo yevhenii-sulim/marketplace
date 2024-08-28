@@ -14,7 +14,7 @@ export const OrderSectionContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 92%;
+
   padding-top: 10px;
   margin: 0 auto;
 `;
@@ -77,4 +77,9 @@ export const SalePrice = styled.div`
   font-size: 32px;
   font-weight: 700;
   margin-top: 4px;
+
+  @media (max-width: 767px) {
+    width: 85%;
+    margin: 0 auto;
+  }
 `;

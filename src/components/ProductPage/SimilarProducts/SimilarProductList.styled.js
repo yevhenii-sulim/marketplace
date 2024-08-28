@@ -17,6 +17,11 @@ export const SimilarProductsWrapper = styled.section`
     }
     return '42px';
   }};
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
+  }
 `;
 export const SimilarProductsHeader = styled.header`
   font-weight: 700;

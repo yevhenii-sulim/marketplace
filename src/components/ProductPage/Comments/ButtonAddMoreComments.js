@@ -5,9 +5,10 @@ export default function ButtonAddMoreComments({
   handlerExpandedComments,
   commentsLeft,
 }) {
+  console.log(commentsLeft);
   return (
     <>
-      {!!commentsLeft && (
+      {commentsLeft > 0 && (
         <Button
           variant="outlined"
           sx={buttonAddMoreComments}
