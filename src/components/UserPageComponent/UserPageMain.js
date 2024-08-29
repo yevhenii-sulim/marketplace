@@ -1,13 +1,9 @@
-import { useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
-import UserPageSidebar from './UserPageSidebar';
-import { selectMyUser } from '../../redux/auth/selector';
 import {
   ContainerUserMain,
   Main,
   PagesForSidebar,
   Title,
-  WrapperSidebar,
 } from './UserPageComponent.styled';
 
 export default function UserPageMain() {
