@@ -4,6 +4,9 @@ import Notiflix from 'notiflix';
 import { toggleModalAuth } from '../modalAuth/slice';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
+axios.defaults.headers.post.withCredentials = true;
+axios.defaults.headers.get.withCredentials = true;
+
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;

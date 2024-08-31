@@ -226,6 +226,20 @@ a {
 .swiper {
   height: 445px !important;
 }
+
+.visibility-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
 @media (min-width: 767px) {
   .swiper-pagination {
     margin-top: 50px !important;

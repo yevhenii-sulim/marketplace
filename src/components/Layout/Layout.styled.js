@@ -14,4 +14,12 @@ export const Container = styled.div`
   height: 100%;
   margin: auto;
   width: auto;
+  @media screen and (min-width: 380px) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding-left: 58px;
+    padding-right: 58px;
+  }
 `;

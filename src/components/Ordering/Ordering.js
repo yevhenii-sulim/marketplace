@@ -30,6 +30,7 @@ import {
   addProductButton,
 } from './Ordering.styled';
 import { addNewProduct } from '../../redux/auth/slice';
+import { removeFavoriteProduct } from '../../redux/product/thunk';
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
@@ -42,6 +43,7 @@ const prices = {
 
 function onSubmitOrder(data, values, user, dispatch) {
   const orderData = data.map(({ count, id }) => {
+    dispatch(removeFavoriteProduct(id));
     return {
       id,
       value: { ...values, quantity: count, userId: user?._id ?? '' },
@@ -280,27 +282,3 @@ export default function Ordering() {
     </>
   );
 }
-// ({ count, discount, discountPrice, price, title, id }) => {
-// return {
-//   title: `назва: ${title}`,
-//   count: `кількість: ${count}шт;`,
-//   price: `ціна за: ${count}шт: ${price * count}грн;`,
-//   priceForOne: `ціна за 1шт. без знижки: ${price}грн;`,
-//   priceForOneWithDiscount: `ціна за 1шт. зі знижкою: ${
-//     discount ? discountPrice + 'грн' : 'без знижки'
-//   };`,
-//   discountForOne: `знижка за 1шт: ${
-//     discount ? price - discountPrice : 0
-//   }грн;`,
-//   discountAll: `загальна знижка: ${
-//     discount ? (price - discountPrice) * count : 0
-//   }грн;`,
-// };
-
-// const finishedMessage = {
-//   toPay: `до сплати: ${prices.total}грн;`,
-//   sumWithoutDiscount: `сума без знижки: ${prices.totalPrice}грн;`,
-//   discountAll: `знижка: ${
-//     prices.totalDiscount ? prices.totalDiscount + 'грн' : 'без знижки'
-//   };`,
-// };

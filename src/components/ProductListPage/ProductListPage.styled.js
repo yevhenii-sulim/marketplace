@@ -11,10 +11,6 @@ export const ContainerProductPageList = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 0 12px 0 12px;
-  @media screen and (min-width: 1440px) {
-    padding: 0 58px 0 58px;
-  }
 `;
 export const Pagination = styled.div`
   margin-top: auto;

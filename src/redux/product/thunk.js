@@ -125,11 +125,10 @@ export const addFavoriteProduct = createAsyncThunk(
       dispatch(getUser(getState().users.myUser._id));
       return data;
     } catch (error) {
-      console.log('newToken');
       if (error.response && error.response.status === 401) {
         try {
           const newToken = await refreshToken();
-          console.log(newToken);
+          console.log('newToken', newToken);
           const { data } = await axios.patch(
             `/favorite/add/${productId}`,
             productId,
@@ -137,6 +136,7 @@ export const addFavoriteProduct = createAsyncThunk(
               headers: {
                 Authorization: `Bearer ${newToken}`,
                 'Content-Type': 'multipart/form-data',
+                withCredentials: true,
               },
             }
           );
@@ -180,6 +180,7 @@ export const removeFavoriteProduct = createAsyncThunk(
               headers: {
                 Authorization: `Bearer ${newToken}`,
                 'Content-Type': 'multipart/form-data',
+                withCredentials: true,
               },
             }
           );
@@ -218,6 +219,7 @@ export const deleteProduct = createAsyncThunk(
         try {
           const newToken = await refreshToken();
           axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
+          axios.defaults.headers.delete.withCredentials = true;
           const { data } = await axios.delete(`/products/${id}`);
           return data;
         } catch (refreshError) {
@@ -252,6 +254,7 @@ export const createProduct = createAsyncThunk(
             headers: {
               Authorization: `Bearer ${newToken}`,
               'Content-Type': 'multipart/form-data',
+              withCredentials: true,
             },
           });
           return data;
