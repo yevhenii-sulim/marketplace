@@ -268,6 +268,10 @@ export const Empty = styled.div`
   p {
     color: ${({ theme }) => theme.color.colorTextStartUserPage};
   }
+
+  @media screen and (min-width: 928px) {
+    width: 100%;
+  }
 `;
 
 export const styleRemoveProductButton = {

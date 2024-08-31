@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ProfileContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -21,8 +22,7 @@ export const PersonalDataContainer = styled.div`
 export const FormContainer = styled.div`
   width: 100%;
   display: ${props => props.$redacting ? 'unset' : 'flex'};
-  
-  gap: ${props => props.$redacting ? 'unset' : '24px'};  
+  gap: ${props => props.$gap || 'unset'};  
   justify-content: ${props => props.$justifycontent || 'start'};
   
   @media (min-width: 762px) {
@@ -45,7 +45,7 @@ export const ProfilePageTitle = styled.h5`
 `;
 
 export const InputColumn = styled.div`
-  width: ${props => props.$setfullwidth ? '100%' : '320px'};
+  width: ${props => props.$setfullwidth ? '100%' : '45%'};
   align-items: ${props => props.$setitemscenter ? 'center' : 'unset'};
   justify-content: ${props => props.$justifycontent || 'space-between'};
   display: flex;
@@ -109,10 +109,10 @@ export const FormField = styled.div`
   }
 
   @media (min-width: 762px) {
-    width: ${props => props.$width || 'unset'};
+    width: ${props => props.$width || '100%'};
 
     input, select {
-      width: ${props => props.$inputwidth || '21.4vw'};
+      width: ${props => props.$inputwidth || '100%'};
     }
   }
 `;
@@ -179,10 +179,11 @@ export const DateInput = styled.div`
 `;
 
 export const ProfilePictureSelectField = styled.div`
-  width: 150px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: ${props => props.$redacting ? 'center' : 'flex-start'};
+  justify-content: center;
   gap: 25px;
 
   img {
@@ -224,14 +225,19 @@ export const ProfilePictureSelectInput = styled.div`
 `;
 
 export const ProfilePictureDefault = styled.div`
-  width: 123px;
-  height: 123px;
+  width: 100px;
+  height: 100px;
   background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #000;
   border-radius: 50%;
+
+  @media screen and (min-width: 425px) {
+    width: 123px;
+    height: 123px;
+  }
 `;
 
 export const ProfilePicture = styled.img`

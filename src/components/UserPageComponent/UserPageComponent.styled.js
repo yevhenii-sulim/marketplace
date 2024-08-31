@@ -9,8 +9,8 @@ export const Container = styled.div`
   gap: 32px;
   padding-top: 32px;
   padding-bottom: 32px;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
   @media (min-width: 1440px) {
     padding-left: 58px;
     padding-right: 58px;
@@ -40,7 +40,8 @@ export const Header = styled.div`
   max-width: 366px;
   margin-left: auto;
   margin-right: auto;
-  @media screen and (min-width: 1440px) {
+  /* 1440px */
+  @media screen and (min-width: 762px) {
     max-width: 100%;
     position: absolute;
     top: 0;
@@ -90,20 +91,31 @@ export const Main = styled.div`
   flex-direction: column;
   gap: 24px;
 
-  @media (max-width: 672px) {
+  @media (min-width: 928px) {
     width: 100%;
   }
 `;
 export const ContainerUserMain = styled.div`
-  display: grid;
-  grid-template-columns: auto;
-  position: relative;
-  width: 100%;
-  @media screen and (min-width: 1440px) {
-    grid-template-columns: 274px auto;
+  display: block;
+  /* 1440px */
+
+  @media screen and (min-width: 764px) {
+    display: grid;
+    grid-template-columns: auto;
+    position: relative;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1216px) {
+    /* grid-template-columns: 274px auto; */
+    grid-template-columns: 274px calc(${props => props.$screenwidth} - 274px - 10px * 2 - 32px);
     align-items: flex-start;
     gap: 32px;
     padding-top: 122px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 274px calc(${props => props.$screenwidth} - 274px - 58px * 3 - 32px);
   }
 `;
 
@@ -121,7 +133,8 @@ export const Sidebar = styled.ul`
 
 export const WrapperSidebar = styled.div`
   display: none;
-  @media screen and (min-width: 1440px) {
+  /* 1440px */
+  @media screen and (min-width: 762px) {
     display: block;
   }
 `;

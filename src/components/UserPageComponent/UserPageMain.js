@@ -11,10 +11,12 @@ import {
   Title,
   WrapperSidebar,
 } from './UserPageComponent.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function UserPageMain() {
   const location = useLocation();
   const user = useSelector(selectMyUser);
+  const { width } = useWindowDimensions();
 
   function titleSection() {
     if (location.pathname.includes('my_order')) return 'Мій кошик';
@@ -29,17 +31,19 @@ export default function UserPageMain() {
   }
 
   return (
-    <ContainerUserMain>
-      <WrapperSidebar>
-        <UserPageHeader
-          rating={0 || user?.rating.count}
-          nameUser={0 || user?.firstName}
-          imgUser={user?.img || '/marketplace/images/catalog/for-free.png'}
-        />
-        <Sidebar>
-          <UserPageSidebar />
-        </Sidebar>
-      </WrapperSidebar>
+    <ContainerUserMain $screenwidth={`${width}px`}>
+      {width >= 1216 ? (
+        <WrapperSidebar>
+          <UserPageHeader
+            rating={0 || user?.rating.count}
+            nameUser={0 || user?.firstName}
+            imgUser={user?.img || '/marketplace/images/catalog/for-free.png'}
+          />
+          <Sidebar>
+            <UserPageSidebar />
+          </Sidebar>
+        </WrapperSidebar>
+      ) : null}
       <Main>
         <Title>{titleSection()}</Title>
         <PagesForSidebar>
