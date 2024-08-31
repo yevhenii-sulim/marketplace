@@ -44,19 +44,19 @@ export const team = [
   {
     id: 9,
     name: 'Юрій Пукіш',
-    spec: 'QA ментор',
+    spec: 'QA Engineer ментор',
     link: 'https://www.linkedin.com/in/yurapykish?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
   },
   {
     id: 10,
     name: 'Юлія Петровська',
-    spec: 'QA dev',
+    spec: 'QA Engineer',
     link: 'https://www.linkedin.com/in/yuliia-petrovska-b0a3a428b',
   },
   {
     id: 11,
     name: 'Олена Міщенко',
-    spec: 'QA dev',
+    spec: 'QA Engineer',
     link: 'https://www.linkedin.com/in/olena-mishchenko-276927268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
   },
 ];

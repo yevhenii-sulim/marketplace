@@ -12,11 +12,14 @@ export const About = styled.div`
 `;
 export const Actives = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 24px;
+  align-items: center;
+  gap: 40px;
   button {
+    display: block;
     background-color: transparent;
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
   }
 `;
 
@@ -109,13 +112,14 @@ export const continueShoppingButton = {
   },
 };
 export const Total = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   font-family: Jost;
   font-size: 22px;
   font-weight: 700;
   line-height: 1.45; /* 145.455% */
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
   margin-bottom: 32px;
 `;
 export const TitleSection = styled.h1`
@@ -203,6 +207,7 @@ export const WrapperBuy = styled.div`
     font-size: 18px;
     font-weight: 800;
     line-height: 1.44; /* 144.444% */
+    white-space: normal;
     &_discount {
       color: ${({ theme }) => theme.color.colorTextPrice};
     }

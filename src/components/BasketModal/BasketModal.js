@@ -181,41 +181,48 @@ export default function BasketModal({ setIsOpen }) {
                               </button>
                             </Count>
                           </div>
-                          <Price>
-                            {discount ? (
-                              <>
-                                <p className="price-discount">
-                                  {price} &#8372;
-                                </p>
-                                <p className="discount">
-                                  {discountPrice} &#8372;
-                                </p>
-                              </>
-                            ) : (
-                              <p className="price">{price} &#8372;</p>
-                            )}
-                          </Price>
                           <Actives>
-                            <button
-                              type="button"
-                              className="favorite"
-                              onClick={() => toggleFavorite(id)}
-                            >
-                              {user?.favorites.some(({ _id }) => id === _id) ? (
-                                <FavoriteIcon
-                                  sx={{ color: theme.color.bgNumberBasket }}
-                                />
+                            <Price>
+                              {discount ? (
+                                <>
+                                  <p className="price-discount">
+                                    {price} &#8372;
+                                  </p>
+                                  &nbsp;
+                                  <p className="discount">
+                                    {discountPrice} &#8372;
+                                  </p>
+                                </>
                               ) : (
-                                <FavoriteBorderIcon sx={{ color: '#727272' }} />
+                                <p className="price">{price} &#8372;</p>
                               )}
-                            </button>
-                            <button
-                              type="button"
-                              className="delete"
-                              onClick={() => deleteFromBasket(id)}
-                            >
-                              <DeleteSvg />
-                            </button>
+                            </Price>
+                            <div>
+                              <button
+                                type="button"
+                                className="favorite"
+                                onClick={() => toggleFavorite(id)}
+                              >
+                                {user?.favorites.some(
+                                  ({ _id }) => id === _id
+                                ) ? (
+                                  <FavoriteIcon
+                                    sx={{ color: theme.color.bgNumberBasket }}
+                                  />
+                                ) : (
+                                  <FavoriteBorderIcon
+                                    sx={{ color: '#727272' }}
+                                  />
+                                )}
+                              </button>
+                              <button
+                                type="button"
+                                className="delete"
+                                onClick={() => deleteFromBasket(id)}
+                              >
+                                <DeleteSvg />
+                              </button>
+                            </div>
                           </Actives>
                         </About>
                       </WrapperProduct>
@@ -230,18 +237,19 @@ export default function BasketModal({ setIsOpen }) {
                   <span className="info">
                     {totalCount} {defineWordByCount(totalCount)} на суму
                   </span>
+                  &nbsp;
                   <span className="info-price">{totalPrice} &#8372;</span>
                 </Sum>
                 <Discount>
-                  <span className="info">Знижка</span>
+                  <span className="info">Знижка</span>&nbsp;
                   <span className="info-price info-price_discount">
                     {totalDiscount} &#8372;
                   </span>
                 </Discount>
 
                 <Total>
-                  <span>Загальна сума</span>
-                  <span>{total} &#8372;</span>
+                  <span>Загальна сума</span>&nbsp;
+                  <span className="info-price">{total} &#8372;</span>
                 </Total>
               </TotalPrice>
             </WrapperBuy>
