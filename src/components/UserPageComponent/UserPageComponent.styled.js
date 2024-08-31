@@ -7,10 +7,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 32px 20px;
-
-  @media (min-width: 1415px) {
-    padding: 32px 0px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 0px;
+  padding-right: 0px;
+  @media (min-width: 1440px) {
+    padding-left: 58px;
+    padding-right: 58px;
   }
 `;
 export const Title = styled.h1`
@@ -21,7 +24,7 @@ export const Title = styled.h1`
   letter-spacing: -0.32px;
   padding: 0px 20px;
 
-  @media (min-width: 1415px) {
+  @media (min-width: 1440px) {
     padding: unset;
   }
 `;
@@ -92,8 +95,16 @@ export const Main = styled.div`
   }
 `;
 export const ContainerUserMain = styled.div`
+  display: grid;
+  grid-template-columns: auto;
+  position: relative;
   width: 100%;
-  display: block;
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 274px auto;
+    align-items: flex-start;
+    gap: 32px;
+    padding-top: 122px;
+  }
 `;
 
 export const Sidebar = styled.ul`

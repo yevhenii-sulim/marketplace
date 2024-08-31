@@ -10,7 +10,7 @@ export const ContainerLayout = styled.div`
   }
 `;
 export const Container = styled.div`
-  max-width: 1400px;
+  max-width: 1440px;
   height: 100%;
   margin: auto;
   width: auto;

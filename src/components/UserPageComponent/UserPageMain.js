@@ -1,13 +1,21 @@
+import { useSelector } from 'react-redux';
 import { Outlet, useLocation } from 'react-router-dom';
+import UserPageSidebar from './UserPageSidebar';
+import UserPageHeader from './UserPageHeader';
+import { selectMyUser } from '../../redux/auth/selector';
 import {
   ContainerUserMain,
   Main,
   PagesForSidebar,
+  Sidebar,
   Title,
+  WrapperSidebar,
 } from './UserPageComponent.styled';
 
 export default function UserPageMain() {
   const location = useLocation();
+  const user = useSelector(selectMyUser);
+
   function titleSection() {
     if (location.pathname.includes('my_order')) return 'Мій кошик';
     if (location.pathname.includes('my_poster')) return 'Створити оголошення';
@@ -22,6 +30,16 @@ export default function UserPageMain() {
 
   return (
     <ContainerUserMain>
+      <WrapperSidebar>
+        <UserPageHeader
+          rating={0 || user?.rating.count}
+          nameUser={0 || user?.firstName}
+          imgUser={user?.img || '/marketplace/images/catalog/for-free.png'}
+        />
+        <Sidebar>
+          <UserPageSidebar />
+        </Sidebar>
+      </WrapperSidebar>
       <Main>
         <Title>{titleSection()}</Title>
         <PagesForSidebar>
