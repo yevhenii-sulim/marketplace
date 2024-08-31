@@ -14,6 +14,7 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
 
   const user = useSelector(selectMyUser);
   const token = useSelector(selectToken);
+  const { width } = useWindowDimensions();
 
   const [userDataChanges, setUserDataChanges] = useState({
     lastName: '',
@@ -65,7 +66,11 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
 
   return (
     <>
-      <FormContainer $justifycontent={'space-between'} $redacting={redacting}>
+      <FormContainer 
+        $justifycontent={'space-between'} 
+        $redacting={redacting}
+        $gap={(redacting ? '24px' : null) || width <= 475 ? '50px' : null}
+      >
         <Form 
           redacting={redacting}
           user={user}
@@ -119,7 +124,7 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
       onChange={event => setUserDataChanges({ 
         ...userDataChanges, 
         gender: event.target.value === 'Чоловік' ? 'male' : 'female'
-      })} 
+      })}
     />
   );
 
@@ -128,6 +133,7 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
       disabled={!redacting}
       value={user?.profilePictureSrc}
       onChange={imageSrc => setUserDataChanges({ ...userDataChanges, img: imageSrc })}
+      redacting={redacting}
     />
   );
 
@@ -206,7 +212,7 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
         />
         {width <= 762 ? DateFormFieldComponent : null}
       </InputColumn>
-      <InputColumn $gap={width <= 672 ? '65px' : null} $justifycontent={'flex-start'}>
+      <InputColumn $gap={width <= 672 ? '65px' : null} $justifycontent={width <= 762 ? 'space-between' : 'flex-start'}>
         {width > 762 ? DateFormFieldComponent : null}
         {width > 762 ? GenderSelectComponent : null}
 
