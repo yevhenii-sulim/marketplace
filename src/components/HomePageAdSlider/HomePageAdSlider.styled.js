@@ -8,7 +8,6 @@ import {
 
 export const HomePageAdSliderContainer = styled.ul`
   margin-top: 30px;
-  padding: 20px;
 
   .slide {
     position: relative;
@@ -188,7 +187,8 @@ export const LipGlossMockupImg = styled.img`
   animation: 2s infinite normal lipglossrotate;
 
   @keyframes lipglossrotate {
-    0%, 100% {
+    0%,
+    100% {
       transform: rotate(348deg);
     }
 
@@ -220,7 +220,8 @@ export const EarringsImg = styled.img`
   animation: 2s infinite normal earringsrotate;
 
   @keyframes earringsrotate {
-    0%, 100% {
+    0%,
+    100% {
       transform: rotate(18deg);
     }
 
@@ -252,7 +253,8 @@ export const BagImg = styled.img`
   animation: 2s infinite normal bagrotate;
 
   @keyframes bagrotate {
-    0%, 100% {
+    0%,
+    100% {
       transform: none;
     }
 
@@ -283,7 +285,8 @@ export const SocksImg = styled.img`
   animation: 2s infinite normal socksrotate;
 
   @keyframes socksrotate {
-    0%, 100% {
+    0%,
+    100% {
       transform: none;
     }
 
@@ -315,7 +318,8 @@ export const HoodieImg = styled.img`
   animation: 2s infinite normal hoodierotate;
 
   @keyframes hoodierotate {
-    0%, 100% {
+    0%,
+    100% {
       transform: rotate(6deg);
     }
 
@@ -341,7 +345,8 @@ export const SofaImg = styled.img`
   animation: 2s infinite normal sofarotate;
 
   @keyframes sofarotate {
-    0%, 100% {
+    0%,
+    100% {
       transform: rotate(3deg);
     }
 
@@ -355,7 +360,7 @@ export const SofaImg = styled.img`
     height: 126px;
     top: 6px;
   }
-  
+
   @media (max-width: 672px) {
     width: 21vw;
     height: 21.4vw;
@@ -534,7 +539,7 @@ export const FirstAdButtonPointer = styled.img`
     height: 5px;
     top: 1.7vw;
   }
-`;  
+`;
 
 export const SecondAdButtonContainer = styled.div`
   position: relative;
@@ -555,7 +560,8 @@ export const SecondAdButtonContainer = styled.div`
       width: 62px;
     }
 
-    43%, 98% {
+    43%,
+    98% {
       top: 16px;
       left: -400px;
       opacity: 1;
@@ -610,7 +616,8 @@ export const SecondAdButtonContainer = styled.div`
     width: 9vw;
 
     @keyframes secondadcontainermove {
-      0%, 13% {
+      0%,
+      13% {
         top: 0.2vw;
         left: 0px;
         opacity: 0;
@@ -618,7 +625,8 @@ export const SecondAdButtonContainer = styled.div`
         width: 9vw;
       }
 
-      43%, 98% {
+      43%,
+      98% {
         top: 0.1vw;
         left: -25vw;
         opacity: 1;
@@ -674,7 +682,8 @@ export const ThirdAdButtonContainer = styled.div`
   animation: 5s infinite normal thirdadcontainermove;
 
   @keyframes thirdadcontainermove {
-    0%, 43% {
+    0%,
+    43% {
       width: 10vw;
       top: 32px;
       left: 4px;
@@ -682,7 +691,8 @@ export const ThirdAdButtonContainer = styled.div`
       transform: none;
     }
 
-    68%, 98% {
+    68%,
+    98% {
       width: 25vw;
       top: 94px;
       transform: rotate(10deg);
@@ -699,14 +709,16 @@ export const ThirdAdButtonContainer = styled.div`
     width: 132px;
 
     @keyframes thirdadcontainermove {
-      0%, 43% {
+      0%,
+      43% {
         top: 16px;
         left: 0;
         opacity: 0;
         transform: none;
       }
 
-      68%, 98% {
+      68%,
+      98% {
         top: 50px;
         transform: rotate(10deg);
         left: -30px;
@@ -723,7 +735,8 @@ export const ThirdAdButtonContainer = styled.div`
     width: 10vw;
 
     @keyframes thirdadcontainermove {
-      0%, 43% {
+      0%,
+      43% {
         width: 12vw;
         top: 16px;
         left: 0;
@@ -731,7 +744,8 @@ export const ThirdAdButtonContainer = styled.div`
         transform: none;
       }
 
-      68%, 98% {
+      68%,
+      98% {
         width: 22vw;
         top: 6vw;
         transform: rotate(10deg);
