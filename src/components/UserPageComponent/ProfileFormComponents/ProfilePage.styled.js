@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ProfileContainer = styled.div`
   width: 100%;
@@ -21,10 +21,10 @@ export const PersonalDataContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  display: ${props => props.$redacting ? 'unset' : 'flex'};
-  gap: ${props => props.$gap || 'unset'};  
+  display: ${props => (props.$redacting ? 'unset' : 'flex')};
+  gap: ${props => props.$gap || 'unset'};
   justify-content: ${props => props.$justifycontent || 'start'};
-  
+
   @media (min-width: 762px) {
     width: 100%;
     display: flex;
@@ -45,15 +45,14 @@ export const ProfilePageTitle = styled.h5`
 `;
 
 export const InputColumn = styled.div`
-  width: ${props => props.$setfullwidth ? '100%' : '45%'};
-  align-items: ${props => props.$setitemscenter ? 'center' : 'unset'};
+  width: ${props => (props.$setfullwidth ? '100%' : '45%')};
+  align-items: ${props => (props.$setitemscenter ? 'center' : 'unset')};
   justify-content: ${props => props.$justifycontent || 'space-between'};
   display: flex;
   flex-direction: column;
   gap: ${props => props.$gap || '24px'};
 
   @media (min-width: 762px) {
-    width: ${props => props.$width || '21.4vw'};
     justify-content: unset;
   }
 `;
@@ -69,7 +68,7 @@ export const FormField = styled.div`
     font: 600 18px 'Nunito Sans';
     line-height: 26px;
     &:after {
-      content: '${props => props.required ? '*' : ''}';
+      content: '${props => (props.required ? '*' : '')}';
       color: #ff0000;
     }
   }
@@ -79,15 +78,16 @@ export const FormField = styled.div`
     font: 600 18px 'Nunito Sans';
     line-height: 26px;
   }
-  
-  input, select {
+
+  input,
+  select {
     display: block;
     width: 100%;
     height: 44px;
-    border: 1px solid #8D8D8D;
+    border: 1px solid #8d8d8d;
     border-radius: 6px;
     padding: 12px;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     font: 400 16px 'Nunito Sans';
     line-height: 20px;
     outline: none;
@@ -99,8 +99,8 @@ export const FormField = styled.div`
   }
 
   input:focus {
-    border: 3px solid #43C550;
-    box-shadow: 0.3px 0.3px 5px 0px #43C550;
+    border: 3px solid #43c550;
+    box-shadow: 0.3px 0.3px 5px 0px #43c550;
   }
 
   option {
@@ -111,7 +111,8 @@ export const FormField = styled.div`
   @media (min-width: 762px) {
     width: ${props => props.$width || '100%'};
 
-    input, select {
+    input,
+    select {
       width: ${props => props.$inputwidth || '100%'};
     }
   }
@@ -131,7 +132,7 @@ export const RedactButton = styled.button`
   width: 148px;
   height: 44px;
   border-radius: 6px;
-  background-color: #43C550;
+  background-color: #43c550;
   font: 800 18px 'Nunito Sans';
   color: #fff;
   line-height: 26px;
@@ -143,15 +144,15 @@ export const CancelRedactingButton = styled.button`
   border-radius: 6px;
   background-color: #fff;
   font: 800 18px 'Nunito Sans';
-  color: #43C550;
-  border: 1px solid #43C550;
+  color: #43c550;
+  border: 1px solid #43c550;
   line-height: none;
 `;
 
 export const DateInput = styled.div`
   .MuiInputBase-root {
     height: 44px;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
   }
 
   .MuiInputBase-input {
@@ -182,7 +183,7 @@ export const ProfilePictureSelectField = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: ${props => props.$redacting ? 'center' : 'flex-start'};
+  align-items: ${props => (props.$redacting ? 'center' : 'flex-start')};
   justify-content: center;
   gap: 25px;
 
@@ -306,19 +307,19 @@ export const SaveNewPasswordButton = styled.button`
   width: 148px;
   height: 44px;
   border-radius: 6px;
-  border: 1px solid #43C550;
+  border: 1px solid #43c550;
   font: 800 18px 'Nunito Sans';
   background-color: transparent;
-  color: #43C550;
+  color: #43c550;
 `;
 
 export const DeleteProfileButton = styled.button`
   width: 264px;
   height: 44px;
   border-radius: 8px;
-  border: 1px solid #43C550;
+  border: 1px solid #43c550;
   font: 700 22px 'Jost';
   line-height: 32px;
-  color: #43C550;
+  color: #43c550;
   background-color: transparent;
 `;

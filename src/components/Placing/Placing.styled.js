@@ -51,6 +51,14 @@ export const Box = styled.div`
   &:not(:last-child) {
     margin-bottom: 24px;
   }
+  &.about-bought {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+    @media screen and (min-width: 1440px) {
+      display: none;
+    }
+  }
   &.delivery {
     display: flex;
     flex-direction: column;
@@ -75,8 +83,10 @@ export const TitleBox = styled.h2`
 export const WrapperForm = styled.div`
   &.wrapper-contacts {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 24px;
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   &.wrapper-delivery,
   &.wrapper-pay {

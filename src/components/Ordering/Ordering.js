@@ -1,104 +1,34 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { selectBasket } from '../../redux/basket/select';
-import { deleteBasket, deleteProduct } from '../../redux/basket/slice';
 import { setOrder } from '../../redux/orderData/slice';
 import { selectAuth, selectMyUser } from '../../redux/auth/selector';
+import { addNewProduct } from '../../redux/auth/slice';
 import signupSchema from 'components/Placing/validationSchema';
 import Placing from 'components/Placing/Placing';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import ProductComponent from './ProductComponent';
+import { handleOrder, onSubmitOrder, prices } from './Functions';
 import {
-  About,
-  Actives,
-  DeleteAdd,
-  Discount,
   Form,
-  Image,
-  List,
-  Price,
-  Sum,
-  Title,
-  Total,
   TotalPrice,
   WrapperButton,
   WrapperBuy,
   WrapperListOrder,
-  WrapperProduct,
   addProductButton,
 } from './Ordering.styled';
-import { addNewProduct } from '../../redux/auth/slice';
-import { removeFavoriteProduct } from '../../redux/product/thunk';
-
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
-
-const prices = {
-  total: 0,
-  totalPrice: 0,
-  totalDiscount: 0,
-  totalCount: 0,
-};
-
-function onSubmitOrder(data, values, user, dispatch) {
-  const orderData = data.map(({ count, id }) => {
-    dispatch(removeFavoriteProduct(id));
-    return {
-      id,
-      value: { ...values, quantity: count, userId: user?._id ?? '' },
-    };
-  });
-
-  return orderData.forEach(({ id, value }) => {
-    return axios({
-      method: 'post',
-      url: `/purchase/${id}`,
-      data: value,
-    })
-      .then(() => dispatch(deleteBasket()))
-      .catch(error => console.log(error));
-  });
-}
-
-function handleOrder(data) {
-  prices.total = 0;
-  prices.totalPrice = 0;
-  prices.totalDiscount = 0;
-  prices.totalCount = 0;
-  for (const { count, discount, discountPrice, price } of data) {
-    prices.total += discount ? discountPrice * count : price * count;
-    prices.totalPrice += price * count;
-    prices.totalDiscount += discount && (price - discountPrice) * count;
-    prices.totalCount += count;
-  }
-  return prices;
-}
-
-function defineWordByCount(product) {
-  if (!product) return;
-  if (product === 1) return 'товар';
-  if (
-    String(product).slice(-2, String(product).length - 1) !== '1' &&
-    (String(product).slice(-1) === '2' ||
-      String(product).slice(-1) === '3' ||
-      String(product).slice(-1) === '4')
-  )
-    return 'товари';
-  return 'товарів';
-}
+import TotalPriceListComponent from './TotalPriceListComponent';
 
 export default function Ordering() {
   const basket = useSelector(selectBasket);
   const dispatch = useDispatch();
   const navigation = useNavigate();
+  const { width } = useWindowDimensions();
 
   const userData = useSelector(selectMyUser);
   const isUserRegistered = useSelector(selectAuth);
-
-  const deleteFromBasket = id => {
-    dispatch(deleteProduct(id));
-  };
 
   const handleSubmit = async values => {
     dispatch(
@@ -194,79 +124,38 @@ export default function Ordering() {
                 }
               />
               <WrapperListOrder>
-                <ul>
-                  {basket.map(
-                    ({
-                      id,
-                      title,
-                      price,
-                      img,
-                      discount,
-                      discountPrice,
-                      count,
-                    }) => (
-                      <List key={id}>
-                        <WrapperProduct>
-                          <Image>
-                            <img height="114" src={img} alt={title} />
-                          </Image>
-                          <About className="basket">
-                            <Title>{title}</Title>
-                            <br />
-                            <span>{count}</span>
-                          </About>
-                          <Actives>
-                            <Price>
-                              {discount ? (
-                                <>
-                                  <p className="price-discount">
-                                    {price}&#8372;
-                                  </p>
-                                  <p className="discount">
-                                    {discountPrice}&#8372;
-                                  </p>
-                                </>
-                              ) : (
-                                <p className="price">{price}&#8372;</p>
-                              )}
-                            </Price>
-                            <DeleteAdd className="basket">
-                              <button
-                                type="button"
-                                className="delete"
-                                onClick={() => deleteFromBasket(id)}
-                              >
-                                <DeleteOutlineIcon />
-                              </button>
-                            </DeleteAdd>
-                          </Actives>
-                        </WrapperProduct>
-                      </List>
-                    )
-                  )}
-                </ul>
+                {width >= 1440 && (
+                  <ul>
+                    {basket.map(
+                      ({
+                        id,
+                        title,
+                        price,
+                        img,
+                        discount,
+                        discountPrice,
+                        count,
+                      }) => (
+                        <ProductComponent
+                          key={id}
+                          id={id}
+                          img={img}
+                          title={title}
+                          count={count}
+                          discount={discount}
+                          discountPrice={discountPrice}
+                          price={price}
+                        />
+                      )
+                    )}
+                  </ul>
+                )}
+
                 <WrapperBuy>
                   <TotalPrice>
-                    <Sum>
-                      <span className="info">
-                        {prices.totalCount}{' '}
-                        {defineWordByCount(prices.totalCount)} на суму
-                      </span>
-                      <span className="info-price">
-                        {prices.totalPrice}&#8372;
-                      </span>
-                    </Sum>
-                    <Discount>
-                      <span className="info">Знижка</span>
-                      <span className="info-price info-price_discount">
-                        {prices.totalDiscount}&#8372;
-                      </span>
-                    </Discount>
-
-                    <Total>
-                      <span>Загальна сума</span>
-                      <span>{prices.total}&#8372;</span>
-                    </Total>
+                    {(width >= 1440 || width <= 768) && (
+                      <TotalPriceListComponent prices={prices} />
+                    )}
                     <WrapperButton>
                       <Button type="submit" sx={addProductButton}>
                         Оформити замовлення

@@ -6,56 +6,61 @@ export const List = styled.li`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
   padding: 32px;
+  border-bottom: 1px solid ${({ theme }) => theme.color.colorPriceDiscant};
   &:not(:last-child) {
     margin-bottom: 24px;
   }
 `;
-
+export const TotalPriceList = styled.div`
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  width: 100%;
+  border-radius: 12px;
+  padding: 32px 8px;
+  .info-price {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.44;
+    &_discount {
+      color: ${({ theme }) => theme.color.colorTextPrice};
+    }
+  }
+  .info {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+`;
 export const Form = styled(FormContainer)`
   display: grid;
-  grid-template-columns: 2fr auto;
+  padding-top: 24px;
+  padding-bottom: 24px;
   gap: 32px;
   font-size: 18px;
   font-weight: 800;
   line-height: 1.44;
-  & .visibility-hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 2fr auto;
   }
 `;
 
 export const WrapperOrder = styled.div`
   display: grid;
-  grid-template-columns: 2fr 323px;
   gap: 32px;
   font-size: 18px;
   font-weight: 800;
   line-height: 1.44;
-  & .visibility-hidden {
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    margin: -1px;
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 2fr 323px;
   }
 `;
 
 export const WrapperListOrder = styled.div`
   display: grid;
-  grid-template-rows: auto auto;
   gap: 32px;
   font-size: 18px;
   font-weight: 800;
@@ -121,7 +126,7 @@ export const Count = styled.div`
 export const Actives = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 export const Price = styled.div`
   font-family: Jost;
@@ -162,25 +167,20 @@ export const WrapperBuy = styled.div`
     display: flex;
     align-items: center;
   }
-  .info-price {
-    font-size: 18px;
-    font-weight: 800;
-    line-height: 1.44; /* 144.444% */
-    &_discount {
-      color: ${({ theme }) => theme.color.colorTextPrice};
-    }
-  }
-  .info {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.25;
-  }
 `;
 export const TotalPrice = styled.div`
-  background-color: ${({ theme }) => theme.color.bgProduct};
   width: 100%;
-  border-radius: 12px;
-  padding: 32px 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 32px;
+  @media screen and (max-width: 767px) {
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    border-radius: 12px;
+  }
+  @media screen and (min-width: 1440px) {
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    border-radius: 12px;
+  }
 `;
 export const Sum = styled.div`
   display: flex;
@@ -192,17 +192,18 @@ export const Discount = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 65px;
 `;
 export const Total = styled.div`
   font-family: Jost;
   font-size: 22px;
   font-weight: 700;
-  line-height: 1.45; /* 145.455% */
+  line-height: 1.45;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  margin-bottom: 32px;
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 32px;
+    margin-top: 65px;
+  }
 `;
 export const WrapperButton = styled.div`
   text-align: center;

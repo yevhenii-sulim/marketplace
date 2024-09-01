@@ -58,7 +58,7 @@ export default function BasketProductComponent({
     dispatch(changeCount(payload));
   };
   return (
-    <List key={id}>
+    <List>
       <WrapperProduct>
         <Image>
           <img height="114" src={img} alt={title} />
