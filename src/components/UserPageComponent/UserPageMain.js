@@ -32,7 +32,7 @@ export default function UserPageMain() {
 
   return (
     <ContainerUserMain $screenwidth={`${width}px`}>
-      {width >= 1216 ? (
+      {width >= 1440 ? (
         <WrapperSidebar>
           <UserPageHeader
             rating={0 || user?.rating.count}
