@@ -1,17 +1,26 @@
-import { InputColumn, RedactContainer, RedactButton, CancelRedactingButton } from "./ProfilePage.styled";
-import InputField from "./InputField";
-import DateFormField from "./DateFormField";
-import GenderSelect from "./GenderSelect";
-import ProfilePictureSelect from "./ProfilePictureSelect";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import { FormContainer } from "./ProfilePage.styled";
-import { selectMyUser, selectToken } from "../../../redux/auth/selector";
-import axios from "axios";
-import useWindowDimensions from "hooks/useWindowDimensions";
+import {
+  InputColumn,
+  RedactContainer,
+  RedactButton,
+  CancelRedactingButton,
+} from './ProfilePage.styled';
+import InputField from './InputField';
+import DateFormField from './DateFormField';
+import GenderSelect from './GenderSelect';
+import ProfilePictureSelect from './ProfilePictureSelect';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { FormContainer } from './ProfilePage.styled';
+import { selectMyUser, selectToken } from '../../../redux/auth/selector';
+import axios from 'axios';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
-export default function PersonalDataForm({ redacting, onSaveChanges, onCancelChanges, onStartRedacting }) {
-
+export default function PersonalDataForm({
+  redacting,
+  onSaveChanges,
+  onCancelChanges,
+  onStartRedacting,
+}) {
   const user = useSelector(selectMyUser);
   const token = useSelector(selectToken);
   const { width } = useWindowDimensions();
@@ -22,36 +31,34 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
     surname: '',
     birthDate: '',
     gender: '',
-    img: ''
+    img: '',
   });
 
   const saveChanges = async () => {
-    console.log(user);
-    console.log(userDataChanges);
-
     const changes = {
       lastName: userDataChanges?.lastName || user?.lastName,
       firstName: userDataChanges?.firstName || user?.firstName,
       surName: userDataChanges?.surname || user?.surName,
       gender: userDataChanges?.gender || user?.gender,
-      birthDate: userDataChanges?.birthDate || user?.birthDate
+      birthDate: userDataChanges?.birthDate || user?.birthDate,
     };
 
     if (userDataChanges?.img) {
       changes.img = userDataChanges?.img;
-    } 
+    }
 
-    console.log(changes);
-
-    const { data } = await axios.post('https://internet-shop-api-production.up.railway.app/user', changes, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`
+    const { data } = await axios.post(
+      'https://internet-shop-api-production.up.railway.app/user',
+      changes,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });
-
-    console.log(data);
-  }
+    );
+    return data;
+  };
 
   const cancelChanges = () => {
     setUserDataChanges({
@@ -60,18 +67,18 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
       surname: '',
       birthDate: '',
       gender: '',
-      img: ''
+      img: '',
     });
-  }
+  };
 
   return (
     <>
-      <FormContainer 
-        $justifycontent={'space-between'} 
+      <FormContainer
+        $justifycontent={'space-between'}
         $redacting={redacting}
         $gap={(redacting ? '24px' : null) || width <= 475 ? '50px' : null}
       >
-        <Form 
+        <Form
           redacting={redacting}
           user={user}
           userDataChanges={userDataChanges}
@@ -81,16 +88,20 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
       <RedactContainer>
         {redacting ? (
           <>
-            <RedactButton onClick={() => {
-              saveChanges();
-              onSaveChanges();
-            }}>
+            <RedactButton
+              onClick={() => {
+                saveChanges();
+                onSaveChanges();
+              }}
+            >
               Зберегти
             </RedactButton>
-            <CancelRedactingButton onClick={() => {
-              cancelChanges();
-              onCancelChanges();
-            }}>
+            <CancelRedactingButton
+              onClick={() => {
+                cancelChanges();
+                onCancelChanges();
+              }}
+            >
               Скасувати
             </CancelRedactingButton>
           </>
@@ -101,71 +112,88 @@ export default function PersonalDataForm({ redacting, onSaveChanges, onCancelCha
         )}
       </RedactContainer>
     </>
-  )
+  );
 }
 
 function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
-
   const { width } = useWindowDimensions();
 
   const DateFormFieldComponent = (
-    <DateFormField 
+    <DateFormField
       label={'Дата народження'}
       disabled={!redacting}
       value={userDataChanges?.birthDate || user?.birthDate}
-      onChange={value => setUserDataChanges({ ...userDataChanges, birthDate: value })}
+      onChange={value =>
+        setUserDataChanges({ ...userDataChanges, birthDate: value })
+      }
     />
   );
 
   const GenderSelectComponent = (
-    <GenderSelect 
+    <GenderSelect
       disabled={!redacting}
       value={user?.gender}
-      onChange={event => setUserDataChanges({ 
-        ...userDataChanges, 
-        gender: event.target.value === 'Чоловік' ? 'male' : 'female'
-      })}
+      onChange={event =>
+        setUserDataChanges({
+          ...userDataChanges,
+          gender: event.target.value === 'Чоловік' ? 'male' : 'female',
+        })
+      }
     />
   );
 
   const ProfilePictureSelectComponent = (
-    <ProfilePictureSelect 
+    <ProfilePictureSelect
       disabled={!redacting}
       value={user?.profilePictureSrc}
-      onChange={imageSrc => setUserDataChanges({ ...userDataChanges, img: imageSrc })}
+      onChange={imageSrc =>
+        setUserDataChanges({ ...userDataChanges, img: imageSrc })
+      }
       redacting={redacting}
     />
   );
 
   return redacting ? (
     <>
-      <InputColumn
-        $setfullwidth={true}
-        $setitemscenter={true}
-      >
+      <InputColumn $setfullwidth={true} $setitemscenter={true}>
         {width <= 762 ? ProfilePictureSelectComponent : null}
-        <InputField 
-          label={'Прізвище'} 
+        <InputField
+          label={'Прізвище'}
           placeholder={'Введіть прізвище'}
-          onChange={event => setUserDataChanges({ ...userDataChanges, lastName: event.target.value })} 
+          onChange={event =>
+            setUserDataChanges({
+              ...userDataChanges,
+              lastName: event.target.value,
+            })
+          }
           required={true}
           value={userDataChanges?.lastName || user?.lastName}
           disabled={!redacting}
         />
         <InputField
-          label={'Ім\'я'} 
-          placeholder={'Введіть ім\'я'}
-          onChange={event => setUserDataChanges({ ...userDataChanges, firstName: event.target.value })}
+          label={"Ім'я"}
+          placeholder={"Введіть ім'я"}
+          onChange={event =>
+            setUserDataChanges({
+              ...userDataChanges,
+              firstName: event.target.value,
+            })
+          }
           required={true}
-          value={userDataChanges?.firstName || user?.firstName} 
+          value={userDataChanges?.firstName || user?.firstName}
           disabled={!redacting}
         />
         <InputField
-          label={'По батькові'} 
-          placeholder={'Введіть по батькові'} 
-          onChange={event => setUserDataChanges({ ...userDataChanges, surname: event.target.value })}
+          label={'По батькові'}
+          placeholder={'Введіть по батькові'}
+          onChange={event =>
+            setUserDataChanges({
+              ...userDataChanges,
+              surname: event.target.value,
+            })
+          }
           required={true}
-          value={userDataChanges?.surname || user?.surName || ''} 
+          value={userDataChanges?.surname || user?.surName || ''}
           disabled={!redacting}
         />
         {width <= 762 ? DateFormFieldComponent : null}
@@ -186,33 +214,51 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
   ) : (
     <>
       <InputColumn>
-        <InputField 
-          label={'Прізвище'} 
+        <InputField
+          label={'Прізвище'}
           placeholder={'Введіть прізвище'}
-          onChange={event => setUserDataChanges({ ...userDataChanges, lastName: event.target.value })} 
+          onChange={event =>
+            setUserDataChanges({
+              ...userDataChanges,
+              lastName: event.target.value,
+            })
+          }
           required={true}
           value={userDataChanges?.lastName || user?.lastName}
           disabled={!redacting}
         />
         <InputField
-          label={'Ім\'я'} 
-          placeholder={'Введіть ім\'я'}
-          onChange={event => setUserDataChanges({ ...userDataChanges, firstName: event.target.value })}
+          label={"Ім'я"}
+          placeholder={"Введіть ім'я"}
+          onChange={event =>
+            setUserDataChanges({
+              ...userDataChanges,
+              firstName: event.target.value,
+            })
+          }
           required={true}
-          value={userDataChanges?.firstName || user?.firstName} 
+          value={userDataChanges?.firstName || user?.firstName}
           disabled={!redacting}
         />
         <InputField
-          label={'По батькові'} 
-          placeholder={'Введіть по батькові'} 
-          onChange={event => setUserDataChanges({ ...userDataChanges, surname: event.target.value })}
+          label={'По батькові'}
+          placeholder={'Введіть по батькові'}
+          onChange={event =>
+            setUserDataChanges({
+              ...userDataChanges,
+              surname: event.target.value,
+            })
+          }
           required={true}
-          value={userDataChanges?.surname || user?.surName || ''} 
+          value={userDataChanges?.surname || user?.surName || ''}
           disabled={!redacting}
         />
         {width <= 762 ? DateFormFieldComponent : null}
       </InputColumn>
-      <InputColumn $gap={width <= 672 ? '65px' : null} $justifycontent={width <= 762 ? 'space-between' : 'flex-start'}>
+      <InputColumn
+        $gap={width <= 672 ? '65px' : null}
+        $justifycontent={width <= 762 ? 'space-between' : 'flex-start'}
+      >
         {width > 762 ? DateFormFieldComponent : null}
         {width > 762 ? GenderSelectComponent : null}
 
@@ -220,9 +266,7 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
         {width <= 762 ? GenderSelectComponent : null}
       </InputColumn>
       {width > 762 ? (
-        <InputColumn>
-          {ProfilePictureSelectComponent}
-        </InputColumn>
+        <InputColumn>{ProfilePictureSelectComponent}</InputColumn>
       ) : null}
     </>
   );
