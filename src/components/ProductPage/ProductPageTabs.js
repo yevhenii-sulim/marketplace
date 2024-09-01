@@ -10,6 +10,7 @@ import { SimilarProductsHeader } from './SimilarProducts/SimilarProductList.styl
 import { theme } from './theme/theme';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Link } from 'react-router-dom';
+import { WrapperMobileCatalogOnProductPage } from './BreadcrumbsComponent/BreadcrumbsComponent.styled';
 
 function ProductPageTabs() {
   const [value, setValue] = useState('1');
@@ -23,7 +24,7 @@ function ProductPageTabs() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 767) {
+      if (window.innerWidth >= 1024) {
         setShowAccordion(false);
       } else {
         setShowAccordion(true);
@@ -49,20 +50,22 @@ function ProductPageTabs() {
           },
         }}
       >
-        <Link
-          to="/"
-          style={{
-            width: '95%',
-            margin: '12px auto 0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            color: '#1f1f1f',
-            fontFamily: 'Nunito Sans',
-            fontSize: '16px',
-          }}
-        >
-          <KeyboardArrowLeftIcon /> Каталог
-        </Link>
+        <WrapperMobileCatalogOnProductPage>
+          <Link
+            to="/"
+            style={{
+              width: '95%',
+              margin: '12px auto 0 0',
+              display: 'flex',
+              alignItems: 'center',
+              color: '#1f1f1f',
+              fontFamily: 'Nunito Sans',
+              fontSize: '16px',
+            }}
+          >
+            <KeyboardArrowLeftIcon /> Каталог
+          </Link>
+        </WrapperMobileCatalogOnProductPage>
         <TabList
           onChange={handleChange}
           aria-label="lab API tabs example"

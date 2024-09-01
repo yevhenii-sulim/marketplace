@@ -5,10 +5,33 @@ export const ButtonBlockWrapper = styled.div`
   flex-direction: column;
   height: 140px;
   justify-content: space-between;
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     height: 144px;
-    background-color: white;
+    flex-direction: row;
     align-items: center;
+
+    & > * {
+      order: 0;
+    }
+    & > :nth-child(1) {
+      order: 2;
+    }
+    & > :nth-child(2) {
+      order: 1;
+    }
+    & > :nth-child(3) {
+      order: 0;
+    }
+  }
+  @media (max-width: 767px) {
+    flex-direction: column;
+    background-color: white;
     padding-bottom: 25px;
+    & > :nth-child(1) {
+      order: 1;
+    }
+    & > :nth-child(2) {
+      order: 2;
+    }
   }
 `;
