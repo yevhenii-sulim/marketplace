@@ -55,8 +55,7 @@ export const IsCheckbox = styled.div`
   height: 26px;
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   background-color: ${({ theme }) => theme.color.bgCheckbox};
   border: 4px solid ${({ theme }) => theme.color.bgCheckbox};
   border-radius: 20px;
@@ -72,6 +71,10 @@ export const IsCheckbox = styled.div`
     background-color: ${({ theme }) => theme.color.bgProduct};
     transition: all 500ms ease;
     content: '';
+  }
+  @media screen and (min-width: 768px) {
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 
@@ -159,9 +162,11 @@ export const Box = styled.div`
     -moz-appearance: textfield;
   }
   &.price_box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @media screen and (min-width: 1440px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
   .checkbox {
     display: flex;
@@ -192,15 +197,20 @@ export const Price = styled.div`
   gap: 16px;
   align-items: flex-end;
   &.price {
-    width: 320px;
+  }
+  .price-field {
+    width: 70%;
+    @media screen and (min-width: 380px) {
+      width: 320px;
+    }
   }
   .is_discount {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 50%;
-    left: -50px;
+    top: -53%;
+    left: 0;
     transform: translateY(-50%);
     width: 21px;
     height: 21px;
@@ -225,12 +235,21 @@ export const LabelSign = styled.p`
 `;
 
 export const Sign = styled.h3`
+  margin-top: 34px;
+  font-size: 18px;
+  padding-left: 30px;
+  font-weight: 600;
+  line-height: 1.44;
+  color: ${({ $disable, theme }) =>
+    $disable ? `${theme.color.bgArrowList}` : `${theme.color.colorMainText}`};
+  @media screen and (min-width: 1440px) {
+    margin-top: 0;
+  }
+`;
+export const SignTitle = styled.h3`
   font-size: 18px;
   font-weight: 600;
   line-height: 1.44;
-  margin-bottom: 8px;
-  color: ${({ $disable, theme }) =>
-    $disable ? `${theme.color.bgArrowList}` : `${theme.color.colorMainText}`};
 `;
 export const Error = styled.p`
   color: ${({ theme }) => theme.color.colorTextErrorForm};
@@ -248,7 +267,10 @@ export const Explainment = styled.div`
     color: ${({ theme }) => theme.color.colorTextErrorForm};
   }
   &.sign_checkbox {
-    width: 60%;
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      width: 60%;
+    }
   }
 `;
 export const ExplainmentInputSign = styled.p`
@@ -280,10 +302,15 @@ export const ImagesList = styled.div`
 `;
 export const FieldImagesList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   justify-content: center;
   gap: 16px;
   margin-top: 24px;
+  @media screen and (min-width: 380px) {
+    grid-template-columns: repeat(2, minmax(150px, auto));
+  }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 `;
 
 export const Images = styled.div`
@@ -334,12 +361,16 @@ export const TextCheckbox = styled.div`
   gap: 8px;
 `;
 export const Buttons = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 90%;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 264px 264px;
+    justify-content: end;
+  }
   gap: 24px;
 `;
 export const addProductButton = {
-  width: '264px',
   fontSize: '22px',
   fontWeight: '700',
   fontFamily: 'Jost',
@@ -432,7 +463,7 @@ export const viewProductButton = {
   bgcolor: theme.color.bgProduct,
   borderRadius: '8px',
   height: '48px',
-  padding: '6px 16px',
+  padding: '6px 0px',
   fontFamily: 'Jost',
   fontSize: '22px',
   fontWeight: '700',

@@ -41,6 +41,7 @@ export default function FieldPrice({
             name={name}
             step="1"
             type="number"
+            className="price-field"
             onChange={handleChangeComponent}
             disabled={disabled}
             value={value}
