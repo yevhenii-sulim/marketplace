@@ -14,10 +14,14 @@ function ButtonBlock({ sendIdProduct, tel, showAccordion }) {
   return (
     <ButtonBlockWrapper>
       <Button variant="contained" onClick={sendIdProduct} sx={buttonBuyStyles}>
-        Купити
+        {showAccordion ? 'Додати до кошика' : 'Купити'}
       </Button>
-      <Button variant="outlined" sx={buttonConnectStyles}>
-        Зв’язатися з продавцем
+      <Button
+        variant="outlined"
+        sx={buttonConnectStyles}
+        onClick={() => setIsShowTel(prev => !prev)}
+      >
+        {isShowTel ? tel : 'Зв’язатися з продавцем'}
       </Button>
       {showAccordion ? null : (
         <Button

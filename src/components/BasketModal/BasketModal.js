@@ -88,13 +88,17 @@ export default function BasketModal({ setIsOpen }) {
             </IconButton>
             <ul>
               {basket.map(
-                ({ id, title, price, img, discount, discountPrice, count }) => {
+                (
+                  { id, title, price, img, discount, discountPrice, count },
+                  index
+                ) => {
                   total += discount ? discountPrice * count : price * count;
                   totalPrice += price * count;
                   totalDiscount += discount && (price - discountPrice) * count;
                   totalCount += count;
                   return (
                     <BasketProductComponent
+                      key={index}
                       id={id}
                       img={img}
                       title={title}
