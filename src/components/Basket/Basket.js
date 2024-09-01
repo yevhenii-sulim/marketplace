@@ -44,6 +44,7 @@ export default function Basket() {
                 totalCount += count;
                 return (
                   <BasketProductComponent
+                    key={id}
                     id={id}
                     img={img}
                     title={title}

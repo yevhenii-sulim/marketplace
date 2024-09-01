@@ -10,12 +10,7 @@ import {
   styleRemoveImgButton,
 } from './AddProductComponent.styled';
 
-export default function FieldAddImages({
-  values,
-  setFieldValue,
-
-  name,
-}) {
+export default function FieldAddImages({ values, setFieldValue, name }) {
   const [imageBig, setImageBig] = useState([]);
   const [field, setField] = useState(false);
   const inputRef = useRef(null);

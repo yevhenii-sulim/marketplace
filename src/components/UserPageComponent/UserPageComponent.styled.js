@@ -9,12 +9,6 @@ export const Container = styled.div`
   gap: 32px;
   padding-top: 32px;
   padding-bottom: 32px;
-  padding-left: 10px;
-  padding-right: 10px;
-  @media (min-width: 1440px) {
-    padding-left: 58px;
-    padding-right: 58px;
-  }
 `;
 export const Title = styled.h1`
   font-family: Jost;
@@ -97,8 +91,6 @@ export const Main = styled.div`
 `;
 export const ContainerUserMain = styled.div`
   display: block;
-  /* 1440px */
-
   @media screen and (min-width: 764px) {
     display: grid;
     grid-template-columns: auto;
@@ -106,16 +98,10 @@ export const ContainerUserMain = styled.div`
     width: 100%;
   }
 
-  @media screen and (min-width: 1216px) {
-    /* grid-template-columns: 274px auto; */
-    grid-template-columns: 274px calc(${props => props.$screenwidth} - 274px - 10px * 2 - 32px);
-    align-items: flex-start;
-    gap: 32px;
-    padding-top: 122px;
-  }
-
   @media screen and (min-width: 1440px) {
-    grid-template-columns: 274px calc(${props => props.$screenwidth} - 274px - 58px * 3 - 32px);
+    grid-template-columns: 274px auto;
+    padding-top: 140px;
+    gap: 32px;
   }
 `;
 
@@ -133,7 +119,6 @@ export const Sidebar = styled.ul`
 
 export const WrapperSidebar = styled.div`
   display: none;
-  /* 1440px */
   @media screen and (min-width: 762px) {
     display: block;
   }

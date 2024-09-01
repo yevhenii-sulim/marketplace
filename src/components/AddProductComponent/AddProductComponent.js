@@ -6,12 +6,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import FieldComponent from './FieldComponent';
 import FieldAddImages from './FieldAddImages';
 import Label from './Label';
-import MultipleSelectColor from './MultipleSelectColor';
-import MultipleSelectCategory from './MultipleSelectCategory';
-import MultipleSelectSubCategory from './MultipleSelectSubCategory';
-import MultipleSelectSex from './MultipleSelectSex';
-import MultipleSelectState from './MultipleSelectState';
-import MultipleSelectSize from './MultipleSelectSize';
 import PriceComponent from './PriceComponent';
 import FieldsCheckboxes from './FieldsCheckboxes';
 import { createProduct } from '../../redux/product/thunk';
@@ -35,10 +29,10 @@ import {
   FieldImagesList,
   Form,
   NavLink,
-  SelectorsList,
   addProductButton,
   viewProductButton,
 } from './AddProductComponent.styled';
+import SelectorsOptions from './SelectorsOptions';
 
 const modalEnter = document.querySelector('#modal');
 
@@ -191,99 +185,18 @@ export default function AddProductComponent() {
               />
             </Box>
             <Box>
-              <SelectorsList>
-                <li>
-                  <label>
-                    <Label label="Категорія" />
-                    <MultipleSelectCategory
-                      handleChange={selectedOption => {
-                        handleChange(selectedOption);
-                        setFieldValue('category', selectedOption);
-                        setFieldValue('subCategory', '');
-                        setFieldValue('price', '');
-                        setFieldValue('size', []);
-                      }}
-                      setSubmitting={setSubmitting}
-                      names={navigationList}
-                      name="category"
-                      error={errors.category}
-                      touched={touched.category}
-                    />
-                  </label>
-                </li>
-                {values.category !== 'Подарую' && (
-                  <li>
-                    <label>
-                      <Label label="Підкатегорія" />
-                      <MultipleSelectSubCategory
-                        handleChange={handleChange}
-                        setSubmitting={setSubmitting}
-                        names={navigationList}
-                        name="subCategory"
-                        values={values}
-                        error={errors.subCategory}
-                        touched={touched.subCategory}
-                      />
-                    </label>
-                  </li>
-                )}
-                <li>
-                  <label>
-                    Стан
-                    <MultipleSelectState
-                      handleChange={handleChange}
-                      setSubmitting={setSubmitting}
-                      name="state"
-                      placeholder="Оберіть стан товару"
-                    />
-                  </label>
-                </li>
-                <li>
-                  <label>
-                    <Label label="Колір" />
-                    <MultipleSelectColor
-                      names={colorProduct}
-                      name="color"
-                      handleChange={handleChange}
-                      setSubmitting={setSubmitting}
-                      error={errors.color}
-                      touched={touched.color}
-                    />
-                  </label>
-                </li>
-
-                <li>
-                  <label>
-                    <Label label="Стать" />
-                    <MultipleSelectSex
-                      handleChange={handleChange}
-                      setSubmitting={setSubmitting}
-                      name="sex"
-                      placeholder="Оберіть кому підходить товар"
-                      error={errors.sex}
-                      touched={touched.sex}
-                    />
-                  </label>
-                </li>
-                {(values.category === 'Взуття з натуральних матеріалів' ||
-                  values.category === 'Одяг') && (
-                  <li>
-                    <label>
-                      <Label label="Розмір" />
-                      <MultipleSelectSize
-                        handleChange={handleChange}
-                        setSubmitting={setSubmitting}
-                        sizeFootwear={sizeFootwear}
-                        sizeClothes={sizeClothes}
-                        values={values}
-                        name="size"
-                        error={errors.size}
-                        touched={touched.size}
-                      />
-                    </label>
-                  </li>
-                )}
-              </SelectorsList>
+              <SelectorsOptions
+                handleChange={handleChange}
+                setFieldValue={setFieldValue}
+                setSubmitting={setSubmitting}
+                navigationList={navigationList}
+                errors={errors}
+                touched={touched}
+                values={values}
+                colorProduct={colorProduct}
+                sizeFootwear={sizeFootwear}
+                sizeClothes={sizeClothes}
+              />
             </Box>
             <Box>
               <label>

@@ -94,12 +94,15 @@ export const Field = styled(FieldForm)`
     color: ${({ theme }) => theme.color.colorTextExplainment};
   }
   &.brand {
-    width: 320px;
+    width: 100%;
     font-family: 'Nunito Sans';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.25;
+    @media screen and (min-width: 768px) {
+      width: 320px;
+    }
   }
   &.title {
     font-family: 'Nunito Sans';
@@ -260,14 +263,25 @@ export const ExplainmentInputSign = styled.p`
 `;
 export const SelectorsList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
   gap: 40px;
+  li {
+    text-align: center;
+  }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
-
+export const ImagesList = styled.div`
+  margin: auto;
+`;
 export const FieldImagesList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(7, auto);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  justify-content: center;
   gap: 16px;
   margin-top: 24px;
 `;
@@ -296,6 +310,7 @@ export const addImageSignButton = {
 export const AddImageList = styled.li`
   position: relative;
   height: 126px;
+  min-width: 126px;
   border: 1px solid ${({ theme }) => theme.color.colorTextStartUserPage};
   border-radius: 4px;
   overflow: hidden;
