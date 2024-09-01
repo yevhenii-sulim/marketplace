@@ -1,7 +1,7 @@
 import {
   Explainment,
   IsCheckbox,
-  Sign,
+  SignTitle,
   TextCheckbox,
 } from './AddProductComponent.styled';
 import FieldCheckbox from './FieldCheckbox';
@@ -15,7 +15,7 @@ export default function FieldsCheckboxes({
 }) {
   return (
     <TextCheckbox>
-      <Sign>{title}</Sign>
+      <SignTitle>{title}</SignTitle>
       <FieldCheckbox
         name={name}
         handleChange={handleChange}

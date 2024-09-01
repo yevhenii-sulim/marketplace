@@ -34,8 +34,7 @@ export const Header = styled.div`
   max-width: 366px;
   margin-left: auto;
   margin-right: auto;
-  /* 1440px */
-  @media screen and (min-width: 762px) {
+  @media screen and (min-width: 1440px) {
     max-width: 100%;
     position: absolute;
     top: 0;
@@ -91,7 +90,7 @@ export const Main = styled.div`
 `;
 export const ContainerUserMain = styled.div`
   display: block;
-  @media screen and (min-width: 764px) {
+  @media screen and (min-width: 768px) {
     display: grid;
     grid-template-columns: auto;
     position: relative;
@@ -119,7 +118,7 @@ export const Sidebar = styled.ul`
 
 export const WrapperSidebar = styled.div`
   display: none;
-  @media screen and (min-width: 762px) {
+  @media screen and (min-width: 768px) {
     display: block;
   }
 `;

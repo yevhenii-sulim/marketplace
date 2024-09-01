@@ -85,28 +85,29 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
               <h3>Опис</h3>
               <Options>
                 <p>
-                  Стан
+                  Стан:&nbsp;
                   <span>{values.state}</span>
                 </p>
                 {values.size && (
                   <p>
-                    Розмір
-                    <span>{values.size}</span>
+                    Розмір:&nbsp;
+                    {values.size.map(item => (
+                      <span key={item}>{item}, </span>
+                    ))}
                   </p>
                 )}
                 {values.brand && (
                   <p>
-                    Бренд
+                    Бренд:&nbsp;
                     <span>{values.brand}</span>
                   </p>
                 )}
                 <p>
-                  Колір
+                  Колір:&nbsp;
                   <span>{values.state}</span>
                 </p>
               </Options>
               <ProductDescription>{values.describe}</ProductDescription>
-              <p className="complaint">Поскаржитися</p>
             </Description>
           </AboutProduct>
           <AboutPrice>
