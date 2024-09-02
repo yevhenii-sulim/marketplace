@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Empty, Link } from './PagesForSidebar.styled';
 import FavoriteSvg from 'SvgComponents/FavoriteSVG/FavoriteSvg';
 import SimilarProduct from 'components/Product/SimilarProduct';
@@ -27,16 +27,70 @@ export default function Selected() {
   };
 
   const sortProduct = criterion => {
-    switch (criterion) {
-      case 'cheep':
-        return favorites.toSorted(
-          (max, min) => parseInt(max.price) - parseInt(min.price)
-        );
+    console.log(favorites);
 
-      case 'expensive':
-        return favorites.toSorted(
-          (max, min) => parseInt(min.price) - parseInt(max.price)
-        );
+    switch (criterion) {
+      case 'Найдешевші':
+        return favorites.toSorted((min, max) => {
+          const minDiscountPrice =
+            min.discount !== false ? parseInt(min.discountPrice, 10) : Infinity;
+          const maxDiscountPrice =
+            max.discount !== false ? parseInt(max.discountPrice, 10) : Infinity;
+
+          const minPrice = parseInt(min.price, 10);
+          const maxPrice = parseInt(max.price, 10);
+
+          if (minDiscountPrice !== Infinity && maxDiscountPrice !== Infinity) {
+            return minDiscountPrice - maxDiscountPrice;
+          }
+
+          if (minDiscountPrice !== Infinity && maxDiscountPrice === Infinity) {
+            return -1;
+          } else if (
+            minDiscountPrice === Infinity &&
+            maxDiscountPrice !== Infinity
+          ) {
+            return 1;
+          }
+
+          return maxPrice - minPrice;
+        });
+
+      case 'Найдорожчі':
+        return favorites.toSorted((max, min) => {
+          const aDiscountPrice =
+            max.discountPrice !== undefined
+              ? parseInt(max.discountPrice, 10)
+              : Infinity;
+          const bDiscountPrice =
+            min.discountPrice !== undefined
+              ? parseInt(min.discountPrice, 10)
+              : Infinity;
+
+          const aPrice =
+            max.price !== undefined ? parseInt(max.price, 10) : Infinity;
+          const bPrice =
+            min.price !== undefined ? parseInt(min.price, 10) : Infinity;
+
+          // Сортування по discountPrice: об'єкти з discountPrice мають бути перед тими, у яких його немає
+          if (aDiscountPrice !== Infinity && bDiscountPrice === Infinity) {
+            return -1;
+          } else if (
+            aDiscountPrice === Infinity &&
+            bDiscountPrice !== Infinity
+          ) {
+            return 1;
+          } else if (
+            aDiscountPrice === Infinity &&
+            bDiscountPrice === Infinity
+          ) {
+            // Якщо обидва об'єкти не мають discountPrice, сортуємо за price
+            return aPrice - bPrice;
+          } else {
+            // Якщо обидва об'єкти мають discountPrice, сортуємо за discountPrice
+            return bDiscountPrice - aDiscountPrice;
+          }
+        });
       default:
         return favorites.toSorted(
           (a, b) => new Date(b.createDate) - new Date(a.createDate)
@@ -78,22 +132,20 @@ export default function Selected() {
                   subCategory,
                 }) => {
                   return (
-                    <>
-                      <SimilarProduct
-                        key={_id}
-                        id={_id}
-                        title={title}
-                        price={price}
-                        img={img}
-                        discountPrice={discountPrice}
-                        discount={discount}
-                        createDate={createDate}
-                        eco={parameters.eco}
-                        isUkraine={parameters.isUkraine}
-                        category={category}
-                        subCategory={subCategory}
-                      ></SimilarProduct>
-                    </>
+                    <SimilarProduct
+                      key={_id}
+                      id={_id}
+                      title={title}
+                      price={price}
+                      img={img}
+                      discountPrice={discountPrice}
+                      discount={discount}
+                      createDate={createDate}
+                      eco={parameters.eco}
+                      isUkraine={parameters.isUkraine}
+                      category={category}
+                      subCategory={subCategory}
+                    ></SimilarProduct>
                   );
                 }
               )}
@@ -104,82 +156,3 @@ export default function Selected() {
     </>
   );
 }
-
-// {
-//   favorites.length !== 0 && (
-//     <ProductList>
-//       <Sort value={valueSort} handleSort={handleSort} />
-//       <Product>
-//         {sortedProduct.map(
-//           ({
-//             title,
-//             _id,
-//             img,
-//             price,
-//             discountPrice,
-//             createDate,
-//             discount,
-//             parameters,
-//             category,
-//             subCategory,
-//           }) => (
-//             <SimilarProduct
-//               key={_id}
-//               id={_id}
-//               title={title}
-//               price={price}
-//               img={img}
-//               discountPrice={discountPrice}
-//               discount={discount}
-//               createDate={createDate}
-//               eco={parameters.eco}
-//               isUkraine={parameters.isUkraine}
-//               category={category}
-//               subCategory={subCategory}
-//             />
-//           )
-//         )}
-//       </Product>
-//     </ProductList>
-//   );
-// }
-
-// {
-//   sortedProduct.map(
-// ({
-//   title,
-//   _id,
-//   img,
-//   price,
-//   discountPrice,
-//   createDate,
-//   discount,
-//   parameters,
-//   category,
-//   subCategory,
-// }) => (
-// <>
-//   <SimilarProduct
-//     key={_id}
-//     id={_id}
-//     title={title}
-//     price={price}
-//     img={img}
-//     discountPrice={discountPrice}
-//     discount={discount}
-//     createDate={createDate}
-//     eco={parameters.eco}
-//     isUkraine={parameters.isUkraine}
-//     category={category}
-//     subCategory={subCategory}
-//   >
-//     <CloseIcon
-//       sx={styleRemoveImgButton}
-//       onMouseUp={removeProductFromFavorite}
-//       data-remove="imageField"
-//     />
-//   </SimilarProduct>
-// </>
-//     )
-//   );
-// }

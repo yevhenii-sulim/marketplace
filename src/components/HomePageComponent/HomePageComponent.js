@@ -14,6 +14,7 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 import {
   ButtonSlider,
   ContainerSlide,
+  Pointer,
   TitleCategory,
 } from './HomePageComponent.styled';
 export default function HomePageComponent({ filteredProducts, title }) {
@@ -39,6 +40,8 @@ export default function HomePageComponent({ filteredProducts, title }) {
         step={setVisibleSlides(width)}
         visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
+        isPlaying={width < 768}
+        dragStep={setVisibleSlides(width)}
       >
         <Slider>
           {filteredProducts?.map(
@@ -77,6 +80,11 @@ export default function HomePageComponent({ filteredProducts, title }) {
             }
           )}
         </Slider>
+        <Pointer>
+          <li></li>
+          <li></li>
+          <li></li>
+        </Pointer>
         {filteredProducts.length > setVisibleSlides(width) && (
           <>
             <ButtonBack>

@@ -36,7 +36,6 @@ export const buttonConnectStyles = {
   borderColor: '#43C550',
   textTransform: 'none',
   color: '#43C550',
-  height: '40px',
   fontFamily: 'Jost',
   fontSize: '22px',
   fontStyle: 'normal',
