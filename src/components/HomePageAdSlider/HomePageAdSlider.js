@@ -1,14 +1,22 @@
-import { ButtonBack, ButtonNext, CarouselProvider, Slider } from "pure-react-carousel";
-import FirstSlide from "./FirstSlide";
-import { ButtonSlider, HomePageAdSliderContainer } from "./HomePageAdSlider.styled";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import {
+  ButtonBack,
+  ButtonNext,
+  CarouselProvider,
+  Slider,
+} from 'pure-react-carousel';
+import FirstSlide from './FirstSlide';
+import {
+  ButtonSlider,
+  HomePageAdSliderContainer,
+  Pointer,
+} from './HomePageAdSlider.styled';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SecondSlide from "./SecondSlide";
-import ThirdSlide from "./ThirdSlide";
-import useWindowDimensions from "hooks/useWindowDimensions";
+import SecondSlide from './SecondSlide';
+import ThirdSlide from './ThirdSlide';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function HomePageAdSlider() {
-
   const { width } = useWindowDimensions();
 
   return (
@@ -28,6 +36,11 @@ export default function HomePageAdSlider() {
           <SecondSlide />
           <ThirdSlide />
         </Slider>
+        <Pointer>
+          <li></li>
+          <li></li>
+          <li></li>
+        </Pointer>
         {width > 672 ? (
           <>
             <ButtonNext>
@@ -40,5 +53,5 @@ export default function HomePageAdSlider() {
         ) : null}
       </CarouselProvider>
     </HomePageAdSliderContainer>
-  )
+  );
 }

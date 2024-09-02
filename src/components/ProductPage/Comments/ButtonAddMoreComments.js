@@ -5,7 +5,6 @@ export default function ButtonAddMoreComments({
   handlerExpandedComments,
   commentsLeft,
 }) {
-  console.log(commentsLeft);
   return (
     <>
       {commentsLeft > 0 && (

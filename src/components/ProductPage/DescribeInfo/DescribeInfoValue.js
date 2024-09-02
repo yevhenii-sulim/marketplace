@@ -58,7 +58,6 @@ export default function DescribeInfoValue() {
             <ParameterWrapper>
               {parameters.color.map(el => (
                 <ColorWrapper key={el._id}>
-                  {console.log(el.color)}
                   <span>{el.colorName}</span>
                   <ColorCircle $color={el.color} />
                 </ColorWrapper>

@@ -9,7 +9,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { ButtonSlider, Category } from './Category.styled';
+import { ButtonSlider, Category, Pointer } from './Category.styled';
 import { navigationList } from 'data/navListData';
 import CategoryHomePage from './CategoryHomePage';
 import useWindowDimensions from 'hooks/useWindowDimensions';
@@ -35,11 +35,11 @@ export default function CategoryList() {
       <CarouselProvider
         className="slide"
         totalSlides={navigationList.length}
-        isPlaying={true}
-        // step={1}
+        isPlaying={width < 768}
+        step={3}
         visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
-        // dragStep={1}
+        dragStep={setVisibleSlides(width)}
       >
         <Slider>
           {navigationList.map(
@@ -61,6 +61,11 @@ export default function CategoryList() {
             }
           )}
         </Slider>
+        <Pointer>
+          <li></li>
+          <li></li>
+          <li></li>
+        </Pointer>
         {navigationList.length > setVisibleSlides(width) && (
           <>
             <ButtonBack>

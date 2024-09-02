@@ -22,7 +22,6 @@ export default function CommentsHeader() {
   //     dispatch(sortedCommentsByASC(product));
   //   }
   // }, [stateSelect, dispatch, product]);
-  console.log(product);
   return (
     <>
       {product.comments.length !== 0 && (

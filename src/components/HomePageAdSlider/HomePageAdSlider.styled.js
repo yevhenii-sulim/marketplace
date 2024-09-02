@@ -6,6 +6,25 @@ import {
   ThirdWordVariants,
 } from './ThirdSlideSrcs';
 
+export const Pointer = styled.ul`
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  li {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgCommon};
+    & + li {
+      background-color: ${({ theme }) => theme.color.bgButton};
+    }
+    & + li + li {
+      background-color: ${({ theme }) => theme.color.bgCommon};
+    }
+  }
+`;
+
 export const HomePageAdSliderContainer = styled.ul`
   margin-top: 30px;
 

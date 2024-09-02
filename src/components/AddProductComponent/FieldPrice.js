@@ -18,14 +18,14 @@ export default function FieldPrice({
   const [value, setValue] = useState('');
 
   const handleChangeComponent = event => {
-    const dotIndex = event.target.value.indexOf('.');
+    const inputValue = event.target.value;
+    const match = inputValue.match(/\D/g);
+
     if (event.target.value.length > 8) return;
-    if (!!~dotIndex) {
-      if (event.target.value.length > dotIndex + 3) return;
-    }
-    setValue(Math.round(event.target.value));
     handleChange(event);
     setSubmitting(false);
+    if (match) return;
+    setValue(Number(event.target.value).toFixed());
   };
   return (
     <>

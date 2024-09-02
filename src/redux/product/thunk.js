@@ -71,7 +71,11 @@ export const getProducts = createAsyncThunk(
 
       return data;
     } catch (error) {
-      window.location.href = '/marketplace/error';
+      if (
+        Number(error.response.status === 500) ||
+        Number(error.response.status === 404)
+      )
+        window.location.href = '/marketplace/error';
     }
   }
 );
@@ -87,7 +91,8 @@ export const searchProduct = createAsyncThunk(
 
       return data;
     } catch (error) {
-      window.location.href = '/marketplace/error';
+      if (Number(error.response.status === 500))
+        window.location.href = '/marketplace/error';
       console.log('errorSearch', error);
     }
   }
@@ -200,7 +205,8 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
     const { data } = await axios.get(`/products/${id}`);
     return data;
   } catch (error) {
-    window.location.href = '/marketplace/error';
+    if (Number(error.response.status === 500))
+      window.location.href = '/marketplace/error';
     console.log('errorGetProduct', error);
   }
 });
