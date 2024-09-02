@@ -6,7 +6,7 @@ export const OrderSectionWrapper = styled.article`
   background-color: white;
   border-radius: 12px;
   height: 450px;
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
@@ -26,20 +26,28 @@ export const ProductName = styled.p`
   font-weight: 700;
   line-height: 1.5;
   align-items: center;
-  @media (max-width: 767px) {
-    background-color: white;
+  @media (max-width: 1024px) {
     font-size: 24px;
     font-weight: 500;
     line-height: 1;
     padding-top: 16px;
     justify-content: center;
   }
+  @media (max-width: 767px) {
+    background-color: white;
+  }
 `;
 export const ProductNameWrapper = styled.div`
-  width: 85%;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+  @media (max-width: 767px) {
+    width: 85%;
+  }
 `;
 
 export const IconWrapper = styled.span`
@@ -54,9 +62,13 @@ export const IconWrapper = styled.span`
 export const ProductCost = styled.section`
   display: flex;
   flex-direction: column;
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     padding: 8px 0 25px 0;
+    text-align: right;
+  }
+  @media (max-width: 767px) {
     background-color: white;
+    text-align: start;
   }
 `;
 export const StrikePrice = styled.div`
@@ -65,9 +77,12 @@ export const StrikePrice = styled.div`
 
   color: #5e5f5f;
   font-size: 22px;
+  @media (max-width: 1024px) {
+    width: 100%;
+    margin: 0 auto;
+  }
   @media (max-width: 767px) {
     width: 85%;
-    margin: 0 auto;
   }
 `;
 export const SalePrice = styled.div`
@@ -78,8 +93,11 @@ export const SalePrice = styled.div`
   font-weight: 700;
   margin-top: 4px;
 
+  @media (max-width: 1024px) {
+    width: 100%;
+    margin: 0 auto;
+  }
   @media (max-width: 767px) {
     width: 85%;
-    margin: 0 auto;
   }
 `;

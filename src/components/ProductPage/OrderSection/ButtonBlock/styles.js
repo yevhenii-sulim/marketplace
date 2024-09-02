@@ -16,7 +16,13 @@ export const buttonBuyStyles = {
   '&:hover': {
     backgroundColor: '#43C550',
   },
+  [theme.breakpoints.down('ds')]: {
+    width: '49%',
+    height: '52px',
+    fontSize: '20px',
+  },
   [theme.breakpoints.down('md')]: {
+    width: '85%',
     height: '52px',
   },
   [theme.breakpoints.down('xs')]: {
@@ -41,7 +47,13 @@ export const buttonConnectStyles = {
   '&:hover': {
     borderColor: '#43C550',
   },
+  [theme.breakpoints.down('ds')]: {
+    width: '49%',
+    height: '52px',
+    fontSize: '20px',
+  },
   [theme.breakpoints.down('md')]: {
+    width: '85%',
     height: '52px',
   },
   [theme.breakpoints.down('xs')]: {
