@@ -18,18 +18,16 @@ export function onSubmitOrder(data, values, user, dispatch) {
     };
   });
 
-  return orderData.forEach(({ id, value }) => {
-    return axios({
+  orderData.map(async ({ id, value }) => {
+    await axios({
       method: 'post',
       url: `/purchase/${id}`,
       data: value,
-    })
-      .then(() => {
-        dispatch(deleteBasket());
-        dispatch(removeFavoriteProduct(id));
-      })
-      .catch(error => console.log(error));
+    });
+    dispatch(removeFavoriteProduct(id));
   });
+  Promise.allSettled(orderData);
+  dispatch(deleteBasket());
 }
 
 export function handleOrder(data) {

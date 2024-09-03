@@ -1,4 +1,4 @@
-import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
+import ViewAheadComponent from 'components/PreviewCheckAddedProduct/ViewAheadComponent';
 
 export default function ViewAhead() {
   return <ViewAheadComponent />;

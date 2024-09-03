@@ -11,7 +11,7 @@ import FieldsCheckboxes from './FieldsCheckboxes';
 import { createProduct } from '../../redux/product/thunk';
 import { toggleModalView } from '../../redux/modalViewProduct/slice';
 import { selectorViewAddingProductModal } from '../../redux/modalViewProduct/selectors';
-import ViewAheadComponent from 'components/ViewAhead/ViewAheadComponent';
+import ViewAheadComponent from 'components/PreviewCheckAddedProduct/ViewAheadComponent';
 import { togglePoster } from '../../redux/myPoster/slice';
 import SignupSchema from './validationSchema';
 import { navigationList } from 'data/navListData';

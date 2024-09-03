@@ -59,6 +59,7 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
 
     return newFormatDate;
   };
+  console.log(values);
 
   return (
     <Backdrop onMouseDown={oncloseByClickOutside}>
@@ -104,7 +105,9 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
                 )}
                 <p>
                   Колір:&nbsp;
-                  <span>{values.state}</span>
+                  {values.color.map(item => (
+                    <span key={item}>{item}, </span>
+                  ))}
                 </p>
               </Options>
               <ProductDescription>{values.describe}</ProductDescription>

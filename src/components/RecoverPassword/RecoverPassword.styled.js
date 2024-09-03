@@ -7,6 +7,8 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
 `;
 export const Box = styled.div`
   width: 100%;
