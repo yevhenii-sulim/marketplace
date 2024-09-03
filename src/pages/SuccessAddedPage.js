@@ -1,4 +1,4 @@
-import SuccessAdded from 'components/ViewAhead/SuccessAdded';
+import SuccessAdded from 'components/PreviewCheckAddedProduct/SuccessAdded';
 
 export default function SuccessAddedPage() {
   return <SuccessAdded />;

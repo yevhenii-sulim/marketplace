@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
 import { restorePassword } from '../../redux/auth/thunk';
+import { toggleModalAuth } from '../../redux/modalAuth/slice';
 import FieldPasswordComponent from './FieldPasswordComponent';
 import {
   ContainerForm,
@@ -10,9 +11,16 @@ import {
   socialSingInButton,
   cancelButton,
 } from './ChangePassword.styled';
+import { useNavigate } from 'react-router-dom';
 
 export default function ChangePassword() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function onOpen() {
+    navigate('/user_page/profile');
+    dispatch(toggleModalAuth(true));
+  }
   return (
     <ContainerForm>
       <Formik
@@ -25,7 +33,7 @@ export default function ChangePassword() {
           if (!values.new_password) {
             errors.new_password = "Обов'язкове поле";
           } else if (
-            !/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+={};:'",.<>?/\\[\]|]).{6,20}$/.test(
+            !/^(?=.*[A-Z])(?=.*[0-9])(?=.*[! "#$%&'()*+,\-./:;<=>?@[\\]^_`{|}~]).{6,20}$/.test(
               values.new_password
             )
           ) {
@@ -54,8 +62,9 @@ export default function ChangePassword() {
 
               {!errors.new_password && (
                 <p>
-                  Пароль повинен мати довжину 6-20 символів, одну велику літеру,
-                  одну цифру, один спеціальний символ
+                  Пароль повинен складатись з літер латинниці, мати одну велику
+                  літеру, одну цифру, один спеціальний символ та мати довжину
+                  6-20 символів.
                 </p>
               )}
               <ErrorMessage name="new_password" component="p" />
@@ -78,7 +87,7 @@ export default function ChangePassword() {
             >
               Зберегти зміни
             </Button>
-            <Button type="button" sx={cancelButton}>
+            <Button type="button" sx={cancelButton} onClick={onOpen}>
               Скасувати
             </Button>
           </Form>
