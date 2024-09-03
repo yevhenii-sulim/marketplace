@@ -29,11 +29,16 @@ import {
   viewProductButton,
   WrapperModal,
   Errors,
+  TitleDescription,
+  ButtonsContacts,
+  ButtonsBuy,
 } from './ViewAhead.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function ViewAheadComponent({ onSubmit, values, errors }) {
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
+  const { width } = useWindowDimensions();
   const {
     firstName,
     lastName,
@@ -59,7 +64,6 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
 
     return newFormatDate;
   };
-  console.log(values);
 
   return (
     <Backdrop onMouseDown={oncloseByClickOutside}>
@@ -83,13 +87,32 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
           <AboutProduct>
             <Slider values={values} />
             <Description>
-              <h3>Опис</h3>
+              {width >= 1440 && <TitleDescription>Опис</TitleDescription>}
+              {width < 1440 && (
+                <Title>
+                  {values.title}
+                  <div>
+                    {values.discount ? (
+                      <PriceWithDiscount>
+                        <p className="first-price">{values.price} &#8372;</p>
+                        <p className="discount">
+                          {values.discountPrice} &#8372;
+                        </p>
+                      </PriceWithDiscount>
+                    ) : (
+                      <PriceWithoutDiscount>
+                        <p>{values.price} &#8372;</p>
+                      </PriceWithoutDiscount>
+                    )}
+                  </div>
+                </Title>
+              )}
               <Options>
                 <p>
                   Стан:&nbsp;
                   <span>{values.state}</span>
                 </p>
-                {values.size && (
+                {values.size.length !== 0 && (
                   <p>
                     Розмір:&nbsp;
                     {values.size.map(item => (
@@ -110,13 +133,20 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
                   ))}
                 </p>
               </Options>
+              <ButtonsContacts>
+                <Button type="button" sx={viewProductButton}>
+                  Додати до кошика
+                </Button>
+                <Button sx={addProductButton}>Зв’язатися з продавцем</Button>
+              </ButtonsContacts>
+              {width < 1440 && <TitleDescription>Опис</TitleDescription>}
               <ProductDescription>{values.describe}</ProductDescription>
             </Description>
           </AboutProduct>
           <AboutPrice>
             <PriceSection>
               <Title>
-                {values.title}{' '}
+                {values.title}
                 <IconWrapper>
                   <FavoriteBorderIcon />
                 </IconWrapper>
@@ -133,6 +163,13 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
                   </PriceWithoutDiscount>
                 )}
               </div>
+              <ButtonsBuy>
+                <Button sx={addProductButton}>Додати до кошика</Button>
+                <Button sx={viewProductButton}>Зв’язатися з продавцем</Button>
+                <Button type="button" sx={viewProductButton}>
+                  Показати телефон
+                </Button>
+              </ButtonsBuy>
               <p className="time-added">Опубліковано {formatDate()}</p>
             </PriceSection>
             <SellerSection>

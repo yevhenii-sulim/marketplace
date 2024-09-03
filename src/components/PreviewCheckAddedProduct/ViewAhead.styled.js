@@ -7,8 +7,9 @@ export const WrapperModal = styled.div`
   background-color: ${({ theme }) => theme.color.bgCommon};
   border: 3px solid ${({ theme }) => theme.color.borderRegister};
   border-radius: 12px;
-  padding: 32px;
   overflow-y: auto;
+  padding-top: 32px;
+  padding-bottom: 32px;
   .MuiSvgIcon-root.close {
     color: ${({ theme }) => theme.color.bgButton};
   }
@@ -32,6 +33,8 @@ export const WrapperModal = styled.div`
     width: 480px;
   }
   @media screen and (min-width: 769px) {
+    padding-left: 32px;
+    padding-right: 32px;
     width: 769px;
   }
   @media screen and (min-width: 1440px) {
@@ -41,23 +44,47 @@ export const WrapperModal = styled.div`
 `;
 export const Advertisement = styled.div`
   display: grid;
-  grid-template-columns: 764px auto;
   gap: 20px;
   margin: auto;
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 764px auto;
+  }
 `;
+
+export const TitleDescription = styled.h3`
+  margin-bottom: 12px;
+  font-family: Jost;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.45; /* 145.455% */
+`;
+
 export const AboutProduct = styled.div`
   border-radius: 12px;
-  h3 {
-    margin-bottom: 12px;
-    font-family: Jost;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1.45; /* 145.455% */
-  }
   .complaint {
     text-align: end;
     color: ${({ theme }) => theme.color.colorTextSidebarActive};
   }
+`;
+export const ButtonsContacts = styled.div`
+  display: grid;
+  gap: 12px;
+  justify-content: center;
+  grid-template-columns: 100%;
+  margin-top: 24px;
+  margin-bottom: 44px;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 50% 50%;
+  }
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+export const ButtonsBuy = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 24px;
 `;
 export const AboutPrice = styled.div`
   border-radius: 12px;
@@ -76,8 +103,14 @@ export const Backdrop = styled.div`
 
 export const Buttons = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   gap: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
 
 export const viewProductButton = {
@@ -87,7 +120,7 @@ export const viewProductButton = {
   bgcolor: theme.color.bgProduct,
   borderRadius: '8px',
   height: '48px',
-  padding: '6px 16px',
+  padding: '8px 12px',
   fontFamily: 'Jost',
   fontSize: '22px',
   fontWeight: '700',
@@ -105,7 +138,6 @@ export const viewProductButton = {
 };
 
 export const addProductButton = {
-  width: '264px',
   fontSize: '22px',
   fontWeight: '700',
   fontFamily: 'Jost',
@@ -113,7 +145,7 @@ export const addProductButton = {
   bgcolor: theme.color.bgButton,
   borderRadius: '6px',
   textAlign: 'center',
-  padding: '8px 0px',
+  padding: '8px 12px',
   lineHeight: 1.4,
   textTransform: 'none',
   translate: 'all 100ms ease',
@@ -136,14 +168,17 @@ export const Description = styled.div`
 `;
 
 export const Options = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 16px;
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
   margin-bottom: 16px;
   p {
     font-size: 18px;
     font-weight: 800;
     line-height: 1.44; /* 144.444% */
+    white-space: nowrap;
   }
   span {
     font-weight: 400;
@@ -157,17 +192,21 @@ export const ProductDescription = styled.div`
   margin-bottom: 16px;
 `;
 export const PriceSection = styled.div`
-  padding: 16px 24px;
-  background-color: ${({ theme }) => theme.color.bgProduct};
-  border-radius: 12px;
-  margin-bottom: 24px;
-  .time-added {
-    margin-top: 24px;
-    color: ${({ theme }) => theme.color.colorTextPublicProduct};
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.44;
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: block;
+    padding: 16px 24px;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    border-radius: 12px;
+    margin-bottom: 24px;
+    .time-added {
+      margin-top: 24px;
+      color: ${({ theme }) => theme.color.colorTextPublicProduct};
+      text-align: center;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.44;
+    }
   }
 `;
 export const Title = styled.h2`
@@ -221,32 +260,35 @@ export const PriceWithoutDiscount = styled.div`
   }
 `;
 export const SellerSection = styled.div`
-  padding: 16px 24px;
-  background-color: ${({ theme }) => theme.color.bgProduct};
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 24px;
-  h3 {
-    font-family: Jost;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 1.45;
-  }
-  .more-products {
+  display: none;
+  @media screen and (min-width: 1440px) {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.44;
-    color: ${({ theme }) => theme.color.colorTextExplainment};
-  }
-  .rating {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.44;
+    padding: 16px 24px;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+    h3 {
+      font-family: Jost;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .more-products {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.44;
+      color: ${({ theme }) => theme.color.colorTextExplainment};
+    }
+    .rating {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.44;
+    }
   }
 `;
 export const Name = styled.h3`

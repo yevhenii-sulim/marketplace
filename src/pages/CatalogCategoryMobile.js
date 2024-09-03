@@ -1,5 +1,5 @@
-import React from 'react';
+import CatalogCategoryMobileComponent from 'components/CatalogCategoryMobile/CatalogCategoryMobileComponent';
 
 export default function CatalogCategoryMobile() {
-  return <div>CatalogCategoryMobile</div>;
+  return <CatalogCategoryMobileComponent />;
 }

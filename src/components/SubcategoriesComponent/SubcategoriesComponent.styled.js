@@ -33,7 +33,9 @@ export const List = styled.li`
 `;
 export const UnList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
   gap: 24px;
   margin-bottom: 60px;
 `;
