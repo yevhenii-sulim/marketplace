@@ -22,13 +22,15 @@ export const DescribeInfoHeader = styled.span`
   display: block;
   font-size: 22px;
   font-weight: 700;
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
 export const DescribeInfoState = styled.span`
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     margin: 0;
+  }
+  @media (max-width: 767px) {
     background-color: white;
   }
 `;
@@ -39,10 +41,15 @@ export const DescribeInfoStateWrapper = styled.div`
   font-weight: 700;
   margin: 4px 0;
   flex-wrap: wrap;
+  @media (max-width: 1024px) {
+    width: 100%;
+    margin: 0 auto;
+  }
   @media (max-width: 767px) {
-    width: 85%;
+    width: 100%;
     margin: 0 auto;
     background-color: white;
+    padding: 0 7.5%;
   }
   @media (max-width: 480px) {
     flex-direction: column;
@@ -96,4 +103,17 @@ export const ColorCircle = styled.div`
     return `radial-gradient(${$color[0]}, ${$color[1]})`;
   }};
   margin-left: 4px;
+`;
+
+export const WrapperNameAndValue = styled.div``;
+export const WrapperAllValue = styled.div`
+  @media (max-width: 1024px) {
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;

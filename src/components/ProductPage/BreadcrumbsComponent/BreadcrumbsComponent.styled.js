@@ -3,7 +3,7 @@ import { Link as LinkProduct } from 'react-router-dom';
 
 export const ContainerForBreadcrumbs = styled.div`
   padding: 30px 0 20px 0;
-  @media (max-width: 480px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
@@ -25,4 +25,10 @@ export const Catalog = styled.a`
   color: #1f1f1f;
   font-family: 'Nunito Sans';
   font-size: 16px;
+`;
+
+export const WrapperMobileCatalogOnProductPage = styled.div`
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `;
