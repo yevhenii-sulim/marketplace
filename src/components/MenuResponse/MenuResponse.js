@@ -45,10 +45,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
     evt.preventDefault();
     dispatch(toggleModalAuth(true));
   }
-  function onOpenCatalog() {
-    toggleMenu();
-    navigate('/catalog');
-  }
+
   function onOpenAddGood(evt) {
     toggleMenu();
   }
@@ -100,7 +97,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
                 />
                 Кошик
               </LinkAxillary>
-              <LinkAxillary to="/catalog" onClick={onOpenCatalog}>
+              <LinkAxillary to="/catalog" onClick={onCloseMenu}>
                 <CategorySvg stroke="black" height="32px" width="32px" />
                 Каталог товарів
               </LinkAxillary>
