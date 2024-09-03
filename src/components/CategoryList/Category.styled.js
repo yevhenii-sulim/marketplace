@@ -76,7 +76,7 @@ export const Category = styled.ul`
 `;
 
 export const List = styled.li`
-  width: 172px;
+  width: 160px;
   padding: 4px;
 `;
 

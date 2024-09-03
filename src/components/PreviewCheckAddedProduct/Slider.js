@@ -11,9 +11,7 @@ import {
 
 export default function Slider({ values }) {
   const slide = useRef();
-  const imageRef = useRef();
   const wrapperSliderBlock = useRef();
-  console.dir(imageRef);
 
   const scrollPhoto = nameArrow => {
     const wrapperSliderBlockScroll = wrapperSliderBlock.current;

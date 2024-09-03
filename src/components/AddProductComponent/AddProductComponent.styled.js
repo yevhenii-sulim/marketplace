@@ -400,7 +400,7 @@ export const styleSelect = {
   maxWidth: '300px',
   '.error': {
     position: 'absolute',
-    bottom: '48px',
+    bottom: '-25px',
     right: '0',
     color: `${theme.color.colorTextErrorForm}`,
   },
