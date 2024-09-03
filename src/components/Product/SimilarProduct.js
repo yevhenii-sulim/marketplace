@@ -58,7 +58,6 @@ function SimilarProduct({
       dispatch(addFavoriteProduct(id));
     }
   }
-  console.log(category, subCategory);
 
   function checkSubCategory(subCategory) {
     switch (true) {

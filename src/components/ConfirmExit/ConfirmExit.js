@@ -18,13 +18,15 @@ export default function ConfirmExit({ onExit, onToggleModalConfirm }) {
       if (evt.code === 'Escape') {
         onToggleModalConfirm(false);
       }
-      if (evt.code === 'Enter') {
+
+      if (evt.code === 'Enter' || evt.code === 'NumpadEnter') {
+        dispatch(toggleModalFormConfirm(false));
         onExit();
       }
     }
     window.addEventListener('keydown', exitModalConfirmByEsc);
     return () => window.removeEventListener('keydown', exitModalConfirmByEsc);
-  }, [onExit, onToggleModalConfirm]);
+  }, [dispatch, onExit, onToggleModalConfirm]);
 
   function oncloseByClickOutside(evt) {
     if (evt.currentTarget !== evt.target) return;
@@ -32,8 +34,8 @@ export default function ConfirmExit({ onExit, onToggleModalConfirm }) {
   }
 
   function onExitOutAccount() {
-    onExit();
     dispatch(toggleModalFormConfirm(false));
+    onExit();
   }
 
   return (
