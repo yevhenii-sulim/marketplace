@@ -9,6 +9,7 @@ export const WrapperPoster = styled.ul`
   position: relative;
 `;
 export const Operation = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,6 +45,11 @@ export const OpenOperation = styled.button`
 export const OperationList = styled.div`
   display: none;
   &.isOpen {
+    position: absolute;
+    top: 20px;
+    z-index: 2;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    right: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -98,10 +104,11 @@ export const ListStoryOrder = styled.li`
   border-radius: 12px;
   padding: 32px;
   display: grid;
-  grid-template-columns: 2fr 300px;
-  overflow: hidden;
   &:not(:last-child) {
     margin-bottom: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: 2fr 300px;
   }
 `;
 export const Link = styled(Location)`
@@ -126,7 +133,9 @@ export const ToCreatePostLink = styled.div`
 export const Filter = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
   padding-top: 24px;
@@ -134,4 +143,8 @@ export const Filter = styled.div`
   padding-left: 24px;
   padding-right: 24px;
   margin-bottom: 24px;
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;

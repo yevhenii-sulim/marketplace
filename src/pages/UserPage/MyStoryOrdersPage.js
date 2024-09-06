@@ -43,10 +43,10 @@ export default function MyStoryOrdersPage() {
   }
   const products = sortProduct(valueSort);
   function onSort() {
-    return products.filter(({ product }, index) => {
+    return products.filter(({ product, quantity }, index) => {
       return (
         product.title.toLowerCase().includes(value.toLowerCase()) ||
-        `${index + 1}`.includes(value)
+        `${quantity}`.includes(value)
       );
     });
   }

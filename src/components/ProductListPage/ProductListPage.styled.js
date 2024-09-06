@@ -5,7 +5,8 @@ export const ProductList = styled.ul`
   flex-direction: column;
   gap: 19px;
   margin: auto;
-  width: auto;
+  width: 100%;
+  height: 100%;
 `;
 export const ContainerProductPageList = styled.div`
   display: flex;

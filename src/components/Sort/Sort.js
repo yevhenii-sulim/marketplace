@@ -4,6 +4,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
 import { Container, SortText, styleSelect } from './Sort.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,7 +19,7 @@ const MenuProps = {
 
 export default function Sort({ name, placeholder, handleSort }) {
   const [personName, setPersonName] = useState('');
-
+  const { width } = useWindowDimensions();
   const handleChangeComponent = event => {
     const {
       target: { value },
@@ -30,7 +31,7 @@ export default function Sort({ name, placeholder, handleSort }) {
 
   return (
     <Container>
-      <SortText>Сортування:</SortText>
+      {width >= 1440 && <SortText>Сортування:</SortText>}
       <FormControl sx={styleSelect}>
         <Select
           IconComponent={() => (

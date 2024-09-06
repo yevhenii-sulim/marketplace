@@ -89,7 +89,15 @@ export default function App() {
           <Route path="my_order" element={<BasketPage />} />
           <Route path="purchase" element={<OrderConfirmed />} />
           <Route path="success-created" element={<SuccessAddedPage />} />
-          <Route path="user/menu" element={<MenuUserPage />} />
+
+          <Route
+            path="user/menu"
+            element={
+              <PrivateRoute>
+                <MenuUserPage />
+              </PrivateRoute>
+            }
+          />
           <Route
             path=":category/:subcategories/:id"
             element={<ProductPage />}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectMyUser } from '../../redux/auth/selector';
 import MyPosterList from 'components/UserPageComponent/PagesForSidebar/MyPoster/MyPosterList';
@@ -8,11 +8,19 @@ export default function MyPosterListPage() {
   const [value, setValue] = useState('');
   const user = useSelector(selectMyUser);
 
-  const products = user?.products ?? [];
+  const [myProduct, setMyProduct] = useState([]);
+
+  const products = user?.products;
+
+  useEffect(() => {
+    if (!products) return;
+    setMyProduct(products);
+  }, [products]);
+
   function sortProduct(criterion) {
     switch (criterion) {
       case 'Найдешевші':
-        return products.toSorted((max, min) => {
+        return myProduct.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(max.discountPrice) - parseInt(min.discountPrice);
           } else {
@@ -21,7 +29,7 @@ export default function MyPosterListPage() {
         });
 
       case 'Найдорожчі':
-        return products.toSorted((max, min) => {
+        return myProduct.toSorted((max, min) => {
           if (min.discountPrice) {
             return parseInt(min?.discountPrice) - parseInt(max?.discountPrice);
           } else {
@@ -29,7 +37,7 @@ export default function MyPosterListPage() {
           }
         });
       default:
-        return products.toSorted(
+        return myProduct.toSorted(
           (a, b) => new Date(b?.createDate) - new Date(a?.createDate)
         );
     }
@@ -37,13 +45,20 @@ export default function MyPosterListPage() {
   const sortedProducts = sortProduct(valueSort);
 
   function onSort() {
-    return sortedProducts.filter(({ title }) => {
-      return title.toLowerCase().includes(value.toLowerCase());
-      // ||
-      // `${count}`.includes(value)
+    return sortedProducts.filter(({ title, count }) => {
+      return (
+        title.toLowerCase().includes(value.toLowerCase()) ||
+        `${count}`.includes(value)
+      );
     });
   }
-
+  function deleteProductFromDisplay(id) {
+    setMyProduct(products =>
+      products.filter(({ _id }) => {
+        return _id !== id;
+      })
+    );
+  }
   const sortedProduct = onSort();
   console.log('sortedProduct', sortedProduct);
   return (
@@ -52,6 +67,7 @@ export default function MyPosterListPage() {
       setValueSort={setValueSort}
       setValue={setValue}
       value={value}
+      deleteProductFromDisplay={deleteProductFromDisplay}
     />
   );
 }

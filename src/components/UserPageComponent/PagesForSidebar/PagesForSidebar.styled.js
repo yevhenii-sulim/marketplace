@@ -5,7 +5,9 @@ import { widthComponentLevelLoadComment } from './widthComponentLevelLoadComment
 
 export const Filter = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
   padding-top: 24px;
@@ -13,9 +15,14 @@ export const Filter = styled.div`
   padding-left: 24px;
   padding-right: 24px;
   margin-bottom: 24px;
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 export const FormSearch = styled.form`
-  width: 433px;
+  max-width: 300px;
+  width: 100%;
   height: 48px;
   position: relative;
   input {
@@ -30,6 +37,9 @@ export const FormSearch = styled.form`
       font-size: 18px;
       line-height: 1.44;
       color: ${({ theme }) => theme.color.borderSearch};
+    }
+    @media screen and (min-width: 1440px) {
+      width: 433px;
     }
   }
   button {
@@ -75,7 +85,6 @@ export const About = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  width: 200px;
 `;
 export const Title = styled.h2`
   font-size: 16px;
@@ -131,8 +140,13 @@ export const TotalPrice = styled.div`
 `;
 export const WrapperBuy = styled.div`
   &.story {
-    display: flex;
-    align-items: center;
+    display: none;
+    max-width: 300px;
+    width: 100%;
+    margin: auto;
+    @media screen and (min-width: 1440px) {
+      display: block;
+    }
   }
   .info-price {
     font-size: 18px;
@@ -305,16 +319,43 @@ export const List = styled.li`
   }
 `;
 
+export const Arrows = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: block;
+  margin: auto;
+  transform: rotate(-90deg);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  &.isOpen {
+    transform: rotate(90deg);
+    & ~ .story {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
 export const ListStoryOrder = styled.li`
   position: relative;
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
-  padding: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   display: grid;
-  grid-template-columns: 2fr 300px;
   overflow: hidden;
   &:not(:last-child) {
     margin-bottom: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    grid-template-columns: 2fr 300px;
+    svg {
+      display: none;
+    }
   }
 `;
 export const Count = styled.div`
@@ -356,25 +397,27 @@ export const State = styled.span`
   font-weight: 800;
   line-height: 1.44; /* 144.444% */
   color: ${({ $state, theme }) => {
-    switch ($state[0]) {
-      case 'worked':
+    switch ($state) {
+      case 'Виконано':
         return theme.color.colorTextWorkedOrder;
-      case 'waited':
+      case 'Очікується відправки':
         return theme.color.colorTextWaitedOrder;
-      case 'cancelled':
+      case 'Скасовано':
         return theme.color.colorTextCancelledOrder;
       default:
-        return theme.color.bgButton;
+        return;
     }
   }};
 `;
 export const Cost = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
   justify-content: center;
   flex-grow: 2;
   align-items: center;
   margin-left: 16px;
+  @media screen and (min-width: 380px) {
+    grid-template-columns: 2fr 1fr;
+  }
 `;
 
 export const WrapperModal = styled.div`
@@ -391,12 +434,13 @@ export const WrapperModal = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 8px;
   background-color: ${({ theme }) => theme.color.bgProduct};
-  padding: 44px 52px;
   padding-top: 32px;
   padding-bottom: 98px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
   @media screen and (min-width: 769px) {
+    padding-left: 24px;
+    padding-right: 24px;
     width: 769px;
   }
   h3 {
