@@ -4,7 +4,9 @@ import { selectorRating } from '../../../redux/rating/selector';
 import EmptyStarForFeedback from 'SvgComponents/Star/EmptyStarForFeedback';
 import StarForFeedback from 'SvgComponents/Star/StarForFeedback';
 import { SetedRating, StarList, Wrapper, Hint } from './Rating.styled';
+
 const starEmptyList = new Array(5).fill(3);
+
 export default function Rating({ title, number, bad, norm, good }) {
   const dispatch = useDispatch();
   const rating = useSelector(selectorRating);

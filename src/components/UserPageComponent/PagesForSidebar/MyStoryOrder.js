@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { selectMyUser } from '../../../redux/auth/selector';
 import { addCommentFromStory } from '../../../redux/product/thunk';
 import { selectorRating } from '../../../redux/rating/selector';
@@ -21,6 +22,7 @@ import {
   addProductButton,
   viewProductButton,
   Filter,
+  Arrows,
 } from './PagesForSidebar.styled';
 import { addNullRating, deleteRating } from '../../../redux/rating/slice';
 const modalEnter = document.querySelector('#modal');
@@ -32,6 +34,7 @@ export default function MyStoryOrder({
   value,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+
   const [idList, setIdList] = useState('');
 
   const dispatch = useDispatch();
@@ -43,6 +46,18 @@ export default function MyStoryOrder({
     setValueSort(sort);
   };
   const navigate = useNavigate();
+
+  function onOpenButtons(evt) {
+    const wrapper = evt.target.closest('.wrapper');
+    const button = evt.target.closest('button');
+    if (wrapper.className.includes('open')) {
+      button.classList.remove('isOpen');
+      wrapper.classList.remove('open');
+    } else {
+      wrapper.classList.add('open');
+      button.classList.add('isOpen');
+    }
+  }
 
   function repeatOrder(id, category, subCategory) {
     navigate(`/${category.en}/${subCategory.en}/${id}`);
@@ -75,7 +90,6 @@ export default function MyStoryOrder({
       })
     );
   }
-
   return (
     <div>
       {purchasedGoods.length === 0 ? (
@@ -101,6 +115,7 @@ export default function MyStoryOrder({
                   _id,
                   status,
                   createDate,
+                  quantity,
                   product: {
                     _id: productId,
                     title,
@@ -115,17 +130,20 @@ export default function MyStoryOrder({
                 index
               ) => {
                 return (
-                  <ListStoryOrder key={_id}>
+                  <ListStoryOrder key={_id} className="wrapper">
                     <AboutProductStory
                       status={status}
                       title={title}
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      number={index + 1}
+                      number={quantity}
                       img={img[0]}
                       discount={discount}
                     />
+                    <Arrows onClick={onOpenButtons}>
+                      <ArrowBackIosNewIcon />
+                    </Arrows>
                     <WrapperBuy className="story">
                       <DeleteAdd className="story">
                         <Button

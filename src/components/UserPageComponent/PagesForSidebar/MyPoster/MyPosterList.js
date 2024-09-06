@@ -1,11 +1,14 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { togglePoster } from '../../../../redux/myPoster/slice';
 import { selectMyUser } from '../../../../redux/auth/selector';
-import { deleteProduct } from '../../../../redux/product/thunk';
+import {
+  changeStatusProduct,
+  deleteProduct,
+} from '../../../../redux/product/thunk';
 import PosterSvg from 'SvgComponents/PosterSVG/PosterSvg';
 import MessageSvg from 'SvgComponents/Message/MessageSvg';
 import EyeSvg from 'SvgComponents/Eye/EyeSvg';
@@ -35,20 +38,29 @@ export default function MyPosterList({
   setValueSort,
   setValue,
   value,
+  deleteProductFromDisplay,
 }) {
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
+  const [myProduct, setMyProduct] = useState([]);
 
-  const products = user?.products ?? [];
+  const products = user?.products;
+
+  useEffect(() => {
+    if (!products) return;
+    setMyProduct(products);
+  }, [products]);
 
   const ref = useRef();
   function toCreatePost() {
     dispatch(togglePoster(true));
   }
   function deleteProductFn(id) {
-    console.log(id);
-
     dispatch(deleteProduct(id));
+    deleteProductFromDisplay(id);
+  }
+  function changeStatusProductFn(id, status) {
+    dispatch(changeStatusProduct(id, status));
   }
   function handleSort(sort) {
     setValueSort(sort);
@@ -73,7 +85,7 @@ export default function MyPosterList({
   }
   return (
     <div>
-      {products.length === 0 ? (
+      {myProduct.length === 0 ? (
         <Empty>
           <PosterSvg />
           <p>Додайте ваше перше оголошення!</p>
@@ -104,29 +116,29 @@ export default function MyPosterList({
             {sortedProduct.map(
               ({
                 _id,
-                // status,
+                status,
                 title,
                 createDate,
                 price,
                 discountPrice,
                 img,
-                // count,
+                count,
                 discount,
                 // message,
                 // like,
                 visit,
               }) => {
                 return (
-                  // <ListStoryOrder key={_id} $state={Object.keys(status)}>
                   <ListStoryOrder key={_id}>
                     <AboutProductStory
-                      // status={status}
+                      status={Object.values(status)}
+                      $state={Object.keys(status)}
                       title={title}
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
                       img={img}
-                      number={5}
+                      number={count}
                       discount={discount}
                     />
                     <WrapperBuy className="poster">
@@ -135,7 +147,17 @@ export default function MyPosterList({
                           <MoreHorizOutlinedIcon />
                         </OpenOperation>
                         <OperationList>
-                          <ActiveProduct type="button">
+                          <ActiveProduct
+                            type="button"
+                            onClick={() =>
+                              changeStatusProductFn({
+                                id: _id,
+                                status: {
+                                  status: 'Деактивовене',
+                                },
+                              })
+                            }
+                          >
                             <DeactivateSvg />
                             Деактивувати
                           </ActiveProduct>

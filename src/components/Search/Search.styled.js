@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 export const FormSearch = styled.form`
-  width: 90%;
+  max-width: 300px;
+  width: 100%;
   height: 32px;
   position: relative;
   margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
+  height: 48px;
   @media screen and (min-width: 768px) {
-    width: 440px;
-    height: 48px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0;
     padding-right: 0;
   }
   @media screen and (min-width: 1440px) {
+    max-width: 100%;
     width: 433px;
     margin-top: 0;
     margin-left: 0;
@@ -34,9 +35,6 @@ export const FormSearch = styled.form`
       font-size: 16px;
       line-height: 1.44;
       color: ${({ theme }) => theme.color.borderSearch};
-    }
-    @media screen and (min-width: 1440px) {
-      border: none;
     }
   }
   button {

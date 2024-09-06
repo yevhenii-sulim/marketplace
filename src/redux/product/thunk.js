@@ -170,7 +170,7 @@ export const removeFavoriteProduct = createAsyncThunk(
           },
         }
       );
-      console.log('dataSub', data);
+
       dispatch(getUser(getState().users.myUser._id));
       return data;
     } catch (error) {
@@ -219,6 +219,7 @@ export const deleteProduct = createAsyncThunk(
     }`;
     try {
       const { data } = await axios.delete(`/products/${id}`);
+
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -227,6 +228,37 @@ export const deleteProduct = createAsyncThunk(
           axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
           axios.defaults.headers.delete.withCredentials = true;
           const { data } = await axios.delete(`/products/${id}`);
+          return data;
+        } catch (refreshError) {
+          return rejectWithValue('Token refresh failed');
+        }
+      }
+      console.log('errorFavoriteProduct', error);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changeStatusProduct = createAsyncThunk(
+  '/products/changeStatus',
+  async ({ id, status }, { getState, rejectWithValue }) => {
+    axios.defaults.headers.common.Authorization = `Bearer ${
+      getState().users.token
+    }`;
+    try {
+      const { data } = await axios.post(`/products/changeStatus/${id}`, status);
+
+      return data;
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        try {
+          const newToken = await refreshToken();
+          axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
+          axios.defaults.headers.delete.withCredentials = true;
+          const { data } = await axios.post(
+            `/products/changeStatus/${id}`,
+            status
+          );
           return data;
         } catch (refreshError) {
           return rejectWithValue('Token refresh failed');

@@ -60,7 +60,13 @@ export const SortText = styled.p`
 
 export const Container = styled.form`
   display: flex;
-  align-items: center;
   gap: 17px;
-  margin-left: auto;
+  justify-content: center;
+  max-width: 300px;
+  width: 100%;
+  @media screen and (min-width: 1440px) {
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+  }
 `;

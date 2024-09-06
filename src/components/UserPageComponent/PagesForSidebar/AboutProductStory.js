@@ -5,14 +5,14 @@ import {
   ImageStory,
   NumberOrder,
   Price,
-  // State,
+  State,
   Title,
   WrapperProduct,
 } from './PagesForSidebar.styled';
 import { formatDate } from 'data/formatDate';
 
 export default function AboutProductStory({
-  // status,
+  status,
   title,
   createDate,
   price,
@@ -24,7 +24,7 @@ export default function AboutProductStory({
   return (
     <WrapperProduct className="story">
       <About>
-        {/* <State $state={Object.keys(status)}>{Object.values(status)}</State> */}
+        <State $state={status}>{status}</State>
         <NumberOrder>&#8470;{number}</NumberOrder>
         <ImageStory>
           <img src={img} alt={title} />
