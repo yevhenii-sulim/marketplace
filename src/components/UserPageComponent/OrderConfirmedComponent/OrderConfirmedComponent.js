@@ -33,9 +33,25 @@ export default function OrderConfirmedComponent() {
   const handlePageLeave = () => {
     localStorage.removeItem('productStory');
     clearAllProducts();
-  }
+  };
 
   window.addEventListener('visibilitychange', handlePageLeave);
+
+  function getProduct(product, discount, discountPrice, price) {
+    if (product) {
+      if (product.discount) {
+        return product.discountPrice;
+      } else {
+        return product.price;
+      }
+    } else {
+      if (discount) {
+        return discountPrice;
+      } else {
+        return price;
+      }
+    }
+  }
 
   return (
     <Container>
@@ -44,15 +60,25 @@ export default function OrderConfirmedComponent() {
         <OrderProducts>
           {(isUserRegistered ? user.purchasedGoods : productStory).length ? (
             (isUserRegistered ? user.purchasedGoods : productStory).map(
-              ({ _id, img, title, price }) => (
-                <OrderProduct
-                  key={_id}
-                  productId={_id}
-                  imgSrc={img}
-                  title={title}
-                  price={price}
-                />
-              )
+              ({
+                _id,
+                img,
+                title,
+                product,
+                discount,
+                discountPrice,
+                price,
+              }) => {
+                return (
+                  <OrderProduct
+                    key={_id}
+                    productId={_id}
+                    imgSrc={product ? product.img : img}
+                    title={title}
+                    price={getProduct(product, discount, discountPrice, price)}
+                  />
+                );
+              }
             )
           ) : (
             <p>Немає замовлень</p>

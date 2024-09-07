@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import { logOut } from '../../redux/auth/thunk';
 import { selectPoster } from '../../redux/myPoster/selector';
 import StoryOrderSvg from 'SvgComponents/StoryOrderSvg/StoryOrderSvg';
@@ -54,10 +54,10 @@ export default function UserPageSidebar() {
         <NotificationsNoneIcon />
       </SidebarListComponent>
       <SidebarListComponent
-        nameList="Повідомлення"
-        path={`${choosePath() + 'notification'}`}
+        nameList="Продані товари"
+        path={`${choosePath() + 'sold-goods'}`}
       >
-        <ChatBubbleOutlineIcon />
+        <ProductionQuantityLimitsIcon />
       </SidebarListComponent>
       <SidebarListComponent
         nameList="Обране"

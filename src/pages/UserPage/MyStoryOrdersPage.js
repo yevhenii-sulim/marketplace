@@ -58,7 +58,6 @@ export default function MyStoryOrdersPage() {
         sortedProduct={sortedProduct}
         setValueSort={setValueSort}
         setValue={setValue}
-        valueSort={valueSort}
         value={value}
       />
     </>
