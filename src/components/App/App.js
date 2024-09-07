@@ -20,7 +20,7 @@ import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import UserPage from 'pages/UserPage';
 import ErrorPage from 'pages/ErrorPage';
 import MyPosterPage from 'pages/UserPage/MyPosterPage';
-import NotificationPages from 'pages/UserPage/NotificationPages';
+import SoldGoodsPages from 'pages/UserPage/SoldGoodsPages';
 import SelectedPage from 'pages/UserPage/SelectedPage';
 import ProfilePage from 'pages/UserPage/ProfilePage';
 import LayoutPage from 'pages/LayoutPage';
@@ -113,7 +113,7 @@ export default function App() {
             <Route path="my_story_order" element={<MyStoryOrdersPage />} />
             <Route path="my_poster" element={<MyPosterPage />} />
             <Route path="my_post_list" element={<MyPosterListPage />} />
-            <Route path="notification" element={<NotificationPages />} />
+            <Route path="sold-goods" element={<SoldGoodsPages />} />
             <Route path="selected" element={<SelectedPage />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>

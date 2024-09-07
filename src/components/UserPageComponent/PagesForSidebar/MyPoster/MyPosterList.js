@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { togglePoster } from '../../../../redux/myPoster/slice';
@@ -10,7 +9,6 @@ import {
   deleteProduct,
 } from '../../../../redux/product/thunk';
 import PosterSvg from 'SvgComponents/PosterSVG/PosterSvg';
-import MessageSvg from 'SvgComponents/Message/MessageSvg';
 import EyeSvg from 'SvgComponents/Eye/EyeSvg';
 import DeleteSvg from 'SvgComponents/Delete/DeleteSvg';
 import DeactivateSvg from 'SvgComponents/Deactivate/DeactivateSvg';
@@ -42,6 +40,8 @@ export default function MyPosterList({
 }) {
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
+  console.log(user);
+
   const [myProduct, setMyProduct] = useState([]);
 
   const products = user?.products;
@@ -124,8 +124,6 @@ export default function MyPosterList({
                 img,
                 count,
                 discount,
-                // message,
-                // like,
                 visit,
               }) => {
                 return (
@@ -171,14 +169,6 @@ export default function MyPosterList({
                         </OperationList>
                       </Operation>
                       <FeedBack>
-                        <FeedBackSign>
-                          {/* <span className="message">{message.length}</span> */}
-                          <MessageSvg />
-                        </FeedBackSign>
-                        <FeedBackSign>
-                          {/* <span className="heart">{like}</span> */}
-                          <FavoriteBorderOutlinedIcon />
-                        </FeedBackSign>
                         <FeedBackSign>
                           <span className="heart">{visit}</span>
                           <EyeSvg />

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   padding: 32px 59px 0px;
@@ -17,13 +17,13 @@ export const FullOrderInfo = styled.div`
   margin-bottom: 10px;
 `;
 
-export const OrderProductContainer = styled.div`
+export const OrderProductContainer = styled.li`
   display: flex;
   gap: 50px;
 `;
 
 export const OrderProductData = styled.div`
-  width: 50%
+  width: 50%;
 `;
 
 export const OrderReceiverData = styled.div`
@@ -33,7 +33,9 @@ export const OrderReceiverData = styled.div`
   justify-content: space-between;
 `;
 
-export const OrderProducts = styled.div`
+export const OrderProducts = styled.ul`
+  padding-left: 16px;
+  padding-right: 16px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -42,7 +44,7 @@ export const OrderProducts = styled.div`
 export const YellowTitle = styled.p`
   font: 800 18px 'Nunito Sans';
   line-height: 26px;
-  color: #FFC107;
+  color: #ffc107;
 `;
 
 export const OrderNumber = styled.p`
@@ -85,7 +87,7 @@ export const OrderDate = styled.p`
 export const Divider = styled.hr`
   width: 100%;
   border: none;
-  border-top: 1px solid #D0D0D0;
+  border-top: 1px solid #d0d0d0;
   opacity: 0.5;
 `;
 
@@ -100,14 +102,14 @@ export const MyOrdersButton = styled.button`
   width: 264px;
   height: 48px;
   border-radius: 8px;
-  background-color: #43C550;
+  background-color: #43c550;
   font: 700 22px 'Jost';
   color: #ffffff;
   line-height: 32px;
   transition: 0.15s box-shadow;
 
   &:hover {
-    box-shadow: 0.3px 0.3px 5px 0px #43C550;
+    box-shadow: 0.3px 0.3px 5px 0px #43c550;
   }
 `;
 
@@ -116,14 +118,14 @@ export const ContinueShoppingButton = styled.button`
   height: 48px;
   border-radius: 8px;
   background-color: #ffffff;
-  border: 1px solid #43C550;
+  border: 1px solid #43c550;
   font: 700 22px 'Jost';
-  color: #43C550;
+  color: #43c550;
   line-height: 32px;
   transition: 0.15s background-color, color;
-  
+
   &:hover {
-    background-color: #7FD888;
+    background-color: #7fd888;
     color: #fff;
   }
 `;
