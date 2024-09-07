@@ -121,3 +121,29 @@ export const TitleProducts = styled.h1`
     font-size: 44px;
   }
 `;
+export const EmptySearch = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+  margin-top: 32px;
+  margin-bottom: 32px;
+  ul {
+    text-align: center;
+  }
+`;
+export const TitleSection = styled.h1`
+  text-align: center;
+  left: 40px;
+  top: 24px;
+  font-family: Jost;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.5; /* 150% */
+  letter-spacing: -0.32px;
+`;
+export const BoxSvg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+`;
