@@ -12,7 +12,7 @@ import {
 } from './FilterState.styled';
 import { selectFiltersStates } from '../../../redux/product/selector';
 
-export default function FilterState() {
+export default function FilterState({ setPage }) {
   const [open, setOpen] = useState(false);
   const [params, setParams] = useSearchParams('');
   const states = useSelector(selectFiltersStates);
@@ -26,6 +26,7 @@ export default function FilterState() {
   const sortOrder = params.getAll('sortOrder') ?? [];
 
   const handleOnChange = states => {
+    setPage(1);
     if (params.getAll('states').includes(states)) {
       const updatedValue = params
         .getAll('states')

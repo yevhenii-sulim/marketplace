@@ -63,12 +63,26 @@ export const SimilarProductItemName = styled.h4`
   margin-top: 12px;
   height: 42px;
   color: ${({ theme }) => theme.color.colorMainText};
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+
   overflow: hidden;
-  text-overflow: ellipsis;
   line-height: 1.2;
+  position: relative;
+  &:hover {
+    overflow: visible;
+  }
+  span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    background-color: ${({ theme }) => theme.color.bgProduct};
+    &:hover {
+      -webkit-line-clamp: unset;
+    }
+  }
 `;
 export const SimilarProductItemPrice = styled.div`
   display: flex;

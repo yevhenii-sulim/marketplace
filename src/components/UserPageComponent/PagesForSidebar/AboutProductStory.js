@@ -3,7 +3,6 @@ import {
   Cost,
   DateOrder,
   ImageStory,
-  NumberOrder,
   Price,
   State,
   Title,
@@ -18,14 +17,12 @@ export default function AboutProductStory({
   price,
   discountPrice,
   img,
-  number,
   discount,
 }) {
   return (
     <WrapperProduct className="story">
       <About>
         <State $state={status}>{status}</State>
-        <NumberOrder>&#8470;{number}</NumberOrder>
         <ImageStory>
           <img src={img} alt={title} />
         </ImageStory>

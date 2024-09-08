@@ -44,7 +44,18 @@ export const OrderProducts = styled.ul`
 export const YellowTitle = styled.p`
   font: 800 18px 'Nunito Sans';
   line-height: 26px;
-  color: #ffc107;
+  color: ${({ $state, theme }) => {
+    switch ($state) {
+      case 'Виконано':
+        return theme.color.colorTextWorkedOrder;
+      case 'Очікується відправки':
+        return theme.color.colorTextWaitedOrder;
+      case 'Скасовано':
+        return theme.color.colorTextCancelledOrder;
+      default:
+        return;
+    }
+  }};
 `;
 
 export const OrderNumber = styled.p`

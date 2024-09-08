@@ -366,11 +366,6 @@ export const Count = styled.div`
   align-items: center;
 `;
 
-export const NumberOrder = styled.span`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.25; /* 125% */
-`;
 export const DateOrder = styled.span`
   color: ${({ theme }) => theme.color.colorTextExplainment};
   font-family: 'Nunito Sans';

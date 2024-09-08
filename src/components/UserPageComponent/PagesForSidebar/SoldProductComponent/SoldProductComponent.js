@@ -33,6 +33,7 @@ export default function SoldProductComponent({
   building,
   postOffice,
   town,
+  apartment,
 }) {
   const dispatch = useDispatch();
   const ref = useRef(null);
@@ -131,7 +132,7 @@ export default function SoldProductComponent({
             <strong>Доставка:</strong>{' '}
             {building === ''
               ? `${town[0]}, ${postOffice}`
-              : `${town[0]}, ${building}`}
+              : `${town[0]}, будівля ${building}, квартира ${apartment}`}
           </p>
           <p>
             <strong>Оплата:</strong> {pay}

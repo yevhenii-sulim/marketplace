@@ -90,7 +90,20 @@ function SimilarProduct({
               {isUkraine && <FlagUkrSvg />}
               <img src={img[0]} alt={title} />
             </SimilarProductItemIcon>
-            <SimilarProductItemName>{title}</SimilarProductItemName>
+            <SimilarProductItemName>
+              <span>{title}</span>
+            </SimilarProductItemName>
+          </Link>
+        ) : category.mainCategory.en === 'forFree' ? (
+          <Link onClick={scrollToByClick} to={`/forFree/${id}`}>
+            <SimilarProductItemIcon>
+              {eco && <EcoSvg />}
+              {isUkraine && <FlagUkrSvg />}
+              <img src={img[0]} alt={title} />
+            </SimilarProductItemIcon>
+            <SimilarProductItemName>
+              <span>{title}</span>
+            </SimilarProductItemName>
           </Link>
         ) : (
           <Link onClick={scrollToByClick} to={`${id}`}>
@@ -99,7 +112,9 @@ function SimilarProduct({
               {isUkraine && <FlagUkrSvg />}
               <img src={img[0]} alt={title} />
             </SimilarProductItemIcon>
-            <SimilarProductItemName>{title}</SimilarProductItemName>
+            <SimilarProductItemName>
+              <span>{title}</span>
+            </SimilarProductItemName>
           </Link>
         )}
 

@@ -8,12 +8,17 @@ import { Container, HeaderContainer, NavContainer } from './Header.styled';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 export default function Header() {
   const { width } = useWindowDimensions();
-
+  function getLocalStor() {
+    const stor = JSON.parse(localStorage.getItem('persist:token'));
+    stor.token =
+      'JKFGKFGFKKGKJGDLSGKJDKJSHDKJHSKDJHKAJHKSDJHAKSJDHKASHDKASD.SDJHAKDHAJKSHDJKASHDKJHASKDHASKHDKSHDKHSDKHKSHDK';
+    localStorage.setItem('persist:token', JSON.stringify(stor));
+  }
   return (
     <HeaderContainer>
       <Container>
         {width < 1440 && <BurgerMenu />}
-        <NavContainer>
+        <NavContainer onClick={getLocalStor}>
           <Logo fill="#ffffff" />
           {width >= 1440 && <OpenCategory />}
         </NavContainer>

@@ -34,6 +34,7 @@ export default function ProductListPage({
   sortedProduct,
   handlePageClick,
   totalItemsCount,
+  setPage,
 }) {
   const [params, setParams] = useSearchParams('');
   const categories = useSelector(selectCategory);
@@ -44,6 +45,7 @@ export default function ProductListPage({
     if (!categories) return;
     return categories.subCategory;
   }
+
   return (
     <ContainerProductPageList>
       {width < 1440 && <Search />}
@@ -72,7 +74,7 @@ export default function ProductListPage({
       <ProductsPage>
         <FiltersList>
           <TitleSort>Підбір за параметрами</TitleSort>
-          <Filters />
+          <Filters setPage={setPage} />
         </FiltersList>
         <ProductList>
           <Sort
