@@ -23,16 +23,18 @@ function Product() {
     <Suspense fallback={<SkeletonCatalogList />}>
       <>
         {isLoading ? (
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, calc(-50% - 84px - 84px))',
-            }}
-          >
-            <CircularProgress />
-          </Box>
+          <div style={{ height: '100dvh' }}>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '70%',
+                left: '50%',
+                transform: 'translate(-50%, calc(-50% - 84px - 84px))',
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          </div>
         ) : (
           <WrapperContentPages>
             <ContainerProductPage>
