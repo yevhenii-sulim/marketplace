@@ -15,6 +15,7 @@ import { selectBasket } from '../../../redux/basket/select';
 import BasketModal from 'components/BasketModal/BasketModal';
 import { useState } from 'react';
 import ProductCostSection from './ProductCost';
+import { addFavoriteProduct } from '../../../redux/product/thunk';
 
 const body = document.querySelector('body');
 const modalEnter = document.querySelector('#modal');
@@ -57,12 +58,16 @@ function OrderSection() {
         };
     dispatch(addProduct(productAdded));
   }
+
+  const addFavorite = productId => {
+    dispatch(addFavoriteProduct(productId));
+  };
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
         <ProductName>
           {product.title}
-          <IconWrapper>
+          <IconWrapper onClick={() => addFavorite(product._id)}>
             <FavoriteBorderIcon />
           </IconWrapper>
         </ProductName>

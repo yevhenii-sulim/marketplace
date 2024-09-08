@@ -29,6 +29,9 @@ export const buttonBuyStyles = {
     fontSize: '20px',
     width: '95%',
   },
+  [theme.breakpoints.down('lg')]: {
+    width: '95%',
+  },
 };
 
 export const buttonConnectStyles = {
@@ -41,6 +44,7 @@ export const buttonConnectStyles = {
   fontStyle: 'normal',
   fontWeight: '700',
   lineHeight: '1.45',
+  whiteSpace: 'nowrap',
   '&:focus': {
     borderColor: '#43C550',
   },
@@ -58,7 +62,9 @@ export const buttonConnectStyles = {
   },
   [theme.breakpoints.down('xs')]: {
     fontSize: '20px',
-    whiteSpace: 'nowrap',
+    width: '95%',
+  },
+  [theme.breakpoints.down('lg')]: {
     width: '95%',
   },
 };
@@ -79,5 +85,8 @@ export const buttonShowTelStyles = {
   },
   '&:hover': {
     borderColor: '#43C550',
+  },
+  [theme.breakpoints.down('lg')]: {
+    width: '95%',
   },
 };
