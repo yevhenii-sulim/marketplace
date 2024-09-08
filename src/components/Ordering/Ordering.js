@@ -26,7 +26,6 @@ export default function Ordering() {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const { width } = useWindowDimensions();
-
   const userData = useSelector(selectMyUser);
   const isUserRegistered = useSelector(selectAuth);
 
@@ -91,7 +90,7 @@ export default function Ordering() {
           validateOnBlur={false}
           validationSchema={signupSchema}
           onSubmit={values => {
-            onSubmitOrder(basket, values, userData, dispatch);
+            onSubmitOrder(basket, values, userData, dispatch, isUserRegistered);
             handleSubmit(values);
           }}
         >
