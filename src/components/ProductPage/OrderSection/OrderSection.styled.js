@@ -17,6 +17,12 @@ export const OrderSectionContainer = styled.section`
 
   padding-top: 10px;
   margin: 0 auto;
+  @media (min-width: 1024px) {
+    width: 90%;
+  }
+  @media (max-width: 1248px) {
+    width: 95%;
+  }
 `;
 export const ProductName = styled.div`
   display: flex;
@@ -58,6 +64,7 @@ export const IconWrapper = styled.span`
   background-color: #bbeac0;
   padding: 8px;
   border-radius: 50%;
+  cursor: pointer;
 `;
 export const ProductCost = styled.section`
   display: flex;
