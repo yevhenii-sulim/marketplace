@@ -10,7 +10,7 @@ export const prices = {
   totalCount: 0,
 };
 
-export function onSubmitOrder(data, values, user, dispatch) {
+export function onSubmitOrder(data, values, user, dispatch, auth) {
   const orderData = data.map(({ count, id }) => {
     return {
       id,
@@ -24,7 +24,9 @@ export function onSubmitOrder(data, values, user, dispatch) {
       url: `/purchase/${id}`,
       data: value,
     });
-    dispatch(removeFavoriteProduct(id));
+    if (auth) {
+      dispatch(removeFavoriteProduct(id));
+    }
   });
   Promise.allSettled(orderData);
   dispatch(deleteBasket());
