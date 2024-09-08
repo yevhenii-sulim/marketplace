@@ -79,6 +79,7 @@ export const DescribeInfoComplaintBlock = styled.div`
 `;
 
 export const DescribeInfoComplaint = styled.a`
+  display: none;
   color: #f04438;
 `;
 

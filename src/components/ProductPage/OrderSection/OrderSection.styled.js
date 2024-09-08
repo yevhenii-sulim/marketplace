@@ -81,7 +81,7 @@ export const ProductCost = styled.section`
 export const StrikePrice = styled.div`
   display: flex;
   flex-direction: column;
-
+  white-space: nowrap;
   color: #5e5f5f;
   font-size: 22px;
   @media (max-width: 1024px) {
@@ -99,7 +99,7 @@ export const SalePrice = styled.div`
   font-size: 32px;
   font-weight: 700;
   margin-top: 4px;
-
+  white-space: nowrap;
   @media (max-width: 1024px) {
     width: 100%;
     margin: 0 auto;
