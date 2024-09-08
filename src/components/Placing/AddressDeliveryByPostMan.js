@@ -44,8 +44,8 @@ export default function AddressDeliveryByPostMan({
           Квартира
           <Field
             type="number"
-            name="floor"
-            className="floor"
+            name="apartment"
+            className="apartment"
             onChange={handleChange}
             placeholder="3"
           />
@@ -54,8 +54,8 @@ export default function AddressDeliveryByPostMan({
           Поверх
           <Field
             type="number"
-            name="apartment"
-            className="apartment"
+            name="floor"
+            className="floor"
             onChange={handleChange}
             placeholder="20"
           />

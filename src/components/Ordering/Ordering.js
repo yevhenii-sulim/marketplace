@@ -104,6 +104,7 @@ export default function Ordering() {
             touched,
           }) => (
             <Form>
+              {console.log(values)}
               <Placing
                 wayDelivery={values.wayDelivery}
                 handleChange={handleChange}
