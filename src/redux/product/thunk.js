@@ -4,7 +4,14 @@ import Notiflix from 'notiflix';
 import { getUser } from '../auth/thunk';
 import { refreshToken } from '../refreshToken';
 import { addNullRating, deleteRating } from '../rating/slice';
+import { toggleModalAuth } from '../modalAuth/slice';
+
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
+axios.defaults.headers.patch['Content-Type'] = 'multipart/form-data';
+
+function setToken(token) {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+}
 
 export const addCommentFromStory = createAsyncThunk(
   'products/addComment',
@@ -68,14 +75,9 @@ export const getProducts = createAsyncThunk(
       const { data } = await axios.get(
         `/products/filterAndSortedProducts/${textQuery}?page=${page}&${paramQuery}`
       );
-
       return data;
     } catch (error) {
-      if (
-        Number(error.response.status === 500) ||
-        Number(error.response.status === 404)
-      )
-        window.location.href = '/marketplace/error';
+      window.location.href = '/marketplace/error';
     }
   }
 );
@@ -84,28 +86,20 @@ export const searchProduct = createAsyncThunk(
   'products/searchProduct',
   async title => {
     if (!title) return;
-
     try {
       const { data } = await axios.get(`/products/search?title=${title}`);
-      console.log('search', data);
-
       return data;
     } catch (error) {
-      if (Number(error.response.status === 500))
-        window.location.href = '/marketplace/error';
-      console.log('errorSearch', error);
+      window.location.href = '/marketplace/error';
     }
   }
 );
 export const prevSearchProduct = createAsyncThunk(
   'products/prevSearchProduct',
   async title => {
-    console.log('searshThunk', title);
     if (!title) return;
     try {
       const { data } = await axios.get(`/products/search?title=${title}`);
-      console.log('search', data);
-
       return data;
     } catch (error) {
       console.log('errorSearch', error);
@@ -117,38 +111,38 @@ export const addFavoriteProduct = createAsyncThunk(
   'products/addFavoriteProduct',
   async (productId, { getState, rejectWithValue, dispatch }) => {
     try {
+      setToken(getState().users.token);
       const { data } = await axios.patch(
         `/favorite/add/${productId}`,
-        productId,
-        {
-          headers: {
-            Authorization: `Bearer ${getState().users.token}`,
-            'Content-Type': 'multipart/form-data',
-          },
-        }
+        productId
       );
       dispatch(getUser(getState().users.myUser._id));
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        try {
-          const newToken = await refreshToken();
-          console.log('newToken', newToken);
-          const { data } = await axios.patch(
-            `/favorite/add/${productId}`,
-            productId,
-            {
-              headers: {
-                Authorization: `Bearer ${newToken}`,
-                'Content-Type': 'multipart/form-data',
-                withCredentials: true,
-              },
-            }
-          );
-          return data;
-        } catch (refreshError) {
-          return rejectWithValue('Token refresh failed');
-        }
+        Notiflix.Notify.info('Ваша реєстрація застаріла, авторизуйтесь');
+        setToken('');
+        // window.location.href = '/marketplace/user_page';
+        dispatch(toggleModalAuth(true));
+
+        // try {
+        //   const newToken = await refreshToken();
+        //   console.log('newToken', newToken);
+        //   const { data } = await axios.patch(
+        //     `/favorite/add/${productId}`,
+        //     productId,
+        //     {
+        //       headers: {
+        //         Authorization: `Bearer ${newToken}`,
+        //         'Content-Type': 'multipart/form-data',
+        //         withCredentials: true,
+        //       },
+        //     }
+        //   );
+        //   return data;
+        // } catch (refreshError) {
+        //   return rejectWithValue('Token refresh failed');
+        // }
       }
       console.log('errorFavoriteProduct', error);
       return rejectWithValue(error.message);
@@ -170,14 +164,15 @@ export const removeFavoriteProduct = createAsyncThunk(
           },
         }
       );
-
       dispatch(getUser(getState().users.myUser._id));
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
+        dispatch(toggleModalAuth(true));
         try {
           const newToken = await refreshToken();
           console.log(newToken);
+
           const { data } = await axios.patch(
             `/favorite/remove/${productId}`,
             productId,
