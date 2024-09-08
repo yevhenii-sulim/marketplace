@@ -115,7 +115,6 @@ export default function MyStoryOrder({
                   _id,
                   status,
                   createDate,
-                  quantity,
                   product: {
                     _id: productId,
                     title,
@@ -137,7 +136,6 @@ export default function MyStoryOrder({
                       createDate={createDate}
                       price={price}
                       discountPrice={discountPrice}
-                      number={quantity}
                       img={img[0]}
                       discount={discount}
                     />

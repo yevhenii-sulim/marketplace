@@ -1,19 +1,18 @@
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import useWindowDimensions from 'hooks/useWindowDimensions';
-
+import { setMaxPriceFilterParam, setMinPriceFilterParam } from './setParams';
 import { selectFiltersPrice } from '../../../redux/product/selector';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import {
   CountPrice,
   PriceSlide,
   SliderRange,
   styleBoxRange,
 } from './FilterPrice.styled';
-import { useSearchParams } from 'react-router-dom';
-import { setMaxPriceFilterParam, setMinPriceFilterParam } from './setParams';
 
-export default function FilterPrice() {
+export default function FilterPrice({ setPage }) {
   const [params, setParams] = useSearchParams('');
   const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
   const { width } = useWindowDimensions();
@@ -47,6 +46,7 @@ export default function FilterPrice() {
     } else {
       getMaxValue(price);
     }
+    setPage(1);
   };
 
   const handleChangeSlider = (event, newValue, activeThumb) => {
@@ -58,6 +58,7 @@ export default function FilterPrice() {
     } else {
       getMaxValue(Math.min(newValue[1]));
     }
+    setPage(1);
   };
 
   return (

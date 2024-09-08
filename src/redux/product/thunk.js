@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
-import { getUser } from '../auth/thunk';
+import { getUser, logOut } from '../auth/thunk';
 import { refreshToken } from '../refreshToken';
 import { addNullRating, deleteRating } from '../rating/slice';
 import { toggleModalAuth } from '../modalAuth/slice';
@@ -11,6 +11,7 @@ axios.defaults.headers.patch['Content-Type'] = 'multipart/form-data';
 
 function setToken(token) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  console.log(token);
 }
 
 export const addCommentFromStory = createAsyncThunk(
@@ -55,7 +56,10 @@ export const addCommentFromStory = createAsyncThunk(
           );
           return response;
         } catch (refreshError) {
-          return rejectWithValue('Token refresh failed');
+          dispatch(logOut());
+          Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+          dispatch(toggleModalAuth(true));
+          // return rejectWithValue('Token refresh failed');
         }
       }
       console.log('errorCommentProduct', error);
@@ -120,29 +124,26 @@ export const addFavoriteProduct = createAsyncThunk(
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        Notiflix.Notify.info('Ваша реєстрація застаріла, авторизуйтесь');
-        setToken('');
-        // window.location.href = '/marketplace/user_page';
-        dispatch(toggleModalAuth(true));
-
-        // try {
-        //   const newToken = await refreshToken();
-        //   console.log('newToken', newToken);
-        //   const { data } = await axios.patch(
-        //     `/favorite/add/${productId}`,
-        //     productId,
-        //     {
-        //       headers: {
-        //         Authorization: `Bearer ${newToken}`,
-        //         'Content-Type': 'multipart/form-data',
-        //         withCredentials: true,
-        //       },
-        //     }
-        //   );
-        //   return data;
-        // } catch (refreshError) {
-        //   return rejectWithValue('Token refresh failed');
-        // }
+        try {
+          const newToken = await refreshToken();
+          console.log('newToken', newToken);
+          const { data } = await axios.patch(
+            `/favorite/add/${productId}`,
+            productId,
+            {
+              headers: {
+                Authorization: `Bearer ${newToken}`,
+                'Content-Type': 'multipart/form-data',
+                withCredentials: true,
+              },
+            }
+          );
+          return data;
+        } catch (refreshError) {
+          dispatch(logOut());
+          Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+          dispatch(toggleModalAuth(true));
+        }
       }
       console.log('errorFavoriteProduct', error);
       return rejectWithValue(error.message);
@@ -168,7 +169,6 @@ export const removeFavoriteProduct = createAsyncThunk(
       return data;
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        dispatch(toggleModalAuth(true));
         try {
           const newToken = await refreshToken();
           console.log(newToken);
@@ -186,7 +186,10 @@ export const removeFavoriteProduct = createAsyncThunk(
           );
           return data;
         } catch (refreshError) {
-          return rejectWithValue('Token refresh failed');
+          dispatch(logOut());
+          Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+          dispatch(toggleModalAuth(true));
+          // return rejectWithValue('Token refresh failed');
         }
       }
       console.log('errorFavoriteProduct', error);
@@ -208,7 +211,7 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
 
 export const deleteProduct = createAsyncThunk(
   'products/deleteProduct',
-  async (id, { getState, rejectWithValue }) => {
+  async (id, { getState, rejectWithValue, dispatch }) => {
     axios.defaults.headers.common.Authorization = `Bearer ${
       getState().users.token
     }`;
@@ -225,7 +228,10 @@ export const deleteProduct = createAsyncThunk(
           const { data } = await axios.delete(`/products/${id}`);
           return data;
         } catch (refreshError) {
-          return rejectWithValue('Token refresh failed');
+          dispatch(logOut());
+          Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+          dispatch(toggleModalAuth(true));
+          // return rejectWithValue('Token refresh failed');
         }
       }
       console.log('errorFavoriteProduct', error);
@@ -236,7 +242,7 @@ export const deleteProduct = createAsyncThunk(
 
 export const changeStatusProduct = createAsyncThunk(
   '/products/changeStatus',
-  async ({ id, status }, { getState, rejectWithValue }) => {
+  async ({ id, status }, { getState, rejectWithValue, dispatch }) => {
     axios.defaults.headers.common.Authorization = `Bearer ${
       getState().users.token
     }`;
@@ -256,7 +262,10 @@ export const changeStatusProduct = createAsyncThunk(
           );
           return data;
         } catch (refreshError) {
-          return rejectWithValue('Token refresh failed');
+          dispatch(logOut());
+          Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+          dispatch(toggleModalAuth(true));
+          // return rejectWithValue('Token refresh failed');
         }
       }
       console.log('errorFavoriteProduct', error);
@@ -266,7 +275,7 @@ export const changeStatusProduct = createAsyncThunk(
 );
 export const changeStatusSoldProduct = createAsyncThunk(
   '/purchase/changeStatus',
-  async ({ id, status }, { getState, rejectWithValue }) => {
+  async ({ id, status }, { getState, rejectWithValue, dispatch }) => {
     axios.defaults.headers.common.Authorization = `Bearer ${
       getState().users.token
     }`;
@@ -290,14 +299,17 @@ export const changeStatusSoldProduct = createAsyncThunk(
         }
       }
       console.log('errorFavoriteProduct', error);
-      return rejectWithValue(error.message);
+      dispatch(logOut());
+      Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+      dispatch(toggleModalAuth(true));
+      // return rejectWithValue(error.message);
     }
   }
 );
 
 export const createProduct = createAsyncThunk(
   'products/createProduct',
-  async (product, { getState, rejectWithValue }) => {
+  async (product, { getState, rejectWithValue, dispatch }) => {
     try {
       const data = await axios.post(`/products/create`, product, {
         headers: {
@@ -322,7 +334,10 @@ export const createProduct = createAsyncThunk(
           });
           return data;
         } catch (refreshError) {
-          return rejectWithValue('Token refresh failed');
+          dispatch(logOut());
+          Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+          dispatch(toggleModalAuth(true));
+          // return rejectWithValue('Token refresh failed');
         }
       }
       Notiflix.Notify.failure(error.data.message, {

@@ -12,7 +12,7 @@ import {
   SignSex,
 } from './FilterSex.styled';
 
-function FilterSex() {
+function FilterSex({ setPage }) {
   const [open, setOpen] = useState(false);
   const sex = useSelector(selectFiltersSex);
   const [params, setParams] = useSearchParams('');
@@ -26,6 +26,7 @@ function FilterSex() {
   const sortOrder = params.getAll('sortOrder') ?? [];
 
   const handleOnChange = sex => {
+    setPage(1);
     if (params.getAll('sex').includes(sex)) {
       const updatedValue = params.getAll('sex').filter(item => item !== sex);
       createStateList(updatedValue);

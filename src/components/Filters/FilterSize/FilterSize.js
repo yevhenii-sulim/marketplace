@@ -6,7 +6,7 @@ import { selectFiltersSizes } from '../../../redux/product/selector';
 import { Box, ButtonExpand, Container, SizeList } from './FilterSize.styled';
 import { useSearchParams } from 'react-router-dom';
 
-export default function FilterSize() {
+export default function FilterSize({ setPage }) {
   const [open, setOpen] = useState(false);
   const sizes = useSelector(selectFiltersSizes);
   const [params, setParams] = useSearchParams('');
@@ -20,6 +20,7 @@ export default function FilterSize() {
   const sortOrder = params.getAll('sortOrder') ?? [];
 
   const handleOnChange = size => {
+    setPage(1);
     if (params.getAll('sizes').includes(size)) {
       const updatedValue = params.getAll('sizes').filter(item => item !== size);
       createStateList(updatedValue);

@@ -81,6 +81,7 @@ export default function App() {
           <Route path="confederacy" element={<Confederacy />} />
           <Route path="forFree" element={<CatalogPage />} />
           <Route path="forFree/:id" element={<ProductPage />} />
+          <Route path="all/:id" element={<ProductPage />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="catalog" element={<CatalogCategoryMobile />} />
           <Route path=":category" element={<SubCategories />} />

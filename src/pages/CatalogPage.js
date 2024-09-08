@@ -37,6 +37,7 @@ export default function CatalogPage() {
   return (
     <ProductListPage
       page={page}
+      setPage={setPage}
       category={category}
       sortedProduct={products}
       totalItemsCount={totalItemsCount}

@@ -29,12 +29,7 @@ export const Form = styled(FormContainer)`
     font-weight: 700;
     line-height: 1.25;
   }
-  p {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.42;
-    color: ${({ theme }) => theme.color.borderSize};
-  }
+
   label {
     position: relative;
     display: flex;
@@ -53,8 +48,12 @@ export const Form = styled(FormContainer)`
     bottom: 46%;
   }
 `;
+
 export const ErrorMessage = styled(ErrorForm)`
   color: ${({ theme }) => theme.color.colorTextErrorForm};
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25; /* 125% */
 `;
 
 export const socialSingInButton = {

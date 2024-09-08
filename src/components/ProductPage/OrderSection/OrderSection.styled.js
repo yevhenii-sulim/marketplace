@@ -18,7 +18,7 @@ export const OrderSectionContainer = styled.section`
   padding-top: 10px;
   margin: 0 auto;
 `;
-export const ProductName = styled.p`
+export const ProductName = styled.div`
   display: flex;
   justify-content: space-between;
   font-family: Jost;
@@ -37,7 +37,7 @@ export const ProductName = styled.p`
     background-color: white;
   }
 `;
-export const ProductNameWrapper = styled.div`
+export const ProductNameWrapper = styled.p`
   width: 100%;
   white-space: nowrap;
   overflow: hidden;

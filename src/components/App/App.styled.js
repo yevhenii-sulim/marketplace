@@ -12,7 +12,6 @@ Notiflix.Notify.init({
     background: theme.color.bgHeader,
   },
   info: {
-    background: theme.color.bgHeader,
     textAlign: 'center',
   },
 });

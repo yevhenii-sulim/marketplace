@@ -1,3 +1,8 @@
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import OrderProduct from './OrderProduct';
+import { selectMyUser } from '../../../redux/auth/selector';
+import { clearAllProducts } from 'data/myStory';
 import {
   Container,
   ContinueShoppingButton,
@@ -7,18 +12,10 @@ import {
   OrderProducts,
   Title,
 } from './OrderConfirmedComponent.styled';
-import OrderProduct from './OrderProduct';
-import { useNavigate } from 'react-router-dom';
-import { clearAllProducts } from 'data/myStory';
-import { useSelector } from 'react-redux';
-import { selectMyUser } from '../../../redux/auth/selector';
-import { selectAuth } from '../../../redux/auth/selector';
 
 export default function OrderConfirmedComponent() {
   const navigation = useNavigate();
-  const productStory = JSON.parse(localStorage.getItem('productStory')) || [];
   const user = useSelector(selectMyUser);
-  const isUserRegistered = useSelector(selectAuth);
 
   console.log(user);
 
@@ -58,8 +55,8 @@ export default function OrderConfirmedComponent() {
       <Title>Дякуємо за ваше замовлення!</Title>
       <FullOrderInfo>
         <OrderProducts>
-          {(isUserRegistered ? user.purchasedGoods : productStory).length ? (
-            (isUserRegistered ? user.purchasedGoods : productStory).map(
+          {user?.purchasedGoods && user.purchasedGoods.length !== 0 ? (
+            user.purchasedGoods.map(
               ({
                 _id,
                 img,
@@ -68,14 +65,35 @@ export default function OrderConfirmedComponent() {
                 discount,
                 discountPrice,
                 price,
+                createDate = '2024-09-02T17:47:16.424Z',
+                status,
+                pay,
+                firstName,
+                lastName,
+                tel,
+                building,
+                postOffice,
+                town,
+                apartment = 5,
               }) => {
                 return (
                   <OrderProduct
                     key={_id}
+                    status={status}
+                    building={building}
+                    postOffice={postOffice}
+                    town={town}
+                    pay={pay}
+                    firstName={firstName}
+                    lastName={lastName}
+                    tel={tel}
+                    id={_id}
                     productId={_id}
-                    imgSrc={product ? product.img : img}
+                    imgSrc={product ? product.minImage : img}
                     title={title}
                     price={getProduct(product, discount, discountPrice, price)}
+                    createDate={createDate}
+                    apartment={apartment}
                   />
                 );
               }

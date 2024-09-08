@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import {
   YellowTitle,
   OrderNumber,
@@ -9,31 +8,30 @@ import {
   Divider,
   OrderProductData,
   OrderReceiverData,
-  OrderProductContainer
+  OrderProductContainer,
 } from './OrderConfirmedComponent.styled';
-import { selectAuth, selectMyUser } from '../../../redux/auth/selector';
+import { formatDate } from 'data/formatDate';
 
-export default function OrderProduct({ productId, imgSrc, title, price }) {
-
-  const isUserRegistered = useSelector(selectAuth);
-  const user = useSelector(selectMyUser);
-
-  const productStory = JSON.parse(localStorage.getItem('productStory')) || [];
-
-  let productData = null;
-
-  if (isUserRegistered) {
-    productData = user.purchasedGoods.find(item => item._id === productId);
-  }
-  else {
-    productData = productStory.find(item => item._id === productId);
-  }
-
+export default function OrderProduct({
+  pay,
+  firstName,
+  lastName,
+  imgSrc,
+  title,
+  price,
+  createDate,
+  status,
+  tel,
+  building,
+  postOffice,
+  town,
+  apartment,
+}) {
   return (
     <>
       <OrderProductContainer>
         <OrderProductData>
-          <YellowTitle>Очікується відправка</YellowTitle>
+          <YellowTitle $state={status}>{status}</YellowTitle>
           <OrderNumber>№125</OrderNumber>
           <OrderProductDataContainer>
             <OrderProductImageAndTitle>
@@ -42,17 +40,21 @@ export default function OrderProduct({ productId, imgSrc, title, price }) {
             </OrderProductImageAndTitle>
             <OrderProductPrice>{price} ₴</OrderProductPrice>
           </OrderProductDataContainer>
-          <OrderDate>Від 15:10 08.07.2024</OrderDate>
+          <OrderDate>{formatDate(createDate)}</OrderDate>
         </OrderProductData>
         <OrderReceiverData>
           <p>
-            <strong>Доставка:</strong> {productData.wayDelivery} {productData.postOffice.slice(10)}
+            <strong>Доставка:</strong>
+            {building === ''
+              ? `${town[0]}, ${postOffice}`
+              : `${town[0]}, будівля ${building}, квартира ${apartment}`}
           </p>
           <p>
-            <strong>Оплата:</strong> {productData.pay.toLowerCase()}
+            <strong>Оплата:</strong> {pay}
           </p>
           <p>
-            <strong>Отримувач:</strong> {productData.lastName} {productData.firstName} {productData.tel}
+            <strong>Отримувач:</strong> {lastName}&nbsp;
+            {firstName}, {tel}
           </p>
         </OrderReceiverData>
       </OrderProductContainer>

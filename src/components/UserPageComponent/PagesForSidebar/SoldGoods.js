@@ -44,6 +44,7 @@ export default function SoldGoods() {
             building,
             postOffice,
             town,
+            apartment = 5,
           }) => (
             <SoldProductComponent
               key={_id}
@@ -61,6 +62,7 @@ export default function SoldGoods() {
               title={title}
               price={getProduct(product, discount, discountPrice, price)}
               createDate={createDate}
+              apartment={apartment}
             />
           )
         )

@@ -63,8 +63,6 @@ function SimilarProductList({ sizeWindow }) {
               ? productAll.length
               : 3
           }
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={swiper => console.log(swiper)}
         >
           {productAll.map(
             (

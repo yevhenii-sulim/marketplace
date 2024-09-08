@@ -13,7 +13,7 @@ import {
   SignColor,
 } from './FilterColor.styled';
 
-function FilterColor() {
+function FilterColor({ setPage }) {
   const [open, setOpen] = useState(false);
   const colors = useSelector(selectFiltersColors);
   const [params, setParams] = useSearchParams('');
@@ -27,6 +27,7 @@ function FilterColor() {
   const sortOrder = params.getAll('sortOrder') ?? [];
 
   const handleOnChange = color => {
+    setPage(1);
     if (params.getAll('colors').includes(color)) {
       const updatedValue = params
         .getAll('colors')

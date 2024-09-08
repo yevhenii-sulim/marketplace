@@ -6,15 +6,15 @@ import FilterState from 'components/Filters/FilterState/FilterState';
 import { FilterList } from './Filters.styled';
 import { memo } from 'react';
 
-function Filters() {
+function Filters({ setPage }) {
   return (
     <form>
       <FilterList>
-        <FilterPrice />
-        <FilterSex />
-        <FilterSize />
-        <FilterColor />
-        <FilterState />
+        <FilterPrice setPage={setPage} />
+        <FilterSex setPage={setPage} />
+        <FilterSize setPage={setPage} />
+        <FilterColor setPage={setPage} />
+        <FilterState setPage={setPage} />
       </FilterList>
     </form>
   );

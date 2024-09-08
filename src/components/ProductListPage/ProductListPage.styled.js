@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ProductList = styled.ul`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 19px;
@@ -39,6 +40,7 @@ export const Product = styled.div`
   }
   @media screen and (min-width: 1440px) {
     grid-template-columns: repeat(4, auto);
+    justify-content: start;
   }
   gap: 25px;
 `;
@@ -122,9 +124,12 @@ export const TitleProducts = styled.h1`
   }
 `;
 export const EmptySearch = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  height: calc(100% - 64px);
   margin-top: 32px;
   margin-bottom: 32px;
   ul {
