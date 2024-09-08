@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { theme } from 'utils/theme';
 export const Wrapper = styled.div``;
 Notiflix.Notify.init({
-  width: '360px',
+  width: '320px',
   position: 'center-top', // 'right-top' - 'right-bottom' - 'left-top' - 'left-bottom' - 'center-top' - 'center-bottom' - 'center-center'
-  distance: '100px',
   timeout: 7000,
   fontFamily: 'Jost',
   fontSize: '18px',
