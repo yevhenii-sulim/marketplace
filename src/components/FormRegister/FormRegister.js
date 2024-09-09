@@ -97,7 +97,7 @@ export default function FormRegister() {
           if (!values.password) {
             errors.password = "Обов'язкове поле";
           } else if (
-            !/^(?=.*[A-Z])(?=.*[0-9])[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~].{6,20}$/.test(
+            !/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()^{}#+._=;:'",<>/№~\-|`])[A-Za-z\d@$!%*?&()^{}#+._=;:'",<>/№~\-|]{6,}$/.test(
               values.password
             )
           ) {
