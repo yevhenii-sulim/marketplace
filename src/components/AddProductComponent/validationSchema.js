@@ -30,7 +30,7 @@ const SignupSchema = Yup.object().shape({
   price: Yup.string().when('category', {
     is: category => category !== 'Подарую',
     then: e => e.required("Ціна є обов'язкове поле"),
-    otherwise: e => e.nullable().default(() => 0),
+    otherwise: e => e.nullable().default(() => '0'),
   }),
 });
 

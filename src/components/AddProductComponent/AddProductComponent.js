@@ -129,6 +129,7 @@ export default function AddProductComponent() {
           handleBlur,
         }) => (
           <Form>
+            {console.log(errors)}
             <Box>
               <FieldComponent
                 name="title"
