@@ -5,12 +5,19 @@ import FilterSize from 'components/Filters/FilterSize/FilterSize';
 import FilterState from 'components/Filters/FilterState/FilterState';
 import { FilterList } from './Filters.styled';
 import { memo } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Filters({ setPage }) {
+  const location = useLocation();
+  console.log(location.pathname.includes('forFree'));
+
   return (
     <form>
       <FilterList>
-        <FilterPrice setPage={setPage} />
+        {!location.pathname.includes('forFree') && (
+          <FilterPrice setPage={setPage} />
+        )}
+
         <FilterSex setPage={setPage} />
         <FilterSize setPage={setPage} />
         <FilterColor setPage={setPage} />
