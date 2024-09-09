@@ -17,7 +17,6 @@ function Filters({ setPage }) {
         {!location.pathname.includes('forFree') && (
           <FilterPrice setPage={setPage} />
         )}
-
         <FilterSex setPage={setPage} />
         <FilterSize setPage={setPage} />
         <FilterColor setPage={setPage} />

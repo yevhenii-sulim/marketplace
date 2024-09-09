@@ -120,7 +120,7 @@ export default function App() {
           </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
-        <Route path="error" element={<ErrorPage />} />
+        <Route path="404" element={<ErrorPage />} />
       </Routes>
     </Wrapper>
   );
