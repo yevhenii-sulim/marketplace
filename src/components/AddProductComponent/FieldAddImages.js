@@ -44,7 +44,6 @@ export default function FieldAddImages({ values, setFieldValue, name }) {
 
   async function handleFileUpload(event, setFieldValue, value) {
     const file = event.currentTarget.files[0];
-    console.log(file);
     const regex = /heic$/i;
     if (file.type.split('/')[0] === 'image' || regex.test(file.name)) {
       const img = URL.createObjectURL(file);
