@@ -81,7 +81,7 @@ export const getProducts = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      window.location.href = '/marketplace/error';
+      window.location.href = '/marketplace/404';
     }
   }
 );
@@ -94,7 +94,7 @@ export const searchProduct = createAsyncThunk(
       const { data } = await axios.get(`/products/search?title=${title}`);
       return data;
     } catch (error) {
-      window.location.href = '/marketplace/error';
+      window.location.href = '/marketplace/404';
     }
   }
 );
@@ -126,7 +126,6 @@ export const addFavoriteProduct = createAsyncThunk(
       if (error.response && error.response.status === 401) {
         try {
           const newToken = await refreshToken();
-          console.log('newToken', newToken);
           const { data } = await axios.patch(
             `/favorite/add/${productId}`,
             productId,
@@ -171,7 +170,6 @@ export const removeFavoriteProduct = createAsyncThunk(
       if (error.response && error.response.status === 401) {
         try {
           const newToken = await refreshToken();
-          console.log(newToken);
 
           const { data } = await axios.patch(
             `/favorite/remove/${productId}`,
@@ -203,8 +201,7 @@ export const getProduct = createAsyncThunk('products/getProduct', async id => {
     const { data } = await axios.get(`/products/${id}`);
     return data;
   } catch (error) {
-    if (Number(error.response.status === 500))
-      window.location.href = '/marketplace/error';
+    window.location.href = '/marketplace/404';
     console.log('errorGetProduct', error);
   }
 });

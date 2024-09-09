@@ -11,8 +11,7 @@ export const fetchProduct = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log(error);
-      if (Number(error.response.status === 500))
-        window.location.href = '/marketplace/error';
+      window.location.href = '/marketplace/404';
     }
   }
 );
