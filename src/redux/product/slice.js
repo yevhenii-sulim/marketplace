@@ -12,6 +12,10 @@ const handleFulfilled = (state, { payload }) => {
   state.product = payload.products;
   state.totalPage = payload.totalPages;
   if (window.location.pathname !== state.location) {
+    console.log(payload.filters.sizes);
+    payload.filters?.sizes.sort((a, b) => a.localeCompare(b));
+    console.log(payload.filters?.sizes);
+
     state.filters = payload.filters;
   }
   state.location = window.location.pathname;

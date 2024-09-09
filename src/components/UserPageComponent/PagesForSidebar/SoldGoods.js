@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
-import { ContainerNotification } from './PagesForSidebar.styled';
+import { ContainerNotification, Empty } from './PagesForSidebar.styled';
 import SoldProductComponent from './SoldProductComponent/SoldProductComponent';
 import { selectMyUser } from '../../../redux/auth/selector';
+import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
 
 function getProduct(product, discount, discountPrice, price) {
   if (product) {
@@ -21,7 +22,6 @@ function getProduct(product, discount, discountPrice, price) {
 
 export default function SoldGoods() {
   const user = useSelector(selectMyUser);
-  console.log(user);
 
   return (
     <ContainerNotification>
@@ -67,7 +67,10 @@ export default function SoldGoods() {
           )
         )
       ) : (
-        <p>Немає прдажів</p>
+        <Empty>
+          <MyStoryOrderSvg />
+          <p>У Вас немає проданих товарів</p>
+        </Empty>
       )}
     </ContainerNotification>
   );
