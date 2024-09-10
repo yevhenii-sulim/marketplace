@@ -38,15 +38,18 @@ export const WrapperModal = styled.div`
   border: 3px solid ${({ theme }) => theme.color.borderRegister};
   border-radius: 12px;
   padding: 32px;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
 
   .MuiSvgIcon-root.close {
     color: ${({ theme }) => theme.color.bgButton};
   }
   @media screen and (min-width: 480px) {
     width: 366px;
+  }
+  @media screen and (min-width: 768px) {
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -58,6 +61,7 @@ export const Backdrop = styled.div`
   height: 100%;
   background: ${({ theme }) => theme.color.bgBackdrop};
   z-index: 10;
+  overflow-y: auto;
 `;
 export const Box = styled.div`
   display: flex;
