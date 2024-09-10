@@ -4,10 +4,10 @@ export const FormSearch = styled.form`
   width: 100%;
   height: 32px;
   position: relative;
-  margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
   height: 48px;
+  margin-bottom: 30px;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     margin-left: auto;
     margin-right: auto;
@@ -17,6 +17,7 @@ export const FormSearch = styled.form`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     max-width: 100%;
     width: 300px;
+    margin-bottom: 0px;
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
