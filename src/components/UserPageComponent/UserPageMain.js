@@ -20,6 +20,7 @@ export default function UserPageMain() {
 
   function titleSection() {
     if (location.pathname.includes('my_order')) return 'Мій кошик';
+    if (location.pathname.includes('sold-goods')) return 'Продані товари';
     if (location.pathname.includes('my_poster')) return 'Створити оголошення';
     if (location.pathname.includes('my_story_order'))
       return 'Історія замовлень';
