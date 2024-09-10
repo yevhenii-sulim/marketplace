@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
   width: 90%;
   justify-content: center;
   margin: 0 auto;
-  @media (max-width: 480px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.sx}) {
     width: 96%;
   }
 `;

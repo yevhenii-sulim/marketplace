@@ -16,6 +16,7 @@ import {
 } from './Search.styled';
 import Loader from 'components/Loader/Loader';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function Search() {
   const searchedProduct = useSelector(selectPrevProductSearch);
@@ -98,7 +99,7 @@ export default function Search() {
       </BoxLoader>
       <button type="submit">
         <SearchTwoToneIcon />
-        {width >= 768 && 'Пошук'}
+        {width >= parseInt(theme.breakPoints.md) && 'Пошук'}
       </button>
     </FormSearch>
   );

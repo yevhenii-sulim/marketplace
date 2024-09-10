@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 
   left: ${({ $isOpenMenu }) => ($isOpenMenu ? '0%' : '-100%')};
   transition: left 500ms ease;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 414px;
   }
 `;

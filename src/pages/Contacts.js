@@ -1,5 +1,5 @@
-import ContactsComponent from 'components/Contacts/ContactsComponent';
+import ContactsList from 'components/ContactsList/ContactsList';
 
 export default function Contacts() {
-  return <ContactsComponent />;
+  return <ContactsList />;
 }

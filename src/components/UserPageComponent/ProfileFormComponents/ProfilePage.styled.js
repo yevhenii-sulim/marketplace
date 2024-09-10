@@ -7,7 +7,7 @@ export const ProfileContainer = styled.div`
   gap: 20px;
   padding: 10px;
 
-  @media (min-width: 1400px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     padding: unset;
   }
 `;
@@ -25,14 +25,14 @@ export const FormContainer = styled.div`
   gap: ${props => props.$gap || 'unset'};
   justify-content: ${props => props.$justifycontent || 'start'};
 
-  @media (min-width: 762px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 100%;
     display: flex;
     gap: ${props => props.$gap || '74px'};
     justify-content: ${props => props.$justifycontent || 'start'};
   }
 
-  @media (min-width: 1180px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     flex-direction: row;
   }
 `;
@@ -52,7 +52,7 @@ export const InputColumn = styled.div`
   flex-direction: column;
   gap: ${props => props.$gap || '24px'};
 
-  @media (min-width: 762px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     justify-content: unset;
   }
 `;
@@ -108,7 +108,7 @@ export const FormField = styled.div`
     line-height: 20px;
   }
 
-  @media (min-width: 762px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: ${props => props.$width || '100%'};
 
     input,
@@ -172,7 +172,7 @@ export const DateInput = styled.div`
     width: 100%;
   }
 
-  @media (min-width: 762px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     .MuiFormControl-root {
       width: 21.4vw;
     }
@@ -235,7 +235,7 @@ export const ProfilePictureDefault = styled.div`
   border: 1px solid #000;
   border-radius: 50%;
 
-  @media screen and (min-width: 425px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
     width: 123px;
     height: 123px;
   }
@@ -266,7 +266,7 @@ export const PasswordInput = styled.div`
     height: 44px;
   }
 
-  @media (min-width: 762px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     .input {
       width: 320px;
     }
@@ -284,7 +284,7 @@ export const NewPasswordField = styled.div`
   flex-direction: column;
   gap: 24px;
 
-  @media (min-width: 762px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 100%;
     display: flex;
     flex-direction: unset;

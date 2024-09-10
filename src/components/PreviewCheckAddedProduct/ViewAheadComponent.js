@@ -34,6 +34,7 @@ import {
   ButtonsBuy,
 } from './ViewAhead.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function ViewAheadComponent({ onSubmit, values, errors }) {
   const dispatch = useDispatch();
@@ -87,8 +88,10 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
           <AboutProduct>
             <Slider values={values} />
             <Description>
-              {width >= 1440 && <TitleDescription>Опис</TitleDescription>}
-              {width < 1440 && (
+              {width >= parseInt(theme.breakPoints.lg) && (
+                <TitleDescription>Опис</TitleDescription>
+              )}
+              {width < parseInt(theme.breakPoints.lg) && (
                 <Title>
                   {values.title}
                   <div>
@@ -139,7 +142,9 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
                 </Button>
                 <Button sx={addProductButton}>Зв’язатися з продавцем</Button>
               </ButtonsContacts>
-              {width < 1440 && <TitleDescription>Опис</TitleDescription>}
+              {width < parseInt(theme.breakPoints.lg) && (
+                <TitleDescription>Опис</TitleDescription>
+              )}
               <ProductDescription>{values.describe}</ProductDescription>
             </Description>
           </AboutProduct>

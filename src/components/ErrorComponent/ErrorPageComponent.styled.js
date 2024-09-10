@@ -77,12 +77,15 @@ export const Container = styled.main`
   padding-right: 24px;
   padding-bottom: 54px;
   margin: auto;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 768px;
   }
-  @media screen and (min-width: 1440px) {
-    width: 1440px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    width: 1200px;
     padding-left: 58px;
     padding-right: 58px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
+    width: 1440px;
   }
 `;

@@ -20,7 +20,7 @@ export const Pagination = styled.div`
 export const ProductsPage = styled.div`
   display: grid;
   grid-template-columns: auto;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr 7fr;
   }
   column-gap: 30px;
@@ -29,16 +29,17 @@ export const ProductsPage = styled.div`
 export const Product = styled.div`
   display: grid;
   justify-content: center;
-  @media screen and (max-width: 379px) {
+  @media screen and (max-width: calc(${({ theme }) =>
+      theme.breakPoints.sm} - 1px)) {
     grid-template-columns: auto;
   }
-  @media screen and (min-width: 380px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     grid-template-columns: repeat(2, auto);
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     grid-template-columns: repeat(3, auto);
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: repeat(4, auto);
     justify-content: start;
   }
@@ -47,7 +48,7 @@ export const Product = styled.div`
 
 export const FiltersList = styled.div`
   display: none;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: block;
   }
 `;
@@ -95,7 +96,6 @@ export const ButtonExpand = styled.button`
   font-size: 0;
 `;
 export const Navigation = styled.div`
-  margin-top: 64px;
   margin-bottom: 64px;
 `;
 export const Nav = styled.ul`
@@ -116,10 +116,10 @@ export const TitleProducts = styled.h1`
   font-family: 'Jost';
   font-weight: 700;
   line-height: 1.22;
-  @media screen and(min-width: 768px) {
+  @media screen and(min-width: ${({ theme }) => theme.breakPoints.md}) {
     font-size: 32px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     font-size: 44px;
   }
 `;

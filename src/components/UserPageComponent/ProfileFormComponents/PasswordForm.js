@@ -1,14 +1,25 @@
-import { FormContainer, InputColumn, RedactContainer, RedactButton, CancelRedactingButton } from "./ProfilePage.styled";
-import PasswordField from "./PasswordField";
-import NewPasswordInput from "./NewPasswordInput";
-import { useState } from "react";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import { selectToken } from "../../../redux/auth/selector";
-import useWindowDimensions from "hooks/useWindowDimensions";
+import {
+  FormContainer,
+  InputColumn,
+  RedactContainer,
+  RedactButton,
+  CancelRedactingButton,
+} from './ProfilePage.styled';
+import PasswordField from './PasswordField';
+import NewPasswordInput from './NewPasswordInput';
+import { useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { selectToken } from '../../../redux/auth/selector';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
-export default function PasswordForm({ redacting, onSaveChanges, onCancelChanges, onStartRedacting }) {
-
+export default function PasswordForm({
+  redacting,
+  onSaveChanges,
+  onCancelChanges,
+  onStartRedacting,
+}) {
   const { width } = useWindowDimensions();
 
   const token = useSelector(selectToken);
@@ -20,19 +31,20 @@ export default function PasswordForm({ redacting, onSaveChanges, onCancelChanges
     correctChars: false,
     hasSpecialSymbol: false,
     hasCapitalLetter: false,
-    hasNumber: false
+    hasNumber: false,
   });
-  const [passwordConfirmationError, setPasswordConfirmationError] = useState(false);
+  const [passwordConfirmationError, setPasswordConfirmationError] =
+    useState(false);
 
   const isNewPasswordValid = () => {
     return (
-      newPasswordStatus.correctLength && 
-      newPasswordStatus.correctChars && 
+      newPasswordStatus.correctLength &&
+      newPasswordStatus.correctChars &&
       newPasswordStatus.hasSpecialSymbol &&
       newPasswordStatus.hasCapitalLetter &&
       newPasswordStatus.hasNumber
     );
-  }
+  };
 
   const saveNewPassword = async () => {
     if (newPassword !== confirmNewPassword) {
@@ -47,38 +59,42 @@ export default function PasswordForm({ redacting, onSaveChanges, onCancelChanges
     setPasswordConfirmationError(false);
 
     const changes = {
-      password: newPassword
+      password: newPassword,
     };
 
-    const { data } = await axios.post('https://internet-shop-api-production.up.railway.app/user', changes, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`
+    const { data } = await axios.post(
+      'https://internet-shop-api-production.up.railway.app/user',
+      changes,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });
-
-    console.log(data);
-
+    );
     onSaveChanges();
-  }
+    return data;
+  };
 
   const cancelChanges = () => {
     setNewPassword('');
     setConfirmNewPassword('');
-  }
+  };
 
   return (
     <>
-      <FormContainer $justifycontent={width > 762 ? 'space-between' : null}>
+      <FormContainer
+        $justifycontent={width > theme.breakPoints.md ? 'space-between' : null}
+      >
         <InputColumn $setfullwidth={true} $width={'100%'}>
           <PasswordField
-            label='Старий пароль'
-            placeholder='Введіть старий пароль'
+            label="Старий пароль"
+            placeholder="Введіть старий пароль"
           />
           {redacting ? (
-            <NewPasswordInput 
-              newPassword={newPassword} 
-              setNewPassword={setNewPassword} 
+            <NewPasswordInput
+              newPassword={newPassword}
+              setNewPassword={setNewPassword}
               confirmNewPassword={confirmNewPassword}
               setConfirmNewPassword={setConfirmNewPassword}
               newPasswordStatus={newPasswordStatus}
@@ -91,15 +107,19 @@ export default function PasswordForm({ redacting, onSaveChanges, onCancelChanges
       <RedactContainer>
         {redacting ? (
           <>
-            <RedactButton onClick={() => {
-              saveNewPassword();
-            }}>
+            <RedactButton
+              onClick={() => {
+                saveNewPassword();
+              }}
+            >
               Зберегти
             </RedactButton>
-            <CancelRedactingButton onClick={() => {
-              cancelChanges();
-              onCancelChanges()
-            }}>
+            <CancelRedactingButton
+              onClick={() => {
+                cancelChanges();
+                onCancelChanges();
+              }}
+            >
               Скасувати
             </CancelRedactingButton>
           </>
@@ -110,5 +130,5 @@ export default function PasswordForm({ redacting, onSaveChanges, onCancelChanges
         )}
       </RedactContainer>
     </>
-  )
+  );
 }

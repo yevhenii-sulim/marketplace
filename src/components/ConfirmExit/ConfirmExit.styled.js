@@ -21,7 +21,7 @@ export const WrapperModal = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   padding: 44px 52px;
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

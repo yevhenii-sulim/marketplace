@@ -1,14 +1,25 @@
-import { FormContainer, InputColumn, RedactContainer, RedactButton, CancelRedactingButton } from "./ProfilePage.styled";
-import PhoneNumberFormField from "./PhoneNumberFormField";
-import { useSelector } from "react-redux";
-import { selectMyUser, selectToken } from "../../../redux/auth/selector";
-import { useState } from "react";
-import InputField from "./InputField";
-import axios from "axios";
-import useWindowDimensions from "hooks/useWindowDimensions";
+import {
+  FormContainer,
+  InputColumn,
+  RedactContainer,
+  RedactButton,
+  CancelRedactingButton,
+} from './ProfilePage.styled';
+import PhoneNumberFormField from './PhoneNumberFormField';
+import { useSelector } from 'react-redux';
+import { selectMyUser, selectToken } from '../../../redux/auth/selector';
+import { useState } from 'react';
+import InputField from './InputField';
+import axios from 'axios';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
-export default function ContactForm({ redacting, onSaveChanges, onCancelChanges, onStartRedacting }) {
-
+export default function ContactForm({
+  redacting,
+  onSaveChanges,
+  onCancelChanges,
+  onStartRedacting,
+}) {
   const { width } = useWindowDimensions();
 
   const user = useSelector(selectMyUser);
@@ -16,40 +27,48 @@ export default function ContactForm({ redacting, onSaveChanges, onCancelChanges,
 
   const [contactDataChanges, setContactDataChanges] = useState({
     email: '',
-    phoneNumber: ''
+    phoneNumber: '',
   });
 
   const saveChanges = async () => {
     const changes = {
       email: contactDataChanges?.email || user?.email,
-      numberPhone: contactDataChanges?.phoneNumber || user?.numberPhone
+      numberPhone: contactDataChanges?.phoneNumber || user?.numberPhone,
     };
 
-    const { data } = await axios.post('https://internet-shop-api-production.up.railway.app/user', changes, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`
+    const { data } = await axios.post(
+      'https://internet-shop-api-production.up.railway.app/user',
+      changes,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });
-
-    console.log(data);
-  }
+    );
+    return data;
+  };
 
   const cancelChanges = () => {
     setContactDataChanges({
       email: '',
-      phoneNumber: ''
+      phoneNumber: '',
     });
-  }
+  };
 
   return (
     <>
       <FormContainer
-        $justifycontent={(width <= 1180 && width >= 762) ? 'space-between' : null}
-        $gap={width > 762 && '24px'}
+        $justifycontent={
+          width <= parseInt(theme.breakPoints.lg) &&
+          width >= parseInt(theme.breakPoints.md)
+            ? 'space-between'
+            : null
+        }
+        $gap={width > parseInt(theme.breakPoints.md) && '24px'}
         $desktopwidth={'90%'}
       >
-        <Form 
+        <Form
           redacting={redacting}
           user={user}
           contactDataChanges={contactDataChanges}
@@ -59,16 +78,20 @@ export default function ContactForm({ redacting, onSaveChanges, onCancelChanges,
       <RedactContainer>
         {redacting ? (
           <>
-            <RedactButton onClick={() => {
-              saveChanges();
-              onSaveChanges()
-            }}>
+            <RedactButton
+              onClick={() => {
+                saveChanges();
+                onSaveChanges();
+              }}
+            >
               Зберегти
             </RedactButton>
-            <CancelRedactingButton onClick={() => {
-              cancelChanges();
-              onCancelChanges()
-            }}>
+            <CancelRedactingButton
+              onClick={() => {
+                cancelChanges();
+                onCancelChanges();
+              }}
+            >
               Скасувати
             </CancelRedactingButton>
           </>
@@ -79,54 +102,77 @@ export default function ContactForm({ redacting, onSaveChanges, onCancelChanges,
         )}
       </RedactContainer>
     </>
-  )
+  );
 }
 
 function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
-
   const { width } = useWindowDimensions();
 
   return width > 672 ? (
     <>
-      <InputColumn $setfullwidth={width <= 762} $width={'320px'}>
-        <InputField 
+      <InputColumn
+        $setfullwidth={width <= parseInt(theme.breakPoints.md)}
+        $width={'320px'}
+      >
+        <InputField
           label={'Електрона адреса'}
           placeholder={'Введіть електрону адресу'}
           required={true}
           value={contactDataChanges?.email || user?.email}
-          onChange={event => setContactDataChanges({ ...contactDataChanges, email: event.target.value })}
+          onChange={event =>
+            setContactDataChanges({
+              ...contactDataChanges,
+              email: event.target.value,
+            })
+          }
           disabled={!redacting}
-          width={width > 762 ? '320px' : null}
+          width={width > parseInt(theme.breakPoints.md) ? '320px' : null}
         />
       </InputColumn>
-      <InputColumn $setfullwidth={width <= 762} $width={'320px'}>
-        <PhoneNumberFormField 
+      <InputColumn
+        $setfullwidth={width <= parseInt(theme.breakPoints.md)}
+        $width={'320px'}
+      >
+        <PhoneNumberFormField
           label={'Телефон'}
           placeholder={'+38 --- --- -- --'}
           value={contactDataChanges?.phoneNumber || user?.numberPhone}
-          onChange={event => setContactDataChanges({ ...contactDataChanges, phoneNumber: event.target.value })}
+          onChange={event =>
+            setContactDataChanges({
+              ...contactDataChanges,
+              phoneNumber: event.target.value,
+            })
+          }
           disabled={!redacting}
-          width={width > 762 ? '320px' : null}
+          width={width > parseInt(theme.breakPoints.md) ? '320px' : null}
         />
       </InputColumn>
     </>
   ) : (
-    <InputColumn
-      $setfullwidth={true}
-    >
-      <InputField 
+    <InputColumn $setfullwidth={true}>
+      <InputField
         label={'Електрона адреса'}
         placeholder={'Введіть електрону адресу'}
         required={true}
         value={contactDataChanges?.email || user?.email}
-        onChange={event => setContactDataChanges({ ...contactDataChanges, email: event.target.value })}
+        onChange={event =>
+          setContactDataChanges({
+            ...contactDataChanges,
+            email: event.target.value,
+          })
+        }
         disabled={!redacting}
       />
-      <PhoneNumberFormField 
+      <PhoneNumberFormField
         label={'Телефон'}
         placeholder={'+38 --- --- -- --'}
         value={contactDataChanges?.phoneNumber || user?.numberPhone}
-        onChange={event => setContactDataChanges({ ...contactDataChanges, phoneNumber: event.target.value })}
+        onChange={event =>
+          setContactDataChanges({
+            ...contactDataChanges,
+            phoneNumber: event.target.value,
+          })
+        }
         disabled={!redacting}
       />
     </InputColumn>

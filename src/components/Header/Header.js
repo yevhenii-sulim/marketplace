@@ -6,6 +6,7 @@ import Auxiliary from 'components/Auxiliary/Auxiliary';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import { Container, HeaderContainer, NavContainer } from './Header.styled';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
+import { theme } from 'utils/theme';
 export default function Header() {
   const { width } = useWindowDimensions();
   function getLocalStor() {
@@ -17,14 +18,14 @@ export default function Header() {
   return (
     <HeaderContainer>
       <Container>
-        {width < 1440 && <BurgerMenu />}
+        {width < parseInt(theme.breakPoints.lg) && <BurgerMenu />}
         <NavContainer onClick={getLocalStor}>
           <Logo fill="#ffffff" />
-          {width >= 1440 && <OpenCategory />}
+          {width >= parseInt(theme.breakPoints.lg) && <OpenCategory />}
         </NavContainer>
-        {width >= 1440 && <Search />}
+        {width >= parseInt(theme.breakPoints.lg) && <Search />}
         <Auxiliary />
-        {width >= 1440 && <AddAnnouncement />}
+        <AddAnnouncement />
       </Container>
     </HeaderContainer>
   );

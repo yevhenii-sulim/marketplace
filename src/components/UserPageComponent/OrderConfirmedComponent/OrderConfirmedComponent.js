@@ -17,8 +17,6 @@ export default function OrderConfirmedComponent() {
   const navigation = useNavigate();
   const user = useSelector(selectMyUser);
 
-  console.log(user);
-
   const handleMyOrdersButton = () => {
     navigation('/my_order');
   };

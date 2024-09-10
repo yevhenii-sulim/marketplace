@@ -13,17 +13,24 @@ import { ButtonSlider, Category, Pointer } from './Category.styled';
 import { navigationList } from 'data/navListData';
 import CategoryHomePage from './CategoryHomePage';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function CategoryList() {
   const { width } = useWindowDimensions();
   const setVisibleSlides = width => {
-    if (width >= 1440) {
+    if (width >= parseInt(theme.breakPoints.lg)) {
       return 7;
     }
-    if (width < 1440 && width > 768) {
+    if (
+      width < parseInt(theme.breakPoints.lg) &&
+      width > parseInt(theme.breakPoints.md)
+    ) {
       return 4;
     }
-    if (width <= 768 && width >= 580) {
+    if (
+      width <= parseInt(theme.breakPoints.md) &&
+      width >= parseInt(theme.breakPoints.mx)
+    ) {
       return 3;
     }
 
@@ -35,7 +42,7 @@ export default function CategoryList() {
       <CarouselProvider
         className="slide"
         totalSlides={navigationList.length}
-        isPlaying={width < 768}
+        isPlaying={width < parseInt(theme.breakPoints.md)}
         step={3}
         visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}

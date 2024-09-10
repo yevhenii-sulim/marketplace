@@ -64,7 +64,7 @@ export const Container = styled.form`
   justify-content: center;
   max-width: 300px;
   width: 100%;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     justify-content: flex-end;
     align-items: center;
     margin-left: auto;

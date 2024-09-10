@@ -5,6 +5,7 @@ import Select from '@mui/material/Select';
 import ExpandMoreIcon from '@mui/icons-material/ExpandLess';
 import { Container, SortText, styleSelect } from './Sort.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,7 +32,9 @@ export default function Sort({ name, placeholder, handleSort }) {
 
   return (
     <Container>
-      {width >= 1440 && <SortText>Сортування:</SortText>}
+      {width >= parseInt(theme.breakPoints.lg) && (
+        <SortText>Сортування:</SortText>
+      )}
       <FormControl sx={styleSelect}>
         <Select
           IconComponent={() => (

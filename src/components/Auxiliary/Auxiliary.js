@@ -8,6 +8,7 @@ import { selectAuth } from '../../redux/auth/selector';
 import { selectBasket } from '../../redux/basket/select';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import { toggleModalAuth } from '../../redux/modalAuth/slice';
+import { theme } from 'utils/theme';
 
 export default memo(function Auxiliary() {
   const isAuth = useSelector(selectAuth);
@@ -23,7 +24,7 @@ export default memo(function Auxiliary() {
 
   return (
     <AuxiliaryContainer>
-      {width >= 1440 && (
+      {width >= parseInt(theme.breakPoints.lg) && (
         <NavLink to="/user_page/selected" onClick={onOpen}>
           <FavoriteBorderIcon />
         </NavLink>
@@ -39,7 +40,7 @@ export default memo(function Auxiliary() {
         )}
         <ShoppingCartOutlinedIcon />
       </NavLink>
-      {width >= 1440 && (
+      {width >= parseInt(theme.breakPoints.lg) && (
         <NavLink to="/user_page/profile" onClick={onOpen}>
           <PersonOutlineIcon />
         </NavLink>

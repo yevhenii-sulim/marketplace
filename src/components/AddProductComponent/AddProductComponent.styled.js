@@ -72,7 +72,7 @@ export const IsCheckbox = styled.div`
     transition: all 500ms ease;
     content: '';
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     top: 50%;
     transform: translateY(-50%);
   }
@@ -103,7 +103,7 @@ export const Field = styled(FieldForm)`
     font-style: normal;
     font-weight: 400;
     line-height: 1.25;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
       width: 320px;
     }
   }
@@ -162,7 +162,7 @@ export const Box = styled.div`
     -moz-appearance: textfield;
   }
   &.price_box {
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -200,7 +200,7 @@ export const Price = styled.div`
   }
   .price-field {
     width: 70%;
-    @media screen and (min-width: 380px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
       width: 320px;
     }
   }
@@ -242,7 +242,7 @@ export const Sign = styled.h3`
   line-height: 1.44;
   color: ${({ $disable, theme }) =>
     $disable ? `${theme.color.bgArrowList}` : `${theme.color.colorMainText}`};
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     margin-top: 0;
   }
 `;
@@ -268,7 +268,7 @@ export const Explainment = styled.div`
   }
   &.sign_checkbox {
     width: 100%;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
       width: 60%;
     }
   }
@@ -290,10 +290,10 @@ export const SelectorsList = styled.ul`
   li {
     text-align: center;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
     grid-template-columns: repeat(3, 1fr);
   }
 `;
@@ -305,10 +305,10 @@ export const FieldImagesList = styled.ul`
   justify-content: center;
   gap: 16px;
   margin-top: 24px;
-  @media screen and (min-width: 380px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     grid-template-columns: repeat(2, minmax(150px, auto));
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 `;
@@ -364,7 +364,7 @@ export const Buttons = styled.div`
   display: grid;
   grid-template-columns: 90%;
   justify-content: center;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     grid-template-columns: 264px 264px;
     justify-content: end;
   }

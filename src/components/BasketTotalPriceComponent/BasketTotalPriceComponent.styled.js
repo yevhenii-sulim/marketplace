@@ -18,7 +18,7 @@ export const TotalPrice = styled.div`
 export const WrapperBuy = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     padding-top: 32px;
     padding-bottom: 32px;
     grid-area: wrapper-buy;

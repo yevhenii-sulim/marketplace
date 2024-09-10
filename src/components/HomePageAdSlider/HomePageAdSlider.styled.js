@@ -26,8 +26,6 @@ export const Pointer = styled.ul`
 `;
 
 export const HomePageAdSliderContainer = styled.ul`
-  margin-top: 30px;
-
   .slide {
     position: relative;
     height: 270px;
@@ -83,7 +81,7 @@ export const HomePageAdSliderContainer = styled.ul`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     .slide,
     .carousel__slider,
     .carousel__inner-slide {
@@ -121,7 +119,7 @@ export const IntersectImage = styled.img`
   height: 120%;
   top: -35px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 0;
     width: 38%;
   }
@@ -142,7 +140,7 @@ export const FirstSlideTitle = styled.h3`
   line-height: 60px;
   color: #fff;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 5%;
     left: 5%;
     width: 30%;
@@ -173,7 +171,7 @@ export const FlagImage = styled.img`
   top: 45%;
   left: 351px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 40%;
     left: 22%;
     width: 20px;
@@ -216,7 +214,7 @@ export const LipGlossMockupImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 65px;
     height: 65px;
   }
@@ -249,7 +247,7 @@ export const EarringsImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 57px;
     height: 58px;
     top: 72px;
@@ -282,7 +280,7 @@ export const BagImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 72px;
     height: 96px;
     top: 13px;
@@ -314,7 +312,7 @@ export const SocksImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 65px;
     top: 70%;
   }
@@ -347,7 +345,7 @@ export const HoodieImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 81px;
     height: 91px;
     top: 4px;
@@ -374,7 +372,7 @@ export const SofaImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 128px;
     height: 126px;
     top: 6px;
@@ -394,7 +392,7 @@ export const BrutalistImg = styled.img`
   height: 261px;
   right: 0px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 30%;
     height: 130px;
     top: 0px;
@@ -418,7 +416,7 @@ export const SecondSlideTitles = styled.div`
   gap: 16px;
   text-align: right;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     height: 66px;
     gap: 2px;
     top: 2vw;
@@ -440,7 +438,7 @@ export const SecondSlideFirstTitle = styled.h5`
   line-height: 42px;
   height: 84px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     font: 700 14px 'Jost';
   }
 
@@ -454,7 +452,7 @@ export const SecondSlideSecondTitle = styled.p`
   line-height: 10px;
   height: 20px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     font: 600 10px 'Nunito Sans';
   }
 
@@ -468,7 +466,7 @@ export const AdButtonAnimationContainer = styled.div`
   top: 20px;
   left: 502px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 10px;
     left: 38%;
   }
@@ -494,7 +492,7 @@ export const FirstAdButtonContainer = styled.div`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 82px;
   }
 
@@ -508,7 +506,7 @@ export const FirstAdButton = styled.img`
   position: absolute;
   width: 132px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     left: -10px;
     width: 87px;
   }
@@ -537,7 +535,7 @@ export const FirstAdButtonPointer = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 9px;
     height: 9px;
     top: 22px;
@@ -597,7 +595,7 @@ export const SecondAdButtonContainer = styled.div`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 62px;
     top: 16px;
     left: 0;
@@ -675,7 +673,7 @@ export const SecondAdButtonPointer = styled.img`
   top: 60px;
   left: 80px;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 15px;
     top: 27px;
     left: 40px;
@@ -724,7 +722,7 @@ export const ThirdAdButtonContainer = styled.div`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 132px;
 
     @keyframes thirdadcontainermove {
@@ -790,7 +788,7 @@ export const ThirdAdButtonPointer = styled.img`
   top: 50%;
   left: 50%;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: 20px;
   }
 
@@ -823,7 +821,7 @@ export const BgRightTitle = styled.img`
   height: 9vw;
   right: 5vw;
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 25px;
     width: 300px;
     height: 78px;
@@ -909,7 +907,7 @@ export const FirstWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 5px;
     height: 38px;
   }
@@ -978,7 +976,7 @@ export const SecondWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 42px;
     height: 38px;
   }
@@ -1047,7 +1045,7 @@ export const ThirdWordImg = styled.img`
     }
   }
 
-  @media (max-width: 1440px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 78px;
     height: 38px;
   }

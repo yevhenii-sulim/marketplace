@@ -8,7 +8,7 @@ export const List = styled.li`
   &:not(:last-child) {
     margin-bottom: 24px;
   }
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
     padding-left: 32px;
     padding-right: 32px;
   }
@@ -45,7 +45,7 @@ export const About = styled.div`
   align-items: center;
   margin-right: auto;
   gap: 8px;
-  @media screen and (min-width: 380px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     gap: 40px;
   }
 `;
@@ -93,7 +93,7 @@ export const Count = styled.div`
   svg {
     width: 16px;
     height: 16px;
-    @media screen and (min-width: 1400px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
       width: 24px;
       height: 24px;
     }

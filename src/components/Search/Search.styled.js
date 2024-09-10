@@ -8,18 +8,21 @@ export const FormSearch = styled.form`
   margin-left: auto;
   margin-right: auto;
   height: 48px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     margin-left: auto;
     margin-right: auto;
     padding-left: 0;
     padding-right: 0;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     max-width: 100%;
-    width: 433px;
+    width: 300px;
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
+    width: 433px;
   }
   input {
     border: 1px solid ${({ theme }) => theme.color.borderRegister};
@@ -55,7 +58,7 @@ export const FormSearch = styled.form`
     &:active {
       box-shadow: inset 0 0 3px ${({ theme }) => theme.color.colorButtonText};
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
       padding: 6px 12px;
     }
   }

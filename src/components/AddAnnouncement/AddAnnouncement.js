@@ -1,13 +1,18 @@
 import React, { memo } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { AddProduct, Container } from './AddAnnouncement.styled';
+import AddIcon from '@mui/icons-material/Add';
+import {
+  AddProduct,
+  AddProductResponse,
+  Container,
+} from './AddAnnouncement.styled';
 import { selectAuth } from '../../redux/auth/selector';
 import { togglePoster } from '../../redux/myPoster/slice';
 import { toggleModalAuth } from '../../redux/modalAuth/slice';
 import ModalForm from 'components/ModalForm/ModalForm';
 import { selectOpenFormModalAuth } from '../../redux/modalAuth/selectors';
+import { theme } from 'utils/theme';
 
 const modalEnter = document.querySelector('#modal');
 
@@ -32,6 +37,13 @@ export default memo(function AddAnnouncement() {
 
   return (
     <Container>
+      <AddProductResponse to="user_page/my_poster" onClick={onOpen}>
+        <AddIcon
+          sx={{
+            color: theme.color.bgProduct,
+          }}
+        />
+      </AddProductResponse>
       <AddProduct to="user_page/my_poster" onClick={onOpen}>
         Створити оголошення
       </AddProduct>

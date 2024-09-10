@@ -14,6 +14,7 @@ import { FormContainer } from './ProfilePage.styled';
 import { selectMyUser, selectToken } from '../../../redux/auth/selector';
 import axios from 'axios';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function PersonalDataForm({
   redacting,
@@ -76,7 +77,11 @@ export default function PersonalDataForm({
       <FormContainer
         $justifycontent={'space-between'}
         $redacting={redacting}
-        $gap={(redacting ? '24px' : null) || width <= 475 ? '50px' : null}
+        $gap={
+          (redacting ? '24px' : null) || width <= parseInt(theme.breakPoints.sx)
+            ? '50px'
+            : null
+        }
       >
         <Form
           redacting={redacting}
@@ -156,7 +161,9 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
   return redacting ? (
     <>
       <InputColumn $setfullwidth={true} $setitemscenter={true}>
-        {width <= 762 ? ProfilePictureSelectComponent : null}
+        {width <= parseInt(theme.breakPoints.md)
+          ? ProfilePictureSelectComponent
+          : null}
         <InputField
           label={'Прізвище'}
           placeholder={'Введіть прізвище'}
@@ -196,18 +203,26 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
           value={userDataChanges?.surname || user?.surName || ''}
           disabled={!redacting}
         />
-        {width <= 762 ? DateFormFieldComponent : null}
-        {width <= 762 ? GenderSelectComponent : null}
+        {width <= parseInt(theme.breakPoints.md)
+          ? DateFormFieldComponent
+          : null}
+        {width <= parseInt(theme.breakPoints.md) ? GenderSelectComponent : null}
       </InputColumn>
-      {width > 762 ? (
+      {width > parseInt(theme.breakPoints.md) ? (
         <InputColumn $justifycontent={'flex-start'}>
-          {width > 762 ? DateFormFieldComponent : null}
-          {width > 762 ? GenderSelectComponent : null}
+          {width > parseInt(theme.breakPoints.md)
+            ? DateFormFieldComponent
+            : null}
+          {width > parseInt(theme.breakPoints.md)
+            ? GenderSelectComponent
+            : null}
         </InputColumn>
       ) : null}
-      {width > 762 ? (
+      {width > parseInt(theme.breakPoints.md) ? (
         <InputColumn>
-          {width > 762 ? ProfilePictureSelectComponent : null}
+          {width > parseInt(theme.breakPoints.md)
+            ? ProfilePictureSelectComponent
+            : null}
         </InputColumn>
       ) : null}
     </>
@@ -253,19 +268,27 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
           value={userDataChanges?.surname || user?.surName || ''}
           disabled={!redacting}
         />
-        {width <= 762 ? DateFormFieldComponent : null}
+        {width <= parseInt(theme.breakPoints.md)
+          ? DateFormFieldComponent
+          : null}
       </InputColumn>
       <InputColumn
-        $gap={width <= 672 ? '65px' : null}
-        $justifycontent={width <= 762 ? 'space-between' : 'flex-start'}
+        $gap={width <= parseInt(theme.breakPoints.md) ? '65px' : null}
+        $justifycontent={
+          width <= parseInt(theme.breakPoints.md)
+            ? 'space-between'
+            : 'flex-start'
+        }
       >
-        {width > 762 ? DateFormFieldComponent : null}
-        {width > 762 ? GenderSelectComponent : null}
+        {width > parseInt(theme.breakPoints.md) ? DateFormFieldComponent : null}
+        {width > parseInt(theme.breakPoints.md) ? GenderSelectComponent : null}
 
-        {width <= 762 ? ProfilePictureSelectComponent : null}
-        {width <= 762 ? GenderSelectComponent : null}
+        {width <= parseInt(theme.breakPoints.md)
+          ? ProfilePictureSelectComponent
+          : null}
+        {width <= parseInt(theme.breakPoints.md) ? GenderSelectComponent : null}
       </InputColumn>
-      {width > 762 ? (
+      {width > parseInt(theme.breakPoints.md) ? (
         <InputColumn>{ProfilePictureSelectComponent}</InputColumn>
       ) : null}
     </>

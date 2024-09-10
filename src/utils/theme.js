@@ -44,4 +44,12 @@ export const theme = {
     borderSize: '#575757',
     borderBasketList: '#D0D0D0',
   },
+  breakPoints: {
+    sm: '380px',
+    sx: '480px',
+    mx: '576px',
+    md: '768px',
+    lg: '1200px',
+    xl: '1440px',
+  },
 };

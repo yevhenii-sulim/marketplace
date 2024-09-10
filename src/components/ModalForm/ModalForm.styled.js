@@ -44,10 +44,10 @@ export const WrapperModal = styled.div`
   .MuiSvgIcon-root.close {
     color: ${({ theme }) => theme.color.bgButton};
   }
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
     width: 366px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     top: 50%;
     transform: translate(-50%, -50%);
   }
