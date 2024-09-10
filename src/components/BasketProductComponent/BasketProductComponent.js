@@ -67,7 +67,7 @@ export default function BasketProductComponent({
           <AboutProduct>
             <Title>{title}</Title>
             <Count>
-              {width < 768 && (
+              {width < parseInt(theme.breakPoints.md) && (
                 <Price>
                   {discount ? (
                     <>
@@ -99,7 +99,7 @@ export default function BasketProductComponent({
             </Count>
           </AboutProduct>
           <Actives>
-            {width >= 768 && (
+            {width >= parseInt(theme.breakPoints.md) && (
               <Price>
                 {discount ? (
                   <>

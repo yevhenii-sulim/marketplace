@@ -20,6 +20,7 @@ import {
   addProductButton,
 } from './Ordering.styled';
 import TotalPriceListComponent from './TotalPriceListComponent';
+import { theme } from 'utils/theme';
 
 export default function Ordering() {
   const basket = useSelector(selectBasket);
@@ -124,7 +125,7 @@ export default function Ordering() {
                 }
               />
               <WrapperListOrder>
-                {width >= 1440 && (
+                {width >= parseInt(theme.breakPoints.lg) && (
                   <ul>
                     {basket.map(
                       ({
@@ -153,7 +154,8 @@ export default function Ordering() {
 
                 <WrapperBuy>
                   <TotalPrice>
-                    {(width >= 1440 || width <= 768) && (
+                    {(width >= parseInt(theme.breakPoints.lg) ||
+                      width <= parseInt(theme.breakPoints.md)) && (
                       <TotalPriceListComponent prices={prices} />
                     )}
                     <WrapperButton>

@@ -2,6 +2,7 @@ import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import React from 'react';
 import { FormSearch } from 'components/Search/Search.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function Search({ value, setValue }) {
   const { width } = useWindowDimensions();
@@ -21,7 +22,7 @@ export default function Search({ value, setValue }) {
       />
       <button type="submit">
         <SearchTwoToneIcon />
-        {width >= 1440 && 'Пошук'}
+        {width >= theme.breakPoints.lg && 'Пошук'}
       </button>
     </FormSearch>
   );

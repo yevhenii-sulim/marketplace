@@ -29,7 +29,9 @@ export const TotalPriceList = styled.div`
     font-weight: 400;
     line-height: 1.25;
   }
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
+  @media screen and (min-width: ${({ theme }) =>
+      theme.breakPoints.md}) and (max-width: calc(${({ theme }) =>
+      theme.breakPoints.lg} - 1px)) {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -43,7 +45,7 @@ export const Form = styled(FormContainer)`
   font-size: 18px;
   font-weight: 800;
   line-height: 1.44;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr auto;
   }
 `;
@@ -54,7 +56,7 @@ export const WrapperOrder = styled.div`
   font-size: 18px;
   font-weight: 800;
   line-height: 1.44;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr 323px;
   }
 `;
@@ -173,11 +175,12 @@ export const TotalPrice = styled.div`
   padding-left: 8px;
   padding-right: 8px;
   padding-bottom: 32px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: calc(${({ theme }) =>
+      theme.breakPoints.md} - 1px)) {
     background-color: ${({ theme }) => theme.color.bgProduct};
     border-radius: 12px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     background-color: ${({ theme }) => theme.color.bgProduct};
     border-radius: 12px;
   }
@@ -200,7 +203,7 @@ export const Total = styled.div`
   line-height: 1.45;
   display: flex;
   justify-content: space-between;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     margin-bottom: 32px;
     margin-top: 65px;
   }

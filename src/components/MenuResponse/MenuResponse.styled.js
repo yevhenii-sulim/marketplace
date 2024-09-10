@@ -37,7 +37,7 @@ export const Menu = styled.div`
   transition: left 500ms ease;
   width: 322px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 414px;
   }
 `;

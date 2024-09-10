@@ -2,14 +2,14 @@ import styled from 'styled-components';
 export const SimilarProductItem = styled.li`
   width: 232px;
   height: 340px;
-  @media screen and (min-width: 380px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     width: 160px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 232px;
     height: 440px;
   }
-  @media (max-width: 380px) {
+  @media (max-width: ${({ theme }) => theme.breakPoints.sm}) {
     width: 160px;
     height: 340px;
   }

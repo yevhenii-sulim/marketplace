@@ -52,10 +52,11 @@ export const Box = styled.div`
     margin-bottom: 24px;
   }
   &.about-bought {
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: calc(${({ theme }) =>
+        theme.breakPoints.md} - 1px)) {
       display: none;
     }
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
       display: none;
     }
   }
@@ -84,7 +85,7 @@ export const WrapperForm = styled.div`
   &.wrapper-contacts {
     display: grid;
     gap: 24px;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
       grid-template-columns: 1fr 1fr;
     }
   }

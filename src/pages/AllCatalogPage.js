@@ -62,13 +62,6 @@ export default function AllCatalogPage() {
     }
   };
 
-  const getMaxValue = num => {
-    console.log('num', num);
-  };
-  const getMinValue = num => {
-    console.log('num', num);
-  };
-
   const sortedProduct = sortProduct(valueSort);
 
   const handlePageClick = page => {
@@ -91,8 +84,6 @@ export default function AllCatalogPage() {
         valueSort={valueSort}
         sortedProduct={sortedProduct}
         totalItemsCount={totalItemsCount}
-        getMaxValue={getMaxValue}
-        getMinValue={getMinValue}
         handleSort={handleSort}
         handlePageClick={handlePageClick}
       />

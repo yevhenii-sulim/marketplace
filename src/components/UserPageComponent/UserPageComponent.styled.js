@@ -18,7 +18,7 @@ export const Title = styled.h1`
   letter-spacing: -0.32px;
   padding: 0px 20px;
 
-  @media (min-width: 1440px) {
+  @media (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     padding: unset;
   }
 `;
@@ -34,7 +34,7 @@ export const Header = styled.div`
   max-width: 366px;
   margin-left: auto;
   margin-right: auto;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     max-width: 100%;
     position: absolute;
     top: 0;
@@ -90,14 +90,14 @@ export const Main = styled.div`
 `;
 export const ContainerUserMain = styled.div`
   display: block;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     display: grid;
     grid-template-columns: auto;
     position: relative;
     width: 100%;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 274px auto;
     padding-top: 140px;
     gap: 32px;
@@ -118,7 +118,7 @@ export const Sidebar = styled.ul`
 
 export const WrapperSidebar = styled.div`
   display: none;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     display: block;
   }
 `;
@@ -162,7 +162,7 @@ export const Exit = styled.button`
   svg {
     display: none;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: flex;
     justify-content: flex-start;
     align-items: center;

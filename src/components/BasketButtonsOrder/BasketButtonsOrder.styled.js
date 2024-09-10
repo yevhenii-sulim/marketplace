@@ -6,14 +6,14 @@ export const WrapperButton = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 26px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-area: buttons;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     flex-direction: row;
     justify-content: space-around;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
   }
 `;
 

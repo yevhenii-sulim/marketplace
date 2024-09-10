@@ -107,7 +107,7 @@ export const ListStoryOrder = styled.li`
   &:not(:last-child) {
     margin-bottom: 24px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr 300px;
   }
 `;
@@ -143,7 +143,7 @@ export const Filter = styled.div`
   padding-left: 24px;
   padding-right: 24px;
   margin-bottom: 24px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     flex-direction: row;
     justify-content: space-between;
   }

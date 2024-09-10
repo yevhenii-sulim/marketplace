@@ -4,7 +4,7 @@ export const OrderProductContainer = styled.li`
   display: grid;
   justify-items: center;
   gap: 50px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 1fr 2fr;
   }
 `;

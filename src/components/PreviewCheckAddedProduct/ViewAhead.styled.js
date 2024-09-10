@@ -29,24 +29,28 @@ export const WrapperModal = styled.div`
     padding-bottom: 16px;
     margin-bottom: 20px;
   }
-  @media screen and (min-width: 480px) {
-    width: 480px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    width: ${({ theme }) => theme.breakPoints.sx};
   }
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     padding-left: 32px;
     padding-right: 32px;
-    width: 769px;
+    width: ${({ theme }) => theme.breakPoints.md};
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     padding: 44px 58px;
-    width: 1440px;
+    width: ${({ theme }) => theme.breakPoints.lg};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
+    padding: 44px 58px;
+    width: ${({ theme }) => theme.breakPoints.xl};
   }
 `;
 export const Advertisement = styled.div`
   display: grid;
   gap: 20px;
   margin: auto;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 764px auto;
   }
 `;
@@ -73,10 +77,10 @@ export const ButtonsContacts = styled.div`
   grid-template-columns: 100%;
   margin-top: 24px;
   margin-bottom: 44px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     grid-template-columns: 50% 50%;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: none;
   }
 `;
@@ -107,7 +111,7 @@ export const Buttons = styled.div`
   gap: 24px;
   padding-left: 16px;
   padding-right: 16px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     flex-direction: row;
     justify-content: center;
   }
@@ -168,7 +172,7 @@ export const Description = styled.div`
 `;
 
 export const Options = styled.div`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -193,7 +197,7 @@ export const ProductDescription = styled.div`
 `;
 export const PriceSection = styled.div`
   display: none;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: block;
     padding: 16px 24px;
     background-color: ${({ theme }) => theme.color.bgProduct};
@@ -261,7 +265,7 @@ export const PriceWithoutDiscount = styled.div`
 `;
 export const SellerSection = styled.div`
   display: none;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: flex;
     padding: 16px 24px;
     background-color: ${({ theme }) => theme.color.bgProduct};

@@ -1,15 +1,20 @@
 import PropTypes from 'prop-types';
-import { Contact, Link } from './ContactComponent.styled';
+import { Contact, Img, Link, Title } from './ContactComponent.styled';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export default function ContactComponent({ nameDev, spec, link }) {
   return (
     <Contact>
-      <h4>{nameDev}</h4>
+      <Img>
+        <img src="/marketplace/images/catalog/for-free.png" alt={nameDev} />
+      </Img>
+      <Title>
+        <h4>{nameDev}</h4>
+        <Link to={link}>
+          <LinkedInIcon sx={{ color: '#0076B2' }} />
+        </Link>
+      </Title>
       <p>{spec}</p>
-      <Link to={link}>
-        <LinkedInIcon sx={{ color: '#0076B2' }} />
-      </Link>
     </Contact>
   );
 }

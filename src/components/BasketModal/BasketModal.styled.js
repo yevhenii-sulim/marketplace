@@ -75,7 +75,7 @@ export const WrapperOrder = styled.div`
   padding-top: 80px;
   padding-bottom: 24px;
   margin: 100px auto;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr 300px;
     max-width: 1000px;
     padding-left: 40px;
@@ -85,7 +85,7 @@ export const WrapperOrder = styled.div`
       'buttons buttons';
   }
   ul {
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
       grid-area: list-goods;
     }
   }

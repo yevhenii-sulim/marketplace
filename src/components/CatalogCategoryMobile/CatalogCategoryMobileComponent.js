@@ -5,22 +5,20 @@ import CategoryHomePage from 'components/CategoryList/CategoryHomePage';
 export default function CatalogCategoryMobileComponent() {
   return (
     <Wrapper>
-      {navigationList.map(
-        ({ id, linkList, nameList, subCategories, img }, index) => {
-          return (
-            <CategoryHomePage
-              key={id}
-              nameCategory={{
-                category: { en: linkList, ua: nameList },
-              }}
-              titleCategory={nameList}
-              srcCategory={img}
-              link={linkList}
-              subCategories={subCategories}
-            />
-          );
-        }
-      )}
+      {navigationList.map(({ id, linkList, nameList, subCategories, img }) => {
+        return (
+          <CategoryHomePage
+            key={id}
+            nameCategory={{
+              category: { en: linkList, ua: nameList },
+            }}
+            titleCategory={nameList}
+            srcCategory={img}
+            link={linkList}
+            subCategories={subCategories}
+          />
+        );
+      })}
     </Wrapper>
   );
 }

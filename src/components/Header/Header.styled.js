@@ -15,14 +15,19 @@ export const Container = styled.div`
   padding-bottom: 12px;
   padding-left: 12px;
   padding-right: 12px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 768px;
     padding-left: 24px;
     padding-right: 24px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 18px;
     padding-bottom: 18px;
+    width: 1200px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
     padding-left: 58px;
     padding-right: 58px;
     width: 1440px;
@@ -30,7 +35,10 @@ export const Container = styled.div`
 `;
 
 export const NavContainer = styled.div`
-  margin-right: auto;
   display: flex;
   gap: 18px;
+  @media screen and (max-width: calc(${({ theme }) =>
+      theme.breakPoints.lg} - 1px)) {
+    margin-right: auto;
+  }
 `;

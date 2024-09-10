@@ -17,16 +17,23 @@ import {
   Pointer,
   TitleCategory,
 } from './HomePageComponent.styled';
+import { theme } from 'utils/theme';
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
   const setVisibleSlides = width => {
-    if (width >= 1440) {
+    if (width >= parseInt(theme.breakPoints.lg)) {
       return 5;
     }
-    if (width < 1440 && width >= 580) {
+    if (
+      width < parseInt(theme.breakPoints.lg) &&
+      width >= parseInt(theme.breakPoints.mx)
+    ) {
       return 3;
     }
-    if (width < 580 && width > 380) {
+    if (
+      width < parseInt(theme.breakPoints.mx) &&
+      width > parseInt(theme.breakPoints.sm)
+    ) {
       return 2;
     }
     return 1;
@@ -40,7 +47,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
         step={setVisibleSlides(width)}
         visibleSlides={setVisibleSlides(width)}
         isIntrinsicHeight={true}
-        isPlaying={width < 768}
+        isPlaying={width < parseInt(theme.breakPoints.md)}
         dragStep={setVisibleSlides(width)}
       >
         <Slider>

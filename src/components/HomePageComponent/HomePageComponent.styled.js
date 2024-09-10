@@ -19,7 +19,7 @@ export const ContainerSlide = styled.ul`
       opacity: 0;
       pointer-events: none;
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -35,7 +35,7 @@ export const ContainerSlide = styled.ul`
       pointer-events: all;
       transition: opacity 500ms ease;
     }
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
       top: 50%;
       right: 10px;
     }
@@ -46,7 +46,7 @@ export const ContainerSlide = styled.ul`
       opacity: 0;
       pointer-events: none;
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -62,7 +62,7 @@ export const ContainerSlide = styled.ul`
       pointer-events: all;
       transition: opacity 500ms ease;
     }
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
       top: 50%;
       left: 10px;
     }

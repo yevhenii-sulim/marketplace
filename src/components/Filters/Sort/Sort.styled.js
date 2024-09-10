@@ -8,7 +8,7 @@ function setPadding() {
   }
 }
 export const Container = styled.form`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     margin-left: auto;
   }
 `;
@@ -53,13 +53,13 @@ export const Option = styled.div`
   gap: 8px;
   margin-top: 24px;
   justify-content: center;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: none;
   }
 `;
 export const WrapperSortDesktop = styled.div`
   display: none;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: flex;
     align-items: center;
     gap: 17px;

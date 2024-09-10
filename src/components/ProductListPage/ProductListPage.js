@@ -28,6 +28,7 @@ import {
   BoxSvg,
 } from './ProductListPage.styled';
 import NoSearched from 'SvgComponents/NoSearched/NoSearched';
+import { theme } from 'utils/theme';
 
 export default function ProductListPage({
   page,
@@ -48,8 +49,8 @@ export default function ProductListPage({
 
   return (
     <ContainerProductPageList>
-      {width < 1440 && <Search />}
-      {width >= 1440 && (
+      {width < parseInt(theme.breakPoints.lg) && <Search />}
+      {width >= parseInt(theme.breakPoints.lg) && (
         <Navigation>
           <Nav>
             <ListPath>
@@ -85,7 +86,7 @@ export default function ProductListPage({
             params={params}
           />
 
-          {width < 1440 && (
+          {width < parseInt(theme.breakPoints.lg) && (
             <TitleProducts>
               {setRouting(categories) && <>{categories.subCategory.ua}</>}
             </TitleProducts>

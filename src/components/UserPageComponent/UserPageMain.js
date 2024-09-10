@@ -12,6 +12,7 @@ import {
   WrapperSidebar,
 } from './UserPageComponent.styled';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function UserPageMain() {
   const location = useLocation();
@@ -30,10 +31,9 @@ export default function UserPageMain() {
     if (location.pathname.includes('profile')) return 'Профіль';
     if (location.pathname.includes('ordering')) return 'Оформлення замовлення';
   }
-
   return (
     <ContainerUserMain $screenwidth={`${width}px`}>
-      {width >= 1440 ? (
+      {width >= parseInt(theme.breakPoints.lg) ? (
         <WrapperSidebar>
           <UserPageHeader
             rating={0 || user?.rating.count}

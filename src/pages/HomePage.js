@@ -5,6 +5,7 @@ import axios from 'axios';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import HomePageAdSlider from 'components/HomePageAdSlider/HomePageAdSlider';
 import Search from 'components/Search/Search';
+import { theme } from 'utils/theme';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 const param = [
@@ -57,7 +58,7 @@ export default function HomePage() {
 
   return (
     <>
-      {width < 1440 && <Search />}
+      {width < parseInt(theme.breakPoints.lg) && <Search />}
       <HomePageAdSlider />
       <CategoryList />
       {productsDiscount.length !== 0 && (

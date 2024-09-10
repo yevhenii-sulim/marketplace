@@ -10,7 +10,6 @@ export default function SuccessAdded() {
   let thisProductId = null;
   function getLastSelfProduct() {
     if (!user) return;
-    console.log(user.products);
     user.products.forEach((item, index) => {
       if (index === user.products.length - 1) {
         return (thisProductId = item._id);

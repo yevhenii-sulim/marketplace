@@ -3,11 +3,12 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import css from './PaginationList.module.css';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 function PaginationList({ handlePageChange, activePage, totalItemsCount }) {
   const { width } = useWindowDimensions();
-  const amountPage = width >= 500 ? 5 : 3;
-  const isDesktopWidth = width >= 1400;
+  const amountPage = width >= parseInt(theme.breakPoints.mx) ? 5 : 3;
+  const isDesktopWidth = width >= parseInt(theme.breakPoints.lg);
 
   return (
     <div>
