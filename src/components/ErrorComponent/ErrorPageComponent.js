@@ -4,7 +4,6 @@ import {
   Container,
   ContainerError,
   Images,
-  Question,
   Solution,
   Text,
 } from './ErrorPageComponent.styled';
@@ -29,7 +28,6 @@ export default function ErrorPageComponent() {
         </Text>
         <Solution>
           <Back to="/">Повернутися назад</Back>
-          <Question to="/">Часті питання</Question>
         </Solution>
       </Container>
       <Footer />
