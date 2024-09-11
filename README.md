@@ -81,8 +81,14 @@ application uses the `react-router-dom` library for routing
 
 The project is responsive to different devices;
 
-Base breakpoints are sm: '380px', sx: '480px', mx: '576px', md: '768px', lg:
-'1200px', xl: '1440px'
+Base breakpoints are
+
+1. sm: '380px',
+2. sx: '480px',
+3. mx: '576px',
+4. md: '768px',
+5. lg: '1200px',
+6. xl: '1440px'
 
 Developed first with the Mobile First methodology, then for desktop.
 
@@ -90,8 +96,9 @@ breakpoints and colors are in folder utils in file theme.js
 
 ## the location something
 
-list team of this project are in folder data file team.js list for navigation
-category and sub category of products is in folder data file navListData.js
+1. ist team of this project are in folder data file team.js
+2. list for navigation category and sub category of products is in folder data
+   file navListData.js
 
 ## How deploy works
 
