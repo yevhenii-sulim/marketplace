@@ -15,6 +15,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SecondSlide from './SecondSlide';
 import ThirdSlide from './ThirdSlide';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function HomePageAdSlider() {
   const { width } = useWindowDimensions();
@@ -29,7 +30,8 @@ export default function HomePageAdSlider() {
         naturalSlideWidth={1324}
         naturalSlideHeight={232}
         interval={width <= 672 ? 5000 : null}
-        isPlaying={width <= 672}
+        isIntrinsicHeight={true}
+        isPlaying={width <= parseInt(theme.breakPoints.md)}
       >
         <Slider>
           <FirstSlide />
