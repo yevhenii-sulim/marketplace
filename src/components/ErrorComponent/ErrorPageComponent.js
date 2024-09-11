@@ -4,7 +4,6 @@ import {
   Container,
   ContainerError,
   Images,
-  Question,
   Solution,
   Text,
 } from './ErrorPageComponent.styled';
