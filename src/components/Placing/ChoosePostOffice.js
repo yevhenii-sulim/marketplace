@@ -33,7 +33,6 @@ export default function ChoosePostOffice({
 
         const { data } = await result.json();
         setPostOffice(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }

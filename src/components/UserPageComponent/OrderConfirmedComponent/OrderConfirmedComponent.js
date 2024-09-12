@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import OrderProduct from './OrderProduct';
-import { selectMyUser } from '../../../redux/auth/selector';
-import { clearAllProducts } from 'data/myStory';
+import { selectOrderData } from '../../../redux/orderData/selector';
 import {
   Container,
   ContinueShoppingButton,
@@ -15,7 +14,7 @@ import {
 
 export default function OrderConfirmedComponent() {
   const navigation = useNavigate();
-  const user = useSelector(selectMyUser);
+  const data = useSelector(selectOrderData);
 
   const handleMyOrdersButton = () => {
     navigation('/my_order');
@@ -25,26 +24,11 @@ export default function OrderConfirmedComponent() {
     navigation('/');
   };
 
-  const handlePageLeave = () => {
-    localStorage.removeItem('productStory');
-    clearAllProducts();
-  };
-
-  window.addEventListener('visibilitychange', handlePageLeave);
-
-  function getProduct(product, discount, discountPrice, price) {
-    if (product) {
-      if (product.discount) {
-        return product.discountPrice;
-      } else {
-        return product.price;
-      }
+  function getProduct(discount, discountPrice, price) {
+    if (discount) {
+      return discountPrice;
     } else {
-      if (discount) {
-        return discountPrice;
-      } else {
-        return price;
-      }
+      return price;
     }
   }
 
@@ -53,45 +37,28 @@ export default function OrderConfirmedComponent() {
       <Title>Дякуємо за ваше замовлення!</Title>
       <FullOrderInfo>
         <OrderProducts>
-          {user?.purchasedGoods && user.purchasedGoods.length !== 0 ? (
-            user.purchasedGoods.map(
-              ({
-                _id,
-                img,
-                title,
-                product,
-                discount,
-                discountPrice,
-                price,
-                createDate = '2024-09-02T17:47:16.424Z',
-                status,
-                pay,
-                firstName,
-                lastName,
-                tel,
-                building,
-                postOffice,
-                town,
-                apartment = 5,
-              }) => {
+          {data.length !== 0 ? (
+            data[1].map(
+              ({ discount, discountPrice, id, img, price, title }) => {
                 return (
                   <OrderProduct
-                    key={_id}
-                    status={status}
-                    building={building}
-                    postOffice={postOffice}
-                    town={town}
-                    pay={pay}
-                    firstName={firstName}
-                    lastName={lastName}
-                    tel={tel}
-                    id={_id}
-                    productId={_id}
-                    imgSrc={product ? product.minImage : img}
+                    key={id}
+                    street={data[0].street}
+                    status={'Очікується відправка'}
+                    building={data[0].building}
+                    postOffice={data[0].postOffice}
+                    town={data[0].town}
+                    pay={data[0].pay}
+                    firstName={data[0].firstName}
+                    lastName={data[0].lastName}
+                    tel={data[0].tel}
+                    id={id}
+                    productId={id}
+                    imgSrc={img}
                     title={title}
-                    price={getProduct(product, discount, discountPrice, price)}
-                    createDate={createDate}
-                    apartment={apartment}
+                    price={getProduct(discount, discountPrice, price)}
+                    createDate={Date()}
+                    apartment={data[0].apartment}
                   />
                 );
               }

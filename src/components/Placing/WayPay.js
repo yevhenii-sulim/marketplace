@@ -1,15 +1,14 @@
 import React from 'react';
-import { Field } from './Placing.styled';
-import { theme } from 'utils/theme';
-
+import { Field, Label } from './Placing.styled';
 export default function WayPay({
   payWay,
   id,
   handleChange,
   pay,
-  touched,
   errors,
   label,
+  forCheckbox,
+  setSubmitting,
 }) {
   return (
     <>
@@ -19,19 +18,14 @@ export default function WayPay({
         name="pay"
         value={payWay}
         checked={pay === payWay}
-        onChange={handleChange}
-        style={
-          touched.pay && errors.pay
-            ? {
-                border: 'none',
-                boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
-              }
-            : {}
-        }
+        onChange={evt => {
+          setSubmitting(false);
+          handleChange(evt);
+        }}
       />
-      <label className="checkbox" htmlFor="after-pay">
+      <Label $style={!!errors.pay && !pay} htmlFor={forCheckbox}>
         {label}
-      </label>
+      </Label>
     </>
   );
 }

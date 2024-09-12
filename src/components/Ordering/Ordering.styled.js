@@ -1,6 +1,18 @@
 import styled from 'styled-components';
 import { theme } from 'utils/theme';
 import { Form as FormContainer } from 'formik';
+import { Link as Location } from 'react-router-dom';
+
+export const Link = styled(Location)`
+  background-color: ${({ theme }) => theme.color.bgButton};
+  color: ${({ theme }) => theme.color.colorButtonText};
+  font-family: 'Jost';
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.45;
+  border-radius: 8px;
+  padding: 4px 10px;
+`;
 
 export const List = styled.li`
   background-color: ${({ theme }) => theme.color.bgProduct};
@@ -37,6 +49,24 @@ export const TotalPriceList = styled.div`
     align-items: flex-end;
   }
 `;
+export const Empty = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  background-color: ${({ theme }) => theme.color.bgProduct};
+  margin-top: 32px;
+  margin-bottom: 32px;
+  border-radius: 12px;
+  padding-top: 24px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 24px;
+  p {
+    color: ${({ theme }) => theme.color.colorTextStartUserPage};
+  }
+`;
 export const Form = styled(FormContainer)`
   display: grid;
   padding-top: 24px;
@@ -47,6 +77,7 @@ export const Form = styled(FormContainer)`
   line-height: 1.44;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr auto;
+    align-items: flex-start;
   }
 `;
 
@@ -106,6 +137,7 @@ export const Title = styled.h2`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
+  margin-top: 30px;
   &.story {
     margin-right: auto;
   }

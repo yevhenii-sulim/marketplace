@@ -15,15 +15,20 @@ export const Link = styled(LinkCategory)`
 export const NameCategory = styled.p`
   text-align: center;
   font-family: 'Jost';
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.45;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5; /* 150% */
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.45;
+  }
 `;
 
 export const Category = styled.ul`
   margin-bottom: 32px;
   margin-top: 32px;
-  .slide {
+  .slider {
     width: 100%;
     position: relative;
   }

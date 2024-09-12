@@ -19,8 +19,6 @@ function secondGroup(team) {
   return secondGroup;
 }
 
-console.log(firstGroup(team), secondGroup(team));
-
 export default function ContactsList() {
   return (
     <ContactList>

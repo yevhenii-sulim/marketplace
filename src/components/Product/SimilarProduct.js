@@ -1,8 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import PropTypes from 'prop-types';
+import FlagUkrSvg from 'SvgComponents/FlagUkrSvg/FlagUkrSvg';
+import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
+import { formatDate } from 'data/formatDate';
+import {
+  addFavoriteProduct,
+  removeFavoriteProduct,
+} from '../../redux/product/thunk';
+import { selectMyUser } from '../../redux/auth/selector';
+import { theme } from 'utils/theme';
 import {
   SimilarProductItem,
   SimilarProductItemPrice,
@@ -13,15 +22,6 @@ import {
   SimilarProductDatePublic,
   Price,
 } from './SimilarProduct.styled';
-import EcoSvg from 'SvgComponents/EcoSVG/EcoSvg';
-import { formatDate } from 'data/formatDate';
-import {
-  addFavoriteProduct,
-  removeFavoriteProduct,
-} from '../../redux/product/thunk';
-import FlagUkrSvg from 'SvgComponents/FlagUkrSvg/FlagUkrSvg';
-import { selectMyUser } from '../../redux/auth/selector';
-import { theme } from 'utils/theme';
 
 function scrollToByClick() {
   window.scrollTo({

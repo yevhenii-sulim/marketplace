@@ -9,15 +9,7 @@ export const ImageModal = ({
 }) => {
   const handleImageLoad = event => {
     const img = event.target;
-    const aspectRatio = img.naturalWidth / img.naturalHeight;
-
-    if (aspectRatio > 1) {
-      img.style.width = '85%';
-      img.style.height = 'auto';
-    } else {
-      img.style.width = 'auto';
-      img.style.height = '100%';
-    }
+    img.style.width = '100%';
   };
   return (
     <Modal
@@ -29,8 +21,11 @@ export const ImageModal = ({
           maxWidth: '90%',
           maxHeight: '90%',
           margin: 'auto',
+          display: 'flex',
+          alignItems: 'center',
           textAlign: 'center',
           overflow: 'visible',
+          padding: 0,
         },
       }}
     >

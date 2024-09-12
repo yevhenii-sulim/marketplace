@@ -1,6 +1,6 @@
 import React from 'react';
 import ChoosePostOffice from './ChoosePostOffice';
-import { Field } from './Placing.styled';
+import { Field, Label } from './Placing.styled';
 import { theme } from 'utils/theme';
 import AddressDeliveryByPostMan from './AddressDeliveryByPostMan';
 import ChooseTown from './ChooseTown';
@@ -45,9 +45,9 @@ export default function WayDelivery({
             : {}
         }
       />
-      <label className="checkbox" htmlFor="at-section">
+      <Label $style={!!errors.wayDelivery && !wayDelivery} htmlFor="at-section">
         До відділення Нової Пошти
-      </label>
+      </Label>
       {wayDelivery === 'До відділення Нової Пошти' && (
         <ChoosePostOffice
           handleChange={handleChange}
@@ -56,7 +56,7 @@ export default function WayDelivery({
           errors={errors}
           touched={touched}
           town={refTown}
-          kindOfSection="відділення"
+          kindOfSection="Відділення"
         />
       )}
       <Field
@@ -75,9 +75,9 @@ export default function WayDelivery({
             : {}
         }
       />
-      <label className="checkbox" htmlFor="at-post">
+      <Label $style={!!errors.wayDelivery && !wayDelivery} htmlFor="at-post">
         До поштомату Нової Пошти
-      </label>
+      </Label>
       {wayDelivery === 'До поштомату Нової Пошти' && (
         <ChoosePostOffice
           handleChange={handleChange}
@@ -86,7 +86,7 @@ export default function WayDelivery({
           errors={errors}
           touched={touched}
           town={refTown}
-          kindOfSection={'поштомат або пункт для видачі'}
+          kindOfSection={'Поштомат або пункт для видачі'}
         />
       )}
       <Field
@@ -105,9 +105,9 @@ export default function WayDelivery({
             : {}
         }
       />
-      <label className="checkbox" htmlFor="by-postman">
+      <Label $style={!!errors.wayDelivery && !wayDelivery} htmlFor="by-postman">
         Кур'єром Нової Пошти
-      </label>
+      </Label>
       {wayDelivery === "Кур'єром Нової Пошти" && (
         <AddressDeliveryByPostMan
           handleChange={handleChange}

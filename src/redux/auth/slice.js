@@ -57,10 +57,13 @@ const userSlice = createSlice({
       state.isActivated = payload.user.isActivated;
     },
     addNewProduct(state, { payload }) {
-      state.myUser.purchasedGoods = [...state.myUser.purchasedGoods, {
-        ...payload
-      }];
-    }
+      state.myUser.purchasedGoods = [
+        ...state.myUser.purchasedGoods,
+        {
+          ...payload,
+        },
+      ];
+    },
   },
   extraReducers: builder => {
     builder

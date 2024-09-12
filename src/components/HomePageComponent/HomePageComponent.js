@@ -42,7 +42,7 @@ export default function HomePageComponent({ filteredProducts, title }) {
     <ContainerSlide>
       <TitleCategory>{title}</TitleCategory>
       <CarouselProvider
-        className="slide"
+        className="slider"
         totalSlides={filteredProducts.length}
         step={setVisibleSlides(width)}
         visibleSlides={setVisibleSlides(width)}

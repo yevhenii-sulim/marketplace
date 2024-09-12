@@ -7,6 +7,8 @@ import ProductComponent from 'components/Ordering/ProductComponent';
 import TotalPriceListComponent from 'components/Ordering/TotalPriceListComponent';
 import { prices } from 'components/Ordering/Functions';
 import { Box, TitleBox, WrapperForm } from './Placing.styled';
+import { theme } from 'utils/theme';
+import MarkSvg from 'SvgComponents/MarkSVG/MarkSvg';
 
 export default function Placing({
   handleChange,
@@ -30,7 +32,7 @@ export default function Placing({
       name: 'firstName',
       value: firstName,
       placeholder: 'Михайло',
-      label: 'Iм`я',
+      label: "Iм'я",
     },
     {
       type: 'text',
@@ -43,7 +45,7 @@ export default function Placing({
       type: 'tel',
       name: 'tel',
       value: tel,
-      placeholder: '+380-050-589-00-32',
+      placeholder: '+380-050-589-00',
       label: 'Телефон',
     },
     {
@@ -109,7 +111,10 @@ export default function Placing({
         </WrapperForm>
       </Box>
       <Box className="pay">
-        <TitleBox>Оплата</TitleBox>
+        <TitleBox>
+          Оплата
+          <MarkSvg />
+        </TitleBox>
         <WrapperForm className="wrapper-pay">
           <WayPay
             payWay="Післяплата"
@@ -118,7 +123,17 @@ export default function Placing({
             pay={pay}
             touched={touched}
             errors={errors}
+            setSubmitting={setSubmitting}
             label={'Післяплата'}
+            forCheckbox={'after-pay'}
+            style={
+              touched.pay && errors.pay
+                ? {
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
           />
           <WayPay
             payWay="Карткою"
@@ -127,7 +142,17 @@ export default function Placing({
             pay={pay}
             touched={touched}
             errors={errors}
+            setSubmitting={setSubmitting}
             label="Карткою"
+            forCheckbox={'before-pay'}
+            style={
+              touched.pay && errors.pay
+                ? {
+                    border: 'none',
+                    boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
+                  }
+                : {}
+            }
           />
         </WrapperForm>
       </Box>

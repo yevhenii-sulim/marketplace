@@ -23,7 +23,7 @@ export default function HomePageAdSlider() {
   return (
     <HomePageAdSliderContainer>
       <CarouselProvider
-        className="slide"
+        className="slider"
         totalSlides={3}
         step={1}
         visibleSlides={1}
@@ -38,11 +38,6 @@ export default function HomePageAdSlider() {
           <SecondSlide />
           <ThirdSlide />
         </Slider>
-        <Pointer>
-          <li></li>
-          <li></li>
-          <li></li>
-        </Pointer>
         {width > 672 ? (
           <>
             <ButtonNext>
@@ -54,6 +49,11 @@ export default function HomePageAdSlider() {
           </>
         ) : null}
       </CarouselProvider>
+      <Pointer>
+        <li></li>
+        <li></li>
+        <li></li>
+      </Pointer>
     </HomePageAdSliderContainer>
   );
 }

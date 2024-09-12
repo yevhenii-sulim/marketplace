@@ -4,9 +4,10 @@ export const ButtonBlockWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 140px;
+  min-height: 140px;
   gap: 4px;
   justify-content: space-between;
+  align-items: center;
   @media (max-width: 1024px) {
     height: 144px;
     flex-direction: row;

@@ -224,6 +224,7 @@ a {
 }
 
 .swiper {
+  z-index: 0 !important;
   height: 445px !important;
 }
 
@@ -239,6 +240,8 @@ a {
   clip-path: inset(50%);
   margin: -1px;
 }
+
+
 
 @media (min-width: 767px) {
   .swiper-pagination {

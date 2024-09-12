@@ -2,6 +2,7 @@ import Label from 'components/AddProductComponent/Label';
 import { Field, PlaceAddress } from './Placing.styled';
 import { theme } from 'utils/theme';
 import AddressDelivery from './AddressDelivery';
+import { useState } from 'react';
 
 export default function AddressDeliveryByPostMan({
   handleChange,
@@ -11,6 +12,10 @@ export default function AddressDeliveryByPostMan({
   touched,
   town,
 }) {
+  const [valueBuilder, setValueBuilder] = useState('');
+  const [valueApartment, setValueApartment] = useState('');
+  const [valueFloor, setValueFloor] = useState('');
+
   return (
     <>
       <AddressDelivery
@@ -25,10 +30,14 @@ export default function AddressDeliveryByPostMan({
         <label>
           <Label label="Будинок" />
           <Field
-            type="text"
+            type="number"
             name="building"
             className="building"
-            onChange={handleChange}
+            value={valueBuilder}
+            onChange={event => {
+              setValueBuilder(Math.abs(event.target.value));
+              handleChange(event);
+            }}
             placeholder="56"
             style={
               touched.street && errors.street
@@ -46,7 +55,11 @@ export default function AddressDeliveryByPostMan({
             type="number"
             name="apartment"
             className="apartment"
-            onChange={handleChange}
+            value={valueApartment}
+            onChange={event => {
+              setValueApartment(Math.abs(event.target.value));
+              handleChange(event);
+            }}
             placeholder="3"
           />
         </label>
@@ -56,7 +69,11 @@ export default function AddressDeliveryByPostMan({
             type="number"
             name="floor"
             className="floor"
-            onChange={handleChange}
+            value={valueFloor}
+            onChange={event => {
+              setValueFloor(Math.abs(event.target.value));
+              handleChange(event);
+            }}
             placeholder="20"
           />
         </label>

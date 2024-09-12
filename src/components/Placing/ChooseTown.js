@@ -77,7 +77,7 @@ export default function ChooseTown({
         onChange={handleChangeComponent}
         placeholder="Київ"
         style={
-          touched.town && errors.town
+          touched.wayDelivery && errors.wayDelivery
             ? {
                 border: 'none',
                 boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,

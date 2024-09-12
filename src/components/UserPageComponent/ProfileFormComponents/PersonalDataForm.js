@@ -167,12 +167,15 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
         <InputField
           label={'Прізвище'}
           placeholder={'Введіть прізвище'}
-          onChange={event =>
-            setUserDataChanges({
-              ...userDataChanges,
-              lastName: event.target.value,
-            })
-          }
+          onChange={event => {
+            console.log(userDataChanges);
+
+            if (event.target.value.length > 21) return;
+            setUserDataChanges(prev => {
+              if (event.target.value.length > 21) return userDataChanges;
+              return { ...userDataChanges, lastName: event.target.value };
+            });
+          }}
           required={true}
           value={userDataChanges?.lastName || user?.lastName}
           disabled={!redacting}

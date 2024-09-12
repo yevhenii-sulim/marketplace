@@ -14,7 +14,7 @@ export const WrapperOrder = styled.div`
   padding-right: 12px;
   padding-top: 80px;
   padding-bottom: 24px;
-  margin: 100px auto;
+  margin: 32px auto;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr 300px;
     padding-left: 40px;
@@ -29,6 +29,20 @@ export const WrapperOrder = styled.div`
     }
   }
 `;
+
+export const Title = styled.h1`
+  font-family: Jost;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.32px;
+  padding: 0px 20px;
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    padding: unset;
+  }
+`;
+
 export const Empty = styled.div`
   display: flex;
   flex-direction: column;

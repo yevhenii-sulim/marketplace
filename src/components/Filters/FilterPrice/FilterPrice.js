@@ -11,6 +11,7 @@ import {
   SliderRange,
   styleBoxRange,
 } from './FilterPrice.styled';
+import { theme } from 'utils/theme';
 
 export default function FilterPrice({ setPage }) {
   const [params, setParams] = useSearchParams('');
@@ -73,7 +74,7 @@ export default function FilterPrice({ setPage }) {
             onChange={handleInputChange}
             name="min"
           />
-          {width < 1440 && 'грн'}
+          {width < parseInt(theme.breakPoints.lg) && 'грн'}
         </label>
         <label>
           Дo

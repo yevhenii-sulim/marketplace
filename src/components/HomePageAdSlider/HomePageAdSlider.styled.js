@@ -26,11 +26,10 @@ export const Pointer = styled.ul`
 `;
 
 export const HomePageAdSliderContainer = styled.ul`
-  .slide {
+  .slider {
     position: relative;
     height: 270px;
     border-radius: 15px;
-    overflow: hidden;
   }
   .carousel__slide {
     background-color: #fff;
@@ -82,7 +81,7 @@ export const HomePageAdSliderContainer = styled.ul`
   }
 
   @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
-    .slide,
+    .slider,
     .carousel__slider,
     .carousel__inner-slide {
       height: 125px;
@@ -105,7 +104,7 @@ export const HomePageAdSliderContainer = styled.ul`
   }
 
   @media (max-width: 672px) {
-    .slide,
+    .slider,
     .carousel__slide,
     .carousel__slider {
       height: 35.7vw;
@@ -161,15 +160,15 @@ export const FirstSlideTitle = styled.h3`
     left: 3.57vw;
     font: 500 3.5vw 'Jost';
     line-height: 6vw;
+    display: flex;
+    gap: 12px;
   }
 `;
 
 export const FlagImage = styled.img`
-  position: absolute;
   width: 32px;
   height: 32px;
-  top: 45%;
-  left: 351px;
+  vertical-align: middle;
 
   @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 40%;
