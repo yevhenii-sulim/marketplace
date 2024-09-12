@@ -1,6 +1,5 @@
 import {
   YellowTitle,
-  OrderNumber,
   OrderProductDataContainer,
   OrderDate,
   OrderProductImageAndTitle,
@@ -26,13 +25,13 @@ export default function OrderProduct({
   postOffice,
   town,
   apartment,
+  street,
 }) {
   return (
     <>
       <OrderProductContainer>
         <OrderProductData>
           <YellowTitle $state={status}>{status}</YellowTitle>
-          <OrderNumber>№125</OrderNumber>
           <OrderProductDataContainer>
             <OrderProductImageAndTitle>
               <img src={imgSrc} alt="" />
@@ -47,7 +46,7 @@ export default function OrderProduct({
             <strong>Доставка:</strong>
             {building === ''
               ? `${town[0]}, ${postOffice}`
-              : `${town[0]}, будівля ${building}, квартира ${apartment}`}
+              : `${town[0]}, вулиця: ${street} будівля: ${building}, квартира: ${apartment}`}
           </p>
           <p>
             <strong>Оплата:</strong> {pay}

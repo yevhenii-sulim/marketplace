@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { deleteProduct } from '../../redux/basket/slice';
 import {
   About,
@@ -11,6 +10,7 @@ import {
   Title,
   WrapperProduct,
 } from './Ordering.styled';
+import DeleteSvg from 'SvgComponents/DeleteSvg/DeleteSvg';
 
 export default function ProductComponent({
   id,
@@ -33,18 +33,17 @@ export default function ProductComponent({
         </Image>
         <About className="basket">
           <Title>{title}</Title>
-          <br />
-          <span>{count}</span>
+          <p>{count}</p>
         </About>
         <Actives>
           <Price>
             {discount ? (
               <>
-                <p className="price-discount">{price}&#8372;</p>
-                <p className="discount">{discountPrice}&#8372;</p>
+                <p className="price-discount">{price}&nbsp;&#8372;</p>
+                <p className="discount">{discountPrice}&nbsp;&#8372;</p>
               </>
             ) : (
-              <p className="price">{price}&#8372;</p>
+              <p className="price">{price}&nbsp;&#8372;</p>
             )}
           </Price>
           <DeleteAdd className="basket">
@@ -53,7 +52,7 @@ export default function ProductComponent({
               className="delete"
               onClick={() => deleteFromBasket(id)}
             >
-              <DeleteOutlineIcon />
+              <DeleteSvg />
             </button>
           </DeleteAdd>
         </Actives>

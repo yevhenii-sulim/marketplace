@@ -2,10 +2,37 @@ import styled from 'styled-components';
 import { Field as FieldInput } from 'formik';
 import { theme } from 'utils/theme';
 
+export const Label = styled.label`
+  position: relative;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 40px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: ${({ theme, $style }) => {
+    return $style && `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`;
+  }};
+  border: ${({ theme, $style }) => {
+    return $style ? `none` : `1px solid ${theme.color.bgLabelDelivery}`;
+  }};
+  background: ${({ theme }) => theme.color.bgAddImage};
+  &:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+  }
+`;
+
 export const Field = styled(FieldInput)`
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.25;
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 12px;
@@ -14,6 +41,7 @@ export const Field = styled(FieldInput)`
   border: 1px solid rgba(118, 118, 118, 0.4);
   outline: none;
   background: ${({ theme }) => theme.color.bgAddImage};
+
   &:focus {
     box-shadow: inset 0 0 0 3px ${({ theme }) => theme.color.borderRegister};
     border-color: transparent;
@@ -39,6 +67,9 @@ export const Field = styled(FieldInput)`
     width: 100%;
     background: transparent;
     padding: 8px 12px;
+    &::placeholder {
+      line-height: 0;
+    }
   }
 `;
 export const Box = styled.div`
@@ -76,10 +107,19 @@ export const Box = styled.div`
   }
 `;
 export const TitleBox = styled.h2`
+  position: relative;
+  display: inline-block;
   font-family: Jost;
   font-size: 28px;
   font-weight: 400;
   line-height: 1.5; /* 150% */
+  .mark {
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 15%;
+    right: -10px;
+  }
 `;
 export const WrapperForm = styled.div`
   &.wrapper-contacts {
@@ -110,28 +150,6 @@ export const WrapperForm = styled.div`
     font-weight: 400;
   }
 
-  .checkbox {
-    position: relative;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    padding-left: 40px;
-    width: 100%;
-    border-radius: 6px;
-    border: 1px solid ${({ theme }) => theme.color.bgLabelDelivery};
-    background: ${({ theme }) => theme.color.bgAddImage};
-    &:before {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #ffffff;
-      border: 1px solid #000000;
-      top: 50%;
-      left: 12px;
-      transform: translateY(-50%);
-    }
-  }
   input[type='radio'] {
     display: none;
   }
@@ -230,6 +248,13 @@ export const ListTown = styled.ul`
 
 export const PlaceAddress = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(auto, 120px));
   justify-content: space-between;
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    grid-template-columns: repeat(3, minmax(auto, 120px));
+  }
 `;

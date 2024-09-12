@@ -58,18 +58,23 @@ export const SimilarProductItemIcon = styled.div`
 `;
 export const Price = styled.div``;
 export const SimilarProductItemName = styled.h4`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
+  line-height: 1;
   margin-top: 12px;
-  height: 42px;
   color: ${({ theme }) => theme.color.colorMainText};
-
+  height: 42px;
   overflow: hidden;
-  line-height: 1.2;
   position: relative;
   &:hover {
     overflow: visible;
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    font-size: 18px;
+    height: 48px;
+    line-height: 1.44;
+  }
+
   span {
     position: absolute;
     top: 0;

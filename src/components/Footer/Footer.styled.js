@@ -27,10 +27,20 @@ export const ContainerFooter = styled.div`
   border-bottom: 1px ${({ theme }) => theme.color.colorMainText} solid;
   padding-top: 48px;
   padding-bottom: 68px;
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+  font-size: 16px;
+  line-height: 1.5; /* 150% */
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
     display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    gap: 182px;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.44; /* 144.444% */
+    align-items: flex-end;
+    grid-template-columns: 1fr 2fr;
   }
 `;
 export const About = styled.div`
@@ -41,10 +51,13 @@ export const About = styled.div`
 export const Sign = styled.div`
   text-align: center;
   padding: 15px 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5; /* 150% */
 `;
 export const LogoContainer = styled.div`
   text-align: center;
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
     text-align: left;
   }
 `;
@@ -53,16 +66,34 @@ export const AboutContent = styled.div`
   flex-direction: column;
   gap: 14px;
   margin-bottom: 32px;
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 1.5; /* 150% */
   font-weight: 600;
-  line-height: 1.45;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
+    font-size: 18px;
+    line-height: 1.45;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     margin-bottom: 0;
   }
 `;
 export const Confederacy = styled.div`
+  justify-self: end;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   margin-bottom: 16px;
+  a {
+    display: block;
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    margin-bottom: 0px;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+  }
 `;

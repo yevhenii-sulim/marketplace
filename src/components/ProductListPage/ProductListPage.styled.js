@@ -39,7 +39,7 @@ export const Product = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     grid-template-columns: repeat(3, auto);
   }
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
     grid-template-columns: repeat(4, auto);
     justify-content: start;
   }
@@ -116,11 +116,13 @@ export const TitleProducts = styled.h1`
   font-family: 'Jost';
   font-weight: 700;
   line-height: 1.22;
+  text-align: center;
   @media screen and(min-width: ${({ theme }) => theme.breakPoints.md}) {
     font-size: 32px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     font-size: 44px;
+    text-align: left;
   }
 `;
 export const EmptySearch = styled.div`

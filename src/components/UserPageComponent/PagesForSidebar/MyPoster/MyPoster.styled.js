@@ -116,6 +116,7 @@ export const Link = styled(Location)`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  height: 40px;
   background-color: ${({ theme }) => theme.color.bgButton};
   color: ${({ theme }) => theme.color.colorButtonText};
   font-family: 'Jost';

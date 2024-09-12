@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { deleteBasket } from '../../redux/basket/slice';
 import { removeFavoriteProduct } from '../../redux/product/thunk';
+import { setOrder } from '../../redux/orderData/slice';
 
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 export const prices = {
@@ -11,6 +12,7 @@ export const prices = {
 };
 
 export function onSubmitOrder(data, values, user, dispatch, auth) {
+  dispatch(setOrder([values, data]));
   const orderData = data.map(({ count, id }) => {
     return {
       id,

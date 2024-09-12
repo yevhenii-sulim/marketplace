@@ -2,16 +2,14 @@ const view = window.innerWidth;
 
 function setStyleForResponseGridTemplateColumns() {
   switch (true) {
-    case view >= 1440:
-      return 'repeat(4, auto)';
-    case view >= 768:
-      return 'repeat(3, auto)';
-    case view >= 380:
-      return 'repeat(2, auto)';
-    case view < 379:
+    case view < 380:
       return 'auto';
+    case view < 768:
+      return 'repeat(2, auto)';
+    case view < 1440:
+      return 'repeat(3, auto)';
     default:
-      return;
+      return 'repeat(4, auto)';
   }
 }
 

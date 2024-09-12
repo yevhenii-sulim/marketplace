@@ -1,4 +1,5 @@
 import Logo from 'SvgComponents/LogoSVG/Logo';
+import { Link } from 'react-router-dom';
 import {
   About,
   AboutContent,
@@ -9,7 +10,6 @@ import {
   Sign,
   ContainerFooter,
 } from './Footer.styled';
-import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -23,10 +23,12 @@ export default function Footer() {
             <AboutContent>Сервіс де продати і купити може кожен!</AboutContent>
           </About>
           <Confederacy>
-            <Link to="/agreement">Угода користувача </Link>
-            <Link to="/confederacy">Політика конфіденційності</Link>
+            <div>
+              <Link to="/agreement">Угода користувача </Link>
+              <Link to="/confederacy">Політика конфіденційності</Link>
+            </div>
+            <Link to="/contacts">Наші контакти</Link>
           </Confederacy>
-          <Link to="/contacts">Наші контакти</Link>
         </ContainerFooter>
         <Sign>© Розробка "Team Challenge" 2024. Усі права захищені.</Sign>
       </Container>

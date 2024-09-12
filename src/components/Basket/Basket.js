@@ -6,7 +6,7 @@ import { selectCategory } from '../../redux/category/selectors';
 import BasketProductComponent from 'components/BasketProductComponent/BasketProductComponent';
 import BasketTotalPriceComponent from 'components/BasketTotalPriceComponent/BasketTotalPriceComponent';
 import BasketButtonsOrder from 'components/BasketButtonsOrder/BasketButtonsOrder';
-import { Empty, Link, WrapperOrder } from './Basket.styled';
+import { Empty, Link, Title, WrapperOrder } from './Basket.styled';
 
 export default function Basket() {
   const categories = useSelector(selectCategory);
@@ -27,6 +27,7 @@ export default function Basket() {
 
   return (
     <div>
+      <Title>Мій кошик</Title>
       {basket.length === 0 ? (
         <Empty>
           <ShoppingCart />

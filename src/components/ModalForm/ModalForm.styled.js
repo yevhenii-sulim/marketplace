@@ -47,10 +47,6 @@ export const WrapperModal = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
     width: 366px;
   }
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
 `;
 
 export const Backdrop = styled.div`

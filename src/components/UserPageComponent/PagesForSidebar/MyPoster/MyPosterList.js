@@ -30,6 +30,8 @@ import {
   WrapperBuy,
   WrapperPoster,
 } from './MyPoster.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 export default function MyPosterList({
   sortedProduct,
@@ -40,8 +42,7 @@ export default function MyPosterList({
 }) {
   const dispatch = useDispatch();
   const user = useSelector(selectMyUser);
-  console.log(user);
-
+  const { width } = useWindowDimensions();
   const [myProduct, setMyProduct] = useState([]);
 
   const products = user?.products;
@@ -108,7 +109,8 @@ export default function MyPosterList({
                 onClick={toCreatePost}
                 state={'Створити оголошення'}
               >
-                <AddOutlinedIcon sx={{ color: 'white' }} /> Додати
+                <AddOutlinedIcon sx={{ color: 'white' }} />{' '}
+                {width > parseInt(theme.breakPoints.sx) && 'Додати'}
               </Link>
             </ToCreatePostLink>
           </Filter>

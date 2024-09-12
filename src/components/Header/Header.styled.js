@@ -16,7 +16,6 @@ export const Container = styled.div`
   padding-left: 12px;
   padding-right: 12px;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
-    width: 768px;
     padding-left: 24px;
     padding-right: 24px;
   }

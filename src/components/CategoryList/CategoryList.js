@@ -25,11 +25,17 @@ export default function CategoryList() {
       width < parseInt(theme.breakPoints.lg) &&
       width > parseInt(theme.breakPoints.md)
     ) {
-      return 4;
+      return 5;
     }
     if (
       width <= parseInt(theme.breakPoints.md) &&
       width >= parseInt(theme.breakPoints.mx)
+    ) {
+      return 4;
+    }
+    if (
+      width <= parseInt(theme.breakPoints.md) &&
+      width >= parseInt(theme.breakPoints.sx)
     ) {
       return 3;
     }
@@ -40,7 +46,7 @@ export default function CategoryList() {
   return (
     <Category>
       <CarouselProvider
-        className="slide"
+        className="slider"
         totalSlides={navigationList.length}
         isPlaying={width < parseInt(theme.breakPoints.md)}
         step={3}
@@ -73,16 +79,17 @@ export default function CategoryList() {
           <li></li>
           <li></li>
         </Pointer>
-        {navigationList.length > setVisibleSlides(width) && (
-          <>
-            <ButtonBack>
-              <ArrowBackIcon sx={ButtonSlider} />
-            </ButtonBack>
-            <ButtonNext>
-              <ArrowForwardIcon sx={ButtonSlider} />
-            </ButtonNext>
-          </>
-        )}
+        {navigationList.length > setVisibleSlides(width) &&
+          width > parseInt(theme.breakPoints.md) && (
+            <>
+              <ButtonBack>
+                <ArrowBackIcon sx={ButtonSlider} />
+              </ButtonBack>
+              <ButtonNext>
+                <ArrowForwardIcon sx={ButtonSlider} />
+              </ButtonNext>
+            </>
+          )}
       </CarouselProvider>
     </Category>
   );

@@ -4,7 +4,7 @@ export default function RecoverPassword() {
   return (
     <Wrapper>
       <Box>
-        <Title>Зміна пароля</Title>
+        <Title>Новий пароль</Title>
         <ChangePassword />
       </Box>
     </Wrapper>

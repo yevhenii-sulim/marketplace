@@ -72,7 +72,9 @@ export const FormField = styled.div`
       color: #ff0000;
     }
   }
-
+  .error {
+    color: ${({ theme }) => theme.color.colorTextErrorForm};
+  }
   p {
     color: #000;
     font: 600 18px 'Nunito Sans';

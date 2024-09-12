@@ -2,15 +2,16 @@ import * as Yup from 'yup';
 
 const phoneRegExp =
   /^\s*((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}\s*$/i;
+const postSchema = /^\s*[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\s*$/i;
 
 const signupSchema = Yup.object().shape({
-  firstName: Yup.string().required("Ваше ім'я"),
+  firstName: Yup.string().min(2).required("Ваше ім'я"),
   lastName: Yup.string().required('Ваше прізвище'),
   tel: Yup.string()
     .matches(phoneRegExp, 'Некоректний формат номеру телефону')
     .required('Введіть номер телефону'),
   town: Yup.mixed().required('Ваше місто'),
-  email: Yup.string().min(10, 'Не валідний').required('Ваш email'),
+  email: Yup.string().matches(postSchema).min(10, 'Не валідний'),
   wayDelivery: Yup.string().required('Спосіб доставки'),
   postOffice: Yup.string().when('wayDelivery', {
     is: wayDelivery =>
@@ -29,6 +30,7 @@ const signupSchema = Yup.object().shape({
     then: e => e.required('Вкажіть адресу'),
     otherwise: e => e.nullable().default(() => ''),
   }),
+  pay: Yup.string().required('Спосіб оплати'),
 });
 
 export default signupSchema;

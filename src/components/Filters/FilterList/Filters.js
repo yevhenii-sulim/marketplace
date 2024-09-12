@@ -9,7 +9,6 @@ import { useLocation } from 'react-router-dom';
 
 function Filters({ setPage }) {
   const location = useLocation();
-  console.log(location.pathname.includes('forFree'));
 
   return (
     <form>

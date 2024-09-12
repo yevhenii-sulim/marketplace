@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import AddAnnouncement from 'components/AddAnnouncement/AddAnnouncement';
 import Logo from 'SvgComponents/LogoSVG/Logo';
 import CategorySvg from 'SvgComponents/CategorySVG/CategorySvg';
 import { theme } from 'utils/theme';
@@ -20,6 +19,7 @@ import {
   Menu,
 } from './MenuResponse.styled';
 import { toggleModalAuth } from '../../redux/modalAuth/slice';
+import AddAnnouncement from './AddAnnouncement';
 
 export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
   const isAuth = useSelector(selectAuth);
@@ -81,7 +81,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
           <section>
             <EnteredProfile>
               <p>
-                Ввійдіть, щоб отримати рекомендації, персональні бонуси і
+                Увійдіть, щоб отримати рекомендації, персональні бонуси і
                 знижки.
               </p>
               <LinkEnter to="/user/menu" onClick={onOpenProfile}>

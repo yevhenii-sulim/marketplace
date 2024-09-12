@@ -5,7 +5,9 @@ export const OrderSectionWrapper = styled.article`
   width: 100%;
   background-color: white;
   border-radius: 12px;
-  height: 450px;
+  padding-left: 24px;
+  padding-right: 24px;
+  min-height: 450px;
   @media (max-width: 1024px) {
     display: none;
   }

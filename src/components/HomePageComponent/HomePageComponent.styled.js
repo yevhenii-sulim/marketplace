@@ -3,7 +3,7 @@ import { theme } from 'utils/theme';
 
 export const ContainerSlide = styled.ul`
   margin-bottom: 32px;
-  .slide {
+  .slider {
     width: 100%;
     position: relative;
   }

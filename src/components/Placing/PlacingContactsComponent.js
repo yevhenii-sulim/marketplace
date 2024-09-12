@@ -8,17 +8,19 @@ export default function PlacingContactsComponent({
   handleChange,
   placeholder,
   touched,
-  errors,
   label,
+  errors,
   value,
   type,
 }) {
+  console.log(name, touched[name] && errors[name]);
+
   return (
     <label>
       <p>
         <span className="label-place">
           {label}
-          <MarkSvg />
+          {label !== 'Електрона адреса' && <MarkSvg />}
         </span>
       </p>
       <Field
@@ -28,7 +30,7 @@ export default function PlacingContactsComponent({
         onChange={handleChange}
         placeholder={placeholder}
         style={
-          touched.lastName && errors.lastName
+          touched[name] && errors[name]
             ? {
                 border: 'none',
                 boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,

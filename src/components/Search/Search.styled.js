@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 export const FormSearch = styled.form`
-  max-width: 300px;
   width: 100%;
   height: 32px;
   position: relative;
@@ -8,7 +7,11 @@ export const FormSearch = styled.form`
   margin-right: auto;
   height: 48px;
   margin-bottom: 30px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
+    max-width: 366px;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    max-width: 472px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0;

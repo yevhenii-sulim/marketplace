@@ -23,11 +23,7 @@ import {
   TitleSort,
   ListPath,
   FiltersList,
-  EmptySearch,
-  TitleSection,
-  BoxSvg,
 } from './ProductListPage.styled';
-import NoSearched from 'SvgComponents/NoSearched/NoSearched';
 import { theme } from 'utils/theme';
 
 export default function ProductListPage({
@@ -46,6 +42,7 @@ export default function ProductListPage({
     if (!categories) return;
     return categories.subCategory;
   }
+  console.log(categories);
 
   return (
     <ContainerProductPageList>
@@ -68,7 +65,11 @@ export default function ProductListPage({
             )}
           </Nav>
           <TitleProducts>
-            {setRouting(categories) && <>{categories.subCategory.ua}</>}
+            {setRouting(categories) ? (
+              <>{categories.subCategory.ua}</>
+            ) : (
+              <>{categories.category.ua}</>
+            )}
           </TitleProducts>
         </Navigation>
       )}
@@ -88,53 +89,43 @@ export default function ProductListPage({
 
           {width < parseInt(theme.breakPoints.lg) && (
             <TitleProducts>
-              {setRouting(categories) && <>{categories.subCategory.ua}</>}
+              {setRouting(categories) ? (
+                <>{categories.subCategory.ua}</>
+              ) : (
+                <>{categories.category.ua}</>
+              )}
             </TitleProducts>
           )}
-          {isLoading ? (
+          {isLoading && sortedProduct.length !== 0 ? (
             <Product>
-              {sortedProduct.length !== 0 ? (
-                sortedProduct.map(
-                  ({
-                    title,
-                    _id,
-                    img,
-                    price,
-                    discountPrice,
-                    createDate,
-                    discount,
-                    parameters,
-                    category,
-                    subCategory,
-                  }) => (
-                    <SimilarProduct
-                      key={_id}
-                      id={_id}
-                      title={title}
-                      price={price}
-                      img={img}
-                      discountPrice={discountPrice}
-                      discount={discount}
-                      createDate={createDate}
-                      eco={parameters.eco}
-                      isUkraine={parameters.isUkraine}
-                      category={category}
-                      subCategory={subCategory}
-                    />
-                  )
+              {sortedProduct.map(
+                ({
+                  title,
+                  _id,
+                  img,
+                  price,
+                  discountPrice,
+                  createDate,
+                  discount,
+                  parameters,
+                  category,
+                  subCategory,
+                }) => (
+                  <SimilarProduct
+                    key={_id}
+                    id={_id}
+                    title={title}
+                    price={price}
+                    img={img}
+                    discountPrice={discountPrice}
+                    discount={discount}
+                    createDate={createDate}
+                    eco={parameters.eco}
+                    isUkraine={parameters.isUkraine}
+                    category={category}
+                    subCategory={subCategory}
+                  />
                 )
-              ) : (
-                <EmptySearch>
-                  <TitleSection>
-                    На жаль, за вашим запитом нічого не знайдено.
-                  </TitleSection>
-                  <ul>
-                    <li>Спробуйте використати інші фільтри</li>
-                  </ul>
-                  <BoxSvg>
-                    <NoSearched />
-                  </BoxSvg>
-                </EmptySearch>
               )}
             </Product>
           ) : (
@@ -155,3 +146,15 @@ export default function ProductListPage({
     </ContainerProductPageList>
   );
 }
+
+// <EmptySearch>
+//   <TitleSection>
+//     На жаль, за вашим запитом нічого не знайдено.
+//   </TitleSection>
+//   <ul>
+//     <li>Спробуйте використати інші фільтри</li>
+//   </ul>
+//   <BoxSvg>
+//     <NoSearched />
+//   </BoxSvg>
+// </EmptySearch>

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { Button } from '@mui/material';
 import { selectBasket } from '../../redux/basket/select';
-import { setOrder } from '../../redux/orderData/slice';
 import { selectAuth, selectMyUser } from '../../redux/auth/selector';
 import { addNewProduct } from '../../redux/auth/slice';
 import signupSchema from 'components/Placing/validationSchema';
@@ -12,7 +11,9 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 import ProductComponent from './ProductComponent';
 import { handleOrder, onSubmitOrder, prices } from './Functions';
 import {
+  Empty,
   Form,
+  Link,
   TotalPrice,
   WrapperButton,
   WrapperBuy,
@@ -21,6 +22,7 @@ import {
 } from './Ordering.styled';
 import TotalPriceListComponent from './TotalPriceListComponent';
 import { theme } from 'utils/theme';
+import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
 
 export default function Ordering() {
   const basket = useSelector(selectBasket);
@@ -31,13 +33,6 @@ export default function Ordering() {
   const isUserRegistered = useSelector(selectAuth);
 
   const handleSubmit = async values => {
-    dispatch(
-      setOrder({
-        ...values,
-        products: [...basket],
-      })
-    );
-
     if (isUserRegistered) {
       basket.forEach(item => {
         const product = {
@@ -60,8 +55,6 @@ export default function Ordering() {
           ...values,
         });
       });
-
-      localStorage.setItem('productStory', JSON.stringify(products));
     }
 
     navigation('/purchase');
@@ -71,7 +64,7 @@ export default function Ordering() {
 
   return (
     <>
-      {basket.length !== 0 && (
+      {basket.length !== 0 ? (
         <Formik
           initialValues={{
             firstName: '',
@@ -104,7 +97,6 @@ export default function Ordering() {
             touched,
           }) => (
             <Form>
-              {console.log(values)}
               <Placing
                 wayDelivery={values.wayDelivery}
                 handleChange={handleChange}
@@ -169,6 +161,12 @@ export default function Ordering() {
             </Form>
           )}
         </Formik>
+      ) : (
+        <Empty>
+          <ShoppingCart />
+          <p>Зробіть ваше переше замовлення</p>
+          <Link to="/">Перейти до товарів</Link>
+        </Empty>
       )}
     </>
   );
