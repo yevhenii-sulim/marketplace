@@ -31,15 +31,15 @@ export const team = [
   },
   {
     id: 7,
-    name: 'Валерій Шевчук',
-    spec: 'BackEnd Dev',
-    link: 'https://www.linkedin.com/in/valera-shevchuk-86261b206/',
-  },
-  {
-    id: 8,
     name: 'Сергій Калина',
     spec: 'FullStack Dev',
     link: 'https://www.linkedin.com/in/sergeii-kalyna-5363b8257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+  },
+  {
+    id: 8,
+    name: 'Валерій Шевчук',
+    spec: 'BackEnd Dev',
+    link: 'https://www.linkedin.com/in/valera-shevchuk-86261b206/',
   },
   {
     id: 9,

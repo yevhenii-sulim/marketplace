@@ -23,9 +23,7 @@ export const NavLink = styled(LinkAux)`
 export const AuxiliaryContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 36px;
-  margin-left: 8px;
-  margin-right: 8px;
+  gap: 24px;
 `;
 export const TotalProduct = styled.span`
   position: absolute;

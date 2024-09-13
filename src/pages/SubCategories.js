@@ -13,6 +13,7 @@ export default function SubCategories() {
     <SubcategoriesComponent
       subCategory={categoryObject[0]?.subCategories}
       path={categoryObject.linkList}
+      category={category.category.en}
     />
   );
 }
