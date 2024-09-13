@@ -53,7 +53,7 @@ export default function Placing({
       name: 'email',
       value: email,
       placeholder: 'mbagrianiy@gmail.com',
-      label: 'Електрона адреса',
+      label: 'Електронна адреса',
     },
   ];
   return (
