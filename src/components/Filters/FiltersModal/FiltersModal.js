@@ -13,7 +13,7 @@ export default function FiltersModal({
   setIsOpenSort,
   setIsOpenFilter,
   setTranslateMenu,
-  changeNameSort,
+  setPage,
 }) {
   useEffect(() => {
     function onCloseFilter(bool) {
@@ -97,7 +97,7 @@ export default function FiltersModal({
         <IconButton sx={cssButtonClose} onClick={onCloseWithButton}>
           <CloseIcon className="close" />
         </IconButton>
-        {isOpenFilter && <Filters />}
+        {isOpenFilter && <Filters setPage={setPage} />}
         {isOpenSort && <SortModal />}
       </Wrapper>
     </Backdrop>

@@ -2,12 +2,11 @@ import {
   YellowTitle,
   OrderProductDataContainer,
   OrderDate,
-  OrderProductImageAndTitle,
   OrderProductPrice,
   Divider,
-  OrderProductData,
   OrderReceiverData,
   OrderProductContainer,
+  OrderProductImage,
 } from './OrderConfirmedComponent.styled';
 import { formatDate } from 'data/formatDate';
 
@@ -30,17 +29,19 @@ export default function OrderProduct({
   return (
     <>
       <OrderProductContainer>
-        <OrderProductData>
+        <div>
           <YellowTitle $state={status}>{status}</YellowTitle>
           <OrderProductDataContainer>
-            <OrderProductImageAndTitle>
+            <OrderProductImage>
               <img src={imgSrc} alt="" />
-              {title}
-            </OrderProductImageAndTitle>
-            <OrderProductPrice>{price} ₴</OrderProductPrice>
+            </OrderProductImage>
+            <div>
+              <h2>{title}</h2>
+              <OrderProductPrice>{price}&nbsp;₴</OrderProductPrice>
+            </div>
           </OrderProductDataContainer>
           <OrderDate>{formatDate(createDate)}</OrderDate>
-        </OrderProductData>
+        </div>
         <OrderReceiverData>
           <p>
             <strong>Доставка:</strong>

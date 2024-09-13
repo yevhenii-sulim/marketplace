@@ -5,9 +5,6 @@ export const List = styled.li`
   border-bottom: 1px solid ${({ theme }) => theme.color.borderBasketList};
   padding-top: 32px;
   padding-bottom: 32px;
-  &:not(:last-child) {
-    margin-bottom: 24px;
-  }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
     padding-left: 32px;
     padding-right: 32px;
@@ -79,10 +76,8 @@ export const Title = styled.h2`
 
 export const Count = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   border-radius: 3px;
-  width: 16px;
-  height: 16px;
   gap: 8px;
   background-color: transparent;
   line-height: 0;
@@ -108,6 +103,10 @@ export const Count = styled.div`
   }
   .MuiSvgIcon-root:active {
     color: ${({ theme }) => theme.color.bgButton};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    align-items: center;
+    flex-direction: row;
   }
 `;
 export const Price = styled.div`

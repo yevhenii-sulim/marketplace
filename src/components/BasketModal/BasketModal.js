@@ -3,9 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
 import { selectBasket } from '../../redux/basket/select';
-
+import ShoppingCart from 'SvgComponents/ShoppingСart/ShoppingСart';
+import BasketProductComponent from 'components/BasketProductComponent/BasketProductComponent';
+import BasketTotalPriceComponent from 'components/BasketTotalPriceComponent/BasketTotalPriceComponent';
+import BasketButtonsOrder from 'components/BasketButtonsOrder/BasketButtonsOrder';
 import {
   Backdrop,
   cssButtonClose,
@@ -14,9 +16,6 @@ import {
   TitleSection,
   WrapperOrder,
 } from './BasketModal.styled';
-import BasketProductComponent from 'components/BasketProductComponent/BasketProductComponent';
-import BasketTotalPriceComponent from 'components/BasketTotalPriceComponent/BasketTotalPriceComponent';
-import BasketButtonsOrder from 'components/BasketButtonsOrder/BasketButtonsOrder';
 
 export default function BasketModal({ setIsOpen }) {
   const basket = useSelector(selectBasket);

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import OrderProduct from './OrderProduct';
 import { selectOrderData } from '../../../redux/orderData/selector';
 import {
-  Container,
   ContinueShoppingButton,
   FullOrderInfo,
   MyOrdersButton,
@@ -33,7 +32,7 @@ export default function OrderConfirmedComponent() {
   }
 
   return (
-    <Container>
+    <div>
       <Title>Дякуємо за ваше замовлення!</Title>
       <FullOrderInfo>
         <OrderProducts>
@@ -76,6 +75,6 @@ export default function OrderConfirmedComponent() {
           </ContinueShoppingButton>
         </OrderConfirmedButtons>
       </FullOrderInfo>
-    </Container>
+    </div>
   );
 }

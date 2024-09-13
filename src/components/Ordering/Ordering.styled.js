@@ -187,6 +187,8 @@ export const DeleteAdd = styled.div`
   display: flex;
   gap: 44px;
   width: 100%;
+  font-size: 0;
+  padding-bottom: 9px;
   &.story {
     flex-direction: column;
     gap: 32px;

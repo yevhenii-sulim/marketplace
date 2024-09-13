@@ -34,6 +34,13 @@ export const SimilarProductDatePublic = styled.p`
   padding: 0 0 2px 0;
   color: ${({ theme }) => theme.color.colorTextPublicProduct};
   margin: auto 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    font-size: 16px;
+    line-height: 1.25;
+  }
 `;
 export const SimilarProductItemIcon = styled.div`
   position: relative;
