@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { BoxEye, Field, FieldPassword, UnView } from './ChangePassword.styled';
+import { BoxEye, Field, FieldPassword } from './ChangePassword.styled';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import HiddenPassword from 'SvgComponents/HiddenPassword/HiddenPassword';
 
 export default function FieldPasswordComponent({
   handleChange,
@@ -33,8 +34,7 @@ export default function FieldPasswordComponent({
         />
       )}
       <BoxEye onClick={onToggleView} type="button">
-        {visible && <UnView></UnView>}
-        <RemoveRedEyeOutlinedIcon />
+        {visible ? <RemoveRedEyeOutlinedIcon /> : <HiddenPassword />}
       </BoxEye>
     </FieldPassword>
   );

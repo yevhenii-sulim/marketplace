@@ -12,7 +12,10 @@ export const AddProduct = styled(Link)`
   line-height: 1.45;
   outline: none;
   border-radius: 8px;
-  padding: 12px 32px;
   color: ${({ theme }) => theme.color.bgHeader};
   border: solid 2px ${({ theme }) => theme.color.bgHeader};
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    margin: auto;
+    max-width: 298px;
+  }
 `;

@@ -73,12 +73,16 @@ export const ContainerSlide = styled.ul`
   }
 `;
 export const TitleCategory = styled.h3`
-  font-family: 'Jost';
-  user-select: none;
-  font-size: 28px;
+  font-family: Jost;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.5;
-  margin-bottom: 32px;
+  line-height: 1, 33; /* 133.333% */
+  margin-bottom: 16px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    font-size: 28px;
+    line-height: 1.5; /* 150% */
+    margin-bottom: 32px;
+  }
 `;
 export const ButtonSlider = {
   color: theme.color.colorButtonText,
