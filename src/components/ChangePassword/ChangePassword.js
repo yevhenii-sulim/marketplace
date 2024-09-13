@@ -55,7 +55,6 @@ export default function ChangePassword() {
       >
         {sas => (
           <Form>
-            {console.log(sas)}
             <label>
               <h2>Новий пароль</h2>
               <FieldPasswordComponent

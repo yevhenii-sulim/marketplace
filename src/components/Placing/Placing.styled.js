@@ -34,7 +34,7 @@ export const Field = styled(FieldInput)`
   font-size: 16px;
   font-weight: 400;
   padding-top: 12px;
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   padding-left: 12px;
   padding-right: 12px;
   border-radius: 6px;
@@ -48,25 +48,25 @@ export const Field = styled(FieldInput)`
   }
   &.apartment {
     background: transparent;
-    padding: 8px 12px;
+    padding: 10px 12px 8px;
   }
   &.street {
     background: transparent;
-    padding: 8px 12px;
+    padding: 10px 12px 8px;
     width: 100%;
   }
   &.building {
     background: transparent;
-    padding: 8px 12px;
+    padding: 10px 12px 8px;
   }
   &.floor {
     background: transparent;
-    padding: 8px 12px;
+    padding: 10px 12px 8px;
   }
   &.town {
     width: 100%;
     background: transparent;
-    padding: 8px 12px;
+    padding: 10px 12px 8px;
     &::placeholder {
       line-height: 0;
     }
@@ -194,7 +194,7 @@ export const styleSelect = {
     transform: 'rotate(0deg)',
   },
   '.MuiSelect-select': {
-    padding: '8px 12px',
+    padding: '10px 12px 8px',
     fontSize: '16px',
     fontFamily: 'Nunito Sans',
     fontStyle: 'normal',
