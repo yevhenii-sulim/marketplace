@@ -42,7 +42,6 @@ export default function ProductListPage({
     if (!categories) return;
     return categories.subCategory;
   }
-  console.log(categories);
 
   return (
     <ContainerProductPageList>

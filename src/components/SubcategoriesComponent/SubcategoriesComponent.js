@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory } from '../../redux/category/slice';
 import { selectCategory } from '../../redux/category/selectors';
 
-export default memo(function SubcategoriesComponent({ subCategory, path }) {
+export default memo(function SubcategoriesComponent({
+  category,
+  subCategory,
+  path,
+}) {
   const dispatch = useDispatch();
   const categoryProduct = useSelector(selectCategory);
 
@@ -25,7 +29,7 @@ export default memo(function SubcategoriesComponent({ subCategory, path }) {
                 )
               }
             >
-              <Link to={`${link}`}>
+              <Link to={`/${category}/${link}`}>
                 <img src={img} alt={nameList} />
                 <p>{nameList}</p>
               </Link>

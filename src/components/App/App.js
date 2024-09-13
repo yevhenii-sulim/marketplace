@@ -84,6 +84,7 @@ export default function App() {
           <Route path="all/:id" element={<ProductPage />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="catalog" element={<CatalogCategoryMobile />} />
+          <Route path="catalog/:subcategories" element={<SubCategories />} />
           <Route path=":category" element={<SubCategories />} />
           <Route path=":category/:subcategories" element={<CatalogPage />} />
           <Route path="ordering" element={<OrderingPage />} />
