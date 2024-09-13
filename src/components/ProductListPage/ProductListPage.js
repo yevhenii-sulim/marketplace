@@ -11,6 +11,7 @@ import SkeletonCatalogList from 'components/SkeletonCatalogList/SkeletonCatalogL
 import Search from 'components/Search/Search';
 import Filters from '../Filters/FilterList/Filters';
 import { handleSort } from './handleSort';
+import { theme } from 'utils/theme';
 import {
   ContainerProductPageList,
   Pagination,
@@ -24,7 +25,6 @@ import {
   ListPath,
   FiltersList,
 } from './ProductListPage.styled';
-import { theme } from 'utils/theme';
 
 export default function ProductListPage({
   page,
@@ -84,6 +84,7 @@ export default function ProductListPage({
             handleSort={handleSort}
             setParams={setParams}
             params={params}
+            setPage={setPage}
           />
 
           {width < parseInt(theme.breakPoints.lg) && (

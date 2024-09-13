@@ -25,6 +25,7 @@ export default function Sort({
   handleSort,
   setParams,
   params,
+  setPage,
 }) {
   const [personName, setPersonName] = useState('');
   const [isOpenFilter, setIsOpenFilter] = useState(false);
@@ -58,26 +59,30 @@ export default function Sort({
   }
 
   useEffect(() => {
+    if (params.get('sortField') === 'discount') {
+      setPersonName('Рекомендовані');
+      return;
+    }
     if (params.get('sortField') === 'createDate') {
-      setPersonName('Спочатку нові');
+      setPersonName('Недавно додані');
       return;
     }
     if (
       params.get('sortField') === 'price' &&
       params.get('sortOrder') === 'asc'
     ) {
-      setPersonName('Найдешевші');
+      setPersonName('Від дешевого');
       return;
     }
     if (
       params.get('sortField') === 'price' &&
       params.get('sortOrder') === 'desc'
     ) {
-      setPersonName('Найдорожчі');
+      setPersonName('Від дорожчого');
       return;
     }
-    setPersonName('');
   }, [params]);
+
   return (
     <Container>
       <Option>
@@ -107,9 +112,10 @@ export default function Sort({
             <MenuItem value="">
               <em>{placeholder}</em>
             </MenuItem>
-            <MenuItem value="Спочатку нові">Спочатку нові</MenuItem>
-            <MenuItem value="Найдешевші">Найдешевші</MenuItem>
-            <MenuItem value="Найдорожчі">Найдорожчі</MenuItem>
+            <MenuItem value="Рекомендовані">Рекомендовані</MenuItem>
+            <MenuItem value="Недавно додані">Недавно додані</MenuItem>
+            <MenuItem value="Від дешевого">Від дешевого</MenuItem>
+            <MenuItem value="Від дорожчого">Від дорожчого</MenuItem>
           </Select>
         </FormControl>
       </WrapperSortDesktop>
@@ -123,6 +129,7 @@ export default function Sort({
             setIsOpenSort={setIsOpenSort}
             setTranslateMenu={setTranslateMenu}
             onClose={onClose}
+            setPage={setPage}
           />,
           modalEnter
         )}

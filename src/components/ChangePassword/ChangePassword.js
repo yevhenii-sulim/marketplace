@@ -12,15 +12,45 @@ import {
   cancelButton,
 } from './ChangePassword.styled';
 import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { theme } from 'utils/theme';
 
 export default function ChangePassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [newPassword, setNewPassword] = useState('');
+  const [newPasswordStatus, setNewPasswordStatus] = useState({
+    correctLength: false,
+    correctChars: false,
+    hasSpecialSymbol: false,
+    hasCapitalLetter: false,
+    hasNumber: false,
+  });
+  const validateNewPassword = useCallback(() => {
+    setNewPasswordStatus({
+      correctLength: newPassword.length >= 6 && newPassword.length <= 20,
+      correctChars: /[A-Za-z]/.test(newPassword),
+      hasSpecialSymbol: /[@$!%*?&()^{}#+._=;:'"₴,<>/№~\-|]/.test(newPassword),
+      hasCapitalLetter: /[A-Z]/.test(newPassword),
+      hasNumber: /[0-9]/.test(newPassword),
+    });
+  }, [newPassword, setNewPasswordStatus]);
+
+  useEffect(() => {
+    validateNewPassword();
+  }, [newPassword, validateNewPassword]);
+
   function onOpen() {
     navigate('/user_page/profile');
     dispatch(toggleModalAuth(true));
   }
+
+  function handleChangePassword(event, handleChange) {
+    setNewPassword(event.target.value);
+    handleChange(event);
+  }
+
   return (
     <ContainerForm>
       <Formik
@@ -53,23 +83,76 @@ export default function ChangePassword() {
           dispatch(restorePassword({ password: values.new_password }));
         }}
       >
-        {sas => (
+        {({ handleChange, isSubmitting, setSubmitting }) => (
           <Form>
             <label>
               <h2>Новий пароль</h2>
               <FieldPasswordComponent
-                handleChange={sas.handleChange}
-                setSubmitting={sas.setSubmitting}
+                setSubmitting={setSubmitting}
+                value={newPassword}
                 name="new_password"
+                handleChange={evt => handleChangePassword(evt, handleChange)}
               />
-              <ErrorMessage name="new_password" component="p" />
+              <h3 className="rule">Пароль повинен мати:</h3>
+              <ul>
+                <li
+                  className="rule"
+                  style={
+                    newPasswordStatus.correctLength
+                      ? { color: `${theme.color.bgButton}` }
+                      : {}
+                  }
+                >
+                  6-20 символів
+                </li>
+                <li
+                  className="rule"
+                  style={
+                    newPasswordStatus.correctChars
+                      ? { color: `${theme.color.bgButton}` }
+                      : {}
+                  }
+                >
+                  тільки латинські літери
+                </li>
+                <li
+                  className="rule"
+                  style={
+                    newPasswordStatus.hasSpecialSymbol
+                      ? { color: `${theme.color.bgButton}` }
+                      : {}
+                  }
+                >
+                  1 спеціальний символ
+                </li>
+                <li
+                  className="rule"
+                  style={
+                    newPasswordStatus.hasCapitalLetter
+                      ? { color: `${theme.color.bgButton}` }
+                      : {}
+                  }
+                >
+                  1 велику літеру
+                </li>
+                <li
+                  className="rule"
+                  style={
+                    newPasswordStatus.hasNumber
+                      ? { color: `${theme.color.bgButton}` }
+                      : {}
+                  }
+                >
+                  1 цифру
+                </li>
+              </ul>
             </label>
 
             <label>
               <h2>Підтвердження паролю</h2>
               <FieldPasswordComponent
-                handleChange={sas.handleChange}
-                setSubmitting={sas.setSubmitting}
+                handleChange={handleChange}
+                setSubmitting={setSubmitting}
                 name="confirm_new_password"
               />
               <ErrorMessage name="confirm_new_password" component="p" />
@@ -77,7 +160,7 @@ export default function ChangePassword() {
 
             <Button
               type="submit"
-              disabled={sas.isSubmitting}
+              disabled={isSubmitting}
               sx={socialSingInButton}
             >
               Зберегти зміни

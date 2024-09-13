@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  padding: 32px 59px 0px;
-`;
-
 export const Title = styled.h1`
   font: 700 32px 'Jost';
   line-height: 48px;
   padding: 0px 16px;
+  margin-bottom: 12px;
 `;
 
 export const FullOrderInfo = styled.div`
@@ -18,19 +15,22 @@ export const FullOrderInfo = styled.div`
 `;
 
 export const OrderProductContainer = styled.li`
-  display: flex;
-  gap: 50px;
-`;
-
-export const OrderProductData = styled.div`
-  width: 50%;
+  display: grid;
+  gap: 20px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+  }
 `;
 
 export const OrderReceiverData = styled.div`
-  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 12px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    gap: 0;
+  }
 `;
 
 export const OrderProducts = styled.ul`
@@ -54,8 +54,7 @@ export const OrderProductDataContainer = styled.div`
   height: 112px;
   gap: 20px;
 `;
-
-export const OrderProductImageAndTitle = styled.div`
+export const OrderProductImage = styled.div`
   width: 80%;
   display: flex;
   align-items: center;
@@ -71,8 +70,7 @@ export const OrderProductImageAndTitle = styled.div`
   }
 `;
 
-export const OrderProductPrice = styled.span`
-  width: 20%;
+export const OrderProductPrice = styled.p`
   font: 700 22px 'Jost';
 `;
 
@@ -88,15 +86,22 @@ export const Divider = styled.hr`
 `;
 
 export const OrderConfirmedButtons = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+  }
 `;
 
 export const MyOrdersButton = styled.button`
+  display: block;
   width: 264px;
   height: 48px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 24px;
   border-radius: 8px;
   background-color: #43c550;
   font: 700 22px 'Jost';
@@ -107,9 +112,15 @@ export const MyOrdersButton = styled.button`
   &:hover {
     box-shadow: 0.3px 0.3px 5px 0px #43c550;
   }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    margin-bottom: 0;
+  }
 `;
 
 export const ContinueShoppingButton = styled.button`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 264px;
   height: 48px;
   border-radius: 8px;

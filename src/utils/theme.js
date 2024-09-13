@@ -39,6 +39,7 @@ export const theme = {
     colorTextWorkedOrder: '#2E8636',
     colorTextWaitedOrder: '#FFC107',
     colorTextCancelledOrder: '#F04438',
+    colorRulePassword: '#575757',
     borderRegister: '#43C550',
     borderSearch: '#646464',
     borderSize: '#575757',

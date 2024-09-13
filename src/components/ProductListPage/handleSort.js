@@ -8,7 +8,7 @@ export function handleSort(valueSort, setParams, params) {
   const sortField = params.getAll('sortField') ?? [];
   const sortOrder = params.getAll('sortOrder') ?? [];
   switch (valueSort) {
-    case 'Спочатку нові':
+    case 'Недавно додані':
       return setParams({
         colors,
         sizes,
@@ -19,7 +19,7 @@ export function handleSort(valueSort, setParams, params) {
         sortField: 'createDate',
         sortOrder: 'desc',
       });
-    case 'Найдешевші':
+    case 'Від дешевого':
       return setParams({
         colors,
         sizes,
@@ -30,7 +30,7 @@ export function handleSort(valueSort, setParams, params) {
         sortField: 'price',
         sortOrder: 'asc',
       });
-    case 'Найдорожчі':
+    case 'Від дорожчого':
       return setParams({
         colors,
         sizes,
@@ -40,6 +40,18 @@ export function handleSort(valueSort, setParams, params) {
         states,
         sortField: 'price',
         sortOrder: 'desc',
+      });
+    case 'Рекомендовані':
+      return setParams({
+        colors,
+        sizes,
+        sex,
+        minPrice,
+        maxPrice,
+        states,
+        sortField: [],
+        sortOrder: [],
+        discount: true,
       });
     default:
       return setParams({

@@ -20,16 +20,16 @@ export const Wrapper = styled.div`
   position: relative;
   top: 0;
   width: 100%;
+  max-width: 366px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
   padding-top: 22px;
   padding-left: 12px;
   padding-bottom: 22px;
   padding-right: 12px;
-
   left: ${({ $isOpenMenu }) => ($isOpenMenu ? '0%' : '-100%')};
   transition: left 500ms ease;
   @media screen and (min-width: 768px) {
-    width: 414px;
+    max-width: 414px;
   }
 `;

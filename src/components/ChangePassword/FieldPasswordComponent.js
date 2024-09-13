@@ -7,6 +7,7 @@ export default function FieldPasswordComponent({
   handleChange,
   setSubmitting,
   name,
+  value,
 }) {
   const [visible, setVisible] = useState(false);
   function onToggleView() {
@@ -18,6 +19,7 @@ export default function FieldPasswordComponent({
         <Field
           type="text"
           name={name}
+          value={value}
           onChange={e => {
             handleChange(e);
             setSubmitting(false);

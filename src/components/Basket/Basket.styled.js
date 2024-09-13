@@ -12,7 +12,6 @@ export const WrapperOrder = styled.div`
   line-height: 1.44;
   padding-left: 12px;
   padding-right: 12px;
-  padding-top: 80px;
   padding-bottom: 24px;
   margin: 32px auto;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {

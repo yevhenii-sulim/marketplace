@@ -24,6 +24,14 @@ export const Form = styled(FormContainer)`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  .rule {
+    color: ${({ theme }) => theme.color.colorRulePassword};
+    font-size: 14px;
+  }
+  li.rule {
+    ${rule => console.log(rule)}
+    list-style: inside;
+  }
   h2 {
     font-size: 16px;
     font-weight: 700;
