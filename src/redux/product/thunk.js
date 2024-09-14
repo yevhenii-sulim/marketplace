@@ -98,6 +98,7 @@ export const searchProduct = createAsyncThunk(
     }
   }
 );
+
 export const prevSearchProduct = createAsyncThunk(
   'products/prevSearchProduct',
   async title => {

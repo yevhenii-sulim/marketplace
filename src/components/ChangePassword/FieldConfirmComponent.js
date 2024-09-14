@@ -4,14 +4,13 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import HiddenPassword from 'SvgComponents/HiddenPassword/HiddenPassword';
 import { theme } from 'utils/theme';
 
-export default function FieldPasswordComponent({
+export default function FieldConfirmComponent({
   handleChange,
   setSubmitting,
   name,
   value,
+  isConfirm,
   touched,
-  errors,
-  handleBlur,
 }) {
   const [visible, setVisible] = useState(false);
   function onToggleView() {
@@ -24,13 +23,12 @@ export default function FieldPasswordComponent({
           type="text"
           name={name}
           value={value}
-          onBlur={handleBlur}
           onChange={e => {
-            setSubmitting(false);
             handleChange(e);
+            setSubmitting(false);
           }}
           style={
-            touched[name] && errors[name]
+            isConfirm
               ? {
                   border: 'none',
                   boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
@@ -47,7 +45,7 @@ export default function FieldPasswordComponent({
             setSubmitting(false);
           }}
           style={
-            touched[name] && errors[name]
+            isConfirm
               ? {
                   border: 'none',
                   boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
