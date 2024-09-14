@@ -11,7 +11,6 @@ axios.defaults.headers.patch['Content-Type'] = 'multipart/form-data';
 
 function setToken(token) {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  console.log(token);
 }
 
 export const addCommentFromStory = createAsyncThunk(

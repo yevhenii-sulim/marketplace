@@ -93,6 +93,7 @@ export const CommentsAnswer = styled.button`
 
 export const DotsWrapper = styled.div`
   margin-left: auto;
+  visibility: hidden;
 `;
 export const WrapperForRating = styled.div`
   display: flex;
