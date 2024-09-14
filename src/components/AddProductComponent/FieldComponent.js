@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types';
+import Label from './Label';
+import { theme } from 'utils/theme';
 import {
   ExplainmentInputSign,
   Field,
   Sign,
   WrapperField,
 } from './AddProductComponent.styled';
-import PropTypes from 'prop-types';
-import Label from './Label';
-import { theme } from 'utils/theme';
 
 export default function FieldComponent({
   name,

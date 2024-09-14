@@ -320,3 +320,16 @@ export const styleSelect = {
     border: 'none',
   },
 };
+
+export const TitleSection = styled.h1`
+  font-family: Jost;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.32px;
+  padding: 0px 20px;
+
+  @media (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    padding: unset;
+  }
+`;

@@ -14,6 +14,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { theme } from 'utils/theme';
+import FieldConfirmComponent from './FieldConfirmComponent';
+import signupSchema from './signupSchema';
 
 export default function ChangePassword() {
   const dispatch = useDispatch();
@@ -57,33 +59,20 @@ export default function ChangePassword() {
         initialValues={{ new_password: '', confirm_new_password: '' }}
         validateOnChange={false}
         validateOnBlur={false}
-        validate={values => {
-          console.log(values);
-
-          const errors = {};
-
-          if (!values.new_password) {
-            errors.new_password = "Обов'язкове поле";
-          } else if (
-            !/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()^{}#+._=;:'",<>/№~\-|`])[A-Za-z\d@$!%*?&()^{}#+._=;:'",<>/№~\-|]{6,20}$/.test(
-              values.new_password
-            )
-          ) {
-            errors.new_password =
-              'Пароль повинен складатись з літер латинниці, мати одну велику літеру, одну цифру, один спеціальний символ та мати довжину 6-20 символів.';
-          }
-
-          if (values.confirm_new_password !== values.new_password) {
-            errors.confirm_new_password = 'Пароль не співпадає';
-          }
-
-          return errors;
-        }}
+        validationSchema={signupSchema}
         onSubmit={values => {
           dispatch(restorePassword({ password: values.new_password }));
         }}
       >
-        {({ handleChange, isSubmitting, setSubmitting }) => (
+        {({
+          handleChange,
+          isSubmitting,
+          setSubmitting,
+          touched,
+          errors,
+          handleBlur,
+          values,
+        }) => (
           <Form>
             <label>
               <h2>Новий пароль</h2>
@@ -91,7 +80,18 @@ export default function ChangePassword() {
                 setSubmitting={setSubmitting}
                 value={newPassword}
                 name="new_password"
+                handleBlur={handleBlur}
+                touched={touched}
+                errors={errors}
                 handleChange={evt => handleChangePassword(evt, handleChange)}
+                style={
+                  touched.new_password && errors.new_password
+                    ? {
+                        border: 'none',
+                        boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
+                      }
+                    : {}
+                }
               />
               <h3 className="rule">Пароль повинен мати:</h3>
               <ul>
@@ -150,17 +150,20 @@ export default function ChangePassword() {
 
             <label>
               <h2>Підтвердження паролю</h2>
-              <FieldPasswordComponent
+              <FieldConfirmComponent
                 handleChange={handleChange}
                 setSubmitting={setSubmitting}
                 name="confirm_new_password"
+                isConfirm={values.confirm_new_password !== newPassword}
               />
               <ErrorMessage name="confirm_new_password" component="p" />
             </label>
 
             <Button
               type="submit"
-              disabled={isSubmitting}
+              disabled={
+                isSubmitting || values.confirm_new_password !== newPassword
+              }
               sx={socialSingInButton}
             >
               Зберегти зміни

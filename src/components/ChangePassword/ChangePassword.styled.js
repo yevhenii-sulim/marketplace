@@ -29,7 +29,6 @@ export const Form = styled(FormContainer)`
     font-size: 14px;
   }
   li.rule {
-    ${rule => console.log(rule)}
     list-style: inside;
   }
   h2 {

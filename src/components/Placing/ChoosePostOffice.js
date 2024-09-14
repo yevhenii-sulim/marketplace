@@ -53,7 +53,7 @@ export default function ChoosePostOffice({
     <>
       {
         <div>
-          <Label label={`Оберіть ${kindOfSection}`} />
+          <Label label={`Оберіть ${kindOfSection.toLowerCase()}`} />
           <FormControl sx={styleSelect}>
             <Select
               IconComponent={() => (

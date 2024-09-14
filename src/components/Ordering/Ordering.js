@@ -14,6 +14,7 @@ import {
   Empty,
   Form,
   Link,
+  TitleSection,
   TotalPrice,
   WrapperButton,
   WrapperBuy,
@@ -96,69 +97,76 @@ export default function Ordering() {
             errors,
             touched,
           }) => (
-            <Form>
-              <Placing
-                wayDelivery={values.wayDelivery}
-                handleChange={handleChange}
-                setSubmitting={setSubmitting}
-                tel={values.tel}
-                firstName={values.firstName}
-                lastName={values.lastName}
-                email={values.email}
-                setFieldValue={setFieldValue}
-                errors={errors}
-                touched={touched}
-                pay={values.pay}
-                refTown={
-                  typeof values.town === 'string' ? values.town : values.town[1]
-                }
-                valueListTown={
-                  typeof values.town === 'string' ? values.town : values.town[0]
-                }
-              />
-              <WrapperListOrder>
-                {width >= parseInt(theme.breakPoints.lg) && (
-                  <ul>
-                    {basket.map(
-                      ({
-                        id,
-                        title,
-                        price,
-                        img,
-                        discount,
-                        discountPrice,
-                        count,
-                      }) => (
-                        <ProductComponent
-                          key={id}
-                          id={id}
-                          img={img}
-                          title={title}
-                          count={count}
-                          discount={discount}
-                          discountPrice={discountPrice}
-                          price={price}
-                        />
-                      )
-                    )}
-                  </ul>
-                )}
+            <>
+              <TitleSection>Оформлення замовлення</TitleSection>
+              <Form>
+                <Placing
+                  wayDelivery={values.wayDelivery}
+                  handleChange={handleChange}
+                  setSubmitting={setSubmitting}
+                  tel={values.tel}
+                  firstName={values.firstName}
+                  lastName={values.lastName}
+                  email={values.email}
+                  setFieldValue={setFieldValue}
+                  errors={errors}
+                  touched={touched}
+                  pay={values.pay}
+                  refTown={
+                    typeof values.town === 'string'
+                      ? values.town
+                      : values.town[1]
+                  }
+                  valueListTown={
+                    typeof values.town === 'string'
+                      ? values.town
+                      : values.town[0]
+                  }
+                />
+                <WrapperListOrder>
+                  {width >= parseInt(theme.breakPoints.lg) && (
+                    <ul>
+                      {basket.map(
+                        ({
+                          id,
+                          title,
+                          price,
+                          img,
+                          discount,
+                          discountPrice,
+                          count,
+                        }) => (
+                          <ProductComponent
+                            key={id}
+                            id={id}
+                            img={img}
+                            title={title}
+                            count={count}
+                            discount={discount}
+                            discountPrice={discountPrice}
+                            price={price}
+                          />
+                        )
+                      )}
+                    </ul>
+                  )}
 
-                <WrapperBuy>
-                  <TotalPrice>
-                    {(width >= parseInt(theme.breakPoints.lg) ||
-                      width <= parseInt(theme.breakPoints.md)) && (
-                      <TotalPriceListComponent prices={prices} />
-                    )}
-                    <WrapperButton>
-                      <Button type="submit" sx={addProductButton}>
-                        Оформити замовлення
-                      </Button>
-                    </WrapperButton>
-                  </TotalPrice>
-                </WrapperBuy>
-              </WrapperListOrder>
-            </Form>
+                  <WrapperBuy>
+                    <TotalPrice>
+                      {(width >= parseInt(theme.breakPoints.lg) ||
+                        width <= parseInt(theme.breakPoints.md)) && (
+                        <TotalPriceListComponent prices={prices} />
+                      )}
+                      <WrapperButton>
+                        <Button type="submit" sx={addProductButton}>
+                          Оформити замовлення
+                        </Button>
+                      </WrapperButton>
+                    </TotalPrice>
+                  </WrapperBuy>
+                </WrapperListOrder>
+              </Form>
+            </>
           )}
         </Formik>
       ) : (

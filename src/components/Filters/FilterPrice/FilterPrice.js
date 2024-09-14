@@ -43,14 +43,18 @@ export default function FilterPrice({ setPage }) {
     const price = Number(event.target.value);
 
     if (event.target.name === 'min') {
-      getMinValue(price);
+      if (price < max) {
+        getMinValue(price);
+      }
     } else {
-      getMaxValue(price);
+      if (price > min) {
+        getMaxValue(price);
+      }
     }
     setPage(1);
   };
 
-  const handleChangeSlider = (event, newValue, activeThumb) => {
+  const handleChangeSlider = (newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
     }
