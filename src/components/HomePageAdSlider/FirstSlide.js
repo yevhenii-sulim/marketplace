@@ -40,7 +40,9 @@ export default function FirstSlide() {
           </>
         ) : (
           <>
-            <span>Придбайте товари від українських виробників</span>
+            <span>
+              Придбайте товари <br /> від українських виробників
+            </span>
             <FlagImage src={FlagSrc} alt="flag" />
           </>
         )}

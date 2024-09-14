@@ -16,6 +16,7 @@ import BasketModal from 'components/BasketModal/BasketModal';
 import { useState } from 'react';
 import ProductCostSection from './ProductCost';
 import { addFavoriteProduct } from '../../../redux/product/thunk';
+import { selectMyUser } from '../../../redux/auth/selector';
 
 const body = document.querySelector('body');
 const modalEnter = document.querySelector('#modal');
@@ -23,6 +24,7 @@ const widthScroll = window.innerWidth - body.offsetWidth;
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
+  const user = useSelector(selectMyUser);
   const [isOpen, setIsOpen] = useState(false);
 
   const basket = useSelector(selectBasket);
@@ -62,12 +64,20 @@ function OrderSection() {
   const addFavorite = productId => {
     dispatch(addFavoriteProduct(productId));
   };
+  console.log(user);
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
         <ProductName>
           {product.title}
-          <IconWrapper onClick={() => addFavorite(product._id)}>
+          <IconWrapper
+            onClick={() => addFavorite(product._id)}
+            $favorite={
+              user?.favorites
+                ? user.favorites.some(el => el._id === product._id)
+                : false
+            }
+          >
             <FavoriteBorderIcon />
           </IconWrapper>
         </ProductName>

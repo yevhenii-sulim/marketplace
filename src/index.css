@@ -241,8 +241,6 @@ a {
   margin: -1px;
 }
 
-
-
 @media (min-width: 767px) {
   .swiper-pagination {
     margin-top: 50px !important;

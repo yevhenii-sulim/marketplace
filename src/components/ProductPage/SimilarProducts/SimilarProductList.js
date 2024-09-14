@@ -27,23 +27,27 @@ function SimilarProductList({ sizeWindow }) {
       <SimilarProductsWrapper $length={productAll.length}>
         <Swiper
           modules={[Pagination]}
-          spaceBetween={50}
+          spaceBetween={
+            sizeWindow > 1440
+              ? 10
+              : sizeWindow > 500
+              ? sizeWindow < 767
+                ? 100
+                : 20
+              : 50
+          }
           slidesPerView={
-            sizeWindow > 1024
-              ? sizeWindow < 1280
-                ? productAll.length < 4
-                  ? productAll.length
+            sizeWindow > 1440
+              ? 5
+              : sizeWindow > 1024
+              ? 4
+              : sizeWindow > 500
+              ? sizeWindow < 767
+                ? sizeWindow < 650
+                  ? 3
                   : 4
-                : productAll.length < 5
-                ? productAll.length
-                : 5
-              : sizeWindow < 500
-              ? productAll.length < 2
-                ? productAll.length
-                : 2
-              : productAll.length < 3
-              ? productAll.length
-              : 3
+                : 3
+              : 2
           }
           pagination={{ clickable: true, dynamicBullets: true }}
           slidesPerGroup={
@@ -64,41 +68,81 @@ function SimilarProductList({ sizeWindow }) {
               : 3
           }
         >
-          {productAll.map(
-            (
-              {
-                title,
-                _id,
-                img,
-                price,
-                parameters,
-                discount,
-                discountPrice,
-                createDate,
-                category,
-                subCategory,
-              },
-              index
-            ) => {
-              return (
-                <SwiperSlide key={index}>
-                  <SimilarProduct
-                    id={_id}
-                    title={title}
-                    price={price}
-                    img={img}
-                    discountPrice={discountPrice}
-                    discount={discount}
-                    createDate={createDate}
-                    eco={parameters.eco}
-                    isUkraine={parameters.isUkraine}
-                    category={category}
-                    subCategory={subCategory}
-                  />
-                </SwiperSlide>
-              );
-            }
-          )}
+          {productAll.length >= 5
+            ? productAll.map(
+                (
+                  {
+                    title,
+                    _id,
+                    img,
+                    price,
+                    parameters,
+                    discount,
+                    discountPrice,
+                    createDate,
+                    category,
+                    subCategory,
+                  },
+                  index
+                ) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <SimilarProduct
+                        id={_id}
+                        title={title}
+                        price={price}
+                        img={img}
+                        discountPrice={discountPrice}
+                        discount={discount}
+                        createDate={createDate}
+                        eco={parameters.eco}
+                        isUkraine={parameters.isUkraine}
+                        category={category}
+                        subCategory={subCategory}
+                      />
+                    </SwiperSlide>
+                  );
+                }
+              )
+            : [...productAll, ...Array(5 - productAll.length).fill({})].map(
+                (
+                  {
+                    title,
+                    _id,
+                    img,
+                    price,
+                    parameters,
+                    discount,
+                    discountPrice,
+                    createDate,
+                    category,
+                    subCategory,
+                  },
+                  index
+                ) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      {_id ? (
+                        <SimilarProduct
+                          id={_id}
+                          title={title}
+                          price={price}
+                          img={img}
+                          discountPrice={discountPrice}
+                          discount={discount}
+                          createDate={createDate}
+                          eco={parameters?.eco}
+                          isUkraine={parameters?.isUkraine}
+                          category={category}
+                          subCategory={subCategory}
+                        />
+                      ) : (
+                        <div style={{ opacity: 0 }}>Порожній блок</div> // Прозорий блок
+                      )}
+                    </SwiperSlide>
+                  );
+                }
+              )}
         </Swiper>
       </SimilarProductsWrapper>
     </>

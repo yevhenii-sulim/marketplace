@@ -23,12 +23,15 @@ export const Pointer = styled.ul`
       background-color: ${({ theme }) => theme.color.bgCommon};
     }
   }
+    @media (max-width: 672px) {\
+      margin-top: 12px;
+    }
 `;
 
 export const HomePageAdSliderContainer = styled.ul`
   .slider {
     position: relative;
-    height: 270px;
+
     border-radius: 15px;
   }
   .carousel__slide {
@@ -37,7 +40,7 @@ export const HomePageAdSliderContainer = styled.ul`
     overflow: hidden;
   }
   .carousel__inner-slide {
-    height: 100%;
+    max-height: 300px;
   }
   .carousel__next-button {
     display: flex;
@@ -107,7 +110,6 @@ export const HomePageAdSliderContainer = styled.ul`
     .slider,
     .carousel__slide,
     .carousel__slider {
-      height: 35.7vw;
     }
   }
 `;
@@ -125,7 +127,6 @@ export const IntersectImage = styled.img`
 
   @media (max-width: 672px) {
     width: 63.4vw;
-    height: 35.7vw;
   }
 `;
 
@@ -138,7 +139,7 @@ export const FirstSlideTitle = styled.h3`
   font: 400 40px 'Jost';
   line-height: 60px;
   color: #fff;
-
+  z-index: 10;
   @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     top: 5%;
     left: 5%;
@@ -159,7 +160,7 @@ export const FirstSlideTitle = styled.h3`
     top: 3vw;
     left: 3.57vw;
     font: 500 3.5vw 'Jost';
-    line-height: 6vw;
+    line-height: 4vw;
     display: flex;
     gap: 12px;
   }
@@ -187,10 +188,11 @@ export const FlagImage = styled.img`
   }
 
   @media (max-width: 672px) {
-    top: 4vw;
-    left: 48vw;
-    width: 6vw;
-    height: 6vw;
+    position: absolute;
+    top: 4.5vw;
+    left: 26vw;
+    width: 24px;
+    height: 24px;
   }
 `;
 
@@ -219,7 +221,7 @@ export const LipGlossMockupImg = styled.img`
   }
 
   @media (max-width: 672px) {
-    top: 5vw;
+    top: -1vw;
     left: 70vw;
     width: 16.4vw;
     height: 16.4vw;
@@ -254,7 +256,7 @@ export const EarringsImg = styled.img`
 
   @media (max-width: 672px) {
     left: 63.4vw;
-    top: 71px;
+    top: 25px;
     width: 14vw;
     height: 14.3vw;
   }
@@ -286,8 +288,8 @@ export const BagImg = styled.img`
   }
 
   @media (max-width: 672px) {
-    top: 16vw;
-    left: 3vw;
+    top: 2vw;
+    left: 82vw;
     width: 12.5vw;
     height: 17.5vw;
   }
@@ -380,8 +382,8 @@ export const SofaImg = styled.img`
   @media (max-width: 672px) {
     width: 21vw;
     height: 21.4vw;
-    top: 13.125vw;
-    left: 31.2vw;
+    top: 2.125vw;
+    left: 41.2vw;
   }
 `;
 
@@ -426,9 +428,9 @@ export const SecondSlideTitles = styled.div`
   }
 
   @media (max-width: 672px) {
-    top: 5vw;
+    top: 50%;
+    transform: translateY(-60%);
     width: 75.8vw;
-    height: 13.5vw;
   }
 `;
 
@@ -799,7 +801,7 @@ export const ThirdAdButtonPointer = styled.img`
 
 export const BgLeftPart = styled.img`
   width: 50%;
-  height: 35.7vw;
+  height: 100%;
   overflow: hidden;
 `;
 
@@ -808,7 +810,7 @@ export const BgRightPart = styled.img`
   right: 0;
   z-index: 1;
   width: 60%;
-  height: 35.7vw;
+  height: 100%;
   overflow: hidden;
 `;
 
@@ -833,9 +835,10 @@ export const BgRightTitle = styled.img`
   }
 
   @media (max-width: 672px) {
-    top: 6vw;
+    top: 50%;
+    transform: translateY(-50%);
     width: 76.2vw;
-    height: 20vw;
+    height: 18vw;
   }
 `;
 

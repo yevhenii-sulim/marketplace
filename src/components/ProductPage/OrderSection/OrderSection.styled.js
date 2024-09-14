@@ -63,7 +63,8 @@ export const IconWrapper = styled.span`
   justify-content: center;
   align-items: center;
   margin: auto 0;
-  background-color: #bbeac0;
+  background-color: ${({ $favorite }) =>
+    $favorite ? '#bbeac0' : 'transparent'};
   padding: 8px;
   border-radius: 50%;
   cursor: pointer;

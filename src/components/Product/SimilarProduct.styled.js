@@ -5,6 +5,7 @@ export const SimilarProductItem = styled.li`
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
     width: 160px;
   }
+  margin: auto;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 232px;
     height: 440px;
