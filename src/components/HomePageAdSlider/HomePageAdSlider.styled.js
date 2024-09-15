@@ -438,6 +438,7 @@ export const SecondSlideFirstTitle = styled.h5`
   font: 700 28px 'Jost';
   line-height: 42px;
   height: 84px;
+  // white-space: nowrap;
 
   @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     font: 700 14px 'Jost';
@@ -452,13 +453,20 @@ export const SecondSlideSecondTitle = styled.p`
   font: 600 16px 'Nunito Sans';
   line-height: 10px;
   height: 20px;
-
+  white-space: nowrap;
+  @media (max-width: 1480px) {
+    margin: 50px 0 10px 0;
+  }
   @media (max-width: ${({ theme }) => theme.breakPoints.lg}) {
     font: 600 10px 'Nunito Sans';
+  }
+  @media (max-width: 1200px) {
+    margin: 10px 0 10px 0;
   }
 
   @media (max-width: 672px) {
     font: 600 2.4vw 'Nunito Sans';
+    margin: 0;
   }
 `;
 

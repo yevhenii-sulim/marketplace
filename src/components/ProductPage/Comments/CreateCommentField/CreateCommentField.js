@@ -58,7 +58,7 @@ function CreateCommentField({ productId, parent, parentIndex, isNested }) {
             />
           )}
           <CreateCommentInput
-            placeholder={createCommentLoading ? '' : 'Додавайте коментар...'}
+            placeholder={createCommentLoading ? '' : 'Додайте коментар...'}
             onChange={e => setNewComment(e.target.value)}
             value={newComment}
           />

@@ -5,6 +5,7 @@ export const SellerInfoWrapper = styled.article`
   background-color: white;
   border-radius: 12px;
   margin-top: 24px;
+  padding-bottom: 24px;
 `;
 export const SellerInfoContainer = styled.section`
   width: 93%;

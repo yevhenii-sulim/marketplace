@@ -43,7 +43,9 @@ export const logIn = createAsyncThunk(
   'user/enterUser',
   async (user, { dispatch }) => {
     try {
-      const { data } = await axios.post('/auth/login', user);
+      const { data } = await axios.post('/auth/login', user, {
+        withCredentials: true,
+      });
       token.set(data.tokens.accessJwt);
       if (!data.user.isActivated) {
         Notiflix.Notify.failure(

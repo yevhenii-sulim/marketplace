@@ -28,11 +28,6 @@ $api.interceptors.response.use(
   },
   async err => {
     const originalRequest = err.config;
-    console.log(
-      'Number(err.response.status)',
-      Number(err.response.status),
-      err.response.status
-    );
 
     if (Number(err.response.status) === 401 && originalRequest) {
       try {
@@ -49,11 +44,9 @@ $api.interceptors.response.use(
 
         return $api.request(originalRequest);
       } catch (error) {
-        console.log(error);
+        return Promise.reject(err);
       }
     }
-
-    throw err.response.data.message;
   }
 );
 

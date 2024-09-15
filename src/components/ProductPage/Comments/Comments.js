@@ -30,7 +30,7 @@ function Comments() {
 
   function writePassedTime(daysPassed) {
     if (daysPassed === 0) {
-      return 'Меньше 1 дня';
+      return 'Менше 1 дня';
     }
     if (daysPassed < 1) {
       return daysPassed + ' день';
