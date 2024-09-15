@@ -1,6 +1,8 @@
 import { theme } from '../theme/theme';
 
 export const TabListStyles = {
+  opacity: 0,
+  height: 0,
   '& .MuiButtonBase-root.Mui-selected': {
     color: '#7FD888',
   },

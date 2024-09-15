@@ -11,4 +11,7 @@ export const DescriptionProductHeaderComments = styled.header`
 
 export const NameHeader = styled.div``;
 
-export const CommentSortBlock = styled.div``;
+export const CommentSortBlock = styled.div`
+  opacity: 0;
+  height: 0;
+`;

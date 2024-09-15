@@ -26,9 +26,31 @@ export const CreateCommentInput = styled.textarea`
 
 export const CommentButtonBlock = styled.div`
   display: flex;
-  width: ${({ $isNested }) => ($isNested ? '65%' : '55%')};
+  width: ${({ $isNested }) => ($isNested ? '75%' : '55%')};
   justify-content: space-between;
   margin: 8px 0 0 auto;
+  @media (max-width: 1440px) {
+    width: ${({ $isNested }) => ($isNested ? '85%' : '55%')};
+  }
+  @media (max-width: 1120px) {
+    width: ${({ $isNested }) => ($isNested ? '95%' : '55%')};
+  }
+  @media (max-width: 1024px) {
+    width: ${({ $isNested }) => ($isNested ? '65%' : '55%')};
+    margin: 8px 0 0 auto;
+  }
+  @media (max-width: 767px) {
+    width: ${({ $isNested }) => ($isNested ? '65%' : '55%')};
+  }
+  @media (max-width: 600px) {
+    width: ${({ $isNested }) => ($isNested ? '80%' : '55%')};
+  }
+  @media (max-width: 500px) {
+    width: ${({ $isNested }) => ($isNested ? '90%' : '55%')};
+  }
+  @media (max-width: 430px) {
+    width: ${({ $isNested }) => ($isNested ? '100%' : '55%')};
+  }
 `;
 
 export const ErrorValidationComment = styled.span`

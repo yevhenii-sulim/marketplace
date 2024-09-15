@@ -9,10 +9,8 @@ import {
   SellerRating,
   SellerRatingBlock,
   SellerRole,
-  LinkMoreProductsSeller,
 } from './SellerInfo.styled';
 import StarIcon from '@mui/icons-material/Star';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useSelector } from 'react-redux';
 
 function SellerInfo({ showAccordion }) {
@@ -41,10 +39,6 @@ function SellerInfo({ showAccordion }) {
             </SellerRatingBlock>
           </SellerNameBlock>
         </SellerDate>
-        <LinkMoreProductsSeller>
-          Більше оголошень автора{' '}
-          <KeyboardArrowRightIcon style={{ marginLeft: '5px' }} />
-        </LinkMoreProductsSeller>
       </SellerInfoContainer>
     </SellerInfoWrapper>
   );

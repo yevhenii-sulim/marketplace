@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../initialState';
 import $api from '../interceptors/interceptor';
+import axios from 'axios';
 
 export const fetchProduct = createAsyncThunk(
   'productPage/fetchProduct',
@@ -79,19 +80,25 @@ export const dislikeComment = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   'productPage/addComment',
-  async ({ parent, comment, id, parentIndex, rating }) => {
-    try {
-      const response = await $api.post(`/comment`, {
+  async ({ parent, comment, id, parentIndex, rating }, { getState }) => {
+    const token = getState().users.token;
+
+    const response = await axios.post(
+      `/comment`,
+      {
         parent,
         body: comment,
         product: id,
         rating,
-      });
-      console.log(response);
-      return { ...response.data, parentIndex };
-    } catch (error) {
-      console.log(error);
-    }
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return { ...response.data, parentIndex };
   }
 );
 
@@ -146,6 +153,10 @@ const productPageSlice = createSlice({
         } else {
           state.product.comments[parentIndex].comments.push(newComment);
         }
+        state.createCommentLoading = false;
+      })
+      .addCase(addComment.rejected, (state, action) => {
+        console.log('call');
         state.createCommentLoading = false;
       });
   },

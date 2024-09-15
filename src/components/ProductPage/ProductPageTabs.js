@@ -41,42 +41,42 @@ function ProductPageTabs() {
   }, []);
   return (
     <TabContext value={value}>
+      <WrapperMobileCatalogOnProductPage>
+        <Link
+          to="/"
+          style={{
+            width: '95%',
+            margin: '0 auto 0 0',
+            display: 'flex',
+            alignItems: 'center',
+            color: '#1f1f1f',
+            fontFamily: 'Nunito Sans',
+            fontSize: '16px',
+          }}
+        >
+          <KeyboardArrowLeftIcon /> Каталог
+        </Link>
+      </WrapperMobileCatalogOnProductPage>
       <Box
         sx={{
           borderBottom: 1,
           borderColor: 'divider',
+          opacity: 0,
+          height: 0,
           [theme.breakpoints.down('xs')]: {
             borderBottom: 0,
           },
         }}
       >
-        <WrapperMobileCatalogOnProductPage>
-          <Link
-            to="/"
-            style={{
-              width: '95%',
-              margin: '12px auto 0 0',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#1f1f1f',
-              fontFamily: 'Nunito Sans',
-              fontSize: '16px',
-            }}
-          >
-            <KeyboardArrowLeftIcon /> Каталог
-          </Link>
-        </WrapperMobileCatalogOnProductPage>
         <TabList
           onChange={handleChange}
           aria-label="lab API tabs example"
           sx={TabListStyles}
         >
-          <Tab label="Усе про товар" value="1" />
-          <Tab label="Опис" value="2" />
-          <Tab label="Коментарі до оголошення" value="3" />
+          <Tab label="Усе про товар" value="1" sx={{ opacity: 0, height: 0 }} />
         </TabList>
       </Box>
-      <TabPanel value="1" sx={{ padding: '24px 0' }}>
+      <TabPanel value="1" sx={{ padding: '12px 0' }}>
         <AboutProduct showAccordion={showAccordion} />
         <SimilarProductsHeader>Схожі оголошення</SimilarProductsHeader>
         <SimilarProductList
