@@ -6,7 +6,7 @@ export default function Search({ value, setValue }) {
     setValue(evt.target.value);
   }
   return (
-    <FormSearch>
+    <FormSearch onSubmit={evt => evt.preventDefault()}>
       <input
         type="text"
         name="search"

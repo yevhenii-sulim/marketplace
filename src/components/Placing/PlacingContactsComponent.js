@@ -20,7 +20,7 @@ export default function PlacingContactsComponent({
       <p>
         <span className="label-place">
           {label}
-          {label !== 'Електрона адреса' && <MarkSvg />}
+          <MarkSvg />
         </span>
       </p>
       <Field
@@ -32,7 +32,7 @@ export default function PlacingContactsComponent({
         style={
           touched[name] && errors[name]
             ? {
-                border: 'none',
+                borderColor: 'transparent',
                 boxShadow: `inset 0 0 0 3px ${theme.color.colorTextErrorForm}`,
               }
             : {}

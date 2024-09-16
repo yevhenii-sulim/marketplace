@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -15,38 +16,64 @@ import { theme } from 'utils/theme';
 
 export default function FilterPrice({ setPage }) {
   const [params, setParams] = useSearchParams('');
+  const [valueMin, setValueMin] = useState(0);
+  const [valueMax, setValueMax] = useState(0);
   const price = useSelector(selectFiltersPrice) ?? { max: 0, min: 0 };
   const { width } = useWindowDimensions();
 
-  const min =
-    +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
-      ? +params.get('minPrice')
-      : params.get('minPrice')
-      ? 0
-      : price.min;
-  const max =
-    +params.get('maxPrice') && !Number.isNaN(+params.get('maxPrice'))
-      ? +params.get('maxPrice')
-      : params.get('maxPrice')
-      ? 0
-      : price.max;
+  useEffect(() => {
+    if ((price.max !== 0, price.min !== 0)) return;
+    setValueMin(
+      +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
+        ? +params.get('minPrice')
+        : params.get('minPrice')
+        ? 0
+        : price.min
+    );
+    setValueMax(
+      +params.get('maxPrice') && !Number.isNaN(+params.get('maxPrice'))
+        ? +params.get('maxPrice')
+        : params.get('maxPrice')
+        ? 0
+        : price.max
+    );
+  }, [params, price.max, price.min]);
+
+  function setMin(event) {
+    const price = Number(event.target.value);
+    if (price > valueMin) {
+      getMaxValue(price);
+      getMinValue(valueMax);
+    } else {
+      getMinValue(price);
+    }
+    setPage(1);
+  }
+
+  function setMax(event) {
+    const price = Number(event.target.value);
+
+    getMaxValue(price);
+
+    setPage(1);
+  }
 
   const getMaxValue = num => {
-    setMaxPriceFilterParam(setParams, num, min, params);
+    setMaxPriceFilterParam(setParams, num, valueMin, params);
   };
+
   const getMinValue = num => {
-    setMinPriceFilterParam(setParams, num, max, params);
+    setMinPriceFilterParam(setParams, num, valueMax, params);
   };
 
   const handleInputChange = event => {
     const price = Number(event.target.value);
 
     if (event.target.name === 'min') {
-      getMinValue(price);
+      setValueMin(price);
     } else {
-      getMaxValue(price);
+      setValueMax(price);
     }
-    setPage(1);
   };
 
   const handleChangeSlider = (_, newValue, activeThumb) => {
@@ -69,7 +96,8 @@ export default function FilterPrice({ setPage }) {
           Від
           <input
             type="text"
-            value={min}
+            value={valueMin}
+            onBlur={setMin}
             onChange={handleInputChange}
             name="min"
           />
@@ -79,7 +107,8 @@ export default function FilterPrice({ setPage }) {
           Дo
           <input
             type="text"
-            value={max}
+            value={valueMax}
+            onBlur={setMax}
             onChange={handleInputChange}
             name="max"
           />
@@ -89,7 +118,7 @@ export default function FilterPrice({ setPage }) {
       <Box sx={styleBoxRange}>
         <Slider
           sx={SliderRange}
-          value={[min, max]}
+          value={[valueMin, valueMax]}
           onChange={handleChangeSlider}
           disableSwap
           min={price.min}

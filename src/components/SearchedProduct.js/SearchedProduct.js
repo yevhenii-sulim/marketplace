@@ -30,7 +30,7 @@ export default function SearchedProduct({ handleSort, sortedProduct }) {
       ) : (
         <ProductsPage>
           <header>
-            <TitleSort>Пошук</TitleSort>
+            <TitleSort>Результати пошуку</TitleSort>
             <Sort
               name="sort"
               placeholder="Сортувати за"

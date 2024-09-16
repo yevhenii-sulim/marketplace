@@ -10,7 +10,6 @@ export const ContainerLayout = styled.div`
   }
 `;
 export const Container = styled.div`
-  height: 100%;
   margin: auto;
   padding-top: 30px;
   padding-bottom: 30px;

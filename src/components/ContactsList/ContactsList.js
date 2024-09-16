@@ -23,9 +23,17 @@ export default function ContactsList() {
   return (
     <ContactList>
       <Group className="first">
-        {firstGroup(team).map(({ id, name, spec, link }) => {
+        {firstGroup(team).map(({ id, name, spec, link, img }) => {
+          console.log(img);
+
           return (
-            <ContactComponent key={id} nameDev={name} spec={spec} link={link} />
+            <ContactComponent
+              key={id}
+              nameDev={name}
+              spec={spec}
+              link={link}
+              img={img}
+            />
           );
         })}
       </Group>
@@ -33,9 +41,15 @@ export default function ContactsList() {
         <TeamSvg />
       </LogoTeam>
       <Group className="second">
-        {secondGroup(team).map(({ id, name, spec, link }) => {
+        {secondGroup(team).map(({ id, name, spec, link, img }) => {
           return (
-            <ContactComponent key={id} nameDev={name} spec={spec} link={link} />
+            <ContactComponent
+              key={id}
+              nameDev={name}
+              spec={spec}
+              link={link}
+              img={img}
+            />
           );
         })}
       </Group>

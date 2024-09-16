@@ -38,11 +38,11 @@ export const Title = styled.div`
   padding: 4px 10px;
 `;
 export const Img = styled.div`
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.color.bgAddImage};
-  width: 100px;
   height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
   img {
+    object-fit: contain;
     display: block;
     width: 100%;
     height: 100%;
