@@ -24,7 +24,7 @@ export const stayInButton = {
     boxShadow: 'none',
   },
   '&:disabled': {
-    color: 'black',
+    color: theme.color.bgCommon,
   },
 };
 export const WrapperComment = styled.div`

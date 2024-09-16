@@ -10,6 +10,7 @@ const handlePending = state => {
 const handleFulfilled = (state, { payload }) => {
   state.product = payload.products;
   state.totalPage = payload.totalPages;
+
   if (window.location.pathname !== state.location) {
     payload.filters?.sizes.sort((a, b) => a.localeCompare(b));
     state.filters = payload.filters;

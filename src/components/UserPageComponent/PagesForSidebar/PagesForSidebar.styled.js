@@ -15,7 +15,7 @@ export const Filter = styled.div`
   padding-left: 24px;
   padding-right: 24px;
   margin-bottom: 24px;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -346,6 +346,7 @@ export const ListStoryOrder = styled.li`
   border-radius: 12px;
   padding-top: 32px;
   padding-bottom: 32px;
+  padding-left: 24px;
   display: grid;
   overflow: hidden;
   &:not(:last-child) {

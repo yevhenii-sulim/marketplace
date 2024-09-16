@@ -8,7 +8,7 @@ import { selectMyUser } from '../../../redux/auth/selector';
 import { addCommentFromStory } from '../../../redux/product/thunk';
 import { selectorRating } from '../../../redux/rating/selector';
 import Search from '../Search';
-import SendComment from './SendComment';
+import Feedback from './Feedback';
 import AboutProductStory from './AboutProductStory';
 import Sort from 'components/Sort/Sort';
 import MyStoryOrderSvg from 'SvgComponents/MyStoryOrderSvg/MyStoryOrderSvg';
@@ -170,7 +170,7 @@ export default function MyStoryOrder({
           </WrapperStoryOrder>
           {isOpen &&
             createPortal(
-              <SendComment
+              <Feedback
                 onSend={evt => onSend(evt, idList, rating)}
                 onCloseModal={onCloseModal}
               />,

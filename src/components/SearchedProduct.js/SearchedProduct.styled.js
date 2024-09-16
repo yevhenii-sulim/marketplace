@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Product = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   width: 100%;
   gap: 25px;
 `;
@@ -25,7 +24,6 @@ export const ProductsPage = styled.div`
 `;
 export const BoxSvg = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-grow: 2;
 `;

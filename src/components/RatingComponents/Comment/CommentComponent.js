@@ -19,7 +19,7 @@ export default function CommentComponent({ onSend }) {
           onChange={hendleChange}
           placeholder="Додайте коментар..."
         />
-        <Button type="submit" sx={stayInButton}>
+        <Button type="submit" sx={stayInButton} disabled={comment.length < 10}>
           Надіслати
         </Button>
       </form>

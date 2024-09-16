@@ -341,8 +341,8 @@ export const Container = styled.div`
   justify-content: center;
   height: calc(100% - 64px);
   gap: 114px;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 12px;
 `;
@@ -356,17 +356,17 @@ export const SignSuccess = styled.div`
     font-size: 28px;
     font-weight: 400;
     line-height: 1.5; /* 150% */
+    text-align: center;
   }
 `;
 
 export const Link = styled(LinkAtProduct)`
   text-transform: none;
-  display: flex;
-  align-items: center;
+  text-align: center;
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 8px;
   height: 48px;
-  padding: 6px 94px;
+  padding: 6px 12px;
   font-family: Jost;
   font-size: 22px;
   font-weight: 700;

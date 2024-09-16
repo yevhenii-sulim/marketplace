@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
-
+import Rating from 'components/RatingComponents/Rating/Rating';
+import CommentComponent from 'components/RatingComponents/Comment/CommentComponent';
+import SendedComment from 'components/RatingComponents/SendedComment/SendedComment';
+import SendedCommentSvg from 'SvgComponents/SendedComment/SendedCommentSvg';
 import { selectorRating } from '../../../redux/rating/selector';
 import {
   Action,
@@ -8,12 +11,8 @@ import {
   Order,
   WrapperModal,
 } from './PagesForSidebar.styled';
-import Rating from 'components/RatingComponents/Rating/Rating';
-import CommentComponent from 'components/RatingComponents/Comment/CommentComponent';
-import SendedComment from 'components/RatingComponents/SendedComment/SendedComment';
-import SendedCommentSvg from 'SvgComponents/SendedComment/SendedCommentSvg';
 
-export default function SendComment({ onSend, onCloseModal }) {
+export default function Feedback({ onSend, onCloseModal }) {
   const rating = useSelector(selectorRating);
   function oncloseByClickOutside(evt) {
     if (evt.currentTarget !== evt.target) return;

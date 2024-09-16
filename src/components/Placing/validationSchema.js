@@ -11,7 +11,10 @@ const signupSchema = Yup.object().shape({
     .matches(phoneRegExp, 'Некоректний формат номеру телефону')
     .required('Введіть номер телефону'),
   town: Yup.mixed().required('Ваше місто'),
-  email: Yup.string().matches(postSchema).min(10, 'Не валідний'),
+  email: Yup.string()
+    .matches(postSchema)
+    .min(10, 'Не валідний')
+    .required('Ваше email'),
   wayDelivery: Yup.string().required('Спосіб доставки'),
   postOffice: Yup.string().when('wayDelivery', {
     is: wayDelivery =>
