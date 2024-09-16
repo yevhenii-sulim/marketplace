@@ -11,6 +11,9 @@ export const SetedRating = styled.ul`
   top: 0;
   display: inline-flex;
   gap: 4px;
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
 `;
 export const StarList = styled.ul`
   position: relative;

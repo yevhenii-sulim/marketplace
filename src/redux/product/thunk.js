@@ -16,6 +16,7 @@ function setToken(token) {
 export const addCommentFromStory = createAsyncThunk(
   'products/addComment',
   async ({ comment, rating, id }, { getState, rejectWithValue, dispatch }) => {
+    console.log(comment, rating, id);
     try {
       const token = getState().users.token;
       const response = await axios.post(

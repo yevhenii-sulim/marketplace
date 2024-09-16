@@ -12,7 +12,6 @@ export default function Rating({ title, number, bad, norm, good }) {
   const rating = useSelector(selectorRating);
   const starRatingList = new Array(rating[number]).fill(1);
   function leftRating(rating) {
-    console.log(rating);
     dispatch(addRating(rating));
     setTimeout(() => dispatch(addNullRating()), 1000);
   }
