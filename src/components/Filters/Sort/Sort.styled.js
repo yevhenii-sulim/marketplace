@@ -51,7 +51,6 @@ export const ButtonFilters = styled.button`
 export const Option = styled.div`
   display: flex;
   gap: 8px;
-  margin-top: 24px;
   justify-content: center;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     display: none;

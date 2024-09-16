@@ -8,6 +8,23 @@ export const ProductList = styled.ul`
   margin: auto;
   width: 100%;
   height: 100%;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    width: 768px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    width: 100%;
+  }
+`;
+export const HeaderCatalog = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 export const ContainerProductPageList = styled.div`
   display: flex;
@@ -20,11 +37,11 @@ export const Pagination = styled.div`
 export const ProductsPage = styled.div`
   display: grid;
   grid-template-columns: auto;
+  column-gap: 30px;
+  height: 100%;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 2fr 7fr;
   }
-  column-gap: 30px;
-  height: 100%;
 `;
 export const Product = styled.div`
   display: grid;

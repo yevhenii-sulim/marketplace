@@ -82,6 +82,7 @@ export default function MyStoryOrder({
         return acc;
       }, 0);
     const middleRating = fullRating() / (rating.length - 1);
+    console.log(typeof middleRating);
     dispatch(
       addCommentFromStory({
         comment: evt.target.elements.comment.value,

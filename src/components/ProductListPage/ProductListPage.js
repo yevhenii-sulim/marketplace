@@ -24,6 +24,7 @@ import {
   TitleSort,
   ListPath,
   FiltersList,
+  HeaderCatalog,
 } from './ProductListPage.styled';
 
 export default function ProductListPage({
@@ -78,24 +79,26 @@ export default function ProductListPage({
           <Filters setPage={setPage} />
         </FiltersList>
         <ProductList>
-          <Sort
-            name="sort"
-            placeholder="Сортувати за:"
-            handleSort={handleSort}
-            setParams={setParams}
-            params={params}
-            setPage={setPage}
-          />
+          <HeaderCatalog>
+            <Sort
+              name="sort"
+              placeholder="Сортувати за:"
+              handleSort={handleSort}
+              setParams={setParams}
+              params={params}
+              setPage={setPage}
+            />
 
-          {width < parseInt(theme.breakPoints.lg) && (
-            <TitleProducts>
-              {setRouting(categories) ? (
-                <>{categories.subCategory.ua}</>
-              ) : (
-                <>{categories.category.ua}</>
-              )}
-            </TitleProducts>
-          )}
+            {width < parseInt(theme.breakPoints.lg) && (
+              <TitleProducts>
+                {setRouting(categories) ? (
+                  <>{categories.subCategory.ua}</>
+                ) : (
+                  <>{categories.category.ua}</>
+                )}
+              </TitleProducts>
+            )}
+          </HeaderCatalog>
           {isLoading && sortedProduct.length !== 0 ? (
             <Product>
               {sortedProduct.map(
