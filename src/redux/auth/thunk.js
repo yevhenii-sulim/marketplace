@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
 import { toggleModalAuth } from '../modalAuth/slice';
+import { refreshToken } from '../refreshToken';
 axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
 
 axios.defaults.headers.post.withCredentials = true;
@@ -75,7 +76,7 @@ export const sendQueryRestorePassword = createAsyncThunk(
       dispatch(toggleModalAuth(false));
       return data;
     } catch (error) {
-      Notiflix.Notify.failure(error.response.data.message);
+      Notiflix.Notify.failure(error.response.data.message[1]);
       console.log('error', error);
     }
   }
@@ -83,7 +84,7 @@ export const sendQueryRestorePassword = createAsyncThunk(
 
 export const restorePassword = createAsyncThunk(
   'user/restorePassword',
-  async password => {
+  async (password, { dispatch, rejectWithValue }) => {
     const tokenIndex = window.location.href.indexOf('token=');
     const token = window.location.href.slice(
       tokenIndex + 6,
@@ -91,17 +92,30 @@ export const restorePassword = createAsyncThunk(
     );
 
     try {
-      const data = await axios.post('/auth/changePassword', password, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      token.set(token);
+      axios.defaults.headers.delete.withCredentials = true;
+      const data = await axios.post('/auth/changePassword', password);
 
       window.location.href = '/marketplace';
       return data;
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message[0]);
-      console.log('error', error);
+      if (error.response && error.response.status === 401) {
+        try {
+          const newToken = await refreshToken();
+          token.set(newToken);
+          axios.defaults.headers.delete.withCredentials = true;
+          const data = await axios.post('/auth/changePassword', password);
+          return data;
+        } catch (refreshError) {
+          dispatch(logOut());
+          Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+          dispatch(toggleModalAuth(true));
+          // return rejectWithValue('Token refresh failed');
+        }
+      }
+      console.log('errorupdate', error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -115,21 +129,39 @@ export const logOut = createAsyncThunk('user/exitUser', async () => {
   }
 });
 
-export const update = createAsyncThunk('user/update', async (_, thunkApi) => {
-  const storThunk = thunkApi.getState();
+export const update = createAsyncThunk(
+  'user/update',
+  async (_, { getState, dispatch, rejectWithValue }) => {
+    const storThunk = getState();
 
-  const presentToken = storThunk.users.token;
-  if (presentToken) {
-    try {
-      token.set(presentToken);
-      const { data } = await axios.get('/auth/refresh');
-      return data;
-    } catch (error) {
-      console.log(error);
+    const presentToken = storThunk.users.token;
+    if (presentToken) {
+      try {
+        token.set(presentToken);
+        const { data } = await axios.get('/auth/refresh');
+        return data;
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          try {
+            const newToken = await refreshToken();
+            token.set(newToken);
+            axios.defaults.headers.delete.withCredentials = true;
+            const { data } = await axios.get('/auth/refresh');
+            return data;
+          } catch (refreshError) {
+            dispatch(logOut());
+            Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
+            dispatch(toggleModalAuth(true));
+            // return rejectWithValue('Token refresh failed');
+          }
+        }
+        console.log('errorupdate', error);
+        return rejectWithValue(error.message);
+      }
     }
+    return;
   }
-  return;
-});
+);
 
 export const getUser = createAsyncThunk('myUser/getUser', async user => {
   try {

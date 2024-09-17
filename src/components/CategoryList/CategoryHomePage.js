@@ -7,11 +7,13 @@ export default function CategoryHomePage({
   srcCategory,
   link,
 }) {
-  const dispatch = useDispatch();
+  const nameLink =
+    link === 'all' || link === 'forFree' ? `/${link}` : `${link}`;
 
+  const dispatch = useDispatch();
   return (
     <List onClick={() => dispatch(changeCategory(nameCategory))}>
-      <Link to={link}>
+      <Link to={nameLink}>
         <img src={srcCategory} alt={nameCategory.category.ua} />
         <NameCategory>{titleCategory}</NameCategory>
       </Link>

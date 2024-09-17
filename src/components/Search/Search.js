@@ -44,13 +44,9 @@ export default function Search() {
   }, [value, wasClick]);
 
   useEffect(() => {
-    const controller = new AbortController();
     if (value) {
-      if (!controller.signal.aborted) {
-        controller.abort();
-      }
       var timer = setTimeout(() => {
-        dispatch(prevSearchProduct(value, { signal: controller.signal }));
+        dispatch(prevSearchProduct(value));
         setWasClick(true);
       }, 500);
     }
@@ -80,7 +76,7 @@ export default function Search() {
       <input
         type="text"
         name="search"
-        placeholder="Я шукаю..."
+        placeholder=""
         value={value}
         onChange={handleChange}
       />

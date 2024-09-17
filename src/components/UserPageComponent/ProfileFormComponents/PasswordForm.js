@@ -5,7 +5,7 @@ import {
   RedactButton,
   CancelRedactingButton,
 } from './ProfilePage.styled';
-import PasswordField from './PasswordField';
+// import PasswordField from './PasswordField';
 import NewPasswordInput from './NewPasswordInput';
 import { useState } from 'react';
 import axios from 'axios';
@@ -87,10 +87,10 @@ export default function PasswordForm({
         $justifycontent={width > theme.breakPoints.md ? 'space-between' : null}
       >
         <InputColumn $setfullwidth={true} $width={'100%'}>
-          <PasswordField
+          {/* <PasswordField
             label="Старий пароль"
             placeholder="Введіть старий пароль"
-          />
+          /> */}
           {redacting ? (
             <NewPasswordInput
               newPassword={newPassword}

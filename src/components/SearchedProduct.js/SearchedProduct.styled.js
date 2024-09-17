@@ -20,6 +20,7 @@ export const ProductsPage = styled.div`
   header {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
   }
 `;
 export const BoxSvg = styled.div`
@@ -28,11 +29,16 @@ export const BoxSvg = styled.div`
   flex-grow: 2;
 `;
 export const TitleSort = styled.h2`
-  font-family: 'Jost';
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 1.5;
-  white-space: nowrap;
+  font-family: Jost;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.33;
+  @media (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    font-size: 32px;
+    line-height: 1.5;
+    letter-spacing: -0.32px;
+    padding: 0px 20px;
+  }
 `;
 export const TitleSection = styled.h1`
   text-align: center;

@@ -2,15 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Logo from 'SvgComponents/LogoSVG/Logo';
 import CategorySvg from 'SvgComponents/CategorySVG/CategorySvg';
 import MarkAsk from 'SvgComponents/MarkAsk/MarkAsk';
+import UserPageSidebar from 'components/UserPageComponent/UserPageSidebar';
+import UserPageHeader from 'components/UserPageComponent/UserPageHeader';
+import AddAnnouncement from './AddAnnouncement';
 import { theme } from 'utils/theme';
 import { selectAuth, selectMyUser } from '../../redux/auth/selector';
 import { toggleModalAuth } from '../../redux/modalAuth/slice';
 import {
   AddContainer,
   BackDrop,
+  CategoryList,
   Contacts,
   Container,
   EnteredProfile,
@@ -20,9 +25,6 @@ import {
   Sidebar,
   WrapperSidebar,
 } from './MenuResponse.styled';
-import UserPageSidebar from 'components/UserPageComponent/UserPageSidebar';
-import UserPageHeader from 'components/UserPageComponent/UserPageHeader';
-import AddAnnouncement from './AddAnnouncement';
 
 export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
   const isAuth = useSelector(selectAuth);
@@ -49,7 +51,6 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
     if (evt.currentTarget !== evt.target) return;
     onCloseMenu();
   }
-  console.log(isAuth);
 
   return (
     <BackDrop onMouseDown={oncloseByClickOutside}>
@@ -77,7 +78,14 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
                   }
                 />
                 <Sidebar>
-                  <UserPageSidebar />
+                  <CategoryList>
+                    <LinkAxillary to="/catalog" onClick={onCloseMenu}>
+                      <CategorySvg stroke="black" height="32px" width="32px" />
+                      Каталог товарів
+                    </LinkAxillary>
+                    <ArrowForwardIosIcon />
+                  </CategoryList>
+                  <UserPageSidebar onCloseMenu={onCloseMenu} />
                 </Sidebar>
               </WrapperSidebar>
             </>

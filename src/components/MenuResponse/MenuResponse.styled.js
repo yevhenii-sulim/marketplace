@@ -127,3 +127,17 @@ export const Title = styled.h1`
   line-height: 1.33;
   margin-bottom: 16px;
 `;
+export const CategoryList = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+  a {
+    margin-bottom: 0 !important;
+    gap: 20px;
+  }
+`;
