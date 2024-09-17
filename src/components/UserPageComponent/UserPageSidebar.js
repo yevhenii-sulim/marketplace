@@ -12,16 +12,17 @@ import StoryOrderSvg from 'SvgComponents/StoryOrderSvg/StoryOrderSvg';
 import SidebarListComponent from './SidebarListComponent';
 import ConfirmExit from 'components/ConfirmExit/ConfirmExit';
 import { Exit } from './UserPageComponent.styled';
-import { useLocation } from 'react-router-dom';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 
 const modalEnter = document.querySelector('#modal');
 
-export default function UserPageSidebar() {
+export default function UserPageSidebar({ onCloseMenu }) {
   const [isOpen, setIsOpen] = useState(false);
   const condition = useSelector(selectPoster);
-  const location = useLocation();
+  const { width } = useWindowDimensions();
   function choosePath() {
-    if (location.pathname === '/user/menu') {
+    if (width < parseInt(theme.breakPoints.lg)) {
       return '/user_page/';
     }
     return '';
@@ -40,6 +41,7 @@ export default function UserPageSidebar() {
       <SidebarListComponent
         nameList="Історія замовлень"
         path={`${choosePath() + 'my_story_order'}`}
+        onClick={onCloseMenu}
       >
         <StoryOrderSvg />
       </SidebarListComponent>
@@ -50,24 +52,28 @@ export default function UserPageSidebar() {
             ? `${choosePath() + 'my_poster'}`
             : `${choosePath() + 'my_post_list'}`
         }
+        onClick={onCloseMenu}
       >
         <NotificationsNoneIcon />
       </SidebarListComponent>
       <SidebarListComponent
         nameList="Продані товари"
         path={`${choosePath() + 'sold-goods'}`}
+        onClick={onCloseMenu}
       >
         <ProductionQuantityLimitsIcon />
       </SidebarListComponent>
       <SidebarListComponent
         nameList="Обране"
         path={`${choosePath() + 'selected'}`}
+        onClick={onCloseMenu}
       >
         <FavoriteBorderIcon />
       </SidebarListComponent>
       <SidebarListComponent
         nameList="Профіль"
         path={`${choosePath() + 'profile'}`}
+        onClick={onCloseMenu}
       >
         <PersonOutlineOutlinedIcon />
       </SidebarListComponent>

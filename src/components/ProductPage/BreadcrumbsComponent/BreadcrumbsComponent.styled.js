@@ -15,6 +15,12 @@ export const ContainerProductPage = styled.article`
 export const Link = styled(LinkProduct)`
   color: grey;
   text-decoration: none;
+  color: ${({ theme }) => theme.color.colorMainText};
+  font-family: 'Nunito Sans';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.44;
 `;
 
 export const Catalog = styled.a`

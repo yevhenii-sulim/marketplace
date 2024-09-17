@@ -36,6 +36,8 @@ export const addCommentFromStory = createAsyncThunk(
       dispatch(addNullRating());
       return response;
     } catch (error) {
+      console.log('шлях має бути error.response.status === 401', error);
+
       if (error.response && error.response.status === 401) {
         try {
           const newToken = await refreshToken();

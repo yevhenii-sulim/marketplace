@@ -64,7 +64,6 @@ function OrderSection() {
   const addFavorite = productId => {
     dispatch(addFavoriteProduct(productId));
   };
-  console.log(user);
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>

@@ -82,7 +82,6 @@ export default function MyStoryOrder({
         return acc;
       }, 0);
     const middleRating = fullRating() / (rating.length - 1);
-    console.log(typeof middleRating);
     dispatch(
       addCommentFromStory({
         comment: evt.target.elements.comment.value,
@@ -111,24 +110,21 @@ export default function MyStoryOrder({
           </Filter>
           <WrapperStoryOrder>
             {sortedProduct.map(
-              (
-                {
-                  _id,
-                  status,
-                  createDate,
-                  product: {
-                    _id: productId,
-                    title,
-                    price,
-                    discountPrice,
-                    img,
-                    discount,
-                    subCategory,
-                    category,
-                  },
+              ({
+                _id,
+                status,
+                createDate,
+                product: {
+                  _id: productId,
+                  title,
+                  price,
+                  discountPrice,
+                  img,
+                  discount,
+                  subCategory,
+                  category,
                 },
-                index
-              ) => {
+              }) => {
                 return (
                   <ListStoryOrder key={_id} className="wrapper">
                     <AboutProductStory
@@ -149,7 +145,7 @@ export default function MyStoryOrder({
                           type="button"
                           sx={addProductButton}
                           onClick={() =>
-                            repeatOrder(_id, category, subCategory)
+                            repeatOrder(productId, category, subCategory)
                           }
                         >
                           Повторити замовлення

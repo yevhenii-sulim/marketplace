@@ -29,7 +29,6 @@ export default function NavSubCategoryList({ subcategory, category }) {
               to={`/${category}/${link}`}
               onClick={() => onClose(link, nameList)}
             >
-              {console.log(nameList)}
               <img src={img} alt={nameList} />
               <p>{nameList}</p>
             </Link>

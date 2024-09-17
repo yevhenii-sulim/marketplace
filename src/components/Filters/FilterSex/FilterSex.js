@@ -63,10 +63,10 @@ function FilterSex({ setPage }) {
   }
 
   return (
-    <Container>
+    <Container onClick={() => setOpen(prev => !prev)}>
       <h3>
         Стать
-        <ButtonExpand onClick={() => setOpen(prev => !prev)} type="button">
+        <ButtonExpand type="button">
           {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ButtonExpand>
       </h3>

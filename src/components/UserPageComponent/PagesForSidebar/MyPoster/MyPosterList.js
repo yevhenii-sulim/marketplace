@@ -131,7 +131,9 @@ export default function MyPosterList({
                 return (
                   <ListStoryOrder key={_id}>
                     <AboutProductStory
-                      status={Object.values(status)}
+                      status={
+                        status.status === 'Активне' ? 'Активне' : 'Деактивоване'
+                      }
                       $state={Object.keys(status)}
                       title={title}
                       createDate={createDate}
@@ -149,17 +151,28 @@ export default function MyPosterList({
                         <OperationList>
                           <ActiveProduct
                             type="button"
-                            onClick={() =>
+                            onClick={() => {
+                              if (status.status === 'Активне') {
+                                changeStatusProductFn({
+                                  id: _id,
+                                  status: {
+                                    status: 'Деактивоване',
+                                  },
+                                });
+                                return;
+                              }
                               changeStatusProductFn({
                                 id: _id,
                                 status: {
-                                  status: 'Деактивовене',
+                                  status: 'Активне',
                                 },
-                              })
-                            }
+                              });
+                            }}
                           >
                             <DeactivateSvg />
-                            Деактивувати
+                            {status.status === 'Активне'
+                              ? 'Деактивувати'
+                              : 'Активувати'}
                           </ActiveProduct>
                           <ActiveProduct
                             type="button"

@@ -5,6 +5,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { ContainerForBreadcrumbs, Link } from './BreadcrumbsComponent.styled';
 import { productForProductPage } from '../../../redux/productPage/selectors';
 import { changeCategory } from '../../../redux/category/slice';
+import { theme } from 'utils/theme';
 
 function sendQueryName(product) {
   switch (true) {
@@ -63,7 +64,16 @@ function BreadcrumbsComponent() {
             {product.subCategory.subCategory.ua}
           </Link>
         )}
-        <Typography key="3" href="/marketplace/headphone/36">
+        <Typography
+          key="3"
+          style={{
+            color: theme.color.colorMainText,
+            fontSize: '18px',
+            fontWeight: '800',
+            lineHeight: '1.44',
+            textDecoration: 'underline',
+          }}
+        >
           {product?.title}
         </Typography>
       </Breadcrumbs>

@@ -15,7 +15,8 @@ export const Filter = styled.div`
   padding-left: 24px;
   padding-right: 24px;
   margin-bottom: 24px;
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
+    gap: 100px;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -23,8 +24,8 @@ export const Filter = styled.div`
 export const FormSearch = styled.form`
   max-width: 300px;
   width: 100%;
-  height: 48px;
   position: relative;
+  height: 39px;
   input {
     width: 100%;
     height: 100%;
@@ -38,7 +39,10 @@ export const FormSearch = styled.form`
       line-height: 1.44;
       color: ${({ theme }) => theme.color.borderSearch};
     }
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+      height: 48px;
+    }
+    @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
       width: 433px;
     }
   }

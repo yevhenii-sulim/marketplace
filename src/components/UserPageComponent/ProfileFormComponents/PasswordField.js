@@ -11,8 +11,12 @@ import { theme } from 'utils/theme';
 
 export default function PasswordField({ label, placeholder }) {
   const { width } = useWindowDimensions();
-
   const [showPassword, setShowPassword] = useState(false);
+  const [value, setValue] = useState('');
+
+  function handleChange(event) {
+    setValue(event.target.value);
+  }
 
   return (
     <>
@@ -23,20 +27,21 @@ export default function PasswordField({ label, placeholder }) {
         <PasswordInput>
           <input
             type={`${showPassword ? 'text' : 'password'}`}
+            value={value}
+            onChange={handleChange}
             placeholder={placeholder}
-            readOnly
           />
           {showPassword ? (
             <PasswordToggleButton
               onClick={() => setShowPassword(!showPassword)}
             >
-              <EyeSvg />
+              <ClosedEyeSvg />
             </PasswordToggleButton>
           ) : (
             <PasswordToggleButton
               onClick={() => setShowPassword(!showPassword)}
             >
-              <ClosedEyeSvg />
+              <EyeSvg />
             </PasswordToggleButton>
           )}
         </PasswordInput>

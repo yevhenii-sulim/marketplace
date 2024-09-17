@@ -22,7 +22,6 @@ export default function FilterPrice({ setPage }) {
   const { width } = useWindowDimensions();
 
   useEffect(() => {
-    if ((price.max !== 0, price.min !== 0)) return;
     setValueMin(
       +params.get('minPrice') && !Number.isNaN(+params.get('minPrice'))
         ? +params.get('minPrice')

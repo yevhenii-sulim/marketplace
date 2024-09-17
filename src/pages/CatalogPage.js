@@ -34,6 +34,7 @@ export default function CatalogPage() {
       behavior: 'smooth',
     });
   };
+
   return (
     <ProductListPage
       page={page}
