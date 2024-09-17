@@ -76,7 +76,7 @@ export default function Search() {
       <input
         type="text"
         name="search"
-        placeholder=""
+        placeholder="Я шукаю..."
         value={value}
         onChange={handleChange}
       />
