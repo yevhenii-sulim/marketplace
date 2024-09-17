@@ -131,14 +131,20 @@ export const logOut = createAsyncThunk('user/exitUser', async () => {
 
 export const update = createAsyncThunk(
   'user/update',
-  async (_, { getState, dispatch, rejectWithValue }) => {
+  async (userData, { getState, dispatch, rejectWithValue }) => {
+    console.log(userData);
+
     const storThunk = getState();
 
     const presentToken = storThunk.users.token;
     if (presentToken) {
       try {
         token.set(presentToken);
-        const { data } = await axios.get('/auth/refresh');
+        const { data } = await axios.post('/user', userData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         return data;
       } catch (error) {
         if (error.response && error.response.status === 401) {
@@ -146,7 +152,11 @@ export const update = createAsyncThunk(
             const newToken = await refreshToken();
             token.set(newToken);
             axios.defaults.headers.delete.withCredentials = true;
-            const { data } = await axios.get('/auth/refresh');
+            const { data } = await axios.post('/user', userData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
             return data;
           } catch (refreshError) {
             dispatch(logOut());

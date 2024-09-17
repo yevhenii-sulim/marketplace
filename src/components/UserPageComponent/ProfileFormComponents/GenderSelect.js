@@ -1,7 +1,6 @@
-import { FormField } from "./ProfilePage.styled";
+import { FormField } from './ProfilePage.styled';
 
 export default function GenderSelect({ disabled, value, onChange }) {
-
   return (
     <FormField required={false}>
       {disabled ? (
@@ -11,15 +10,15 @@ export default function GenderSelect({ disabled, value, onChange }) {
         </>
       ) : (
         <>
-          <label>
-            Оберіть стать
-          </label>
-          <select onChange={event => {
-            onChange(event);
-          }}>
+          <label>Оберіть стать</label>
+          <select
+            onChange={event => {
+              onChange(event);
+            }}
+          >
             <option disabled>Оберіть стать</option>
-            <option>Чоловік</option>
-            <option>Жінка</option>
+            <option value="male">Чоловіча</option>
+            <option value="female">Жіноча</option>
           </select>
         </>
       )}

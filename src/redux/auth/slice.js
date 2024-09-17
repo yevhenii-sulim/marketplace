@@ -6,9 +6,7 @@ const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleUpdatePending = state => {
-  // state.isRending = true;
-};
+const handleUpdatePending = state => {};
 
 const handleSignUpFulfilled = state => {
   state.isRending = true;
@@ -24,7 +22,7 @@ const handleLogInFulfilled = (state, { payload }) => {
 };
 
 const handleUpdateFulfilled = (state, { payload }) => {
-  console.log(payload);
+  state.myUser = payload;
 };
 const handleGetUserFulfilled = (state, { payload }) => {
   state.myUser = payload;

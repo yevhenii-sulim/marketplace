@@ -1,42 +1,29 @@
 import PencilSvg from 'SvgComponents/PencilSVG/PencilSvg';
+import { update } from '../../../redux/auth/thunk';
+import DefaultProfilePicture from './DefaultProfilePicture';
 import {
   ProfilePictureSelectField,
   ProfilePictureSelectInput,
 } from './ProfilePage.styled';
-import DefaultProfilePicture from './DefaultProfilePicture';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-export default function ProfilePictureSelect({
-  disabled,
-  value,
-  onChange,
-  redacting,
-}) {
-  const [profilePicturePreview, setProfilePicturePreview] = useState('');
-
+export default function ProfilePictureSelect({ disabled, img, redacting }) {
+  const dispatch = useDispatch();
   const handleChange = event => {
+    const formData = new FormData();
     const file = event.target.files?.[0];
-
     if (!file) return;
-
-    const imgSrc = URL.createObjectURL(file);
-
+    formData.append('img', file);
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
 
     reader.onloadend = () => {
-      onChange(reader.result);
-      setProfilePicturePreview(imgSrc);
+      dispatch(update(formData));
     };
   };
-
   return (
     <ProfilePictureSelectField $redacting={redacting}>
-      {profilePicturePreview ? (
-        <img src={profilePicturePreview || value} alt="" />
-      ) : (
-        <DefaultProfilePicture />
-      )}
+      {img !== '' ? <img src={img} alt="" /> : <DefaultProfilePicture />}
       {disabled ? (
         <ProfilePictureSelectInput>Фото профілю</ProfilePictureSelectInput>
       ) : (
