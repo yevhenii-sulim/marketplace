@@ -1,20 +1,26 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import InputField from './InputField';
+import DateFormField from './DateFormField';
+import GenderSelect from './GenderSelect';
+import ProfilePictureSelect from './ProfilePictureSelect';
+import {
+  ContainerName,
+  FormContainer,
+  Image,
+  UserFieldName,
+} from './ProfilePage.styled';
+import { selectMyUser } from '../../../redux/auth/selector';
+import { update } from '../../../redux/auth/thunk';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 import {
   InputColumn,
   RedactContainer,
   RedactButton,
   CancelRedactingButton,
 } from './ProfilePage.styled';
-import InputField from './InputField';
-import DateFormField from './DateFormField';
-import GenderSelect from './GenderSelect';
-import ProfilePictureSelect from './ProfilePictureSelect';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import { FormContainer } from './ProfilePage.styled';
-import { selectMyUser, selectToken } from '../../../redux/auth/selector';
-import axios from 'axios';
-import useWindowDimensions from 'hooks/useWindowDimensions';
-import { theme } from 'utils/theme';
+import DefaultProfilePicture from './DefaultProfilePicture';
 
 export default function PersonalDataForm({
   redacting,
@@ -23,54 +29,7 @@ export default function PersonalDataForm({
   onStartRedacting,
 }) {
   const user = useSelector(selectMyUser);
-  const token = useSelector(selectToken);
   const { width } = useWindowDimensions();
-
-  const [userDataChanges, setUserDataChanges] = useState({
-    lastName: '',
-    firstName: '',
-    surname: '',
-    birthDate: '',
-    gender: '',
-    img: '',
-  });
-
-  const saveChanges = async () => {
-    const changes = {
-      lastName: userDataChanges?.lastName || user?.lastName,
-      firstName: userDataChanges?.firstName || user?.firstName,
-      surName: userDataChanges?.surname || user?.surName,
-      gender: userDataChanges?.gender || user?.gender,
-      birthDate: userDataChanges?.birthDate || user?.birthDate,
-    };
-
-    if (userDataChanges?.img) {
-      changes.img = userDataChanges?.img;
-    }
-
-    const { data } = await axios.post(
-      'https://internet-shop-api-production.up.railway.app/user',
-      changes,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return data;
-  };
-
-  const cancelChanges = () => {
-    setUserDataChanges({
-      lastName: '',
-      firstName: '',
-      surname: '',
-      birthDate: '',
-      gender: '',
-      img: '',
-    });
-  };
 
   return (
     <>
@@ -83,19 +42,13 @@ export default function PersonalDataForm({
             : null
         }
       >
-        <Form
-          redacting={redacting}
-          user={user}
-          userDataChanges={userDataChanges}
-          setUserDataChanges={setUserDataChanges}
-        />
+        <Form redacting={redacting} user={user} />
       </FormContainer>
       <RedactContainer>
         {redacting ? (
           <>
             <RedactButton
               onClick={() => {
-                saveChanges();
                 onSaveChanges();
               }}
             >
@@ -103,7 +56,6 @@ export default function PersonalDataForm({
             </RedactButton>
             <CancelRedactingButton
               onClick={() => {
-                cancelChanges();
                 onCancelChanges();
               }}
             >
@@ -120,160 +72,92 @@ export default function PersonalDataForm({
   );
 }
 
-function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
+function Form({ redacting, user }) {
+  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [surName, setSurName] = useState('');
+
+  const dispatch = useDispatch();
+
   const { width } = useWindowDimensions();
-
-  const DateFormFieldComponent = (
-    <DateFormField
-      label={'Дата народження'}
-      disabled={!redacting}
-      value={userDataChanges?.birthDate || user?.birthDate}
-      onChange={value =>
-        setUserDataChanges({ ...userDataChanges, birthDate: value })
-      }
-    />
-  );
-
-  const GenderSelectComponent = (
-    <GenderSelect
-      disabled={!redacting}
-      value={user?.gender}
-      onChange={event =>
-        setUserDataChanges({
-          ...userDataChanges,
-          gender: event.target.value === 'Чоловік' ? 'male' : 'female',
-        })
-      }
-    />
-  );
-
-  const ProfilePictureSelectComponent = (
-    <ProfilePictureSelect
-      disabled={!redacting}
-      value={user?.profilePictureSrc}
-      onChange={imageSrc =>
-        setUserDataChanges({ ...userDataChanges, img: imageSrc })
-      }
-      redacting={redacting}
-    />
-  );
 
   return redacting ? (
     <>
       <InputColumn $setfullwidth={true} $setitemscenter={true}>
-        {width <= parseInt(theme.breakPoints.md)
-          ? ProfilePictureSelectComponent
-          : null}
+        <InputField
+          label={"Ім'я"}
+          placeholder={"Введіть ім'я"}
+          onChange={event => setFirstName(event.target.value)}
+          onBlur={() => dispatch(update({ firstName: firstName }))}
+          required={true}
+          value={firstName}
+          disabled={!redacting}
+        />
         <InputField
           label={'Прізвище'}
           placeholder={'Введіть прізвище'}
           onChange={event => {
-            console.log(userDataChanges);
-
             if (event.target.value.length > 21) return;
-            setUserDataChanges(prev => {
-              if (event.target.value.length > 21) return userDataChanges;
-              return { ...userDataChanges, lastName: event.target.value };
-            });
+            setLastName(event.target.value);
+            console.log(lastName);
           }}
+          onBlur={() => dispatch(update({ lastName: lastName }))}
           required={true}
-          value={userDataChanges?.lastName || user?.lastName}
-          disabled={!redacting}
-        />
-        <InputField
-          label={"Ім'я"}
-          placeholder={"Введіть ім'я"}
-          onChange={event =>
-            setUserDataChanges({
-              ...userDataChanges,
-              firstName: event.target.value,
-            })
-          }
-          required={true}
-          value={userDataChanges?.firstName || user?.firstName}
+          value={lastName}
           disabled={!redacting}
         />
         <InputField
           label={'По батькові'}
           placeholder={'Введіть по батькові'}
-          onChange={event =>
-            setUserDataChanges({
-              ...userDataChanges,
-              surname: event.target.value,
-            })
-          }
+          onChange={event => {
+            if (event.target.value.length > 21) return;
+            console.log(surName);
+            setSurName(event.target.value);
+          }}
+          onBlur={() => dispatch(update({ surName: surName }))}
           required={true}
-          value={userDataChanges?.surname || user?.surName || ''}
+          value={surName}
           disabled={!redacting}
         />
-        {width <= parseInt(theme.breakPoints.md)
-          ? DateFormFieldComponent
-          : null}
-        {width <= parseInt(theme.breakPoints.md) ? GenderSelectComponent : null}
       </InputColumn>
-      {width > parseInt(theme.breakPoints.md) ? (
-        <InputColumn $justifycontent={'flex-start'}>
-          {width > parseInt(theme.breakPoints.md)
-            ? DateFormFieldComponent
-            : null}
-          {width > parseInt(theme.breakPoints.md)
-            ? GenderSelectComponent
-            : null}
-        </InputColumn>
-      ) : null}
-      {width > parseInt(theme.breakPoints.md) ? (
-        <InputColumn>
-          {width > parseInt(theme.breakPoints.md)
-            ? ProfilePictureSelectComponent
-            : null}
-        </InputColumn>
-      ) : null}
+      <InputColumn $justifycontent={'flex-start'}>
+        <DateFormField
+          label={'Дата народження'}
+          disabled={!redacting}
+          value={user?.birthDate}
+          onChange={value => dispatch(update({ birthDate: value }))}
+        />
+        <GenderSelect
+          disabled={!redacting}
+          value={user?.gender}
+          onChange={event => {
+            dispatch(update({ gender: event.target.value }));
+          }}
+        />
+      </InputColumn>
+      <InputColumn>
+        <ProfilePictureSelect
+          disabled={!redacting}
+          img={user?.profilePictureSrc}
+          redacting={redacting}
+        />
+      </InputColumn>
     </>
   ) : (
-    <>
+    <ContainerName>
       <InputColumn>
-        <InputField
-          label={'Прізвище'}
-          placeholder={'Введіть прізвище'}
-          onChange={event =>
-            setUserDataChanges({
-              ...userDataChanges,
-              lastName: event.target.value,
-            })
-          }
-          required={true}
-          value={userDataChanges?.lastName || user?.lastName}
-          disabled={!redacting}
-        />
-        <InputField
-          label={"Ім'я"}
-          placeholder={"Введіть ім'я"}
-          onChange={event =>
-            setUserDataChanges({
-              ...userDataChanges,
-              firstName: event.target.value,
-            })
-          }
-          required={true}
-          value={userDataChanges?.firstName || user?.firstName}
-          disabled={!redacting}
-        />
-        <InputField
-          label={'По батькові'}
-          placeholder={'Введіть по батькові'}
-          onChange={event =>
-            setUserDataChanges({
-              ...userDataChanges,
-              surname: event.target.value,
-            })
-          }
-          required={true}
-          value={userDataChanges?.surname || user?.surName || ''}
-          disabled={!redacting}
-        />
-        {width <= parseInt(theme.breakPoints.md)
-          ? DateFormFieldComponent
-          : null}
+        <UserFieldName>
+          <h3>Ім'я</h3>
+          {user?.firstName ? <p>{user.firstName}</p> : <p>--</p>}
+        </UserFieldName>
+        <UserFieldName>
+          <h3>Прізвище</h3>
+          {user?.lastName ? <p>{user.lastName}</p> : <p>--</p>}
+        </UserFieldName>
+        <UserFieldName>
+          <h3>По батькові</h3>
+          {user?.surName ? <p>{user.surName}</p> : <p>--</p>}
+        </UserFieldName>
       </InputColumn>
       <InputColumn
         $gap={width <= parseInt(theme.breakPoints.md) ? '65px' : null}
@@ -283,17 +167,26 @@ function Form({ redacting, user, userDataChanges, setUserDataChanges }) {
             : 'flex-start'
         }
       >
-        {width > parseInt(theme.breakPoints.md) ? DateFormFieldComponent : null}
-        {width > parseInt(theme.breakPoints.md) ? GenderSelectComponent : null}
-
-        {width <= parseInt(theme.breakPoints.md)
-          ? ProfilePictureSelectComponent
-          : null}
-        {width <= parseInt(theme.breakPoints.md) ? GenderSelectComponent : null}
+        <UserFieldName>
+          <h3>День народження</h3>
+          {user?.birthDate ? <p>{user.birthDate}</p> : <p>--</p>}
+        </UserFieldName>
+        <UserFieldName>
+          <h3>Стать</h3>
+          {user?.gender ? (
+            <p>{user.gender === 'male' ? 'Чоловіча' : 'Жіноча'}</p>
+          ) : (
+            <p>--</p>
+          )}
+        </UserFieldName>
       </InputColumn>
-      {width > parseInt(theme.breakPoints.md) ? (
-        <InputColumn>{ProfilePictureSelectComponent}</InputColumn>
-      ) : null}
-    </>
+      <Image>
+        {user?.profilePictureSrc ? (
+          <img src={user.profilePictureSrc} alt="user.firstName" />
+        ) : (
+          <DefaultProfilePicture />
+        )}
+      </Image>
+    </ContainerName>
   );
 }

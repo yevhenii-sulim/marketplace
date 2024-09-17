@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'utils/theme';
 
 export const ProfileContainer = styled.div`
   width: 100%;
@@ -18,7 +19,7 @@ export const PersonalDataContainer = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
-
+export const UserFieldName = styled.div``;
 export const FormContainer = styled.div`
   width: 100%;
   display: ${props => (props.$redacting ? 'unset' : 'flex')};
@@ -45,18 +46,54 @@ export const ProfilePageTitle = styled.h5`
 `;
 
 export const InputColumn = styled.div`
-  width: ${props => (props.$setfullwidth ? '100%' : '45%')};
   align-items: ${props => (props.$setitemscenter ? 'center' : 'unset')};
-  justify-content: ${props => props.$justifycontent || 'space-between'};
   display: flex;
   flex-direction: column;
-  gap: ${props => props.$gap || '24px'};
-
+  gap: 24px;
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  @media (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    justify-self: center;
+  }
   @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     justify-content: unset;
   }
 `;
-
+export const Image = styled.div`
+  @media (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    justify-self: center;
+  }
+`;
+export const ContainerName = styled.div`
+  display: grid;
+  width: 100%;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+`;
+export const styleData = {
+  '&>div': {
+    display: 'flex',
+    justifyContent: 'space-between',
+    border: `1px solid ${theme.color.bgLabelDelivery}`,
+  },
+  '& input': {
+    height: '100%',
+  },
+  '& fieldset': {
+    border: 'none',
+  },
+};
 export const FormField = styled.div`
   width: ${props => props.$width || '100%'};
   display: flex;
@@ -123,10 +160,9 @@ export const FormField = styled.div`
 export const RedactContainer = styled.div`
   display: flex;
   gap: 20px;
-  justify-content: end;
-
-  @media (min-width: 672px) {
-    justify-content: unset;
+  justify-content: center;
+  @media (min-width: ${({ theme }) => theme.breakPoints.mx}) {
+    justify-content: flex-end;
   }
 `;
 

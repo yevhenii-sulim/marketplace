@@ -10,6 +10,7 @@ export default function InputField({
   disabled = false,
   inputType = 'text',
   width,
+  onBlur,
 }) {
   const [error, setError] = useState(false);
 
@@ -26,7 +27,8 @@ export default function InputField({
           <input
             placeholder={placeholder}
             type={inputType}
-            defaultValue={value}
+            value={value}
+            onBlur={onBlur}
             onChange={event => {
               if (event.target.value.length > 21) {
                 setError(true);

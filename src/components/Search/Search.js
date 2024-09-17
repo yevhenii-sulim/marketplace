@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import { prevSearchProduct, searchProduct } from '../../redux/product/thunk';
 import {
@@ -9,14 +8,14 @@ import {
   selectLoader,
   selectPrevProductSearch,
 } from '../../redux/product/selector';
+import Loader from 'components/Loader/Loader';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 import {
   BoxLoader,
   FormSearch,
   PrevShowSearchedProduct,
 } from './Search.styled';
-import Loader from 'components/Loader/Loader';
-import useWindowDimensions from 'hooks/useWindowDimensions';
-import { theme } from 'utils/theme';
 
 export default function Search() {
   const searchedProduct = useSelector(selectPrevProductSearch);
