@@ -15,12 +15,16 @@ export const ProductsPage = styled.div`
   justify-content: center;
   row-gap: 30px;
   height: 100%;
-  padding-top: 30px;
   padding-bottom: 30px;
   header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
     gap: 12px;
+    @media (min-width: ${({ theme }) => theme.breakPoints.mx}) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 `;
 export const BoxSvg = styled.div`
