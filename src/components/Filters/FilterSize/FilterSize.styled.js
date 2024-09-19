@@ -23,6 +23,7 @@ export const Container = styled.li`
     font-size: 22px;
     font-weight: 700;
     line-height: 1.45;
+    cursor: pointer;
   }
 `;
 export const SizeList = styled.div`

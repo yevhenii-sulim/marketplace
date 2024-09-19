@@ -53,8 +53,8 @@ export default function FilterState({ setPage }) {
   };
 
   return (
-    <Container onClick={() => setOpen(prev => !prev)}>
-      <h3>
+    <Container>
+      <h3 onClick={() => setOpen(prev => !prev)}>
         Стан
         <ButtonExpand type="button">
           {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}

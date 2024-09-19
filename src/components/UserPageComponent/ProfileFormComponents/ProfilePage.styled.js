@@ -61,6 +61,10 @@ export const InputColumn = styled.div`
   }
 `;
 export const Image = styled.div`
+  img {
+    height: 172px;
+    width: auto;
+  }
   @media (min-width: ${({ theme }) => theme.breakPoints.sx}) {
     justify-self: center;
   }

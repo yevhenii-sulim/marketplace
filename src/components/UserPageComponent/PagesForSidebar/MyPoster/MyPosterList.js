@@ -131,9 +131,7 @@ export default function MyPosterList({
                 return (
                   <ListStoryOrder key={_id}>
                     <AboutProductStory
-                      status={
-                        status.status === 'Активне' ? 'Активне' : 'Деактивоване'
-                      }
+                      status={status.enable ? 'Активне' : 'Деактивоване'}
                       $state={Object.keys(status)}
                       title={title}
                       createDate={createDate}
@@ -152,11 +150,11 @@ export default function MyPosterList({
                           <ActiveProduct
                             type="button"
                             onClick={() => {
-                              if (status.status === 'Активне') {
+                              if (status.enable) {
                                 changeStatusProductFn({
                                   id: _id,
                                   status: {
-                                    status: 'Деактивоване',
+                                    disabled: 'Деактивоване',
                                   },
                                 });
                                 return;
@@ -164,15 +162,13 @@ export default function MyPosterList({
                               changeStatusProductFn({
                                 id: _id,
                                 status: {
-                                  status: 'Активне',
+                                  enable: 'Активне',
                                 },
                               });
                             }}
                           >
                             <DeactivateSvg />
-                            {status.status === 'Активне'
-                              ? 'Деактивувати'
-                              : 'Активувати'}
+                            {status.enable ? 'Деактивувати' : 'Активувати'}
                           </ActiveProduct>
                           <ActiveProduct
                             type="button"

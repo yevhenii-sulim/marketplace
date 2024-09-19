@@ -46,8 +46,8 @@ export default function FilterSize({ setPage }) {
   };
 
   return (
-    <Container onClick={() => setOpen(prev => !prev)}>
-      <h3>
+    <Container>
+      <h3 onClick={() => setOpen(prev => !prev)}>
         Розмір
         <ButtonExpand type="button">
           {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
