@@ -54,8 +54,8 @@ function FilterColor({ setPage }) {
     });
   };
   return (
-    <Container onClick={() => setOpen(prev => !prev)}>
-      <h3>
+    <Container>
+      <h3 onClick={() => setOpen(prev => !prev)}>
         Колір
         <ButtonExpand type="button">
           {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
