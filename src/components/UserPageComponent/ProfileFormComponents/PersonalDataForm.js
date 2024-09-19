@@ -99,7 +99,6 @@ function Form({ redacting, user }) {
           onChange={event => {
             if (event.target.value.length > 21) return;
             setLastName(event.target.value);
-            console.log(lastName);
           }}
           onBlur={() => dispatch(update({ lastName: lastName }))}
           required={true}
@@ -111,7 +110,6 @@ function Form({ redacting, user }) {
           placeholder={'Введіть по батькові'}
           onChange={event => {
             if (event.target.value.length > 21) return;
-            console.log(surName);
             setSurName(event.target.value);
           }}
           onBlur={() => dispatch(update({ surName: surName }))}

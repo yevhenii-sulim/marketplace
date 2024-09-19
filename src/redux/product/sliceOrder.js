@@ -9,8 +9,6 @@ const sliceOrder = createSlice({
       state.push(payload);
     },
     removeProduct(state, { payload }) {
-      console.log(payload);
-
       state.filter(item => item !== payload);
     },
   },

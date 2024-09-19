@@ -33,6 +33,10 @@ export const CountPrice = styled.div`
     font-size: 18px;
     width: 81px;
     border: none;
+    outline: none;
+    &:focus {
+      box-shadow: inset 0 0 0 2px ${({ theme }) => theme.color.borderRegister};
+    }
   }
 `;
 export const PriceSlide = styled.li`

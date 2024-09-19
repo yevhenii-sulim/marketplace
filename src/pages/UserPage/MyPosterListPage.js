@@ -60,7 +60,6 @@ export default function MyPosterListPage() {
     );
   }
   const sortedProduct = onSort();
-  console.log('sortedProduct', sortedProduct);
   return (
     <MyPosterList
       sortedProduct={sortedProduct}

@@ -156,7 +156,6 @@ const productPageSlice = createSlice({
         state.createCommentLoading = false;
       })
       .addCase(addComment.rejected, (state, action) => {
-        console.log('call');
         state.createCommentLoading = false;
       });
   },

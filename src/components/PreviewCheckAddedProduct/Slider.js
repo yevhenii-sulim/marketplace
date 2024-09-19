@@ -45,15 +45,8 @@ export default function Slider({ values }) {
 
   const handleImageLoad = event => {
     const img = event.target;
-    const aspectRatio = img.naturalWidth / img.naturalHeight;
-
-    if (aspectRatio > 1) {
-      img.style.width = '85%';
-      img.style.height = 'auto';
-    } else {
-      img.style.width = 'auto';
-      img.style.height = '100%';
-    }
+    img.style.width = 'auto';
+    img.style.height = '100%';
   };
 
   return (

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  Empty, 
-} from './PagesForSidebar.styled';
+import { Empty } from './PagesForSidebar.styled';
 import {
   ProfileContainer,
   PersonalDataContainer,
@@ -12,12 +10,10 @@ import ContactForm from '../ProfileFormComponents/ContactForm';
 import PasswordForm from '../ProfileFormComponents/PasswordForm';
 
 export default function Profile() {
-
-  const [{ 
-    redactingPersonalData, 
-    redactingContacts, 
-    redactingPassword 
-  }, setRedactingStatus] = useState({
+  const [
+    { redactingPersonalData, redactingContacts, redactingPassword },
+    setRedactingStatus,
+  ] = useState({
     redactingPersonalData: false,
     redactingContacts: false,
     redactingPassword: false,
@@ -26,103 +22,94 @@ export default function Profile() {
   const onChanges = (redactingStatus, callback) => {
     setRedactingStatus({ ...redactingStatus });
     callback();
-  }
+  };
 
   return (
     <ProfileContainer>
       <Empty>
         <PersonalDataContainer>
           <ProfilePageTitle>Особисті дані</ProfilePageTitle>
-          <PersonalDataForm 
+          <PersonalDataForm
             redacting={redactingPersonalData}
-            onSaveChanges={() => onChanges(
-              { 
+            onSaveChanges={() =>
+              onChanges({
                 redactingPersonalData: !redactingPersonalData,
                 redactingContacts,
-                redactingPassword
-              },
-              () => console.log('Saved changes')
-            )}
-            onCancelChanges={() => onChanges(
-              { 
+                redactingPassword,
+              })
+            }
+            onCancelChanges={() =>
+              onChanges({
                 redactingPersonalData: !redactingPersonalData,
                 redactingContacts,
-                redactingPassword
-              },
-              () => console.log('Canceled changes')
-            )}
-            onStartRedacting={() => onChanges(
-              { 
+                redactingPassword,
+              })
+            }
+            onStartRedacting={() =>
+              onChanges({
                 redactingPersonalData: !redactingPersonalData,
                 redactingContacts,
-                redactingPassword
-              },
-              () => console.log('Started redacting')
-            )}
+                redactingPassword,
+              })
+            }
           />
         </PersonalDataContainer>
       </Empty>
       <Empty>
         <PersonalDataContainer>
           <ProfilePageTitle>Контакти</ProfilePageTitle>
-          <ContactForm 
+          <ContactForm
             redacting={redactingContacts}
-            onSaveChanges={() => onChanges(
-              { 
+            onSaveChanges={() =>
+              onChanges({
                 redactingPersonalData,
                 redactingContacts: !redactingContacts,
-                redactingPassword
-              },
-              () => console.log('Saved changes')
-            )}
-            onCancelChanges={() => onChanges(
-              { 
+                redactingPassword,
+              })
+            }
+            onCancelChanges={() =>
+              onChanges({
                 redactingPersonalData,
                 redactingContacts: !redactingContacts,
-                redactingPassword
-              },
-              () => console.log('Canceled changes')
-            )}
-            onStartRedacting={() => onChanges(
-              { 
+                redactingPassword,
+              })
+            }
+            onStartRedacting={() =>
+              onChanges({
                 redactingPersonalData,
                 redactingContacts: !redactingContacts,
-                redactingPassword
-              },
-              () => console.log('Started redacting')
-            )}
+                redactingPassword,
+              })
+            }
           />
         </PersonalDataContainer>
       </Empty>
       <Empty>
         <PersonalDataContainer>
           <ProfilePageTitle>Пароль</ProfilePageTitle>
-          <PasswordForm 
+          <PasswordForm
             redacting={redactingPassword}
-            onSaveChanges={() => onChanges(
-              { 
+            onSaveChanges={() =>
+              onChanges({
                 redactingPersonalData,
                 redactingContacts,
-                redactingPassword: !redactingPassword
-              },
-              () => console.log('Saved changes')
-            )}
-            onCancelChanges={() => onChanges(
-              { 
+                redactingPassword: !redactingPassword,
+              })
+            }
+            onCancelChanges={() =>
+              onChanges({
                 redactingPersonalData,
                 redactingContacts,
-                redactingPassword: !redactingPassword
-              },
-              () => console.log('Canceled changes')
-            )}
-            onStartRedacting={() => onChanges(
-              { 
+                redactingPassword: !redactingPassword,
+              })
+            }
+            onStartRedacting={() =>
+              onChanges({
                 redactingPersonalData,
                 redactingContacts,
-                redactingPassword: !redactingPassword
-              },
-              () => console.log('Started redacting')
-            )}
+                redactingPassword: !redactingPassword,
+              })
+            }
           />
         </PersonalDataContainer>
       </Empty>

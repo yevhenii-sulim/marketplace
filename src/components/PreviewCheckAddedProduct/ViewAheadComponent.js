@@ -201,7 +201,7 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
             </SellerSection>
             <Errors>
               {Object.values(errors).map((item, index) => (
-                <li key={index}>&#x2139; {item}</li>
+                <li key={index}>{item}</li>
               ))}
             </Errors>
           </AboutPrice>

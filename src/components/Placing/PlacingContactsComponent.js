@@ -13,8 +13,6 @@ export default function PlacingContactsComponent({
   value,
   type,
 }) {
-  console.log(name, touched[name] && errors[name]);
-
   return (
     <label>
       <p>
