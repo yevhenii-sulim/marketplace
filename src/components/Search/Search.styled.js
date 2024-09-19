@@ -78,6 +78,7 @@ export const styleSkeleton = {
   width: '100%',
 };
 export const PrevShowSearchedProduct = styled.ul`
+  width: 100%;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -88,7 +89,6 @@ export const PrevShowSearchedProduct = styled.ul`
   transform: translateX(-50%);
   background-color: ${({ theme }) => theme.color.bgProduct};
   border-radius: 6px;
-  width: 500px;
   max-height: 500px;
   overflow-y: auto;
   padding: 15px;
@@ -97,6 +97,9 @@ export const PrevShowSearchedProduct = styled.ul`
     &:hover {
       color: ${({ theme }) => theme.color.bgButton};
     }
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
+    width: 500px;
   }
 `;
 export const BoxLoader = styled.div`

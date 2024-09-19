@@ -131,10 +131,12 @@ export const SimilarProductItemIconWrapper = styled.button`
   justify-content: center;
   background-color: transparent;
   border-radius: 50%;
-  &:hover {
-    background-color: ${({ theme }) => theme.color.bgLike};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.color.bgButtonHover};
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    &:hover {
+      background-color: ${({ theme }) => theme.color.bgLike};
+    }
+    &:active {
+      background-color: ${({ theme }) => theme.color.bgButtonHover};
+    }
   }
 `;
