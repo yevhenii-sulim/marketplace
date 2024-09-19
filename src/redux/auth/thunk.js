@@ -132,8 +132,6 @@ export const logOut = createAsyncThunk('user/exitUser', async () => {
 export const update = createAsyncThunk(
   'user/update',
   async (userData, { getState, dispatch, rejectWithValue }) => {
-    console.log(userData);
-
     const storThunk = getState();
 
     const presentToken = storThunk.users.token;

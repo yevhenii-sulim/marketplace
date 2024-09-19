@@ -258,7 +258,7 @@ export default function AddProductComponent() {
               <Button
                 type="button"
                 sx={viewProductButton}
-                disabled={isSubmitting}
+                disabled={isSubmitting || JSON.stringify(errors) !== '{}'}
                 onClick={aheadViewProduct}
               >
                 Попередній перегляд
@@ -266,7 +266,7 @@ export default function AddProductComponent() {
               <Button
                 type="submit"
                 sx={addProductButton}
-                disabled={isSubmitting}
+                disabled={isSubmitting || JSON.stringify(errors) !== '{}'}
               >
                 Опублікувати
               </Button>

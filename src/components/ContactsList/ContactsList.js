@@ -24,8 +24,6 @@ export default function ContactsList() {
     <ContactList>
       <Group className="first">
         {firstGroup(team).map(({ id, name, spec, link, img }) => {
-          console.log(img);
-
           return (
             <ContactComponent
               key={id}

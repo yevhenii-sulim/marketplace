@@ -85,7 +85,6 @@ function Comments() {
 
   const processedComments = processComments(product.comments || []);
   const handlerExpandedComments = (event, quantityComments) => {
-    console.log(quantityComments);
     if (!commentsLeft) return;
     setQuantityComments(prev => prev + quantityComments);
     setTimeout(() => {

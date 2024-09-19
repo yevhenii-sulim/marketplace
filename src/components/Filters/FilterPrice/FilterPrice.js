@@ -51,9 +51,7 @@ export default function FilterPrice({ setPage }) {
 
   function setMax(event) {
     const price = Number(event.target.value);
-
     getMaxValue(price);
-
     setPage(1);
   }
 

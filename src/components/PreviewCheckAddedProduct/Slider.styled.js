@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 
 export const SliderContainer = styled.section`
+  height: 320px;
   position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 480px;
   background-color: white;
   border-radius: 12px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    height: 480px;
+  }
 `;
 export const SlidersWrapper = styled.article`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  overflow-x: scroll;
-  overflow-x: hidden;
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   &::-webkit-scrollbar {

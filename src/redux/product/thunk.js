@@ -16,7 +16,6 @@ function setToken(token) {
 export const addCommentFromStory = createAsyncThunk(
   'products/addComment',
   async ({ comment, rating, id }, { getState, rejectWithValue, dispatch }) => {
-    console.log(comment, rating, id);
     try {
       const token = getState().users.token;
       const response = await axios.post(
@@ -324,7 +323,6 @@ export const createProduct = createAsyncThunk(
       if (error.response && error.response.status === 401) {
         try {
           const newToken = await refreshToken();
-          console.log(newToken);
           const data = await axios.post(`/products/create`, product, {
             headers: {
               Authorization: `Bearer ${newToken}`,
