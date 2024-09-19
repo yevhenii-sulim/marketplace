@@ -79,7 +79,7 @@ export default function Search() {
         value={value}
         onChange={handleChange}
       />
-      {searchedProduct && isOpen && (
+      {searchedProduct && searchedProduct.length !== 0 && isOpen && (
         <PrevShowSearchedProduct>
           {isLoaded &&
             searchedProduct.map(({ _id, title }) => (
