@@ -10,7 +10,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../../../index.css';
 import ButtonAddMoreComments from './ButtonAddMoreComments';
 
-function Comments() {
+function Comments({ sizeWindow }) {
   const product = useSelector(productForProductPage);
   const [commentId, setCommentId] = useState('');
   const commentsExpanded = useSelector(commentsExpandedSelector);
@@ -125,6 +125,7 @@ function Comments() {
         <ButtonAddMoreComments
           handlerExpandedComments={handlerExpandedComments}
           commentsLeft={commentsLeft}
+          sizeWindow={sizeWindow}
         />
       </AllCommentsContainer>
     </>

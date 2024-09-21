@@ -22,7 +22,7 @@ import { WrapperAllValue, WrapperNameAndValue } from './DescribeInfo.styled';
 
 const modalEnter = document.querySelector('#modal');
 
-function DescribeInfo({ showAccordion }) {
+function DescribeInfo({ showAccordion, sizeWindow }) {
   const product = useSelector(productForProductPage);
   const [isOpen, setIsOpen] = useState(false);
   const basket = useSelector(selectBasket);
@@ -134,7 +134,7 @@ function DescribeInfo({ showAccordion }) {
               Відгуки
             </AccordionSummary>
             <AccordionDetails sx={{ paddingBottom: '24px' }}>
-              <Comments />
+              <Comments sizeWindow={sizeWindow} />
             </AccordionDetails>
           </Accordion>
 

@@ -5,15 +5,15 @@ import { DescriptionProductWrapper } from './DescriptionContainerProduct.styled'
 import Comments from '../Comments/Comments';
 import CommentsHeader from '../Comments/CommentsHeader';
 
-function DescriptionContainerProduct({ showAccordion }) {
+function DescriptionContainerProduct({ showAccordion, sizeWindow }) {
   return (
     <DescriptionProductWrapper>
       <Slider />
-      <DescribeInfo showAccordion={showAccordion} />
+      <DescribeInfo showAccordion={showAccordion} sizeWindow={sizeWindow} />
       {showAccordion ? null : (
         <>
           <CommentsHeader />
-          <Comments />
+          <Comments sizeWindow={sizeWindow} />
         </>
       )}
     </DescriptionProductWrapper>
