@@ -43,13 +43,16 @@ export const CommentButtonBlock = styled.div`
     width: ${({ $isNested }) => ($isNested ? '65%' : '55%')};
   }
   @media (max-width: 600px) {
-    width: ${({ $isNested }) => ($isNested ? '80%' : '55%')};
+    width: ${({ $isNested }) => ($isNested ? '80%' : '65%')};
   }
   @media (max-width: 500px) {
-    width: ${({ $isNested }) => ($isNested ? '90%' : '55%')};
+    width: ${({ $isNested }) => ($isNested ? '90%' : '75%')};
   }
   @media (max-width: 430px) {
-    width: ${({ $isNested }) => ($isNested ? '100%' : '55%')};
+    width: ${({ $isNested }) => ($isNested ? '100%' : '75%')};
+  }
+  @media (max-width: 360px) {
+    width: ${({ $isNested }) => ($isNested ? '100%' : '85%')};
   }
 `;
 
@@ -66,4 +69,8 @@ export const CreateFieldContainer = styled.div`
   position: relative;
   width: 75%;
   margin: 0 60px 0 auto;
+  @media (max-width: 412px) {
+    width: 98%;
+    margin: 0 12px 0 auto;
+  }
 `;
