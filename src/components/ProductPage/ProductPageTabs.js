@@ -77,7 +77,7 @@ function ProductPageTabs() {
         </TabList>
       </Box>
       <TabPanel value="1" sx={{ padding: '12px 0' }}>
-        <AboutProduct showAccordion={showAccordion} />
+        <AboutProduct showAccordion={showAccordion} sizeWindow={sizeWindow} />
         <SimilarProductsHeader>Схожі оголошення</SimilarProductsHeader>
         <SimilarProductList
           showAccordion={showAccordion}

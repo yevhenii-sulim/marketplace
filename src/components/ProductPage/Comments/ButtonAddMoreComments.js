@@ -4,6 +4,7 @@ import { buttonAddMoreComments } from './CreateCommentField/material.styles';
 export default function ButtonAddMoreComments({
   handlerExpandedComments,
   commentsLeft,
+  sizeWindow,
 }) {
   return (
     <>
@@ -15,7 +16,11 @@ export default function ButtonAddMoreComments({
             handlerExpandedComments(event, quantity)
           }
         >
-          Завантажити ще {commentsLeft > 10 ? 10 : commentsLeft} коментарів
+          {sizeWindow > 410
+            ? `Завантажити ще ${
+                commentsLeft > 10 ? 10 : commentsLeft
+              } коментарів`
+            : 'Завантажити ще'}
         </Button>
       )}
     </>

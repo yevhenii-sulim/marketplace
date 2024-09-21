@@ -15,7 +15,10 @@ import { selectBasket } from '../../../redux/basket/select';
 import BasketModal from 'components/BasketModal/BasketModal';
 import { useState } from 'react';
 import ProductCostSection from './ProductCost';
-import { addFavoriteProduct } from '../../../redux/product/thunk';
+import {
+  addFavoriteProduct,
+  removeFavoriteProduct,
+} from '../../../redux/product/thunk';
 import { selectMyUser } from '../../../redux/auth/selector';
 
 const body = document.querySelector('body');
@@ -62,7 +65,12 @@ function OrderSection() {
   }
 
   const addFavorite = productId => {
-    dispatch(addFavoriteProduct(productId));
+    if (!user) return;
+    if (user.favorites.some(el => el._id === product._id)) {
+      dispatch(removeFavoriteProduct(productId));
+    } else {
+      dispatch(addFavoriteProduct(productId));
+    }
   };
   return (
     <OrderSectionWrapper>
