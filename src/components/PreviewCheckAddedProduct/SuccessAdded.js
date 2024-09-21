@@ -3,6 +3,7 @@ import { selectMyUser } from '../../redux/auth/selector';
 import SendedCommentSvg from 'SvgComponents/SendedComment/SendedCommentSvg';
 import { Container, Link, SignSuccess } from './ViewAhead.styled';
 import { selectorLink } from '../../redux/createLink/selector';
+import { windowScrollTop } from 'utils/windowScrollTop';
 
 export default function SuccessAdded() {
   const user = useSelector(selectMyUser);
@@ -24,7 +25,7 @@ export default function SuccessAdded() {
         <SendedCommentSvg />
         <p>Ваше оголошення опубліковане!</p>
       </SignSuccess>
-      <Link to={`${linkToProduct}/${thisProductId}`}>
+      <Link to={`${linkToProduct}/${thisProductId}`} onClick={windowScrollTop}>
         Перейти до оголошення
       </Link>
     </Container>

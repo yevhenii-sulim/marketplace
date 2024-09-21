@@ -30,6 +30,17 @@ export default function ContactForm({
     phoneNumber: '',
   });
 
+  function isNumberPhone(value) {
+    return !/^\s*((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}\s*$/i.test(
+      value.phoneNumber
+    );
+  }
+  function isEmail(value) {
+    return !/^\s*[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\s*$/i.test(value.email);
+  }
+
+  console.log(isNumberPhone(contactDataChanges), isEmail(contactDataChanges));
+
   const saveChanges = async () => {
     const changes = {
       email: contactDataChanges?.email || user?.email,
@@ -79,6 +90,9 @@ export default function ContactForm({
         {redacting ? (
           <>
             <RedactButton
+              disabled={
+                isNumberPhone(contactDataChanges) || isEmail(contactDataChanges)
+              }
               onClick={() => {
                 saveChanges();
                 onSaveChanges();
@@ -107,6 +121,14 @@ export default function ContactForm({
 
 function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
   const { width } = useWindowDimensions();
+  function isNumberPhone(value) {
+    return !/^\s*((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}\s*$/i.test(
+      value.phoneNumber
+    );
+  }
+  function isEmail(value) {
+    return !/^\s*[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\s*$/i.test(value.email);
+  }
 
   return width > 672 ? (
     <>
@@ -125,6 +147,13 @@ function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
               email: event.target.value,
             })
           }
+          style={
+            isEmail(contactDataChanges)
+              ? {
+                  border: `3px solid ${theme.color.colorTextErrorForm}`,
+                }
+              : {}
+          }
           disabled={!redacting}
           width={width > parseInt(theme.breakPoints.md) ? '320px' : null}
         />
@@ -135,13 +164,20 @@ function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
       >
         <PhoneNumberFormField
           label={'Телефон'}
-          placeholder={'+38 --- --- -- --'}
+          placeholder={'+38 --- -- --'}
           value={contactDataChanges?.phoneNumber || user?.numberPhone}
           onChange={event =>
             setContactDataChanges({
               ...contactDataChanges,
               phoneNumber: event.target.value,
             })
+          }
+          style={
+            isNumberPhone(contactDataChanges)
+              ? {
+                  border: `3px solid ${theme.color.colorTextErrorForm}`,
+                }
+              : {}
           }
           disabled={!redacting}
           width={width > parseInt(theme.breakPoints.md) ? '320px' : null}
@@ -161,11 +197,18 @@ function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
             email: event.target.value,
           })
         }
+        style={
+          isEmail(contactDataChanges)
+            ? {
+                border: `3px solid ${theme.color.colorTextErrorForm}`,
+              }
+            : {}
+        }
         disabled={!redacting}
       />
       <PhoneNumberFormField
         label={'Телефон'}
-        placeholder={'+38 --- --- -- --'}
+        placeholder={'+38 --- -- --'}
         value={contactDataChanges?.phoneNumber || user?.numberPhone}
         onChange={event =>
           setContactDataChanges({

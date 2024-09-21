@@ -4,6 +4,7 @@ import { List, UnList } from './SubcategoriesComponent.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory } from '../../redux/category/slice';
 import { selectCategory } from '../../redux/category/selectors';
+import { windowScrollTop } from 'utils/windowScrollTop';
 
 export default memo(function SubcategoriesComponent({
   category,
@@ -29,7 +30,7 @@ export default memo(function SubcategoriesComponent({
                 )
               }
             >
-              <Link to={`/${category}/${link}`}>
+              <Link to={`/${category}/${link}`} onClick={windowScrollTop}>
                 <img src={img} alt={nameList} />
                 <p>{nameList}</p>
               </Link>
