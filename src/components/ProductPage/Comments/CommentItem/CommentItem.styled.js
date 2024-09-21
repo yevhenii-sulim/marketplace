@@ -4,6 +4,14 @@ export const CommentsWrapper = styled.section`
   width: ${({ $isNested }) => ($isNested ? '82%' : '100%')};
   border-radius: 12px;
   margin: ${({ $isNested }) => ($isNested ? '8px auto 0 120px' : '24px 0 0 0')};
+  @media (max-width: 412px) {
+    margin: ${({ $isNested }) =>
+      $isNested ? '8px auto 0 60px' : '24px 0 0 0'};
+  }
+  @media (max-width: 369px) {
+    margin: ${({ $isNested }) =>
+      $isNested ? '8px auto 0 40px' : '24px 0 0 0'};
+  }
 `;
 export const CommentsContainer = styled.article`
   display: flex;
@@ -17,6 +25,16 @@ export const CommentsIconBlock = styled.div`
   background-color: #d9d9d9;
   border-radius: 50%;
   border: 1px solid black;
+  @media (max-width: 600px) {
+    width: ${({ $isNested }) => ($isNested ? '32px' : '54px')};
+    height: ${({ $isNested }) => ($isNested ? '32px' : '54px')};
+    margin-right: ${({ $isNested }) => ($isNested ? '' : '18px')};
+  }
+  @media (max-width: 412px) {
+    width: ${({ $isNested }) => ($isNested ? '28px' : '50px')};
+    height: ${({ $isNested }) => ($isNested ? '28px' : '50px')};
+    margin-right: ${({ $isNested }) => ($isNested ? '' : '4px')};
+  }
 `;
 
 export const CommentsContentBlock = styled.div`
@@ -36,6 +54,7 @@ export const CommentsDataBlock = styled.span`
   font-size: 18px;
   color: #686868;
   margin-left: 8px;
+  white-space: nowrap;
 `;
 export const CommentsTextBlock = styled.p`
   width: 98%;
