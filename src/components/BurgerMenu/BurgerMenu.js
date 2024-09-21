@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import MenuResponse from 'components/MenuResponse/MenuResponse';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../../redux/auth/selector';
+import { windowScrollTop } from 'utils/windowScrollTop';
 
 const modalEnter = document.querySelector('#modal');
 
@@ -29,6 +30,7 @@ export default function BurgerMenu() {
     setTimeout(() => {
       setIsOpenMenu(prev => !prev);
     }, 500);
+    windowScrollTop();
   }
   return (
     <div>

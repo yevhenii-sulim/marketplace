@@ -7,6 +7,7 @@ import BasketProductComponent from 'components/BasketProductComponent/BasketProd
 import BasketTotalPriceComponent from 'components/BasketTotalPriceComponent/BasketTotalPriceComponent';
 import BasketButtonsOrder from 'components/BasketButtonsOrder/BasketButtonsOrder';
 import { Empty, Link, Title, WrapperOrder } from './Basket.styled';
+import { windowScrollTop } from 'utils/windowScrollTop';
 
 export default function Basket() {
   const categories = useSelector(selectCategory);
@@ -19,10 +20,12 @@ export default function Basket() {
 
   function continueShopping() {
     navigation(`/${categories.category.en}/${categories.subCategory.en}`);
+    windowScrollTop();
   }
 
   const makeOrder = () => {
     navigation('/ordering');
+    windowScrollTop();
   };
 
   return (

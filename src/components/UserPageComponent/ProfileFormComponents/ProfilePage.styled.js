@@ -178,6 +178,9 @@ export const RedactButton = styled.button`
   font: 800 18px 'Nunito Sans';
   color: #fff;
   line-height: 26px;
+  &:disabled {
+    background: #f4f4f4;
+  }
 `;
 
 export const CancelRedactingButton = styled.button`

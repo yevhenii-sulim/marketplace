@@ -10,6 +10,7 @@ import {
   Sign,
   ContainerFooter,
 } from './Footer.styled';
+import { windowScrollTop } from 'utils/windowScrollTop';
 
 export default function Footer() {
   return (
@@ -17,17 +18,23 @@ export default function Footer() {
       <Container>
         <ContainerFooter>
           <About>
-            <LogoContainer>
+            <LogoContainer onClick={windowScrollTop}>
               <Logo fill="#000000" />
             </LogoContainer>
             <AboutContent>Сервіс де продати і купити може кожен!</AboutContent>
           </About>
           <Confederacy>
             <div>
-              <Link to="/agreement">Угода користувача </Link>
-              <Link to="/confederacy">Політика конфіденційності</Link>
+              <Link to="/agreement" onClick={windowScrollTop}>
+                Угода користувача
+              </Link>
+              <Link to="/confederacy" onClick={windowScrollTop}>
+                Політика конфіденційності
+              </Link>
             </div>
-            <Link to="/contacts">Наші контакти</Link>
+            <Link to="/contacts" onClick={windowScrollTop}>
+              Наші контакти
+            </Link>
           </Confederacy>
         </ContainerFooter>
         <Sign>© Розробка "Team Challenge" 2024. Усі права захищені.</Sign>

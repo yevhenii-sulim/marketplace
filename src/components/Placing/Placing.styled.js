@@ -160,6 +160,7 @@ export const WrapperForm = styled.div`
     background-color: ${({ theme }) => theme.color.bgFooter};
   }
 `;
+
 export const styleSelect = {
   position: 'relative',
   width: '100%',
