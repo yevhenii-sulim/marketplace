@@ -1,108 +1,72 @@
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext,
-} from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
-import 'pure-react-carousel/dist/react-carousel.es.css';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+
 import SimilarProduct from 'components/Product/SimilarProduct';
 import useWindowDimensions from 'hooks/useWindowDimensions';
-import {
-  ButtonSlider,
-  ContainerSlide,
-  Pointer,
-  TitleCategory,
-} from './HomePageComponent.styled';
-import { theme } from 'utils/theme';
+import { ContainerSlide, TitleCategory } from './HomePageComponent.styled';
+
 export default function HomePageComponent({ filteredProducts, title }) {
   const { width } = useWindowDimensions();
-  const setVisibleSlides = width => {
-    if (width >= parseInt(theme.breakPoints.lg)) {
-      return 5;
-    }
-    if (
-      width < parseInt(theme.breakPoints.lg) &&
-      width >= parseInt(theme.breakPoints.mx)
-    ) {
-      return 3;
-    }
-    if (
-      width < parseInt(theme.breakPoints.mx) &&
-      width > parseInt(theme.breakPoints.sm)
-    ) {
-      return 2;
-    }
-    return 1;
-  };
+
   return (
     <ContainerSlide>
       <TitleCategory>{title}</TitleCategory>
-      <CarouselProvider
-        className="slider"
-        totalSlides={filteredProducts.length}
-        step={setVisibleSlides(width)}
-        visibleSlides={setVisibleSlides(width)}
-        isIntrinsicHeight={true}
-        isPlaying={width < parseInt(theme.breakPoints.md)}
-        dragStep={setVisibleSlides(width)}
+      <Swiper
+        modules={[Pagination]}
+        spaceBetween={
+          width > 1440 ? 10 : width > 500 ? (width < 767 ? 100 : 20) : 50
+        }
+        slidesPerView={
+          width > 1440
+            ? 5
+            : width > 1024
+            ? 4
+            : width > 500
+            ? width < 767
+              ? width < 650
+                ? 3
+                : 4
+              : 3
+            : 2
+        }
+        pagination={{ clickable: true, dynamicBullets: true }}
       >
-        <Slider>
-          {filteredProducts?.map(
-            (
-              {
-                title,
-                subCategory,
-                _id,
-                img,
-                price,
-                discountPrice,
-                createDate,
-                discount,
-                parameters,
-                category,
-              },
-              index
-            ) => {
-              return (
-                <Slide index={index} key={_id}>
-                  <SimilarProduct
-                    id={_id}
-                    subCategory={{ ...subCategory }}
-                    title={title}
-                    price={price}
-                    img={img}
-                    discountPrice={discountPrice}
-                    discount={discount}
-                    createDate={createDate}
-                    eco={parameters.eco}
-                    isUkraine={parameters.isUkraine}
-                    category={{ ...category }}
-                  />
-                </Slide>
-              );
-            }
-          )}
-        </Slider>
-        <Pointer>
-          <li></li>
-          <li></li>
-          <li></li>
-        </Pointer>
-        {filteredProducts.length > setVisibleSlides(width) && (
-          <>
-            <ButtonBack>
-              <ArrowBackIcon sx={ButtonSlider} />
-            </ButtonBack>
-            <ButtonNext>
-              <ArrowForwardIcon sx={ButtonSlider} />
-            </ButtonNext>
-          </>
+        {filteredProducts?.map(
+          (
+            {
+              title,
+              subCategory,
+              _id,
+              img,
+              price,
+              discountPrice,
+              createDate,
+              discount,
+              parameters,
+              category,
+            },
+            index
+          ) => {
+            return (
+              <SwiperSlide index={index} key={_id}>
+                <SimilarProduct
+                  id={_id}
+                  subCategory={{ ...subCategory }}
+                  title={title}
+                  price={price}
+                  img={img}
+                  discountPrice={discountPrice}
+                  discount={discount}
+                  createDate={createDate}
+                  eco={parameters.eco}
+                  isUkraine={parameters.isUkraine}
+                  category={{ ...category }}
+                />
+              </SwiperSlide>
+            );
+          }
         )}
-      </CarouselProvider>
+      </Swiper>
     </ContainerSlide>
   );
 }

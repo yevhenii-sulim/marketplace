@@ -16,7 +16,7 @@ export const initialState = {
     filters: {},
     search: [],
     prevSearch: [],
-    isLoading: true,
+    isLoading: false,
     isLoadingSearch: false,
     loader: false,
   },

@@ -109,3 +109,44 @@ export const Pointer = styled.ul`
     }
   }
 `;
+
+export const ButtonBack = styled.button`
+  display: none;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgButton};
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    pointer-events: all;
+    transition: opacity 500ms ease;
+    z-index: 2;
+  }
+`;
+export const ButtonNext = styled.button`
+  display: none;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.bgButton};
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+    pointer-events: all;
+    transition: opacity 500ms ease;
+    z-index: 2;
+  }
+`;
