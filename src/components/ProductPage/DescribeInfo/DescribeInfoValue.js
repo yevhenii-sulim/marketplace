@@ -28,7 +28,7 @@ export default function DescribeInfoValue() {
                 height: ' 100%',
                 fontWeight: 400,
                 marginLeft: '5px',
-                fontSize: '14px',
+                fontSize: '18px',
                 marginTop: '2px',
                 alignItems: 'center',
                 whiteSpace: 'nowrap',

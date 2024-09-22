@@ -37,7 +37,7 @@ export const DescribeInfoState = styled.span`
 
 export const DescribeInfoStateWrapper = styled.div`
   display: flex;
-  font-size: 22px;
+
   font-weight: 700;
   margin: 4px 0;
   flex-wrap: wrap;
@@ -64,6 +64,7 @@ export const DescribeInfoStateItem = styled.div`
   align-items: center;
 `;
 export const DescribeInfoParagraph = styled.p`
+  font-size: 18px;
   @media (max-width: 767px) {
     width: 100%;
   }

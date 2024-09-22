@@ -24,7 +24,7 @@ function ProductPageTabs() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth > 1024) {
         setShowAccordion(false);
       } else {
         setShowAccordion(true);
