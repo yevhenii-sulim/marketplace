@@ -67,7 +67,6 @@ export default function HomePage() {
           title="Кращий вибір"
         />
       )}
-
       {productsNew.length !== 0 && (
         <HomePageComponent
           filteredProducts={productsNew}

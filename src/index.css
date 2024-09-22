@@ -225,7 +225,8 @@ a {
 
 .swiper {
   z-index: 0 !important;
-  height: 445px !important;
+  padding-bottom: 32px !important;
+  /* height: 445px !important; */
 }
 
 .visibility-hidden {
@@ -245,16 +246,16 @@ a {
   .swiper-pagination {
     margin-top: 50px !important;
   }
-  .swiper {
+  /* .swiper {
     height: 465px !important;
-  }
+  } */
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .swiper {
     height: 380px !important;
   }
-}
+} */
 
 @media (max-width: 480px) {
   .MuiTabPanel-root {

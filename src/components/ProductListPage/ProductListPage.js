@@ -25,7 +25,11 @@ import {
   ListPath,
   FiltersList,
   HeaderCatalog,
+  EmptySearch,
+  TitleSection,
+  BoxSvg,
 } from './ProductListPage.styled';
+import NoSearched from 'SvgComponents/NoSearched/NoSearched';
 
 export default function ProductListPage({
   page,
@@ -99,7 +103,7 @@ export default function ProductListPage({
               </TitleProducts>
             )}
           </HeaderCatalog>
-          {isLoading && sortedProduct.length !== 0 ? (
+          {isLoading && sortedProduct.length !== 0 && (
             <Product>
               {sortedProduct.map(
                 ({
@@ -131,8 +135,20 @@ export default function ProductListPage({
                 )
               )}
             </Product>
-          ) : (
-            <SkeletonCatalogList />
+          )}
+          {!isLoading && <SkeletonCatalogList />}
+          {isLoading && sortedProduct.length === 0 && (
+            <EmptySearch>
+              <TitleSection>
+                На жаль, за вашим запитом нічого не знайдено.
+              </TitleSection>
+              <ul>
+                <li>Спробуйте використати інші фільтри</li>
+              </ul>
+              <BoxSvg>
+                <NoSearched />
+              </BoxSvg>
+            </EmptySearch>
           )}
 
           {sortedProduct.length !== 0 && (
@@ -149,15 +165,3 @@ export default function ProductListPage({
     </ContainerProductPageList>
   );
 }
-
-// <EmptySearch>
-//   <TitleSection>
-//     На жаль, за вашим запитом нічого не знайдено.
-//   </TitleSection>
-//   <ul>
-//     <li>Спробуйте використати інші фільтри</li>
-//   </ul>
-//   <BoxSvg>
-//     <NoSearched />
-//   </BoxSvg>
-// </EmptySearch>

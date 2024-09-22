@@ -28,56 +28,6 @@ export const NameCategory = styled.p`
 export const Category = styled.ul`
   margin-bottom: 32px;
   margin-top: 32px;
-  .slider {
-    width: 100%;
-    position: relative;
-  }
-  .carousel__inner-slide {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-  }
-  .carousel__next-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.bgButton};
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    pointer-events: all;
-    transition: opacity 500ms ease;
-    &:disabled {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-  .carousel__back-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.bgButton};
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    pointer-events: all;
-    transition: opacity 500ms ease;
-    &:disabled {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
 `;
 
 export const List = styled.li`

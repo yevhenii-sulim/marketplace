@@ -1,21 +1,23 @@
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {
   ButtonBack,
   ButtonNext,
   CarouselProvider,
   Slider,
 } from 'pure-react-carousel';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 import FirstSlide from './FirstSlide';
+import SecondSlide from './SecondSlide';
+import ThirdSlide from './ThirdSlide';
 import {
   ButtonSlider,
   HomePageAdSliderContainer,
   Pointer,
 } from './HomePageAdSlider.styled';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SecondSlide from './SecondSlide';
-import ThirdSlide from './ThirdSlide';
-import useWindowDimensions from 'hooks/useWindowDimensions';
-import { theme } from 'utils/theme';
 
 export default function HomePageAdSlider() {
   const { width } = useWindowDimensions();
