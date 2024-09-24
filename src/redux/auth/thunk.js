@@ -174,7 +174,6 @@ export const update = createAsyncThunk(
 export const getUser = createAsyncThunk('myUser/getUser', async user => {
   try {
     const { data } = await axios.get(`/user/${user}`);
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

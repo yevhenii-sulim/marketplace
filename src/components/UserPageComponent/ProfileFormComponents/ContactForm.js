@@ -8,7 +8,7 @@ import {
 import PhoneNumberFormField from './PhoneNumberFormField';
 import { useSelector } from 'react-redux';
 import { selectMyUser, selectToken } from '../../../redux/auth/selector';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InputField from './InputField';
 import axios from 'axios';
 import useWindowDimensions from 'hooks/useWindowDimensions';
@@ -30,6 +30,11 @@ export default function ContactForm({
     phoneNumber: '',
   });
 
+  useEffect(() => {
+    if (!user) return;
+    setContactDataChanges({ email: user.email, phoneNumber: user.numberPhone });
+  }, [user]);
+
   function isNumberPhone(value) {
     return !/^\s*((\+38)[- ]?)(\(?(0)\d{2}\)?[- ]?)?\d{2}[- ]?\d{1}[- ]?\d{1}[- ]?\d{1}[- ]?\d{2}\s*$/i.test(
       value.phoneNumber
@@ -38,8 +43,6 @@ export default function ContactForm({
   function isEmail(value) {
     return !/^\s*[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\s*$/i.test(value.email);
   }
-
-  console.log(isNumberPhone(contactDataChanges), isEmail(contactDataChanges));
 
   const saveChanges = async () => {
     const changes = {

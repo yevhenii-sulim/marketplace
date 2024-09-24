@@ -12,7 +12,6 @@ export default function CatalogPage() {
   const products = useSelector(selectProduct);
   const category = useSelector(selectCategory);
   const totalItemsCount = useSelector(selectTotalPages);
-  console.log(products);
 
   const location = useLocation();
   const dispatch = useDispatch();

@@ -11,7 +11,7 @@ export const team = [
     name: 'Марія Сметаніна',
     spec: 'UI/UX Designer',
     link: 'https://www.linkedin.com/in/mariia-smetanina-7803b72aa/',
-    img: '/marketplace/images/catalog/for-free.png',
+    img: '/marketplace/images/team/mary.HEIC',
   },
   {
     id: 5,
