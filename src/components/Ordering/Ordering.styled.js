@@ -68,7 +68,6 @@ export const Empty = styled.div`
   }
 `;
 export const Form = styled(FormContainer)`
-  width: 320px;
   margin: auto;
   display: grid;
   padding-top: 24px;
@@ -77,15 +76,6 @@ export const Form = styled(FormContainer)`
   font-size: 18px;
   font-weight: 800;
   line-height: 1.44;
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
-    width: ${({ theme }) => theme.breakPoints.sx};
-  }
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
-    width: ${({ theme }) => theme.breakPoints.mx};
-  }
-  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
-    width: ${({ theme }) => theme.breakPoints.md};
-  }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     width: auto;
     grid-template-columns: 2fr auto;

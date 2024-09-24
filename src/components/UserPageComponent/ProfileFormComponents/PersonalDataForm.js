@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import InputField from './InputField';
 import DateFormField from './DateFormField';
@@ -76,6 +76,17 @@ function Form({ redacting, user }) {
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [surName, setSurName] = useState('');
+  const [gender, setGender] = useState('');
+  const [img, setImg] = useState('');
+
+  useEffect(() => {
+    if (!user) return;
+    setLastName(user.lastName);
+    setFirstName(user.firstName);
+    setSurName(user.surName);
+    setGender(user.gender);
+    setImg(user.profilePictureSrc);
+  }, [user]);
 
   const dispatch = useDispatch();
 
@@ -127,7 +138,7 @@ function Form({ redacting, user }) {
         />
         <GenderSelect
           disabled={!redacting}
-          value={user?.gender}
+          value={gender}
           onChange={event => {
             dispatch(update({ gender: event.target.value }));
           }}
@@ -179,8 +190,8 @@ function Form({ redacting, user }) {
         </UserFieldName>
       </InputColumn>
       <Image>
-        {user?.profilePictureSrc ? (
-          <img src={user.profilePictureSrc} alt="user.firstName" />
+        {img ? (
+          <img src={img} alt="user.firstName" />
         ) : (
           <DefaultProfilePicture />
         )}

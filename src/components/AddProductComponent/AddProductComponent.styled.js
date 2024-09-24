@@ -228,6 +228,7 @@ export const Price = styled.div`
 `;
 
 export const LabelSign = styled.p`
+  text-align: left;
   position: relative;
   font-size: 18px;
   font-weight: 600;
