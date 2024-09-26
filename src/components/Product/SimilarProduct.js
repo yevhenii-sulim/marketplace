@@ -52,6 +52,7 @@ function SimilarProduct({
     return location.pathname.match(/[/]/g).length === count;
   }
   function toggleFavorite(id) {
+    if (!user) return;
     if (user.favorites.some(({ _id }) => id === _id)) {
       dispatch(removeFavoriteProduct(id));
     } else {
@@ -133,7 +134,9 @@ function SimilarProduct({
           </Price>
 
           <SimilarProductItemIconWrapper onClick={() => toggleFavorite(id)}>
-            {user?.favorites.some(({ _id }) => id === _id) ? (
+            {user &&
+            user.favorites &&
+            user.favorites.some(({ _id }) => id === _id) ? (
               <FavoriteIcon sx={{ color: theme.color.bgNumberBasket }} />
             ) : (
               <FavoriteBorderIcon />

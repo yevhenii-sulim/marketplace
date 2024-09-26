@@ -143,10 +143,6 @@ export const TitleProducts = styled.h1`
   }
 `;
 export const EmptySearch = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   margin-top: 32px;

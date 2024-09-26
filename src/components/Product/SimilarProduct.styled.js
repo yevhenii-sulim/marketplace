@@ -70,7 +70,7 @@ export const SimilarProductItemName = styled.h4`
   line-height: 1;
   margin-top: 12px;
   color: ${({ theme }) => theme.color.colorMainText};
-  height: 42px;
+  height: 30px;
   overflow: hidden;
   position: relative;
   &:hover {
