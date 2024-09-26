@@ -28,13 +28,6 @@ export const team = [
     img: '/marketplace/images/team/img.png',
   },
   {
-    id: 7,
-    name: 'Михайло Євсюков',
-    spec: 'FrontEnd Dev',
-    link: 'https://www.linkedin.com/in/mikhail-evsukov-36a5a9318/',
-    img: '/marketplace/images/team/misha.jpg',
-  },
-  {
     id: 8,
     name: 'Сергій Калина',
     spec: 'FullStack Dev',
@@ -64,6 +57,13 @@ export const team = [
   },
   {
     id: 12,
+    name: 'Ярослав Мартекляс',
+    spec: 'QA Engineer',
+    link: 'https://www.linkedin.com/in/yaroslav-marteklias-7bb2782b3/',
+    img: '//marketplace/images/catalog/for-free.png',
+  },
+  {
+    id: 13,
     name: 'Олена Міщенко',
     spec: 'QA Engineer',
     link: 'https://www.linkedin.com/in/olena-mishchenko-276927268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',

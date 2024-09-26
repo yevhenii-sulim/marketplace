@@ -30,6 +30,7 @@ export const ProductsPage = styled.div`
 export const BoxSvg = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-grow: 2;
 `;
 export const TitleSort = styled.h2`

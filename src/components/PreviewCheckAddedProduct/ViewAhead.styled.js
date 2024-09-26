@@ -4,6 +4,7 @@ import { Link as LinkAtProduct } from 'react-router-dom';
 
 export const WrapperModal = styled.div`
   width: 100%;
+  max-width: 1440px;
   background-color: ${({ theme }) => theme.color.bgCommon};
   border: 3px solid ${({ theme }) => theme.color.borderRegister};
   border-radius: 12px;
@@ -30,28 +31,24 @@ export const WrapperModal = styled.div`
     margin-bottom: 20px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
-    width: ${({ theme }) => theme.breakPoints.sx};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     padding-left: 32px;
     padding-right: 32px;
-    width: ${({ theme }) => theme.breakPoints.md};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     padding: 44px 58px;
-    width: ${({ theme }) => theme.breakPoints.lg};
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
     padding: 44px 58px;
-    width: ${({ theme }) => theme.breakPoints.xl};
   }
 `;
 export const Advertisement = styled.div`
-  display: grid;
-  gap: 20px;
   margin: auto;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    display: grid;
     grid-template-columns: 764px auto;
+    gap: 20px;
   }
 `;
 
@@ -64,6 +61,7 @@ export const TitleDescription = styled.h3`
 `;
 
 export const AboutProduct = styled.div`
+  position: relative;
   border-radius: 12px;
   .complaint {
     text-align: end;
@@ -123,7 +121,6 @@ export const viewProductButton = {
   alignItems: 'center',
   bgcolor: theme.color.bgProduct,
   borderRadius: '8px',
-  height: '48px',
   padding: '8px 12px',
   fontFamily: 'Jost',
   fontSize: '22px',
@@ -164,6 +161,7 @@ export const addProductButton = {
     color: 'black',
   },
 };
+
 export const Description = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   margin-top: 24px;
@@ -232,6 +230,12 @@ export const IconWrapper = styled.span`
   background-color: ${({ theme }) => theme.color.bgFooter};
   padding: 8px;
   border-radius: 50%;
+  @media screen and (max-width: ${({ theme }) => theme.breakPoints.lg}) {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+  }
 `;
 
 export const PriceWithDiscount = styled.div`
