@@ -11,7 +11,7 @@ export const team = [
     name: 'Марія Сметаніна',
     spec: 'UI/UX Designer',
     link: 'https://www.linkedin.com/in/mariia-smetanina-7803b72aa/',
-    img: '/marketplace/images/team/mary.HEIC',
+    img: '/marketplace/images/team/mary.jpg',
   },
   {
     id: 5,
@@ -67,6 +67,6 @@ export const team = [
     name: 'Олена Міщенко',
     spec: 'QA Engineer',
     link: 'https://www.linkedin.com/in/olena-mishchenko-276927268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    img: '/marketplace/images/catalog/for-free.png',
+    img: '/marketplace/images/team/olena.jpg',
   },
 ];
