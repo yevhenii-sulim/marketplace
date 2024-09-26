@@ -22,7 +22,20 @@ export const OrderProductContainer = styled.li`
     gap: 50px;
   }
 `;
+export const Value = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
 
+  font: 400 16px 'Nunito Sans';
+  line-height: 20px;
+
+  img {
+    width: 88px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+`;
 export const OrderReceiverData = styled.div`
   display: flex;
   flex-direction: column;

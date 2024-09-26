@@ -30,9 +30,7 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
   const isAuth = useSelector(selectAuth);
   const user = useSelector(selectMyUser);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-
   function onOpenProfile(evt) {
     if (isAuth) {
       toggleMenu();
@@ -74,12 +72,19 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
                   rating={0 || user?.rating.count}
                   nameUser={0 || user?.firstName}
                   imgUser={
-                    user?.img || '/marketplace/images/catalog/for-free.png'
+                    user?.profilePictureSrc !== ''
+                      ? user?.profilePictureSrc
+                      : '/marketplace/images/catalog/for-free.png'
                   }
                 />
                 <Sidebar>
-                  <CategoryList>
-                    <LinkAxillary to="/catalog" onClick={onCloseMenu}>
+                  <CategoryList
+                    onClick={() => {
+                      onCloseMenu();
+                      navigate('/catalog');
+                    }}
+                  >
+                    <LinkAxillary>
                       <CategorySvg stroke="black" height="32px" width="32px" />
                       Каталог товарів
                     </LinkAxillary>
@@ -92,7 +97,12 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
           ) : (
             <>
               <section>
-                <Contacts>
+                <Contacts
+                  onClick={() => {
+                    onCloseMenu();
+                    navigate('/contacts');
+                  }}
+                >
                   <MarkAsk />
                   <Link to="/contacts" onClick={onCloseMenu}>
                     Контакти команди

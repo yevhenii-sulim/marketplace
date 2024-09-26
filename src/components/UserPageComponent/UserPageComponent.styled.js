@@ -7,8 +7,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding-top: 32px;
-  padding-bottom: 32px;
 `;
 export const Title = styled.h1`
   font-family: Jost;
@@ -49,9 +47,7 @@ export const User = styled.div`
   align-items: center;
   gap: 16px;
   img {
-    width: 71px;
-    height: 71px;
-    border-radius: 50%;
+    border-radius: 10px;
   }
 `;
 export const UserName = styled.div`
@@ -99,7 +95,7 @@ export const ContainerUserMain = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
     grid-template-columns: 274px auto;
-    padding-top: 140px;
+    padding-top: 196px;
     gap: 32px;
   }
 `;

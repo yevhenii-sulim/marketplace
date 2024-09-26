@@ -67,24 +67,8 @@ export const Field = styled(FieldInput)`
     width: 100%;
     background: transparent;
     padding: 10px 12px 8px;
-    max-width: 280px;
     &::placeholder {
       line-height: 0;
-    }
-    @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
-      max-width: calc(${({ theme }) => theme.breakPoints.sm} - 16px);
-    }
-    @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
-      max-width: calc(${({ theme }) => theme.breakPoints.sx} - 16px);
-    }
-    @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
-      max-width: calc(${({ theme }) => theme.breakPoints.mx} - 16px);
-    }
-    @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
-      max-width: calc(${({ theme }) => theme.breakPoints.md} - 16px);
-    }
-    @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
-      max-width: 'auto';
     }
   }
 `;

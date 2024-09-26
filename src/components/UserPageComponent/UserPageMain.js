@@ -38,7 +38,11 @@ export default function UserPageMain() {
           <UserPageHeader
             rating={0 || user?.rating.count}
             nameUser={0 || user?.firstName}
-            imgUser={user?.img || '/marketplace/images/catalog/for-free.png'}
+            imgUser={
+              user?.profilePictureSrc !== ''
+                ? user?.profilePictureSrc
+                : '/marketplace/images/catalog/for-free.png'
+            }
           />
           <Sidebar>
             <UserPageSidebar />

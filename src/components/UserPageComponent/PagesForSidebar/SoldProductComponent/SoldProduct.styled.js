@@ -35,7 +35,6 @@ export const OrderProductDataContainer = styled.div`
   gap: 20px;
 `;
 export const OrderProductImageAndTitle = styled.div`
-  width: 80%;
   display: flex;
   align-items: center;
   gap: 16px;

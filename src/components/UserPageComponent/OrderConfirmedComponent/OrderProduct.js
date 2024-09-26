@@ -7,6 +7,7 @@ import {
   OrderReceiverData,
   OrderProductContainer,
   OrderProductImage,
+  Value,
 } from './OrderConfirmedComponent.styled';
 import { formatDate } from 'data/formatDate';
 
@@ -35,10 +36,10 @@ export default function OrderProduct({
             <OrderProductImage>
               <img src={imgSrc} alt="" />
             </OrderProductImage>
-            <div>
+            <Value>
               <h2>{title}</h2>
               <OrderProductPrice>{price}&nbsp;₴</OrderProductPrice>
-            </div>
+            </Value>
           </OrderProductDataContainer>
           <OrderDate>{formatDate(createDate)}</OrderDate>
         </div>
