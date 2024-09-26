@@ -147,7 +147,7 @@ function Form({ redacting, user }) {
       <InputColumn>
         <ProfilePictureSelect
           disabled={!redacting}
-          img={user?.profilePictureSrc}
+          img={img}
           redacting={redacting}
         />
       </InputColumn>

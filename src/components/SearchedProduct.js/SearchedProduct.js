@@ -1,4 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import SimilarProduct from 'components/Product/SimilarProduct';
+import Sort from 'components/Sort/Sort';
+import NoSearched from 'SvgComponents/NoSearched/NoSearched';
+import { selectLoader } from '../../redux/product/selector';
+import Loader from 'components/Loader/Loader';
 import {
   BoxSvg,
   Product,
@@ -7,14 +13,12 @@ import {
   EmptySearch,
   TitleSort,
 } from './SearchedProduct.styled';
-import SimilarProduct from 'components/Product/SimilarProduct';
-import Sort from 'components/Sort/Sort';
-import NoSearched from 'SvgComponents/NoSearched/NoSearched';
 
 export default function SearchedProduct({ handleSort, sortedProduct }) {
+  const loader = useSelector(selectLoader);
   return (
     <>
-      {sortedProduct?.length === 0 ? (
+      {sortedProduct?.length === 0 && !loader && (
         <EmptySearch>
           <TitleSection>
             На жаль, за вашим запитом нічого не знайдено.
@@ -27,7 +31,8 @@ export default function SearchedProduct({ handleSort, sortedProduct }) {
             <NoSearched />
           </BoxSvg>
         </EmptySearch>
-      ) : (
+      )}
+      {sortedProduct?.length !== 0 && !loader && (
         <ProductsPage>
           <header>
             <TitleSort>Результати пошуку</TitleSort>
@@ -67,6 +72,7 @@ export default function SearchedProduct({ handleSort, sortedProduct }) {
                 />
               )
             )}
+            {loader && <Loader isAlreadyLoad={loader} />}
           </Product>
         </ProductsPage>
       )}

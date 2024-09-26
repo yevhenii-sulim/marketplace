@@ -23,9 +23,9 @@ export const Pointer = styled.ul`
       background-color: ${({ theme }) => theme.color.bgCommon};
     }
   }
-    @media (max-width: 672px) {\
-      margin-top: 12px;
-    }
+  @media (max-width: 672px) {
+    margin-top: 12px;
+  }
 `;
 
 export const HomePageAdSliderContainer = styled.ul`

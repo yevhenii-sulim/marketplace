@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {
   ArrowLeftWrapper,
   ArrowRightWrapper,
@@ -8,6 +9,7 @@ import {
   SlidersWrapper,
   WrapperSlide,
 } from './Slider.styled';
+import { IconWrapper } from './ViewAhead.styled';
 
 export default function Slider({ values }) {
   const slide = useRef();
@@ -43,14 +45,11 @@ export default function Slider({ values }) {
     requestAnimationFrame(scroll);
   }
 
-  const handleImageLoad = event => {
-    const img = event.target;
-    img.style.width = 'auto';
-    img.style.height = '100%';
-  };
-
   return (
-    <SliderContainer>
+    <SliderContainer className="prevView">
+      <IconWrapper>
+        <FavoriteBorderIcon />
+      </IconWrapper>
       {values.file.length === 1 ? (
         ''
       ) : (
@@ -66,7 +65,7 @@ export default function Slider({ values }) {
 
           return (
             <WrapperSlide key={index} ref={slide}>
-              <img src={imageUrl} alt={file.name} onLoad={handleImageLoad} />
+              <img src={imageUrl} alt={file.name} />
             </WrapperSlide>
           );
         })}

@@ -1,22 +1,23 @@
 import React, { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { ImageModal } from './ImageModal';
 import {
   ArrowLeftWrapper,
   ArrowRightWrapper,
+  IconWrapper,
   SliderContainer,
   SlidersWrapper,
   WrapperSlide,
 } from './Slider.styled';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useSelector } from 'react-redux';
-import { ImageModal } from './ImageModal';
 
 function Slider() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState('');
   const [touchStartPosition, setTouchStartPosition] = useState();
   const product = useSelector(state => state.productPage.product);
-
   const slide = useRef();
   const wrapperSliderBlock = useRef();
 
@@ -80,6 +81,9 @@ function Slider() {
         </ArrowLeftWrapper>
       )}
       <SlidersWrapper ref={wrapperSliderBlock}>
+        <IconWrapper>
+          <FavoriteBorderIcon />
+        </IconWrapper>
         {product.img.map((el, index) => (
           <WrapperSlide key={index} ref={slide}>
             <img src={el} alt={el} onClick={() => handleImageClick(el)} />
