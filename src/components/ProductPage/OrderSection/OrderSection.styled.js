@@ -73,6 +73,7 @@ export const IconWrapper = styled.span`
     position: absolute;
     top: 35px;
     right: 30px;
+    z-index: 10;
   }
   @media (max-width: 650px) {
     top: 20px;

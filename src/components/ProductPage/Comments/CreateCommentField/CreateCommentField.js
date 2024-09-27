@@ -15,7 +15,13 @@ import { addComment } from '../../../../redux/productPage/productPageSlice';
 import { Rating } from '@mui/material';
 import { cancelButton, commentedButton, rating } from './material.styles';
 
-function CreateCommentField({ productId, parent, parentIndex, isNested }) {
+function CreateCommentField({
+  productId,
+  parent,
+  parentIndex,
+  isNested,
+  toggleCommentForm,
+}) {
   const createCommentLoading = useSelector(
     state => state.productPage.createCommentLoading
   );
@@ -76,7 +82,10 @@ function CreateCommentField({ productId, parent, parentIndex, isNested }) {
             <Button
               variant="outlined"
               sx={cancelButton}
-              onClick={() => setNewComment('')}
+              onClick={() => {
+                toggleCommentForm('');
+                setNewComment('');
+              }}
             >
               Скасувати
             </Button>

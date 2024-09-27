@@ -88,6 +88,7 @@ function CommentItems({
             parent={parent}
             parentIndex={parentIndex}
             isNested={isNested}
+            toggleCommentForm={toggleCommentForm}
           />
         </CSSTransition>
       </CommentsWrapper>
