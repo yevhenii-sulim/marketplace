@@ -34,10 +34,12 @@ export default function BasketProductComponent({
   discountPrice,
 }) {
   const user = useSelector(selectMyUser);
+
   const dispatch = useDispatch();
   const { width } = getWindowDimensions();
 
   function toggleFavorite(id) {
+    if (!user) return;
     if (user.favorites.some(({ _id }) => id === _id)) {
       dispatch(removeFavoriteProduct(id));
     } else {
@@ -118,7 +120,9 @@ export default function BasketProductComponent({
                 className="favorite"
                 onClick={() => toggleFavorite(id)}
               >
-                {user?.favorites.some(({ _id }) => id === _id) ? (
+                {user &&
+                user.favorites &&
+                user.favorites.some(({ _id }) => id === _id) ? (
                   <FavoriteIcon sx={{ color: theme.color.bgNumberBasket }} />
                 ) : (
                   <FavoriteBorderIcon sx={{ color: '#727272' }} />

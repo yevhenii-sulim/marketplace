@@ -5,9 +5,12 @@ export const SliderContainer = styled.section`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 480px;
+  height: 320px;
   background-color: white;
   border-radius: 12px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
+    height: 480px;
+  }
   @media (max-width: 1024px) {
     width: 100%;
   }
@@ -24,6 +27,26 @@ export const SlidersWrapper = styled.article`
     width: 0;
   }
 `;
+
+export const IconWrapper = styled.span`
+  display: none;
+  @media screen and (max-width: 1024px) {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    margin: auto 0;
+    background-color: ${({ theme }) => theme.color.bgFooter};
+    padding: 8px;
+    border-radius: 50%;
+  }
+`;
+
 export const ArrowLeftWrapper = styled.div`
   position: absolute;
   display: flex;

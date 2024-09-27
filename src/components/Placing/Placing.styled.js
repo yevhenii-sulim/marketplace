@@ -77,8 +77,8 @@ export const Box = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
   padding-bottom: 24px;
   padding-top: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 8px;
+  padding-right: 8px;
   &:not(:last-child) {
     margin-bottom: 24px;
   }
@@ -104,6 +104,10 @@ export const Box = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 `;
 export const TitleBox = styled.h2`
@@ -186,6 +190,17 @@ export const styleSelect = {
     color: `${theme.color.colorTextExplainment}`,
     borderRadius: '6px',
     border: 'none',
+    width: '280px',
+    margin: 'auto',
+    ' @media screen and (min-width:380px)': {
+      width: `calc(${theme.breakPoints.sm} - 16px)`,
+    },
+    ' @media screen and (min-width:480px)': {
+      width: `calc(${theme.breakPoints.sx} - 16px)`,
+    },
+    '@media screen and (min-width: 768px)': {
+      width: '100%',
+    },
   },
   '.arrow_select': {
     lineHeight: '0',
@@ -215,13 +230,14 @@ export const styleSelect = {
 export const WrapperTown = styled.div`
   position: relative;
   width: 100%;
+  text-align: center;
 `;
 export const ListTown = styled.ul`
   position: absolute;
   top: calc(100% + 24px);
   z-index: 2;
   left: 0;
-  width: 100%;
+  width: 320px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -244,6 +260,19 @@ export const ListTown = styled.ul`
     &:hover {
       box-shadow: 0 0 0 1px ${({ theme }) => theme.color.borderRegister};
     }
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sm}) {
+    width: ${({ theme }) => theme.breakPoints.sm};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    width: ${({ theme }) => theme.breakPoints.sx};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.mx}) {
+    width: ${({ theme }) => theme.breakPoints.mx};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    width: ${({ theme }) => theme.breakPoints.md};
   }
 `;
 

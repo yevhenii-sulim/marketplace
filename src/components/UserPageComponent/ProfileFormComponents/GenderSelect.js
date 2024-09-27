@@ -15,6 +15,7 @@ export default function GenderSelect({ disabled, value, onChange }) {
             onChange={event => {
               onChange(event);
             }}
+            value={value}
           >
             <option disabled>Оберіть стать</option>
             <option value="male">Чоловіча</option>

@@ -23,7 +23,7 @@ export default function Search() {
   const loader = useSelector(selectLoader);
   const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [wasClick, setWasClick] = useState(true);
+  const [wasChange, setWasChange] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,25 +32,29 @@ export default function Search() {
 
   useEffect(() => {
     setValue('');
+    setIsOpen(true);
+    setWasChange(true);
   }, [location]);
 
   useEffect(() => {
-    if (value && wasClick) {
+    if (!wasChange) return;
+    if (value) {
       setIsOpen(true);
     } else {
       setIsOpen(false);
     }
-  }, [value, wasClick]);
+  }, [value, wasChange]);
 
   useEffect(() => {
+    if (!wasChange) return;
     if (value) {
       var timer = setTimeout(() => {
         dispatch(prevSearchProduct(value));
-        setWasClick(true);
+        setWasChange(true);
       }, 500);
     }
     return () => clearTimeout(timer);
-  }, [dispatch, value]);
+  }, [dispatch, value, wasChange]);
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -67,7 +71,7 @@ export default function Search() {
   function handleClick(evt) {
     setValue(evt.target.innerText);
     setIsOpen(false);
-    setWasClick(false);
+    setWasChange(false);
   }
 
   return (

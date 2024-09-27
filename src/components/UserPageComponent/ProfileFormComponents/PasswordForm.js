@@ -87,10 +87,6 @@ export default function PasswordForm({
         $justifycontent={width > theme.breakPoints.md ? 'space-between' : null}
       >
         <InputColumn $setfullwidth={true} $width={'100%'}>
-          {/* <PasswordField
-            label="Старий пароль"
-            placeholder="Введіть старий пароль"
-          /> */}
           {redacting ? (
             <NewPasswordInput
               newPassword={newPassword}
@@ -110,6 +106,8 @@ export default function PasswordForm({
             <RedactButton
               onClick={() => {
                 saveNewPassword();
+                setNewPassword('');
+                setConfirmNewPassword('');
               }}
             >
               Зберегти
