@@ -43,7 +43,7 @@ function ProductPageTabs() {
     <TabContext value={value}>
       <WrapperMobileCatalogOnProductPage>
         <Link
-          to="/"
+          to="/catalog"
           style={{
             width: '95%',
             margin: '0 auto 0 0',

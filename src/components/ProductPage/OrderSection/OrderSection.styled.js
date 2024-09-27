@@ -47,9 +47,9 @@ export const ProductName = styled.div`
 `;
 export const ProductNameWrapper = styled.p`
   width: 100%;
-  white-space: nowrap;
+  // white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  // text-overflow: ellipsis;
   @media (max-width: 1024px) {
     width: 100%;
   }
@@ -68,6 +68,16 @@ export const IconWrapper = styled.span`
   padding: 8px;
   border-radius: 50%;
   cursor: pointer;
+  color: orange;
+  @media (max-width: 1024px) {
+    position: absolute;
+    top: 35px;
+    right: 30px;
+  }
+  @media (max-width: 650px) {
+    top: 20px;
+    right: 20px;
+  }
 `;
 export const ProductCost = styled.section`
   display: flex;
