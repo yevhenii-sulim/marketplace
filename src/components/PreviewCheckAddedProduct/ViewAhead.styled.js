@@ -230,11 +230,12 @@ export const IconWrapper = styled.span`
   background-color: ${({ theme }) => theme.color.bgFooter};
   padding: 8px;
   border-radius: 50%;
-  @media screen and (max-width: ${({ theme }) => theme.breakPoints.lg}) {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.lg}) {
+    position: static;
   }
 `;
 

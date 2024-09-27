@@ -13,7 +13,19 @@ export const FullOrderInfo = styled.div`
   border-radius: 8px;
   margin-bottom: 10px;
 `;
-
+export const OrderProductPrice = styled.p`
+  font-family: Jost;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.45;
+  width: 100px;
+`;
+export const TitlePurshes = styled.h2`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  width: 130px;
+`;
 export const OrderProductContainer = styled.li`
   display: grid;
   gap: 20px;
@@ -23,12 +35,13 @@ export const OrderProductContainer = styled.li`
   }
 `;
 export const Value = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  font: 400 16px 'Nunito Sans';
-  line-height: 20px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font: 400 16px 'Nunito Sans';
+    line-height: 20px;
+  }
 
   img {
     width: 88px;
@@ -57,6 +70,7 @@ export const OrderProducts = styled.ul`
 export const YellowTitle = styled.p`
   font: 800 18px 'Nunito Sans';
   line-height: 26px;
+  margin-bottom: 10px;
   color: ${({ theme }) => theme.color.colorTextWaitedOrder};
 `;
 
@@ -81,10 +95,6 @@ export const OrderProductImage = styled.div`
     object-fit: cover;
     border-radius: 50%;
   }
-`;
-
-export const OrderProductPrice = styled.p`
-  font: 700 22px 'Jost';
 `;
 
 export const OrderDate = styled.p`

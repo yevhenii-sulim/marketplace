@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link as LinkEntered } from 'react-router-dom';
-import { Link as linkComponents } from 'react-router-dom';
+import { NavLink as linkComponents } from 'react-router-dom';
 export const BackDrop = styled.div`
   position: fixed;
   width: 100%;
@@ -36,7 +36,7 @@ export const Menu = styled.div`
   flex-direction: column;
   transition: left 500ms ease;
   width: 322px;
-
+  overflow-y: auto;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
     width: 414px;
   }
@@ -88,13 +88,26 @@ export const LinkEnter = styled(LinkEntered)`
   margin: auto;
 `;
 export const LinkAxillary = styled(linkComponents)`
+  justify-content: space-between;
   display: flex;
   align-items: center;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   gap: 12px;
-  line-height: 1.5; /* 150% */
+  padding: 10px;
+  width: 100%;
+  svg {
+    stroke: ${({ theme }) => theme.color.colorMainText};
+  }
+  &.active svg {
+    stroke: ${({ theme }) => theme.color.bgButton};
+  }
+  &.active {
+    color: ${({ theme }) => theme.color.bgButton};
+    border: ${({ theme }) => theme.color.bgButton} 2px solid;
+    border-radius: 4px;
+  }
   &:not(:last-child) {
     margin-bottom: 16px;
   }
@@ -128,16 +141,8 @@ export const Title = styled.h1`
   margin-bottom: 16px;
 `;
 export const CategoryList = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
   svg {
     width: 24px;
     height: 24px;
-  }
-  a {
-    margin-bottom: 0 !important;
-    gap: 20px;
   }
 `;

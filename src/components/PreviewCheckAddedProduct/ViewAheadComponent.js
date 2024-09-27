@@ -5,6 +5,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { toggleModalView } from '../../redux/modalViewProduct/slice';
 import { selectMyUser } from '../../redux/auth/selector';
 import Slider from './Slider';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
 import {
   AboutPrice,
   AboutProduct,
@@ -32,8 +34,6 @@ import {
   ButtonsContacts,
   ButtonsBuy,
 } from './ViewAhead.styled';
-import useWindowDimensions from 'hooks/useWindowDimensions';
-import { theme } from 'utils/theme';
 
 export default function ViewAheadComponent({ onSubmit, values, errors }) {
   const dispatch = useDispatch();
@@ -98,14 +98,16 @@ export default function ViewAheadComponent({ onSubmit, values, errors }) {
                   <div>
                     {values.discount ? (
                       <PriceWithDiscount>
-                        <p className="first-price">{values.price} &#8372;</p>
+                        <p className="first-price">
+                          {values.price}&nbsp;&#8372;
+                        </p>
                         <p className="discount">
-                          {values.discountPrice} &#8372;
+                          {values.discountPrice}&nbsp;&#8372;
                         </p>
                       </PriceWithDiscount>
                     ) : (
                       <PriceWithoutDiscount>
-                        <p>{values.price} &#8372;</p>
+                        <p>{values.price}&nbsp;&#8372;</p>
                       </PriceWithoutDiscount>
                     )}
                   </div>

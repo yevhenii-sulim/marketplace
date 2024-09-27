@@ -42,8 +42,6 @@ export default function ProductListPage({
   const categories = useSelector(selectCategory);
   const isLoading = useSelector(selectIsLoading);
   const { width } = useWindowDimensions();
-
-  console.log(sortedProduct);
   function setRouting(categories) {
     if (!categories) return;
     return categories.subCategory;

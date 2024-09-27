@@ -45,7 +45,6 @@ export const ProductsPage = styled.div`
 `;
 export const Product = styled.div`
   display: grid;
-  justify-content: center;
   @media screen and (max-width: calc(${({ theme }) =>
       theme.breakPoints.sm} - 1px)) {
     grid-template-columns: auto;

@@ -20,6 +20,20 @@ export const PersonalDataContainer = styled.div`
   gap: 20px;
 `;
 export const UserFieldName = styled.div``;
+export const FormContactContainer = styled.div`
+  display: grid;
+  width: 100%;
+  column-gap: 12px;
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+`;
 export const FormContainer = styled.div`
   width: 100%;
   display: ${props => (props.$redacting ? 'unset' : 'flex')};
@@ -54,7 +68,6 @@ export const InputColumn = styled.div`
     margin-bottom: 24px;
   }
   @media (min-width: ${({ theme }) => theme.breakPoints.sx}) {
-    justify-self: center;
   }
   @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
     justify-content: unset;
@@ -72,16 +85,14 @@ export const Image = styled.div`
 export const ContainerName = styled.div`
   display: grid;
   width: 100%;
+  column-gap: 12px;
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
-    margin: auto;
     grid-template-columns: 1fr 1fr;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.sx}) {
-    margin: auto;
     grid-template-columns: 1fr 1fr;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
-    margin: auto;
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;
@@ -309,12 +320,6 @@ export const PasswordInput = styled.div`
     background: transparent;
     width: 44px;
     height: 44px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakPoints.md}) {
-    .input {
-      width: 320px;
-    }
   }
 `;
 

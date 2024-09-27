@@ -8,6 +8,7 @@ import {
   OrderProductContainer,
   OrderProductImage,
   Value,
+  TitlePurshes,
 } from './OrderConfirmedComponent.styled';
 import { formatDate } from 'data/formatDate';
 
@@ -37,7 +38,7 @@ export default function OrderProduct({
               <img src={imgSrc} alt="" />
             </OrderProductImage>
             <Value>
-              <h2>{title}</h2>
+              <TitlePurshes>{title}</TitlePurshes>
               <OrderProductPrice>{price}&nbsp;₴</OrderProductPrice>
             </Value>
           </OrderProductDataContainer>

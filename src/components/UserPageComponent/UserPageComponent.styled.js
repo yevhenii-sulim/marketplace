@@ -48,6 +48,8 @@ export const User = styled.div`
   gap: 16px;
   img {
     border-radius: 10px;
+    width: 71px;
+    height: auto;
   }
 `;
 export const UserName = styled.div`
