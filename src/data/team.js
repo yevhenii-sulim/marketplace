@@ -46,7 +46,7 @@ export const team = [
     name: 'Юрій Пукіш',
     spec: 'QA Engineer, ментор',
     link: 'https://www.linkedin.com/in/yurapykish?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    img: '/marketplace/images/catalog/for-free.png',
+    img: '/marketplace/images/team/yura.jpg',
   },
   {
     id: 11,
@@ -60,7 +60,7 @@ export const team = [
     name: 'Ярослав Мартекляс',
     spec: 'QA Engineer',
     link: 'https://www.linkedin.com/in/yaroslav-marteklias-7bb2782b3/',
-    img: '//marketplace/images/catalog/for-free.png',
+    img: '/marketplace/images/team/slavik.JPG',
   },
   {
     id: 13,
