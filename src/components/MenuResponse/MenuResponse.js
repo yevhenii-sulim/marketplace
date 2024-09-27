@@ -78,17 +78,20 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
                   }
                 />
                 <Sidebar>
-                  <CategoryList
-                    onClick={() => {
-                      onCloseMenu();
-                      navigate('/catalog');
-                    }}
-                  >
-                    <LinkAxillary>
-                      <CategorySvg stroke="black" height="32px" width="32px" />
-                      Каталог товарів
+                  <CategoryList>
+                    <LinkAxillary to={'/catalog'} onClick={onCloseMenu}>
+                      <p
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '20px',
+                        }}
+                      >
+                        <CategorySvg height="32px" width="32px" />
+                        Каталог товарів
+                      </p>
+                      <ArrowForwardIosIcon />
                     </LinkAxillary>
-                    <ArrowForwardIosIcon />
                   </CategoryList>
                   <UserPageSidebar onCloseMenu={onCloseMenu} />
                 </Sidebar>

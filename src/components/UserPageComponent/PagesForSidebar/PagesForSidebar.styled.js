@@ -98,11 +98,6 @@ export const Title = styled.h2`
     margin-right: auto;
   }
 `;
-// export const Actives = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-// `;
 export const Price = styled.div`
   font-family: Jost;
   font-size: 22px;

@@ -238,7 +238,6 @@ export const LabelSign = styled.p`
 export const Sign = styled.h3`
   margin-top: 34px;
   font-size: 18px;
-  padding-left: 30px;
   font-weight: 600;
   line-height: 1.44;
   color: ${({ $disable, theme }) =>
@@ -286,13 +285,13 @@ export const ExplainmentInputSign = styled.p`
 `;
 export const SelectorsList = styled.ul`
   display: grid;
+  justify-content: center;
+  grid-template-columns: 80%;
   grid-template-rows: auto auto;
   gap: 40px;
-  li {
-    text-align: center;
-  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.md}) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 40%);
   }
   @media screen and (min-width: ${({ theme }) => theme.breakPoints.xl}) {
     grid-template-columns: repeat(3, 1fr);
@@ -398,7 +397,6 @@ export const addProductButton = {
 export const styleSelect = {
   position: 'relative',
   width: '100%',
-  maxWidth: '300px',
   '.error': {
     position: 'absolute',
     bottom: '-25px',

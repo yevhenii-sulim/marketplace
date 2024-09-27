@@ -109,7 +109,7 @@ export default function MyPosterList({
                 onClick={toCreatePost}
                 state={'Створити оголошення'}
               >
-                <AddOutlinedIcon sx={{ color: 'white' }} />{' '}
+                <AddOutlinedIcon sx={{ color: 'white' }} />
                 {width > parseInt(theme.breakPoints.sx) && 'Додати'}
               </Link>
             </ToCreatePostLink>

@@ -1,5 +1,5 @@
 import {
-  FormContainer,
+  FormContactContainer,
   InputColumn,
   RedactContainer,
   RedactButton,
@@ -72,7 +72,7 @@ export default function ContactForm({
 
   return (
     <>
-      <FormContainer
+      <FormContactContainer
         $justifycontent={
           width <= parseInt(theme.breakPoints.lg) &&
           width >= parseInt(theme.breakPoints.md)
@@ -88,7 +88,7 @@ export default function ContactForm({
           contactDataChanges={contactDataChanges}
           setContactDataChanges={setContactDataChanges}
         />
-      </FormContainer>
+      </FormContactContainer>
       <RedactContainer>
         {redacting ? (
           <>
@@ -132,17 +132,16 @@ function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
   function isEmail(value) {
     return !/^\s*[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\s*$/i.test(value.email);
   }
-
+  console.log(!isEmail(contactDataChanges), isNumberPhone(contactDataChanges));
   return width > 672 ? (
     <>
-      <InputColumn
-        $setfullwidth={width <= parseInt(theme.breakPoints.md)}
-        $width={'320px'}
-      >
+      <InputColumn $setfullwidth={width <= parseInt(theme.breakPoints.md)}>
         <InputField
           label={'Електрона адреса'}
           placeholder={'Введіть електрону адресу'}
           required={true}
+          error={isEmail(contactDataChanges)}
+          errorText="Не коректний email"
           value={contactDataChanges?.email || user?.email}
           onChange={event =>
             setContactDataChanges({
@@ -158,13 +157,9 @@ function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
               : {}
           }
           disabled={!redacting}
-          width={width > parseInt(theme.breakPoints.md) ? '320px' : null}
         />
       </InputColumn>
-      <InputColumn
-        $setfullwidth={width <= parseInt(theme.breakPoints.md)}
-        $width={'320px'}
-      >
+      <InputColumn $setfullwidth={width <= parseInt(theme.breakPoints.md)}>
         <PhoneNumberFormField
           label={'Телефон'}
           placeholder={'+38 --- -- --'}
@@ -183,7 +178,6 @@ function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
               : {}
           }
           disabled={!redacting}
-          width={width > parseInt(theme.breakPoints.md) ? '320px' : null}
         />
       </InputColumn>
     </>
@@ -193,6 +187,8 @@ function Form({ redacting, user, contactDataChanges, setContactDataChanges }) {
         label={'Електрона адреса'}
         placeholder={'Введіть електрону адресу'}
         required={true}
+        error={isEmail(contactDataChanges)}
+        errorText="Не коректний email"
         value={contactDataChanges?.email || user?.email}
         onChange={event =>
           setContactDataChanges({

@@ -33,7 +33,9 @@ export default function FieldPrice({
         {require ? (
           <Label label={label} />
         ) : (
-          <Sign $disable={disabled}>{label}</Sign>
+          <Sign $disable={disabled} style={{ paddingLeft: '25px' }}>
+            {label}
+          </Sign>
         )}
         <Price className={className}>
           {children}

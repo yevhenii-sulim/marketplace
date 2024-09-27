@@ -83,16 +83,19 @@ export default function Search() {
         value={value}
         onChange={handleChange}
       />
-      {searchedProduct && searchedProduct.length !== 0 && isOpen && (
-        <PrevShowSearchedProduct>
-          {isLoaded &&
-            searchedProduct.map(({ _id, title }) => (
-              <li key={_id} onClick={handleClick}>
-                {title}
-              </li>
-            ))}
-        </PrevShowSearchedProduct>
-      )}
+      {searchedProduct &&
+        searchedProduct.length !== 0 &&
+        isOpen &&
+        value !== '' && (
+          <PrevShowSearchedProduct>
+            {isLoaded &&
+              searchedProduct.map(({ _id, title }) => (
+                <li key={_id} onClick={handleClick}>
+                  {title}
+                </li>
+              ))}
+          </PrevShowSearchedProduct>
+        )}
       <BoxLoader>
         <Loader isAlreadyLoad={loader} />
       </BoxLoader>

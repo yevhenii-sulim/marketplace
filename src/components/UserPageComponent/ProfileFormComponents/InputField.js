@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { FormField } from './ProfilePage.styled';
 
 export default function InputField({
@@ -11,9 +10,9 @@ export default function InputField({
   inputType = 'text',
   width,
   onBlur,
+  error,
+  errorText,
 }) {
-  const [error, setError] = useState(false);
-
   return (
     <FormField required={required} $width={width}>
       {disabled ? (
@@ -29,15 +28,9 @@ export default function InputField({
             type={inputType}
             value={value}
             onBlur={onBlur}
-            onChange={event => {
-              if (event.target.value.length > 21) {
-                setError(true);
-                return;
-              }
-              onChange(event);
-            }}
+            onChange={onChange}
           />
-          {error && <p className="error">Довжина від 2 до 20 символів</p>}
+          {error && <p className="error">{errorText}</p>}
         </>
       )}
     </FormField>

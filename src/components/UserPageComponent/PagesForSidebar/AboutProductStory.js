@@ -33,11 +33,11 @@ export default function AboutProductStory({
         <Price className="story">
           {discount ? (
             <>
-              <p className="price-discount">{price} &#8372;</p>
-              <p className="discount">{discountPrice} &#8372;</p>
+              <p className="price-discount">{price}&nbsp;&#8372;</p>
+              <p className="discount">{discountPrice}&nbsp;&#8372;</p>
             </>
           ) : (
-            <p className="price">{price} &#8372;</p>
+            <p className="price">{price}&nbsp;&#8372;</p>
           )}
         </Price>
       </Cost>

@@ -10,11 +10,12 @@ import {
   WrapperSlide,
 } from './Slider.styled';
 import { IconWrapper } from './ViewAhead.styled';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 export default function Slider({ values }) {
   const slide = useRef();
   const wrapperSliderBlock = useRef();
-
+  const { width } = useWindowDimensions();
   const scrollPhoto = nameArrow => {
     const wrapperSliderBlockScroll = wrapperSliderBlock.current;
     const widthBlock = slide.current.offsetWidth;
@@ -47,9 +48,12 @@ export default function Slider({ values }) {
 
   return (
     <SliderContainer className="prevView">
-      <IconWrapper>
-        <FavoriteBorderIcon />
-      </IconWrapper>
+      {width < 1200 && (
+        <IconWrapper>
+          <FavoriteBorderIcon />
+        </IconWrapper>
+      )}
+
       {values.file.length === 1 ? (
         ''
       ) : (
