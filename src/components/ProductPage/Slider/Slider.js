@@ -10,6 +10,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useSelector } from 'react-redux';
 import { ImageModal } from './ImageModal';
+import ButtonFavorite from '../OrderSection/ButtonFavorite';
 
 function Slider() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -80,9 +81,19 @@ function Slider() {
         </ArrowLeftWrapper>
       )}
       <SlidersWrapper ref={wrapperSliderBlock}>
+        <ButtonFavorite
+          productId={product._id}
+          currentPictures={currentImage}
+        />
         {product.img.map((el, index) => (
           <WrapperSlide key={index} ref={slide}>
-            <img src={el} alt={el} onClick={() => handleImageClick(el)} />
+            <img
+              src={el}
+              alt={el}
+              onClick={() => {
+                handleImageClick(el);
+              }}
+            />
             <ImageModal
               imageUrl={currentImage}
               isOpen={modalIsOpen}

@@ -1,11 +1,9 @@
 import { createPortal } from 'react-dom';
 import {
-  IconWrapper,
   OrderSectionContainer,
   OrderSectionWrapper,
   ProductName,
 } from './OrderSection.styled';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ButtonBlock from './ButtonBlock/ButtonBlock';
 import DatePublication from './DatePublication/DatePublication';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,11 +13,7 @@ import { selectBasket } from '../../../redux/basket/select';
 import BasketModal from 'components/BasketModal/BasketModal';
 import { useState } from 'react';
 import ProductCostSection from './ProductCost';
-import {
-  addFavoriteProduct,
-  removeFavoriteProduct,
-} from '../../../redux/product/thunk';
-import { selectMyUser } from '../../../redux/auth/selector';
+import ButtonFavorite from './ButtonFavorite';
 
 const body = document.querySelector('body');
 const modalEnter = document.querySelector('#modal');
@@ -27,11 +21,10 @@ const widthScroll = window.innerWidth - body.offsetWidth;
 
 function OrderSection() {
   const product = useSelector(productForProductPage);
-  const user = useSelector(selectMyUser);
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
   const basket = useSelector(selectBasket);
-  const dispatch = useDispatch();
 
   function sendIdProduct() {
     setIsOpen(true);
@@ -64,29 +57,12 @@ function OrderSection() {
     dispatch(addProduct(productAdded));
   }
 
-  const addFavorite = productId => {
-    if (!user) return;
-    if (user.favorites.some(el => el._id === product._id)) {
-      dispatch(removeFavoriteProduct(productId));
-    } else {
-      dispatch(addFavoriteProduct(productId));
-    }
-  };
   return (
     <OrderSectionWrapper>
       <OrderSectionContainer>
         <ProductName>
           {product.title}
-          <IconWrapper
-            onClick={() => addFavorite(product._id)}
-            $favorite={
-              user?.favorites
-                ? user.favorites.some(el => el._id === product._id)
-                : false
-            }
-          >
-            <FavoriteBorderIcon />
-          </IconWrapper>
+          <ButtonFavorite productId={product._id} />
         </ProductName>
         <ProductCostSection product={product} />
         <ButtonBlock
