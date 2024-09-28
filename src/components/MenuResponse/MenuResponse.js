@@ -100,14 +100,9 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
           ) : (
             <>
               <section>
-                <Contacts
-                  onClick={() => {
-                    onCloseMenu();
-                    navigate('/contacts');
-                  }}
-                >
-                  <MarkAsk />
+                <Contacts>
                   <Link to="/contacts" onClick={onCloseMenu}>
+                    <MarkAsk />
                     Контакти команди
                   </Link>
                 </Contacts>
@@ -125,13 +120,23 @@ export default function MenuResponse({ toggleMenu, isOpenMenu, onCloseMenu }) {
               </section>
               <section>
                 <div>
-                  <LinkAxillary to="/my_order" onClick={onCloseMenu}>
+                  <LinkAxillary
+                    to="/my_order"
+                    onClick={onCloseMenu}
+                    style={{ justifyContent: 'flex-start' }}
+                    className="response-menu-link"
+                  >
                     <ShoppingCartOutlinedIcon
                       sx={{ height: '32px', width: '32px' }}
                     />
                     Кошик
                   </LinkAxillary>
-                  <LinkAxillary to="/catalog" onClick={onCloseMenu}>
+                  <LinkAxillary
+                    to="/catalog"
+                    onClick={onCloseMenu}
+                    style={{ justifyContent: 'flex-start' }}
+                    className="response-menu-link"
+                  >
                     <CategorySvg stroke="black" height="32px" width="32px" />
                     Каталог товарів
                   </LinkAxillary>

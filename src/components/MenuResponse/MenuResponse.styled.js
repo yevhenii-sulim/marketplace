@@ -60,9 +60,11 @@ export const AddContainer = styled.div`
   text-align: center;
 `;
 export const Contacts = styled.div`
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  a {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
 `;
 export const EnteredProfile = styled.div`
   background-color: ${({ theme }) => theme.color.bgProduct};
@@ -97,7 +99,7 @@ export const LinkAxillary = styled(linkComponents)`
   gap: 12px;
   padding: 10px;
   width: 100%;
-  svg {
+  &:not(.response-menu-link) svg {
     stroke: ${({ theme }) => theme.color.colorMainText};
   }
   &.active svg {
