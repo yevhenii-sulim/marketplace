@@ -96,3 +96,8 @@ export const CloseModal = styled.button`
   right: 20px;
   cursor: pointer;
 `;
+export const WrapperButtonFavorite = styled.div`
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
