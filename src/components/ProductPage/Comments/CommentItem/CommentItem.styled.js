@@ -15,9 +15,8 @@ export const CommentsWrapper = styled.section`
 `;
 export const CommentsContainer = styled.article`
   display: flex;
-  width: 98%;
-  margin: 16px auto;
-  ${({ $isNested }) => ($isNested ? '' : 'justify-content: space-evenly')};
+  width: 80%;
+  margin: 16px 0 16px 0;
 `;
 export const CommentsIconBlock = styled.div`
   width: ${({ $isNested }) => ($isNested ? '32px' : '64px')};
@@ -25,6 +24,7 @@ export const CommentsIconBlock = styled.div`
   background-color: #d9d9d9;
   border-radius: 50%;
   border: 1px solid black;
+  margin-right: 16px;
   @media (max-width: 600px) {
     width: ${({ $isNested }) => ($isNested ? '32px' : '54px')};
     height: ${({ $isNested }) => ($isNested ? '32px' : '54px')};

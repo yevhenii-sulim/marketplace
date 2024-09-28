@@ -5,7 +5,7 @@ export const DescriptionProductHeaderComments = styled.header`
   justify-content: space-between;
   font-weight: 700;
   font-size: 22px;
-  margin: 50px auto 0 auto;
+  margin: 50px 0 0 0;
   width: 90%;
 `;
 
