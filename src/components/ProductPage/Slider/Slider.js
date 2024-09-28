@@ -8,6 +8,7 @@ import {
   ArrowRightWrapper,
   SliderContainer,
   SlidersWrapper,
+  WrapperButtonFavorite,
   WrapperSlide,
 } from './Slider.styled';
 import ButtonFavorite from '../OrderSection/ButtonFavorite';
@@ -80,11 +81,12 @@ function Slider() {
         </ArrowLeftWrapper>
       )}
       <SlidersWrapper ref={wrapperSliderBlock}>
-        <ButtonFavorite
-          productId={product._id}
-          currentPictures={currentImage}
-        />
-
+        <WrapperButtonFavorite>
+          <ButtonFavorite
+            productId={product._id}
+            currentPictures={currentImage}
+          />
+        </WrapperButtonFavorite>
         {product.img.map((el, index) => (
           <WrapperSlide key={index} ref={slide}>
             <img
