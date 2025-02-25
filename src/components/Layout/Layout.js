@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Container, ContainerLayout } from './Layout.styled';
 import Header from 'components/Header/Header';
