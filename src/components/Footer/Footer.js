@@ -38,9 +38,6 @@ export default function Footer() {
           </Confederacy>
         </ContainerFooter>
         <Sign>© Розробка "Team Challenge" 2024. Усі права захищені.</Sign>
-        <a href="https://rzekl.com/g/1e8d114494a44cfda69c16525dc3e8/" target="_blank" rel="noopener noreferrer">
-        Перейти до магазину
-      </a>
       </Container>
     </FooterContainer>
   );
