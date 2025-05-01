@@ -1,8 +1,8 @@
 ## path
 
 1. path to swagger :
-   https://internet-shop-api-production.up.railway.app/api-documentation#/product/ProductsController_create
-2. path to API : https://internet-shop-api-production.up.railway.app
+   https://internet-shop-api-copy-production.up.railway.app/api-documentation
+2. path to API : internet-shop-api-copy-production.up.railway.app
 3. path to repo : https://github.com/yevhenii-sulim/marketplace
 
 ## libraries:

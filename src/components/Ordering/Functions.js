@@ -3,7 +3,7 @@ import { deleteBasket } from '../../redux/basket/slice';
 import { removeFavoriteProduct } from '../../redux/product/thunk';
 import { setOrder } from '../../redux/orderData/slice';
 
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 export const prices = {
   total: 0,
   totalPrice: 0,

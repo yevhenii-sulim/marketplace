@@ -1,3 +1,10 @@
+import { useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { selectToken } from '../../../redux/auth/selector';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { theme } from 'utils/theme';
+import NewPasswordInput from './NewPasswordInput';
 import {
   FormContainer,
   InputColumn,
@@ -5,14 +12,8 @@ import {
   RedactButton,
   CancelRedactingButton,
 } from './ProfilePage.styled';
-// import PasswordField from './PasswordField';
-import NewPasswordInput from './NewPasswordInput';
-import { useState } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { selectToken } from '../../../redux/auth/selector';
-import useWindowDimensions from 'hooks/useWindowDimensions';
-import { theme } from 'utils/theme';
+
+const URL = process.env.REACT_APP_API_URL;
 
 export default function PasswordForm({
   redacting,
@@ -62,16 +63,12 @@ export default function PasswordForm({
       password: newPassword,
     };
 
-    const { data } = await axios.post(
-      'https://internet-shop-api-production.up.railway.app/user',
-      changes,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const { data } = await axios.post(`${URL}/user`, changes, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    });
     onSaveChanges();
     return data;
   };

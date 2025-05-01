@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 export const refreshToken = async () => {
   try {

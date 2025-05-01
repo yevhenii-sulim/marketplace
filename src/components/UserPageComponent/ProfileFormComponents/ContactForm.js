@@ -14,6 +14,8 @@ import axios from 'axios';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import { theme } from 'utils/theme';
 
+const URL = process.env.REACT_APP_API_URL;
+
 export default function ContactForm({
   redacting,
   onSaveChanges,
@@ -50,16 +52,12 @@ export default function ContactForm({
       numberPhone: contactDataChanges?.phoneNumber || user?.numberPhone,
     };
 
-    const { data } = await axios.post(
-      'https://internet-shop-api-production.up.railway.app/user',
-      changes,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const { data } = await axios.post(`${URL}/user`, changes, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return data;
   };
 
