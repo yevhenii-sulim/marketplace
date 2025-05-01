@@ -6,7 +6,7 @@ import { refreshToken } from '../refreshToken';
 import { addNullRating, deleteRating } from '../rating/slice';
 import { toggleModalAuth } from '../modalAuth/slice';
 
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.patch['Content-Type'] = 'multipart/form-data';
 
 function setToken(token) {

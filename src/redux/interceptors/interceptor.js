@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = 'https://internet-shop-api-production.up.railway.app';
+export const API_URL = process.env.REACT_APP_API_URL;
 
 const $api = axios.create({
   withCredentials: true,

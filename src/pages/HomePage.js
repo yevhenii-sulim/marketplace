@@ -6,7 +6,7 @@ import useWindowDimensions from 'hooks/useWindowDimensions';
 import HomePageAdSlider from 'components/HomePageAdSlider/HomePageAdSlider';
 import Search from 'components/Search/Search';
 import { theme } from 'utils/theme';
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 const param = [
   {

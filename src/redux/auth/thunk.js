@@ -3,8 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
 import { toggleModalAuth } from '../modalAuth/slice';
 import { refreshToken } from '../refreshToken';
-axios.defaults.baseURL = 'https://internet-shop-api-production.up.railway.app';
-
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.post.withCredentials = true;
 axios.defaults.headers.get.withCredentials = true;
 
