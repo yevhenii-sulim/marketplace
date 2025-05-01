@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Notiflix from 'notiflix';
 import { toggleModalAuth } from '../modalAuth/slice';
 import { refreshToken } from '../refreshToken';
+
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.post.withCredentials = true;
 axios.defaults.headers.get.withCredentials = true;
@@ -92,7 +93,10 @@ export const restorePassword = createAsyncThunk(
 
     try {
       token.set(token);
+      console.log('token', token);
+
       axios.defaults.headers.delete.withCredentials = true;
+      console.log('token', token);
       const data = await axios.post('/auth/changePassword', password);
 
       window.location.href = '/marketplace';
@@ -110,7 +114,6 @@ export const restorePassword = createAsyncThunk(
           dispatch(logOut());
           Notiflix.Notify.info('Ваша авторизація застаріла, авторизуйтесь');
           dispatch(toggleModalAuth(true));
-          // return rejectWithValue('Token refresh failed');
         }
       }
       console.log('errorupdate', error);
