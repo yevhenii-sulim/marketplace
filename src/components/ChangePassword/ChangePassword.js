@@ -17,6 +17,17 @@ import { theme } from 'utils/theme';
 import FieldConfirmComponent from './FieldConfirmComponent';
 import signupSchema from './signupSchema';
 
+function List({ condition, textCondition }) {
+  return (
+    <li
+      className="rule"
+      style={condition ? { color: `${theme.color.bgButton}` } : {}}
+    >
+      {textCondition}
+    </li>
+  );
+}
+
 export default function ChangePassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -95,56 +106,26 @@ export default function ChangePassword() {
               />
               <h3 className="rule">Пароль повинен мати:</h3>
               <ul>
-                <li
-                  className="rule"
-                  style={
-                    newPasswordStatus.correctLength
-                      ? { color: `${theme.color.bgButton}` }
-                      : {}
-                  }
-                >
-                  6-20 символів
-                </li>
-                <li
-                  className="rule"
-                  style={
-                    newPasswordStatus.correctChars
-                      ? { color: `${theme.color.bgButton}` }
-                      : {}
-                  }
-                >
-                  тільки латинські літери
-                </li>
-                <li
-                  className="rule"
-                  style={
-                    newPasswordStatus.hasSpecialSymbol
-                      ? { color: `${theme.color.bgButton}` }
-                      : {}
-                  }
-                >
-                  1 спеціальний символ
-                </li>
-                <li
-                  className="rule"
-                  style={
-                    newPasswordStatus.hasCapitalLetter
-                      ? { color: `${theme.color.bgButton}` }
-                      : {}
-                  }
-                >
-                  1 велику літеру
-                </li>
-                <li
-                  className="rule"
-                  style={
-                    newPasswordStatus.hasNumber
-                      ? { color: `${theme.color.bgButton}` }
-                      : {}
-                  }
-                >
-                  1 цифру
-                </li>
+                <List
+                  condition={newPasswordStatus.correctLength}
+                  textCondition="6-20 символів"
+                />
+                <List
+                  condition={newPasswordStatus.correctChars}
+                  textCondition="тільки латинські літери"
+                />
+                <List
+                  condition={newPasswordStatus.hasSpecialSymbol}
+                  textCondition="1 спеціальний символ"
+                />
+                <List
+                  condition={newPasswordStatus.hasCapitalLetter}
+                  textCondition="1 велику літеру"
+                />
+                <List
+                  condition={newPasswordStatus.hasNumber}
+                  textCondition="1 цифру"
+                />
               </ul>
             </label>
 

@@ -85,8 +85,6 @@ export const sendQueryRestorePassword = createAsyncThunk(
 export const restorePassword = createAsyncThunk(
   'user/restorePassword',
   async (password, { dispatch, rejectWithValue }) => {
-    console.log('password', password);
-
     const tokenIndex = window.location.href.indexOf('token=');
     const tokenString = window.location.href.slice(
       tokenIndex + 6,
