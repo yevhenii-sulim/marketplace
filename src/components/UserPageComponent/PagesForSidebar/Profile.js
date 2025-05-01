@@ -19,9 +19,8 @@ export default function Profile() {
     redactingPassword: false,
   });
 
-  const onChanges = (redactingStatus, callback) => {
+  const onChanges = redactingStatus => {
     setRedactingStatus({ ...redactingStatus });
-    callback();
   };
 
   return (
