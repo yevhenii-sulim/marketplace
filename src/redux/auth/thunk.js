@@ -86,17 +86,17 @@ export const restorePassword = createAsyncThunk(
   'user/restorePassword',
   async (password, { dispatch, rejectWithValue }) => {
     const tokenIndex = window.location.href.indexOf('token=');
-    const token = window.location.href.slice(
+    const tokenString = window.location.href.slice(
       tokenIndex + 6,
       window.location.href.length
     );
 
     try {
-      token.set(token);
-      console.log('token', token);
+      token.set(tokenString);
+      console.log('tokenString', tokenString);
 
       axios.defaults.headers.delete.withCredentials = true;
-      console.log('token', token);
+      console.log('tokenString', tokenString);
       const data = await axios.post('/auth/changePassword', password);
 
       window.location.href = '/marketplace';
